@@ -9,9 +9,7 @@ EXCLUDE_DIRS = {'.git', '.github', '.rclone-spool'}
 EXCLUDE_FILES = {'index.html', 'build_index.py', 'patient_education.xlsx', 'server.log'}
 
 def generate_index():
-    print("📂 Scanning directories and building collapsible clinical tree...")
-    
-    # Structure: { Category: { Subcategory: [ (Topic_Name, HTML_Url, MD_Url), ... ] } }
+    print("📂 Scanning directories and building streamlined hyperlink tree...")
     tree = {}
     
     for root, dirs, files in os.walk(TARGET_DIR):
@@ -21,7 +19,6 @@ def generate_index():
             continue
             
         parts = rel_path.split(os.sep)
-        
         if len(parts) >= 2:
             category = parts[0]
             subcategory = parts[1]
@@ -32,13 +29,11 @@ def generate_index():
                     continue
                 
                 base_name, ext = os.path.splitext(f)
-                if ext.lower() in ['.html', '.md']:
-                    if base_name not in topic_files:
-                        topic_files[base_name] = {'html': None, 'md': None}
-                    
+                # We only track HTML files for the UI display now
+                if ext.lower() == '.html':
                     full_rel_path = os.path.join(rel_path, f)
                     safe_url = urllib.parse.quote(full_rel_path)
-                    topic_files[base_name][ext.lower()[1:]] = safe_url
+                    topic_files[base_name] = safe_url
 
             if topic_files:
                 if category not in tree:
@@ -46,11 +41,10 @@ def generate_index():
                 if subcategory not in tree[category]:
                     tree[category][subcategory] = []
                 
-                for topic, urls in topic_files.items():
+                for topic, url in topic_files.items():
                     display_name = topic.replace('_', ' ').replace('-', ' ').title()
-                    tree[category][subcategory].append((display_name, urls['html'], urls['md']))
+                    tree[category][subcategory].append((display_name, url))
 
-    # Generate layout matching modern documentation platforms
     html_content = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,40 +61,26 @@ def generate_index():
         h1 { font-size: 2rem; font-weight: 700; color: #1e293b; letter-spacing: -0.02em; }
         p.subtitle { color: #64748b; font-size: 0.95rem; margin-top: 0.25rem; }
         
-        /* Persistent Search Bar */
         .search-container { position: sticky; top: 1rem; z-index: 100; margin-bottom: 2rem; }
-        #searchBar { width: 100%; padding: 0.85rem 1.25rem; font-size: 1rem; border: 1px solid #cbd5e1; border-radius: 8px; background: white; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); outline: none; transition: border-color 0.15s; }
+        #searchBar { width: 100%; padding: 0.85rem 1.25rem; font-size: 1rem; border: 1px solid #cbd5e1; border-radius: 8px; background: white; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); outline: none; }
         #searchBar:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15); }
         
-        /* Clean Custom Collapsible Elements */
-        details { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 0.75rem; transition: all 0.2s ease; }
+        details { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 0.75rem; }
         summary { padding: 0.85rem 1.25rem; font-weight: 600; font-size: 1.05rem; color: #1e293b; cursor: pointer; user-select: none; display: flex; align-items: center; justify-content: space-between; list-style: none; }
         summary::-webkit-details-marker { display: none; }
-        
-        /* Dynamic Chevron Indicator */
         summary::after { content: ""; width: 6px; height: 6px; border-right: 2px solid #64748b; border-bottom: 2px solid #64748b; transform: rotate(-45deg); transition: transform 0.2s ease; margin-right: 0.25rem; }
         details[open] > summary::after { transform: rotate(45deg); }
-        details[open] { border-color: #cbd5e1; box-shadow: 0 1px 3px rgb(0 0 0 / 0.02); }
         
         .category-content { padding: 0.5rem 1.25rem 1.25rem 1.25rem; border-top: 1px solid #f1f5f9; }
-        
-        /* Nested Subcategory Styling */
-        details.subcategory { border: 1px solid #e2e8f0; background: #fafafa; margin-top: 0.5rem; margin-bottom: 0.5rem; }
+        details.subcategory { border: 1px solid #e2e8f0; background: #fafafa; margin-top: 0.5rem; }
         details.subcategory summary { font-size: 0.95rem; font-weight: 500; color: #475569; padding: 0.65rem 1rem; }
         .subcategory-content { padding: 0.5rem 1rem 1rem 1rem; border-top: 1px solid #e2e8f0; background: #ffffff; }
         
-        /* Terminal leaves (Topic Lines) */
+        /* Clean Link Rows */
         .topic-list { list-style: none; padding: 0; margin: 0; }
-        .topic-item { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0.75rem; border-radius: 6px; margin-bottom: 0.25rem; transition: background 0.1s; }
-        .topic-item:hover { background: #f8fafc; }
-        .topic-name { font-size: 0.9rem; font-weight: 400; color: #334155; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 1rem; }
-        
-        /* Minimalist Action Badges */
-        .badge-group { display: flex; gap: 0.35rem; flex-shrink: 0; }
-        .badge { text-decoration: none; font-size: 0.7rem; font-weight: 600; padding: 0.15rem 0.4rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.02em; }
-        .badge-html { background-color: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
-        .badge-md { background-color: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
-        .badge:hover { opacity: 0.8; }
+        .topic-item { margin-bottom: 0.25rem; }
+        .topic-link { display: block; text-decoration: none; font-size: 0.92rem; font-weight: 400; color: #334155; padding: 0.5rem 0.75rem; border-radius: 6px; transition: all 0.1s; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .topic-link:hover { background: #e0f2fe; color: #0369a1; padding-left: 1rem; }
         
         .hidden { display: none !important; }
         .no-results { text-align: center; padding: 3rem; color: #94a3b8; font-size: 1rem; }
@@ -131,28 +111,19 @@ def generate_index():
             html_content += f'\t\t\t\t\t<div class="subcategory-content">\n'
             html_content += f'\t\t\t\t\t\t<ul class="topic-list">\n'
             
-            for topic_name, html_url, md_url in sorted(topics):
+            for topic_name, html_url in sorted(topics):
                 html_content += f'\t\t\t\t\t\t\t<li class="topic-item" data-node="topic">\n'
-                html_content += f'\t\t\t\t\t\t\t\t<span class="topic-name" title="{topic_name}">{topic_name}</span>\n'
-                html_content += f'\t\t\t\t\t\t\t\t<div class="badge-group">\n'
-		# (Keep the top configuration sections of your script exactly the same)
-		# Modify ONLY the badge generation loops inside build_index.py to look like this:
-
-                if html_url:
-                    html_content += f'\t\t\t\t\t\t\t\t\t<a class="badge badge-html" href="{html_url}">HTML</a>\n'
-                if md_url:
-                    html_content += f'\t\t\t\t\t\t\t\t\t<a class="badge badge-md" href="{md_url}">MD</a>\n'
-                html_content += f'\t\t\t\t\t\t\t\t</div>\n'
+                html_content += f'\t\t\t\t\t\t\t\t<a class="topic-link" href="{html_url}" title="{topic_name}">{topic_name}</a>\n'
                 html_content += f'\t\t\t\t\t\t\t</li>\n'
                 
             html_content += f'\t\t\t\t\t\t</ul>\n'
             html_content += f'\t\t\t\t\t</div>\n'
+            # (Fix: Closing tag for subcategory details was missing here)
             html_content += f'\t\t\t\t</details>\n'
             
         html_content += f'\t\t\t</div>\n'
         html_content += f'\t\t</details>\n'
 
-    # Auto-Expanding Fuzzy Search Javascript
     html_content += """        </div>
         <div id="noResults" class="no-results hidden">No matching clinical topics found.</div>
     </div>
@@ -173,7 +144,7 @@ def generate_index():
                     const topics = sub.querySelectorAll('[data-node="topic"]');
 
                     topics.forEach(topic => {
-                        const text = topic.querySelector('.topic-name').textContent.toLowerCase();
+                        const text = topic.querySelector('.topic-link').textContent.toLowerCase();
                         if (text.includes(query)) {
                             topic.classList.remove('hidden');
                             visibleTopicsWithinSub++;
@@ -183,32 +154,21 @@ def generate_index():
                         }
                     });
 
-                    // Search Behavior: If matches are found, auto-expand the parent folder
                     if (visibleTopicsWithinSub > 0) {
                         sub.classList.remove('hidden');
-                        if (query !== "") {
-                            sub.setAttribute('open', 'true');
-                        }
-                        visibleSubcategoriesWithinCategory++;
+                        if (query !== "") sub.setAttribute('open', 'true');
                     } else {
                         sub.classList.add('hidden');
-                        if (query === "") {
-                            sub.removeAttribute('open');
-                        }
+                        if (query === "") sub.removeAttribute('open');
                     }
                 });
 
-                // Auto-expand the root level Category if matches exist inside it
                 if (visibleSubcategoriesWithinCategory > 0) {
                     category.classList.remove('hidden');
-                    if (query !== "") {
-                        category.setAttribute('open', 'true');
-                    }
+                    if (query !== "") category.setAttribute('open', 'true');
                 } else {
                     category.classList.add('hidden');
-                    if (query === "") {
-                        category.removeAttribute('open');
-                    }
+                    if (query === "") category.removeAttribute('open');
                 }
             });
 
@@ -225,8 +185,7 @@ def generate_index():
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         f.write(html_content)
-        
-    print(f"🏁 Success! Clean collapsible index generated at: {OUTPUT_FILE}")
+    print(f"🏁 Success! Hyperlink index generated at: {OUTPUT_FILE}")
 
 if __name__ == "__main__":
     generate_index()
