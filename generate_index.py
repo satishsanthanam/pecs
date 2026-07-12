@@ -5,11 +5,11 @@ import urllib.parse
 # Configuration
 TARGET_DIR = "."
 OUTPUT_FILE = "index.html"
-EXCLUDE_DIRS = {'.git', '.github', '.rclone-spool'}
-EXCLUDE_FILES = {'index.html', 'build_index.py', 'patient_education.xlsx', 'server.log'}
+EXCLUDE_DIRS = {'.git', '.github', '.rclone-spool', '_pagefind'}
+EXCLUDE_FILES = {'index.html', 'search.html', 'build_index.py', 'patient_education.xlsx', 'server.log'}
 
 def generate_index():
-    print("📂 Scanning directories and building streamlined hyperlink tree...")
+    print("📡 Scanning directory structures and building live library index...")
     tree = {}
     
     for root, dirs, files in os.walk(TARGET_DIR):
@@ -29,7 +29,7 @@ def generate_index():
                     continue
                 
                 base_name, ext = os.path.splitext(f)
-                # We only track HTML files for the UI display now
+                # Track only structural HTML files for interface rendering
                 if ext.lower() == '.html':
                     full_rel_path = os.path.join(rel_path, f)
                     safe_url = urllib.parse.quote(full_rel_path)
@@ -53,15 +53,27 @@ def generate_index():
     <title>Clinical Reference Library</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #0284c7; --text: #0f172a; --bg: #f8fafc; --card-bg: #ffffff; --border: #e2e8f0; }
+        :root { --primary: #0284c7; --primary-hover: #0369a1; --text: #0f172a; --bg: #f8fafc; --card-bg: #ffffff; --border: #e2e8f0; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); padding: 2rem 1rem; line-height: 1.5; }
         .container { max-width: 900px; margin: 0 auto; }
-        header { margin-bottom: 2rem; text-align: left; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; }
-        h1 { font-size: 2rem; font-weight: 700; color: #1e293b; letter-spacing: -0.02em; }
-        p.subtitle { color: #64748b; font-size: 0.95rem; margin-top: 0.25rem; }
         
-        .search-container { position: sticky; top: 1rem; z-index: 100; margin-bottom: 2rem; }
+        /* Modern Header Flexbox Layout */
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; }
+        .header-title h1 { font-size: 2rem; font-weight: 700; color: #1e293b; letter-spacing: -0.02em; }
+        .header-title p.subtitle { color: #64748b; font-size: 0.95rem; margin-top: 0.25rem; }
+        
+        /* Search Action Pill */
+        .search-nav-btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: #2563eb; color: white; padding: 0.65rem 1.25rem;
+            text-decoration: none; font-weight: 600; font-size: 0.9rem; border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.15); transition: background 0.2s, transform 0.1s;
+        }
+        .search-nav-btn:hover { background: #1d4ed8; }
+        .search-nav-btn:active { transform: scale(0.98); }
+        
+        .filter-container { position: sticky; top: 1rem; z-index: 100; margin-bottom: 2rem; }
         #searchBar { width: 100%; padding: 0.85rem 1.25rem; font-size: 1rem; border: 1px solid #cbd5e1; border-radius: 8px; background: white; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); outline: none; }
         #searchBar:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15); }
         
@@ -76,7 +88,6 @@ def generate_index():
         details.subcategory summary { font-size: 0.95rem; font-weight: 500; color: #475569; padding: 0.65rem 1rem; }
         .subcategory-content { padding: 0.5rem 1rem 1rem 1rem; border-top: 1px solid #e2e8f0; background: #ffffff; }
         
-        /* Clean Link Rows */
         .topic-list { list-style: none; padding: 0; margin: 0; }
         .topic-item { margin-bottom: 0.25rem; }
         .topic-link { display: block; text-decoration: none; font-size: 0.92rem; font-weight: 400; color: #334155; padding: 0.5rem 0.75rem; border-radius: 6px; transition: all 0.1s; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -84,23 +95,35 @@ def generate_index():
         
         .hidden { display: none !important; }
         .no-results { text-align: center; padding: 3rem; color: #94a3b8; font-size: 1rem; }
+
+        @media (max-width: 640px) {
+            header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .search-nav-btn { width: 100%; justify-content: center; box-sizing: border-box; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Clinical Reference Library</h1>
-            <p class="subtitle">System Resource Index & Documentation Database</p>
+            <div class="header-title">
+                <h1>Clinical Reference Library</h1>
+                <p class="subtitle">System Resource Index & Documentation Database</p>
+            </div>
+            <a href="/search.html" class="search-nav-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <span>Search Library</span>
+            </a>
         </header>
 
-        <div class="search-container">
-            <input type="text" id="searchBar" placeholder="🔍 Type to filter folders and topics instantly..." onkeyup="filterLibrary()">
+        <div class="filter-container">
+            <input type="text" id="searchBar" placeholder="Type to filter folders and topics instantly..." onkeyup="filterLibrary()">
         </div>
 
         <div id="libraryRoot">
 """
 
     for cat, subcats in sorted(tree.items()):
+        #safe_cat_id = cat.replace(' ', '-').lower()
         html_content += f'\t\t<details class="category" data-node="category">\n'
         html_content += f'\t\t\t<summary>📁 {cat}</summary>\n'
         html_content += f'\t\t\t<div class="category-content">\n'
@@ -118,7 +141,6 @@ def generate_index():
                 
             html_content += f'\t\t\t\t\t\t</ul>\n'
             html_content += f'\t\t\t\t\t</div>\n'
-            # (Fix: Closing tag for subcategory details was missing here)
             html_content += f'\t\t\t\t</details>\n'
             
         html_content += f'\t\t\t</div>\n'
@@ -156,6 +178,7 @@ def generate_index():
 
                     if (visibleTopicsWithinSub > 0) {
                         sub.classList.remove('hidden');
+                        visibleSubcategoriesWithinCategory++; // 🛠️ FIX: Correctly incremented to ensure layout remains visible
                         if (query !== "") sub.setAttribute('open', 'true');
                     } else {
                         sub.classList.add('hidden');
@@ -185,7 +208,7 @@ def generate_index():
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         f.write(html_content)
-    print(f"🏁 Success! Hyperlink index generated at: {OUTPUT_FILE}")
+    print(f"✨ Success! Streamlined interactive index generated at: {OUTPUT_FILE}")
 
 if __name__ == "__main__":
     generate_index()

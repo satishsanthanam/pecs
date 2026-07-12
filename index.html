@@ -6,15 +6,27 @@
     <title>Clinical Reference Library</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #0284c7; --text: #0f172a; --bg: #f8fafc; --card-bg: #ffffff; --border: #e2e8f0; }
+        :root { --primary: #0284c7; --primary-hover: #0369a1; --text: #0f172a; --bg: #f8fafc; --card-bg: #ffffff; --border: #e2e8f0; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); padding: 2rem 1rem; line-height: 1.5; }
         .container { max-width: 900px; margin: 0 auto; }
-        header { margin-bottom: 2rem; text-align: left; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; }
-        h1 { font-size: 2rem; font-weight: 700; color: #1e293b; letter-spacing: -0.02em; }
-        p.subtitle { color: #64748b; font-size: 0.95rem; margin-top: 0.25rem; }
         
-        .search-container { position: sticky; top: 1rem; z-index: 100; margin-bottom: 2rem; }
+        /* Modern Header Flexbox Layout */
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; }
+        .header-title h1 { font-size: 2rem; font-weight: 700; color: #1e293b; letter-spacing: -0.02em; }
+        .header-title p.subtitle { color: #64748b; font-size: 0.95rem; margin-top: 0.25rem; }
+        
+        /* Search Action Pill */
+        .search-nav-btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: #2563eb; color: white; padding: 0.65rem 1.25rem;
+            text-decoration: none; font-weight: 600; font-size: 0.9rem; border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.15); transition: background 0.2s, transform 0.1s;
+        }
+        .search-nav-btn:hover { background: #1d4ed8; }
+        .search-nav-btn:active { transform: scale(0.98); }
+        
+        .filter-container { position: sticky; top: 1rem; z-index: 100; margin-bottom: 2rem; }
         #searchBar { width: 100%; padding: 0.85rem 1.25rem; font-size: 1rem; border: 1px solid #cbd5e1; border-radius: 8px; background: white; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); outline: none; }
         #searchBar:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15); }
         
@@ -29,7 +41,6 @@
         details.subcategory summary { font-size: 0.95rem; font-weight: 500; color: #475569; padding: 0.65rem 1rem; }
         .subcategory-content { padding: 0.5rem 1rem 1rem 1rem; border-top: 1px solid #e2e8f0; background: #ffffff; }
         
-        /* Clean Link Rows */
         .topic-list { list-style: none; padding: 0; margin: 0; }
         .topic-item { margin-bottom: 0.25rem; }
         .topic-link { display: block; text-decoration: none; font-size: 0.92rem; font-weight: 400; color: #334155; padding: 0.5rem 0.75rem; border-radius: 6px; transition: all 0.1s; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -37,17 +48,28 @@
         
         .hidden { display: none !important; }
         .no-results { text-align: center; padding: 3rem; color: #94a3b8; font-size: 1rem; }
+
+        @media (max-width: 640px) {
+            header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .search-nav-btn { width: 100%; justify-content: center; box-sizing: border-box; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Clinical Reference Library</h1>
-            <p class="subtitle">System Resource Index & Documentation Database</p>
+            <div class="header-title">
+                <h1>Clinical Reference Library</h1>
+                <p class="subtitle">System Resource Index & Documentation Database</p>
+            </div>
+            <a href="/search.html" class="search-nav-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <span>Search Library</span>
+            </a>
         </header>
 
-        <div class="search-container">
-            <input type="text" id="searchBar" placeholder="🔍 Type to filter folders and topics instantly..." onkeyup="filterLibrary()">
+        <div class="filter-container">
+            <input type="text" id="searchBar" placeholder="Type to filter folders and topics instantly..." onkeyup="filterLibrary()">
         </div>
 
         <div id="libraryRoot">
@@ -141,6 +163,276 @@
 							<li class="topic-item" data-node="topic">
 								<a class="topic-link" href="Adult%20general%20health/Cost%20of%20healthcare/Brand%20versus%20generic%20medicines/brand_versus_generic_medicines.html" title="Brand Versus Generic Medicines">Brand Versus Generic Medicines</a>
 							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Cost%20of%20healthcare/Coping%20with%20high%20drug%20prices/coping_with_high_drug_prices.html" title="Coping With High Drug Prices">Coping With High Drug Prices</a>
+							</li>
+						</ul>
+					</div>
+				</details>
+				<details class="subcategory" data-node="subcategory">
+					<summary>📂 Dental health in adults</summary>
+					<div class="subcategory-content">
+						<ul class="topic-list">
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Dental%20health%20in%20adults/Dental%20anesthesia/dental_anesthesia.html" title="Dental Anesthesia">Dental Anesthesia</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Dental%20health%20in%20adults/Dry%20mouth/dry_mouth.html" title="Dry Mouth">Dry Mouth</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Dental%20health%20in%20adults/Tooth%20decay%20in%20adults/tooth_decay_in_adults.html" title="Tooth Decay In Adults">Tooth Decay In Adults</a>
+							</li>
+						</ul>
+					</div>
+				</details>
+				<details class="subcategory" data-node="subcategory">
+					<summary>📂 Genetic testing</summary>
+					<div class="subcategory-content">
+						<ul class="topic-list">
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Genetic%20testing/Genetic%20testing/genetic_testing.html" title="Genetic Testing">Genetic Testing</a>
+							</li>
+						</ul>
+					</div>
+				</details>
+				<details class="subcategory" data-node="subcategory">
+					<summary>📂 Injuries, first aid, and CPR for adults</summary>
+					<div class="subcategory-content">
+						<ul class="topic-list">
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Abusive%20head%20injury%20in%20babies%20and%20children/abusive_head_injury_in_babies_and_children.html" title="Abusive Head Injury In Babies And Children">Abusive Head Injury In Babies And Children</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Black%20eye/black_eye.html" title="Black Eye">Black Eye</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Cervical%20collars%20for%20adults/cervical_collars_for_adults.html" title="Cervical Collars For Adults">Cervical Collars For Adults</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Chemical%20eye%20injury/chemical_eye_injury.html" title="Chemical Eye Injury">Chemical Eye Injury</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Chemical%20ingestion%20in%20adults/chemical_ingestion_in_adults.html" title="Chemical Ingestion In Adults">Chemical Ingestion In Adults</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Chemical%20skin%20burn/chemical_skin_burn.html" title="Chemical Skin Burn">Chemical Skin Burn</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Chest%20trauma/chest_trauma.html" title="Chest Trauma">Chest Trauma</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Coccyx%20injury/coccyx_injury.html" title="Coccyx Injury">Coccyx Injury</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Common%20toe%20injuries/common_toe_injuries.html" title="Common Toe Injuries">Common Toe Injuries</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/CPR%20for%20adults/cpr_for_adults.html" title="Cpr For Adults">Cpr For Adults</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Deciding%20where%20to%20go%20for%20care/deciding_where_to_go_for_care.html" title="Deciding Where To Go For Care">Deciding Where To Go For Care</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Electrical%20burns/electrical_burns.html" title="Electrical Burns">Electrical Burns</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Flank%20pain/flank_pain.html" title="Flank Pain">Flank Pain</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Fracture%20in%20adults%20%E2%80%93%20Discharge%20instructions/fracture_in_adults___discharge_instructions.html" title="Fracture In Adults   Discharge Instructions">Fracture In Adults   Discharge Instructions</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Frostbite/frostbite.html" title="Frostbite">Frostbite</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Heat%20stroke/heat_stroke.html" title="Heat Stroke">Heat Stroke</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/How%20to%20give%20naloxone/how_to_give_naloxone.html" title="How To Give Naloxone">How To Give Naloxone</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/How%20to%20use%20a%20knee%20brace/how_to_use_a_knee_brace.html" title="How To Use A Knee Brace">How To Use A Knee Brace</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/How%20to%20use%20a%20shoulder%20sling/how_to_use_a_shoulder_sling.html" title="How To Use A Shoulder Sling">How To Use A Shoulder Sling</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/How%20to%20use%20a%20walker/how_to_use_a_walker.html" title="How To Use A Walker">How To Use A Walker</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Hypothermia/hypothermia.html" title="Hypothermia">Hypothermia</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Knee%20sprain/knee_sprain.html" title="Knee Sprain">Knee Sprain</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Low%20back%20pain%20%E2%80%93%20Discharge%20instructions/low_back_pain___discharge_instructions.html" title="Low Back Pain   Discharge Instructions">Low Back Pain   Discharge Instructions</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Motor%20vehicle%20crash%20%E2%80%93%20Discharge%20instructions/motor_vehicle_crash___discharge_instructions.html" title="Motor Vehicle Crash   Discharge Instructions">Motor Vehicle Crash   Discharge Instructions</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Mouth%20and%20dental%20injuries%20in%20adults/mouth_and_dental_injuries_in_adults.html" title="Mouth And Dental Injuries In Adults">Mouth And Dental Injuries In Adults</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Nosebleeds/nosebleeds.html" title="Nosebleeds">Nosebleeds</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Removing%20objects%20stuck%20in%20the%20eye/removing_objects_stuck_in_the_eye.html" title="Removing Objects Stuck In The Eye">Removing Objects Stuck In The Eye</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Removing%20objects%20stuck%20in%20the%20rectum/removing_objects_stuck_in_the_rectum.html" title="Removing Objects Stuck In The Rectum">Removing Objects Stuck In The Rectum</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Removing%20objects%20stuck%20in%20the%20skin/removing_objects_stuck_in_the_skin.html" title="Removing Objects Stuck In The Skin">Removing Objects Stuck In The Skin</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Removing%20objects%20stuck%20in%20the%20vagina/removing_objects_stuck_in_the_vagina.html" title="Removing Objects Stuck In The Vagina">Removing Objects Stuck In The Vagina</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Removing%20staples/removing_staples.html" title="Removing Staples">Removing Staples</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Removing%20stitches/removing_stitches.html" title="Removing Stitches">Removing Stitches</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Shoulder%20pain/shoulder_pain.html" title="Shoulder Pain">Shoulder Pain</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Skin%20glue%20for%20minor%20cuts/skin_glue_for_minor_cuts.html" title="Skin Glue For Minor Cuts">Skin Glue For Minor Cuts</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Smoke%20inhalation/smoke_inhalation.html" title="Smoke Inhalation">Smoke Inhalation</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Smoke%20inhalation%20%E2%80%93%20Discharge%20instructions/smoke_inhalation___discharge_instructions.html" title="Smoke Inhalation   Discharge Instructions">Smoke Inhalation   Discharge Instructions</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Sprains/sprains.html" title="Sprains">Sprains</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Stitches%20and%20staples/stitches_and_staples.html" title="Stitches And Staples">Stitches And Staples</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Surgery%20to%20fix%20a%20broken%20bone/surgery_to_fix_a_broken_bone.html" title="Surgery To Fix A Broken Bone">Surgery To Fix A Broken Bone</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Surgery%20to%20fix%20a%20broken%20bone%20%E2%80%93%20Discharge%20instructions/surgery_to_fix_a_broken_bone___discharge_instructions.html" title="Surgery To Fix A Broken Bone   Discharge Instructions">Surgery To Fix A Broken Bone   Discharge Instructions</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Swallowed%20objects/swallowed_objects.html" title="Swallowed Objects">Swallowed Objects</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Taking%20care%20of%20bruises/taking_care_of_bruises.html" title="Taking Care Of Bruises">Taking Care Of Bruises</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Injuries%2C%20first%20aid%2C%20and%20CPR%20for%20adults/Taking%20care%20of%20cuts%2C%20scrapes%2C%20and%20puncture%20wounds/taking_care_of_cuts__scrapes__and_puncture_wounds.html" title="Taking Care Of Cuts  Scrapes  And Puncture Wounds">Taking Care Of Cuts  Scrapes  And Puncture Wounds</a>
+							</li>
+						</ul>
+					</div>
+				</details>
+				<details class="subcategory" data-node="subcategory">
+					<summary>📂 Leaving the hospital</summary>
+					<div class="subcategory-content">
+						<ul class="topic-list">
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Leaving%20the%20hospital/Activity%20level/activity_level.html" title="Activity Level">Activity Level</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Leaving%20the%20hospital/Going%20home%20from%20the%20hospital/going_home_from_the_hospital.html" title="Going Home From The Hospital">Going Home From The Hospital</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Leaving%20the%20hospital/Hazardous%20medicine%20safety%20at%20home/hazardous_medicine_safety_at_home.html" title="Hazardous Medicine Safety At Home">Hazardous Medicine Safety At Home</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Leaving%20the%20hospital/Infusion%20pumps/infusion_pumps.html" title="Infusion Pumps">Infusion Pumps</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Leaving%20the%20hospital/Post-intensive%20care%20syndrome%20%28PICS%29/post_intensive_care_syndrome__pics_.html" title="Post Intensive Care Syndrome  Pics ">Post Intensive Care Syndrome  Pics </a>
+							</li>
+						</ul>
+					</div>
+				</details>
+				<details class="subcategory" data-node="subcategory">
+					<summary>📂 Managing medicines</summary>
+					<div class="subcategory-content">
+						<ul class="topic-list">
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/Acetaminophen%20poisoning/acetaminophen_poisoning.html" title="Acetaminophen Poisoning">Acetaminophen Poisoning</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/Brand%20versus%20generic%20medicines/brand_versus_generic_medicines.html" title="Brand Versus Generic Medicines">Brand Versus Generic Medicines</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/Coping%20with%20high%20drug%20prices/coping_with_high_drug_prices.html" title="Coping With High Drug Prices">Coping With High Drug Prices</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/Disease-modifying%20antirheumatic%20drugs%20%28DMARDs%29/disease_modifying_antirheumatic_drugs__dmards_.html" title="Disease Modifying Antirheumatic Drugs  Dmards ">Disease Modifying Antirheumatic Drugs  Dmards </a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/Drug%20allergy/drug_allergy.html" title="Drug Allergy">Drug Allergy</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/How%20to%20take%20anticoagulants%20safely/how_to_take_anticoagulants_safely.html" title="How To Take Anticoagulants Safely">How To Take Anticoagulants Safely</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/Managing%20acute%20pain%20at%20home/managing_acute_pain_at_home.html" title="Managing Acute Pain At Home">Managing Acute Pain At Home</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/Managing%20dizziness%20from%20your%20medicines/managing_dizziness_from_your_medicines.html" title="Managing Dizziness From Your Medicines">Managing Dizziness From Your Medicines</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/Managing%20higher%20risk%20of%20falls%20from%20your%20medicines/managing_higher_risk_of_falls_from_your_medicines.html" title="Managing Higher Risk Of Falls From Your Medicines">Managing Higher Risk Of Falls From Your Medicines</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/Managing%20low%20blood%20pressure%20from%20your%20medicines/managing_low_blood_pressure_from_your_medicines.html" title="Managing Low Blood Pressure From Your Medicines">Managing Low Blood Pressure From Your Medicines</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/Managing%20nausea%20from%20your%20medicines/managing_nausea_from_your_medicines.html" title="Managing Nausea From Your Medicines">Managing Nausea From Your Medicines</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/Managing%20poor%20appetite%20from%20your%20medicines/managing_poor_appetite_from_your_medicines.html" title="Managing Poor Appetite From Your Medicines">Managing Poor Appetite From Your Medicines</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/Medicines%20after%20a%20heart%20attack/medicines_after_a_heart_attack.html" title="Medicines After A Heart Attack">Medicines After A Heart Attack</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/Medicines%20after%20an%20ischemic%20stroke/medicines_after_an_ischemic_stroke.html" title="Medicines After An Ischemic Stroke">Medicines After An Ischemic Stroke</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/Medicines%20for%20angina/medicines_for_angina.html" title="Medicines For Angina">Medicines For Angina</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/Medicines%20for%20asthma/medicines_for_asthma.html" title="Medicines For Asthma">Medicines For Asthma</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/Medicines%20for%20atrial%20fibrillation/medicines_for_atrial_fibrillation.html" title="Medicines For Atrial Fibrillation">Medicines For Atrial Fibrillation</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/Medicines%20for%20heart%20failure%20with%20reduced%20ejection%20fraction/medicines_for_heart_failure_with_reduced_ejection_fraction.html" title="Medicines For Heart Failure With Reduced Ejection Fraction">Medicines For Heart Failure With Reduced Ejection Fraction</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/Medicines%20for%20high%20blood%20pressure/medicines_for_high_blood_pressure.html" title="Medicines For High Blood Pressure">Medicines For High Blood Pressure</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/Medicines%20for%20osteoporosis/medicines_for_osteoporosis.html" title="Medicines For Osteoporosis">Medicines For Osteoporosis</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/Medicines%20for%20Parkinson%20disease/medicines_for_parkinson_disease.html" title="Medicines For Parkinson Disease">Medicines For Parkinson Disease</a>
+							</li>
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Managing%20medicines/Neuroleptic%20malignant%20syndrome/neuroleptic_malignant_syndrome.html" title="Neuroleptic Malignant Syndrome">Neuroleptic Malignant Syndrome</a>
+							</li>
+						</ul>
+					</div>
+				</details>
+				<details class="subcategory" data-node="subcategory">
+					<summary>📂 Pending Reviews</summary>
+					<div class="subcategory-content">
+						<ul class="topic-list">
+							<li class="topic-item" data-node="topic">
+								<a class="topic-link" href="Adult%20general%20health/Pending%20Reviews/Pending_Clinical_Protocol.html" title="Pending Clinical Protocol">Pending Clinical Protocol</a>
+							</li>
 						</ul>
 					</div>
 				</details>
@@ -178,6 +470,7 @@
 
                     if (visibleTopicsWithinSub > 0) {
                         sub.classList.remove('hidden');
+                        visibleSubcategoriesWithinCategory++; // 🛠️ FIX: Correctly incremented to ensure layout remains visible
                         if (query !== "") sub.setAttribute('open', 'true');
                     } else {
                         sub.classList.add('hidden');
