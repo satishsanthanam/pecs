@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting the various health impacts of alcohol on the human body. The central figure is a stylized human silhouette, with different organs highlighted and connected to visual metaphors of alcohol's effects: a liver with subtle signs of damage, a heart with irregular lines, a brain with swirling patterns indicating cognitive impact, and a stomach with a burning sensation. Surrounding elements include a broken glass, a calendar showing time passing, and subtle warning signs. The color palette is clean and modern, using blues, greens, and muted reds, with a focus on clarity and public health messaging. No text or numbers within the image.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./alcohol_and_your_health.jpg" class="card-banner" alt="Alcohol and your health Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-adult-general-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Adult general health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-adult-general-health-smoking-alcohol-and-substance-use" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Smoking, alcohol, and substance use</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Alcohol and your health</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Adult general health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Smoking, alcohol, and substance use</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Standard Drink Definition:</strong> Understand that a standard drink contains approximately 14 grams of pure alcohol, found in 12 oz of regular beer, 5 oz of wine, or 1.5 oz of distilled spirits.</li>
+        <li><strong>Moderate Consumption Guidelines:</strong> For adults, moderate drinking is defined as up to one drink per day for women and up to two drinks per day for men. Exceeding these limits increases health risks.</li>
+        <li><strong>Long-term Health Risks:</strong> Chronic heavy alcohol use can lead to a range of severe health issues including liver disease (fatty liver, alcoholic hepatitis, cirrhosis), cardiovascular problems, various cancers, and neurological damage.</li>
+        <li><strong>Impact on Mental Health:</strong> Alcohol can exacerbate mental health conditions such as depression and anxiety, and can impair cognitive function and memory over time.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Liver Dysfunction:</strong> Symptoms may include jaundice (yellowing of skin/eyes), fatigue, nausea, vomiting, abdominal pain (especially upper right quadrant), dark urine, and swelling in legs and ankles.</li>
+        <li><strong>Cardiovascular Issues:</strong> Elevated blood pressure (hypertension), irregular heart rhythms (arrhythmias), and weakened heart muscle (alcoholic cardiomyopathy) can manifest as shortness of breath, chest pain, or dizziness.</li>
+        <li><strong>Neurological Impairment:</strong> Chronic heavy use can lead to tremors, numbness or tingling in extremities (peripheral neuropathy), memory loss, confusion, and difficulty with coordination and balance.</li>
+        <li><strong>Gastrointestinal Distress:</strong> Frequent heartburn, gastritis, stomach ulcers, and pancreatitis (severe abdominal pain, nausea, vomiting) are common.</li>
+        <li><strong>Alcohol Withdrawal Syndrome:</strong> In individuals with alcohol dependence, abrupt cessation can lead to anxiety, insomnia, tremors, sweating, rapid heart rate, hallucinations, and seizures.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Pregnancy and Breastfeeding:</strong> Complete abstinence from alcohol is crucial during pregnancy to prevent Fetal Alcohol Spectrum Disorders (FASDs) and during breastfeeding as alcohol passes into breast milk.</li>
+        <li><strong>Medication Interactions:</strong> Avoid alcohol when taking medications that interact with it, such as sedatives, pain relievers, antibiotics, and antidepressants, as interactions can be dangerous or reduce medication effectiveness.</li>
+        <li><strong>Operating Machinery/Driving:</strong> Never consume alcohol before or while driving, operating heavy machinery, or engaging in activities requiring full mental alertness and coordination.</li>
+        <li><strong>Pre-existing Conditions:</strong> Individuals with liver disease, pancreatitis, heart conditions, certain cancers, or a history of alcohol dependence should avoid alcohol entirely or consult their physician.</li>
+        <li><strong>Underage Consumption:</strong> Alcohol consumption by individuals under the legal drinking age is illegal and carries significant health and developmental risks.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Empty Calories:</strong> Alcohol provides significant calories without essential nutrients, contributing to weight gain and potentially displacing nutrient-dense foods in the diet.</li>
+        <li><strong>Nutrient Depletion:</strong> Chronic alcohol use can impair the absorption and utilization of vital nutrients, particularly B vitamins (thiamine, folate), magnesium, and zinc, leading to deficiencies.</li>
+        <li><strong>Hydration Status:</strong> Alcohol acts as a diuretic, increasing fluid loss. Adequate hydration with water and electrolyte-rich fluids is important, especially for those who consume alcohol.</li>
+        <li><strong>Blood Sugar Regulation:</strong> Alcohol can interfere with blood sugar levels, potentially causing hypoglycemia (low blood sugar) in some individuals, especially those with diabetes or on certain medications.</li>
+        <li><strong>Liver-Protective Diet:</strong> For individuals with alcohol-related liver damage, a diet rich in lean proteins, fruits, vegetables, and whole grains, while avoiding excessive fats and sugars, is often recommended.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Recognize Alcohol Poisoning:</strong> Be aware of signs such as confusion, vomiting, seizures, slow or irregular breathing, blue-tinged skin, low body temperature, and unconsciousness.</li>
+        <li><strong>Emergency Action:</strong> If alcohol poisoning is suspected, call emergency services immediately. Do not leave the person alone. Turn them on their side to prevent choking on vomit.</li>
+        <li><strong>Never Force Vomiting:</strong> Do not attempt to induce vomiting, as this can lead to aspiration.</li>
+        <li><strong>Avoid "Sleeping it Off":</strong> An unconscious person with alcohol poisoning is at risk and requires immediate medical attention, not just sleep.</li>
+        <li><strong>Preventative Measures:</strong> Encourage responsible drinking, avoid drinking games, and ensure individuals are aware of their limits and the dangers of excessive consumption.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Honest Disclosure:</strong> Patients should openly discuss their alcohol consumption habits with their healthcare provider to receive accurate advice and screening.</li>
+        <li><strong>Screening and Assessment:</strong> Physicians often use validated screening tools like AUDIT-C or CAGE to assess alcohol use patterns and identify potential risks or disorders.</li>
+        <li><strong>Personalized Guidance:</strong> Recommendations regarding alcohol consumption are individualized based on a patient's medical history, current medications, and overall health status.</li>
+        <li><strong>Referral for Support:</strong> For individuals struggling with alcohol dependence, physicians can provide referrals to addiction specialists, counseling services, or support groups.</li>
+        <li><strong>Monitoring Health Markers:</strong> Regular monitoring of liver function tests, blood pressure, and other relevant health markers is crucial for individuals who consume alcohol.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Patient Education:</strong> Nurses play a vital role in educating patients about safe drinking limits, the health risks of excessive alcohol, and strategies for reducing consumption.</li>
+        <li><strong>Withdrawal Management:</strong> Understanding and managing alcohol withdrawal syndrome is critical, including monitoring vital signs, administering prescribed medications (e.g., benzodiazepines), and ensuring a safe environment.</li>
+        <li><strong>Screening Tools Application:</strong> Nurses frequently administer and interpret alcohol screening tools as part of routine health assessments to identify at-risk individuals.</li>
+        <li><strong>Harm Reduction Strategies:</strong> Educating patients on harm reduction techniques, such as alternating alcoholic drinks with water, eating before and during drinking, and avoiding binge drinking.</li>
+        <li><strong>Support and Advocacy:</strong> Providing empathetic support and advocating for patients seeking help for alcohol-related issues, connecting them with appropriate resources.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Alcohol Use Disorder (AUD):</strong> A medical condition characterized by an impaired ability to stop or control alcohol use despite adverse social, occupational, or health consequences, diagnosed using DSM-5 criteria.</li>
+        <li><strong>Liver Function Tests (LFTs):</strong> Blood tests (e.g., AST, ALT, GGT, bilirubin) used to assess liver health and detect damage often associated with alcohol consumption.</li>
+        <li><strong>Wernicke-Korsakoff Syndrome:</strong> A severe neurological disorder caused by thiamine (Vitamin B1) deficiency, often seen in chronic alcoholics, leading to confusion, ataxia, and memory impairment.</li>
+        <li><strong>Alcoholic Cardiomyopathy:</strong> A form of heart disease caused by long-term heavy alcohol use, leading to weakening of the heart muscle and impaired pumping ability.</li>
+        <li><strong>Gamma-Glutamyl Transferase (GGT):</strong> An enzyme found in the liver, elevated levels of which can indicate liver damage, often associated with chronic alcohol consumption.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

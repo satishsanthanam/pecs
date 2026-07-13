@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting surgical site infection prevention. The scene shows a diverse medical team (surgeon, nurse) in a clean operating room, practicing hand hygiene and sterile techniques. A patient is visible on the operating table, with a focus on a clean, bandaged incision area. Elements like antiseptic bottles, clean gloves, and a 'no smoking' sign are subtly integrated. The overall aesthetic is bright, reassuring, and emphasizes safety and cleanliness. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./lowering_the_risk_of_a_surgical_site_infection.jpg" class="card-banner" alt="Lowering the risk of a surgical site infection Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-adult-general-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Adult general health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-adult-general-health-safety" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Safety</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Lowering the risk of a surgical site infection</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Adult general health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Safety</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding SSI:</strong> A surgical site infection (SSI) is an infection that occurs after surgery in the part of the body where the surgery took place.</li><li><strong>Impact of SSIs:</strong> These infections can lead to prolonged hospital stays, readmissions, additional medical procedures, and increased healthcare costs.</li><li><strong>Prevention is Key:</strong> Reducing SSI risk involves a collaborative effort between the patient, surgical team, and adherence to strict hospital protocols.</li><li><strong>Patient's Role:</strong> Your active participation in pre-operative preparation and post-operative care is crucial for minimizing infection risk.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Increased Redness & Swelling:</strong> Noticeable increase in erythema and edema around the incision site, extending beyond the expected healing margins.</li><li><strong>Worsening Pain:</strong> New or escalating pain and tenderness at the surgical site that is disproportionate to the expected post-operative discomfort.</li><li><strong>Purulent Drainage:</strong> Presence of pus, cloudy fluid, or any discharge that is yellow, green, or foul-smelling from the incision.</li><li><strong>Localized Warmth:</strong> The skin around the surgical wound feels unusually warm to the touch.</li><li><strong>Systemic Signs:</strong> Development of fever (temperature over 100.4°F or 38°C), chills, or general malaise.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Pre-operative Skin Preparation:</strong> Shower with an antiseptic soap (e.g., chlorhexidine) as instructed by your surgeon, typically the night before and the morning of surgery.</li><li><strong>Hair Removal Protocol:</strong> If hair removal is necessary, it should be done with electric clippers immediately before surgery, not by shaving with a razor.</li><li><strong>Blood Glucose Optimization:</strong> For diabetic patients, strict control of blood sugar levels before and after surgery is vital to enhance immune function and wound healing.</li><li><strong>Smoking Cessation:</strong> Discontinue smoking as far in advance of surgery as possible, as smoking impairs circulation and wound healing.</li><li><strong>Hand Hygiene:</strong> All healthcare providers, patients, and visitors must practice meticulous hand hygiene, especially before and after touching the surgical site.</li><li><strong>Antibiotic Prophylaxis:</strong> Receive prescribed prophylactic antibiotics within 60 minutes prior to surgical incision, as directed by the surgical team.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Nutritional Support:</strong> Ensure adequate intake of protein, vitamins (especially C and A), and minerals (e.g., zinc) to support immune function and optimal wound healing.</li><li><strong>Hydration Status:</strong> Maintain good hydration by drinking sufficient fluids, unless otherwise restricted, to support overall physiological function and tissue perfusion.</li><li><strong>Blood Sugar Management:</strong> For diabetic patients, strictly adhere to dietary guidelines to maintain stable blood glucose levels, which is critical for infection prevention.</li><li><strong>Pre-operative Fasting:</strong> Follow all pre-operative fasting instructions precisely to prevent aspiration risks during anesthesia.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Incision Site Monitoring:</strong> Regularly inspect your surgical wound for any changes, such as increased redness, swelling, warmth, or new drainage.</li><li><strong>Adhere to Wound Care:</strong> Strictly follow all post-operative wound care instructions provided by your surgical team, including dressing changes and bathing restrictions.</li><li><strong>Prompt Reporting:</strong> Contact your surgeon or healthcare provider immediately if you notice any signs of infection or experience unusual symptoms.</li><li><strong>Avoid Contamination:</strong> Refrain from touching the incision site unnecessarily. If contact is required for care, ensure your hands are thoroughly cleaned.</li><li><strong>Activity Restrictions:</strong> Follow all post-operative activity restrictions to prevent undue stress on the incision, which could impede healing and increase infection risk.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Individualized Risk Assessment:</strong> Each patient's risk factors for SSI (e.g., diabetes, obesity, immunosuppression, smoking status) are thoroughly assessed and managed pre-operatively.</li><li><strong>Aseptic Technique:</strong> Meticulous adherence to sterile technique throughout the entire surgical procedure is paramount to prevent microbial contamination.</li><li><strong>Appropriate Antibiotic Selection:</strong> Prophylactic antibiotics are carefully selected based on the type of surgery, anticipated pathogens, and local resistance patterns, and administered at the correct timing.</li><li><strong>Perioperative Glycemic Control:</strong> Maintaining optimal blood glucose levels (typically 80-180 mg/dL) for diabetic patients throughout the perioperative period significantly reduces SSI risk.</li><li><strong>Post-operative Surveillance:</strong> Vigilant monitoring of the surgical site and patient's systemic signs post-operatively is crucial for early detection and prompt management of any developing infection.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Wound Assessment:</strong> Systematically assess surgical wounds using standardized tools (e.g., REEDA scale: Redness, Edema, Ecchymosis, Discharge, Approximation) at every dressing change.</li><li><strong>Reinforce Aseptic Technique:</strong> Consistently apply principles of aseptic technique during all wound care procedures, including hand hygiene, sterile field maintenance, and proper glove use.</li><li><strong>Thorough Patient Education:</strong> Educate patients and their caregivers on the signs and symptoms of SSI, proper wound care techniques, and clear instructions on when and how to seek medical attention.</li><li><strong>Accurate Documentation:</strong> Maintain meticulous and timely documentation of wound status, interventions performed, patient teaching provided, and any reported concerns.</li><li><strong>Environmental Control:</strong> Ensure the patient's immediate environment is clean and free from potential sources of contamination, especially during dressing changes.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>SSI Prevention Bundles:</strong> Implementation of evidence-based care bundles, such as those recommended by the CDC and WHO, significantly reduces SSI rates through standardized protocols.</li><li><strong>Normothermia Maintenance:</strong> Maintaining patient normothermia (core body temperature 36.0-37.0°C) during surgery optimizes immune function and tissue perfusion, crucial for wound healing.</li><li><strong>Optimal Tissue Oxygenation:</strong> Ensuring adequate tissue oxygenation during and after surgery supports cellular metabolism and immune response at the surgical site.</li><li><strong>Perioperative Glycemic Control:</strong> Strict management of perioperative blood glucose levels, particularly for diabetic patients, is a critical factor in preventing SSIs.</li><li><strong>Antimicrobial Stewardship:</strong> Judicious use of prophylactic antibiotics, guided by local antibiograms and surgical guidelines, is essential to prevent resistance and optimize efficacy.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

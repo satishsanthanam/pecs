@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a person standing at a crossroads, looking at multiple signs pointing to different medical facilities: a hospital with an 'ER' sign, an urgent care clinic, a doctor's office with a 'PCP' sign, and a laptop screen representing telehealth. The person has a thoughtful expression, symbolizing the decision-making process for healthcare. The background is clean and modern, with subtle medical icons. Public awareness design, no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./deciding_where_to_go_for_care.jpg" class="card-banner" alt="Deciding where to go for care Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-adult-general-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Adult general health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-adult-general-health-where-to-go-for-care" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Where to go for care</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Deciding where to go for care</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Adult general health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Where to go for care</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding Care Levels:</strong> Recognize the distinct roles of Emergency Rooms (ER), Urgent Care Centers, Primary Care Physicians (PCP), and Telehealth services.</li><li><strong>Appropriate Utilization:</strong> Selecting the correct care setting ensures timely treatment, optimizes healthcare resources, and can significantly impact out-of-pocket costs.</li><li><strong>Access to Records:</strong> Your Primary Care Physician maintains a comprehensive health record, crucial for continuity of care, which may not be immediately accessible in other settings.</li><li><strong>Insurance Coverage:</strong> Verify your insurance plan's coverage for different types of facilities and services to avoid unexpected bills.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Life-Threatening Emergencies (ER):</strong> Sudden severe chest pain, difficulty breathing, uncontrolled bleeding, sudden weakness or numbness, severe head injury, loss of consciousness, severe burns, suspected stroke or heart attack symptoms.</li><li><strong>Urgent but Non-Life-Threatening (Urgent Care):</strong> Flu-like symptoms, minor cuts requiring stitches, sprains, minor fractures, urinary tract infections, sore throat, earaches, mild asthma attacks, rashes.</li><li><strong>Routine & Chronic Conditions (PCP):</strong> Annual physicals, chronic disease management (diabetes, hypertension), medication refills, vaccinations, new non-urgent symptoms, preventive screenings, mental health concerns.</li><li><strong>Minor Ailments & Follow-ups (Telehealth):</strong> Cold symptoms, allergies, medication questions, follow-up appointments for stable conditions, minor skin issues, general health advice.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid ER Misuse:</strong> Do not use the Emergency Room for non-emergent conditions, as it can lead to longer wait times, higher costs, and divert resources from critical cases.</li><li><strong>Do Not Delay Care:</strong> For potentially serious symptoms, err on the side of caution and seek medical attention promptly; delaying care can worsen outcomes.</li><li><strong>Medication List Readiness:</strong> Always have an up-to-date list of all medications, dosages, and allergies readily available for any healthcare visit.</li><li><strong>Know Your PCP:</strong> Establish a relationship with a Primary Care Physician for coordinated, long-term health management and guidance on appropriate care pathways.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-Procedure Fasting:</strong> If an ER visit might lead to surgery or certain diagnostic tests, you may be advised to remain NPO (nothing by mouth) to prevent complications.</li><li><strong>Hydration for Illness:</strong> For common illnesses managed in urgent care or by a PCP, maintaining adequate hydration is often a primary recommendation.</li><li><strong>Chronic Disease Management:</strong> Dietary counseling and specific restrictions (e.g., low sodium for hypertension, carbohydrate control for diabetes) are integral to ongoing care with a PCP.</li><li><strong>Food Allergy Communication:</strong> Always communicate any food allergies or dietary restrictions to healthcare providers in any setting to ensure safe and appropriate care.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Bring Identification & Insurance:</strong> Always have your photo ID and insurance card ready for registration at any healthcare facility.</li><li><strong>Prepare Questions:</strong> Jot down any questions or concerns you have for the healthcare provider beforehand to ensure all your issues are addressed.</li><li><strong>Medication & Allergy List:</strong> Carry a current list of all medications you are taking, including over-the-counter drugs and supplements, along with any known allergies.</li><li><strong>Consider a Companion:</strong> If you are feeling very unwell or anticipate complex discussions, bringing a trusted friend or family member can be beneficial for support and information retention.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Prioritize Primary Care:</strong> Establishing a strong relationship with a Primary Care Physician is foundational for preventive care, chronic disease management, and navigating the healthcare system effectively.</li><li><strong>Trust Triage:</strong> Healthcare systems are designed with triage protocols to direct patients to the most appropriate level of care based on their symptoms and acuity.</li><li><strong>When in Doubt, Seek Guidance:</strong> If you are unsure about the severity of your symptoms, contact your PCP's office or a nurse advice line before heading to an ER or Urgent Care.</li><li><strong>Leverage Telehealth Wisely:</strong> Telehealth offers convenient access for minor issues and follow-ups, but it is not a substitute for in-person evaluation when physical examination is critical.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Role:</strong> Nurses are pivotal in educating patients on appropriate care settings, helping them understand when to seek emergent, urgent, or routine care.</li><li><strong>Triage Assessment Skills:</strong> Developing robust triage skills is essential for nurses to accurately assess patient acuity and guide them to the correct level of care, optimizing patient flow and outcomes.</li><li><strong>Resource Navigation:</strong> Nurses often serve as navigators, helping patients understand their insurance benefits and locate suitable healthcare resources within their community.</li><li><strong>Continuity of Care Planning:</strong> Emphasize the importance of follow-up with a PCP post-discharge from urgent care or ER to ensure seamless care transitions and prevent readmissions.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Levels of Care Classification:</strong> Understanding the distinctions between primary, secondary, tertiary, and quaternary care, and how they relate to different facility types.</li><li><strong>CPT Codes & Billing:</strong> Familiarity with how Current Procedural Terminology (CPT) codes vary significantly across ER, urgent care, and outpatient settings, impacting reimbursement and patient costs.</li><li><strong>Emergency Severity Index (ESI):</strong> A five-level triage algorithm used in emergency departments to prioritize patients based on acuity and resource needs.</li><li><strong>Telemedicine Regulations:</strong> Knowledge of state and federal regulations governing telehealth services, including licensing, prescribing, and privacy standards (e.g., HIPAA).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

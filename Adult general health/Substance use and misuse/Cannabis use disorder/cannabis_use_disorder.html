@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration depicting a person struggling with cannabis use disorder, surrounded by symbolic elements of addiction, mental health challenges, and pathways to recovery. Show a brain with some areas highlighted to represent altered function, a calendar with missed obligations, and a broken chain representing attempts to quit. Include supportive elements like a helping hand, a medical professional, and a path leading towards well-being. The style should be clean, modern, and suitable for public health awareness, avoiding any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./cannabis_use_disorder.jpg" class="card-banner" alt="Cannabis use disorder Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-adult-general-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Adult general health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-adult-general-health-substance-use-and-misuse" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Substance use and misuse</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Cannabis use disorder</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Adult general health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Substance use and misuse</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Cannabis Use Disorder (CUD) is a problematic pattern of cannabis use leading to clinically significant impairment or distress, characterized by at least two criteria occurring within a 12-month period.</li><li><strong>Prevalence:</strong> It affects a significant portion of cannabis users, with higher rates among adolescents and young adults, and those with co-occurring mental health conditions.</li><li><strong>Diagnostic Criteria:</strong> Diagnosis is based on DSM-5 criteria, including impaired control over use, social impairment, risky use, and pharmacological criteria (tolerance and withdrawal).</li><li><strong>Severity:</strong> CUD can range from mild to severe, depending on the number of criteria met, and often progresses over time if left untreated.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Craving:</strong> A strong desire or urge to use cannabis.</li><li><strong>Tolerance:</strong> Needing markedly increased amounts of cannabis to achieve intoxication or desired effect, or a markedly diminished effect with continued use of the same amount.</li><li><strong>Withdrawal:</strong> Experiencing characteristic withdrawal symptoms (e.g., irritability, anxiety, sleep disturbance, decreased appetite, restlessness) when cannabis use is stopped or reduced.</li><li><strong>Impaired Control:</strong> Persistent desire or unsuccessful efforts to cut down or control cannabis use.</li><li><strong>Time Spent:</strong> A great deal of time is spent in activities necessary to obtain cannabis, use cannabis, or recover from its effects.</li><li><strong>Social &amp; Occupational Impairment:</strong> Recurrent cannabis use resulting in a failure to fulfill major role obligations at work, school, or home.</li><li><strong>Continued Use Despite Problems:</strong> Continued cannabis use despite having persistent or recurrent physical or psychological problems likely to have been caused or exacerbated by cannabis.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Adolescent Brain Development:</strong> Regular cannabis use during adolescence can negatively impact brain development, potentially affecting cognitive functions and increasing risk for other mental health disorders.</li><li><strong>Mental Health Comorbidity:</strong> Individuals with pre-existing mental health conditions (e.g., anxiety, depression, psychosis) are at higher risk for developing CUD and may experience exacerbation of symptoms.</li><li><strong>Impaired Driving:</strong> Cannabis use significantly impairs psychomotor skills and judgment, increasing the risk of motor vehicle accidents. Operating machinery under the influence is also highly dangerous.</li><li><strong>Pregnancy &amp; Breastfeeding:</strong> Cannabis use during pregnancy is associated with adverse fetal outcomes, and cannabinoids can pass into breast milk, potentially affecting infant development.</li><li><strong>Respiratory Issues:</strong> Smoking cannabis, especially without filters, can lead to chronic bronchitis and other respiratory problems.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions &amp; Restrictions</h2><ul><li><strong>Nutritional Impact:</strong> Chronic cannabis use can lead to irregular eating patterns, often characterized by increased intake of high-calorie, low-nutrient foods (the 'munchies') or, conversely, neglect of balanced meals.</li><li><strong>Withdrawal-Related Appetite Changes:</strong> During cannabis withdrawal, individuals may experience decreased appetite, nausea, or gastrointestinal discomfort, making it challenging to maintain adequate nutritional intake.</li><li><strong>Hydration Support:</strong> Maintaining adequate hydration is crucial, especially during withdrawal, to manage symptoms like dry mouth and support overall physiological function.</li><li><strong>Balanced Nutrition for Recovery:</strong> Emphasize a balanced diet rich in whole foods, lean proteins, fruits, and vegetables to support brain health, energy levels, and overall well-being during recovery from CUD.</li><li><strong>Avoidance of Stimulants:</strong> Limiting caffeine and other stimulants may be beneficial, particularly during withdrawal, to help manage anxiety and sleep disturbances.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Seek Professional Help:</strong> If you or someone you know exhibits symptoms of CUD, prompt consultation with a healthcare professional specializing in substance use disorders is essential for accurate diagnosis and treatment.</li><li><strong>Avoid Self-Medication:</strong> Do not attempt to self-medicate mental health symptoms with cannabis, as this can worsen underlying conditions and complicate treatment.</li><li><strong>Supportive Environment:</strong> Encourage a supportive and understanding environment for individuals struggling with CUD, as stigma can be a significant barrier to seeking help.</li><li><strong>Relapse Prevention:</strong> Develop and implement personalized relapse prevention strategies, including identifying triggers, developing coping mechanisms, and engaging in healthy alternative activities.</li><li><strong>Safe Storage:</strong> If cannabis is legally used for medical purposes, ensure it is stored securely and out of reach of children and adolescents to prevent accidental ingestion or misuse.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive Assessment:</strong> A thorough clinical assessment is vital, including a detailed substance use history, mental health evaluation, and screening for co-occurring medical conditions.</li><li><strong>Screening Tools:</strong> Utilize validated screening tools such as the Cannabis Use Disorder Identification Test-Revised (CUDIT-R) or the ASSIST to identify problematic use.</li><li><strong>Treatment Modalities:</strong> Recommend evidence-based psychotherapeutic interventions like Cognitive Behavioral Therapy (CBT), Motivational Interviewing (MI), and Contingency Management.</li><li><strong>Pharmacological Support:</strong> While no FDA-approved medications specifically treat CUD, certain medications may be used off-label to manage withdrawal symptoms (e.g., anxiolytics, sleep aids) or co-occurring disorders.</li><li><strong>Harm Reduction:</strong> Discuss harm reduction strategies with patients who are not ready for abstinence, focusing on reducing negative consequences associated with cannabis use.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic &amp; Nursing Corner</h2><ul><li><strong>Nursing Assessment:</strong> Conduct comprehensive assessments including substance use history, mental status examination, and identification of withdrawal symptoms or co-occurring conditions.</li><li><strong>Patient Education:</strong> Educate patients and families on the risks associated with cannabis use, the symptoms of CUD, and available treatment options.</li><li><strong>Withdrawal Management:</strong> Monitor patients for cannabis withdrawal symptoms (e.g., irritability, anxiety, insomnia) and implement supportive care measures, including a calm environment and symptom-focused interventions.</li><li><strong>Referral Pathways:</strong> Facilitate referrals to specialized substance use disorder treatment programs, mental health services, and community support groups.</li><li><strong>Advocacy:</strong> Advocate for patients' access to evidence-based treatment and support services, addressing stigma and promoting a recovery-oriented approach.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>DSM-5 Criteria:</strong> Refer to the Diagnostic and Statistical Manual of Mental Disorders, Fifth Edition, for the official diagnostic criteria for Cannabis Use Disorder.</li><li><strong>Neurobiology of Cannabinoids:</strong> Understand the interaction of cannabinoids with the endocannabinoid system, including CB1 and CB2 receptors, and their role in addiction pathways.</li><li><strong>Epidemiology:</strong> Consult epidemiological data on the prevalence, incidence, and risk factors for CUD across different populations and age groups.</li><li><strong>Evidence-Based Guidelines:</strong> Review clinical practice guidelines from organizations like the American Psychiatric Association or the Substance Abuse and Mental Health Services Administration (SAMHSA) for CUD treatment.</li><li><strong>Differential Diagnosis:</strong> Differentiate CUD from recreational cannabis use, cannabis intoxication, and other mental health disorders that may present with similar symptoms.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>
