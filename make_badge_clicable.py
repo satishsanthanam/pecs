@@ -1,0 +1,83 @@
+#!/usr/bin/env python3
+import os
+import re
+
+TARGET_DIR = "."
+EXCLUDE_DIRS = {'.git', '.github', '.rclone-spool'}
+
+def slugify(text):
+    text = text.strip()
+    text = re.sub(r'[^a-zA-Z0-9]', '-', text).lower()
+    return re.sub(r'-+', '-', text).strip('-')
+
+def make_badges_clickable_synchronized():
+    print("🔗 Syncing vertical header badges with new homepage accordion deep-links...")
+    modified_count = 0
+
+    for root, dirs, files in os.walk(TARGET_DIR):
+        dirs[:] = [d for d in dirs if d not in EXCLUDE_DIRS]
+        rel_path = os.path.relpath(root, TARGET_DIR)
+        if rel_path == ".":
+            continue
+            
+        parts = rel_path.split(os.sep)
+        if len(parts) >= 2:
+            category = parts[0]
+            subcategory = parts[1]
+            
+            # Generate matching synchronized hashes
+            cat_slug = slugify(category)
+            sub_slug = slugify(subcategory)
+            
+            cat_hash = f"cat-{cat_slug}"
+            sub_hash = f"sub-{cat_slug}-{sub_slug}"
+
+            for f in files:
+                if f.endswith('.html') and f not in ['index.html', 'search.html']:
+                    file_path = os.path.join(root, f)
+                    
+                    with open(file_path, 'r', encoding='utf-8', errors='ignore') as file_data:
+                        content = file_data.read()
+
+                    # Aggressively strip any previous <a> link injection configurations inside meta-values to reset cleanly
+                    content_clean = re.sub(r'(<span class=["\']meta-value["\']>)(<a href=".*?">)(.*?)(</a>)(</span>)', r'\1\3\5', content)
+
+                    # Calculate relative depth to root folder
+                    depth = len(rel_path.split(os.sep))
+                    relative_base = "../" * depth
+
+                    updated_content = content_clean
+                    is_modified = False
+
+                    # 1. Update Category Badge
+                    cat_pattern = r'(<div class=["\']meta-item category-badge["\'].*?<span class=["\']meta-value["\']>)(.*?)(</span></div>)'
+                    cat_match = re.search(cat_pattern, updated_content, re.DOTALL)
+                    if cat_match:
+                        prefix, text, suffix = cat_match.groups()
+                        new_html = f'{prefix}<a href="{relative_base}index.html#{cat_hash}" style="text-decoration: none; color: #0f172a;">{text}</a>{suffix}'
+                        updated_content = updated_content.replace(cat_match.group(0), new_html)
+                        is_modified = True
+
+                    # 2. Update Subcategory Badge
+                    sub_pattern = r'(<div class=["\']meta-item subcategory-badge["\'].*?<span class=["\']meta-value["\']>)(.*?)(</span></div>)'
+                    sub_match = re.search(sub_pattern, updated_content, re.DOTALL)
+                    if sub_match:
+                        prefix, text, suffix = sub_match.groups()
+                        new_html = f'{prefix}<a href="{relative_base}index.html#{sub_hash}" style="text-decoration: none; color: #0f172a;">{text}</a>{suffix}'
+                        updated_content = updated_content.replace(sub_match.group(0), new_html)
+                        is_modified = True
+
+                    # 3. Handle hover rules safely
+                    if is_modified and '.meta-value:hover' not in updated_content:
+                        hover_css = "\n    .meta-item.category-badge .meta-value:hover, .meta-item.subcategory-badge .meta-value:hover { text-decoration: underline; opacity: 0.8; }"
+                        updated_content = re.sub(r'(</style>)', hover_css + r'\1', updated_content, flags=re.IGNORECASE)
+
+                    if is_modified and content != updated_content:
+                        with open(file_path, 'w', encoding='utf-8') as file_data:
+                            file_data.write(updated_content)
+                        modified_count += 1
+
+    print(f"🎉 Complete! Re-linked badges perfectly across {modified_count} files.")
+
+if __name__ == "__main__":
+    make_badges_clickable_synchronized()
