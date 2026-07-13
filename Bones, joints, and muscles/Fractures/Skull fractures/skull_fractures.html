@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human skull with a visible fracture line across the parietal bone. The skull is depicted in a clean, minimalist style with anatomical accuracy. Subtle shading highlights the bone structure and the fracture. The background is a soft, medical-themed gradient. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./skull_fractures.jpg" class="card-banner" alt="Skull fractures Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-bones-joints-and-muscles" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Bones, joints, and muscles</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-bones-joints-and-muscles-fractures" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Fractures</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Skull fractures</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Bones, joints, and muscles</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Fractures</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> A skull fracture is a break in one or more of the eight bones that form the cranium, typically resulting from significant head trauma.</li><li><strong>Types of Fractures:</strong> Can be linear (a single crack), depressed (bone fragments pushed inward), comminuted (multiple fragments), or basilar (at the base of the skull).</li><li><strong>Severity:</strong> The severity depends on the location, type, and whether there is associated brain injury or CSF leakage.</li><li><strong>Causes:</strong> Commonly caused by falls, motor vehicle accidents, assaults, or sports injuries involving direct impact to the head.</li><li><strong>Potential Complications:</strong> Risk of intracranial hematoma, brain contusion, infection (especially with open or basilar fractures), and seizures.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Severe Headache:</strong> Persistent and often worsening pain at the site of injury or generalized.</li><li><strong>Nausea and Vomiting:</strong> Common signs of increased intracranial pressure or brain injury.</li><li><strong>Altered Consciousness:</strong> Confusion, disorientation, drowsiness, or loss of consciousness.</li><li><strong>Bleeding/Fluid Leakage:</strong> Blood or clear fluid (cerebrospinal fluid) from the ears or nose.</li><li><strong>Bruising:</strong> Periorbital ecchymosis (raccoon eyes) or postauricular ecchymosis (Battle's sign) indicating a basilar skull fracture.</li><li><strong>Pupil Changes:</strong> Unequal pupil size, sluggish reaction to light, or fixed pupils.</li><li><strong>Vision Disturbances:</strong> Blurred vision, double vision, or loss of vision.</li><li><strong>Seizures:</strong> May occur immediately after injury or develop later.</li><li><strong>Palpable Depression:</strong> A noticeable indentation or soft spot on the scalp.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Immediate Medical Attention:</strong> Any suspected head trauma, especially with loss of consciousness or neurological symptoms, requires urgent medical evaluation.</li><li><strong>Spinal Immobilization:</strong> Assume concomitant cervical spine injury until ruled out, and maintain C-spine precautions during transport.</li><li><strong>Avoid Moving Patient:</strong> Do not move an injured person unless absolutely necessary and trained to do so, to prevent further injury.</li><li><strong>Monitor Neurological Status:</strong> Continuously observe for changes in consciousness, pupil response, and motor function.</li><li><strong>Infection Prevention:</strong> For open fractures or CSF leaks, strict aseptic technique is crucial to prevent meningitis.</li><li><strong>Fall Prevention:</strong> Implement measures to prevent falls, especially in individuals at high risk (e.g., elderly, those with balance issues).</li><li><strong>Protective Headgear:</strong> Encourage helmet use during sports, cycling, and other activities with a risk of head injury.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Initial NPO Status:</strong> Patients with altered consciousness, risk of aspiration, or requiring immediate surgery will be kept NPO (nil per os).</li><li><strong>Gradual Reintroduction:</strong> Once stable and alert, oral intake typically begins with clear liquids, progressing to full liquids, soft foods, and then a regular diet as tolerated.</li><li><strong>Adequate Hydration:</strong> Ensure sufficient fluid intake to prevent dehydration, especially if fever or increased metabolic demands are present.</li><li><strong>Nutrient-Rich Diet:</strong> Provide a balanced diet rich in protein, vitamins, and minerals to support tissue repair and recovery once oral intake is safe and established.</li><li><strong>Avoid Alcohol/Caffeine:</strong> Advise against alcohol and excessive caffeine consumption during recovery, as they can interfere with healing and sleep.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Do Not Remove Impaled Objects:</strong> If an object is impaled in the skull, stabilize it and do not attempt removal; this must be done by medical professionals.</li><li><strong>Avoid Direct Pressure on Depressed Fractures:</strong> Do not apply direct pressure to a visibly depressed fracture site, as this can push bone fragments further into the brain.</li><li><strong>Maintain Airway, Breathing, Circulation (ABCs):</strong> Prioritize ensuring a patent airway, adequate breathing, and stable circulation.</li><li><strong>Observe for Increased ICP:</strong> Monitor closely for signs of increased intracranial pressure, such as worsening headache, vomiting, bradycardia, and hypertension.</li><li><strong>Strict Neuro Checks:</strong> Perform frequent and thorough neurological assessments as ordered by the physician.</li><li><strong>Head of Bed Elevation:</strong> If no spinal injury is suspected, elevate the head of the bed to 30 degrees to help reduce intracranial pressure.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Prompt Neuroimaging:</strong> A CT scan of the head is the gold standard for diagnosing skull fractures and assessing for associated intracranial injuries.</li><li><strong>Assessment for Brain Injury:</strong> Always evaluate for underlying brain injury, such as concussion, contusion, epidural, or subdural hematoma, which often dictate management.</li><li><strong>Management Strategy:</strong> Treatment ranges from conservative management for linear fractures to surgical intervention for depressed fractures, open fractures, or those with significant intracranial hematomas.</li><li><strong>Complication Monitoring:</strong> Vigilant monitoring for complications like meningitis (especially with CSF leaks), seizures, and hydrocephalus is paramount.</li><li><strong>Rehabilitation Planning:</strong> Depending on the extent of brain injury, a comprehensive rehabilitation plan involving physical, occupational, and speech therapy may be necessary.</li><li><strong>Prognosis Discussion:</strong> Provide realistic expectations regarding recovery, potential long-term deficits, and the importance of follow-up care.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Glasgow Coma Scale (GCS):</strong> Utilize the GCS for consistent and objective assessment of neurological status and trends.</li><li><strong>Frequent Neuro Assessments:</strong> Perform and document frequent neurological assessments including level of consciousness, pupil size and reactivity, motor strength, and sensory response.</li><li><strong>CSF Leakage Identification:</strong> Be aware of signs of CSF leakage (e.g., clear fluid from nose/ears, halo sign on gauze, positive glucose test for CSF).</li><li><strong>Pain Management:</strong> Administer analgesics as prescribed, carefully monitoring for sedation that could mask changes in neurological status.</li><li><strong>Patient and Family Education:</strong> Educate on signs of worsening condition, medication administration, activity restrictions, and the importance of follow-up.</li><li><strong>Infection Control:</strong> Implement strict infection control measures, especially for patients with open fractures or CSF leaks, to prevent central nervous system infections.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>ICD-10 Codes:</strong> S02.0 (Fracture of vault of skull), S02.1 (Fracture of base of skull), S02.91 (Unspecified fracture of skull).</li><li><strong>Diagnostic Modalities:</strong> Computed Tomography (CT) scan of the head (primary), X-ray (limited utility), MRI (for soft tissue/brain injury detail).</li><li><strong>Key Clinical Signs:</strong> Battle's sign, Raccoon eyes, CSF rhinorrhea/otorrhea, Hemotympanum.</li><li><strong>Potential Complications:</strong> Epidural hematoma, Subdural hematoma, Subarachnoid hemorrhage, Meningitis, Seizures, Cranial nerve palsies.</li><li><strong>Surgical Interventions:</strong> Craniotomy (for depressed fractures, hematoma evacuation), Cranioplasty (for skull defects).</li><li><strong>Pharmacology:</strong> Analgesics, antiemetics, anticonvulsants (prophylactic in some cases), antibiotics (for open fractures/CSF leaks).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

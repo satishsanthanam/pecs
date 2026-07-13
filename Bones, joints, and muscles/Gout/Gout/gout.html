@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for public awareness about Gout. A stylized human foot with a visibly inflamed, red, and swollen big toe joint. Surrounding the joint are microscopic uric acid crystals. Elements representing dietary triggers like a red meat steak, a beer glass, and a sugary drink are subtly depicted with a 'no' symbol or restriction. A glass of water and healthy fruits (like cherries) are shown positively. The overall design is clean, informative, and uses a limited color palette suitable for a medical infographic.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./gout.jpg" class="card-banner" alt="Gout Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-bones-joints-and-muscles" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Bones, joints, and muscles</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-bones-joints-and-muscles-gout" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Gout</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Gout</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Bones, joints, and muscles</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Gout</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Gout is a common and complex form of arthritis characterized by sudden, severe attacks of pain, swelling, redness, and tenderness in one or more joints, most often the big toe.</li><li><strong>Underlying Cause:</strong> It is caused by the accumulation of uric acid crystals in a joint, leading to inflammation.</li><li><strong>Uric Acid Production:</strong> Uric acid is a waste product formed from the breakdown of purines, which are found naturally in the body and in certain foods.</li><li><strong>Risk Factors:</strong> High purine diet, excessive alcohol consumption, obesity, certain medications (e.g., diuretics), and genetic predisposition can increase risk.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Intense Joint Pain:</strong> Often sudden onset, typically affecting the big toe, but can also occur in ankles, knees, elbows, wrists, and fingers.</li><li><strong>Inflammation and Redness:</strong> The affected joint becomes swollen, tender, and appears red or purplish.</li><li><strong>Warmth:</strong> The skin over the affected joint feels hot to the touch.</li><li><strong>Extreme Tenderness:</strong> Even light touch, such as a bedsheet, can be unbearable during an acute attack.</li><li><strong>Limited Range of Motion:</strong> Difficulty moving the affected joint during an attack.</li><li><strong>Tophi:</strong> In chronic, untreated gout, hard lumps of uric acid crystals (tophi) can form under the skin around joints or in other areas like the earlobes.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Medication Adherence:</strong> Strictly follow prescribed medication regimens for both acute attacks (e.g., NSAIDs, colchicine, corticosteroids) and long-term management (e.g., allopurinol, febuxostat) to prevent future flares and complications.</li><li><strong>Hydration:</strong> Maintain adequate fluid intake, primarily water, to help flush uric acid from the body and reduce the risk of kidney stone formation.</li><li><strong>Dietary Modifications:</strong> Avoid or limit high-purine foods and beverages known to trigger gout attacks.</li><li><strong>Weight Management:</strong> Achieve and maintain a healthy body weight, as obesity is a significant risk factor for gout.</li><li><strong>Avoid Alcohol:</strong> Limit or abstain from alcohol, especially beer and spirits, which can increase uric acid levels.</li><li><strong>Monitor Uric Acid Levels:</strong> Regular monitoring of serum uric acid levels is crucial for assessing treatment effectiveness and preventing chronic complications.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>High-Purine Food Restrictions:</strong> Strictly limit red meat, organ meats (liver, kidney, sweetbreads), certain seafood (anchovies, sardines, mussels, scallops, tuna), and gravies.</li><li><strong>Avoid High-Fructose Corn Syrup:</strong> Eliminate foods and beverages sweetened with high-fructose corn syrup, as it can increase uric acid production.</li><li><strong>Alcohol Limitation:</strong> Restrict or avoid all alcoholic beverages, particularly beer and spirits, due to their impact on uric acid metabolism.</li><li><strong>Beneficial Foods:</strong> Incorporate low-fat dairy products, complex carbohydrates (whole grains), fruits (especially cherries, which may help lower uric acid), and plenty of vegetables.</li><li><strong>Hydration Focus:</strong> Prioritize drinking ample amounts of water throughout the day to aid in uric acid excretion.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Prompt Medical Consultation:</strong> Seek immediate medical attention for sudden, severe joint pain, especially if accompanied by fever, as it could indicate an infection.</li><li><strong>Do Not Self-Medicate:</strong> Avoid using over-the-counter pain relievers or herbal remedies without consulting a healthcare provider, as some may interact with gout medications or be contraindicated.</li><li><strong>Understand Medication Side Effects:</strong> Be aware of potential side effects of prescribed medications and report any adverse reactions to your physician.</li><li><strong>Lifestyle Adjustments:</strong> Recognize that lifestyle changes are integral to long-term gout management and work collaboratively with your healthcare team.</li><li><strong>Avoid Dehydration:</strong> Ensure consistent fluid intake, as dehydration can precipitate gout attacks.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early Diagnosis is Key:</strong> Timely diagnosis and initiation of appropriate therapy are crucial to prevent recurrent attacks and long-term joint damage.</li><li><strong>Personalized Treatment Plans:</strong> Gout management requires an individualized approach, considering patient comorbidities, medication tolerance, and lifestyle factors.</li><li><strong>Long-Term Urate Lowering Therapy:</strong> For most patients with recurrent attacks or chronic gout, urate-lowering therapy (ULT) is essential to maintain serum uric acid levels below target thresholds (e.g., &lt;6 mg/dL).</li><li><strong>Complication Prevention:</strong> Untreated or poorly managed gout can lead to chronic arthritis, joint destruction, kidney stones, and impaired kidney function.</li><li><strong>Patient Education:</strong> Empowering patients with knowledge about their condition, dietary triggers, and medication adherence significantly improves outcomes.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education on Triggers:</strong> Educate patients on identifying and avoiding dietary and lifestyle triggers for gout flares.</li><li><strong>Medication Administration & Monitoring:</strong> Administer prescribed medications (e.g., NSAIDs, colchicine, allopurinol) and monitor for efficacy and adverse effects, including gastrointestinal upset with colchicine.</li><li><strong>Pain Management:</strong> Implement non-pharmacological pain relief strategies (e.g., joint rest, elevation, cold packs) in conjunction with pharmacological interventions during acute attacks.</li><li><strong>Fluid Balance Assessment:</strong> Assess and encourage adequate fluid intake to support renal excretion of uric acid.</li><li><strong>Assessment for Tophi:</strong> Regularly inspect joints and other areas for the development of tophi, indicating chronic disease progression.</li><li><strong>Adherence Counseling:</strong> Provide counseling on the importance of long-term medication adherence, even when asymptomatic, to prevent disease progression.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Hyperuricemia:</strong> Elevated serum uric acid levels, the biochemical hallmark of gout.</li><li><strong>Monosodium Urate (MSU) Crystals:</strong> The specific crystals that deposit in joints and soft tissues, triggering inflammation.</li><li><strong>Acute Gouty Arthritis:</strong> The inflammatory response to MSU crystal deposition, characterized by severe pain and swelling.</li><li><strong>Chronic Tophaceous Gout:</strong> Advanced stage of gout with visible tophi and persistent joint damage.</li><li><strong>Pharmacology:</strong> Key drug classes include NSAIDs (e.g., indomethacin), colchicine, corticosteroids, xanthine oxidase inhibitors (XOIs) like allopurinol and febuxostat, and uricosurics (e.g., probenecid).</li><li><strong>Diagnosis:</strong> Definitive diagnosis involves aspiration of synovial fluid and identification of negatively birefringent MSU crystals under polarized light microscopy.</li><li><strong>Comorbidities:</strong> Gout is often associated with metabolic syndrome, hypertension, chronic kidney disease, and cardiovascular disease.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

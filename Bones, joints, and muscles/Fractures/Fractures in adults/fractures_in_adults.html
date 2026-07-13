@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting an adult male with a fractured arm in a cast, surrounded by elements of care and recovery. A doctor is reviewing an X-ray of a bone, while a nurse is gently assisting the patient. Include symbols representing bone health, such as a milk carton, a sun icon for Vitamin D, and a protein-rich food item. The background should feature subtle medical cross symbols and a clean, modern aesthetic with a focus on patient well-being and healing. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./fractures_in_adults.jpg" class="card-banner" alt="Fractures in adults Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-bones-joints-and-muscles" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Bones, joints, and muscles</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-bones-joints-and-muscles-fractures" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Fractures</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Fractures in adults</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Bones, joints, and muscles</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Fractures</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> A fracture is a break in the continuity of a bone, ranging from a hairline crack to a complete break.</li><li><strong>Common Causes:</strong> Most adult fractures result from significant trauma such as falls, sports injuries, or motor vehicle accidents.</li><li><strong>Pathological Fractures:</strong> These occur due to underlying bone weakening conditions like osteoporosis, bone tumors, or metabolic bone diseases, often from minimal trauma.</li><li><strong>Types of Fractures:</strong> Can be classified as open (compound, skin broken) or closed (simple, skin intact), complete or incomplete, displaced or non-displaced, and specific patterns like spiral, transverse, or comminuted.</li><li><strong>Healing Process:</strong> Bone healing involves inflammation, soft callus formation, hard callus formation, and remodeling, which can take weeks to months depending on severity and location.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Severe Pain:</strong> Often localized to the injury site, sharp, and intensifies with movement or weight-bearing.</li><li><strong>Swelling and Bruising:</strong> Significant edema and discoloration around the affected area due to soft tissue damage and internal bleeding.</li><li><strong>Deformity:</strong> Visible misalignment, angulation, or unnatural position of the limb or body part.</li><li><strong>Inability to Bear Weight/Move:</strong> Loss of function or inability to use the injured limb, or extreme difficulty with movement.</li><li><strong>Crepitus:</strong> A grating or crackling sensation or sound when the injured area is moved, indicating bone fragments rubbing together.</li><li><strong>Open Wound:</strong> For open fractures, there may be a visible break in the skin with bone protruding or visible beneath the skin.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Immobilization:</strong> Ensure the injured limb is adequately immobilized (e.g., splint, cast, brace) to prevent further injury, reduce pain, and promote proper healing.</li><li><strong>Neurovascular Assessment:</strong> Regularly monitor the limb distal to the fracture for signs of neurovascular compromise (e.g., pallor, pulselessness, paresthesia, paralysis, pain).</li><li><strong>Pain Management:</strong> Adhere strictly to prescribed analgesics and report uncontrolled pain, which could indicate complications like compartment syndrome.</li><li><strong>Infection Prevention:</strong> For open fractures, meticulous wound care, sterile dressing changes, and prophylactic antibiotics are critical to prevent osteomyelitis.</li><li><strong>DVT Prophylaxis:</strong> Patients with lower extremity fractures or prolonged immobility may require anticoagulant therapy to prevent deep vein thrombosis (DVT) and pulmonary embolism (PE).</li><li><strong>Weight-Bearing Restrictions:</strong> Strictly follow the physician's instructions regarding partial or non-weight-bearing to avoid disrupting fracture healing.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Adequate Protein Intake:</strong> Essential for tissue repair and collagen synthesis, crucial for bone matrix formation (e.g., lean meats, poultry, fish, legumes, dairy).</li><li><strong>Calcium-Rich Foods:</strong> Supports bone mineralization and strength (e.g., dairy products, fortified plant milks, leafy green vegetables, sardines).</li><li><strong>Vitamin D Supplementation:</strong> Facilitates calcium absorption and bone health; often recommended through diet (fatty fish, fortified foods) and sunlight exposure or supplements.</li><li><strong>Vitamin C and K:</strong> Important for collagen production and bone metabolism, respectively (e.g., citrus fruits, berries for C; leafy greens for K).</li><li><strong>Hydration:</strong> Maintain adequate fluid intake to support overall metabolic processes, nutrient transport, and prevent constipation often associated with immobility and pain medications.</li><li><strong>Limit Inhibitors:</strong> Moderate or avoid excessive alcohol and caffeine consumption, which can negatively impact bone density and healing.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Seek Immediate Medical Attention:</strong> Any suspected fracture requires prompt evaluation by a healthcare professional to ensure proper diagnosis and management.</li><li><strong>Do Not Attempt to Reset:</strong> Never try to realign or manipulate a suspected fracture, as this can cause further damage to nerves, blood vessels, and soft tissues.</li><li><strong>RICE Protocol (Initial):</strong> For initial management, apply Rest, Ice (to reduce swelling), Compression (if appropriate), and Elevation until professional medical help is available.</li><li><strong>Adhere to Follow-up Care:</strong> Attend all scheduled orthopedic appointments for cast checks, X-rays, and assessment of healing progress.</li><li><strong>Engage in Rehabilitation:</strong> Actively participate in prescribed physical or occupational therapy to regain strength, range of motion, and function after immobilization.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Accurate Diagnosis:</strong> Emphasize the necessity of imaging studies (X-rays, CT scans, MRI) for precise fracture identification, classification, and assessment of displacement.</li><li><strong>Tailored Treatment Plan:</strong> Treatment varies based on fracture type, location, patient age, and overall health, ranging from conservative casting to surgical intervention (e.g., ORIF, external fixation).</li><li><strong>Complication Awareness:</strong> Educate patients on potential complications such as non-union, malunion, infection (especially open fractures), compartment syndrome, and nerve/vascular injury.</li><li><strong>Holistic Bone Health:</strong> Address underlying factors contributing to fracture risk, such as osteoporosis, through screening, lifestyle modifications, and pharmacotherapy.</li><li><strong>Structured Rehabilitation:</strong> Stress the critical role of a comprehensive rehabilitation program to optimize functional recovery and prevent long-term disability.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pain Assessment & Management:</strong> Utilize appropriate pain scales (e.g., numeric rating scale) and administer analgesics as prescribed, evaluating effectiveness and side effects.</li><li><strong>Neurovascular Monitoring:</strong> Perform frequent '5 P's' assessments (Pain, Pallor, Paresthesia, Pulselessness, Paralysis) distal to the fracture site to detect early signs of compromise.</li><li><strong>Cast/Splint Care Education:</strong> Instruct patients on proper cast care, signs of complications (e.g., tightness, numbness, foul odor, excessive swelling), and when to seek immediate medical attention.</li><li><strong>Mobility & Safety:</strong> Assist patients with safe transfers and ambulation, ensuring correct use of assistive devices (crutches, walker) and adherence to weight-bearing restrictions.</li><li><strong>Wound Management:</strong> For open fractures, maintain strict aseptic technique during dressing changes and monitor for signs of infection (redness, warmth, purulent drainage).</li><li><strong>Patient & Family Education:</strong> Reinforce discharge instructions regarding medication, activity restrictions, signs of complications, and the importance of follow-up care.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>AO/OTA Fracture Classification:</strong> A comprehensive system used globally to classify fractures based on bone, segment, and fracture morphology.</li><li><strong>Gustilo-Anderson Classification:</strong> Categorizes open fractures based on the extent of soft tissue injury, contamination, and fracture pattern, guiding treatment and prognosis.</li><li><strong>Compartment Syndrome:</strong> A critical condition caused by increased pressure within a confined fascial compartment, leading to muscle and nerve ischemia, requiring emergent fasciotomy.</li><li><strong>Non-union/Malunion:</strong> Complications of fracture healing where the bone fails to heal (non-union) or heals in an unacceptable anatomical position (malunion).</li><li><strong>Open Reduction Internal Fixation (ORIF):</strong> A surgical procedure involving opening the skin to reduce (realign) the fracture and fix it with plates, screws, or rods.</li><li><strong>External Fixation:</strong> A method of stabilizing fractures using pins inserted into the bone and connected to an external frame, often used for complex or open fractures.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>
