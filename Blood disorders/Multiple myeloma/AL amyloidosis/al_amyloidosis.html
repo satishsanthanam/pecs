@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human body with various internal organs (heart, kidneys, liver, nerves, intestines) subtly highlighted with a translucent, fibrous overlay representing amyloid deposits. A stylized plasma cell is shown in the background, emitting small, misfolded protein chains. The overall aesthetic is clean, medical, and informative, suitable for a public health awareness card, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./al_amyloidosis.jpg" class="card-banner" alt="AL amyloidosis Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-blood-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Blood disorders</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-blood-disorders-multiple-myeloma" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Multiple myeloma</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>AL amyloidosis</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Blood disorders</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Multiple myeloma</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Systemic Disorder:</strong> AL amyloidosis is a rare, serious condition where abnormal plasma cells produce misfolded light chain proteins (amyloid fibrils) that deposit in various organs.</li><li><strong>Organ Involvement:</strong> These amyloid deposits can accumulate in the heart, kidneys, liver, nervous system, and gastrointestinal tract, leading to progressive organ dysfunction and failure.</li><li><strong>Association with Myeloma:</strong> It is the most common type of systemic amyloidosis and is frequently associated with an underlying plasma cell dyscrasia, often multiple myeloma.</li><li><strong>Progressive Nature:</strong> The disease is progressive, and early diagnosis and treatment are crucial to prevent irreversible organ damage.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Cardiac Manifestations:</strong> Shortness of breath, fatigue, swelling in the legs and ankles (edema), palpitations, and syncope due to restrictive cardiomyopathy.</li><li><strong>Renal Dysfunction:</strong> Proteinuria (protein in urine), foamy urine, progressive kidney failure, and generalized edema.</li><li><strong>Hepatic Involvement:</strong> Enlarged liver (hepatomegaly), elevated liver enzymes, and ascites (fluid accumulation in the abdomen).</li><li><strong>Neurological Symptoms:</strong> Peripheral neuropathy (numbness, tingling, weakness, pain in extremities) and autonomic neuropathy (orthostatic hypotension, gastrointestinal motility issues, erectile dysfunction).</li><li><strong>Gastrointestinal Issues:</strong> Malabsorption, diarrhea, constipation, macroglossia (enlarged tongue), and early satiety.</li><li><strong>Other Signs:</strong> Periorbital purpura (bruising around the eyes, 'raccoon eyes'), carpal tunnel syndrome, easy bruising, unexplained weight loss, and profound fatigue.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Prompt Diagnosis:</strong> Maintain a high index of suspicion for unexplained organ dysfunction, as early diagnosis is critical for improving patient outcomes.</li><li><strong>Biopsy Confirmation:</strong> Diagnosis requires tissue biopsy (e.g., fat pad, kidney, heart) with Congo red staining to confirm amyloid deposits and subsequent typing.</li><li><strong>Organ Function Monitoring:</strong> Regular and thorough assessment of cardiac, renal, hepatic, and neurological function is essential to track disease progression and treatment response.</li><li><strong>Avoid Nephrotoxic Agents:</strong> Exercise caution with medications that can harm the kidneys, especially in patients with existing renal involvement.</li><li><strong>Fluid Management:</strong> Implement careful fluid management strategies to prevent fluid overload in patients with cardiac amyloidosis.</li><li><strong>Infection Prevention:</strong> Patients undergoing immunosuppressive therapies are at increased risk of infection; implement appropriate prophylactic measures and monitor closely.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Sodium Restriction:</strong> Strict limitation of dietary sodium is vital for managing fluid retention and edema, particularly in patients with cardiac or renal involvement.</li><li><strong>Fluid Restriction:</strong> In cases of severe cardiac amyloidosis with fluid overload, a prescribed fluid restriction may be necessary.</li><li><strong>Protein Adjustment:</strong> Dietary protein intake may need to be adjusted based on renal function; low protein for advanced kidney disease, or adequate protein for malabsorption.</li><li><strong>Small, Frequent Meals:</strong> Patients experiencing gastrointestinal symptoms or early satiety may benefit from consuming smaller, more frequent meals throughout the day.</li><li><strong>Avoid Alcohol:</strong> Alcohol consumption can exacerbate neuropathy and potentially impact liver function, and should generally be avoided.</li><li><strong>Hydration Status:</strong> Maintain adequate hydration unless specifically advised to restrict fluids due to cardiac or renal compromise.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Medication Adherence:</strong> Emphasize strict adherence to all prescribed chemotherapy regimens and supportive medications to optimize treatment efficacy.</li><li><strong>Symptom Reporting:</strong> Instruct patients to promptly report any new or worsening symptoms, especially dyspnea, increased edema, dizziness, or changes in neurological status.</li><li><strong>Fall Prevention:</strong> Due to the risk of orthostatic hypotension from autonomic neuropathy, advise patients on fall prevention strategies and safe ambulation.</li><li><strong>Infection Vigilance:</strong> Educate patients and caregivers on signs and symptoms of infection and the importance of seeking immediate medical attention.</li><li><strong>Psychosocial Support:</strong> Provide resources and encourage engagement with support groups or counseling services to address the emotional and psychological challenges of living with a chronic, progressive illness.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Multidisciplinary Care:</strong> Effective management of AL amyloidosis necessitates a collaborative approach involving hematologists, cardiologists, nephrologists, neurologists, and other specialists.</li><li><strong>Treatment Goals:</strong> The primary therapeutic objectives are to reduce the production of amyloidogenic light chains and provide comprehensive supportive care for affected organs.</li><li><strong>Therapeutic Modalities:</strong> Treatment options include chemotherapy regimens (e.g., proteasome inhibitors, immunomodulatory drugs, alkylating agents), autologous stem cell transplantation for eligible patients, and novel anti-amyloid fibril antibodies.</li><li><strong>Supportive Care:</strong> Aggressive supportive care is crucial for managing symptoms and preventing complications, including diuretics for heart failure, dialysis for renal failure, and pacemakers for bradyarrhythmias.</li><li><strong>Prognostic Factors:</strong> The extent of cardiac involvement is the most significant determinant of prognosis and survival in AL amyloidosis.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Educate patients and families thoroughly on the disease process, potential treatment side effects, and strategies for symptom management.</li><li><strong>Vital Sign Monitoring:</strong> Closely monitor vital signs for orthostatic changes, signs of fluid overload (e.g., elevated JVP, crackles), and cardiac arrhythmias.</li><li><strong>Medication Management:</strong> Administer chemotherapy agents and supportive medications with a clear understanding of their mechanisms, dosages, and potential adverse effects.</li><li><strong>Renal Function Assessment:</strong> Regularly assess urine output, serum creatinine, and blood urea nitrogen (BUN) to monitor kidney function.</li><li><strong>Cardiac Assessment:</strong> Perform thorough cardiac assessments, including auscultation for S3/S4 gallop, evaluation for peripheral edema, and monitoring for signs of heart failure.</li><li><strong>Neurological Monitoring:</strong> Assess for changes in sensation, motor strength, and autonomic symptoms such as dizziness or gastrointestinal disturbances.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathophysiology:</strong> Characterized by the misfolding and aggregation of monoclonal immunoglobulin light chains into insoluble amyloid fibrils (AL type), leading to extracellular deposition.</li><li><strong>Diagnostic Confirmation:</strong> Requires tissue biopsy (e.g., abdominal fat pad, kidney, heart) stained with Congo red, demonstrating apple-green birefringence under polarized light, followed by mass spectrometry for definitive amyloid typing.</li><li><strong>Staging System:</strong> The Mayo Clinic staging system, utilizing cardiac biomarkers (NT-proBNP, troponin) and renal function (eGFR), is critical for risk stratification and guiding treatment decisions.</li><li><strong>Treatment Targets:</strong> Therapeutic strategies primarily aim to suppress the underlying plasma cell clone responsible for producing the amyloidogenic light chains.</li><li><strong>Organ-Specific Interventions:</strong> Management often includes organ-specific interventions such as diuretics for heart failure, dialysis for end-stage renal disease, and pacemakers for conduction abnormalities.</li><li><strong>Prognostic Indicators:</strong> Cardiac involvement, particularly elevated troponin and NT-proBNP levels, is the most powerful prognostic factor, indicating a poorer survival outcome.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

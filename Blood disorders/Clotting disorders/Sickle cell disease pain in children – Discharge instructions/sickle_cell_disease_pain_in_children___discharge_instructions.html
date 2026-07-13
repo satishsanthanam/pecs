@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a child with sickle cell disease experiencing pain, being comforted by a parent or caregiver. The scene should depict elements of home care: a cozy blanket, a water bottle, and a small medication bottle. Include subtle medical symbols like a pain scale icon or a heart monitor line in the background. The overall mood should be supportive and reassuring, with soft colors and clean lines, suitable for a public awareness health card.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./sickle_cell_disease_pain_in_children___discharge_instructions.jpg" class="card-banner" alt="Sickle cell disease pain in children – Discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-blood-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Blood disorders</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-blood-disorders-clotting-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Clotting disorders</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Sickle cell disease pain in children – Discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Blood disorders</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Clotting disorders</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding Sickle Cell Pain Crises:</strong> Pain crises, also known as vaso-occlusive crises (VOCs), occur when sickled red blood cells block small blood vessels, leading to severe pain in bones, joints, chest, or abdomen.</li><li><strong>Recognizing Triggers:</strong> Common triggers include dehydration, infection, sudden temperature changes, stress, and overexertion. Identifying and avoiding these can help reduce crisis frequency.</li><li><strong>Importance of Home Management:</strong> Effective home management of mild to moderate pain crises is crucial to prevent escalation and reduce the need for emergency department visits.</li><li><strong>Individualized Pain Plan:</strong> Your child has a specific pain management plan developed by their care team. Adhering to this plan is vital for effective pain control.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Localized or Widespread Pain:</strong> The primary symptom is often sharp, throbbing, or aching pain in various body parts, which can range from mild to severe.</li><li><strong>Fever:</strong> A temperature of 101.5°F (38.6°C) or higher can indicate an infection, which can trigger or worsen a crisis and requires immediate medical evaluation.</li><li><strong>Signs of Dehydration:</strong> Symptoms like dry mouth, decreased urination, lethargy, or dizziness can indicate insufficient fluid intake, a common trigger for pain crises.</li><li><strong>Chest Pain or Difficulty Breathing:</strong> New or worsening chest pain, shortness of breath, or rapid breathing could signal acute chest syndrome, a serious complication requiring urgent care.</li><li><strong>Severe Headache or Neurological Changes:</strong> Sudden severe headache, weakness on one side of the body, vision changes, or slurred speech are signs of potential stroke and require immediate emergency attention.</li><li><strong>Abdominal Swelling or Tenderness:</strong> New or worsening abdominal pain, swelling, or tenderness could indicate splenic sequestration or other abdominal complications.</li><li><strong>Priapism (in males):</strong> A painful, prolonged erection lasting more than 4 hours is an emergency and requires immediate medical attention to prevent long-term damage.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Consistent Hydration:</strong> Ensure your child drinks plenty of fluids throughout the day, especially during physical activity or hot weather, to prevent dehydration.</li><li><strong>Strict Medication Adherence:</strong> Administer all prescribed medications, including pain relievers and prophylactic antibiotics (e.g., penicillin), exactly as directed. Do not skip doses.</li><li><strong>Infection Prevention:</strong> Practice meticulous hand hygiene, avoid contact with sick individuals, and ensure your child receives all recommended vaccinations, including flu and pneumococcal vaccines.</li><li><strong>Temperature Regulation:</strong> Protect your child from extreme temperatures. Dress them appropriately for the weather and avoid prolonged exposure to very hot or cold environments.</li><li><strong>Balanced Activity and Rest:</strong> Encourage regular, gentle physical activity but ensure adequate rest periods, especially during a pain crisis or when feeling fatigued.</li><li><strong>Avoidance of Known Triggers:</strong> Help your child identify and avoid personal triggers for pain crises, such as specific stressors or activities.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Prioritize Hydration:</strong> Encourage frequent intake of water, diluted juices, and oral rehydration solutions to maintain optimal hydration levels.</li><li><strong>Nutrient-Rich Diet:</strong> Provide a balanced diet rich in fruits, vegetables, whole grains, and lean proteins to support overall health and energy levels.</li><li><strong>Limit Dehydrating Beverages:</strong> Avoid excessive consumption of caffeinated drinks and highly sugary sodas, which can contribute to dehydration.</li><li><strong>Regular Meal Schedule:</strong> Maintain a consistent meal schedule to ensure steady energy and nutrient intake, supporting the body's ability to cope with stress.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Contact Information:</strong> Keep a list of emergency contacts, including your child's hematologist and the nearest emergency department, readily accessible.</li><li><strong>When to Seek Emergency Care:</strong> Return to the emergency department immediately if your child experiences uncontrolled pain despite home management, a fever of 101.5°F (38.6°C) or higher, difficulty breathing, severe headache, new weakness, vision changes, or any other concerning new symptom.</li><li><strong>Medication Administration:</strong> Understand the correct dosage, frequency, and potential side effects of all prescribed pain medications. Use a medication log to track administration.</li><li><strong>Comfort Measures:</strong> Utilize non-pharmacological pain relief methods such as warm baths, gentle massage, distraction techniques (e.g., reading, games), and applying warm compresses to painful areas.</li><li><strong>School Communication:</strong> Inform the school about your child's condition and pain management plan, ensuring they know how to respond during a crisis and who to contact.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Adherence to Treatment Plan:</strong> Strict adherence to the prescribed pain management plan and disease-modifying therapies, such as hydroxyurea, is paramount for reducing crisis frequency and severity.</li><li><strong>Proactive Management:</strong> Do not wait for pain to become severe before initiating home pain management. Early intervention is key to preventing escalation.</li><li><strong>Regular Follow-up:</strong> Ensure all scheduled follow-up appointments with the hematology team are kept to monitor your child's condition and adjust treatment as needed.</li><li><strong>Recognize Warning Signs:</strong> Educate yourself thoroughly on the warning signs of severe complications and do not hesitate to seek immediate medical attention when these occur.</li><li><strong>Multidisciplinary Care:</strong> Sickle cell disease requires a comprehensive, multidisciplinary approach involving hematologists, pain specialists, nurses, and social workers to optimize outcomes.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pain Assessment:</strong> Utilize age-appropriate pain scales (e.g., FLACC for non-verbal, Wong-Baker FACES for young children, numeric for older children) to accurately assess pain intensity and location.</li><li><strong>Hydration Monitoring:</strong> Closely monitor fluid intake and output, and educate families on recognizing signs of dehydration.</li><li><strong>Medication Education:</strong> Provide clear, concise education to families on medication purpose, dosage, administration techniques, and potential side effects, emphasizing adherence.</li><li><strong>Psychosocial Support:</strong> Recognize the significant psychosocial impact of chronic pain on children and families. Offer resources for support groups and counseling.</li><li><strong>Discharge Planning:</strong> Ensure comprehensive discharge teaching, including a written pain management plan, emergency contact information, and clear instructions on when to seek higher levels of care.</li><li><strong>Infection Surveillance:</strong> Be vigilant for signs of infection, especially fever, and educate families on the importance of prompt reporting.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Vaso-occlusive Crisis (VOC):</strong> Pathophysiology involves sickling of red blood cells, leading to microvascular occlusion, ischemia, and severe pain.</li><li><strong>Pain Management Modalities:</strong> Home management typically involves oral analgesics (NSAIDs, acetaminophen), sometimes supplemented with short-acting opioids as prescribed.</li><li><strong>Acute Chest Syndrome (ACS):</strong> A leading cause of morbidity and mortality in SCD, characterized by new pulmonary infiltrate on chest X-ray, fever, and respiratory symptoms.</li><li><strong>Hydroxyurea:</strong> A disease-modifying agent that increases fetal hemoglobin (HbF) levels, reducing sickling and the frequency of VOCs and ACS.</li><li><strong>Splenic Sequestration Crisis:</strong> Acute enlargement of the spleen due to trapping of red blood cells, leading to severe anemia and hypovolemic shock, particularly in young children.</li><li><strong>Stroke in SCD:</strong> Both ischemic and hemorrhagic strokes are significant complications, often requiring chronic transfusion therapy for prevention.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>
