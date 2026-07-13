@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration depicting a blood test for coagulation. A stylized light blue top blood collection tube is central, with a subtle representation of blood clotting inside. A stopwatch icon indicates time measurement. Abstract, interconnected shapes symbolize the coagulation cascade in the background. A gloved hand of a lab technician or nurse is gently holding the tube. The overall design is clean, modern, and optimized for public awareness, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./partial_thromboplastin_time_test.jpg" class="card-banner" alt="Partial thromboplastin time test Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-blood-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Blood disorders</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-blood-disorders-anticoagulation" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Anticoagulation</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Partial thromboplastin time test</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Blood disorders</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Anticoagulation</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Test Purpose:</strong> The Partial Thromboplastin Time (PTT) test measures the time it takes for blood to clot, specifically evaluating the intrinsic and common pathways of coagulation.</li><li><strong>Clinical Use:</strong> Primarily used to monitor unfractionated heparin therapy, screen for bleeding disorders, and assess liver function or vitamin K deficiency.</li><li><strong>Key Pathways:</strong> Assesses factors VIII, IX, XI, XII (intrinsic pathway) and factors I, II, V, X (common pathway).</li><li><strong>Results Interpretation:</strong> A prolonged PTT can indicate a deficiency in clotting factors, the presence of an inhibitor (like lupus anticoagulant), or the effect of anticoagulant medications.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Unexplained Bleeding:</strong> Patients presenting with easy bruising, recurrent nosebleeds, gum bleeding, or prolonged bleeding after minor cuts.</li><li><strong>Thrombotic Events:</strong> Investigation of suspected deep vein thrombosis (DVT), pulmonary embolism (PE), or recurrent miscarriages, which may indicate a hypercoagulable state or an underlying clotting disorder.</li><li><strong>Liver Disease:</strong> Clinical signs of liver dysfunction, as the liver produces many clotting factors.</li><li><strong>Disseminated Intravascular Coagulation (DIC):</strong> Symptoms of both widespread clotting and bleeding, requiring comprehensive coagulation assessment.</li><li><strong>Pre-surgical Assessment:</strong> Routine screening for patients undergoing surgery, especially those with a history of bleeding or on anticoagulant therapy.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Medication Disclosure:</strong> Inform the healthcare provider and phlebotomist about all medications, especially anticoagulants (heparin, warfarin, DOACs), as they significantly impact PTT results.</li><li><strong>Venipuncture Technique:</strong> Ensure a clean, atraumatic venipuncture to prevent hemolysis or tissue factor contamination, which can falsely shorten or prolong the PTT.</li><li><strong>Sample Integrity:</strong> Collect blood in a light blue top tube containing sodium citrate, ensuring the tube is filled to the correct mark to maintain the proper anticoagulant-to-blood ratio.</li><li><strong>Timing for Heparin Monitoring:</strong> For patients on continuous unfractionated heparin infusion, PTT samples must be drawn at specific intervals as ordered by the physician to ensure therapeutic levels.</li><li><strong>Avoid IV Contamination:</strong> Do not draw blood for PTT from an arm receiving intravenous fluids or heparin, as this can dilute the sample or introduce heparin, leading to inaccurate results.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Fasting Status:</strong> Generally, fasting is not required for a PTT test unless other blood tests requiring fasting are ordered concurrently. Confirm specific instructions with the ordering physician.</li><li><strong>Hydration:</strong> Maintain normal hydration levels unless otherwise instructed. Dehydration can sometimes affect blood viscosity, though its direct impact on PTT is minimal.</li><li><strong>Medication Adherence:</strong> Continue all prescribed medications, especially anticoagulants, unless explicitly advised by your physician to stop them prior to the test.</li><li><strong>Alcohol/Caffeine:</strong> No specific dietary restrictions regarding alcohol or caffeine consumption are typically necessary before a PTT test.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Patient Identification:</strong> Meticulously verify patient identity using at least two identifiers before blood collection to prevent specimen mix-up.</li><li><strong>Specimen Labeling:</strong> Label all blood tubes immediately at the patient's bedside with the patient's full name, date of birth, medical record number, date, and time of collection.</li><li><strong>Sample Handling:</strong> Gently invert the sodium citrate tube 3-4 times to ensure proper mixing of the anticoagulant without causing hemolysis.</li><li><strong>Timely Transport:</strong> Transport the sample to the laboratory promptly. If processing is delayed, plasma should be separated and frozen according to laboratory protocols.</li><li><strong>Critical Value Reporting:</strong> Be aware of the laboratory's critical PTT values and follow established protocols for immediate notification of the physician for results outside the therapeutic or normal range.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Holistic Interpretation:</strong> PTT results must always be interpreted in conjunction with the patient's clinical history, physical examination, and other coagulation studies (e.g., PT/INR, fibrinogen, D-dimer).</li><li><strong>Therapeutic Range:</strong> For unfractionated heparin therapy, the PTT target range is typically 1.5 to 2.5 times the patient's baseline or the laboratory's control value, adjusted based on clinical context.</li><li><strong>Differential Diagnosis:</strong> A prolonged PTT can indicate various conditions, including specific factor deficiencies (e.g., hemophilia A or B), the presence of circulating anticoagulants (e.g., lupus anticoagulant), or severe liver disease.</li><li><strong>Monitoring and Adjustment:</strong> Regular PTT monitoring is essential for dose adjustments of unfractionated heparin to ensure efficacy and minimize bleeding risk.</li><li><strong>Consideration of Inhibitors:</strong> If a prolonged PTT does not correct with a mixing study, it suggests the presence of an inhibitor rather than a factor deficiency.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Coagulation Pathway Understanding:</strong> Grasp the roles of the intrinsic and common coagulation pathways and how PTT specifically assesses these.</li><li><strong>Heparin Anticoagulation:</strong> Recognize PTT as the primary laboratory test for monitoring unfractionated heparin therapy, understanding its mechanism of action.</li><li><strong>Accurate Specimen Collection:</strong> Master the technique for drawing blood for coagulation studies, including proper tube selection (light blue top), fill volume, and gentle handling to prevent pre-analytical errors.</li><li><strong>Patient Education:</strong> Educate patients on the importance of reporting any signs of bleeding or bruising while on anticoagulant therapy and the necessity of regular blood tests.</li><li><strong>Antidote Knowledge:</strong> Be familiar with protamine sulfate as the antidote for unfractionated heparin overdose and its impact on PTT.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Reference Range:</strong> Typically 25-35 seconds, though this can vary slightly between laboratories due to different reagents and analyzers.</li><li><strong>Prolonged PTT Causes:</strong> Unfractionated heparin therapy, deficiencies of factors VIII, IX, XI, XII, von Willebrand disease (severe forms), liver disease, vitamin K deficiency (severe), Disseminated Intravascular Coagulation (DIC), presence of lupus anticoagulant, specific factor inhibitors.</li><li><strong>Shortened PTT Causes:</strong> Acute phase reactions, early stages of DIC, extensive cancer, or improper sample collection (e.g., traumatic venipuncture activating clotting).</li><li><strong>Activated PTT (aPTT):</strong> The most common variant used clinically, where an activator is added to speed up the clotting process, making the test more sensitive.</li><li><strong>Interfering Factors:</strong> Hemolysis, lipemia, icterus, inadequate sample volume, and contamination with IV fluids can all affect PTT results.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

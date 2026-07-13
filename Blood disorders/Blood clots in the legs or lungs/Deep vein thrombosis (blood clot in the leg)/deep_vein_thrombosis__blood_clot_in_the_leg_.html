@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human leg with a visible deep vein thrombosis (blood clot) highlighted within the deep veins. The illustration should depict the leg in a simplified, anatomical style, with a distinct, slightly darker or textured area representing the clot. Include subtle elements suggesting blood flow or circulation. The overall design should be clean, informative, and suitable for public health awareness, avoiding any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./deep_vein_thrombosis__blood_clot_in_the_leg_.jpg" class="card-banner" alt="Deep vein thrombosis (blood clot in the leg) Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-blood-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Blood disorders</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-blood-disorders-blood-clots-in-the-legs-or-lungs" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Blood clots in the legs or lungs</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Deep vein thrombosis (blood clot in the leg)</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Blood disorders</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Blood clots in the legs or lungs</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding DVT:</strong> Deep vein thrombosis (DVT) is a serious condition where a blood clot forms in a deep vein, most commonly in the leg.</li><li><strong>Risk of Pulmonary Embolism (PE):</strong> The most dangerous complication of DVT is when a part of the clot breaks off and travels to the lungs, causing a pulmonary embolism, which can be life-threatening.</li><li><strong>Common Risk Factors:</strong> Factors increasing DVT risk include prolonged immobility (long flights, bed rest), recent surgery, trauma, cancer, pregnancy, obesity, smoking, and certain genetic clotting disorders.</li><li><strong>Early Detection is Key:</strong> Recognizing symptoms early and seeking prompt medical attention is crucial for effective treatment and preventing severe complications.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Leg Swelling:</strong> Often unilateral (in one leg), the affected leg may appear larger than the other.</li><li><strong>Pain or Tenderness:</strong> Aching, cramping, or soreness in the affected leg, which may worsen with standing or walking.</li><li><strong>Warmth and Redness:</strong> The skin over the affected area may feel warm to the touch and appear reddish or discolored.</li><li><strong>Visible Surface Veins:</strong> Superficial veins may become more prominent or dilated due to increased pressure.</li><li><strong>Calf Pain:</strong> Discomfort or pain in the calf, sometimes described as a charley horse that doesn't resolve.</li><li><strong>Symptoms of PE (Complication):</strong> Sudden shortness of breath, chest pain (especially with deep breaths), rapid heart rate, or unexplained cough warrant immediate emergency care.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Post-Surgical Ambulation:</strong> Encourage early and frequent walking after surgery to promote blood circulation and prevent stasis.</li><li><strong>Compression Stockings:</strong> Use graduated compression stockings as prescribed, especially during long periods of immobility or post-surgery, to aid venous return.</li><li><strong>Anticoagulant Adherence:</strong> Strictly follow prescribed anticoagulant medication regimens and attend all monitoring appointments to prevent clot formation or growth.</li><li><strong>Avoid Prolonged Immobility:</strong> During long car rides or flights, take breaks to walk around, stretch your legs, and perform ankle pumps every hour.</li><li><strong>Hydration:</strong> Maintain adequate fluid intake to prevent dehydration, which can contribute to blood thickening.</li><li><strong>Leg Exercises:</strong> Perform simple leg exercises (e.g., ankle circles, foot pumps) regularly, especially when sitting for extended periods.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Vitamin K and Warfarin:</strong> If on Warfarin, maintain a consistent intake of Vitamin K-rich foods (e.g., leafy green vegetables) rather than drastically altering consumption, as sudden changes can affect INR levels.</li><li><strong>Hydration:</strong> Drink plenty of water throughout the day to help maintain blood fluidity and prevent dehydration, which can increase clotting risk.</li><li><strong>Alcohol Consumption:</strong> Limit or avoid excessive alcohol intake, as it can interact with certain anticoagulant medications and affect bleeding risk.</li><li><strong>Balanced Nutrition:</strong> Focus on a generally healthy diet to support overall cardiovascular health, but specific restrictions beyond anticoagulant interactions are typically not required for DVT itself.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Response:</strong> Seek immediate medical attention if you suspect DVT or experience symptoms of a pulmonary embolism (e.g., sudden shortness of breath, chest pain).</li><li><strong>Medication Compliance:</strong> Never stop or adjust anticoagulant medication without consulting your prescribing physician, as this can lead to serious complications.</li><li><strong>Bleeding Precautions:</strong> While on anticoagulants, be vigilant for signs of bleeding (e.g., unusual bruising, nosebleeds, blood in urine/stools) and report them to your doctor.</li><li><strong>Patient Education:</strong> Educate family members or caregivers about DVT symptoms and the importance of prompt action, especially if the patient has mobility limitations.</li><li><strong>Avoid Massage:</strong> Do not massage a leg suspected of having DVT, as this could dislodge the clot and lead to a pulmonary embolism.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Prompt Diagnosis:</strong> Early and accurate diagnosis, typically via Doppler ultrasound, is paramount to initiating timely treatment and preventing life-threatening complications like PE.</li><li><strong>Anticoagulation Therapy:</strong> The cornerstone of DVT treatment involves anticoagulants to prevent clot growth and new clot formation, with duration tailored to individual risk factors.</li><li><strong>Risk Stratification:</strong> A thorough assessment of patient-specific risk factors is essential for determining the appropriate treatment regimen and long-term prophylactic strategies.</li><li><strong>Post-Thrombotic Syndrome Management:</strong> Patients should be advised on strategies to manage and mitigate post-thrombotic syndrome, a common long-term complication, including continued compression therapy.</li><li><strong>Patient Education:</strong> Empowering patients with knowledge about their condition, medication adherence, and recognizing warning signs is critical for successful long-term outcomes.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Assessment for DVT:</strong> Perform thorough leg assessments, noting unilateral swelling, warmth, tenderness, and skin discoloration. While Homan's sign is often taught, its reliability is limited.</li><li><strong>Patient Education on Anticoagulants:</strong> Educate patients on the purpose, dosage, administration, potential side effects, and drug/food interactions of their anticoagulant medications.</li><li><strong>Application of Compression Devices:</strong> Correctly apply and monitor graduated compression stockings or intermittent pneumatic compression devices as ordered to promote venous return.</li><li><strong>Monitoring for Bleeding:</strong> Closely monitor patients on anticoagulants for signs of bleeding, including vital signs, laboratory values (e.g., INR, aPTT), and physical assessment findings.</li><li><strong>Mobility and Activity Promotion:</strong> Encourage and assist with early ambulation and leg exercises as appropriate, adhering to physician orders and patient tolerance.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Virchow's Triad:</strong> The three primary factors contributing to DVT formation: venous stasis, endothelial injury, and hypercoagulability.</li><li><strong>D-dimer Test:</strong> A blood test used to help rule out DVT or PE; a negative result in low-risk patients makes DVT highly unlikely.</li><li><strong>Doppler Ultrasonography:</strong> The gold standard non-invasive diagnostic imaging technique for confirming the presence and location of DVT.</li><li><strong>Anticoagulant Classes:</strong> Includes direct oral anticoagulants (DOACs - e.g., rivaroxaban, apixaban), Vitamin K antagonists (e.g., warfarin), and heparins (e.g., unfractionated heparin, LMWH).</li><li><strong>Pulmonary Embolism (PE):</strong> A life-threatening complication where a DVT dislodges and travels to the pulmonary arteries, obstructing blood flow to the lungs.</li><li><strong>Post-Thrombotic Syndrome (PTS):</strong> A chronic complication of DVT characterized by pain, swelling, heaviness, and skin changes in the affected limb due to venous valve damage.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a diverse group of people, including a child and an adult, gently applying moisturizer to their skin. Patches of dry, red, and slightly inflamed skin are visible on their arms and legs, indicating eczema. Surrounding elements include a stylized dust mite, a pet cat, a bottle of hypoallergenic lotion, and a water droplet, all representing common triggers and management strategies. The overall aesthetic is clean, modern, and empathetic, with a focus on skin health and comfort.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./eczema__atopic_dermatitis_.jpg" class="card-banner" alt="Eczema (atopic dermatitis) Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-allergies-and-asthma" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Allergies and asthma</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-allergies-and-asthma-dermatitis" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Dermatitis</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Eczema (atopic dermatitis)</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Allergies and asthma</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Dermatitis</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Chronic Skin Condition:</strong> Eczema, or atopic dermatitis, is a long-term inflammatory skin condition characterized by dry, itchy, and inflamed skin.</li><li><strong>Genetic Predisposition:</strong> It often runs in families and is linked to other allergic conditions like asthma and hay fever.</li><li><strong>Skin Barrier Dysfunction:</strong> A compromised skin barrier allows irritants and allergens to penetrate, leading to inflammation and moisture loss.</li><li><strong>Flare-ups and Remissions:</strong> The condition typically involves periods of worsening symptoms (flare-ups) followed by periods of improvement (remissions).</li><li><strong>Impact on Quality of Life:</strong> Chronic itching and visible skin changes can significantly affect sleep, mood, and daily activities.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Intense Pruritus:</strong> Severe itching, often worse at night, which can disrupt sleep and lead to scratching.</li><li><strong>Erythema and Inflammation:</strong> Red, inflamed patches of skin, which may appear darker on skin of color.</li><li><strong>Dry, Scaly Skin:</strong> Xerosis, leading to flaking, scaling, and sometimes cracking of the skin.</li><li><strong>Lichenification:</strong> Thickened, leathery skin resulting from chronic scratching and rubbing.</li><li><strong>Papules and Vesicles:</strong> Small, raised bumps or fluid-filled blisters, particularly during acute flare-ups.</li><li><strong>Excoriations:</strong> Scratch marks and open sores from persistent itching, increasing risk of infection.</li><li><strong>Crusting and Oozing:</strong> Especially in severe or infected areas, indicating active inflammation or secondary infection.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Trigger Avoidance:</strong> Identify and minimize exposure to personal triggers such as certain fabrics (wool), harsh soaps, detergents, perfumes, dust mites, pet dander, and specific foods.</li><li><strong>Gentle Skincare Routine:</strong> Use mild, fragrance-free cleansers and moisturizers specifically designed for sensitive or eczema-prone skin.</li><li><strong>Regular Moisturization:</strong> Apply emollients generously and frequently, especially within minutes after bathing, to lock in moisture and repair the skin barrier.</li><li><strong>Lukewarm Baths/Showers:</strong> Avoid hot water, which can strip natural oils from the skin; keep baths short and use lukewarm water.</li><li><strong>Prevent Scratching:</strong> Keep fingernails short and smooth; consider cotton gloves or mittens for infants and young children to prevent skin damage from scratching.</li><li><strong>Monitor for Infection:</strong> Watch for signs of secondary bacterial or viral infections, such as increased redness, swelling, pain, pus, fever, or rapidly spreading blisters.</li><li><strong>Appropriate Clothing:</strong> Wear loose-fitting, soft cotton clothing to minimize irritation and allow the skin to breathe.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Food Allergen Identification:</strong> If a clear link between specific foods and eczema flares is suspected, especially in infants or young children, consult an allergist for evaluation and potential testing.</li><li><strong>Elimination Diets (Under Supervision):</strong> Only undertake elimination diets under strict medical guidance to avoid nutritional deficiencies and ensure accurate identification of triggers.</li><li><strong>Hydration:</strong> Maintain adequate fluid intake to support overall skin health and hydration from within.</li><li><strong>Anti-inflammatory Foods:</strong> While not a cure, incorporating foods rich in omega-3 fatty acids (e.g., fatty fish, flaxseeds) and antioxidants (e.g., fruits, vegetables) may support general health.</li><li><strong>Probiotic Consideration:</strong> Discuss with a healthcare provider regarding the potential role of probiotics, as research on their direct impact on eczema is ongoing and not universally conclusive.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Acute Flare Management:</strong> Seek prompt medical attention for severe, widespread, or rapidly worsening eczema, or if signs of infection are present.</li><li><strong>Topical Steroid Use:</strong> Adhere strictly to prescribed dosages and application instructions for topical corticosteroids to prevent side effects like skin thinning or rebound flares.</li><li><strong>Systemic Treatment Awareness:</strong> If systemic medications (e.g., oral steroids, immunosuppressants, biologics) are prescribed, understand their potential side effects and monitoring requirements.</li><li><strong>Psychological Support:</strong> Recognize the significant psychological burden of chronic eczema; consider support groups or mental health counseling for managing stress, anxiety, and depression.</li><li><strong>Avoid Irritants:</strong> Be vigilant about avoiding known skin irritants in personal care products, cleaning supplies, and environmental factors.</li><li><strong>Eczema Herpeticum:</strong> Be aware of the risk of eczema herpeticum, a severe viral infection (often from herpes simplex virus) presenting as painful, clustered blisters; requires urgent medical care.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive Assessment:</strong> A thorough history and physical examination are crucial to diagnose eczema and identify potential triggers and comorbidities.</li><li><strong>Individualized Treatment Plans:</strong> Management should be tailored to the patient's age, eczema severity, location, and response to previous treatments.</li><li><strong>Education and Empowerment:</strong> Educating patients and caregivers on disease understanding, trigger avoidance, proper skincare, and medication adherence is fundamental for long-term control.</li><li><strong>Step-Up/Step-Down Therapy:</strong> Utilize a graduated approach to treatment, starting with emollients and topical therapies, and escalating to systemic agents or biologics for more severe cases.</li><li><strong>Referral to Specialists:</strong> Consider referral to a dermatologist or allergist for complex cases, suspected food allergies, or when conventional treatments are ineffective.</li><li><strong>Proactive Management:</strong> Emphasize proactive management during remission phases to prevent flares and maintain skin barrier integrity.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education on Skincare:</strong> Instruct patients and caregivers on the correct technique for applying emollients (e.g., 'soak and seal' method) and topical medications.</li><li><strong>Trigger Identification Assistance:</strong> Help patients identify and document potential eczema triggers through detailed history taking and environmental assessment.</li><li><strong>Infection Surveillance:</strong> Regularly assess skin for signs of secondary bacterial (e.g., impetigo, cellulitis) or viral (e.g., herpes simplex, molluscum contagiosum) infections.</li><li><strong>Wet Wrap Therapy:</strong> Educate on and assist with wet wrap therapy application for severe, localized flares to enhance topical medication absorption and provide cooling relief.</li><li><strong>Psychosocial Impact Assessment:</strong> Screen for the psychological impact of eczema, including sleep disturbance, anxiety, and depression, and provide appropriate referrals.</li><li><strong>Adherence Monitoring:</strong> Monitor patient adherence to treatment regimens and provide strategies to overcome barriers to consistent care.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathophysiology:</strong> Involves a complex interplay of genetic factors (e.g., filaggrin gene mutations), immune dysregulation (Th2-mediated inflammation), and environmental triggers leading to skin barrier dysfunction.</li><li><strong>Diagnostic Criteria:</strong> Clinical diagnosis based on characteristic features (e.g., pruritus, typical morphology and distribution, chronic relapsing course, personal/family history of atopy) often using Hanifin and Rajka criteria or UK Working Party criteria.</li><li><strong>Pharmacotherapy:</strong> Includes topical corticosteroids (various potencies), topical calcineurin inhibitors (tacrolimus, pimecrolimus), phosphodiesterase-4 (PDE4) inhibitors (crisaborole), systemic immunosuppressants (e.g., cyclosporine, methotrexate), and biologics (e.g., dupilumab, tralokinumab).</li><li><strong>Comorbidities:</strong> Frequently associated with the 'atopic march,' including allergic rhinitis, asthma, and food allergies.</li><li><strong>Differential Diagnosis:</strong> Important to differentiate from other dermatological conditions such as contact dermatitis, psoriasis, seborrheic dermatitis, fungal infections, and scabies.</li><li><strong>Severity Scoring:</strong> Tools like SCORAD (SCORing Atopic Dermatitis) or EASI (Eczema Area and Severity Index) are used to objectively assess disease severity and monitor treatment response.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

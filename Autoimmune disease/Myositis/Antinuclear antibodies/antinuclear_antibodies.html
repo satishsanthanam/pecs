@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for public awareness: A stylized human figure with translucent muscle groups highlighted. Within the muscle tissue, microscopic cell nuclei are visible, surrounded by abstract, glowing antibody shapes. A subtle visual cue of inflammation or cellular interaction is present. The design uses a clean, modern aesthetic with a palette of cool blues, purples, and soft greens, emphasizing diagnostic clarity and the immune system's role. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./antinuclear_antibodies.jpg" class="card-banner" alt="Antinuclear antibodies Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-autoimmune-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Autoimmune disease</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-autoimmune-disease-myositis" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Myositis</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Antinuclear antibodies</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Autoimmune disease</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Myositis</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Antinuclear Antibodies (ANA) Test</strong>: A common screening blood test used to detect autoantibodies that target components within the nucleus of a cell, often indicating an autoimmune condition.</li><li><strong>Relevance to Myositis</strong>: While a general marker, specific ANA patterns and associated autoantibodies (e.g., anti-Jo-1, anti-Mi-2) are crucial in diagnosing and classifying different forms of inflammatory myopathies (myositis).</li><li><strong>Interpreting a Positive Result</strong>: A positive ANA result signifies the presence of autoantibodies but does not definitively diagnose a specific autoimmune disease on its own; further investigation is always required.</li><li><strong>Titer and Pattern Significance</strong>: The ANA test provides a titer (concentration) and a fluorescent pattern (e.g., homogeneous, speckled), which offer clues to guide subsequent, more specific antibody testing.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Progressive Muscle Weakness</strong>: Often symmetrical and affecting proximal muscles (shoulders, hips, thighs), making activities like climbing stairs or lifting objects difficult.</li><li><strong>Muscle Pain and Tenderness (Myalgia)</strong>: Aching or soreness in muscles, which can vary in intensity and may be present even at rest.</li><li><strong>Skin Manifestations</strong>: Characteristic rashes such as Gottron's papules (over knuckles), heliotrope rash (purplish discoloration around the eyes), and the 'shawl sign' (rash over shoulders and upper back) in dermatomyositis.</li><li><strong>Fatigue and Malaise</strong>: Persistent and overwhelming tiredness that is not relieved by rest, significantly impacting daily activities.</li><li><strong>Dysphagia</strong>: Difficulty swallowing due to involvement of the pharyngeal muscles, potentially leading to aspiration risks.</li><li><strong>Joint Pain (Arthralgia)</strong>: Aches or stiffness in joints, which may or may not be accompanied by visible swelling or inflammation.</li><li><strong>Raynaud's Phenomenon</strong>: Episodes of reduced blood flow to fingers and toes, causing them to turn white, then blue, and then red, often triggered by cold or stress.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Misinterpretation</strong>: A positive ANA can occur in healthy individuals, during infections, or due to certain medications; it is not diagnostic of myositis in isolation.</li><li><strong>Clinical Correlation is Key</strong>: ANA results must always be interpreted in the context of the patient's full clinical picture, including symptoms, physical examination, and other laboratory findings.</li><li><strong>Further Specific Testing</strong>: If ANA is positive and myositis is suspected, specific myositis-associated autoantibody panels (e.g., anti-synthetase antibodies, anti-SRP, anti-Mi-2) are essential for accurate diagnosis.</li><li><strong>Medication Review</strong>: Certain drugs (e.g., procainamide, hydralazine, TNF-alpha inhibitors) can induce ANA positivity; a comprehensive medication history is vital.</li><li><strong>Not for Disease Activity Monitoring</strong>: ANA titers are generally not reliable for monitoring disease activity or treatment response in established myositis.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>No Pre-Test Dietary Restrictions</strong>: The ANA blood test itself does not require any specific dietary preparations or restrictions.</li><li><strong>Fasting Not Required</strong>: Patients do not need to fast before an ANA blood draw.</li><li><strong>Hydration for Venipuncture</strong>: Adequate hydration is generally recommended to facilitate easier venipuncture, but it is not a strict requirement for the test's accuracy.</li><li><strong>Myositis-Related Nutritional Support</strong>: For patients diagnosed with myositis, especially those experiencing dysphagia, dietary modifications (e.g., soft foods, thickened liquids) or nutritional support may be necessary to prevent malnutrition and aspiration.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Patient Education on Results</strong>: Clearly explain to patients that a positive ANA is a screening result, not a definitive diagnosis, and necessitates further medical evaluation.</li><li><strong>Discourage Self-Diagnosis</strong>: Emphasize the complexity of autoimmune diagnoses and the critical need for specialist consultation (e.g., rheumatologist, neurologist).</li><li><strong>Adherence to Treatment Plans</strong>: For diagnosed myositis patients, stress the importance of strict adherence to prescribed immunosuppressive or immunomodulatory therapies to manage disease progression.</li><li><strong>Prompt Symptom Reporting</strong>: Advise patients to immediately report any new or worsening symptoms, particularly increased muscle weakness, new skin rashes, or difficulties with swallowing or breathing.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Diagnostic Algorithm Integration</strong>: Utilize ANA as a critical initial screening tool in the diagnostic workup for suspected systemic autoimmune diseases, including inflammatory myopathies.</li><li><strong>Pattern-Guided Investigation</strong>: Pay close attention to ANA patterns (e.g., nucleolar, centromere) as they can provide valuable clues to guide subsequent, more specific antibody testing and narrow the differential diagnosis.</li><li><strong>Comprehensive Differential Diagnosis</strong>: Always consider a broad differential diagnosis for muscle weakness and fatigue, as ANA positivity can overlap with various conditions beyond autoimmune disease.</li><li><strong>Timely Specialist Referral</strong>: Prompt referral to a rheumatologist or neurologist is indicated for patients with a positive ANA and clinical features suggestive of myositis or other systemic autoimmune conditions.</li><li><strong>Role of Muscle Biopsy</strong>: Recognize that muscle biopsy remains the gold standard for confirming inflammatory myopathy, especially when specific autoantibodies are negative or clinical presentation is atypical.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Preparation for Blood Draw</strong>: Ensure patients understand the purpose of the ANA test and confirm that no special preparation, such as fasting, is required.</li><li><strong>Accurate Venipuncture</strong>: Perform standard venipuncture procedures for blood collection, ensuring proper labeling and handling of the sample.</li><li><strong>Thorough Symptom Assessment</strong>: Systematically assess and document patient symptoms, including muscle weakness, pain, skin changes, and dysphagia, as these are crucial for diagnosis and monitoring.</li><li><strong>Medication Education and Adherence</strong>: Educate patients on their prescribed medications for myositis, including dosage, administration, potential side effects, and the paramount importance of adherence.</li><li><strong>Emotional Support and Resources</strong>: Provide empathetic support and connect patients with reliable educational materials and support groups for individuals living with autoimmune diseases like myositis.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Gold Standard Methodology</strong>: Indirect immunofluorescence (IIF) on HEp-2 cells is the gold standard method for ANA testing, providing both a quantitative titer and a qualitative fluorescent pattern.</li><li><strong>Titer Interpretation</strong>: A titer of 1:80 or 1:160 is often considered low positive and may be non-specific, whereas titers of 1:320 or higher are generally more clinically significant for autoimmune disease.</li><li><strong>Myositis-Specific Antibodies (MSA)</strong>: Key antibodies include anti-Jo-1 (most common anti-synthetase syndrome), anti-Mi-2 (dermatomyositis), anti-SRP (immune-mediated necrotizing myopathy), anti-MDA5 (clinically amyopathic dermatomyositis), and anti-TIF1γ (cancer-associated dermatomyositis).</li><li><strong>Myositis-Associated Antibodies (MAA)</strong>: Antibodies such as anti-PM/Scl, anti-Ku, and anti-U1-RNP are associated with overlap syndromes, where myositis coexists with other autoimmune conditions like scleroderma or lupus.</li><li><strong>ANA-Negative Myositis</strong>: A significant proportion of patients with inflammatory myopathies can be ANA negative but positive for specific myositis autoantibodies, highlighting the need for comprehensive testing.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

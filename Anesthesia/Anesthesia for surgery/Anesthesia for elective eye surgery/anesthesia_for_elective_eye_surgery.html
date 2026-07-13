@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration depicting a patient comfortably lying on an operating table with a gentle eye mask, surrounded by a subtle aura of calm. An anesthesiologist figure in scrubs is visible in the background, overseeing monitoring equipment with soft, glowing screens. The scene should convey safety, precision, and modern medical care for eye surgery, using a palette of soothing blues, greens, and whites. Focus on clear, clean lines and a friendly, reassuring atmosphere.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./anesthesia_for_elective_eye_surgery.jpg" class="card-banner" alt="Anesthesia for elective eye surgery Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-anesthesia" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Anesthesia</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-anesthesia-anesthesia-for-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Anesthesia for surgery</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Anesthesia for elective eye surgery</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Anesthesia</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Anesthesia for surgery</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Anesthesia Options:</strong> Elective eye surgery typically uses local, regional (e.g., peribulbar or retrobulbar block), or general anesthesia, chosen based on the procedure, patient health, and preference.</li><li><strong>Patient Comfort:</strong> The primary goal is to ensure the patient remains comfortable, pain-free, and still throughout the procedure, minimizing anxiety.</li><li><strong>Immobility is Key:</strong> Maintaining a steady gaze and preventing eye movement is crucial for the surgeon's precision, often achieved with specific anesthetic techniques and patient cooperation.</li><li><strong>Sedation Levels:</strong> For local or regional anesthesia, light to moderate sedation may be administered to help patients relax and reduce awareness, while remaining responsive.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Blurred Vision:</strong> A common indication for cataract surgery, where the lens becomes cloudy, impairing sight.</li><li><strong>Eye Pain or Pressure:</strong> May prompt glaucoma surgery to relieve intraocular pressure and prevent optic nerve damage.</li><li><strong>Floaters and Flashes:</strong> Symptoms that can indicate retinal detachment, requiring urgent surgical repair.</li><li><strong>Double Vision (Diplopia):</strong> Often associated with strabismus, which may be corrected surgically to realign the eyes.</li><li><strong>Corneal Opacity or Irregularity:</strong> Leading to vision impairment that may necessitate corneal transplant or other corneal procedures.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Pre-operative Assessment:</strong> A thorough evaluation of the patient's medical history, current medications (especially anticoagulants, eye drops), allergies, and previous anesthetic experiences is essential.</li><li><strong>NPO Status:</strong> Strict adherence to 'nil per os' (nothing by mouth) guidelines for a specified period before surgery to prevent aspiration risks associated with anesthesia.</li><li><strong>Medication Review:</strong> Discuss all prescription and over-the-counter medications, supplements, and herbal remedies with the anesthesiologist, as some may need to be adjusted or temporarily stopped.</li><li><strong>Allergy Disclosure:</strong> Inform the medical team of any known allergies to medications, latex, or adhesive tapes to prevent adverse reactions.</li><li><strong>Post-operative Monitoring:</strong> Close observation for potential complications such as nausea, pain, bleeding, or changes in vision immediately following the procedure.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Fasting for Solids:</strong> Typically, no solid food for at least 6-8 hours prior to the scheduled anesthesia time.</li><li><strong>Clear Liquid Intake:</strong> Clear liquids (water, clear apple juice, black coffee/tea without milk) may be permitted up to 2-3 hours before anesthesia, as instructed by the anesthesiologist.</li><li><strong>Avoid Alcohol:</strong> Refrain from consuming alcoholic beverages for at least 24 hours before surgery due to potential interactions with anesthetic agents.</li><li><strong>Post-Anesthesia Reintroduction:</strong> Begin with clear liquids and light foods post-procedure, gradually advancing diet as tolerated and as advised by the medical team, especially after general anesthesia or sedation.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Arrange Transportation:</strong> Patients undergoing anesthesia (even local with sedation) must have a responsible adult accompany them home and remain with them for the first 24 hours.</li><li><strong>Post-Discharge Observation:</strong> The attendant should monitor the patient for unusual drowsiness, persistent nausea, severe pain, or any unexpected changes in vision or behavior.</li><li><strong>Medication Management:</strong> Assist the patient with understanding and adhering to post-operative medication schedules, including eye drops and pain relievers.</li><li><strong>Activity Restrictions:</strong> Ensure the patient avoids strenuous activities, bending, lifting heavy objects, or rubbing the eye as per surgical instructions to prevent complications.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Individualized Anesthetic Plan:</strong> Each patient's anesthetic plan is tailored based on their specific health profile, the type of eye surgery, and personal preferences to ensure optimal safety and comfort.</li><li><strong>Open Communication:</strong> It is vital for patients to openly discuss their full medical history, current medications, and any anxieties with the anesthesiologist during the pre-operative consultation.</li><li><strong>Risk-Benefit Discussion:</strong> Physicians will thoroughly explain the potential risks and benefits of the chosen anesthetic technique, ensuring informed consent.</li><li><strong>Pain Management:</strong> Effective post-operative pain management strategies are planned to ensure a comfortable recovery period.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pre-operative Checklist:</strong> Nurses ensure all pre-anesthetic orders are completed, including NPO status verification, vital signs, allergy checks, and patient education.</li><li><strong>Intra-operative Monitoring:</strong> Continuous monitoring of vital signs, ECG, oxygen saturation, end-tidal CO2, and depth of anesthesia is crucial for patient safety during the procedure.</li><li><strong>Patient Positioning:</strong> Proper patient positioning is essential to prevent pressure injuries and facilitate surgical access, especially for prolonged eye surgeries.</li><li><strong>PACU Care:</strong> In the Post-Anesthesia Care Unit, nurses focus on airway management, pain assessment, nausea control, and monitoring for immediate post-anesthetic complications.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Anesthetic Agents:</strong> Commonly include propofol for induction, sevoflurane or desflurane for maintenance (general anesthesia), and local anesthetics like lidocaine or bupivacaine for regional blocks.</li><li><strong>Regional Block Techniques:</strong> Peribulbar and retrobulbar blocks are common, involving injection of local anesthetic around the globe to achieve akinesia and analgesia.</li><li><strong>Oculocardiac Reflex:</strong> A vagal reflex (bradycardia, arrhythmia) triggered by pressure on the globe or traction on extraocular muscles, requiring careful monitoring and management.</li><li><strong>Retrobulbar Hemorrhage:</strong> A rare but serious complication of regional blocks, potentially causing increased intraocular pressure and vision loss, requiring immediate intervention.</li><li><strong>Monitored Anesthesia Care (MAC):</strong> A technique combining local anesthesia with sedation and analgesia, allowing the patient to remain comfortable but responsive.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

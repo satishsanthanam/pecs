@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of an adult (diverse ethnicity, 30s-40s) correctly using a soft mist inhaler. The person is holding the inhaler upright, sealing their lips around the mouthpiece, and inhaling deeply. A subtle, translucent mist graphic emanates from the inhaler and visually flows towards the lungs. Clean, modern, public awareness design with a friendly aesthetic. No text anomalies. Bright, accessible color palette.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./how_to_use_your_soft_mist_inhaler__adults_.jpg" class="card-banner" alt="How to use your soft mist inhaler (adults) Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-allergies-and-asthma" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Allergies and asthma</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-allergies-and-asthma-asthma" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Asthma</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>How to use your soft mist inhaler (adults)</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Allergies and asthma</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Asthma</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Understanding Your Soft Mist Inhaler (SMI):</strong> SMIs deliver medication as a fine, slow-moving mist, making it easier to inhale deeply into the lungs compared to traditional metered-dose inhalers (MDIs).</li>
+        <li><strong>Purpose of Use:</strong> Your SMI is prescribed to manage chronic respiratory conditions like asthma or COPD, delivering bronchodilators or corticosteroids directly to your airways to reduce inflammation and open breathing passages.</li>
+        <li><strong>Importance of Correct Technique:</strong> Proper inhalation technique is crucial for ensuring the medication reaches your lungs effectively, maximizing therapeutic benefit and minimizing potential side effects.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Wheezing and Shortness of Breath:</strong> These are primary indicators of airway narrowing, often prompting the use of a bronchodilator SMI for rapid relief.</li>
+        <li><strong>Chest Tightness:</strong> A sensation of pressure or constriction in the chest, commonly experienced during asthma exacerbations, which SMIs aim to alleviate.</li>
+        <li><strong>Persistent Cough:</strong> A chronic or worsening cough, particularly at night or with exercise, can be a symptom of uncontrolled asthma requiring regular inhaled medication.</li>
+        <li><strong>Difficulty with Exertion:</strong> Reduced exercise tolerance or breathlessness during physical activity often signals suboptimal asthma control, necessitating consistent inhaler use.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Priming Your Inhaler:</strong> Always prime a new inhaler or one that hasn't been used for several days by releasing a few test sprays into the air until a visible mist appears, as per manufacturer instructions.</li>
+        <li><strong>Checking the Dose Counter:</strong> Monitor the dose counter regularly to know how many doses remain and to ensure you replace your inhaler before it runs out completely.</li>
+        <li><strong>Cleaning Instructions:</strong> Clean the mouthpiece of your inhaler as directed by the manufacturer, typically with a damp cloth, to prevent blockages and maintain hygiene. Do not immerse the entire inhaler in water.</li>
+        <li><strong>Do Not Share:</strong> Your inhaler is prescribed specifically for you; sharing it with others can spread infections and may not be appropriate for their condition.</li>
+        <li><strong>Proper Storage:</strong> Store your inhaler at room temperature, away from direct sunlight, heat, or extreme cold, to maintain medication efficacy.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Rinse Mouth After Use:</strong> If your SMI contains a corticosteroid, always rinse your mouth thoroughly with water and spit it out after each use to prevent oral thrush (candidiasis).</li>
+        <li><strong>Maintain Hydration:</strong> Adequate fluid intake can help soothe the throat and prevent dryness, which might be exacerbated by some inhaled medications.</li>
+        <li><strong>Avoid Irritants Post-Inhalation:</strong> Immediately after using your inhaler, avoid consuming very hot or cold beverages or foods that might irritate sensitive airways or the throat.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Emergency Situations:</strong> If you experience severe shortness of breath, difficulty speaking, or blue lips, seek immediate medical attention. Your rescue inhaler should provide quick relief; if it doesn't, it's an emergency.</li>
+        <li><strong>Do Not Exceed Prescribed Dose:</strong> Never use more puffs than prescribed by your healthcare provider, as this can lead to increased side effects and may not improve your breathing.</li>
+        <li><strong>Proper Disposal:</strong> Dispose of empty inhalers or those past their expiration date according to local environmental guidelines, often involving pharmacy take-back programs.</li>
+        <li><strong>Recognize Worsening Symptoms:</strong> Be vigilant for signs that your asthma is worsening, such as increased frequency of rescue inhaler use, waking up at night due to symptoms, or decreased peak flow readings.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Adherence is Key:</strong> Consistent and correct use of your soft mist inhaler, even when feeling well, is fundamental to achieving optimal asthma control and preventing exacerbations.</li>
+        <li><strong>Regular Follow-ups:</strong> Schedule regular appointments with your physician to review your asthma action plan, assess your inhaler technique, and adjust medication as needed.</li>
+        <li><strong>Asthma Action Plan:</strong> Work with your doctor to develop a personalized asthma action plan that outlines daily management, what to do during symptom worsening, and when to seek emergency care.</li>
+        <li><strong>Technique Demonstration:</strong> Always ask your healthcare provider or nurse to demonstrate the correct inhaler technique and observe you using it to ensure proficiency.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Patient Education Priority:</strong> Nurses play a critical role in educating patients on proper SMI technique, emphasizing priming, inhalation coordination, and post-use care.</li>
+        <li><strong>Assessment of Technique:</strong> Regularly assess patient inhaler technique during clinic visits or hospital stays, providing constructive feedback and re-education to optimize medication delivery.</li>
+        <li><strong>Monitoring for Adverse Effects:</strong> Be vigilant for potential side effects such as oral candidiasis (for corticosteroid inhalers), hoarseness, or throat irritation, and educate patients on preventative measures.</li>
+        <li><strong>Reinforce Adherence:</strong> Counsel patients on the importance of medication adherence, explaining the long-term benefits of consistent use in preventing asthma exacerbations and improving quality of life.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Mechanism of Action:</strong> Soft mist inhalers deliver a fine, slow-moving aerosol plume, which enhances lung deposition by reducing impaction in the oropharynx and improving patient coordination.</li>
+        <li><strong>Medication Classes:</strong> SMIs are commonly used for long-acting bronchodilators (e.g., tiotropium, olodaterol) and inhaled corticosteroids (e.g., ciclesonide), as well as fixed-dose combinations.</li>
+        <li><strong>Lung Deposition:</strong> Studies indicate that SMIs can achieve higher lung deposition rates (up to 50-60%) compared to traditional MDIs (10-20%) due to the slower velocity and smaller particle size of the mist.</li>
+        <li><strong>Patient Interface:</strong> The design of SMIs aims to reduce the need for precise hand-breath coordination, making them a suitable option for patients who struggle with MDIs, including some elderly individuals.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>
