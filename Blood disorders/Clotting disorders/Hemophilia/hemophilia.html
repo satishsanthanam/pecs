@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a diverse group of people, including children and adults, interacting with healthcare professionals (doctors, nurses) in a modern, clean clinic setting. Focus on elements representing blood health, such as subtle blood drop icons, a microscope, and a factor replacement infusion bag. Show individuals engaging in low-impact activities like swimming or walking. Include a medical alert bracelet on one character. The overall design should convey support, awareness, and proactive management of a blood disorder, with a palette of blues, reds, and whites. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./hemophilia.jpg" class="card-banner" alt="Hemophilia Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-blood-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Blood disorders</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-blood-disorders-clotting-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Clotting disorders</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Hemophilia</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Blood disorders</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Clotting disorders</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Genetic Bleeding Disorder:</strong> Hemophilia is a rare, inherited disorder where the blood doesn't clot properly due to a deficiency or absence of specific clotting factors.</li><li><strong>Types A and B:</strong> Hemophilia A (classic hemophilia) is caused by a deficiency of clotting factor VIII, while Hemophilia B (Christmas disease) is due to a deficiency of clotting factor IX. Both are primarily X-linked recessive.</li><li><strong>Severity Varies:</strong> The severity of hemophilia depends on the amount of functional clotting factor present in the blood, ranging from mild to severe.</li><li><strong>Spontaneous Bleeding Risk:</strong> Individuals with severe hemophilia are at risk for spontaneous bleeding into joints, muscles, and internal organs, even without apparent injury.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Easy Bruising:</strong> Frequent and large bruises, often appearing without clear cause.</li><li><strong>Prolonged Bleeding:</strong> Excessive or prolonged bleeding after minor cuts, injections, surgery, or dental procedures.</li><li><strong>Joint Bleeding (Hemarthrosis):</strong> Pain, swelling, warmth, and stiffness in joints (knees, elbows, ankles), leading to chronic joint damage if untreated.</li><li><strong>Muscle Hematomas:</strong> Deep muscle bleeding causing pain, swelling, and limited movement.</li><li><strong>Nosebleeds & Gum Bleeding:</strong> Frequent or prolonged bleeding from the nose or gums.</li><li><strong>Blood in Urine or Stool:</strong> Indicative of internal bleeding in the urinary or gastrointestinal tracts.</li><li><strong>Intracranial Hemorrhage:</strong> A serious and life-threatening complication, especially in severe cases, requiring immediate medical attention.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid High-Impact Activities:</strong> Engage in low-impact exercises (e.g., swimming, walking) to minimize injury risk, avoiding contact sports.</li><li><strong>Factor Replacement Adherence:</strong> Strictly follow prescribed prophylactic or on-demand factor replacement therapy schedules to prevent bleeding episodes.</li><li><strong>Medical Alert Identification:</strong> Always wear or carry medical alert identification (e.g., bracelet, card) indicating hemophilia status.</li><li><strong>Avoid Aspirin & NSAIDs:</strong> Do not use aspirin or non-steroidal anti-inflammatory drugs (NSAIDs) unless specifically advised by a hematologist, as they can impair platelet function.</li><li><strong>Dental Care:</strong> Maintain excellent oral hygiene with a soft toothbrush to prevent gum bleeding and inform dentists about hemophilia status before any procedures.</li><li><strong>Vaccination Route:</strong> Prefer subcutaneous injections over intramuscular when possible; if intramuscular is necessary, apply firm pressure to the site for several minutes.</li><li><strong>Prompt Treatment:</strong> Seek immediate medical attention for any suspected bleeding episode, especially head injuries or severe joint pain.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Iron-Rich Foods:</strong> Consume a diet rich in iron (e.g., lean meats, fortified cereals, spinach) to help prevent or manage anemia resulting from chronic blood loss.</li><li><strong>Vitamin K Intake:</strong> Maintain a consistent intake of Vitamin K-rich foods (e.g., leafy greens) as it's essential for clotting factor synthesis, but avoid excessive fluctuations if on certain medications.</li><li><strong>Avoid Antiplatelet Supplements:</strong> Discuss all herbal supplements, high-dose Vitamin E, and fish oil with a hematologist, as some may have antiplatelet effects that could increase bleeding risk.</li><li><strong>Hydration:</strong> Ensure adequate fluid intake to support overall health and medication efficacy.</li><li><strong>Weight Management:</strong> Maintain a healthy weight to reduce stress on joints, which are particularly vulnerable to damage from bleeding.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Protocol:</strong> Develop and understand a clear emergency plan for severe bleeding, including contact information for the hemophilia treatment center (HTC) and emergency services.</li><li><strong>Factor Concentrate Availability:</strong> Always ensure a supply of prescribed factor concentrate is readily available, especially when traveling.</li><li><strong>Recognize Internal Bleeding:</strong> Be vigilant for signs of internal bleeding, such as severe abdominal pain, unexplained weakness, or changes in neurological status.</li><li><strong>Genetic Counseling:</strong> Consider genetic counseling for family planning and to understand the inheritance patterns and carrier status for female relatives.</li><li><strong>HTC Engagement:</strong> Maintain regular follow-up appointments with a specialized Hemophilia Treatment Center for comprehensive care and education.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Prophylactic Therapy:</strong> Prophylactic factor replacement is the cornerstone of modern hemophilia management, significantly reducing bleeding episodes and preventing joint damage.</li><li><strong>Comprehensive Care:</strong> Patients benefit most from a multidisciplinary team approach involving hematologists, physical therapists, social workers, and genetic counselors.</li><li><strong>Inhibitor Monitoring:</strong> Regular screening for inhibitor development (antibodies against infused factor) is crucial, as inhibitors complicate treatment and require specialized management.</li><li><strong>Gene Therapy Advancements:</strong> Exciting progress in gene therapy offers potential long-term solutions for some individuals with hemophilia, warranting discussion with specialists.</li><li><strong>Personalized Treatment Plans:</strong> Treatment regimens are highly individualized based on hemophilia type, severity, patient age, activity level, and presence of inhibitors.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Factor Administration:</strong> Master the techniques for safe and sterile intravenous administration of clotting factor concentrates, including reconstitution and infusion rates.</li><li><strong>Bleeding Assessment:</strong> Accurately assess and document bleeding episodes, including location, severity, duration, and response to treatment.</li><li><strong>Patient Education:</strong> Educate patients and caregivers on self-infusion techniques, recognizing bleeding signs, joint protection, and adherence to treatment plans.</li><li><strong>Joint Care:</strong> Understand the principles of RICE (Rest, Ice, Compression, Elevation) for acute hemarthrosis and the importance of physical therapy for joint health.</li><li><strong>Psychosocial Support:</strong> Provide empathetic support and connect patients/families with resources to manage the chronic nature of hemophilia and its impact on quality of life.</li><li><strong>Documentation:</strong> Maintain meticulous records of all factor infusions, bleeding episodes, and patient education provided.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Factor VIII Deficiency:</strong> Hemophilia A, X-linked recessive, most common type.</li><li><strong>Factor IX Deficiency:</strong> Hemophilia B (Christmas Disease), X-linked recessive.</li><li><strong>Desmopressin (DDAVP):</strong> Synthetic vasopressin analog used for mild Hemophilia A and von Willebrand disease to release stored factor VIII and vWF.</li><li><strong>Antifibrinolytic Agents:</strong> Tranexamic acid (TXA) and aminocaproic acid (Amicar) used to stabilize clots and prevent their breakdown, often adjunctively.</li><li><strong>Inhibitor Development:</strong> Antibodies that neutralize infused clotting factors, requiring alternative treatments like bypassing agents (e.g., FEIBA, NovoSeven).</li><li><strong>Prophylaxis:</strong> Regular, scheduled infusions of clotting factor to prevent bleeding, typically initiated in childhood.</li><li><strong>Emicizumab (Hemlibra):</strong> Bispecific antibody that mimics factor VIIIa, approved for Hemophilia A with or without inhibitors, administered subcutaneously.</li><li><strong>Genetic Testing:</strong> Used for diagnosis, carrier identification, and prenatal diagnosis.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

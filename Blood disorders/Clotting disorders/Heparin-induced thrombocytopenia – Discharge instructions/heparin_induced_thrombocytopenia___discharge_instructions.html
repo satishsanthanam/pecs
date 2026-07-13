@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for public awareness about Heparin-Induced Thrombocytopenia (HIT). A central figure, a patient, is wearing a medical alert bracelet. Around them are visual cues representing 'no heparin' (a crossed-out syringe with heparin), blood clots (stylized red clumps), and healthy platelets (small blue discs). The overall design should convey vigilance, patient education, and the importance of avoiding heparin, with a clean, informative aesthetic suitable for a medical infographic. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./heparin_induced_thrombocytopenia___discharge_instructions.jpg" class="card-banner" alt="Heparin-induced thrombocytopenia – Discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-blood-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Blood disorders</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-blood-disorders-clotting-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Clotting disorders</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Heparin-induced thrombocytopenia – Discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Blood disorders</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Clotting disorders</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Understanding HIT:</strong> Heparin-induced thrombocytopenia (HIT) is a serious immune-mediated reaction to heparin, leading to a significant drop in platelet count and an increased risk of blood clots.</li>
+        <li><strong>Not an Allergy:</strong> HIT is an immune response, not a typical allergic reaction. It means your body creates antibodies against heparin-platelet complexes.</li>
+        <li><strong>Lifelong Avoidance:</strong> Once diagnosed with HIT, you must avoid all forms of heparin and low molecular weight heparin (LMWH) for the rest of your life due to the high risk of recurrence and severe complications.</li>
+        <li><strong>Increased Clotting Risk:</strong> Despite low platelets, HIT paradoxically increases the risk of new or worsening blood clots (thrombosis) in arteries and veins.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Deep Vein Thrombosis (DVT):</strong> Watch for new or worsening pain, swelling, redness, or warmth in an arm or leg, especially in the calf or thigh.</li>
+        <li><strong>Pulmonary Embolism (PE):</strong> Be alert for sudden shortness of breath, chest pain (especially with breathing), rapid heart rate, or unexplained cough.</li>
+        <li><strong>Stroke Symptoms:</strong> Seek immediate medical attention for sudden weakness or numbness on one side of the body, difficulty speaking or understanding speech, sudden vision changes, or severe headache.</li>
+        <li><strong>Myocardial Infarction (Heart Attack):</strong> Report new or worsening chest pain, discomfort in other areas of the upper body (arm, back, neck, jaw, stomach), shortness of breath, or cold sweat.</li>
+        <li><strong>Skin Lesions:</strong> Report any new, painful, red, or purplish skin lesions, especially at previous heparin injection sites, as these can indicate a severe reaction.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Absolute Heparin Avoidance:</strong> You must never receive heparin or low molecular weight heparin (LMWH) again. This includes heparin flushes, heparin-coated catheters, and any heparin-containing medications.</li>
+        <li><strong>Inform All Healthcare Providers:</strong> Always inform every doctor, nurse, dentist, pharmacist, and emergency medical personnel about your history of HIT before any treatment, procedure, or prescription.</li>
+        <li><strong>Medical Alert Identification:</strong> Wear a medical alert bracelet or necklace clearly stating "Heparin-Induced Thrombocytopenia (HIT) – No Heparin" and carry a medical alert card at all times.</li>
+        <li><strong>Review Medications:</strong> Be vigilant about all medications, ensuring none contain heparin. If unsure, always ask your pharmacist or doctor.</li>
+        <li><strong>Anticoagulant Adherence:</strong> Strictly adhere to any prescribed non-heparin anticoagulant therapy (e.g., warfarin, direct oral anticoagulants) as directed by your physician to prevent future clots.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Vitamin K Consistency (if on Warfarin):</strong> If you are prescribed warfarin, maintain a consistent intake of vitamin K-rich foods (e.g., leafy green vegetables). Avoid sudden, large changes in your diet that could affect your INR.</li>
+        <li><strong>Hydration:</strong> Maintain adequate fluid intake unless otherwise instructed by your physician, as good hydration can help prevent blood stasis.</li>
+        <li><strong>Supplement Review:</strong> Discuss any new dietary supplements, herbal remedies, or over-the-counter medications with your doctor or pharmacist, as they can interact with anticoagulants.</li>
+        <li><strong>Alcohol Consumption:</strong> Limit or avoid alcohol consumption, as it can interact with certain anticoagulants and increase bleeding risk. Discuss safe limits with your doctor.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Educate Family/Caregivers:</strong> Ensure all family members and close caregivers understand the critical importance of lifelong heparin avoidance for the patient.</li>
+        <li><strong>Emergency Preparedness:</strong> Know the signs and symptoms of new blood clots (DVT, PE, stroke) and bleeding, and know when to seek immediate medical attention. Have emergency contact numbers readily available.</li>
+        <li><strong>Medication Management:</strong> Assist the patient in understanding and adhering to their non-heparin anticoagulant regimen and ensuring all healthcare providers are aware of the HIT diagnosis.</li>
+        <li><strong>Advocacy:</strong> Be prepared to advocate for the patient in medical settings, ensuring that no heparin-containing products are administered.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Lifelong Vigilance:</strong> Patients with a history of HIT require lifelong vigilance regarding heparin exposure and ongoing management of thrombotic risk.</li>
+        <li><strong>Specialist Follow-up:</strong> Regular follow-up with a hematologist or a physician experienced in thrombotic disorders is crucial for monitoring and managing long-term anticoagulant therapy.</li>
+        <li><strong>Medication Adherence:</strong> Strict adherence to prescribed non-heparin anticoagulants is paramount to prevent recurrent thrombotic events, which can be life-threatening.</li>
+        <li><strong>Future Procedures:</strong> Any future surgical procedures or medical interventions must be carefully planned with the hematologist to ensure safe periprocedural anticoagulation strategies are employed.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Patient Education Reinforcement:</strong> Nurses play a vital role in reinforcing patient and family education regarding HIT, emphasizing lifelong heparin avoidance and the importance of medical alert identification.</li>
+        <li><strong>Thrombosis & Bleeding Monitoring:</strong> Continuously assess patients for signs and symptoms of new thrombotic events (e.g., DVT, PE, stroke) and potential bleeding complications related to anticoagulant therapy.</li>
+        <li><strong>Medication Reconciliation:</strong> Meticulously review all medications upon admission and discharge to ensure no heparin-containing products are prescribed or administered.</li>
+        <li><strong>Anticoagulant Teaching:</strong> Provide comprehensive teaching on the prescribed non-heparin anticoagulant, including dosage, administration, potential side effects, and drug/food interactions.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Pathophysiology:</strong> HIT is an immune-mediated disorder characterized by antibodies against platelet factor 4 (PF4) complexed with heparin, leading to platelet activation and aggregation, and paradoxically, a prothrombotic state.</li>
+        <li><strong>Diagnosis (4T's Score):</strong> The 4T's score (Thrombocytopenia, Timing of platelet fall, Thrombosis, Other causes for thrombocytopenia) is used to assess the pre-test probability of HIT. Definitive diagnosis involves antibody testing (e.g., ELISA for anti-PF4/heparin antibodies) and functional assays (e.g., serotonin release assay, heparin-induced platelet aggregation).</li>
+        <li><strong>Treatment Principles:</strong> Immediate cessation of all heparin products and initiation of a non-heparin anticoagulant (e.g., argatroban, bivalirudin, fondaparinux, or direct oral anticoagulants like rivaroxaban or apixaban) are critical.</li>
+        <li><strong>Complications:</strong> Major complications include deep vein thrombosis (DVT), pulmonary embolism (PE), arterial thrombosis (e.g., stroke, myocardial infarction, limb ischemia), and skin necrosis.</li>
+        <li><strong>Long-term Management:</strong> Patients typically require long-term anticoagulation with a non-heparin agent for several months, depending on the presence of thrombosis. Lifelong avoidance of heparin is mandatory.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a person with a slightly stooped posture, representing spinal stiffness associated with Ankylosing Spondylitis. The spine is subtly highlighted with a glowing, inflamed effect, particularly around the sacroiliac joints. Surrounding the figure are abstract icons representing key aspects of the condition: a small dumbbell for exercise, a pill bottle for medication, and an eye with a subtle red tint for uveitis. The background is clean and minimalist, with a calming color palette that conveys a medical and informative tone. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./ankylosing_spondylitis.jpg" class="card-banner" alt="Ankylosing spondylitis Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-bones-joints-and-muscles" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Bones, joints, and muscles</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-bones-joints-and-muscles-arthritis" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Arthritis</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Ankylosing spondylitis</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Bones, joints, and muscles</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Arthritis</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Chronic Inflammatory Disease:</strong> Ankylosing spondylitis (AS) is a long-term condition primarily affecting the spine, leading to inflammation of the vertebrae.</li><li><strong>Spinal Fusion Risk:</strong> Over time, inflammation can cause vertebrae to fuse, resulting in a rigid, inflexible spine, often referred to as a 'bamboo spine'.</li><li><strong>Systemic Involvement:</strong> While primarily affecting the spine and sacroiliac joints, AS can also impact other joints (hips, shoulders), eyes (uveitis), bowels (inflammatory bowel disease), and heart.</li><li><strong>Genetic Predisposition:</strong> A strong association exists with the HLA-B27 gene, though not everyone with the gene develops AS.</li><li><strong>Progressive Condition:</strong> AS is a progressive disease, meaning symptoms can worsen over time if not managed effectively.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Chronic Back Pain:</strong> Typically insidious onset, lasting more than three months, worse in the morning or after inactivity, and improves with exercise.</li><li><strong>Morning Stiffness:</strong> Significant stiffness in the back, particularly upon waking, lasting more than 30 minutes.</li><li><strong>Fatigue:</strong> Persistent and often debilitating tiredness, a common symptom of chronic inflammation.</li><li><strong>Peripheral Joint Pain:</strong> Pain and swelling in other joints, such as hips, shoulders, knees, or heels (enthesitis).</li><li><strong>Uveitis:</strong> Eye inflammation causing redness, pain, blurred vision, and sensitivity to light.</li><li><strong>Reduced Spinal Mobility:</strong> Difficulty bending, twisting, or extending the back due due to stiffness and potential fusion.</li><li><strong>Chest Wall Pain:</strong> Pain and tenderness where ribs meet the spine or sternum, potentially affecting breathing capacity.</li><li><strong>Inflammatory Bowel Symptoms:</strong> Abdominal pain, diarrhea, or other signs of inflammatory bowel disease in some individuals.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Regular Exercise Regimen:</strong> Engage in consistent, low-impact exercises (e.g., swimming, yoga, stretching) to maintain spinal flexibility and strength, avoiding high-impact activities during flares.</li><li><strong>Maintain Good Posture:</strong> Consciously practice good posture throughout the day to minimize spinal deformity and reduce strain.</li><li><strong>Smoking Cessation:</strong> Quitting smoking is vital as it can worsen disease activity, accelerate spinal damage, and reduce treatment effectiveness.</li><li><strong>Medication Adherence:</strong> Strictly follow prescribed medication schedules for NSAIDs, DMARDs, or biologics to control inflammation and pain.</li><li><strong>Fall Prevention:</strong> Be mindful of increased fall risk due to spinal rigidity and potential balance issues; ensure clear pathways and use assistive devices if necessary.</li><li><strong>Eye Symptom Vigilance:</strong> Promptly report any eye pain, redness, or vision changes to a healthcare provider to rule out acute uveitis.</li><li><strong>Avoid Prolonged Inactivity:</strong> Minimize long periods of sitting or lying down, as this can exacerbate stiffness and pain.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Anti-inflammatory Diet:</strong> Focus on a diet rich in fruits, vegetables, whole grains, lean proteins, and omega-3 fatty acids to help reduce systemic inflammation.</li><li><strong>Limit Processed Foods:</strong> Reduce intake of refined sugars, unhealthy fats, and highly processed foods, which can contribute to inflammation.</li><li><strong>Adequate Hydration:</strong> Maintain good fluid intake throughout the day to support overall health and joint lubrication.</li><li><strong>Calcium and Vitamin D Intake:</strong> Ensure sufficient intake of calcium and vitamin D through diet or supplements to support bone health, especially given potential increased fracture risk.</li><li><strong>Alcohol Moderation:</strong> Consume alcohol in moderation, as excessive intake can interact with medications and potentially worsen inflammatory processes.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Recognize Flare-ups:</strong> Understand the signs and symptoms of disease exacerbation and have a plan for managing them.</li><li><strong>Pain Management Strategies:</strong> Learn and utilize various pain management techniques, including heat/cold therapy, gentle stretching, and prescribed medications.</li><li><strong>Physical Therapy Compliance:</strong> Adhere diligently to prescribed physical therapy exercises and recommendations to maintain mobility and function.</li><li><strong>Regular Medical Follow-ups:</strong> Attend all scheduled appointments with your rheumatologist and other specialists for ongoing monitoring and treatment adjustments.</li><li><strong>Report New Symptoms:</strong> Immediately inform your healthcare team of any new or worsening symptoms, especially severe pain, vision changes, or neurological deficits.</li><li><strong>Medication Side Effects Awareness:</strong> Be aware of potential side effects of all prescribed medications and report any adverse reactions promptly.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early Diagnosis is Crucial:</strong> Timely identification and intervention are paramount to slow disease progression, preserve spinal mobility, and prevent irreversible damage.</li><li><strong>Multidisciplinary Care:</strong> Effective management often requires a team approach involving rheumatologists, physical therapists, occupational therapists, and potentially ophthalmologists or gastroenterologists.</li><li><strong>Personalized Treatment Plans:</strong> Treatment strategies are individualized based on disease activity, severity, specific symptoms, and patient response to therapy.</li><li><strong>Importance of Adherence:</strong> Consistent adherence to medication regimens and lifestyle modifications is fundamental for long-term disease control and improved quality of life.</li><li><strong>Bone Health Monitoring:</strong> Regular assessment for osteoporosis and fracture risk is essential, particularly in patients with long-standing disease or those on certain medications.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Provide comprehensive education on AS, including disease process, medication management, importance of exercise, and symptom recognition.</li><li><strong>Pain Assessment:</strong> Conduct thorough pain assessments using appropriate scales, noting location, intensity, character, and aggravating/alleviating factors.</li><li><strong>Mobility and Function Assessment:</strong> Regularly assess spinal mobility, posture, and functional limitations to guide care planning and interventions.</li><li><strong>Monitoring for Complications:</strong> Vigilantly monitor for extra-articular manifestations such as uveitis, inflammatory bowel disease, and cardiovascular complications.</li><li><strong>Medication Administration & Monitoring:</strong> Understand the mechanism of action, administration techniques, and potential side effects of NSAIDs, DMARDs, and biologic agents.</li><li><strong>Psychosocial Support:</strong> Address the psychological and emotional impact of chronic illness, providing resources for support groups and mental health services.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>HLA-B27:</strong> Human leukocyte antigen B27, a genetic marker strongly associated with AS, found in 90% of Caucasian patients.</li><li><strong>Sacroiliitis:</strong> Inflammation of the sacroiliac joints, a hallmark feature of AS, often detectable on imaging (X-ray, MRI).</li><li><strong>Syndesmophytes:</strong> Bony growths that form within the spinal ligaments, leading to fusion of vertebrae and the characteristic 'bamboo spine'.</li><li><strong>Enthesitis:</strong> Inflammation at the sites where tendons or ligaments insert into bone, commonly affecting the Achilles tendon or plantar fascia in AS.</li><li><strong>BASDAI (Bath Ankylosing Spondylitis Disease Activity Index):</strong> A patient-reported questionnaire used to assess disease activity and impact on quality of life.</li><li><strong>ASDAS (Ankylosing Spondylitis Disease Activity Score):</strong> An objective measure of disease activity that incorporates patient-reported symptoms and C-reactive protein (CRP) levels.</li><li><strong>Biologic DMARDs:</strong> Disease-modifying antirheumatic drugs, such as TNF inhibitors (e.g., adalimumab, etanercept) and IL-17 inhibitors (e.g., secukinumab), which target specific inflammatory pathways.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

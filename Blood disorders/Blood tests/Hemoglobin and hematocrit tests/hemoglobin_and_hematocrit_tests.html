@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A vibrant, flat vector illustration depicting a medical laboratory setting. In the foreground, a phlebotomist's hand is gently drawing blood from a patient's arm into a collection tube. Various test tubes with different shades of red blood are arranged neatly on a tray. In the background, a stylized microscope is visible, along with abstract representations of red blood cells and hemoglobin molecules. The overall design is clean, modern, and uses a palette of blues, reds, and whites, conveying a sense of precision and care in medical diagnostics. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./hemoglobin_and_hematocrit_tests.jpg" class="card-banner" alt="Hemoglobin and hematocrit tests Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-blood-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Blood disorders</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-blood-disorders-blood-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Blood tests</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Hemoglobin and hematocrit tests</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Blood disorders</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Blood tests</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Hemoglobin (Hgb)</strong>: This test measures the amount of oxygen-carrying protein within your red blood cells. Hemoglobin is essential for transporting oxygen from the lungs to all body tissues.</li>
+        <li><strong>Hematocrit (Hct)</strong>: This test determines the percentage of red blood cells in your total blood volume. It reflects the proportion of your blood composed of red cells.</li>
+        <li><strong>Combined Assessment</strong>: Hgb and Hct are typically ordered together to screen for, diagnose, and monitor conditions affecting red blood cells, such as anemia (low levels) or polycythemia (high levels).</li>
+        <li><strong>Clinical Utility</strong>: These tests are crucial for evaluating blood loss, nutritional deficiencies (e.g., iron, B12, folate), chronic diseases, and the effectiveness of treatments for various blood disorders.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Persistent Fatigue and Weakness</strong>: Unexplained and ongoing tiredness, lack of energy, and general bodily weakness are common indicators that prompt Hgb/Hct testing, often associated with anemia.</li>
+        <li><strong>Pallor and Dyspnea</strong>: Noticeably pale skin, conjunctiva, or nail beds, coupled with shortness of breath, especially during exertion, can suggest reduced oxygen-carrying capacity due to low red blood cell counts.</li>
+        <li><strong>Dizziness and Lightheadedness</strong>: Sensations of faintness or dizziness, particularly when changing position rapidly, may indicate insufficient oxygen delivery to the brain.</li>
+        <li><strong>Tachycardia</strong>: An abnormally rapid heart rate can be a compensatory mechanism for the heart to increase oxygen circulation when Hgb/Hct levels are low.</li>
+        <li><strong>Symptoms of Polycythemia</strong>: Headaches, dizziness, blurred vision, pruritus (itching), and redness of the skin can be signs of abnormally high Hgb/Hct levels, warranting investigation.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Hydration Status Impact</strong>: Severe dehydration can falsely elevate Hgb/Hct values, while overhydration can falsely lower them. Inform your healthcare provider about your recent fluid intake.</li>
+        <li><strong>Recent Blood Transfusions</strong>: Any recent administration of blood products can significantly alter Hgb/Hct levels. Always disclose this information for accurate result interpretation.</li>
+        <li><strong>Altitude and Smoking Effects</strong>: Individuals living at high altitudes or chronic smokers may naturally exhibit higher Hgb/Hct levels as a physiological adaptation to lower oxygen availability.</li>
+        <li><strong>Pregnancy Considerations</strong>: During pregnancy, normal Hgb/Hct values are typically lower due to increased plasma volume, which creates a dilutional effect on red blood cell concentration.</li>
+        <li><strong>Medication Review</strong>: Certain medications can influence red blood cell production or destruction. Discuss all current prescriptions and over-the-counter drugs with your provider.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>No Specific Fasting Required</strong>: Hemoglobin and hematocrit tests generally do not require fasting. You may eat and drink as you normally would, unless other co-ordered tests specify otherwise.</li>
+        <li><strong>Maintain Normal Hydration</strong>: Continue your usual fluid intake. Avoid excessive fluid consumption or severe dehydration immediately before the test, as these can impact the accuracy of results.</li>
+        <li><strong>Iron-Rich Food Awareness</strong>: While not a pre-test restriction, understanding the role of dietary iron (e.g., red meat, fortified cereals, leafy greens) is vital for managing iron-deficiency anemia, a common cause of low Hgb/Hct.</li>
+        <li><strong>Vitamin B12 and Folate Intake</strong>: Adequate dietary intake of Vitamin B12 and folate (found in meat, dairy, fortified foods, and vegetables) supports healthy red blood cell production and influences Hgb/Hct levels over time.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Inform Phlebotomist</strong>: Notify the healthcare professional drawing your blood if you have a history of fainting, excessive bleeding, or are currently taking anticoagulant medications.</li>
+        <li><strong>Post-Draw Site Care</strong>: Apply firm pressure to the venipuncture site for several minutes after the blood draw to minimize bruising. Keep the bandage on for at least 15-30 minutes.</li>
+        <li><strong>Report Adverse Reactions</strong>: If you experience prolonged bleeding, significant swelling, severe pain, or signs of infection at the puncture site, contact your healthcare provider promptly.</li>
+        <li><strong>Clarify All Instructions</strong>: If multiple blood tests are ordered concurrently, ensure you understand all specific preparation instructions, as some may have different requirements (e.g., fasting).</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Holistic Interpretation</strong>: Hgb and Hct results are always interpreted within the context of the patient's complete clinical picture, including symptoms, medical history, and other laboratory findings.</li>
+        <li><strong>Primary Diagnostic Tool</strong>: These tests serve as fundamental tools for diagnosing various types of anemia (e.g., microcytic, macrocytic) and polycythemia, guiding further investigations into underlying etiologies.</li>
+        <li><strong>Monitoring Treatment Response</strong>: For patients undergoing treatment for anemia or conditions affecting red blood cell production, Hgb/Hct levels are routinely monitored to assess the efficacy of therapeutic interventions.</li>
+        <li><strong>Pre-operative Assessment</strong>: Hgb/Hct tests are essential for pre-surgical evaluation to identify potential risks related to anemia or polycythemia and to inform perioperative management strategies.</li>
+        <li><strong>Referral Indications</strong>: Significantly abnormal Hgb/Hct values may necessitate referral to a hematologist for specialized evaluation, diagnosis, and management of complex blood disorders.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Patient Education Role</strong>: Nurses are crucial in educating patients about the purpose of Hgb/Hct tests, preparation requirements, and what to expect during and after the blood draw procedure.</li>
+        <li><strong>Accurate Venipuncture</strong>: Adherence to proper venipuncture technique is paramount to prevent hemolysis (which can falsely lower Hct) and ensure patient comfort and safety during blood collection.</li>
+        <li><strong>Critical Value Recognition</strong>: Nurses must be proficient in recognizing critical Hgb/Hct values (e.g., very low Hgb indicating severe anemia) and promptly reporting them to the physician for immediate intervention.</li>
+        <li><strong>Fluid Balance Assessment</strong>: Understanding how fluid shifts (e.g., dehydration, fluid overload) can influence Hgb/Hct results is essential for accurate patient assessment and appropriate nursing care planning.</li>
+        <li><strong>Correlation with Vital Signs</strong>: Correlate Hgb/Hct results with patient vital signs (e.g., heart rate, blood pressure) and reported symptoms to identify potential signs of hypovolemia or impaired tissue oxygenation.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Normal Adult Ranges (approximate, may vary by lab)</strong>:
+            <ul>
+                <li><strong>Hemoglobin</strong>: Men: 13.5-17.5 g/dL; Women: 12.0-15.5 g/dL</li>
+                <li><strong>Hematocrit</strong>: Men: 39-50%; Women: 35-45%</li>
+            </ul>
+        </li>
+        <li><strong>Anemia Definition</strong>: A condition characterized by a lower-than-normal number of red blood cells or a reduced amount of hemoglobin, leading to decreased oxygen-carrying capacity in the blood.</li>
+        <li><strong>Polycythemia Definition</strong>: A condition characterized by an abnormally high concentration of red blood cells, which can increase blood viscosity and the risk of thrombotic events.</li>
+        <li><strong>Mean Corpuscular Volume (MCV)</strong>: Often measured concurrently with Hgb/Hct, MCV helps classify anemia based on red blood cell size (microcytic, normocytic, or macrocytic).</li>
+        <li><strong>Common Causes of Abnormalities</strong>: Include nutritional deficiencies (iron, B12, folate), chronic diseases (e.g., kidney disease, inflammatory conditions), acute or chronic blood loss, bone marrow disorders, and genetic conditions.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

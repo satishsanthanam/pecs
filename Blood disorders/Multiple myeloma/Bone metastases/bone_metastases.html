@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human skeletal system with glowing red areas indicating bone metastases, specifically in the spine, ribs, and long bones. The bones appear slightly porous or weakened. Surrounding the skeleton are subtle, abstract representations of multiple myeloma cells. The overall design should convey a sense of medical awareness and the impact of cancer on bone health, suitable for a public health campaign. Clean lines, no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./bone_metastases.jpg" class="card-banner" alt="Bone metastases Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-blood-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Blood disorders</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-blood-disorders-multiple-myeloma" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Multiple myeloma</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Bone metastases</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Blood disorders</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Multiple myeloma</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Bone metastases occur when cancer cells, originating from a primary tumor (in this context, multiple myeloma), spread to the bones.</li><li><strong>Mechanism in Multiple Myeloma:</strong> Myeloma cells produce factors that activate osteoclasts (bone-resorbing cells) and inhibit osteoblasts (bone-forming cells), leading to characteristic osteolytic (bone-destroying) lesions.</li><li><strong>Impact:</strong> These lesions weaken bones, causing pain, increasing fracture risk, and potentially leading to serious complications like hypercalcemia and spinal cord compression.</li><li><strong>Prevalence:</strong> Bone involvement is a hallmark of multiple myeloma, affecting a significant majority of patients during their disease course.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Bone Pain:</strong> Often the most common symptom, typically localized, persistent, and worsening with movement or weight-bearing.</li><li><strong>Pathological Fractures:</strong> Fractures occurring with minimal or no trauma due to weakened bone structure.</li><li><strong>Hypercalcemia:</strong> Elevated calcium levels in the blood resulting from bone breakdown, leading to symptoms like fatigue, confusion, excessive thirst and urination, constipation, and nausea.</li><li><strong>Spinal Cord Compression:</strong> Caused by vertebral collapse or tumor growth pressing on the spinal cord, manifesting as new or worsening back pain, numbness, tingling, weakness in limbs, or bowel/bladder dysfunction.</li><li><strong>Fatigue:</strong> A general sense of tiredness, often exacerbated by pain, anemia, and hypercalcemia.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Pain Management:</strong> Adhere strictly to prescribed pain regimens and report any uncontrolled pain to your healthcare provider promptly.</li><li><strong>Fall Prevention:</strong> Implement measures to prevent falls, such as removing tripping hazards, using assistive devices, and ensuring adequate lighting, especially with weakened bones.</li><li><strong>Hydration:</strong> Maintain adequate fluid intake as advised by your physician to help prevent complications of hypercalcemia and support kidney function.</li><li><strong>Activity Modification:</strong> Avoid high-impact activities or heavy lifting that could increase the risk of pathological fractures. Consult with physical therapy for safe exercise guidelines.</li><li><strong>Monitor for Neurological Changes:</strong> Be vigilant for any new or worsening weakness, numbness, tingling, or changes in bowel/bladder function, and report them immediately as these could indicate spinal cord compression.</li><li><strong>Medication Adherence:</strong> Take bone-modifying agents (e.g., bisphosphonates, denosumab) exactly as prescribed and report any side effects, particularly jaw pain or dental issues.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Adequate Hydration:</strong> Crucial for kidney health, especially when managing hypercalcemia or receiving treatments that affect renal function.</li><li><strong>Calcium and Vitamin D:</strong> Discuss with your doctor if supplementation is appropriate, as high calcium intake might be contraindicated in hypercalcemia, but Vitamin D is often beneficial.</li><li><strong>Fiber-Rich Foods:</strong> Incorporate fruits, vegetables, and whole grains to help manage constipation, which can be a side effect of pain medications and hypercalcemia.</li><li><strong>Balanced Nutrition:</strong> Focus on a diet rich in lean proteins, healthy fats, and complex carbohydrates to support overall health and energy levels, especially during treatment.</li><li><strong>Limit Alcohol and Tobacco:</strong> Both can negatively impact bone health and overall treatment efficacy.</li><li><strong>Small, Frequent Meals:</strong> If experiencing nausea or appetite loss, smaller, more frequent meals may be better tolerated.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Symptoms:</strong> Seek immediate medical attention for sudden, severe bone pain, new onset of weakness or paralysis, loss of sensation, or inability to control bladder or bowels.</li><li><strong>Medication Compliance:</strong> Ensure all prescribed medications, including pain relief, bone-modifying agents, and anti-myeloma therapies, are taken consistently as directed.</li><li><strong>Regular Monitoring:</strong> Attend all scheduled appointments for blood tests, imaging, and clinical evaluations to monitor disease progression and treatment effectiveness.</li><li><strong>Safe Mobility:</strong> Assist patients with movement and transfers, using proper body mechanics and assistive devices to prevent falls and fractures.</li><li><strong>Report New Symptoms:</strong> Promptly report any new or worsening symptoms, especially pain, swelling, or neurological changes, to the healthcare team.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Multidisciplinary Care:</strong> Management of bone metastases requires a collaborative approach involving oncologists, radiation oncologists, orthopedic surgeons, pain specialists, and physical therapists.</li><li><strong>Treatment Goals:</strong> Our primary objectives are to alleviate pain, prevent pathological fractures, preserve neurological function, and improve the patient's quality of life.</li><li><strong>Therapeutic Modalities:</strong> Treatment often includes systemic anti-myeloma therapy, bone-modifying agents (bisphosphonates or denosumab), radiation therapy for localized pain or impending fractures, and surgical intervention for stabilization or decompression.</li><li><strong>Proactive Management:</strong> Early detection and intervention are crucial to mitigate complications. Regular imaging and symptom assessment are vital.</li><li><strong>Patient Education:</strong> Empowering patients with knowledge about their condition and potential complications is key to effective self-management and timely reporting of concerns.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Pain Assessment:</strong> Regularly assess pain using validated scales, considering location, intensity, quality, and aggravating/alleviating factors.</li><li><strong>Neurological Checks:</strong> Perform frequent neurological assessments, especially for patients with spinal involvement, to detect early signs of spinal cord compression.</li><li><strong>Hypercalcemia Management:</strong> Monitor serum calcium levels, encourage oral hydration, administer IV fluids as ordered, and educate patients on hypercalcemia symptoms.</li><li><strong>Patient Education on Safety:</strong> Instruct patients and caregivers on fall prevention strategies, safe mobility techniques, and the importance of reporting new symptoms promptly.</li><li><strong>Medication Administration:</strong> Understand the indications, dosages, and potential side effects of bone-modifying agents and pain medications, including proper administration techniques.</li><li><strong>Psychosocial Support:</strong> Address the emotional and psychological impact of chronic pain and disease progression, providing resources for support groups or counseling.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Osteolytic Lesions:</strong> Areas of bone destruction caused by increased osteoclast activity, characteristic of multiple myeloma bone disease.</li><li><strong>Bone-Modifying Agents (BMAs):</strong> Medications like bisphosphonates (e.g., zoledronic acid, pamidronate) and denosumab, used to reduce skeletal-related events.</li><li><strong>Skeletal-Related Events (SREs):</strong> Complications of bone metastases, including pathological fractures, spinal cord compression, hypercalcemia, and the need for radiation or surgery to bone.</li><li><strong>Spinal Cord Compression (SCC):</strong> A medical emergency requiring urgent diagnosis and treatment to prevent irreversible neurological damage.</li><li><strong>Hypercalcemia of Malignancy (HCM):</strong> A common metabolic complication of advanced cancer, particularly multiple myeloma, due to increased bone resorption.</li><li><strong>Radiation Therapy:</strong> Localized treatment used for pain control, prevention of pathological fractures, and management of spinal cord compression.</li><li><strong>Vertebroplasty/Kyphoplasty:</strong> Minimally invasive procedures to stabilize vertebral compression fractures and alleviate pain.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>
