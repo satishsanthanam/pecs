@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a cancer patient, possibly undergoing chemotherapy, in a clean, bright kitchen setting. The patient is carefully selecting food items. Surrounding elements include a variety of safe, well-cooked foods (e.g., steamed vegetables, grilled chicken, pasteurized milk carton) and restricted items (e.g., raw sushi, unwashed fruit, deli meat) clearly marked with 'X' or 'no' symbols. Emphasize food safety practices like hand washing, clean cutting boards, and proper food storage. The overall design should convey awareness, safety, and care in a public health campaign style, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./low_bacteria_diet.jpg" class="card-banner" alt="Low-bacteria diet Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Cancer</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-cancer-cancer-treatment-and-complications" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Cancer treatment and complications</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Low-bacteria diet</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Cancer</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Cancer treatment and complications</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose of the Diet:</strong> The low-bacteria diet, also known as a neutropenic diet, is designed to reduce the risk of foodborne infections in individuals with weakened immune systems, particularly cancer patients undergoing chemotherapy.</li><li><strong>Target Population:</strong> Primarily recommended for patients experiencing neutropenia, a condition characterized by a dangerously low count of neutrophils, a type of white blood cell crucial for fighting infection.</li><li><strong>Goal of Restriction:</strong> Aims to minimize exposure to bacteria, viruses, and fungi commonly found in certain foods, thereby preventing serious infections that can be life-threatening in immunocompromised states.</li><li><strong>Temporary Measure:</strong> This diet is typically a temporary measure, implemented during periods of significant immunosuppression and discontinued once neutrophil counts recover, as advised by the medical team.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Neutropenia:</strong> The primary indication for this diet is a diagnosis of neutropenia, often a side effect of chemotherapy or radiation, which significantly impairs the body's ability to fight infection.</li><li><strong>Fever and Chills:</strong> These are critical signs of potential infection in a neutropenic patient, prompting immediate medical evaluation and strict adherence to infection control measures, including dietary restrictions.</li><li><strong>Oral Sores (Mucositis):</strong> Chemotherapy can cause painful sores in the mouth and throat, making eating difficult and increasing the risk of local infection, necessitating careful food choices.</li><li><strong>Diarrhea or Abdominal Pain:</strong> Gastrointestinal symptoms can indicate an infection or inflammation, making it crucial to avoid foods that might exacerbate these issues or introduce further pathogens.</li><li><strong>Unexplained Fatigue or Weakness:</strong> While common in cancer, these symptoms can also be subtle indicators of an underlying infection in an immunocompromised patient.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Strict Hand Hygiene:</strong> Always wash hands thoroughly with soap and water before and after handling food, and before eating.</li><li><strong>Avoid Cross-Contamination:</strong> Use separate cutting boards, utensils, and plates for raw and cooked foods. Clean all surfaces meticulously.</li><li><strong>Proper Cooking Temperatures:</strong> Ensure all meats, poultry, and eggs are cooked to their recommended internal temperatures to kill potential pathogens. Use a food thermometer.</li><li><strong>Safe Food Storage:</strong> Refrigerate perishable foods promptly at 4°C (40°F) or below, and freeze at -18°C (0°F) or below. Discard foods left at room temperature for more than two hours.</li><li><strong>Water Safety:</strong> Drink only bottled water, filtered water, or boiled tap water. Avoid well water unless tested and deemed safe.</li><li><strong>Avoid Buffet-Style Meals:</strong> Foods left out at room temperature for extended periods at buffets or potlucks pose a high risk of bacterial growth.</li><li><strong>Check Expiration Dates:</strong> Do not consume foods past their expiration date, even if they appear and smell normal.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Well-Cooked Meats and Poultry:</strong> Only consume meats, poultry, and fish that are thoroughly cooked until no pink remains and juices run clear. Avoid rare or medium-rare preparations.</li><li><strong>Pasteurized Dairy Products:</strong> Choose only pasteurized milk, yogurt, cheese, and ice cream. Avoid raw milk or unpasteurized dairy products.</li><li><strong>Thoroughly Washed and Cooked Fruits/Vegetables:</strong> All fruits and vegetables must be thoroughly washed and peeled, or cooked. Avoid raw sprouts (alfalfa, bean sprouts).</li><li><strong>Canned and Jarred Foods:</strong> These are generally safe as they are processed to be sterile. Ensure cans are not dented or bulging.</li><li><strong>Baked Goods:</strong> Most commercially baked goods are safe. Avoid items with raw eggs or unpasteurized dairy.</li><li><strong>Avoid Raw or Undercooked Eggs:</strong> Only consume eggs that are fully cooked (hard-boiled, scrambled until firm). Avoid runny yolks or dishes containing raw eggs (e.g., homemade mayonnaise, Caesar dressing).</li><li><strong>No Deli Meats or Soft Cheeses:</strong> Avoid pre-sliced deli meats, hot dogs (unless reheated until steaming hot), and soft cheeses (e.g., brie, feta, blue cheese) due to Listeria risk.</li><li><strong>No Sushi or Raw Seafood:</strong> Raw fish and shellfish are strictly prohibited due to high bacterial and parasitic risks.</li><li><strong>Avoid Unpasteurized Juices and Ciders:</strong> Only consume juices that have been pasteurized.</li><li><strong>No Raw Nuts or Seeds:</strong> Unless roasted or boiled, raw nuts and seeds can harbor bacteria.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Educate Caregivers:</strong> Ensure all individuals involved in food preparation for the patient are fully aware of and adhere to the low-bacteria diet guidelines.</li><li><strong>Monitor for Infection Signs:</strong> Caregivers should be vigilant for any signs of infection in the patient, such as fever, chills, new pain, or changes in bowel habits, and report them immediately.</li><li><strong>Maintain Clean Environment:</strong> Keep the patient's living and eating areas clean and sanitized to minimize environmental pathogen exposure.</li><li><strong>Avoid Sharing Utensils:</strong> Do not share eating utensils, cups, or plates with the patient to prevent germ transmission.</li><li><strong>Personal Hygiene:</strong> Encourage the patient to maintain good personal hygiene, including frequent hand washing, especially before meals.</li><li><strong>Consult a Dietitian:</strong> Always consult with a registered dietitian or healthcare provider for personalized dietary advice and to ensure nutritional adequacy during this restrictive period.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Critical for Immunocompromised:</strong> The low-bacteria diet is a vital component of infection prevention strategies for patients undergoing myelosuppressive therapies, particularly during periods of profound neutropenia.</li><li><strong>Individualized Duration:</strong> The duration of dietary restrictions is highly individualized, based on the patient's neutrophil count recovery and overall clinical status.</li><li><strong>Nutritional Support:</strong> While restrictive, ensuring adequate caloric and protein intake remains paramount. Collaboration with a dietitian is crucial to prevent malnutrition.</li><li><strong>Prompt Infection Management:</strong> Despite dietary precautions, infections can still occur. Any sign of fever or infection in a neutropenic patient warrants immediate medical evaluation and empiric broad-spectrum antibiotics.</li><li><strong>Patient Education is Key:</strong> Thoroughly educate patients and their families on the rationale, specific food guidelines, and importance of adherence to minimize risks.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Role:</strong> Nurses are at the forefront of educating patients and their families about the low-bacteria diet, including practical food choices, preparation, and storage.</li><li><strong>Monitoring Adherence:</strong> Assess patient and family understanding and adherence to dietary restrictions through direct observation and questioning.</li><li><strong>Recognizing Infection:</strong> Nurses must be proficient in recognizing subtle signs of infection in neutropenic patients, as classic inflammatory responses may be blunted.</li><li><strong>Safe Food Handling Demonstration:</strong> Provide practical demonstrations or visual aids for safe food preparation, washing, and cooking techniques.</li><li><strong>Collaboration with Dietitians:</strong> Work closely with dietitians to address patient-specific nutritional needs, food preferences, and challenges in adhering to the diet.</li><li><strong>Documentation:</strong> Document patient education, adherence, and any concerns or adverse events related to the diet.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Neutropenic Fever:</strong> A medical emergency defined by fever (single oral temperature ≥38.3°C or ≥101°F, or temperature ≥38.0°C or ≥100.4°F sustained for ≥1 hour) in a patient with neutropenia (absolute neutrophil count &lt;500 cells/mm³ or expected to fall below this level).</li><li><strong>Immunocompromise:</strong> A state where the immune system's ability to fight infectious diseases is impaired, often due to cancer, chemotherapy, radiation, or certain medications.</li><li><strong>Foodborne Pathogens:</strong> Microorganisms (bacteria, viruses, parasites) or toxins that can cause illness when consumed in contaminated food or water. Common examples include *Listeria monocytogenes*, *Salmonella*, *E. coli*, and *Campylobacter*.</li><li><strong>Absolute Neutrophil Count (ANC):</strong> A measure of the number of neutrophil granulocytes present in the blood, calculated from the white blood cell count. An ANC below 500 cells/mm³ indicates severe neutropenia.</li><li><strong>Mucositis:</strong> Inflammation and ulceration of the mucous membranes lining the digestive tract, a common side effect of chemotherapy and radiation, increasing susceptibility to local infections.</li><li><strong>Prophylactic Antibiotics:</strong> Sometimes prescribed in conjunction with a low-bacteria diet for high-risk neutropenic patients, though their use is debated and depends on specific clinical guidelines.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

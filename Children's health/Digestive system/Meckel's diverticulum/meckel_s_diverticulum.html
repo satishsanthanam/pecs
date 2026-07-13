@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration for children's health awareness. The central focus is a simplified, cartoon-style human torso, transparently showing the digestive system. A prominent, small, finger-like pouch (Meckel's diverticulum) extends from the small intestine, clearly highlighted. The illustration should use bright, friendly colors suitable for a pediatric context. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./meckel_s_diverticulum.jpg" class="card-banner" alt="Meckel's diverticulum Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-children-s-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Children's health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-children-s-health-digestive-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Digestive system</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Meckel's diverticulum</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Children's health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Digestive system</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Congenital Anomaly:</strong> Meckel's diverticulum is a remnant of the omphalomesenteric (vitelline) duct, which normally obliterates during fetal development.</li>
+        <li><strong>Most Common GI Anomaly:</strong> It is the most common congenital anomaly of the gastrointestinal tract, present in approximately 2% of the population.</li>
+        <li><strong>Rule of 2s:</strong> Often described by the "Rule of 2s": affects 2% of the population, typically located within 2 feet of the ileocecal valve, is about 2 inches long, presents before age 2, and is symptomatic in 2% of cases.</li>
+        <li><strong>Ectopic Tissue:</strong> May contain ectopic gastric or pancreatic tissue, which can lead to complications due to acid secretion or enzyme activity.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Painless Rectal Bleeding:</strong> The most common presentation in children, often described as dark red or "currant jelly" stools, caused by ulceration from ectopic gastric mucosa.</li>
+        <li><strong>Diverticulitis:</strong> Inflammation of the diverticulum, mimicking appendicitis with periumbilical or right lower quadrant abdominal pain, fever, nausea, and vomiting.</li>
+        <li><strong>Intestinal Obstruction:</strong> Can occur due to intussusception (the diverticulum acting as a lead point), volvulus around a fibrous band connecting the diverticulum to the umbilicus, or incarceration in a hernia.</li>
+        <li><strong>Perforation:</strong> A rare but serious complication, leading to peritonitis, often secondary to diverticulitis or ulceration.</li>
+        <li><strong>Asymptomatic:</strong> Many individuals with Meckel's diverticulum remain asymptomatic throughout their lives, with the condition discovered incidentally during surgery for other reasons.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Prompt Evaluation for GI Bleeding:</strong> Any child presenting with painless rectal bleeding, especially dark red or maroon stools, requires immediate medical assessment to rule out Meckel's diverticulum and other serious causes.</li>
+        <li><strong>Acute Abdominal Pain Assessment:</strong> Children with acute abdominal pain, particularly if localized to the periumbilical region or right lower quadrant, should be thoroughly evaluated for diverticulitis or other complications.</li>
+        <li><strong>Monitoring for Complications:</strong> For individuals with a known Meckel's diverticulum, vigilance for symptoms of inflammation, obstruction, or bleeding is crucial.</li>
+        <li><strong>Pre-operative Considerations:</strong> If surgical intervention is planned, ensure thorough pre-operative assessment, including coagulation status and hydration, especially in cases of active bleeding.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Pre-operative Fasting:</strong> If surgical resection is indicated for symptomatic Meckel's diverticulum, strict NPO (nil per os) guidelines must be followed for a specified period before surgery.</li>
+        <li><strong>Post-operative Fluid Reintroduction:</strong> Following surgical resection, a gradual reintroduction of fluids and diet is typical, starting with clear liquids, progressing to full liquids, and then soft foods as tolerated.</li>
+        <li><strong>Monitoring for GI Tolerance:</strong> Post-surgery, closely monitor for signs of feeding intolerance, nausea, vomiting, or abdominal distension, which may indicate complications.</li>
+        <li><strong>Hydration Management:</strong> Ensure adequate hydration, especially if the child has experienced significant GI bleeding or is NPO pre-operatively. Intravenous fluids may be necessary.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Recognize Symptom Onset:</strong> Parents and caregivers must be educated on the potential symptoms of Meckel's diverticulum complications, particularly painless rectal bleeding and acute abdominal pain.</li>
+        <li><strong>Seek Immediate Medical Attention:</strong> Any suspicion of complications, such as significant GI bleeding, severe abdominal pain, or signs of intestinal obstruction, warrants an emergency department visit.</li>
+        <li><strong>Communicate Medical History:</strong> Inform healthcare providers about a known diagnosis of Meckel's diverticulum, even if asymptomatic, during any medical evaluation for abdominal symptoms.</li>
+        <li><strong>Adhere to Post-operative Instructions:</strong> If surgery is performed, strictly follow all post-operative care instructions, including wound care, pain management, and dietary progression.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Diagnostic Approach:</strong> Diagnosis often involves a combination of clinical suspicion, imaging studies (e.g., Meckel's scan using technetium-99m pertechnetate to detect ectopic gastric mucosa), CT scans, or diagnostic laparoscopy.</li>
+        <li><strong>Management of Symptomatic Cases:</strong> Symptomatic Meckel's diverticulum typically requires surgical resection (diverticulectomy) to prevent recurrent complications.</li>
+        <li><strong>Asymptomatic Meckel's:</strong> The management of incidentally discovered asymptomatic Meckel's diverticulum is controversial; some surgeons advocate for prophylactic resection, especially in children, while others prefer observation.</li>
+        <li><strong>Differential Diagnosis:</strong> Always consider Meckel's diverticulum in the differential diagnosis for acute appendicitis, GI bleeding, and intestinal obstruction in children.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Pathophysiology Review:</strong> Understand the embryological origin of Meckel's diverticulum and the implications of ectopic gastric or pancreatic tissue.</li>
+        <li><strong>Assessment Skills:</strong> Develop proficiency in assessing pediatric patients for signs of GI bleeding, abdominal pain, and intestinal obstruction.</li>
+        <li><strong>Pre- and Post-operative Care:</strong> Provide comprehensive nursing care for children undergoing abdominal surgery, including pain management, fluid balance, wound care, and monitoring for post-operative complications.</li>
+        <li><strong>Patient and Family Education:</strong> Educate families on the condition, potential symptoms, when to seek medical help, and post-operative care instructions.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Embryology:</strong> Incomplete obliteration of the omphalomesenteric duct (vitelline duct) by the 7th week of gestation.</li>
+        <li><strong>Diagnostic Modalities:</strong>
+            <ul>
+                <li><strong>Technetium-99m Pertechnetate Scan (Meckel's Scan):</strong> Detects gastric mucosa.</li>
+                <li><strong>CT Angiography/Enterography:</strong> May identify the diverticulum or associated complications.</li>
+                <li><strong>Capsule Endoscopy/Double-Balloon Enteroscopy:</strong> For obscure GI bleeding.</li>
+                <li><strong>Diagnostic Laparoscopy:</strong> Can directly visualize the diverticulum.</li>
+            </ul>
+        </li>
+        <li><strong>Surgical Techniques:</strong>
+            <ul>
+                <li><strong>Diverticulectomy:</strong> Simple resection of the diverticulum.</li>
+                <li><strong>Ileal Resection with Anastomosis:</strong> If the base of the diverticulum is wide or inflamed.</li>
+                <li><strong>Laparoscopic vs. Open Approach:</strong> Depending on patient condition and surgeon preference.</li>
+            </ul>
+        </li>
+        <li><strong>Histopathology:</strong> Examination of resected tissue to confirm diagnosis and identify ectopic mucosa.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

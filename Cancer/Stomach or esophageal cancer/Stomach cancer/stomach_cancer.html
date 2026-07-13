@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a human torso with a transparent view of the stomach. Inside the stomach, subtle, abstract representations of abnormal cells or a small tumor are visible. Surrounding the stomach, various icons represent risk factors like a cigarette, a high-salt food item, and a bacteria (H. pylori). On one side, a doctor figure in scrubs points to the stomach, while on the other, a patient figure looks concerned. The overall design is clean, informative, and uses a palette of medical blues, greens, and subtle reds for emphasis, suitable for a public health awareness campaign.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./stomach_cancer.jpg" class="card-banner" alt="Stomach cancer Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Cancer</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-cancer-stomach-or-esophageal-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Stomach or esophageal cancer</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Stomach cancer</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Cancer</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Stomach or esophageal cancer</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Stomach cancer, also known as gastric cancer, is a malignant growth originating from the lining of the stomach.</li><li><strong>Prevalence:</strong> It is one of the leading causes of cancer-related deaths worldwide, though incidence varies geographically.</li><li><strong>Types:</strong> The most common type is adenocarcinoma, accounting for over 90% of cases. Other rarer types include lymphomas, gastrointestinal stromal tumors (GISTs), and carcinoid tumors.</li><li><strong>Prognosis:</strong> Outcomes are highly dependent on the stage at diagnosis, with early detection significantly improving survival rates.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Early Stage:</strong> Often asymptomatic or presents with vague, non-specific symptoms such as indigestion or mild abdominal discomfort.</li><li><strong>Persistent Indigestion:</strong> Chronic heartburn, dyspepsia, or a feeling of fullness after eating small amounts of food.</li><li><strong>Unexplained Weight Loss:</strong> Significant and unintentional loss of body weight.</li><li><strong>Nausea and Vomiting:</strong> Persistent nausea, sometimes accompanied by vomiting, which may contain blood (hematemesis).</li><li><strong>Dysphagia:</strong> Difficulty or pain when swallowing, especially if the tumor is near the gastroesophageal junction.</li><li><strong>Early Satiety:</strong> Feeling full very quickly after starting to eat.</li><li><strong>Abdominal Pain:</strong> Persistent or worsening pain in the upper abdomen.</li><li><strong>Fatigue and Anemia:</strong> Chronic blood loss from the tumor can lead to iron-deficiency anemia, causing fatigue and weakness.</li><li><strong>Melena:</strong> Dark, tarry stools indicating bleeding in the upper gastrointestinal tract.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>H. pylori Eradication:</strong> Timely diagnosis and treatment of Helicobacter pylori infection, a major risk factor for gastric cancer.</li><li><strong>Dietary Modifications:</strong> Limiting intake of highly processed, smoked, salted, and pickled foods. Increasing consumption of fresh fruits, vegetables, and whole grains.</li><li><strong>Smoking Cessation:</strong> Avoiding all forms of tobacco use, as smoking significantly increases the risk of stomach cancer.</li><li><strong>Alcohol Moderation:</strong> Limiting alcohol consumption to reduce overall cancer risk.</li><li><strong>Regular Screening:</strong> For individuals with high-risk factors (e.g., strong family history, certain genetic syndromes, pernicious anemia, chronic atrophic gastritis), regular endoscopic surveillance may be recommended.</li><li><strong>Prompt Symptom Evaluation:</strong> Seeking medical attention for persistent or worsening gastrointestinal symptoms, especially if new onset or accompanied by weight loss.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Post-Gastrectomy Diet:</strong> Following surgical removal of part or all of the stomach, patients typically require small, frequent meals (6-8 times a day) to prevent dumping syndrome and ensure adequate nutrient intake.</li><li><strong>Dumping Syndrome Management:</strong> Avoiding high-sugar foods and liquids with meals, eating slowly, and lying down for a short period after eating can help manage symptoms like dizziness, rapid heart rate, and diarrhea.</li><li><strong>Nutrient Supplementation:</strong> Patients, especially after total gastrectomy, often require lifelong supplementation of Vitamin B12, iron, and calcium due to impaired absorption.</li><li><strong>Hydration:</strong> Drinking fluids between meals rather than with meals to avoid feeling overly full and to prevent dumping syndrome.</li><li><strong>Food Restrictions:</strong> Limiting foods that are difficult to digest, highly fatty, spicy, or gas-producing, which can exacerbate discomfort.</li><li><strong>Protein Intake:</strong> Ensuring adequate protein intake to support healing and maintain muscle mass, often through lean meats, fish, eggs, and dairy.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Symptom Monitoring:</strong> Patients and caregivers must vigilantly monitor for new or worsening symptoms, such as severe abdominal pain, persistent vomiting, blood in stool or vomit, or significant weight loss, and report them immediately.</li><li><strong>Medication Adherence:</strong> Strict adherence to all prescribed medications, including chemotherapy, targeted therapies, pain relievers, and anti-nausea drugs, is crucial for treatment efficacy and symptom management.</li><li><strong>Nutritional Support:</strong> Close collaboration with a dietitian is essential to manage nutritional challenges, which may include oral supplements, enteral feeding (tube feeding), or parenteral nutrition (IV feeding) in severe cases.</li><li><strong>Psychosocial Support:</strong> Encourage patients to utilize support groups, counseling services, and mental health professionals to cope with the emotional and psychological impact of cancer diagnosis and treatment.</li><li><strong>Infection Prevention:</strong> Due to potential immunosuppression from chemotherapy, strict hygiene, avoiding crowded places, and prompt reporting of fever or signs of infection are vital.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Diagnostic Pathway:</strong> Upper endoscopy with biopsy is the gold standard for diagnosis. Further staging involves imaging like CT scans, PET scans, and endoscopic ultrasound (EUS).</li><li><strong>Multidisciplinary Approach:</strong> Optimal management requires a collaborative team including surgical oncologists, medical oncologists, radiation oncologists, pathologists, radiologists, and dietitians.</li><li><strong>Treatment Modalities:</strong> Treatment often involves a combination of surgery (gastrectomy), chemotherapy, radiation therapy, targeted therapy (e.g., HER2-targeted agents), and immunotherapy.</li><li><strong>Surgical Considerations:</strong> The extent of surgery (partial vs. total gastrectomy) depends on tumor location and stage, often accompanied by lymphadenectomy.</li><li><strong>Adjuvant/Neoadjuvant Therapy:</strong> Chemotherapy or chemoradiation may be given before (neoadjuvant) or after (adjuvant) surgery to improve outcomes.</li><li><strong>Palliative Care:</strong> For advanced or metastatic disease, focus shifts to symptom management and improving quality of life through palliative chemotherapy, radiation, or supportive care.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Educate patients and families on the disease process, treatment plan, potential side effects, and self-care strategies, including dietary modifications and symptom management.</li><li><strong>Nutritional Assessment & Management:</strong> Conduct thorough nutritional assessments, monitor weight and intake, and assist with implementing dietary changes or managing enteral/parenteral nutrition.</li><li><strong>Pain Management:</strong> Assess pain levels regularly and administer analgesics as prescribed, utilizing both pharmacological and non-pharmacological interventions.</li><li><strong>Wound Care:</strong> Provide meticulous post-operative wound care, monitoring for signs of infection or complications.</li><li><strong>Chemotherapy Administration & Monitoring:</strong> Safely administer chemotherapy agents, monitor for adverse reactions, and educate patients on managing side effects like nausea, fatigue, and myelosuppression.</li><li><strong>Psychological Support:</strong> Offer emotional support, active listening, and refer to social workers or support groups to address anxiety, depression, and coping mechanisms.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathology:</strong> Adenocarcinoma (intestinal type, diffuse type/signet ring cell carcinoma - Lauren classification), GIST, MALT lymphoma.</li><li><strong>Staging System:</strong> TNM (Tumor, Node, Metastasis) classification, AJCC (American Joint Committee on Cancer) staging.</li><li><strong>Diagnostic Procedures:</strong> Upper endoscopy with biopsy, Endoscopic Ultrasound (EUS), CT scan (chest, abdomen, pelvis), PET scan, diagnostic laparoscopy.</li><li><strong>Surgical Procedures:</strong> Subtotal gastrectomy, total gastrectomy, D1/D2 lymphadenectomy, Roux-en-Y gastrojejunostomy reconstruction.</li><li><strong>Molecular Markers:</strong> HER2 amplification, PD-L1 expression, MSI (microsatellite instability) status, Epstein-Barr virus (EBV) status.</li><li><strong>Complications:</strong> Dumping syndrome, anastomotic leak, stricture, nutritional deficiencies (B12, iron), recurrence.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

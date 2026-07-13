@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a diverse multidisciplinary medical team (surgeon, radiation oncologist, medical oncologist, nurse, speech therapist) collaboratively reviewing a digital scan of a patient's head and neck. The patient, a person of color, is shown in the foreground with a determined yet hopeful expression. Elements like a surgical mask, stethoscope, and medical charts are subtly integrated. The background features abstract anatomical outlines of the head and neck, highlighting the area of focus. The style is clean, modern, and optimized for public health awareness, with soft, professional colors and no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./surgical_treatment_for_head_and_neck_cancer.jpg" class="card-banner" alt="Surgical treatment for head and neck cancer Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Cancer</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-cancer-head-and-neck-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Head and neck cancer</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Surgical treatment for head and neck cancer</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Cancer</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Head and neck cancer</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Primary Treatment Modality</strong>: Surgery is a cornerstone treatment for many head and neck cancers, aiming for complete tumor removal.</li><li><strong>Extent of Resection</strong>: The surgical approach varies widely based on tumor size, location, and spread, ranging from partial resections to extensive procedures involving multiple structures.</li><li><strong>Reconstructive Surgery</strong>: Often, complex reconstructive techniques (e.g., free flaps) are necessary post-resection to restore function and appearance.</li><li><strong>Multidisciplinary Care</strong>: Surgical treatment is typically part of a broader plan involving radiation oncology, medical oncology, and rehabilitation specialists.</li><li><strong>Impact on Function</strong>: Surgery can significantly affect speech, swallowing, and breathing, necessitating pre-operative counseling and post-operative rehabilitation.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Persistent Sore Throat or Hoarseness</strong>: Especially if lasting more than two weeks and not resolving with standard treatments.</li><li><strong>Difficulty Swallowing (Dysphagia)</strong>: Painful swallowing or a sensation of food getting stuck in the throat.</li><li><strong>Lump in the Neck or Mouth</strong>: A new, persistent, or growing mass that may or may not be painful.</li><li><strong>Unexplained Weight Loss</strong>: Significant, unintentional weight loss often associated with advanced disease.</li><li><strong>Non-healing Mouth Ulcer or White/Red Patch</strong>: A lesion in the mouth that does not heal within a few weeks.</li><li><strong>Ear Pain</strong>: Persistent ear pain, particularly if unilateral and without an obvious ear infection, can be referred pain from throat tumors.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Pre-operative Assessment</strong>: Comprehensive evaluation of cardiac, pulmonary, and nutritional status is essential due to the extensive nature of these surgeries.</li><li><strong>Airway Management</strong>: High risk of post-operative airway compromise; a planned tracheostomy may be necessary to secure the airway.</li><li><strong>Bleeding Risk</strong>: Meticulous hemostasis is critical during surgery due to the vascularity of the head and neck region; close post-operative monitoring for hemorrhage.</li><li><strong>Infection Prevention</strong>: Prophylactic antibiotics are standard due to the proximity to the oral cavity and potential for contamination.</li><li><strong>Nutritional Support Planning</strong>: Pre-operative nutritional optimization and planning for post-operative enteral feeding (e.g., nasogastric or gastrostomy tube) are often required.</li><li><strong>Speech and Swallowing Rehabilitation</strong>: Early involvement of speech-language pathology for pre-operative counseling and post-operative therapy is crucial for functional recovery.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-operative Fasting</strong>: Strict NPO (nil per os) status for at least 6-8 hours prior to surgery to prevent aspiration during anesthesia.</li><li><strong>Post-operative NPO Period</strong>: Patients are often kept NPO for several days post-surgery to allow for wound healing, especially after resections involving the pharynx or oral cavity.</li><li><strong>Enteral Nutrition</strong>: Nasogastric or gastrostomy tube feeding is frequently initiated to ensure adequate nutritional intake during the initial recovery phase.</li><li><strong>Gradual Oral Reintroduction</strong>: Once cleared by the surgical team, oral intake progresses slowly, typically starting with clear liquids, then full liquids, pureed, soft, and finally regular diet as tolerated.</li><li><strong>Swallowing Modifications</strong>: Patients may require long-term dietary modifications, such as thickened liquids or specific food textures, due to altered anatomy and swallowing mechanics.</li><li><strong>Hydration Status</strong>: Close monitoring of hydration is vital, especially when NPO or on modified diets, with intravenous fluids or tube feeds providing necessary fluids.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Post-operative Monitoring</strong>: Be vigilant for signs of bleeding (e.g., excessive drainage, swelling), infection (e.g., fever, redness), or respiratory distress.</li><li><strong>Tracheostomy Care</strong>: If a tracheostomy is present, learn proper suctioning techniques, stoma cleaning, and emergency management from the nursing staff.</li><li><strong>Feeding Tube Management</strong>: Understand how to administer prescribed feeds and medications via the feeding tube, and maintain tube patency and hygiene.</li><li><strong>Pain Management Support</strong>: Assist the patient in adhering to their pain medication schedule and report any uncontrolled pain to the medical team.</li><li><strong>Communication Assistance</strong>: Facilitate alternative communication methods (e.g., writing pads, communication apps) if the patient's speech is temporarily or permanently impaired.</li><li><strong>Emotional and Psychological Support</strong>: Provide consistent emotional support, as patients may experience significant body image changes, anxiety, and depression.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Oncologic Principles</strong>: The primary goal is complete tumor resection with clear margins, balancing oncologic efficacy with functional preservation.</li><li><strong>Staging and Resectability</strong>: Surgical candidacy and extent are determined by tumor stage, location, and the absence of distant metastasis or unresectable local invasion.</li><li><strong>Adjuvant Therapy Considerations</strong>: Post-operative radiation therapy, with or without chemotherapy, is frequently indicated based on pathological findings (e.g., positive margins, extracapsular extension, multiple positive nodes).</li><li><strong>Functional Outcomes</strong>: Meticulous surgical technique and reconstructive planning are crucial to optimize speech, swallowing, and cosmetic outcomes.</li><li><strong>Long-term Surveillance</strong>: Regular and rigorous follow-up is imperative for early detection of recurrence and management of long-term treatment-related side effects.</li><li><strong>Patient Selection</strong>: Careful patient selection, considering comorbidities and overall performance status, is vital for successful surgical outcomes.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Airway Management Expertise</strong>: Proficient assessment and management of the airway, including tracheostomy care, suctioning, and recognizing signs of respiratory distress.</li><li><strong>Wound and Flap Monitoring</strong>: Meticulous assessment of surgical sites, drains, and reconstructive flap viability (color, capillary refill, temperature) is critical.</li><li><strong>Pain Assessment and Intervention</strong>: Comprehensive pain assessment using appropriate scales and effective administration of multimodal analgesia.</li><li><strong>Nutritional Support Management</strong>: Monitoring nutritional intake, managing enteral feeding tubes, and educating patients/families on dietary progression and tube care.</li><li><strong>Communication Facilitation</strong>: Assisting patients with impaired speech through alternative communication methods and collaborating with speech-language pathologists.</li><li><strong>Psychosocial Care</strong>: Providing empathetic support, addressing body image concerns, and facilitating access to psychological and social support services.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Laryngectomy</strong>: Surgical removal of part or all of the larynx (voice box).</li><li><strong>Pharyngectomy</strong>: Surgical removal of part or all of the pharynx (throat).</li><li><strong>Glossectomy</strong>: Surgical removal of part or all of the tongue.</li><li><strong>Mandibulectomy</strong>: Surgical removal of part of the mandible (jaw bone).</li><li><strong>Neck Dissection</strong>: Surgical removal of lymph nodes in the neck to assess and remove metastatic disease.</li><li><strong>Free Flap Reconstruction</strong>: A microvascular surgical technique involving the transfer of tissue (e.g., skin, muscle, bone) with its own blood supply from one part of the body to reconstruct a defect.</li><li><strong>Tracheostomy</strong>: A surgically created opening in the trachea (windpipe) to establish an alternative airway.</li><li><strong>Clear Margins</strong>: Microscopic absence of cancer cells at the edges of the resected tissue, indicating complete removal.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

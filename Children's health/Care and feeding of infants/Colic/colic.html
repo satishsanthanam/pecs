@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a distressed baby crying with red cheeks, being gently comforted by a parent or caregiver. The scene should convey empathy and support, with soft colors and a clean, modern design suitable for a public health awareness campaign. No text or complex backgrounds.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./colic.jpg" class="card-banner" alt="Colic Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-children-s-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Children's health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-children-s-health-care-and-feeding-of-infants" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Care and feeding of infants</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Colic</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Children's health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Care and feeding of infants</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Colic is characterized by recurrent, prolonged periods of inconsolable crying in an otherwise healthy infant.</li><li><strong>Rule of Threes:</strong> Typically defined as crying for more than three hours a day, for more than three days a week, for at least three weeks.</li><li><strong>Onset and Resolution:</strong> Usually begins around 2-3 weeks of age, peaks at 6 weeks, and resolves spontaneously by 3-4 months.</li><li><strong>Not a Disease:</strong> Colic is a behavioral diagnosis and not indicative of a serious underlying medical condition in most cases.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Intense Crying Spells:</strong> Often occurs in the late afternoon or evening, appearing as if the infant is in pain.</li><li><strong>Physical Manifestations:</strong> Infant may clench fists, arch their back, pull their legs up to their abdomen, and have a reddened face.</li><li><strong>Abdominal Distension:</strong> The abdomen may appear distended or taut during crying episodes.</li><li><strong>Gas and Burping:</strong> Infants may pass gas or burp frequently during or after crying, though this is often a result of crying rather than the cause.</li><li><strong>Difficulty Soothing:</strong> Despite efforts, the infant remains difficult to comfort during these episodes.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Rule Out Other Causes:</strong> Always consult a pediatrician to exclude other medical conditions such as reflux, allergies, infections, or hernias that can mimic colic symptoms.</li><li><strong>Prevent Shaken Baby Syndrome:</strong> Never shake a baby, even out of frustration. If overwhelmed, place the baby safely in their crib and take a break, or ask for help.</li><li><strong>Safe Soothing Techniques:</strong> Utilize methods like swaddling, gentle rocking, white noise, pacifiers, or skin-to-skin contact.</li><li><strong>Monitor Feeding:</strong> Ensure proper latch and feeding technique if breastfeeding, or appropriate formula preparation and paced bottle feeding to minimize air intake.</li><li><strong>Avoid Overfeeding:</strong> Feeding too frequently or too much can exacerbate gastrointestinal discomfort.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Maternal Diet (Breastfeeding):</strong> Under medical guidance, consider eliminating common allergens (e.g., dairy, soy, wheat, nuts) or gas-producing foods (e.g., broccoli, cabbage, caffeine) from the mother's diet.</li><li><strong>Formula Choice (Formula-fed):</strong> Discuss with a pediatrician the potential benefit of switching to a hypoallergenic or partially hydrolyzed formula.</li><li><strong>Burping Technique:</strong> Ensure thorough burping during and after feeds to reduce swallowed air.</li><li><strong>Paced Bottle Feeding:</strong> Implement paced bottle feeding to allow the infant to control the flow of milk, reducing gulping and air intake.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Parental Support:</strong> Encourage parents and caregivers to seek support from partners, family, friends, or support groups to cope with the stress of a colicky infant.</li><li><strong>Caregiver Self-Care:</strong> Emphasize the importance of taking breaks, resting, and managing personal stress to maintain well-being.</li><li><strong>When to Seek Immediate Medical Attention:</strong> Advise caregivers to contact a healthcare provider immediately if the infant develops fever, vomiting, lethargy, poor feeding, blood in stool, or any signs of illness beyond typical colicky crying.</li><li><strong>Symptom Documentation:</strong> Suggest keeping a log of crying episodes, feeding patterns, and other symptoms to share with the pediatrician for a comprehensive assessment.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Reassurance:</strong> Reassure parents that colic is a common, temporary phase and does not indicate a problem with their parenting or the baby's long-term health.</li><li><strong>Thorough Examination:</strong> Always conduct a comprehensive physical examination to rule out any underlying medical conditions that may present with similar symptoms.</li><li><strong>Management Strategies:</strong> Discuss and guide parents on various soothing techniques and potential dietary adjustments, emphasizing a trial-and-error approach.</li><li><strong>Medication Caution:</strong> Advise against the routine use of medications for colic unless a specific underlying condition requiring treatment is identified.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Assessment:</strong> Conduct a thorough history taking, including feeding patterns, crying characteristics, and parental coping mechanisms, alongside a physical assessment to rule out organic causes.</li><li><strong>Parent Education and Support:</strong> Provide evidence-based education on colic, demonstrate soothing techniques, offer emotional support, and reinforce safety measures like preventing shaken baby syndrome.</li><li><strong>Feeding Observation:</strong> Observe breastfeeding or bottle-feeding techniques to identify and address potential issues contributing to discomfort.</li><li><strong>Referral Pathways:</strong> Be prepared to refer families to lactation consultants, dietitians, or mental health professionals for additional support as needed.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Etiology:</strong> Multifactorial, theories include immature digestive system, gas, food sensitivities, infant temperament, and parental anxiety.</li><li><strong>Differential Diagnosis:</strong> Gastroesophageal reflux disease (GERD), milk protein allergy, intestinal obstruction, infection (e.g., UTI, otitis media), corneal abrasion, hair tourniquet.</li><li><strong>Pharmacological Interventions:</strong> Simethicone (limited evidence), certain probiotic strains (e.g., Lactobacillus reuteri DSM 17938, with some evidence for breastfed infants).</li><li><strong>ICD-10 Code:</strong> R10.84 (Infant colic).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

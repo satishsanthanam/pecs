@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human head in profile, with a transparent view of the brain inside the skull. Clearly depict a crescent-shaped subdural hematoma (SDH) in blue, crossing suture lines, and a lens-shaped epidural hematoma (EDH) in red, not crossing suture lines, both pressing on the brain tissue. Show the layers of the meninges (dura, arachnoid, pia) distinctly. The style should be clean, modern, and suitable for public health awareness, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./subdural_hematoma_and_epidural_hematoma.jpg" class="card-banner" alt="Subdural hematoma and epidural hematoma Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-brain-and-nerves" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Brain and nerves</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-brain-and-nerves-head-injury" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Head injury</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Subdural hematoma and epidural hematoma</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Brain and nerves</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Head injury</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Subdural Hematoma (SDH):</strong> A collection of blood between the dura mater and the arachnoid mater, typically caused by tearing of bridging veins. It often presents as a crescent-shaped lesion on imaging and can cross suture lines.</li><li><strong>Epidural Hematoma (EDH):</strong> A collection of blood between the dura mater and the inner surface of the skull, commonly resulting from a tear in an artery (most often the middle meningeal artery). It typically appears as a lens-shaped (biconvex) lesion on imaging and does not cross suture lines.</li><li><strong>Causes:</strong> Both are usually caused by head trauma, with EDH often associated with skull fractures and SDH more common in falls, especially in the elderly, or in cases of shaken baby syndrome.</li><li><strong>Severity:</strong> Both are medical emergencies requiring urgent diagnosis and intervention due to the risk of increased intracranial pressure (ICP) and brain compression.</li><li><strong>Onset:</strong> EDH often presents with a 'lucid interval' followed by rapid neurological deterioration, while SDH can be acute (within 72 hours), subacute (3-21 days), or chronic (over 3 weeks), with varying rates of symptom onset.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Severe Headache:</strong> Often sudden and worsening, a primary indicator of intracranial pressure.</li><li><strong>Nausea and Vomiting:</strong> Common signs of increased intracranial pressure.</li><li><strong>Altered Level of Consciousness:</strong> Ranging from confusion and disorientation to somnolence, stupor, or coma.</li><li><strong>Neurological Deficits:</strong> Unilateral weakness or numbness (hemiparesis/hemiplegia), speech difficulties (aphasia), or visual disturbances.</li><li><strong>Pupillary Changes:</strong> Unequal pupil size (anisocoria) or sluggish reaction to light, indicating pressure on cranial nerves.</li><li><strong>Seizures:</strong> Can occur due to irritation of brain tissue by the hematoma.</li><li><strong>Lucid Interval (EDH):</strong> A period of apparent normalcy after initial injury, followed by rapid neurological decline.</li><li><strong>Chronic SDH Symptoms:</strong> Can be subtle and progressive, mimicking dementia, gait disturbances, or chronic headaches in older adults.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Head Injury Prevention:</strong> Emphasize the use of helmets during sports, seatbelts in vehicles, and fall prevention strategies, especially for the elderly and those with balance issues.</li><li><strong>Immediate Medical Evaluation:</strong> Any significant head trauma, even without immediate symptoms, warrants prompt medical assessment to rule out intracranial injury.</li><li><strong>Anticoagulant Awareness:</strong> Patients on anticoagulants (e.g., warfarin, DOACs) or antiplatelet agents are at significantly higher risk for intracranial hemorrhage after even minor head trauma and require urgent evaluation.</li><li><strong>Post-Injury Monitoring:</strong> Closely monitor individuals for several days following a head injury for any changes in consciousness, behavior, or new neurological symptoms.</li><li><strong>Avoid Alcohol/Sedatives Post-Injury:</strong> These can mask symptoms of a developing hematoma and impair neurological assessment.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-Operative Fasting:</strong> For patients requiring emergency surgical intervention, strict NPO (nil per os) status is critical to prevent aspiration during anesthesia.</li><li><strong>Hydration Management:</strong> Maintain appropriate hydration, but avoid overhydration in patients with suspected or confirmed increased intracranial pressure, as this can exacerbate cerebral edema.</li><li><strong>Aspiration Risk:</strong> For patients with altered consciousness or dysphagia, ensure strict aspiration precautions, including thickened liquids or enteral feeding as indicated.</li><li><strong>Post-Operative Nutritional Support:</strong> Following surgery, a gradual reintroduction of fluids and diet, starting with clear liquids, is essential, progressing as tolerated and guided by the patient's neurological status.</li><li><strong>Electrolyte Balance:</strong> Monitor and manage electrolyte levels, particularly sodium, as imbalances can affect cerebral edema and neurological function.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Observe for Neurological Changes:</strong> Continuously monitor the patient for any alterations in alertness, speech, movement, or pupil size. Document and report any changes immediately.</li><li><strong>Do Not Leave Unattended:</strong> Patients with suspected head injury or post-operative recovery should not be left alone, especially if their consciousness is impaired or fluctuating.</li><li><strong>Elevate Head of Bed:</strong> If advised by medical staff, maintain the head of the bed elevated to 30 degrees to help reduce intracranial pressure.</li><li><strong>Report New Symptoms:</strong> Any new or worsening headache, vomiting, confusion, weakness, or seizure activity must be reported to medical personnel without delay.</li><li><strong>Medication Adherence:</strong> Administer prescribed medications strictly as directed, especially those for pain, seizures, or to manage intracranial pressure.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Rapid Diagnosis is Key:</strong> Prompt neuroimaging, typically a CT scan of the head, is crucial for differentiating between SDH and EDH and determining the size and location of the hematoma.</li><li><strong>Surgical Intervention:</strong> Many cases, especially large or rapidly expanding hematomas, require urgent neurosurgical intervention (e.g., craniotomy for evacuation, burr hole drainage) to relieve pressure on the brain.</li><li><strong>Intracranial Pressure Management:</strong> Aggressive management of increased ICP is vital, including osmotic therapy, hyperventilation, and CSF drainage, to prevent secondary brain injury.</li><li><strong>Neurological Monitoring:</strong> Continuous and meticulous neurological assessment is paramount for detecting subtle changes and guiding treatment decisions.</li><li><strong>Prognosis Variability:</strong> The outcome depends heavily on the size and location of the hematoma, the patient's age, pre-existing conditions, and the timeliness of intervention.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Glasgow Coma Scale (GCS):</strong> Master accurate and consistent GCS assessment for evaluating and trending a patient's level of consciousness.</li><li><strong>Pupillary Assessment:</strong> Understand the significance of pupillary size, shape, and reaction to light as indicators of neurological status and potential herniation.</li><li><strong>Neurological Checks:</strong> Perform frequent and thorough neurological assessments, including motor and sensory function, vital signs, and cranial nerve assessment.</li><li><strong>Cushing's Triad:</strong> Recognize the signs of Cushing's triad (hypertension, bradycardia, irregular respirations) as a late and ominous sign of severely increased ICP.</li><li><strong>Seizure Precautions:</strong> Implement appropriate seizure precautions for patients at risk, including padded side rails and airway management equipment at the bedside.</li><li><strong>ICP Monitoring:</strong> Understand the principles and nursing care associated with external ventricular drains (EVDs) or other ICP monitoring devices.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Dura Mater:</strong> The tough, outermost membrane enveloping the brain and spinal cord.</li><li><strong>Arachnoid Mater:</strong> The middle layer of the meninges, lying beneath the dura mater.</li><li><strong>Pia Mater:</strong> The delicate, innermost layer of the meninges, adhering directly to the brain surface.</li><li><strong>Bridging Veins:</strong> Veins that cross the subdural space, susceptible to tearing with head trauma, leading to SDH.</li><li><strong>Middle Meningeal Artery:</strong> A major artery supplying the dura mater, commonly torn in EDH.</li><li><strong>Intracranial Pressure (ICP):</strong> The pressure exerted by the brain, cerebrospinal fluid, and blood within the skull.</li><li><strong>Craniotomy:</strong> A surgical operation in which a bone flap is temporarily removed from the skull to access the brain.</li><li><strong>Burr Holes:</strong> Small holes drilled into the skull, often used for drainage of chronic subdural hematomas.</li><li><strong>Herniation:</strong> Displacement of brain tissue from its normal position due to increased ICP, a life-threatening complication.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

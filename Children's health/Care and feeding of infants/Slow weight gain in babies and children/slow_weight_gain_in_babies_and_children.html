@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a diverse family with a baby and a young child, consulting with a friendly pediatrician. The pediatrician is pointing to a growth chart with an upward trend. Elements like a baby bottle, a bowl of healthy food, and measuring tape are subtly integrated. The overall scene conveys care, growth, and medical guidance in a warm, reassuring color palette, suitable for public health awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./slow_weight_gain_in_babies_and_children.jpg" class="card-banner" alt="Slow weight gain in babies and children Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-children-s-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Children's health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-children-s-health-care-and-feeding-of-infants" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Care and feeding of infants</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Slow weight gain in babies and children</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Children's health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Care and feeding of infants</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Slow weight gain, often termed 'Failure to Thrive' (FTT) in more severe cases, refers to a child's weight falling significantly below the expected range for their age and sex, or a consistent decline across growth percentiles.</li><li><strong>Early Identification:</strong> Prompt recognition is crucial as sustained poor weight gain can impact physical development, cognitive function, and immune system strength.</li><li><strong>Underlying Causes:</strong> It is a symptom, not a disease, and can stem from inadequate caloric intake, malabsorption issues, increased metabolic demands, or various medical conditions.</li><li><strong>Growth Chart Monitoring:</strong> Regular plotting of weight, length/height, and head circumference on standardized growth charts is essential for tracking progress and identifying deviations.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Poor Feeding:</strong> Difficulty latching, weak suck, prolonged feeding times, frequent spitting up, or refusal to eat.</li><li><strong>Developmental Delays:</strong> Missing age-appropriate milestones in motor skills, language, or social interaction.</li><li><strong>Lethargy & Irritability:</strong> Persistent fussiness, inconsolable crying, or unusual lack of energy and engagement.</li><li><strong>Frequent Illnesses:</strong> Recurrent infections, prolonged recovery periods, or signs of a weakened immune system.</li><li><strong>Changes in Stool/Urine:</strong> Chronic diarrhea, constipation, or infrequent urination indicating potential dehydration or malabsorption.</li><li><strong>Physical Signs:</strong> In severe cases, reduced subcutaneous fat, muscle wasting, or signs of nutrient deficiencies.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Accurate Measurements:</strong> Ensure all weight, length, and head circumference measurements are taken consistently and accurately by trained healthcare professionals.</li><li><strong>Avoid Self-Diagnosis:</strong> Do not attempt to drastically alter a child's diet or 'force-feed' without professional medical guidance, as this can be detrimental.</li><li><strong>Observe Feeding Cues:</strong> Pay close attention to the child's hunger and satiety cues to avoid overfeeding or underfeeding.</li><li><strong>Medication Adherence:</strong> If an underlying medical condition is identified, strictly follow all prescribed medication regimens and treatment plans.</li><li><strong>Safe Food Preparation:</strong> Maintain strict hygiene in food preparation and storage to prevent infections that could exacerbate weight issues.</li><li><strong>Environmental Support:</strong> Provide a calm, supportive, and distraction-free environment during feeding times to encourage intake.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Increased Caloric Density:</strong> Strategies to safely increase the caloric content of breast milk, formula, or solid foods under medical supervision (e.g., adding fortifiers, healthy fats).</li><li><strong>Frequent, Smaller Feedings:</strong> Offer smaller volumes of food or milk more frequently throughout the day to maximize intake without overwhelming the child.</li><li><strong>Nutrient-Dense Food Choices:</strong> Prioritize foods rich in calories and essential nutrients, such as avocado, full-fat dairy (if age-appropriate), fortified cereals, and pureed meats.</li><li><strong>Avoid Empty Calories:</strong> Limit sugary drinks, fruit juices, and highly processed snacks that provide minimal nutritional value and can displace more nutrient-dense foods.</li><li><strong>Hydration Balance:</strong> Ensure adequate fluid intake, but avoid excessive low-calorie liquids that can fill the child up before meals.</li><li><strong>Structured Meal Times:</strong> Establish a consistent feeding schedule to encourage regular intake and help the child anticipate meals.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Prompt Medical Consultation:</strong> Seek immediate medical evaluation from a pediatrician if you notice persistent concerns about your child's weight gain or overall growth.</li><li><strong>Maintain a Feeding Log:</strong> Keep a detailed record of feeding times, amounts consumed, types of food, and any difficulties encountered during feeding.</li><li><strong>Monitor Diaper Output:</strong> Track the frequency and volume of wet and soiled diapers to assess hydration status and adequate intake.</li><li><strong>Follow Specialist Recommendations:</strong> Adhere strictly to the advice and care plans provided by dietitians, lactation consultants, gastroenterologists, or other specialists.</li><li><strong>Observe Behavioral Changes:</strong> Note any changes in the child's activity level, mood, sleep patterns, or developmental progress.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive Evaluation:</strong> A thorough assessment including detailed medical history, physical examination, and review of growth charts is paramount to identify potential causes.</li><li><strong>Rule Out Organic Causes:</strong> Investigations may be necessary to exclude underlying medical conditions such as gastrointestinal disorders, metabolic diseases, cardiac issues, or chronic infections.</li><li><strong>Multidisciplinary Approach:</strong> Management often requires collaboration with a team of specialists, including pediatricians, dietitians, lactation consultants, and developmental specialists.</li><li><strong>Individualized Care Plan:</strong> Treatment strategies are tailored to the specific etiology of slow weight gain and the child's unique nutritional and developmental needs.</li><li><strong>Parental Education & Support:</strong> Empowering parents with accurate information, practical feeding strategies, and emotional support is critical for successful outcomes.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Growth Chart Interpretation:</strong> Proficiency in plotting and interpreting weight-for-age, length-for-age, weight-for-length, and head circumference percentiles to identify deviations.</li><li><strong>Feeding Assessment:</strong> Skilled observation of feeding dynamics, including suck-swallow-breathe coordination, latch effectiveness, and signs of feeding intolerance.</li><li><strong>Nutritional Interventions:</strong> Assisting with formula preparation, breast milk fortification, and guiding parents on appropriate introduction and advancement of solid foods.</li><li><strong>Parental Education:</strong> Providing clear, empathetic guidance on feeding techniques, caloric requirements, recognizing hunger/satiety cues, and signs requiring medical attention.</li><li><strong>Monitoring for Complications:</strong> Vigilant assessment for signs of dehydration, electrolyte imbalances, or worsening malnutrition, and prompt reporting to the medical team.</li><li><strong>Developmental Screening:</strong> Incorporating routine developmental screenings to identify any delays associated with chronic undernutrition.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Failure to Thrive (FTT):</strong> A diagnostic term for inadequate growth, typically defined as weight below the 3rd or 5th percentile, or a drop of two major percentiles.</li><li><strong>Anthropometric Measurements:</strong> Standardized techniques for obtaining accurate weight, length/height, and head circumference measurements for growth assessment.</li><li><strong>Caloric Requirements:</strong> Age-specific energy needs, often requiring increased caloric intake (e.g., 120-150 kcal/kg/day) for catch-up growth in infants.</li><li><strong>Diagnostic Workup:</strong> May include complete blood count (CBC), electrolyte panel, thyroid function tests, urine analysis, stool studies, and imaging (e.g., upper GI series) as indicated.</li><li><strong>Gastroesophageal Reflux Disease (GERD):</strong> A common condition that can contribute to feeding difficulties and poor weight gain in infants.</li><li><strong>Cystic Fibrosis Screening:</strong> Consideration in persistent cases of malabsorption and poor growth, especially with recurrent respiratory symptoms.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

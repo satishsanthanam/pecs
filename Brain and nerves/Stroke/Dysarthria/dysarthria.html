@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a person with a confused or frustrated expression, attempting to speak, with jumbled or broken speech bubbles emanating from their mouth. A subtle brain outline or neural network pattern is visible in the background, connecting to the speech areas. The overall design should convey communication difficulty due to neurological impact, suitable for public health awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./dysarthria.jpg" class="card-banner" alt="Dysarthria Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-brain-and-nerves" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Brain and nerves</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-brain-and-nerves-stroke" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Stroke</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Dysarthria</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Brain and nerves</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Stroke</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Dysarthria is a motor speech disorder resulting from neurological injury, such as a stroke, affecting the muscles used for speech.</li><li><strong>Impact on Speech:</strong> It causes slurred, slow, or difficult-to-understand speech due to weakness or poor coordination of the lips, tongue, jaw, vocal cords, or diaphragm.</li><li><strong>Common Post-Stroke:</strong> It is a frequent neurological deficit following a stroke, varying in severity based on the location and extent of brain damage.</li><li><strong>Not a Language Disorder:</strong> Dysarthria affects the *how* of speech production, not the *what* (language comprehension or formulation), distinguishing it from aphasia.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Slurred or Mumbled Speech:</strong> Words sound indistinct or run together, making them difficult to decipher.</li><li><strong>Slow Speech Rate:</strong> The pace of speaking is significantly reduced, often requiring more effort.</li><li><strong>Nasal or Strained Voice:</strong> Speech may sound breathy, hoarse, or have an abnormal pitch or volume.</li><li><strong>Difficulty Moving Oral Muscles:</strong> Weakness or reduced range of motion in the tongue, lips, or jaw.</li><li><strong>Monotone Speech:</strong> Lack of normal variation in pitch and loudness, making speech sound flat.</li><li><strong>Drooling:</strong> May occur due to weakness in facial and oral muscles, impacting lip closure and swallowing.</li><li><strong>Frustration with Communication:</strong> Patients often experience distress due to their inability to be clearly understood.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Aspiration Risk:</strong> Be vigilant for signs of dysphagia (swallowing difficulty), which frequently co-occurs with dysarthria, increasing the risk of aspiration pneumonia.</li><li><strong>Communication Barriers:</strong> Anticipate and mitigate communication challenges to prevent patient frustration, social isolation, and potential misinterpretation of needs.</li><li><strong>Emotional Well-being:</strong> Monitor for signs of depression or anxiety related to communication difficulties and loss of independence.</li><li><strong>Fatigue Management:</strong> Speech can be exhausting; encourage rest periods and avoid prolonged communication sessions.</li><li><strong>Environmental Factors:</strong> Ensure a quiet environment free from distractions during communication attempts to maximize intelligibility.</li><li><strong>Early Intervention:</strong> Prompt referral to a Speech-Language Pathologist (SLP) is crucial for assessment and initiation of therapy to optimize recovery.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Swallowing Assessment:</strong> Always ensure a thorough swallowing assessment (e.g., by an SLP) is completed, as dysphagia often co-exists with dysarthria, dictating dietary modifications.</li><li><strong>Modified Food Textures:</strong> If dysphagia is present, adhere strictly to prescribed food textures (e.g., pureed, minced and moist, soft and bite-sized) to prevent aspiration.</li><li><strong>Thickened Liquids:</strong> For patients with dysphagia, use appropriate liquid thickeners as recommended by the SLP to ensure safe hydration.</li><li><strong>Small, Frequent Meals:</strong> Consider smaller, more frequent meals to reduce fatigue during eating and minimize aspiration risk.</li><li><strong>Upright Positioning:</strong> Maintain an upright position (90 degrees) during meals and for at least 30 minutes afterward to aid digestion and reduce reflux.</li><li><strong>Oral Hygiene:</strong> Meticulous oral care is vital, especially if aspiration risk is present, to reduce the bacterial load in the mouth.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Patience and Active Listening:</strong> Allow the individual ample time to speak without interruption and listen attentively to their attempts.</li><li><strong>Simplify Communication:</strong> Use short, direct questions and statements. Avoid complex sentences or multiple questions at once.</li><li><strong>Encourage Repetition:</strong> Politely ask the person to repeat or rephrase if their speech is unclear, or try rephrasing what you understood for confirmation.</li><li><strong>Visual Aids:</strong> Utilize gestures, writing, pictures, or communication boards if verbal communication is severely impaired.</li><li><strong>Minimize Distractions:</strong> Create a calm, quiet environment for communication to improve focus and intelligibility.</li><li><strong>Observe for Frustration:</strong> Be sensitive to signs of frustration and offer breaks or alternative communication methods.</li><li><strong>Refer to SLP:</strong> Ensure the patient is referred to a Speech-Language Pathologist for comprehensive assessment and therapy.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Accurate Diagnosis:</strong> Differentiate dysarthria from other speech disorders like aphasia or apraxia of speech through thorough neurological examination and speech assessment.</li><li><strong>Identify Etiology:</strong> Determine the underlying cause (e.g., stroke, neurodegenerative disease, traumatic brain injury) to guide primary treatment and prognosis.</li><li><strong>Multidisciplinary Approach:</strong> Collaborate with Speech-Language Pathologists, Occupational Therapists, Physical Therapists, and Neurologists for comprehensive patient care.</li><li><strong>Pharmacological Management:</strong> Address any underlying spasticity or tremor that may exacerbate dysarthria with appropriate medications.</li><li><strong>Patient and Family Education:</strong> Educate on the nature of dysarthria, realistic expectations for recovery, and effective communication strategies.</li><li><strong>Monitor for Complications:</strong> Regularly screen for co-occurring dysphagia and its complications, such as aspiration pneumonia and malnutrition.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Bedside Assessment:</strong> Conduct basic speech assessments, noting intelligibility, rate, volume, and vocal quality.</li><li><strong>Cranial Nerve Assessment:</strong> Evaluate cranial nerves V, VII, IX, X, and XII, which are crucial for speech production, to identify motor deficits.</li><li><strong>Communication Facilitation:</strong> Implement strategies to enhance communication, such as providing a quiet environment, using visual aids, and encouraging slow speech.</li><li><strong>Aspiration Precautions:</strong> Closely monitor patients for signs of aspiration (e.g., coughing during meals, wet voice, fever) and implement dysphagia management plans.</li><li><strong>Patient and Family Support:</strong> Provide emotional support and education on communication techniques to both the patient and their caregivers.</li><li><strong>Documentation:</strong> Accurately document speech characteristics, communication effectiveness, and any interventions or referrals made.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Types of Dysarthria:</strong> Flaccid (LMN damage), Spastic (UMN damage), Ataxic (cerebellar damage), Hypokinetic (basal ganglia, e.g., Parkinson's), Hyperkinetic (basal ganglia, e.g., Huntington's), Mixed (combinations).</li><li><strong>Neurological Substrates:</strong> Involves damage to motor cortex, pyramidal and extrapyramidal tracts, cerebellum, brainstem, or peripheral nerves controlling speech musculature.</li><li><strong>Assessment Tools:</strong> Frenchay Dysarthria Assessment (FDA), Assessment of Intelligibility of Dysarthric Speech (AIDS), Motor Speech Evaluation.</li><li><strong>Therapeutic Interventions:</strong> Articulation drills, breath support exercises, rate control techniques, prosody training, palatal lifts, and Augmentative and Alternative Communication (AAC) systems.</li><li><strong>Differential Diagnosis:</strong> Distinguish from Aphasia (language impairment), Apraxia of Speech (motor planning deficit without muscle weakness), and voice disorders (dysphonia).</li><li><strong>Prognostic Indicators:</strong> Severity and type of neurological damage, time since onset, presence of co-morbidities, and intensity of rehabilitation.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

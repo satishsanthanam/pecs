@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for public awareness: A diverse group of happy, healthy children and teenagers (ages 7-18) standing together, some holding hands, with a protective shield icon in the background. Stylized, friendly syringes and vaccine vials are subtly integrated around them, representing protection and health. A calendar or immunization schedule graphic is visible. Bright, clean colors. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./vaccines_for_children_age_7_to_18_years.jpg" class="card-banner" alt="Vaccines for children age 7 to 18 years Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-children-s-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Children's health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-children-s-health-infections-and-vaccines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Infections and vaccines</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Vaccines for children age 7 to 18 years</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Children's health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Infections and vaccines</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Recommended Schedule:</strong> Children aged 7 to 18 years require specific vaccinations to maintain immunity against preventable diseases, following the Advisory Committee on Immunization Practices (ACIP) schedule.</li>
+        <li><strong>Key Vaccinations:</strong> This age group typically receives Tdap (Tetanus, Diphtheria, Pertussis) booster, HPV (Human Papillomavirus) series, Meningococcal conjugate (MenACWY), and an annual Influenza (flu) vaccine.</li>
+        <li><strong>Disease Prevention:</strong> These vaccines protect against serious illnesses such as whooping cough, tetanus, diphtheria, certain cancers (HPV-related), meningitis, and seasonal influenza.</li>
+        <li><strong>Community Protection:</strong> High vaccination rates contribute to herd immunity, safeguarding individuals who cannot be vaccinated due to age or medical conditions.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Clinical Indications:</strong> Vaccination is primarily indicated by age-based schedules and school entry requirements, rather than specific symptoms.</li>
+        <li><strong>Risk Factors for Disease:</strong> Unvaccinated individuals in this age group are at higher risk for contracting and transmitting diseases like pertussis (severe cough), influenza (fever, body aches), and meningococcal disease (sudden fever, headache, stiff neck).</li>
+        <li><strong>Travel Considerations:</strong> International travel may necessitate additional vaccines or boosters depending on destination-specific disease risks.</li>
+        <li><strong>Underlying Health Conditions:</strong> Children with chronic conditions (e.g., asthma, diabetes, immunosuppression) have increased susceptibility to complications from vaccine-preventable diseases, making vaccination crucial.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Allergic Reactions:</strong> Inform the healthcare provider about any severe allergic reactions to a previous vaccine dose or any vaccine component.</li>
+        <li><strong>Acute Illness:</strong> Vaccination should generally be deferred for individuals experiencing a moderate or severe acute illness with or without fever. Minor illnesses (e.g., common cold) are usually not a contraindication.</li>
+        <li><strong>Immunosuppression:</strong> Live attenuated vaccines (e.g., MMR, Varicella, some flu vaccines) may be contraindicated or require special consideration for individuals with compromised immune systems.</li>
+        <li><strong>Guillain-Barré Syndrome (GBS):</strong> Individuals with a history of GBS within 6 weeks of a previous influenza vaccination should discuss this with their provider.</li>
+        <li><strong>Syncope Risk:</strong> Adolescents are prone to syncope (fainting) after injections; ensure the patient is seated or lying down during vaccination and observed for 15 minutes post-injection.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Pre-Vaccination Hydration:</strong> Ensure the child is well-hydrated before vaccination to support overall well-being and potentially reduce the likelihood of vasovagal responses.</li>
+        <li><strong>No Specific Restrictions:</strong> Generally, no specific dietary restrictions are required before or after routine vaccinations for this age group.</li>
+        <li><strong>Comfort Measures:</strong> If the child experiences mild post-vaccination side effects like fever or muscle aches, encourage fluid intake and offer easily digestible foods.</li>
+        <li><strong>Balanced Nutrition:</strong> A balanced diet supports a healthy immune system, which is beneficial for optimal vaccine response, though not a direct pre-requisite.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Informed Consent:</strong> A parent or legal guardian must provide informed consent for vaccination for minors, understanding the benefits and potential risks.</li>
+        <li><strong>Immunization Records:</strong> Bring the child's complete immunization record to each appointment to ensure accurate tracking and adherence to the schedule.</li>
+        <li><strong>Post-Vaccination Observation:</strong> Remain at the clinic for at least 15 minutes after vaccination to monitor for immediate adverse reactions, such as allergic responses or syncope.</li>
+        <li><strong>Managing Side Effects:</strong> Advise on managing common mild side effects like soreness, redness, or swelling at the injection site, and low-grade fever, typically with over-the-counter pain relievers if needed.</li>
+        <li><strong>When to Seek Medical Attention:</strong> Instruct on signs requiring immediate medical attention, such as difficulty breathing, hives, swelling of the face/throat, dizziness, or persistent high fever.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Adherence to Schedule:</strong> Physicians strongly recommend adhering to the CDC/ACIP immunization schedule for children aged 7-18 to provide comprehensive protection against vaccine-preventable diseases.</li>
+        <li><strong>Addressing Hesitancy:</strong> Openly discuss any parental concerns or questions regarding vaccine safety, efficacy, and necessity, providing evidence-based information.</li>
+        <li><strong>Preventative Health:</strong> Vaccination is a cornerstone of preventative health, significantly reducing morbidity and mortality in this age group and preventing outbreaks.</li>
+        <li><strong>HPV Vaccination:</strong> Emphasize the importance of HPV vaccination for both boys and girls to prevent HPV-related cancers later in life, ideally completed before age 15.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Vaccine Administration:</strong> Master correct intramuscular (IM) injection technique, appropriate needle size, and anatomical site selection (e.g., deltoid muscle for adolescents).</li>
+        <li><strong>Patient Education:</strong> Provide clear, age-appropriate explanations to children and their guardians about the vaccines, their benefits, and potential mild side effects.</li>
+        <li><strong>Cold Chain Management:</strong> Understand and strictly adhere to vaccine storage and handling protocols to maintain vaccine potency and efficacy.</li>
+        <li><strong>Documentation:</strong> Accurately document vaccine lot number, expiration date, administration site, date, and administrator's initials in the patient's record.</li>
+        <li><strong>Anaphylaxis Preparedness:</strong> Be prepared to recognize and manage anaphylactic reactions, including immediate access to epinephrine and emergency protocols.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>ACIP Recommendations:</strong> Advisory Committee on Immunization Practices (ACIP) provides evidence-based recommendations for vaccine use in the United States.</li>
+        <li><strong>CDC Immunization Schedule:</strong> The Centers for Disease Control and Prevention (CDC) publishes the official recommended immunization schedules for children and adolescents.</li>
+        <li><strong>Vaccine Information Statements (VIS):</strong> Federally required documents providing detailed information about each vaccine, including benefits and risks, to patients/guardians.</li>
+        <li><strong>VAERS:</strong> Vaccine Adverse Event Reporting System (VAERS) is a national passive surveillance system co-managed by CDC and FDA to detect potential safety issues with vaccines.</li>
+        <li><strong>Specific Vaccine Types:</strong> Tdap (Tetanus, Diphtheria, Pertussis), HPV (Human Papillomavirus), MenACWY (Meningococcal conjugate), MenB (Meningococcal B), Influenza (inactivated and live attenuated).</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

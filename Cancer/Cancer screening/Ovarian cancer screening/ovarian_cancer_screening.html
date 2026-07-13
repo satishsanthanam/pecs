@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a woman's silhouette with a stylized ovary highlighted. A magnifying glass hovers over the ovary, symbolizing screening and detection. Surrounding elements include subtle medical icons like a blood drop, a sonogram wand, and a calendar, representing different aspects of screening and monitoring. The overall design should convey awareness, early detection, and women's health, with a clean, modern aesthetic suitable for public health campaigns. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./ovarian_cancer_screening.jpg" class="card-banner" alt="Ovarian cancer screening Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Cancer</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-cancer-cancer-screening" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Cancer screening</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Ovarian cancer screening</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Cancer</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Cancer screening</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Challenges in Screening:</strong> Ovarian cancer is often diagnosed at advanced stages due to vague symptoms and the lack of an effective, population-wide screening test for average-risk women.</li>
+        <li><strong>High-Risk Individuals:</strong> Screening is primarily considered for women with a significantly increased risk, such as those with BRCA1/2 mutations or a strong family history of ovarian or breast cancer.</li>
+        <li><strong>Current Approaches:</strong> For high-risk individuals, screening typically involves a combination of transvaginal ultrasound (TVUS) and CA-125 blood tests, though their efficacy in improving outcomes is still debated.</li>
+        <li><strong>Symptom Awareness:</strong> Early detection often relies on recognizing persistent, new, or worsening symptoms and seeking prompt medical evaluation.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Persistent Bloating:</strong> Feeling full or swollen in the abdomen that does not resolve.</li>
+        <li><strong>Pelvic or Abdominal Pain:</strong> Discomfort or pressure in the lower abdomen or pelvis that is new or persistent.</li>
+        <li><strong>Difficulty Eating or Feeling Full Quickly:</strong> Experiencing satiety after consuming small amounts of food.</li>
+        <li><strong>Urinary Symptoms:</strong> Frequent urination or an urgent need to urinate.</li>
+        <li><strong>Changes in Bowel Habits:</strong> New onset constipation or diarrhea.</li>
+        <li><strong>Unexplained Weight Loss or Gain:</strong> Significant changes in body weight without intentional effort.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Avoid Unnecessary Screening:</strong> Routine screening for average-risk women is not recommended due to high false-positive rates, leading to unnecessary anxiety and invasive follow-up procedures.</li>
+        <li><strong>Genetic Counseling:</strong> Women with a family history of ovarian, breast, or colorectal cancer should consider genetic counseling to assess their risk for hereditary cancer syndromes (e.g., Lynch syndrome, BRCA mutations).</li>
+        <li><strong>Understanding Test Limitations:</strong> Be aware that CA-125 levels can be elevated by non-cancerous conditions (e.g., endometriosis, fibroids), and TVUS can detect benign masses, leading to false positives.</li>
+        <li><strong>Risk-Reducing Strategies:</strong> For very high-risk individuals, prophylactic salpingo-oophorectomy (surgical removal of ovaries and fallopian tubes) may be considered after childbearing is complete, significantly reducing risk.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>No Specific Dietary Restrictions for Screening:</strong> For the primary screening tests like CA-125 blood tests and transvaginal ultrasounds, no specific dietary preparations or restrictions are typically required.</li>
+        <li><strong>General Hydration for Imaging:</strong> Adequate hydration is generally beneficial for overall health and may be advised for some imaging procedures, but not a strict requirement for ovarian cancer screening TVUS.</li>
+        <li><strong>Pre-Procedure Fasting (If Applicable):</strong> If a follow-up diagnostic procedure (e.g., laparoscopy, biopsy) is indicated based on screening results, specific fasting or dietary instructions will be provided by the healthcare team.</li>
+        <li><strong>Post-Procedure Diet (If Applicable):</strong> Following any invasive diagnostic procedures, dietary reintroduction will be guided by the medical team, typically starting with clear liquids and progressing as tolerated.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Symptom Vigilance:</strong> Any new, persistent, or worsening pelvic/abdominal symptoms should be promptly evaluated by a healthcare provider, regardless of screening status.</li>
+        <li><strong>Informed Decision-Making:</strong> Discuss the benefits and risks of ovarian cancer screening with your doctor, especially if you have risk factors or concerns.</li>
+        <li><strong>False Positives:</strong> Be prepared for the possibility of false-positive results from screening tests, which can lead to anxiety and further diagnostic procedures, some of which carry their own risks.</li>
+        <li><strong>No Perfect Test:</strong> Currently, there is no single, highly effective screening test for ovarian cancer that significantly reduces mortality in the general population.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Individualized Risk Assessment:</strong> A thorough assessment of personal and family medical history is crucial to determine a woman's individual risk for ovarian cancer.</li>
+        <li><strong>Shared Decision-Making:</strong> Engage patients in a discussion about the pros and cons of screening, particularly for those at elevated risk, ensuring they understand the limitations.</li>
+        <li><strong>Genetic Testing Referral:</strong> Proactively refer patients with concerning family histories or personal risk factors for genetic counseling and testing.</li>
+        <li><strong>Symptom Education:</strong> Educate all women about the subtle and persistent symptoms of ovarian cancer, emphasizing the importance of timely reporting.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Patient Education on Symptoms:</strong> Nurses play a vital role in educating women about the "BEAT" symptoms (Bloating, Early satiety, Abdominal pain, Trouble with bladder) and when to seek medical advice.</li>
+        <li><strong>Understanding Screening Limitations:</strong> Be knowledgeable about the current evidence regarding ovarian cancer screening, including the lack of benefit for average-risk women and the potential harms of false positives.</li>
+        <li><strong>Support for Diagnostic Workup:</strong> Provide emotional support and clear information to patients undergoing further diagnostic tests following suspicious findings.</li>
+        <li><strong>Genetic Counseling Referrals:</strong> Identify patients who may benefit from genetic counseling based on family history and facilitate appropriate referrals.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>CA-125:</strong> A glycoprotein tumor marker, often elevated in ovarian cancer, but also in benign conditions. Used in conjunction with imaging for high-risk screening.</li>
+        <li><strong>Transvaginal Ultrasound (TVUS):</strong> An imaging technique used to visualize the ovaries and detect masses or abnormalities.</li>
+        <li><strong>Risk of Ovarian Cancer Algorithm (ROCA):</strong> A statistical model that combines serial CA-125 measurements with age to assess ovarian cancer risk, sometimes used in research settings or for high-risk screening.</li>
+        <li><strong>BRCA1/2 Mutations:</strong> Germline mutations in these genes significantly increase the lifetime risk of ovarian cancer.</li>
+        <li><strong>Hereditary Breast and Ovarian Cancer (HBOC) Syndrome:</strong> A genetic condition, often linked to BRCA mutations, predisposing individuals to certain cancers.</li>
+        <li><strong>National Comprehensive Cancer Network (NCCN) Guidelines:</strong> Provides evidence-based recommendations for cancer screening, diagnosis, and treatment, including for ovarian cancer.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

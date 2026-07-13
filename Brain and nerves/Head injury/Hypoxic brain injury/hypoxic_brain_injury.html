@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human head in profile, with a transparent brain visible inside. The brain shows areas of damage or reduced activity, indicated by muted colors or subtle cracks. Oxygen molecules (represented as small, glowing spheres) are struggling to reach the brain, with some blocked or scarce. A subtle red cross or warning symbol hovers near the brain. The overall style is clean, modern, and medically informative, suitable for public awareness. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./hypoxic_brain_injury.jpg" class="card-banner" alt="Hypoxic brain injury Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-brain-and-nerves" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Brain and nerves</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-brain-and-nerves-head-injury" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Head injury</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Hypoxic brain injury</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Brain and nerves</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Head injury</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Definition:</strong> Hypoxic brain injury (HBI) occurs when the brain does not receive enough oxygen for a period, leading to damage or death of brain cells.</li>
+        <li><strong>Causes:</strong> Common causes include cardiac arrest, stroke, severe asthma attacks, drowning, choking, carbon monoxide poisoning, and complications during surgery.</li>
+        <li><strong>Severity:</strong> The extent of damage varies widely depending on the duration and severity of oxygen deprivation, ranging from mild cognitive impairments to severe neurological deficits or coma.</li>
+        <li><strong>Critical Time:</strong> Brain cells can begin to die within minutes of oxygen deprivation, emphasizing the urgency of immediate medical intervention to minimize damage.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Acute Phase:</strong> Immediate signs during or shortly after the event may include loss of consciousness, seizures, unresponsiveness, and abnormal breathing patterns.</li>
+        <li><strong>Cognitive Impairment:</strong> Long-term symptoms often involve difficulties with memory, attention, concentration, problem-solving, and executive functions.</li>
+        <li><strong>Motor Deficits:</strong> Patients may experience weakness, spasticity, tremors, ataxia (lack of coordination), or difficulty with balance and gait.</li>
+        <li><strong>Emotional & Behavioral Changes:</strong> Irritability, depression, anxiety, personality shifts, and impaired social judgment are common post-injury manifestations.</li>
+        <li><strong>Speech & Swallowing Issues:</strong> Dysarthria (slurred speech) and dysphagia (difficulty swallowing) can occur, impacting communication and nutrition.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Emergency Response:</strong> Rapid recognition and immediate initiation of CPR for cardiac arrest or clearing an airway obstruction are paramount to prevent or minimize HBI.</li>
+        <li><strong>Airway Management:</strong> Ensuring a patent airway and adequate oxygenation is the first priority in any situation where HBI is suspected or imminent.</li>
+        <li><strong>Seizure Management:</strong> Patients with HBI are at increased risk for seizures; implement seizure precautions and administer anti-epileptic medications as prescribed.</li>
+        <li><strong>Fall Prevention:</strong> Due to potential motor and cognitive impairments, implement strict fall prevention protocols, especially during rehabilitation.</li>
+        <li><strong>Monitoring for Deterioration:</strong> Continuously monitor neurological status, vital signs, and oxygen saturation to detect any signs of worsening cerebral function.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Swallowing Assessment:</strong> A thorough dysphagia screening and swallow study by a speech-language pathologist is crucial before oral intake to prevent aspiration.</li>
+        <li><strong>Texture-Modified Diets:</strong> If dysphagia is present, provide appropriate texture-modified foods (puréed, minced, soft) and thickened liquids as recommended.</li>
+        <li><strong>Enteral Nutrition:</strong> For patients unable to safely swallow or meet nutritional needs orally, consider nasogastric or gastrostomy tube feeding to ensure adequate caloric and fluid intake.</li>
+        <li><strong>Hydration Status:</strong> Closely monitor hydration, especially in patients with altered consciousness or dysphagia, to prevent dehydration and electrolyte imbalances.</li>
+        <li><strong>Nutritional Support:</strong> Ensure a balanced intake of macronutrients and micronutrients to support brain recovery and overall physiological function.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Observe & Report:</strong> Attendants must closely observe for any changes in consciousness, new neurological deficits, or seizure activity and report immediately to medical staff.</li>
+        <li><strong>Safety Measures:</strong> Ensure a safe environment, free from hazards, especially for individuals with cognitive or motor impairments; assist with mobility as needed.</li>
+        <li><strong>Medication Adherence:</strong> Strictly adhere to medication schedules, particularly for anti-seizure medications or those managing spasticity or mood.</li>
+        <li><strong>Support Rehabilitation:</strong> Actively participate in and support the patient's rehabilitation exercises and strategies provided by therapists to maximize recovery.</li>
+        <li><strong>Emotional Support:</strong> Provide consistent emotional support and understanding, recognizing that personality and mood changes are common consequences of HBI.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Rapid Intervention:</strong> Timely diagnosis and aggressive management of the underlying cause of hypoxia are critical to improving patient outcomes.</li>
+        <li><strong>Multidisciplinary Care:</strong> Optimal recovery requires a collaborative approach involving neurologists, intensivists, rehabilitation specialists, speech therapists, occupational therapists, and physical therapists.</li>
+        <li><strong>Prognosis Variability:</strong> The long-term prognosis for HBI is highly variable and depends on the duration of hypoxia, patient age, and the extent of initial brain damage.</li>
+        <li><strong>Rehabilitation Focus:</strong> Early and intensive neurorehabilitation is essential to maximize functional recovery and adapt to persistent deficits.</li>
+        <li><strong>Long-Term Management:</strong> Ongoing follow-up is necessary to manage chronic symptoms, monitor for complications, and adjust rehabilitation plans as needed.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Neurological Assessments:</strong> Perform frequent and thorough neurological assessments, including Glasgow Coma Scale (GCS), pupillary response, and motor function.</li>
+        <li><strong>Airway & Oxygenation:</strong> Prioritize maintaining a patent airway, ensuring adequate oxygenation, and monitoring respiratory status closely.</li>
+        <li><strong>Seizure Precautions:</strong> Implement and maintain seizure precautions, including padding side rails and having suction equipment readily available.</li>
+        <li><strong>Pressure Injury Prevention:</strong> Due to immobility or altered sensation, implement rigorous skin care protocols to prevent pressure injuries.</li>
+        <li><strong>Family Education:</strong> Educate family members on the patient's condition, prognosis, care needs, and how to support rehabilitation efforts.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Key Terms:</strong> Anoxia (complete lack of oxygen), Ischemia (restricted blood supply), Cerebral Edema (brain swelling), Post-anoxic Myoclonus.</li>
+        <li><strong>Diagnostic Tools:</strong> Magnetic Resonance Imaging (MRI) for structural damage, Computed Tomography (CT) for acute changes, Electroencephalography (EEG) for seizure activity, Evoked Potentials.</li>
+        <li><strong>Treatment Modalities:</strong> Therapeutic Hypothermia (targeted temperature management), Ventilatory Support, Seizure Control with Anticonvulsants, Management of Cerebral Edema.</li>
+        <li><strong>Prognostic Indicators:</strong> GCS score, pupillary light reflexes, presence of myoclonus, EEG patterns, and MRI findings are used to assess prognosis.</li>
+        <li><strong>Rehabilitation Disciplines:</strong> Physical Therapy (PT), Occupational Therapy (OT), Speech-Language Pathology (SLP), Neuropsychology.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

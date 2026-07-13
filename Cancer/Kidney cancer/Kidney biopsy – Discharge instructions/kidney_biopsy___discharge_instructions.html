@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a patient resting comfortably in bed at home after a kidney biopsy. The patient is holding a glass of water, emphasizing hydration. A small bandage is visible on their lower back/flank area. A caring family member or nurse is gently checking on them. The overall scene is calm and reassuring, with soft colors. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./kidney_biopsy___discharge_instructions.jpg" class="card-banner" alt="Kidney biopsy – Discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Cancer</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-cancer-kidney-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Kidney cancer</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Kidney biopsy – Discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Cancer</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Kidney cancer</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose of Discharge:</strong> These instructions are crucial for a safe and effective recovery following your kidney biopsy, especially in the context of potential kidney cancer diagnosis or staging.</li><li><strong>Recovery Period:</strong> Expect a recovery period requiring rest and careful monitoring for at least 24-48 hours post-procedure.</li><li><strong>Biopsy Site Care:</strong> The biopsy site will have a dressing; keep it clean and dry as instructed to prevent infection.</li><li><strong>Follow-up Importance:</strong> Adherence to all follow-up appointments is vital for discussing results and planning next steps.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Pain at Biopsy Site:</strong> Mild to moderate discomfort or bruising at the biopsy site is common. Report severe or worsening pain.</li><li><strong>Hematuria:</strong> Pink or reddish urine is expected for 24-48 hours. Report bright red urine, clots, or persistent hematuria beyond 48 hours.</li><li><strong>Fatigue:</strong> General tiredness is common due to the procedure and any sedation received.</li><li><strong>Nausea:</strong> Mild nausea may occur, especially if sedation was used.</li><li><strong>Urinary Frequency/Urgency:</strong> A temporary increase in the need to ur urinate may be experienced.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Activity Restrictions:</strong> Avoid heavy lifting (over 10 lbs), strenuous exercise, bending, or twisting for at least 24-48 hours, or as advised by your physician.</li><li><strong>Driving Restrictions:</strong> Do not drive or operate heavy machinery for 24 hours after sedation.</li><li><strong>Medication Management:</strong> Do not take aspirin, ibuprofen (NSAIDs), or other blood-thinning medications for 5-7 days post-biopsy unless specifically instructed by your doctor. Acetaminophen is generally safe for pain relief.</li><li><strong>Site Care:</strong> Keep the biopsy site dressing clean and dry. Avoid baths, hot tubs, or swimming for at least 1 week to prevent infection. Showers are generally permitted after 24 hours, patting the site dry.</li><li><strong>Hydration:</strong> Maintain good hydration by drinking plenty of fluids to help flush your kidneys and bladder.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Fluid Intake:</strong> Increase your fluid intake (water, clear broths, juices) to help flush your urinary system and prevent clot formation.</li><li><strong>Alcohol Restriction:</strong> Avoid alcohol consumption for at least 24-48 hours, as it can interfere with healing and medication effects.</li><li><strong>Light Diet:</strong> Start with a light, easily digestible diet initially, especially if you experienced nausea from sedation. Gradually return to your normal diet as tolerated.</li><li><strong>Caffeine:</strong> Limit caffeine intake, as it can be a diuretic and potentially irritate the bladder.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Contact:</strong> Immediately contact your physician or seek emergency medical attention if you experience severe abdominal or back pain, bright red blood in urine with clots, inability to urinate, fever (over 100.4°F or 38°C), chills, dizziness, fainting, or significant swelling/redness at the biopsy site.</li><li><strong>Transportation:</strong> Ensure you have a responsible adult to drive you home after the procedure and stay with you for the first 24 hours.</li><li><strong>Decision Making:</strong> Avoid making important decisions, signing legal documents, or consuming alcohol for 24 hours post-sedation.</li><li><strong>Medication Adherence:</strong> Take prescribed medications as directed, especially pain relievers, and report any adverse reactions.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Result Interpretation:</strong> Your biopsy results are critical for determining the nature of any kidney lesions, especially in the context of suspected kidney cancer.</li><li><strong>Treatment Planning:</strong> The findings will guide subsequent treatment decisions, which may include surgery, targeted therapy, or active surveillance.</li><li><strong>Long-term Monitoring:</strong> Even with benign results, ongoing monitoring may be recommended based on your overall clinical picture and risk factors.</li><li><strong>Open Communication:</strong> Do not hesitate to contact my office with any concerns or questions during your recovery period.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Post-Biopsy Assessment:</strong> Monitor vital signs, pain level (PQRST), urine output and characteristics (color, clots), and the biopsy site for bleeding, hematoma, or signs of infection.</li><li><strong>Patient Education:</strong> Reinforce discharge instructions regarding activity restrictions, hydration, medication adherence, and signs/symptoms requiring immediate medical attention.</li><li><strong>Complication Recognition:</strong> Be vigilant for signs of retroperitoneal hemorrhage (flank pain, hypotension, tachycardia), arteriovenous fistula, or urinary tract infection.</li><li><strong>Pain Management:</strong> Administer prescribed analgesics and educate the patient on non-pharmacological pain relief methods.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Procedure Code:</strong> Percutaneous Renal Biopsy (e.g., CPT 50200).</li><li><strong>Potential Complications:</strong> Hematuria, retroperitoneal hemorrhage, arteriovenous fistula, pneumothorax (rare), infection, pain.</li><li><strong>Pathology:</strong> Histopathological examination for malignancy (e.g., renal cell carcinoma), benign lesions, or inflammatory processes.</li><li><strong>Imaging Guidance:</strong> Typically performed under ultrasound or CT guidance to ensure precise needle placement.</li><li><strong>Anticoagulation Reversal:</strong> Protocols for temporary cessation and reintroduction of anticoagulants/antiplatelets.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

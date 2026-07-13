@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a person experiencing a severe, unilateral cluster headache. The person's head shows radiating pain lines concentrated around one eye and temple. Subtle visual cues of associated autonomic symptoms like a slightly watery eye, a hint of nasal congestion on the affected side, and a slightly drooping eyelid are present. The person appears restless or agitated. The background is clean and medical-themed, with abstract brain or nerve patterns. The overall style is modern, clean, and empathetic, optimized for public health awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./cluster_headache.jpg" class="card-banner" alt="Cluster headache Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-brain-and-nerves" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Brain and nerves</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-brain-and-nerves-headache-and-migraine" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Headache and migraine</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Cluster headache</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Brain and nerves</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Headache and migraine</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Excruciating Pain:</strong> Cluster headaches are characterized by severe, unilateral pain, typically localized around the eye, temple, or forehead.</li><li><strong>Autonomic Symptoms:</strong> Attacks are accompanied by ipsilateral (same-side) autonomic features such as tearing, red eye, nasal congestion, runny nose, facial sweating, drooping eyelid (ptosis), or constricted pupil (miosis).</li><li><strong>Episodic Nature:</strong> They occur in 'clusters' or periods, lasting weeks to months, followed by remission periods.</li><li><strong>Attack Duration:</strong> Individual attacks usually last 15 to 180 minutes if untreated, often occurring multiple times a day.</li><li><strong>Restlessness:</strong> Patients often experience restlessness or agitation during an attack, unlike the desire for stillness seen in migraine.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Unilateral Orbital/Temporal Pain:</strong> Intense, stabbing, boring, or burning pain concentrated around one eye, temple, or forehead.</li><li><strong>Ipsilateral Lacrimation:</strong> Excessive tearing from the eye on the affected side.</li><li><strong>Ipsilateral Conjunctival Injection:</strong> Redness of the conjunctiva (white part of the eye) on the affected side.</li><li><strong>Ipsilateral Nasal Congestion/Rhinorrhea:</strong> Blocked or runny nose on the same side as the headache.</li><li><strong>Ipsilateral Ptosis/Miosis:</strong> Drooping of the eyelid or constriction of the pupil on the affected side.</li><li><strong>Facial Sweating:</strong> Sweating on the forehead and face, typically on the side of the headache.</li><li><strong>Agitation and Restlessness:</strong> Inability to lie still, pacing, or rocking during an attack.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Prompt Diagnosis:</strong> Seek immediate medical evaluation for accurate diagnosis to differentiate from other headache types and initiate specific treatment.</li><li><strong>Acute Treatment Readiness:</strong> Always have prescribed acute medications (e.g., oxygen, triptans) readily available for immediate use at the onset of an attack.</li><li><strong>Trigger Avoidance:</strong> Strictly avoid known triggers such as alcohol, strong odors, and napping during cluster periods.</li><li><strong>Medication Adherence:</strong> Adhere strictly to prophylactic medications as prescribed by your physician to reduce attack frequency and severity.</li><li><strong>Driving/Operating Machinery:</strong> Refrain from driving or operating heavy machinery during an attack due due to severe pain and visual disturbances.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Strict Alcohol Avoidance:</strong> Completely abstain from alcohol during cluster periods, as it is a potent and consistent trigger for attacks.</li><li><strong>Caffeine Monitoring:</strong> While not a primary trigger, monitor caffeine intake as excessive amounts can sometimes influence headache patterns or sleep.</li><li><strong>Regular Hydration:</strong> Maintain adequate fluid intake throughout the day to support overall physiological function.</li><li><strong>Consistent Meal Schedule:</strong> Eat regular, balanced meals to avoid significant fluctuations in blood sugar, which can indirectly impact headache susceptibility.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Recognition:</strong> Understand that sudden, severe headaches accompanied by neurological deficits (e.g., weakness, vision changes) require immediate emergency medical attention.</li><li><strong>Medication Protocol:</strong> Follow the physician's instructions precisely for both acute abortive treatments and long-term preventative medications.</li><li><strong>Headache Diary:</strong> Maintain a detailed headache diary to track attack frequency, duration, severity, associated symptoms, and potential triggers.</li><li><strong>Inform Loved Ones:</strong> Educate family members or close contacts about the condition and how to assist during an attack, including medication administration if necessary.</li><li><strong>Avoid High Altitudes:</strong> Be cautious with travel to high altitudes during cluster periods, as changes in atmospheric pressure can sometimes trigger attacks.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Accurate Differentiation:</strong> Emphasize the critical need to distinguish cluster headache from migraine and other trigeminal autonomic cephalalgias for effective treatment.</li><li><strong>First-Line Acute Therapy:</strong> Recommend high-flow oxygen (100% via non-rebreather mask) and subcutaneous sumatriptan as primary acute treatments.</li><li><strong>Prophylactic Strategies:</strong> Advise on effective preventative medications such as verapamil, lithium, topiramate, or CGRP monoclonal antibodies (e.g., galcanezumab) to manage cluster periods.</li><li><strong>Patient Education:</strong> Provide comprehensive education on the episodic nature, triggers, and the importance of immediate treatment at attack onset.</li><li><strong>Referral Considerations:</strong> Consider referral to a headache specialist or neurologist for complex cases, refractory cluster headaches, or diagnostic uncertainty.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Key Assessment Findings:</strong> Recognize the classic presentation: unilateral periorbital pain, ipsilateral autonomic features, and patient restlessness/agitation.</li><li><strong>Acute Intervention Protocol:</strong> Be proficient in administering high-flow oxygen and subcutaneous triptans according to protocol for rapid symptom relief.</li><li><strong>Patient Teaching Focus:</strong> Educate patients on proper medication use, trigger identification and avoidance, and the utility of a headache diary.</li><li><strong>Emotional Support:</strong> Provide empathetic care and support, acknowledging the severe pain and distress experienced by patients during cluster attacks.</li><li><strong>Monitoring for Side Effects:</strong> Monitor patients for potential side effects of acute and prophylactic medications, especially cardiovascular effects of triptans.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>ICHD-3 Criteria:</strong> Diagnostic criteria for cluster headache are outlined in the International Classification of Headache Disorders, 3rd edition.</li><li><strong>Pathophysiology:</strong> Involves dysfunction of the posterior hypothalamus and activation of the trigeminal autonomic reflex pathway.</li><li><strong>Acute Pharmacotherapy:</strong> 100% oxygen (7-12 L/min for 15-20 min), sumatriptan (6 mg subcutaneous or 20 mg intranasal).</li><li><strong>Preventative Pharmacotherapy:</strong> Verapamil (first-line), lithium, topiramate, galcanezumab (CGRP monoclonal antibody).</li><li><strong>Differential Diagnosis:</strong> Includes migraine, paroxysmal hemicrania, SUNCT/SUNA, trigeminal neuralgia, and secondary headaches (e.g., pituitary adenoma).</li><li><strong>Neuroimaging:</strong> MRI of the brain with contrast is often recommended to rule out secondary structural causes, especially for atypical presentations.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

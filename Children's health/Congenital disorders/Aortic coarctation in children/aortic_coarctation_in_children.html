@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration of a child's torso, transparently showing the heart and the aorta. Highlight a distinct narrowing in the descending aorta (coarctation) with a bright red arrow. Illustrate blood flow dynamics, depicting higher pressure above the coarctation and reduced flow below. Include subtle elements like a pediatric cardiologist's hand pointing to the anomaly or a stethoscope. Clean, modern design, optimized for public health awareness and educational materials.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./aortic_coarctation_in_children.jpg" class="card-banner" alt="Aortic coarctation in children Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-children-s-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Children's health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-children-s-health-congenital-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Congenital disorders</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Aortic coarctation in children</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Children's health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Congenital disorders</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Aortic coarctation is a congenital narrowing of the aorta, the main artery carrying blood from the heart to the body.</li><li><strong>Location:</strong> Most commonly occurs just beyond where the arteries to the head and arms branch off.</li><li><strong>Impact:</strong> This narrowing obstructs blood flow to the lower body and increases blood pressure in the upper body.</li><li><strong>Severity:</strong> Can range from mild to severe, often diagnosed in infancy or early childhood during routine check-ups.</li><li><strong>Treatment:</strong> Requires intervention, typically surgical repair or catheter-based procedures, to restore normal blood flow.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Infants:</strong> Poor feeding, lethargy, irritability, pale skin, heavy sweating, rapid breathing, cold legs and feet.</li><li><strong>Older Children:</strong> High blood pressure (especially in the arms), nosebleeds, headaches, leg pain or weakness with exercise, dizziness, or fainting.</li><li><strong>Physical Findings:</strong> Diminished or absent femoral pulses, a significant difference in blood pressure between the arms and legs.</li><li><strong>Heart Murmur:</strong> A characteristic heart murmur may be heard during a physical examination.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Early Diagnosis:</strong> Prompt recognition of symptoms and diagnosis is vital to prevent severe complications like heart failure or stroke.</li><li><strong>Blood Pressure Monitoring:</strong> Regular and accurate blood pressure monitoring in all four limbs is crucial, even after repair, due to the risk of persistent hypertension.</li><li><strong>Endocarditis Prophylaxis:</strong> May be recommended for some patients, particularly those with residual defects or prosthetic material, to prevent bacterial endocarditis.</li><li><strong>Activity Restrictions:</strong> Post-repair, specific activity limitations may be necessary, especially regarding strenuous exercise or contact sports, as advised by a cardiologist.</li><li><strong>Lifelong Follow-up:</strong> Continuous cardiology follow-up is essential to monitor for re-coarctation, aneurysms, or other associated cardiovascular conditions.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Infant Feeding:</strong> Support adequate caloric intake for growth; specialized formulas or feeding strategies may be necessary if heart failure is present.</li><li><strong>Sodium Restriction:</strong> May be advised in cases of heart failure or significant hypertension to help manage fluid retention.</li><li><strong>Hydration:</strong> Maintain appropriate hydration, especially if diuretics are prescribed, while avoiding excessive fluid intake.</li><li><strong>Pre-Procedure Fasting:</strong> Strict NPO (nil per os) guidelines will be provided by the medical team before any surgical or catheter-based intervention.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Signs:</strong> Seek immediate medical attention for sudden worsening of symptoms, severe chest pain, extreme shortness of breath, or loss of consciousness.</li><li><strong>Medication Adherence:</strong> Strictly follow all prescribed medication regimens, including antihypertensives or diuretics, as directed by the physician.</li><li><strong>Activity Modification:</strong> Adhere to the cardiologist's recommendations regarding physical activity levels to prevent complications and promote healing.</li><li><strong>Infection Prevention:</strong> Practice good hygiene and be vigilant for signs of infection, especially if surgical repair has occurred, and report any concerns promptly.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive Evaluation:</strong> A thorough cardiac evaluation, including echocardiography, cardiac MRI, or CT angiography, is essential for accurate diagnosis and surgical planning.</li><li><strong>Multidisciplinary Approach:</strong> Management often involves a team of pediatric cardiologists, cardiac surgeons, and intensivists to ensure optimal outcomes.</li><li><strong>Long-Term Monitoring:</strong> Emphasize the critical importance of lifelong follow-up to detect and manage potential late complications such as re-coarctation or aortic aneurysms.</li><li><strong>Genetic Counseling:</strong> Consider genetic counseling as aortic coarctation can be associated with certain genetic syndromes, such as Turner syndrome.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Assessment Skills:</strong> Focus on accurate blood pressure measurement in all four limbs and meticulous palpation of femoral pulses to detect discrepancies.</li><li><strong>Parent Education:</strong> Educate parents on recognizing signs of worsening heart failure or hypertension and the critical importance of medication adherence and follow-up appointments.</li><li><strong>Post-Operative Care:</strong> Monitor for complications such as hypertension, bleeding, chylothorax, or nerve damage following surgical repair.</li><li><strong>Growth & Development:</strong> Assess and support normal growth and development, addressing any feeding difficulties or developmental delays that may arise.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Diagnostic Modalities:</strong> Echocardiography, cardiac MRI, CT angiography, cardiac catheterization.</li><li><strong>Treatment Options:</strong> Surgical repair (e.g., end-to-end anastomosis, subclavian flap aortoplasty), balloon angioplasty with or without stent placement.</li><li><strong>Potential Complications:</strong> Hypertension, re-coarctation, aortic aneurysm/dissection, premature coronary artery disease, stroke, heart failure.</li><li><strong>Associated Conditions:</strong> Bicuspid aortic valve, ventricular septal defect (VSD), patent ductus arteriosus (PDA), Turner syndrome.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

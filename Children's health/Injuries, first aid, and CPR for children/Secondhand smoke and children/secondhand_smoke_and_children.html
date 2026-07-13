@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for public awareness: A stylized, warm-toned home interior with a child playing safely in the foreground. A transparent, wispy cloud of smoke is visibly contained and dissipating outside a closed window, symbolizing a smoke-free environment. A parent figure is gently gesturing towards the smoke-free zone, emphasizing protection. The overall scene conveys safety, care, and a healthy atmosphere for children, with soft, rounded shapes and a clean aesthetic. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./secondhand_smoke_and_children.jpg" class="card-banner" alt="Secondhand smoke and children Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-children-s-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Children's health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-children-s-health-injuries-first-aid-and-cpr-for-children" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Injuries, first aid, and CPR for children</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Secondhand smoke and children</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Children's health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Injuries, first aid, and CPR for children</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition of Secondhand Smoke (SHS):</strong> SHS, also known as environmental tobacco smoke (ETS), is the combination of smoke exhaled by a smoker and smoke from the burning end of a cigarette, cigar, or pipe.</li><li><strong>Composition and Toxicity:</strong> SHS contains over 7,000 chemicals, including hundreds that are toxic and at least 70 that can cause cancer (carcinogens).</li><li><strong>Children's Vulnerability:</strong> Infants and young children are particularly susceptible to the harmful effects of SHS due to their developing lungs, smaller airways, faster breathing rates, and immature immune systems.</li><li><strong>Exposure Pathways:</strong> Children are primarily exposed in homes and vehicles where smoking occurs, or in public spaces not protected by smoke-free policies.</li><li><strong>Thirdhand Smoke:</strong> Residue from tobacco smoke that settles on surfaces and dust, which can be re-emitted into the air and absorbed through skin contact or ingestion, posing an additional risk to children.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Increased Respiratory Infections:</strong> Frequent and severe lower respiratory tract infections such as bronchitis, bronchiolitis, and pneumonia.</li><li><strong>Asthma Exacerbations:</strong> Worsening of asthma symptoms, including more frequent and severe attacks, increased need for medication, and emergency room visits.</li><li><strong>Ear Infections (Otitis Media):</strong> Higher incidence and persistence of middle ear infections, potentially leading to hearing loss.</li><li><strong>Chronic Cough and Phlegm:</strong> Persistent coughing, wheezing, and increased mucus production.</li><li><strong>Sudden Infant Death Syndrome (SIDS):</strong> Significantly increased risk of SIDS in infants exposed to SHS.</li><li><strong>Reduced Lung Function:</strong> Impaired lung growth and development, leading to reduced lung function later in life.</li><li><strong>Neurodevelopmental Impacts:</strong> Potential links to behavioral problems, learning difficulties, and attention-deficit/hyperactivity disorder (ADHD).</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Establish Smoke-Free Environments:</strong> Implement strict rules for no smoking inside the home, car, or any enclosed space where children spend time.</li><li><strong>Educate Caregivers:</strong> Inform all family members, babysitters, and visitors about the importance of maintaining a smoke-free environment around children.</li><li><strong>Avoid Public Exposure:</strong> Limit children's exposure to public places where smoking is permitted or where thirdhand smoke may be present.</li><li><strong>Promote Smoking Cessation:</strong> Encourage and support any smokers in the household to quit, offering resources and assistance.</li><li><strong>Ventilation is Insufficient:</strong> Understand that opening windows, using fans, or separate rooms does not eliminate the dangers of SHS; complete cessation in the child's environment is necessary.</li><li><strong>Hand Hygiene for Smokers:</strong> If a caregiver smokes, they should wash their hands and change clothes after smoking and before interacting with children to minimize thirdhand smoke transfer.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Supportive Nutrition for Lung Health:</strong> Encourage a diet rich in antioxidants (e.g., vitamins C and E, beta-carotene) found in fruits and vegetables to help mitigate oxidative stress caused by SHS exposure.</li><li><strong>Omega-3 Fatty Acids:</strong> Promote intake of omega-3 fatty acids (e.g., from fatty fish, flaxseed) which have anti-inflammatory properties that may support respiratory health.</li><li><strong>Hydration:</strong> Ensure adequate fluid intake to help thin mucus secretions, which can be exacerbated by respiratory irritation from SHS.</li><li><strong>Iron-Rich Foods:</strong> Monitor for potential iron deficiency, as SHS exposure can affect iron metabolism; ensure a diet with iron-fortified foods or natural sources like lean meats and legumes.</li><li><strong>Avoidance of Irritants:</strong> While not a direct dietary restriction, minimizing exposure to other respiratory irritants in food (e.g., certain food allergens if present) can help reduce the overall burden on a child's respiratory system.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Recognize Exposure Signs:</strong> Be vigilant for increased frequency of coughs, wheezing, earaches, or respiratory distress in children, which may indicate SHS exposure.</li><li><strong>Immediate Medical Consultation:</strong> Seek prompt medical attention for any severe respiratory symptoms, persistent cough, or recurrent infections in children exposed to SHS.</li><li><strong>Documentation of Exposure:</strong> Healthcare providers should document SHS exposure in a child's medical record to inform diagnosis and treatment plans.</li><li><strong>Child Protection Concerns:</strong> In cases of severe, persistent, and unaddressed SHS exposure leading to significant health harm, child protection services may need to be involved.</li><li><strong>Advocacy for Policy Change:</strong> Support local and national initiatives for smoke-free public spaces and multi-unit housing to protect children from involuntary exposure.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Routine Screening:</strong> Physicians should routinely screen parents and caregivers for tobacco use and SHS exposure in the home and car during pediatric visits.</li><li><strong>Cessation Counseling:</strong> Provide evidence-based counseling and resources for smoking cessation to parents and caregivers who smoke.</li><li><strong>Management of SHS-Related Conditions:</strong> Aggressively manage conditions like asthma, recurrent otitis media, and respiratory infections in children with known SHS exposure.</li><li><strong>Educate on Risks:</strong> Clearly communicate the specific health risks of SHS and thirdhand smoke to children, emphasizing the irreversible nature of some effects.</li><li><strong>Advocate for Smoke-Free Policies:</strong> Support and advocate for public health policies that protect children from SHS exposure in all environments.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Assessment:</strong> Conduct thorough nursing assessments including environmental history to identify potential SHS exposure in pediatric patients.</li><li><strong>Patient and Family Education:</strong> Educate families on the dangers of SHS, practical strategies for creating smoke-free environments, and the benefits of smoking cessation.</li><li><strong>Referral to Resources:</strong> Provide referrals to smoking cessation programs, support groups, and community resources for families.</li><li><strong>Monitoring and Follow-up:</strong> Monitor children with SHS exposure for respiratory symptoms, ear infections, and developmental milestones, providing ongoing support and education.</li><li><strong>Advocacy Role:</strong> Nurses play a crucial role in advocating for children's health by promoting smoke-free policies and educating the public on SHS risks.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Cotinin Levels:</strong> A biomarker for nicotine exposure, measurable in blood, urine, or saliva, used to objectively assess SHS exposure in children.</li><li><strong>Bronchiolitis Obliterans:</strong> A severe, irreversible lung disease that can be exacerbated or potentially caused by early childhood SHS exposure.</li><li><strong>Inflammatory Pathways:</strong> SHS activates inflammatory pathways in the respiratory tract, leading to chronic inflammation and tissue damage.</li><li><strong>Ciliary Dysfunction:</strong> Components of SHS impair ciliary function in the airways, reducing the clearance of mucus and pathogens.</li><li><strong>Nicotine Receptors:</strong> Developing brains of children are highly sensitive to nicotine, potentially impacting neurodevelopmental processes.</li><li><strong>Immunomodulation:</strong> SHS exposure can suppress or dysregulate the immune system, making children more susceptible to infections.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

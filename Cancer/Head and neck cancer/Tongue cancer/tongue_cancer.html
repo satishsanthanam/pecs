@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a human head in profile, with a focus on the open mouth and tongue. A subtle, non-graphic red lesion is visible on the tongue. Surrounding elements include abstract medical symbols like a stethoscope, a magnifying glass, and a calendar icon, all conveying awareness, early detection, and medical consultation. The overall design is clean, modern, and uses a palette of soft blues, greens, and a contrasting red for the lesion, suitable for a public health awareness campaign.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./tongue_cancer.jpg" class="card-banner" alt="Tongue cancer Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Cancer</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-cancer-head-and-neck-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Head and neck cancer</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Tongue cancer</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Cancer</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Head and neck cancer</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Tongue cancer is a type of head and neck cancer that originates in the cells of the tongue, most commonly squamous cell carcinoma.</li><li><strong>Prevalence:</strong> It is one of the more common oral cancers, often affecting the anterior two-thirds of the tongue.</li><li><strong>Risk Factors:</strong> Major risk factors include chronic tobacco use (smoking and smokeless), heavy alcohol consumption, and human papillomavirus (HPV) infection, particularly for cancers at the base of the tongue.</li><li><strong>Early Detection:</strong> Early diagnosis significantly improves prognosis and treatment outcomes, emphasizing the importance of regular oral examinations.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Persistent Sore or Ulcer:</strong> A non-healing sore, ulcer, or lesion on the tongue that lasts for more than two weeks.</li><li><strong>Pain and Discomfort:</strong> Persistent pain in the tongue or mouth, which may radiate to the ear.</li><li><strong>Difficulty Swallowing (Dysphagia):</strong> Trouble or pain when swallowing food or liquids.</li><li><strong>Speech Changes (Dysarthria):</strong> Alterations in speech patterns or difficulty articulating words.</li><li><strong>Numbness:</strong> Persistent numbness in any part of the tongue or mouth.</li><li><strong>Bleeding:</strong> Unexplained bleeding from the tongue.</li><li><strong>Lump or Thickening:</strong> A noticeable lump, thickening, or white/red patch on the tongue that does not resolve.</li><li><strong>Weight Loss:</strong> Unexplained weight loss due to difficulty eating or advanced disease.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Tobacco Cessation:</strong> Strictly avoid all forms of tobacco, including cigarettes, cigars, pipes, and smokeless tobacco products.</li><li><strong>Alcohol Moderation:</strong> Limit or abstain from alcohol consumption, as it significantly increases risk, especially when combined with tobacco.</li><li><strong>Regular Dental Check-ups:</strong> Undergo routine dental examinations, as dentists are often the first to spot suspicious lesions.</li><li><strong>Oral Self-Examination:</strong> Regularly inspect your mouth and tongue for any unusual sores, lumps, or color changes.</li><li><strong>HPV Vaccination:</strong> Consider HPV vaccination, particularly for younger individuals, as HPV is a known risk factor for some head and neck cancers.</li><li><strong>Healthy Diet:</strong> Maintain a diet rich in fruits and vegetables, which may offer some protective benefits.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Soft Food Diet:</strong> Post-surgery or during radiation/chemotherapy, a soft, bland, and easy-to-swallow diet is crucial to minimize irritation and facilitate healing.</li><li><strong>Avoid Irritants:</strong> Strictly avoid spicy, acidic, very hot, or rough-textured foods that can irritate oral lesions or surgical sites.</li><li><strong>Nutritional Support:</strong> Focus on nutrient-dense foods to support healing and maintain weight, potentially requiring liquid nutritional supplements.</li><li><strong>Hydration:</strong> Maintain adequate hydration with water or non-acidic, non-irritating fluids, especially important during radiation therapy.</li><li><strong>Small, Frequent Meals:</strong> Opt for smaller, more frequent meals to ease digestion and reduce discomfort.</li><li><strong>Oral Hygiene Post-Eating:</strong> Rinse mouth thoroughly with water or prescribed solutions after every meal to maintain oral hygiene and prevent infection.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Adherence to Treatment:</strong> Strictly follow all prescribed treatment plans, including surgery, radiation therapy, and chemotherapy, as directed by your oncology team.</li><li><strong>Post-Treatment Monitoring:</strong> Attend all follow-up appointments for surveillance to detect any recurrence or new primary lesions early.</li><li><strong>Speech and Swallowing Therapy:</strong> Engage actively in speech and swallowing rehabilitation programs to regain function and improve quality of life.</li><li><strong>Pain Management:</strong> Work closely with your healthcare team to manage pain effectively, which can be significant during and after treatment.</li><li><strong>Psychosocial Support:</strong> Seek support from family, friends, support groups, or mental health professionals to cope with the emotional and psychological impact of cancer.</li><li><strong>Oral Care Protocol:</strong> Maintain meticulous oral hygiene as instructed by your care team to prevent infections and manage side effects like mucositis.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Multidisciplinary Approach:</strong> Management of tongue cancer requires a collaborative effort from a multidisciplinary team including surgical oncologists, radiation oncologists, medical oncologists, dentists, speech therapists, and nutritionists.</li><li><strong>Staging is Key:</strong> Accurate staging (TNM classification) is paramount for determining prognosis and guiding treatment decisions.</li><li><strong>Treatment Modalities:</strong> Primary treatment often involves surgery (glossectomy), potentially followed by adjuvant radiation therapy, chemotherapy, or both, depending on stage and pathology.</li><li><strong>Reconstructive Surgery:</strong> For larger resections, reconstructive surgery using free flaps may be necessary to restore function and aesthetics.</li><li><strong>HPV Testing:</strong> For base of tongue cancers, HPV testing is crucial as HPV-positive cancers often have a better prognosis and may respond differently to treatment.</li><li><strong>Long-term Surveillance:</strong> Patients require long-term surveillance due to the risk of local recurrence, regional metastasis, or developing a second primary cancer.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Educate patients on risk factor modification, signs of recurrence, and the importance of meticulous oral hygiene.</li><li><strong>Nutritional Assessment:</strong> Conduct thorough nutritional assessments and collaborate with dietitians to ensure adequate caloric and protein intake, especially for patients with dysphagia.</li><li><strong>Pain Management:</strong> Administer prescribed analgesics and assess pain levels regularly, utilizing a multimodal approach to pain control.</li><li><strong>Wound Care:</strong> Provide meticulous post-operative wound care for surgical sites, including flap monitoring for viability.</li><li><strong>Communication Support:</strong> Assist patients with communication challenges due to glossectomy or radiation-induced mucositis, utilizing alternative communication methods as needed.</li><li><strong>Side Effect Management:</strong> Monitor and manage treatment-related side effects such as mucositis, xerostomia (dry mouth), dysphagia, and skin reactions from radiation.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>ICD-10 Codes:</strong> C01 (Malignant neoplasm of base of tongue), C02 (Malignant neoplasm of other and unspecified parts of tongue).</li><li><strong>Pathology:</strong> Predominantly Squamous Cell Carcinoma (SCC). Other rare types include minor salivary gland carcinomas, sarcomas, and lymphomas.</li><li><strong>Staging System:</strong> TNM (Tumor, Node, Metastasis) staging system, AJCC (American Joint Committee on Cancer) 8th edition.</li><li><strong>Imaging Modalities:</strong> MRI (for soft tissue detail), CT (for bony invasion and nodal assessment), PET-CT (for distant metastasis and recurrence).</li><li><strong>Surgical Procedures:</strong> Partial glossectomy, total glossectomy, neck dissection (for nodal involvement), microvascular free flap reconstruction.</li><li><strong>Adjuvant Therapy:</strong> Postoperative radiation therapy and/or chemotherapy based on pathological risk factors (e.g., positive margins, extranodal extension).</li><li><strong>Molecular Markers:</strong> HPV status (p16 immunohistochemistry) for oropharyngeal cancers, increasingly relevant for base of tongue.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

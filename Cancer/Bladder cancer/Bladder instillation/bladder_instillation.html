@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a medical professional performing a bladder instillation procedure on a patient. The illustration should show a catheter being inserted into the bladder, with a syringe or bag delivering liquid medication. The bladder should be subtly highlighted, showing the medication interacting with the bladder lining. Include elements like a patient lying down, a healthcare provider in scrubs, and medical equipment. The style should be clean, modern, and informative, suitable for public health awareness, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./bladder_instillation.jpg" class="card-banner" alt="Bladder instillation Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Cancer</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-cancer-bladder-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Bladder cancer</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Bladder instillation</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Cancer</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Bladder cancer</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Procedure Overview:</strong> Bladder instillation involves delivering liquid medication directly into the bladder through a catheter.</li><li><strong>Primary Purpose:</strong> This treatment is primarily used for non-muscle invasive bladder cancer (NMIBC) to prevent recurrence and progression after tumor resection.</li><li><strong>Common Agents:</strong> The most common agents instilled are Bacillus Calmette-Guérin (BCG), an immunotherapy, and Mitomycin C, a chemotherapy drug.</li><li><strong>Mechanism of Action:</strong> These agents work by either stimulating an immune response against cancer cells (BCG) or directly killing cancer cells (Mitomycin C) within the bladder lining.</li><li><strong>Treatment Schedule:</strong> Instillations are typically given weekly for several weeks (induction phase), followed by maintenance instillations over months or years, depending on the specific protocol and patient response.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Hematuria:</strong> Visible or microscopic blood in the urine, often the initial symptom prompting bladder cancer diagnosis and subsequent treatment.</li><li><strong>Dysuria:</strong> Pain or discomfort during urination, which can be a symptom of bladder cancer or a side effect of the instillation.</li><li><strong>Urinary Frequency &amp; Urgency:</strong> Increased need to ur urinate and a sudden, strong urge to urinate, common with bladder irritation from cancer or post-instillation.</li><li><strong>Bladder Spasms:</strong> Involuntary contractions of the bladder muscle, potentially leading to discomfort or leakage, especially during or after instillation.</li><li><strong>Flu-like Symptoms (BCG):</strong> Fever, chills, body aches, and fatigue can occur, particularly after BCG instillations, indicating an immune response.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Active Urinary Tract Infection (UTI):</strong> Instillation is contraindicated with an active UTI; treatment must be postponed until the infection is resolved.</li><li><strong>Gross Hematuria:</strong> Significant blood in the urine or recent traumatic catheterization may contraindicate instillation due to increased risk of systemic absorption.</li><li><strong>Bladder Perforation:</strong> Instillation is absolutely contraindicated if there is any suspicion of bladder perforation.</li><li><strong>Recent Bladder Surgery:</strong> Instillation is typically delayed for at least 2-4 weeks after transurethral resection of bladder tumor (TURBT) to allow for healing and reduce systemic absorption.</li><li><strong>Fluid Restriction:</strong> Limit fluid intake for 2-4 hours prior to the procedure to ensure the bladder is not overly full and the medication is not diluted.</li><li><strong>Post-Instillation Retention:</strong> Patients must retain the medication in the bladder for the prescribed duration (typically 1-2 hours) to maximize efficacy.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions &amp; Restrictions</h2><ul><li><strong>Pre-Procedure Hydration:</strong> Ensure adequate hydration in the days leading up to the procedure, but limit fluid intake for 2-4 hours immediately before instillation to prevent premature voiding.</li><li><strong>Post-Procedure Hydration:</strong> After the retention period and initial voiding, increase fluid intake to help flush the bladder and urinary tract, reducing irritation and potential for infection.</li><li><strong>Avoid Bladder Irritants:</strong> For a few days post-instillation, consider avoiding known bladder irritants such as caffeine, alcohol, spicy foods, and acidic beverages, which may exacerbate urinary symptoms.</li><li><strong>Balanced Nutrition:</strong> Maintain a well-balanced diet to support overall immune function and healing, particularly important during cancer treatment.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Handling Contaminated Materials:</strong> For 6 hours after BCG instillation, and for 6 hours after Mitomycin C instillation, urine and any items contaminated with urine (e.g., clothing, toilet paper) should be handled with care.</li><li><strong>Toilet Hygiene:</strong> Advise the patient to sit to urinate to prevent splashing. After voiding, pour 2 cups of bleach into the toilet, close the lid, and let it stand for 15-20 minutes before flushing twice.</li><li><strong>Personal Hygiene:</strong> Encourage thorough handwashing with soap and water after each void for 6 hours post-instillation.</li><li><strong>Sexual Activity:</strong> Advise avoiding sexual intercourse for at least 48 hours after instillation, or using a condom to prevent exposure to the medication.</li><li><strong>Monitoring for Complications:</strong> Be vigilant for signs of severe bladder irritation, high fever (especially with BCG), persistent hematuria, or signs of systemic infection, and report them immediately to the healthcare provider.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Adherence to Schedule:</strong> Emphasize the critical importance of adhering to the prescribed instillation schedule for optimal therapeutic outcomes and recurrence prevention in NMIBC.</li><li><strong>Symptom Management:</strong> Advise patients on expected side effects and provide strategies for managing bladder irritation, dysuria, and flu-like symptoms, including analgesics and antispasmodics.</li><li><strong>Prompt Reporting:</strong> Instruct patients to promptly report any severe or unusual symptoms, such as high fever, severe abdominal pain, persistent gross hematuria, or signs of systemic infection.</li><li><strong>Long-term Surveillance:</strong> Reinforce the necessity of ongoing cystoscopic surveillance and urine cytology, even after successful instillation therapy, due to the high recurrence rate of bladder cancer.</li><li><strong>Patient Education:</strong> Ensure comprehensive patient education regarding the procedure, potential risks, benefits, and proper post-instillation precautions to enhance safety and compliance.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic &amp; Nursing Corner</h2><ul><li><strong>Sterile Catheterization Technique:</strong> Meticulous sterile technique is paramount during catheter insertion to prevent iatrogenic urinary tract infections.</li><li><strong>Medication Preparation &amp; Verification:</strong> Nurses must ensure correct medication, dose, and concentration, adhering to hazardous drug handling protocols for agents like Mitomycin C and BCG.</li><li><strong>Patient Education &amp; Support:</strong> Provide clear, concise instructions to patients regarding pre- and post-instillation care, expected side effects, and when to seek medical attention. Offer emotional support.</li><li><strong>Monitoring for Adverse Reactions:</strong> Closely monitor patients during and after instillation for signs of allergic reactions, severe bladder spasms, systemic absorption, or signs of infection.</li><li><strong>Waste Management:</strong> Implement strict protocols for the disposal of contaminated materials (catheters, syringes, urine) in accordance with institutional hazardous waste guidelines.</li><li><strong>Documentation:</strong> Accurately document the instillation procedure, medication details, patient tolerance, and any adverse events.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Indications:</strong> Primarily for non-muscle invasive bladder cancer (NMIBC), including Ta, T1, and carcinoma in situ (CIS), after complete transurethral resection.</li><li><strong>BCG Mechanism:</strong> Induces a localized inflammatory and immune response within the bladder, leading to the destruction of cancer cells. It is a live attenuated strain of Mycobacterium bovis.</li><li><strong>Mitomycin C Mechanism:</strong> An alkylating agent that cross-links DNA, inhibiting DNA synthesis and causing cell death in rapidly dividing cancer cells.</li><li><strong>Contraindications:</strong> Active UTI, gross hematuria, recent bladder trauma/perforation, pregnancy, immunosuppression (for BCG).</li><li><strong>Common Side Effects:</strong> Chemical cystitis (dysuria, frequency, urgency), hematuria, bladder spasms, flu-like symptoms (BCG), skin rash.</li><li><strong>Complications:</strong> Systemic BCG infection (BCGitis), severe hemorrhagic cystitis, epididymitis, prostatitis, bladder contracture.</li><li><strong>Pharmacokinetics:</strong> Minimal systemic absorption is desired; local action within the bladder is key. Retention time is crucial for efficacy.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

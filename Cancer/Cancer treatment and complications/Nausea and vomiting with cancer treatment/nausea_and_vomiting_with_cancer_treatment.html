@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a patient, possibly with a headscarf or baldness indicating cancer treatment, experiencing mild nausea. A gentle hand (nurse or caregiver) offers a glass of water or a small, bland snack. Soft, muted colors. Focus on comfort, empathy, and support. No text.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./nausea_and_vomiting_with_cancer_treatment.jpg" class="card-banner" alt="Nausea and vomiting with cancer treatment Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Cancer</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-cancer-cancer-treatment-and-complications" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Cancer treatment and complications</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Nausea and vomiting with cancer treatment</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Cancer</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Cancer treatment and complications</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Prevalence</strong>: Nausea and vomiting (N&V) are common and distressing side effects of many cancer treatments, including chemotherapy, radiation therapy, immunotherapy, and targeted therapies.</li><li><strong>Mechanisms</strong>: Caused by various factors such as direct irritation of the gastrointestinal tract, stimulation of the chemoreceptor trigger zone (CTZ) in the brain, and release of neurotransmitters.</li><li><strong>Impact</strong>: Can lead to dehydration, malnutrition, electrolyte imbalances, fatigue, and significant reduction in quality of life, potentially affecting treatment adherence.</li><li><strong>Types</strong>: Can be acute (within 24 hours of treatment), delayed (more than 24 hours), anticipatory (before treatment due to learned response), or breakthrough (despite prophylactic antiemetics).</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Queasiness</strong>: Persistent feeling of sickness in the stomach, often preceding vomiting.</li><li><strong>Retching</strong>: Involuntary spasms of the diaphragm and abdominal muscles without expulsion of stomach contents.</li><li><strong>Vomiting</strong>: Forceful expulsion of stomach contents through the mouth.</li><li><strong>Dehydration</strong>: Dry mouth, decreased urination, dizziness, lightheadedness, and extreme thirst.</li><li><strong>Fatigue</strong>: Profound tiredness and lack of energy, often exacerbated by N&V and poor intake.</li><li><strong>Weight Loss</strong>: Unintentional decrease in body weight due to reduced food intake and nutrient absorption.</li><li><strong>Electrolyte Imbalance</strong>: Symptoms like muscle weakness, cramps, irregular heartbeats, or confusion due to loss of essential minerals.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Prophylactic Antiemetics</strong>: Administer antiemetic medications as prescribed *before* chemotherapy or other emetogenic treatments to prevent N&V.</li><li><strong>Hydration Status</strong>: Monitor and maintain adequate hydration, especially during and after treatment, to prevent dehydration. Intravenous fluids may be necessary.</li><li><strong>Oral Hygiene</strong>: Encourage frequent oral care to manage dry mouth and unpleasant tastes, which can worsen nausea.</li><li><strong>Medication Adherence</strong>: Strictly follow the prescribed schedule for antiemetic medications, even if feeling well, to maintain their effectiveness.</li><li><strong>Avoid Triggers</strong>: Identify and avoid strong odors, greasy foods, overly sweet foods, and stuffy environments that can trigger nausea.</li><li><strong>Positioning</strong>: Advise patients to sit upright for at least an hour after eating to aid digestion and reduce reflux.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Small, Frequent Meals</strong>: Consume small amounts of food and fluids frequently throughout the day rather than large meals.</li><li><strong>Bland Foods</strong>: Opt for bland, easy-to-digest foods such as toast, crackers, rice, plain pasta, boiled chicken, and clear broths.</li><li><strong>Cool or Room Temperature Foods</strong>: Foods that are cool or at room temperature may be better tolerated than hot foods, which can have stronger odors.</li><li><strong>Hydration</strong>: Sip on clear liquids like water, ginger ale, clear broths, or diluted fruit juices throughout the day to prevent dehydration. Avoid very cold or very hot drinks.</li><li><strong>Avoid Irritants</strong>: Restrict intake of greasy, fried, spicy, highly acidic, or very sweet foods, as these can exacerbate nausea.</li><li><strong>Ginger</strong>: Consider ginger-containing foods or beverages (e.g., ginger tea, ginger candies) as they may help alleviate nausea for some individuals.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Monitor Symptoms</strong>: Closely observe and document the frequency, severity, and timing of nausea and vomiting episodes.</li><li><strong>Medication Administration</strong>: Ensure timely administration of prescribed antiemetic medications and report any missed doses or difficulties.</li><li><strong>Hydration Support</strong>: Encourage and assist with fluid intake, offering small sips frequently. Monitor for signs of dehydration.</li><li><strong>Environmental Control</strong>: Help maintain a calm, well-ventilated, and odor-free environment to minimize triggers.</li><li><strong>Report Worsening</strong>: Immediately report any uncontrolled vomiting, signs of severe dehydration, dizziness, or inability to keep down medications to the healthcare team.</li><li><strong>Emotional Support</strong>: Provide reassurance and emotional support, as N&V can be very distressing and isolating.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Individualized Management</strong>: N&V management must be individualized based on the specific cancer treatment, patient risk factors, and previous experiences.</li><li><strong>Multimodal Antiemetic Regimens</strong>: Utilize a combination of antiemetic agents (e.g., 5-HT3 receptor antagonists, NK1 receptor antagonists, corticosteroids, dopamine receptor antagonists) to target different pathways.</li><li><strong>Proactive Approach</strong>: Emphasize prophylactic antiemetic use, especially for highly emetogenic chemotherapy, to prevent N&V rather than treating it reactively.</li><li><strong>Assess Contributing Factors</strong>: Evaluate for other causes of N&V, such as electrolyte imbalances, constipation, opioid use, or central nervous system metastases.</li><li><strong>Patient Education</strong>: Educate patients on medication schedules, dietary modifications, and when to contact the healthcare team for breakthrough symptoms.</li><li><strong>Consider Non-Pharmacological Interventions</strong>: Recommend complementary therapies like acupuncture, relaxation techniques, or guided imagery as adjuncts to pharmacological treatment.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Assessment</strong>: Conduct thorough assessments of N&V, including onset, duration, frequency, severity (using a scale), precipitating factors, and relieving factors.</li><li><strong>Pharmacological Interventions</strong>: Administer prescribed antiemetics, understand their mechanisms of action, side effects, and appropriate timing.</li><li><strong>Non-Pharmacological Interventions</strong>: Implement comfort measures such as cool compresses, oral hygiene, distraction, and environmental modifications.</li><li><strong>Fluid & Electrolyte Monitoring</strong>: Closely monitor intake and output, vital signs, and laboratory results for signs of dehydration or electrolyte imbalance.</li><li><strong>Patient Education</strong>: Educate patients and caregivers on antiemetic regimens, dietary strategies, symptom reporting, and self-care measures.</li><li><strong>Documentation</strong>: Accurately document all assessments, interventions, patient responses, and communications with the healthcare team.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>CINV (Chemotherapy-Induced Nausea and Vomiting)</strong>: A common and often severe side effect of chemotherapy, classified by timing (acute, delayed, anticipatory, breakthrough, refractory).</li><li><strong>RINV (Radiation-Induced Nausea and Vomiting)</strong>: N&V caused by radiation therapy, particularly when targeting the abdomen, pelvis, or brain.</li><li><strong>Chemoreceptor Trigger Zone (CTZ)</strong>: An area in the brainstem that responds to circulating toxins and neurotransmitters, initiating the vomiting reflex.</li><li><strong>Neurotransmitters Involved</strong>: Key neurotransmitters include serotonin (5-HT3), substance P (NK1), dopamine (D2), and histamine (H1), which are targets for antiemetic drugs.</li><li><strong>Antiemetic Classes</strong>: Major classes include 5-HT3 receptor antagonists (e.g., ondansetron), NK1 receptor antagonists (e.g., aprepitant), corticosteroids (e.g., dexamethasone), dopamine antagonists (e.g., metoclopramide), and benzodiazepines (e.g., lorazepam for anticipatory N&V).</li><li><strong>Emetogenicity Risk</strong>: Classification of chemotherapy agents based on their likelihood to cause N&V (high, moderate, low, minimal).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

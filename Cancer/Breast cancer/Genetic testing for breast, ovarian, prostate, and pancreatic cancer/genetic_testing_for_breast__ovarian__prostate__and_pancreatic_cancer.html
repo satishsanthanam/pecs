@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for public awareness: A diverse group of individuals, including men and women of various ages, standing around a stylized DNA helix. Some individuals are holding hands, representing family connections. Medical professionals (a doctor and a genetic counselor) are explaining results on a tablet. Subtle cancer awareness ribbons are integrated into the background. Elements like a magnifying glass examining genetic markers and abstract representations of breast, ovarian, prostate, and pancreatic organs are visible. The overall design is clean, modern, and conveys hope and personalized medicine.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./genetic_testing_for_breast__ovarian__prostate__and_pancreatic_cancer.jpg" class="card-banner" alt="Genetic testing for breast, ovarian, prostate, and pancreatic cancer Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Cancer</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-cancer-breast-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Breast cancer</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Genetic testing for breast, ovarian, prostate, and pancreatic cancer</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Cancer</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Breast cancer</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose of Testing:</strong> Genetic testing identifies inherited mutations in genes (e.g., BRCA1, BRCA2, PALB2, ATM, CHEK2, TP53, MLH1, MSH2) that significantly increase the risk of developing breast, ovarian, prostate, and pancreatic cancers.</li><li><strong>Target Population:</strong> Recommended for individuals with a strong personal or family history of these cancers, early-onset diagnoses, multiple primary cancers, or specific cancer types (e.g., triple-negative breast cancer).</li><li><strong>Inheritance Patterns:</strong> These mutations are typically inherited in an autosomal dominant pattern, meaning only one copy of the altered gene is needed to increase risk, and each child of a carrier has a 50% chance of inheriting the mutation.</li><li><strong>Risk Management:</strong> Positive results inform personalized cancer risk management strategies, including enhanced surveillance, chemoprevention, or prophylactic surgeries.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Early-Onset Cancer Diagnosis:</strong> Personal history of breast cancer diagnosed before age 50, ovarian cancer at any age, or aggressive prostate cancer at a younger age.</li><li><strong>Multiple Primary Cancers:</strong> An individual having more than one primary cancer diagnosis (e.g., breast cancer in both breasts, or breast and ovarian cancer).</li><li><strong>Family History of Specific Cancers:</strong> Two or more close relatives (on the same side of the family) diagnosed with breast, ovarian, prostate (especially aggressive or metastatic), or pancreatic cancer.</li><li><strong>Male Breast Cancer:</strong> Any diagnosis of breast cancer in a male individual.</li><li><strong>Specific Cancer Characteristics:</strong> Diagnosis of triple-negative breast cancer, or certain histological types of ovarian cancer (e.g., high-grade serous).</li><li><strong>Ashkenazi Jewish Ancestry:</strong> Individuals of Ashkenazi Jewish descent with a personal or family history of breast, ovarian, or pancreatic cancer due to higher prevalence of specific founder mutations.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Pre-Test Genetic Counseling:</strong> Mandatory to discuss the benefits, limitations, potential results (positive, negative, variant of uncertain significance), and psychological implications before testing.</li><li><strong>Informed Consent:</strong> Ensure a thorough understanding of the testing process, data privacy, and the implications for both the individual and their family members.</li><li><strong>Emotional and Psychological Impact:</strong> Be prepared for potential anxiety, stress, or guilt associated with receiving results, especially if positive, and consider psychological support.</li><li><strong>Genetic Information Nondiscrimination Act (GINA):</strong> Understand that GINA protects against discrimination in health insurance and employment based on genetic information, but does not cover life, disability, or long-term care insurance.</li><li><strong>Family Communication:</strong> Plan how to communicate results and their implications to at-risk family members, as they may also benefit from testing.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>No Pre-Test Restrictions:</strong> Genetic testing, typically performed on blood or saliva samples, does not require any specific dietary restrictions, fasting, or fluid intake modifications prior to the sample collection.</li><li><strong>Post-Result Lifestyle Considerations:</strong> While diet does not influence genetic test results, individuals with identified genetic mutations may be advised on general healthy eating patterns as part of a comprehensive cancer risk reduction strategy, alongside medical interventions.</li><li><strong>Hydration for Blood Draw:</strong> Adequate hydration is generally recommended before any blood draw to facilitate easier vein access, though it is not a strict requirement for the genetic analysis itself.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Accurate Family History:</strong> Provide a detailed and accurate family medical history, including types of cancer, age of diagnosis, and relationships, as this guides appropriate test selection.</li><li><strong>Post-Test Counseling:</strong> Engage in post-test genetic counseling to understand the interpretation of results, personalized risk assessment, and recommended medical management plans.</li><li><strong>Confidentiality:</strong> Ensure understanding of how genetic information will be stored, accessed, and protected to maintain privacy.</li><li><strong>Follow-up Care:</strong> Adhere strictly to recommended surveillance protocols (e.g., mammograms, MRIs, colonoscopies, prostate screenings, transvaginal ultrasounds, CA-125 tests) and prophylactic measures based on test results.</li><li><strong>Regular Physician Consultations:</strong> Maintain regular communication with your healthcare provider to discuss any new symptoms or changes in family history.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Risk Stratification:</strong> Genetic testing is a powerful tool for precise cancer risk stratification, allowing for highly individualized prevention and early detection strategies.</li><li><strong>Personalized Medicine:</strong> Results guide tailored medical management, including enhanced screening protocols, chemoprevention options, and consideration of prophylactic surgeries (e.g., mastectomy, oophorectomy).</li><li><strong>Cascade Testing:</strong> Physicians should encourage cascade testing for at-risk family members once a pathogenic variant is identified in an index case.</li><li><strong>Multidisciplinary Approach:</strong> Optimal patient care involves collaboration with genetic counselors, oncologists, surgeons, radiologists, and other specialists.</li><li><strong>Ethical Considerations:</strong> Careful consideration of the ethical implications, including patient autonomy, potential for discrimination, and psychological impact, is paramount.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Nurses play a crucial role in educating patients about the genetic testing process, potential outcomes, and the importance of pre- and post-test counseling.</li><li><strong>Emotional Support:</strong> Provide empathetic support to patients and families navigating the emotional complexities of genetic risk and results.</li><li><strong>Resource Navigation:</strong> Assist patients in accessing genetic counseling services, support groups, and relevant educational materials.</li><li><strong>Understanding Terminology:</strong> Familiarity with genetic terms such as 'pathogenic variant,' 'variant of uncertain significance (VUS),' 'penetrance,' and 'hereditary cancer syndrome' is essential for effective communication.</li><li><strong>Advocacy:</strong> Advocate for patients' rights regarding genetic information privacy and access to appropriate follow-up care.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Key Genes:</strong> BRCA1, BRCA2, PALB2, CHEK2, ATM, TP53 (Li-Fraumeni syndrome), CDH1 (Hereditary Diffuse Gastric Cancer), PTEN (Cowden syndrome), STK11 (Peutz-Jeghers syndrome), MLH1, MSH2, MSH6, PMS2, EPCAM (Lynch syndrome).</li><li><strong>Testing Methodologies:</strong> Next-Generation Sequencing (NGS) for multi-gene panel testing, Sanger sequencing for targeted variant analysis, MLPA (Multiplex Ligation-dependent Probe Amplification) for large genomic rearrangements.</li><li><strong>Result Interpretation:</strong> Pathogenic (disease-causing), Likely Pathogenic, Variant of Uncertain Significance (VUS), Likely Benign, Benign.</li><li><strong>Penetrance:</strong> The proportion of individuals with a particular genotype who express the associated phenotype (e.g., cancer).</li><li><strong>Clinical Guidelines:</strong> Adherence to guidelines from organizations such as NCCN (National Comprehensive Cancer Network) for genetic testing criteria and management of hereditary cancer syndromes.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

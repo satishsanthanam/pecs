@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a diverse group of medical professionals (oncologist, nurse, pathologist) collaboratively reviewing a patient's chart and microscopic slides, with a stylized human torso showing the lymphatic system highlighted. Lymph nodes are subtly enlarged. The background features abstract representations of healthy cells and cancerous cells, symbolizing the disease. Clean, modern design with a focus on awareness and medical care. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./lymphoma.jpg" class="card-banner" alt="Lymphoma Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Cancer</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-cancer-lymphoma-and-hodgkin-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Lymphoma and Hodgkin disease</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Lymphoma</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Cancer</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Lymphoma and Hodgkin disease</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Lymphoma is a cancer that begins in infection-fighting cells of the immune system, called lymphocytes.</li><li><strong>Types:</strong> The two main types are Hodgkin lymphoma (HL) and non-Hodgkin lymphoma (NHL), each with distinct characteristics and treatment approaches.</li><li><strong>Origin:</strong> It primarily affects the lymphatic system, a network of vessels and glands that are part of the body's immune defense.</li><li><strong>Prevalence:</strong> Non-Hodgkin lymphoma is more common than Hodgkin lymphoma.</li><li><strong>Risk Factors:</strong> Certain infections (e.g., Epstein-Barr virus, HIV), autoimmune diseases, and immunosuppression can increase risk.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Painless Swelling:</strong> Enlarged lymph nodes in the neck, armpit, or groin are often the first noticeable sign.</li><li><strong>Fever:</strong> Unexplained, persistent fever, often cyclical.</li><li><strong>Night Sweats:</strong> Drenching night sweats that may require changing clothes or bedding.</li><li><strong>Weight Loss:</strong> Unexplained loss of 10% or more of body weight over six months.</li><li><strong>Fatigue:</strong> Persistent and severe tiredness that does not improve with rest.</li><li><strong>Itching:</strong> Generalized pruritus (itching) without a rash.</li><li><strong>Cough or Shortness of Breath:</strong> May occur if lymphoma affects lymph nodes in the chest.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Prompt Evaluation:</strong> Seek medical attention for any persistent or unexplained swollen lymph nodes or B symptoms (fever, night sweats, weight loss).</li><li><strong>Infection Risk:</strong> Patients undergoing treatment are often immunocompromised; strict hand hygiene and avoidance of sick individuals are vital.</li><li><strong>Vaccination Status:</strong> Discuss all vaccinations with your oncology team, as live vaccines may be contraindicated during treatment.</li><li><strong>Medication Adherence:</strong> Strictly follow all prescribed medication regimens, including chemotherapy and supportive care drugs.</li><li><strong>Avoidance of Exposure:</strong> Minimize exposure to environmental toxins and infectious agents, especially during periods of immunosuppression.</li><li><strong>Fertility Preservation:</strong> Discuss fertility preservation options before starting treatment, as some therapies can affect reproductive health.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Nutrient-Dense Foods:</strong> Focus on a balanced diet rich in lean proteins, whole grains, fruits, and vegetables to support immune function and energy levels.</li><li><strong>Hydration:</strong> Maintain adequate fluid intake, especially during chemotherapy, to help flush toxins and prevent dehydration.</li><li><strong>Small, Frequent Meals:</strong> To manage nausea, appetite loss, or early satiety, consume smaller portions more often throughout the day.</li><li><strong>Food Safety:</strong> Practice meticulous food hygiene, including thorough washing of produce and cooking meats to safe temperatures, to prevent foodborne illness.</li><li><strong>Avoid Raw Foods:</strong> During periods of low white blood cell counts (neutropenia), avoid raw or undercooked meats, fish, eggs, unpasteurized dairy, and unwashed raw fruits/vegetables.</li><li><strong>Supplementation:</strong> Consult with your healthcare team before taking any dietary supplements, as some may interact with treatments.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Symptom Monitoring:</strong> Vigilantly observe and report any new or worsening symptoms, especially fever, chills, or signs of infection, to the medical team immediately.</li><li><strong>Medication Management:</strong> Assist with organizing and administering medications as prescribed, ensuring correct dosages and schedules.</li><li><strong>Infection Control:</strong> Reinforce strict hand hygiene, ensure a clean living environment, and limit exposure to crowds or sick individuals.</li><li><strong>Emotional Support:</strong> Provide consistent emotional and psychological support, recognizing the significant impact of a cancer diagnosis and treatment.</li><li><strong>Nutrition Support:</strong> Encourage adequate nutrition and hydration, adapting meals to manage treatment side effects like nausea or taste changes.</li><li><strong>Appointment Coordination:</strong> Help manage and attend medical appointments, facilitating communication with the healthcare team.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Definitive Diagnosis:</strong> A lymph node biopsy is crucial for accurate diagnosis and subtyping of lymphoma, guiding appropriate treatment.</li><li><strong>Staging:</strong> Comprehensive staging (e.g., Ann Arbor system) is essential to determine the extent of the disease and inform treatment strategy.</li><li><strong>Multidisciplinary Approach:</strong> Management often involves a team of oncologists, radiation oncologists, pathologists, and supportive care specialists.</li><li><strong>Treatment Personalization:</strong> Therapy is highly individualized based on lymphoma type, stage, patient age, overall health, and specific molecular markers.</li><li><strong>Prognosis:</strong> Prognosis varies widely depending on the type and stage of lymphoma, but many forms are highly curable with modern therapies.</li><li><strong>Long-Term Follow-up:</strong> Regular surveillance is critical for monitoring treatment response, detecting recurrence, and managing late effects of therapy.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Educate patients and families on lymphoma types, treatment plans, potential side effects, and self-care strategies.</li><li><strong>Symptom Assessment:</strong> Conduct thorough assessments for B symptoms (fever, night sweats, weight loss) and signs of lymphadenopathy.</li><li><strong>Chemotherapy Administration:</strong> Understand safe handling, administration protocols, and monitoring for acute reactions during chemotherapy.</li><li><strong>Infection Prevention:</strong> Implement neutropenic precautions, monitor complete blood counts, and educate on signs of infection.</li><li><strong>Psychosocial Support:</strong> Provide empathetic care, assess for distress, and refer to social work or support groups as needed.</li><li><strong>Pain Management:</strong> Assess and manage pain effectively, which can arise from disease progression or treatment side effects.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathology:</strong> Diagnosis relies on histopathological examination of biopsy specimens, often with immunohistochemistry and molecular studies.</li><li><strong>Staging Systems:</strong> Ann Arbor staging system is commonly used for both Hodgkin and non-Hodgkin lymphoma.</li><li><strong>Prognostic Indices:</strong> International Prognostic Index (IPI) for NHL and International Prognostic Score (IPS) for HL aid in risk stratification.</li><li><strong>Treatment Modalities:</strong> Include chemotherapy (e.g., ABVD for HL, R-CHOP for NHL), radiation therapy, immunotherapy (e.g., rituximab), and stem cell transplantation.</li><li><strong>Biomarkers:</strong> CD20 (NHL), CD30 (HL), and other markers guide targeted therapies.</li><li><strong>Complications:</strong> Potential complications include febrile neutropenia, tumor lysis syndrome, secondary malignancies, and long-term organ toxicities from treatment.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for public awareness. A diverse child, around 7-9 years old, smiling and active, holding a colorful asthma action plan. Beside the child, a caring parent or guardian is reviewing the plan with a friendly doctor or nurse. Elements like an inhaler, a peak flow meter, and a clear visual representation of the Green, Yellow, and Red zones of the action plan are subtly integrated. The background is bright and reassuring, depicting a safe, clean environment. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./asthma_action_plan_for_children.jpg" class="card-banner" alt="Asthma action plan for children Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-children-s-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Children's health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-children-s-health-allergies-and-asthma" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Allergies and asthma</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Asthma action plan for children</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Children's health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Allergies and asthma</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+  <h2>&#128161; What You Need to Know</h2>
+  <ul>
+    <li><strong>Purpose of the Plan:</strong> An asthma action plan is a personalized, written guide developed with a healthcare provider to help manage a child's asthma effectively, preventing severe attacks.</li>
+    <li><strong>Three Zones System:</strong> It typically outlines steps for managing asthma based on symptoms and peak flow readings, categorized into Green (well-controlled), Yellow (worsening), and Red (medical alert) zones.</li>
+    <li><strong>Individualized Care:</strong> Each plan is unique to the child, detailing daily controller medications, quick-relief medications, and emergency procedures.</li>
+    <li><strong>Empowering Families:</strong> The plan empowers parents, caregivers, and the child (if old enough) to recognize symptoms and take appropriate action promptly.</li>
+  </ul>
+</div>
+<div class='symptoms-section'>
+  <h2>&#129298; Associated Symptoms</h2>
+  <ul>
+    <li><strong>Green Zone Indicators:</strong> No coughing, wheezing, chest tightness, or shortness of breath; able to do usual activities.</li>
+    <li><strong>Yellow Zone Warning Signs:</strong> Coughing, wheezing, chest tightness, shortness of breath, waking at night due to asthma, or symptoms with activity. These indicate asthma is getting worse.</li>
+    <li><strong>Red Zone Emergency Symptoms:</strong> Severe shortness of breath, struggling to breathe, quick-relief medicine not helping, difficulty walking or talking, blue lips or fingernails. These require immediate medical attention.</li>
+    <li><strong>Trigger Identification:</strong> Symptoms often worsen after exposure to known triggers like allergens (pollen, dust mites, pet dander), irritants (smoke, strong odors), or respiratory infections.</li>
+  </ul>
+</div>
+<div class='precautions-section'>
+  <h2>&#128737; Crucial Precautions</h2>
+  <ul>
+    <li><strong>Trigger Avoidance:</strong> Identify and minimize exposure to known asthma triggers, including allergens, smoke, and air pollution, to prevent symptom exacerbation.</li>
+    <li><strong>Medication Adherence:</strong> Administer prescribed controller medications daily as directed, even when the child feels well, to maintain long-term asthma control.</li>
+    <li><strong>Proper Inhaler Technique:</strong> Ensure correct use of inhalers and spacers, as improper technique can reduce medication delivery and effectiveness. Regular demonstration and practice are vital.</li>
+    <li><strong>Emergency Preparedness:</strong> Always have quick-relief medication readily available and ensure all caregivers (school, daycare) have a copy of the action plan and know how to use it.</li>
+    <li><strong>Regular Medical Reviews:</strong> Schedule regular follow-up appointments with the healthcare provider to review the action plan, assess asthma control, and adjust medications as needed.</li>
+  </ul>
+</div>
+<div class='dietary-section'>
+  <h2>&#127869; Dietary Directions & Restrictions</h2>
+  <ul>
+    <li><strong>Food Allergen Awareness:</strong> Identify and strictly avoid any specific food allergens (e.g., peanuts, dairy, shellfish) that are known to trigger or exacerbate a child's asthma symptoms.</li>
+    <li><strong>Hydration Importance:</strong> Encourage adequate fluid intake to help thin mucus, making it easier to clear from the airways, especially during periods of increased symptoms.</li>
+    <li><strong>Medication-Food Interactions:</strong> Be aware of any specific dietary considerations or restrictions related to prescribed asthma medications, as advised by the pharmacist or physician.</li>
+    <li><strong>Balanced Nutrition:</strong> While not a direct treatment, a diet rich in fruits, vegetables, and whole grains supports overall immune health, which can indirectly benefit asthma management.</li>
+  </ul>
+</div>
+<div class='warning-box'>
+  <h2>&#9888;&#65039; Attendant Guidelines</h2>
+  <ul>
+    <li><strong>Plan Accessibility:</strong> Ensure the asthma action plan is readily accessible to all caregivers, including parents, grandparents, teachers, and school nurses, and that they understand its instructions.</li>
+    <li><strong>Medication Storage:</strong> Store all asthma medications safely and correctly, ensuring they are not expired and are easily identifiable for quick access during an asthma flare-up.</li>
+    <li><strong>Emergency Contact Information:</strong> Keep up-to-date emergency contact numbers for parents/guardians and the child's healthcare provider clearly visible on the plan.</li>
+    <li><strong>When to Call 911:</strong> Immediately call emergency services (911 or local equivalent) if the child is in the Red Zone and quick-relief medication is not helping, or if they show signs of severe respiratory distress.</li>
+  </ul>
+</div>
+<div class='doctor-advice'>
+  <h2>&#129658; Physician's Perspective</h2>
+  <ul>
+    <li><strong>Collaborative Plan Development:</strong> An effective asthma action plan is a partnership between the physician, child, and family, tailored to the child's specific asthma severity and triggers.</li>
+    <li><strong>Regular Assessment:</strong> Asthma is dynamic; regular clinical assessments are crucial to monitor control, adjust medication dosages, and update the action plan as the child grows or their condition changes.</li>
+    <li><strong>Education is Key:</strong> Physicians emphasize comprehensive education for families on recognizing symptoms, proper medication use, trigger avoidance, and emergency protocols.</li>
+    <li><strong>Preventative Focus:</strong> The goal is to prevent asthma exacerbations and maintain optimal lung function, allowing the child to participate fully in daily activities without limitations.</li>
+  </ul>
+</div>
+<div class='student-nurse-index'>
+  <h2>&#127891; Academic & Nursing Corner</h2>
+  <ul>
+    <li><strong>School Nurse Role:</strong> School nurses are vital in implementing and overseeing asthma action plans within the school setting, ensuring medication administration and emergency response.</li>
+    <li><strong>Child and Family Education:</strong> Nurses educate children on self-management techniques (e.g., using a spacer) and reinforce the importance of adherence to the action plan with families.</li>
+    <li><strong>Communication Hub:</strong> They serve as a critical link between parents, physicians, and school staff, facilitating clear communication regarding the child's asthma needs.</li>
+    <li><strong>Recognizing Deterioration:</strong> Training for school staff on recognizing early signs of worsening asthma and initiating appropriate steps from the action plan is essential.</li>
+  </ul>
+</div>
+<div class='technical-index'>
+  <h2>&#128300; Clinical Reference Index</h2>
+  <ul>
+    <li><strong>Peak Flow Meter:</strong> A device used to measure how fast air comes out of the lungs, helping to monitor lung function and identify worsening asthma before symptoms appear.</li>
+    <li><strong>Spirometry:</strong> A diagnostic test that measures lung function, including how much air a person can inhale and exhale, and how quickly they can exhale.</li>
+    <li><strong>GINA Guidelines:</strong> Global Initiative for Asthma (GINA) provides evidence-based strategies for asthma management and prevention, widely used by healthcare professionals.</li>
+    <li><strong>Controller Medications:</strong> Long-term medications (e.g., inhaled corticosteroids) taken daily to prevent asthma symptoms and reduce inflammation in the airways.</li>
+    <li><strong>Quick-Relief Medications:</strong> Short-acting beta-agonists (SABAs) used to quickly open airways during an asthma attack or before exercise.</li>
+  </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>
