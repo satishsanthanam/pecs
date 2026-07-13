@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A gentle flat vector illustration depicting a child, perhaps a young girl or boy, sitting with a comforting adult figure (parent or caregiver). They are looking at a photo album or a memory box, with a faint, ethereal outline of a beloved pet (dog or cat) nearby, symbolizing remembrance. The scene should convey warmth, support, and gentle sadness, with soft, muted colors. Focus on emotional connection and remembrance, suitable for a public awareness campaign on children's mental health.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./helping_a_child_cope_with_the_death_of_a_pet.jpg" class="card-banner" alt="Helping a child cope with the death of a pet Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-children-s-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Children's health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-children-s-health-mental-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Mental health</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Helping a child cope with the death of a pet</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Children's health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Mental health</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Grief is Real</strong>: Children experience genuine grief over pet loss, which can be as profound as losing a human family member.</li><li><strong>Developmental Stages</strong>: A child's understanding and reaction to death vary significantly with age and developmental stage.</li><li><strong>Open Communication</strong>: Encourage open dialogue about feelings, memories, and questions regarding the pet's death.</li><li><strong>No Right Way to Grieve</strong>: Validate all emotional responses, from sadness and anger to confusion or withdrawal.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Emotional Distress</strong>: Persistent sadness, frequent crying, irritability, or sudden mood swings.</li><li><strong>Behavioral Changes</strong>: Withdrawal from social activities, increased clinginess, aggression, or regression to earlier behaviors (e.g., bedwetting, thumb-sucking).</li><li><strong>Sleep Disturbances</strong>: Difficulty falling asleep, nightmares, or changes in sleep patterns.</li><li><strong>Somatic Complaints</strong>: Unexplained headaches, stomachaches, or loss of appetite without a clear medical cause.</li><li><strong>Academic Impact</strong>: Difficulty concentrating in school, decreased performance, or reluctance to attend school.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Euphemisms</strong>: Use clear, age-appropriate language about death (e.g., "died," "body stopped working") rather than "went to sleep" or "passed away" to prevent confusion or fear.</li><li><strong>Monitor for Prolonged Grief</strong>: Watch for signs of complicated grief, such as persistent functional impairment, severe depression, or suicidal ideation, which may require professional intervention.</li><li><strong>Respect Individual Coping</strong>: Allow the child to grieve in their own way and time; avoid forcing them to "get over it" quickly.</li><li><strong>Maintain Routines</strong>: While allowing for grief, try to maintain consistent daily routines to provide a sense of security and normalcy.</li><li><strong>Address Guilt</strong>: Children may feel responsible for the pet's death; reassure them it was not their fault.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Monitor Appetite Changes</strong>: Observe for significant changes in eating patterns, such as loss of appetite or overeating, which can be stress responses.</li><li><strong>Offer Comfort Foods</strong>: Provide familiar, comforting, and nutritious foods in small, frequent portions if appetite is low.</li><li><strong>Maintain Hydration</strong>: Ensure adequate fluid intake, especially if the child is crying frequently or experiencing stress-related physical symptoms.</li><li><strong>Avoid Food as Sole Comfort</strong>: While comfort foods are acceptable, avoid using food as the only coping mechanism; encourage other healthy outlets for emotions.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Be Present and Listen</strong>: Offer a supportive, non-judgmental presence and actively listen to the child's feelings and memories.</li><li><strong>Validate Emotions</strong>: Acknowledge and validate all feelings (sadness, anger, confusion) without trying to fix or minimize them.</li><li><strong>Create Rituals</strong>: Help the child create a memorial ritual (e.g., drawing pictures, planting a tree, creating a memory box) to honor the pet.</li><li><strong>Read Books on Grief</strong>: Utilize age-appropriate books about pet loss to help children process their emotions and understand grief.</li><li><strong>Seek Professional Help</strong>: If grief is prolonged, severe, or significantly impacting daily functioning, consult a child psychologist or grief counselor.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Assess for Complicated Grief</strong>: Clinically evaluate children presenting with persistent, debilitating grief symptoms that extend beyond typical bereavement periods.</li><li><strong>Rule Out Somatic Causes</strong>: Investigate physical complaints (e.g., headaches, stomachaches) to rule out underlying medical conditions before attributing solely to grief.</li><li><strong>Referral for Mental Health Support</strong>: Recommend referral to child psychologists, play therapists, or grief counselors for children struggling to cope.</li><li><strong>Educate Parents</strong>: Provide guidance to parents on age-appropriate communication about death and healthy coping strategies.</li><li><strong>Monitor for Regression</strong>: Advise parents to monitor for significant developmental regression and report concerns.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Holistic Assessment</strong>: Conduct a holistic assessment of the child and family unit, considering cultural and individual coping mechanisms.</li><li><strong>Therapeutic Communication</strong>: Practice therapeutic communication techniques to facilitate emotional expression in children and support parents.</li><li><strong>Resource Provision</strong>: Be prepared to provide families with resources for grief support groups, child psychologists, and educational materials on pet loss.</li><li><strong>Developmental Considerations</strong>: Understand how different developmental stages influence a child's perception of death and tailor interventions accordingly.</li><li><strong>Family-Centered Care</strong>: Support the entire family in their grief process, recognizing that parents also grieve and need support to help their child.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Bereavement</strong>: The period of grief and mourning after a loss.</li><li><strong>Complicated Grief</strong>: Persistent and pervasive grief that significantly impairs functioning and extends beyond expected duration.</li><li><strong>Childhood Grief Response</strong>: Age-specific manifestations of grief, varying from concrete understanding in young children to more abstract in adolescents.</li><li><strong>Attachment Theory</strong>: The psychological framework explaining the deep emotional bond between humans and pets, and the distress upon separation.</li><li><strong>Psychosocial Support</strong>: Interventions aimed at addressing the emotional, social, and psychological needs of individuals experiencing distress.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>
