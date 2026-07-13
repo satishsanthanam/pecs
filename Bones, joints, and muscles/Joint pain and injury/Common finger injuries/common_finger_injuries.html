@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human hand with various common finger injuries depicted. Show a finger with a simple bandage, another with a small splint, and a third with visible swelling and bruising around a joint. The style should be clean, modern, and suitable for public health awareness, with a focus on clear anatomical representation without being overly graphic. Use a soft, muted color palette. No text or labels on the image.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./common_finger_injuries.jpg" class="card-banner" alt="Common finger injuries Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-bones-joints-and-muscles" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Bones, joints, and muscles</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-bones-joints-and-muscles-joint-pain-and-injury" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Joint pain and injury</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Common finger injuries</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Bones, joints, and muscles</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Joint pain and injury</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Common Injuries:</strong> Finger injuries frequently involve sprains (ligament damage), fractures (bone breaks), dislocations (bones out of joint), and tendon injuries like mallet finger.</li><li><strong>Mechanism of Injury:</strong> These often result from direct impact, crushing forces, hyperextension, or twisting motions during sports, falls, or occupational activities.</li><li><strong>Importance of Evaluation:</strong> Prompt medical assessment is crucial to differentiate between minor sprains and more serious injuries requiring specific intervention to prevent long-term dysfunction.</li><li><strong>Anatomy Involved:</strong> Injuries can affect the phalanges (finger bones), metacarpals (hand bones connecting to fingers), and the various joints (DIP, PIP, MCP) and their supporting ligaments and tendons.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Acute Pain:</strong> Immediate and often severe pain at the site of injury, which may worsen with movement or touch.</li><li><strong>Swelling and Bruising:</strong> Rapid onset of localized swelling and discoloration (ecchymosis) around the affected finger or joint.</li><li><strong>Deformity:</strong> Visible misalignment, angulation, or abnormal positioning of the finger, indicating a possible fracture or dislocation.</li><li><strong>Limited Range of Motion:</strong> Difficulty or inability to bend, straighten, or move the injured finger through its normal range.</li><li><strong>Tenderness to Palpation:</strong> Increased pain when the injured area is gently pressed.</li><li><strong>Clicking or Popping Sensation:</strong> A distinct sound or feeling at the time of injury, often associated with dislocations or ligament tears.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Immediate RICE Protocol:</strong> Apply Rest, Ice (for 15-20 minutes every 2-3 hours), Compression (with a light bandage), and Elevation (above heart level) immediately after injury to minimize swelling and pain.</li><li><strong>Avoid Self-Manipulation:</strong> Never attempt to 'pop' a dislocated finger back into place or forcefully move a potentially fractured finger, as this can cause further damage.</li><li><strong>Protect the Injury:</strong> Use appropriate protective gear during sports or work activities that pose a risk of finger injury.</li><li><strong>Proper Lifting Techniques:</strong> Ensure correct grip and lifting methods to prevent crushing or hyperextension injuries.</li><li><strong>Seek Professional Diagnosis:</strong> Do not delay seeking medical attention for persistent pain, swelling, or any visible deformity, as early diagnosis improves outcomes.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Protein Intake:</strong> Ensure adequate consumption of lean proteins (e.g., chicken, fish, legumes) to support tissue repair and collagen synthesis essential for healing.</li><li><strong>Vitamin C Rich Foods:</strong> Include citrus fruits, berries, and leafy greens to aid in collagen production, which is vital for ligament and tendon repair.</li><li><strong>Calcium and Vitamin D:</strong> Consume dairy products, fortified foods, and fatty fish to support bone health and fracture healing.</li><li><strong>Anti-inflammatory Foods:</strong> Incorporate omega-3 fatty acids (e.g., salmon, flaxseeds) and antioxidants (e.g., colorful fruits and vegetables) to help manage inflammation during the healing process.</li><li><strong>Hydration:</strong> Maintain sufficient fluid intake to support overall metabolic processes and nutrient transport critical for recovery.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Immediate Medical Attention:</strong> Seek emergency care for severe deformity, open wounds, significant numbness or tingling, or inability to move the finger at all.</li><li><strong>Follow Splinting/Casting Instructions:</strong> Adhere strictly to the healthcare provider's instructions regarding splint or cast care, including duration of wear and keeping it dry.</li><li><strong>Monitor for Complications:</strong> Watch for signs of infection (increased redness, warmth, pus), worsening pain, or changes in sensation (numbness, tingling) and report them promptly.</li><li><strong>Pain Management:</strong> Take prescribed or over-the-counter pain relievers as directed, but do not exceed recommended dosages.</li><li><strong>Avoid Re-injury:</strong> Protect the healing finger from further trauma during daily activities and avoid strenuous use until cleared by a medical professional.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Accurate Diagnosis is Key:</strong> A thorough physical examination, often supplemented by X-rays, is essential to precisely identify the type and extent of the finger injury.</li><li><strong>Tailored Treatment Plans:</strong> Management varies widely from simple buddy taping for mild sprains to closed reduction for dislocations, splinting/casting for fractures, or surgical intervention for complex cases like unstable fractures or tendon ruptures.</li><li><strong>Importance of Rehabilitation:</strong> Physical or occupational therapy is often critical post-immobilization to restore strength, flexibility, and full function, preventing stiffness and long-term disability.</li><li><strong>Potential for Long-Term Issues:</strong> Untreated or improperly managed finger injuries can lead to chronic pain, stiffness, arthritis, or permanent deformity, significantly impacting hand function.</li><li><strong>Patient Education:</strong> Educating patients on proper care, activity modification, and adherence to rehabilitation protocols is vital for optimal recovery and preventing recurrence.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Neurovascular Assessment:</strong> Regularly assess the injured finger for circulation (color, capillary refill), sensation (light touch, two-point discrimination), and motor function (ability to move), comparing to the uninjured hand.</li><li><strong>Pain Assessment and Management:</strong> Utilize pain scales to evaluate pain levels and administer analgesics as prescribed, educating patients on medication use and potential side effects.</li><li><strong>Splint/Cast Care Education:</strong> Instruct patients on how to care for their immobilization device, including signs of complications (e.g., tightness, skin irritation, foul odor) and when to seek medical attention.</li><li><strong>Patient Education on RICE:</strong> Reinforce the RICE protocol and its importance in the initial management phase to reduce swelling and pain.</li><li><strong>Rehabilitation Adherence:</strong> Encourage and educate patients on the importance of adhering to prescribed hand therapy exercises to regain strength and range of motion.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Phalangeal Fracture:</strong> A break in one of the bones of the finger (proximal, middle, or distal phalanx).</li><li><strong>Interphalangeal (IP) Joint Dislocation:</strong> Displacement of the bones at the joints within the finger (PIP or DIP joints).</li><li><strong>Mallet Finger:</strong> An injury to the extensor tendon at the DIP joint, causing the fingertip to droop.</li><li><strong>Boutonnière Deformity:</strong> A deformity resulting from injury to the central slip of the extensor tendon at the PIP joint, causing the PIP joint to flex and the DIP joint to hyperextend.</li><li><strong>Gamekeeper's Thumb (Skier's Thumb):</strong> An injury to the ulnar collateral ligament of the thumb's MCP joint.</li><li><strong>Closed Reduction:</strong> Non-surgical procedure to realign a fractured bone or dislocated joint.</li><li><strong>Open Reduction Internal Fixation (ORIF):</strong> Surgical procedure involving incision to realign bones and stabilize them with hardware (pins, plates, screws).</li><li><strong>Buddy Taping:</strong> Taping an injured finger to an adjacent healthy finger for support and immobilization.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

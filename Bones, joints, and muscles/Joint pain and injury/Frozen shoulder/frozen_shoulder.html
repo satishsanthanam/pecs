@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a person experiencing shoulder pain and stiffness, with a visible, slightly hunched posture indicating discomfort. The shoulder joint is highlighted with subtle red or orange tones to signify inflammation or pain. The person is attempting a simple arm movement, like reaching up, but their arm is visibly restricted. Surrounding elements include subtle anatomical representations of the shoulder capsule and ligaments, stylized to show constriction or thickening. The overall aesthetic is clean, modern, and empathetic, suitable for a public health awareness card, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./frozen_shoulder.jpg" class="card-banner" alt="Frozen shoulder Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-bones-joints-and-muscles" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Bones, joints, and muscles</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-bones-joints-and-muscles-joint-pain-and-injury" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Joint pain and injury</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Frozen shoulder</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Bones, joints, and muscles</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Joint pain and injury</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Frozen shoulder, clinically known as adhesive capsulitis, is a condition characterized by pain and progressive stiffness in the shoulder joint, leading to a significant loss of both active and passive range of motion.</li><li><strong>Stages of Progression:</strong> The condition typically evolves through three distinct phases: the 'freezing' stage (increasing pain and stiffness), the 'frozen' stage (pain may decrease but stiffness remains severe), and the 'thawing' stage (gradual improvement in range of motion).</li><li><strong>Common Demographics:</strong> It most frequently affects individuals between 40 and 60 years of age, with a higher incidence observed in women.</li><li><strong>Associated Conditions:</strong> While often idiopathic, frozen shoulder is more prevalent in individuals with diabetes mellitus, thyroid disorders, Parkinson's disease, and those who have experienced prolonged immobilization of the shoulder.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Gradual Onset of Pain:</strong> Patients typically experience a dull or aching pain in the outer shoulder area, which often worsens with movement and can be particularly troublesome at night.</li><li><strong>Progressive Stiffness:</strong> A hallmark symptom is the gradual and increasing loss of both active (patient-initiated) and passive (examiner-assisted) range of motion in the shoulder joint.</li><li><strong>Restricted Daily Activities:</strong> Difficulty performing everyday tasks such as reaching overhead, dressing, combing hair, or reaching behind the back due to pain and limited mobility.</li><li><strong>Pain with Movement:</strong> Any attempt to move the shoulder beyond its restricted range can elicit sharp pain, contributing to the avoidance of movement and further stiffness.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Early Medical Consultation:</strong> Seek prompt medical evaluation upon noticing persistent shoulder pain and stiffness to ensure accurate diagnosis and timely intervention, which can significantly impact recovery outcomes.</li><li><strong>Avoid Over-Exertion:</strong> While movement is encouraged, avoid sudden, forceful, or painful movements that could exacerbate inflammation or cause further injury to the already compromised joint capsule.</li><li><strong>Pain Management Strategy:</strong> Adhere strictly to prescribed pain management protocols, including NSAIDs or other analgesics, to control discomfort and facilitate participation in physical therapy.</li><li><strong>Protect the Joint:</strong> Implement strategies to protect the affected shoulder from further trauma or strain, especially during the painful 'freezing' stage.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Anti-Inflammatory Nutrition:</strong> Incorporate foods rich in omega-3 fatty acids (e.g., fatty fish, flaxseeds), antioxidants (e.g., berries, leafy greens), and other anti-inflammatory compounds to support overall joint health and potentially reduce systemic inflammation.</li><li><strong>Blood Sugar Management:</strong> For individuals with diabetes, meticulous control of blood glucose levels is paramount, as uncontrolled diabetes is a significant risk factor for developing and prolonging frozen shoulder.</li><li><strong>Adequate Hydration:</strong> Maintain optimal fluid intake to support joint lubrication and overall tissue health, which is crucial for recovery and rehabilitation.</li><li><strong>Nutrient-Rich Diet:</strong> Focus on a balanced diet providing essential vitamins and minerals, particularly those supporting connective tissue health and immune function.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Adherence to Physical Therapy:</strong> Strict compliance with the prescribed physical therapy regimen is the cornerstone of treatment; inconsistent participation can prolong recovery.</li><li><strong>Avoid Self-Manipulation:</strong> Do not attempt aggressive self-stretching or manipulation of the shoulder, as this can cause further injury or worsen inflammation.</li><li><strong>Monitor for Worsening Symptoms:</strong> Report any sudden increase in pain, swelling, or complete loss of motion to your healthcare provider immediately, as this could indicate a complication or alternative diagnosis.</li><li><strong>Medication Compliance:</strong> Take all prescribed medications, including pain relievers and anti-inflammatory drugs, exactly as directed to manage symptoms and facilitate therapy.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Diagnostic Approach:</strong> Diagnosis is primarily clinical, based on a thorough physical examination demonstrating restricted active and passive range of motion. Imaging like X-rays may be used to rule out other conditions such as arthritis or fractures, while MRI can show capsular thickening.</li><li><strong>Conservative Management:</strong> The initial approach typically involves a combination of physical therapy, pain management with NSAIDs, and sometimes corticosteroid injections into the joint to reduce inflammation and pain.</li><li><strong>Interventional Options:</strong> For refractory cases, manipulation under anesthesia or arthroscopic capsular release (surgical removal of scar tissue) may be considered to restore range of motion.</li><li><strong>Prognosis and Recovery:</strong> While recovery can be prolonged, often taking 1 to 3 years, the majority of patients experience significant improvement with consistent conservative management.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Educate patients thoroughly on the natural history of frozen shoulder, the expected stages, the importance of adherence to physical therapy, and realistic recovery timelines.</li><li><strong>Pain Assessment and Management:</strong> Regularly assess the patient's pain levels using appropriate scales and ensure effective pain management strategies are in place to facilitate participation in rehabilitation exercises.</li><li><strong>Mobility Assistance:</strong> Assist patients with activities of daily living (ADLs) while respecting their pain limits and encouraging gentle, supported movements within their comfortable range.</li><li><strong>Reinforce Exercise Protocols:</strong> Reinforce the importance of home exercise programs, demonstrate correct techniques, and provide encouragement to maintain consistency.</li><li><strong>Monitor for Complications:</strong> Observe for any signs of nerve impingement, medication side effects, or psychological distress related to chronic pain and limited function.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>ICD-10 Code:</strong> M75.0 (Adhesive capsulitis of shoulder).</li><li><strong>Pathophysiology:</strong> Characterized by inflammation, fibrosis, and contracture of the glenohumeral joint capsule, particularly affecting the rotator interval and coracohumeral ligament.</li><li><strong>Risk Factors:</strong> Primary risk factors include diabetes mellitus (Type 1 and 2), thyroid disorders (hypo- and hyperthyroidism), cardiac disease, Parkinson's disease, and prolonged immobilization following trauma or surgery.</li><li><strong>Differential Diagnosis:</strong> Key conditions to differentiate from include rotator cuff tears, impingement syndrome, glenohumeral osteoarthritis, calcific tendinitis, and cervical radiculopathy.</li><li><strong>Imaging Findings:</strong> MRI may reveal thickening of the joint capsule (especially in the axillary recess) and the coracohumeral ligament, often with increased signal intensity indicating inflammation.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

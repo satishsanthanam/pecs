@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a person experiencing a painful muscle cramp in their calf. The person is shown with a grimace of discomfort, gently holding or stretching their leg. Visual cues like radiating lines or a 'knot' symbol on the affected muscle emphasize the tightness and pain. In the background, subtle icons represent hydration (a water bottle) and stretching (a figure stretching). The overall design is clean, modern, and suitable for a public health awareness template.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./muscle_spasms__muscle_cramps_.jpg" class="card-banner" alt="Muscle spasms (muscle cramps) Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-bones-joints-and-muscles" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Bones, joints, and muscles</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-bones-joints-and-muscles-muscle-pain-and-injury" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Muscle pain and injury</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Muscle spasms (muscle cramps)</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Bones, joints, and muscles</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Muscle pain and injury</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Muscle spasms, commonly known as muscle cramps, are sudden, involuntary, and often painful contractions of one or more muscles.</li><li><strong>Common Triggers:</strong> Dehydration, electrolyte imbalances (e.g., low potassium, magnesium, calcium), muscle fatigue, prolonged exercise, nerve compression, and certain medications.</li><li><strong>Affected Areas:</strong> Most frequently occur in the legs (calves, hamstrings, quadriceps), feet, abdomen, and hands.</li><li><strong>Duration:</strong> Spasms can last from a few seconds to several minutes, sometimes followed by residual soreness.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Sudden, Sharp Pain:</strong> An intense, localized pain in the affected muscle.</li><li><strong>Visible or Palpable Knot:</strong> The muscle may feel hard to the touch or appear visibly contracted and bulging under the skin.</li><li><strong>Muscle Tightness:</strong> A sensation of the muscle seizing up or locking.</li><li><strong>Limited Movement:</strong> Difficulty moving the affected limb or body part during the spasm.</li><li><strong>Post-Cramp Soreness:</strong> Aching, tenderness, or stiffness in the muscle after the spasm subsides.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Maintain Hydration:</strong> Ensure consistent and adequate fluid intake throughout the day, especially before, during, and after physical activity or in hot environments.</li><li><strong>Electrolyte Balance:</strong> Consume a diet rich in electrolytes or consider supplements if advised by a healthcare professional, particularly for individuals with high sweat loss.</li><li><strong>Regular Stretching:</strong> Incorporate daily stretching routines, focusing on major muscle groups, and perform warm-up and cool-down stretches around exercise.</li><li><strong>Gradual Activity Increase:</strong> Avoid sudden increases in exercise intensity or duration to prevent muscle overload and fatigue.</li><li><strong>Medication Review:</strong> Discuss with a physician if any current medications could be contributing to muscle spasms, as some drugs are known to have this side effect.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Prioritize Water Intake:</strong> Drink plenty of water and other non-caffeinated, non-alcoholic fluids to prevent dehydration.</li><li><strong>Electrolyte-Rich Foods:</strong> Include foods high in potassium (e.g., bananas, potatoes, spinach), magnesium (e.g., nuts, seeds, leafy greens), and calcium (e.g., dairy products, fortified plant milks).</li><li><strong>Balanced Nutrition:</strong> Ensure a diet rich in whole foods to support overall muscle health and provide essential vitamins and minerals.</li><li><strong>Limit Dehydrating Beverages:</strong> Moderate intake of caffeine and alcohol, as these can contribute to fluid loss and electrolyte imbalance.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Immediate Relief:</strong> Gently stretch and massage the affected muscle. Applying heat (warm compress) can relax the muscle, while cold (ice pack) can reduce pain and inflammation after the spasm.</li><li><strong>When to Seek Medical Attention:</strong> Consult a physician if spasms are severe, frequent, prolonged, associated with muscle weakness, numbness, swelling, or occur without an apparent cause.</li><li><strong>Underlying Conditions:</strong> Be aware that persistent or unusual muscle spasms can sometimes be a symptom of underlying medical conditions such as nerve disorders, thyroid dysfunction, or kidney disease.</li><li><strong>Medication Adherence:</strong> If prescribed, follow all instructions for muscle relaxants or electrolyte supplements carefully.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive Assessment:</strong> A detailed patient history, including activity levels, medication review, and a physical examination, is crucial to identify potential causes of muscle spasms.</li><li><strong>Diagnostic Workup:</strong> Consider blood tests to evaluate electrolyte levels (potassium, magnesium, calcium), kidney function, and thyroid hormones, especially for recurrent or unexplained spasms.</li><li><strong>Tailored Treatment Plan:</strong> Management often involves addressing underlying causes, optimizing hydration and electrolyte balance, recommending stretching regimens, and in some cases, prescribing muscle relaxants.</li><li><strong>Patient Education:</strong> Emphasize preventative strategies, proper hydration, and the importance of reporting any associated neurological symptoms or worsening of spasms.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Educate patients on the importance of hydration, proper stretching techniques, and dietary sources of key electrolytes to prevent spasms.</li><li><strong>Assessment Skills:</strong> Learn to differentiate between benign muscle cramps and spasms that may indicate more serious underlying neurological or metabolic conditions.</li><li><strong>Intervention Strategies:</strong> Be proficient in providing immediate comfort measures such as gentle massage, passive stretching, and appropriate application of heat or cold therapy.</li><li><strong>Medication Management:</strong> Understand the indications, contraindications, and potential side effects of muscle relaxants and electrolyte supplements commonly used for spasm relief.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Etiology:</strong> Dehydration, electrolyte imbalances (hypokalemia, hypomagnesemia, hypocalcemia), muscle fatigue, peripheral neuropathy, radiculopathy, certain pharmacologic agents (e.g., diuretics, statins, beta-agonists).</li><li><strong>Pathophysiology:</strong> Involuntary hyper-excitability of motor neurons or muscle fibers, often due to altered nerve-muscle communication, metabolic disturbances, or localized ischemia.</li><li><strong>Differential Diagnosis:</strong> Restless legs syndrome, dystonia, tetany, claudication, myopathy, fasciculations, compartment syndrome.</li><li><strong>Pharmacological Interventions:</strong> Muscle relaxants (e.g., cyclobenzaprine, baclofen), quinine (use is restricted due to cardiac side effects), electrolyte repletion (oral or intravenous).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

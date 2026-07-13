@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration in a public awareness design template showing a diverse person of adult age correctly using axillary crutches. The person has good posture, with crutch pads slightly below the armpits and elbows slightly bent. The background is a clean, well-lit indoor environment with no clutter. A subtle, transparent overlay of a healthcare professional's hand points to the correct handgrip position. The overall style is clean, modern, and reassuring, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./how_to_use_crutches.jpg" class="card-banner" alt="How to use crutches Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-bones-joints-and-muscles" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Bones, joints, and muscles</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-bones-joints-and-muscles-fractures" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Fractures</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>How to use crutches</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Bones, joints, and muscles</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Fractures</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Purpose of Crutches:</strong> Crutches are mobility aids designed to offload weight from an injured or surgically repaired lower extremity, facilitating healing and preventing further injury.</li>
+        <li><strong>Types of Crutches:</strong> Commonly prescribed are axillary (underarm) crutches for short-term use and forearm (Lofstrand) crutches for long-term or more active users, offering different support and control.</li>
+        <li><strong>Proper Fitting is Crucial:</strong> Incorrectly fitted crutches can lead to nerve damage, shoulder pain, and increased risk of falls. Ensure the top of axillary crutches is 2-3 finger-widths below the armpit and handgrips allow for a slight elbow bend (20-30 degrees).</li>
+        <li><strong>Understanding Weight-Bearing Status:</strong> Your physician will specify your weight-bearing status: Non-Weight Bearing (NWB), Toe-Touch Weight Bearing (TTWB), Partial Weight Bearing (PWB), or Weight Bearing As Tolerated (WBAT). Adhere strictly to these instructions.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Acute Lower Extremity Pain:</strong> Severe pain in the leg, ankle, or foot following trauma, indicating potential fracture, sprain, or muscle injury requiring non-weight bearing support.</li>
+        <li><strong>Inability to Bear Weight:</strong> Complete or significant inability to place weight on an affected limb without excruciating pain or instability, often a primary indicator for crutch use.</li>
+        <li><strong>Post-Operative Discomfort and Weakness:</strong> Pain, swelling, and muscle weakness after orthopedic surgery (e.g., fracture repair, ligament reconstruction) necessitating temporary support during rehabilitation.</li>
+        <li><strong>Instability or Deformity:</strong> Visible deformity, significant swelling, or a feeling of joint instability that compromises safe ambulation and requires external support to prevent further damage.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Fall Prevention:</strong> Always use crutches on clear, well-lit pathways. Remove rugs, cords, and clutter. Avoid wet or slippery surfaces.</li>
+        <li><strong>Axillary Nerve Protection:</strong> Do not lean on the crutch pads in your armpits; support your weight through your hands. Prolonged pressure can cause nerve damage (crutch palsy).</li>
+        <li><strong>Crutch Tip Maintenance:</strong> Regularly inspect crutch tips for wear and tear. Worn tips reduce traction and increase fall risk. Replace them promptly when worn smooth.</li>
+        <li><strong>Navigating Stairs and Curbs:</strong> Use the "up with the good, down with the bad" rule. When going up, lead with the unaffected leg, then crutches and injured leg. When going down, lead with crutches and injured leg, then the unaffected leg. Always use handrails if available.</li>
+        <li><strong>Appropriate Footwear:</strong> Wear sturdy, non-slip, low-heeled shoes. Avoid sandals, high heels, or loose slippers that can interfere with balance and stability.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Hydration for Mobility:</strong> Maintain adequate fluid intake to prevent constipation, which can be exacerbated by reduced mobility and certain pain medications.</li>
+        <li><strong>Nutrients for Bone Healing:</strong> Ensure sufficient intake of calcium, Vitamin D, and protein to support bone repair and tissue regeneration. Consult with a healthcare provider for specific recommendations.</li>
+        <li><strong>Weight Management:</strong> Be mindful of caloric intake. Reduced activity while using crutches can lead to weight gain, which places additional stress on the healing limb and makes crutch use more challenging.</li>
+        <li><strong>Fiber-Rich Foods:</strong> Incorporate fruits, vegetables, and whole grains to promote regular bowel movements and counteract the constipating effects of immobility and analgesics.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Clear Home Environment:</strong> Assist in removing tripping hazards such as loose rugs, electrical cords, and clutter from all walking paths within the home.</li>
+        <li><strong>Support with ADLs:</strong> Offer assistance with activities of daily living (ADLs) such as dressing, bathing, and meal preparation, especially during the initial recovery phase.</li>
+        <li><strong>Emergency Preparedness:</strong> Ensure the patient has easy access to a phone or call button in case of a fall or urgent need for assistance.</li>
+        <li><strong>Observe for Complications:</strong> Monitor the patient for signs of increased pain, numbness, tingling, skin breakdown under the armpits or hands, or any changes in mental status, and report to medical staff.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Strict Adherence to Weight-Bearing Orders:</strong> Deviating from prescribed weight-bearing status can delay healing, cause re-injury, or necessitate further surgical intervention.</li>
+        <li><strong>Engage in Physical Therapy:</strong> Consistent participation in prescribed physical therapy is vital for regaining strength, flexibility, and proper gait mechanics, ensuring a safe and effective recovery.</li>
+        <li><strong>Monitor for Complications:</strong> Report any new or worsening pain, swelling, redness, fever, numbness, or tingling in the affected limb immediately. These could indicate infection, DVT, or nerve impingement.</li>
+        <li><strong>Gradual Progression:</strong> Do not rush the recovery process. Your physician will guide you on when and how to gradually increase weight-bearing and transition away from crutches.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Crutch Measurement Protocol:</strong> Ensure axillary crutches are fitted with the top pad 2-3 finger-widths below the axilla and handgrips positioned to allow 20-30 degrees of elbow flexion. Forearm crutches should have the cuff 1-1.5 inches below the olecranon process.</li>
+        <li><strong>Gait Training Techniques:</strong> Educate patients on appropriate gait patterns (e.g., 3-point gait for NWB, 4-point or 2-point for PWB/WBAT) based on their weight-bearing status and balance.</li>
+        <li><strong>Fall Risk Assessment:</strong> Conduct thorough fall risk assessments, considering patient age, cognitive status, medication regimen, and environmental factors. Implement appropriate fall prevention strategies.</li>
+        <li><strong>Skin Integrity Assessment:</strong> Regularly assess skin integrity in the axillae, palms, and perineum for signs of pressure injury or irritation, especially with prolonged crutch use.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Fracture Management:</strong> Crutches are integral in the non-operative and post-operative management of lower extremity fractures (e.g., tibial plateau fractures, ankle fractures, femoral shaft fractures) to protect healing bone.</li>
+        <li><strong>Post-Surgical Rehabilitation:</strong> Essential for patients recovering from orthopedic surgeries such as ACL reconstruction, total knee arthroplasty, or hip hemiarthroplasty, where controlled weight-bearing is critical.</li>
+        <li><strong>Nerve Entrapment Syndromes:</strong> Improper use of axillary crutches can lead to radial nerve palsy (crutch palsy) due to compression in the axilla, presenting as wrist drop and sensory deficits.</li>
+        <li><strong>Biomechanics of Ambulation:</strong> Crutches alter the center of gravity and base of support, requiring increased energy expenditure and specific muscle activation patterns to maintain balance and propel forward.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>
