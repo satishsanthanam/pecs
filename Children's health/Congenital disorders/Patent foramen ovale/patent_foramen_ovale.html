@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A friendly, flat vector illustration depicting a child's chest with a transparent overlay of a heart. Inside the heart, a small, subtle opening is visible between the two upper chambers (atria), representing a patent foramen ovale. Soft, flowing lines indicate normal blood circulation, with a tiny, almost imperceptible arrow showing potential right-to-left shunt. The overall design is clean, educational, and reassuring, using a palette of soft blues, reds, and yellows. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./patent_foramen_ovale.jpg" class="card-banner" alt="Patent foramen ovale Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-children-s-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Children's health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-children-s-health-congenital-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Congenital disorders</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Patent foramen ovale</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Children's health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Congenital disorders</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> A patent foramen ovale (PFO) is a small, flap-like opening between the upper two chambers of the heart (atria) that failed to close naturally after birth.</li><li><strong>Fetal Function:</strong> This opening is a normal and essential part of fetal circulation, allowing blood to bypass the lungs before birth.</li><li><strong>Post-Birth Closure:</strong> In most individuals, the foramen ovale closes spontaneously within the first few months to a year of life.</li><li><strong>Prevalence:</strong> A PFO is present in approximately 25-30% of the general population, often remaining undetected and asymptomatic.</li><li><strong>Clinical Significance:</strong> While often benign, a PFO can, in some cases, be associated with conditions such as cryptogenic stroke, migraine with aura, or decompression sickness.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Asymptomatic Nature:</strong> Most children and adults with a PFO experience no symptoms and are unaware of its presence.</li><li><strong>Cryptogenic Stroke/TIA:</strong> In rare instances, a blood clot from the venous system can pass through the PFO to the arterial system, leading to a stroke or transient ischemic attack (TIA).</li><li><strong>Migraine with Aura:</strong> Some studies suggest a correlation between PFO and certain types of migraine, particularly those with aura, though the causal link is not fully understood.</li><li><strong>Platypnea-Orthodeoxia Syndrome:</strong> A very rare condition where shortness of breath and oxygen desaturation worsen when sitting or standing upright and improve when lying down.</li><li><strong>Decompression Sickness:</strong> Divers with a PFO may have an increased risk of decompression sickness due to nitrogen bubbles passing through the opening.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Medical Disclosure:</strong> Always inform healthcare providers about a known PFO, especially before any surgical procedures, imaging with contrast, or if considering activities like scuba diving.</li><li><strong>Stroke Awareness:</strong> Educate parents and older children about the signs and symptoms of stroke (FAST: Face drooping, Arm weakness, Speech difficulty, Time to call emergency services).</li><li><strong>Diving Restrictions:</strong> Individuals with a PFO, particularly those with a history of paradoxical embolism, should consult a cardiologist and diving medicine specialist regarding diving safety.</li><li><strong>Anticoagulation/Antiplatelet Therapy:</strong> If a PFO is associated with a history of stroke or TIA, adherence to prescribed antiplatelet or anticoagulant medications is vital to prevent clot formation.</li><li><strong>Follow-up Care:</strong> Regular cardiology follow-ups are important for symptomatic PFOs or those being monitored for potential intervention.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>General Cardiovascular Health:</strong> Encourage a balanced diet rich in fruits, vegetables, and whole grains to support overall heart health, especially if other cardiovascular risk factors are present.</li><li><strong>Anticoagulant Considerations:</strong> If a child is prescribed anticoagulants (e.g., warfarin) due to a PFO-related event, consistent intake of Vitamin K-rich foods (e.g., leafy greens) is crucial to maintain stable INR levels.</li><li><strong>Pre-Procedure Fasting:</strong> If a PFO closure procedure is planned, strict adherence to pre-procedure fasting guidelines (typically NPO for solids and clear liquids for a specified period) is mandatory.</li><li><strong>Post-Procedure Hydration:</strong> Following a PFO closure, ensure adequate hydration as advised by the medical team, often starting with clear fluids and progressing to a regular diet.</li><li><strong>Avoidance of Excessive Caffeine/Stimulants:</strong> While not directly related to PFO, avoiding excessive stimulants can help manage overall cardiovascular well-being in children.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Recognition:</strong> Be vigilant for any sudden neurological changes, such as weakness, numbness, speech difficulties, or vision changes, and seek immediate medical attention.</li><li><strong>Medication Adherence:</strong> Ensure strict adherence to any prescribed medications, such as antiplatelets or anticoagulants, to minimize the risk of clot-related complications.</li><li><strong>Activity Modifications:</strong> Discuss with the cardiologist any specific activity restrictions, particularly for competitive sports or activities involving significant pressure changes (e.g., diving).</li><li><strong>Regular Check-ups:</strong> Maintain scheduled follow-up appointments with the pediatric cardiologist to monitor the PFO and assess for any evolving symptoms or concerns.</li><li><strong>Open Communication:</strong> Encourage open communication with the healthcare team regarding any new symptoms, medication side effects, or questions about the PFO.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Benign Nature:</strong> Most PFOs are incidental findings and are clinically benign, requiring no specific intervention.</li><li><strong>Symptom-Driven Evaluation:</strong> A thorough evaluation is warranted if a PFO is identified in the context of cryptogenic stroke, TIA, or other concerning symptoms.</li><li><strong>Risk-Benefit Analysis for Closure:</strong> The decision for PFO closure is highly individualized, weighing the potential benefits (e.g., secondary stroke prevention) against the procedural risks.</li><li><strong>Multidisciplinary Approach:</strong> Management often involves a multidisciplinary team, including cardiologists, neurologists, and potentially interventionalists.</li><li><strong>Patient and Family Education:</strong> Comprehensive education for families about the PFO, its implications, and management options is paramount for informed decision-making.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Provide clear, age-appropriate explanations of PFO to parents and children, emphasizing its commonality and often benign nature.</li><li><strong>Neurological Assessment:</strong> Regularly assess for subtle neurological changes, especially in patients with a history of stroke or TIA, and report findings promptly.</li><li><strong>Medication Management:</strong> Educate families on the purpose, dosage, administration, and potential side effects of antiplatelet or anticoagulant medications.</li><li><strong>Pre/Post-Procedure Care:</strong> For PFO closure, manage pre-procedure fasting, administer prophylactic antibiotics, monitor vital signs, assess access site for bleeding/hematoma, and manage pain.</li><li><strong>Discharge Planning:</strong> Provide comprehensive discharge instructions, including medication schedules, activity restrictions, follow-up appointments, and warning signs to report.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Diagnostic Modalities:</strong> Transthoracic echocardiography (TTE) with bubble study, Transesophageal echocardiography (TEE) with bubble study (gold standard), transcranial Doppler with bubble study.</li><li><strong>Pathophysiology:</strong> Failure of the septum primum and septum secundum to fuse after birth, allowing for right-to-left shunting under certain pressure gradients.</li><li><strong>Risk Stratification:</strong> ROPE (Risk of Paradoxical Embolism) score for cryptogenic stroke patients, assessing the likelihood that a PFO is related to the stroke.</li><li><strong>Interventional Options:</strong> Transcatheter PFO closure using various occluder devices (e.g., Amplatzer PFO Occluder, Gore Cardioform Septal Occluder).</li><li><strong>Associated Conditions:</strong> Cryptogenic stroke, transient ischemic attack (TIA), migraine with aura, decompression sickness, platypnea-orthodeoxia syndrome.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

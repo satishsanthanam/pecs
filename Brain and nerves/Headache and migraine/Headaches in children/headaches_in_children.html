@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a child (around 8 years old) with a slightly furrowed brow, gently touching their forehead. The child is sitting in a calm, muted room. Surrounding the child are subtle, abstract icons representing common headache triggers: a glowing screen, a clock indicating late hours, a half-empty water bottle, and a thought bubble with a stress symbol. The color palette is soft and comforting, using blues, purples, and light greens. The overall design is clean and optimized for public awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./headaches_in_children.jpg" class="card-banner" alt="Headaches in children Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-brain-and-nerves" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Brain and nerves</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-brain-and-nerves-headache-and-migraine" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Headache and migraine</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Headaches in children</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Brain and nerves</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Headache and migraine</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Prevalence:</strong> Headaches are common in children, often benign, but can sometimes signal underlying conditions.</li><li><strong>Types:</strong> Common types include tension headaches, migraines, and less frequently, cluster headaches. Secondary headaches are caused by other medical issues.</li><li><strong>Tracking:</strong> It is crucial to track the frequency, intensity, duration, and associated symptoms of a child's headaches to aid diagnosis.</li><li><strong>Triggers:</strong> Identify potential triggers such as stress, lack of sleep, dehydration, certain foods, or excessive screen time.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Pain Characteristics:</strong> Describe the headache pain as throbbing, dull, sharp, or pressure-like, and note its location (e.g., frontal, temporal, diffuse).</li><li><strong>Gastrointestinal:</strong> Nausea, vomiting, or abdominal pain often accompany migraines in children.</li><li><strong>Sensory Sensitivity:</strong> Photophobia (sensitivity to light) and phonophobia (sensitivity to sound) are common, especially with migraines.</li><li><strong>Neurological Changes:</strong> Report any changes in vision (e.g., aura, blurred vision), speech difficulties, dizziness, or balance issues.</li><li><strong>Behavioral Changes:</strong> Observe for irritability, lethargy, changes in sleep patterns, or difficulty concentrating.</li><li><strong>Red Flag Symptoms:</strong> Fever, stiff neck, sudden severe headache, headache after head injury, or new neurological deficits require immediate medical attention.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Medical Evaluation:</strong> Always seek medical evaluation for new, worsening, or atypical headaches in children to rule out serious causes.</li><li><strong>Red Flag Awareness:</strong> Be vigilant for 'red flag' symptoms such as thunderclap headache, focal neurological signs, papilledema, or headache associated with systemic illness.</li><li><strong>Medication Overuse:</strong> Avoid frequent use of over-the-counter pain relievers, as this can lead to medication overuse headaches.</li><li><strong>Trigger Avoidance:</strong> Work with a healthcare provider to identify and minimize exposure to known headache triggers.</li><li><strong>Sleep Hygiene:</strong> Ensure consistent and adequate sleep patterns, as sleep deprivation is a common headache trigger.</li><li><strong>Hydration:</strong> Maintain consistent hydration throughout the day to prevent dehydration-induced headaches.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Consistent Hydration:</strong> Encourage regular sips of water throughout the day; dehydration is a frequent headache trigger.</li><li><strong>Regular Meals:</strong> Ensure the child eats regular, balanced meals to prevent blood sugar fluctuations, which can precipitate headaches.</li><li><strong>Caffeine Management:</strong> Limit or avoid caffeine intake, as both excessive consumption and withdrawal can trigger headaches.</li><li><strong>Trigger Food Identification:</strong> Monitor for specific foods that may act as triggers (e.g., aged cheeses, processed meats, chocolate, artificial sweeteners) and consider an elimination diet under medical guidance.</li><li><strong>Nutrient-Rich Diet:</strong> Promote a diet rich in whole foods, fruits, and vegetables to support overall neurological health.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Detailed Documentation:</strong> Maintain a headache diary noting onset, duration, intensity, associated symptoms, potential triggers, and response to interventions.</li><li><strong>Emergency Protocol:</strong> Understand and be prepared for emergency signs requiring immediate medical attention, such as sudden severe headache, stiff neck, or altered consciousness.</li><li><strong>Medication Adherence:</strong> Administer prescribed acute and prophylactic medications strictly as directed by the physician, without deviation.</li><li><strong>Comfort Measures:</strong> Provide a quiet, dark, and cool environment during headache episodes; apply cool compresses to the forehead or neck.</li><li><strong>Emotional Support:</strong> Offer reassurance and support, as headaches can be distressing for children and impact their daily activities.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive History:</strong> A thorough headache history, including family history, is paramount for accurate diagnosis and management.</li><li><strong>Neurological Examination:</strong> Conduct a detailed neurological examination to identify any focal deficits or signs of increased intracranial pressure.</li><li><strong>Diagnostic Imaging:</strong> Consider neuroimaging (MRI or CT) for red flag symptoms, atypical presentations, or progressive headaches.</li><li><strong>Individualized Treatment:</strong> Develop a personalized treatment plan encompassing acute pain relief, preventive strategies, and lifestyle modifications.</li><li><strong>Multidisciplinary Approach:</strong> Collaborate with pediatric neurologists, pain specialists, and psychologists for complex or refractory cases.</li><li><strong>Patient Education:</strong> Educate families on headache types, triggers, medication use, and non-pharmacological management strategies.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pain Assessment:</strong> Utilize age-appropriate pain scales (e.g., FACES, numeric) to accurately assess headache intensity in children.</li><li><strong>Patient & Family Education:</strong> Educate children and caregivers on headache triggers, medication administration, and non-pharmacological comfort measures.</li><li><strong>Monitoring & Documentation:</strong> Closely monitor for medication side effects, treatment efficacy, and any changes in headache patterns.</li><li><strong>Referral Pathways:</strong> Identify when to refer to a pediatric neurologist or other specialists based on clinical presentation and red flags.</li><li><strong>Comfort & Support:</strong> Provide a calm and supportive environment, implementing comfort measures such as dim lighting and quiet spaces during headache episodes.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>ICHD-3 Criteria:</strong> International Classification of Headache Disorders, 3rd edition, for diagnostic classification of primary and secondary headaches.</li><li><strong>Primary Headaches:</strong> Migraine without aura, Migraine with aura, Tension-type headache, Chronic daily headache.</li><li><strong>Secondary Headaches:</strong> Headaches attributed to head trauma, intracranial hemorrhage, infection (e.g., meningitis), brain tumors, or medication overuse.</li><li><strong>Red Flag Symptoms (SNOOP4):</strong> Systemic symptoms, Secondary risk factors, Neurologic symptoms, Onset (sudden), Older age, Pattern change, Positional, Precipitated by Valsalva.</li><li><strong>Pharmacological Management:</strong> Acute treatments (e.g., NSAIDs, triptans for migraines) and prophylactic medications (e.g., topiramate, propranolol) for frequent or severe headaches.</li><li><strong>Non-Pharmacological Interventions:</strong> Biofeedback, cognitive behavioral therapy (CBT), stress management, and lifestyle modifications.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

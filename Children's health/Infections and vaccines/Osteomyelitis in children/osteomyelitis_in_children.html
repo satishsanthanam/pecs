@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a young child, approximately 5-7 years old, with a gentle smile, sitting comfortably. One of their legs is lightly bandaged, indicating recovery. Surrounding the child are stylized, friendly medical icons: a bone, a magnifying glass symbolizing diagnosis, an antibiotic pill, and a small, friendly bacteria character being 'defeated'. The background is clean and bright, with soft, reassuring colors. The overall scene conveys care, recovery, and medical support for a child's bone health.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./osteomyelitis_in_children.jpg" class="card-banner" alt="Osteomyelitis in children Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-children-s-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Children's health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-children-s-health-infections-and-vaccines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Infections and vaccines</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Osteomyelitis in children</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Children's health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Infections and vaccines</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Bone Infection:</strong> Osteomyelitis is a serious bacterial infection of the bone, most commonly affecting children.</li><li><strong>Common Sites:</strong> Often occurs in the long bones of the legs and arms (e.g., femur, tibia, humerus) but can affect any bone.</li><li><strong>Primary Cause:</strong> The most frequent causative agent is *Staphylococcus aureus*.</li><li><strong>Routes of Infection:</strong> Typically spreads to the bone through the bloodstream (hematogenous spread) from another infection site, but can also result from direct trauma or surgery.</li><li><strong>Risk Factors:</strong> Recent infections (e.g., skin infections, upper respiratory infections), trauma, immunocompromised states, and conditions like sickle cell disease increase susceptibility.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Localized Pain:</strong> Severe, constant pain in the affected bone, often worsening with movement or weight-bearing.</li><li><strong>Fever and Chills:</strong> High body temperature, often accompanied by shivering.</li><li><strong>Swelling and Redness:</strong> Visible inflammation and warmth over the infected area of the bone.</li><li><strong>Limping or Refusal to Bear Weight:</strong> If the infection is in a lower extremity, the child may avoid putting weight on the affected leg.</li><li><strong>Reduced Range of Motion:</strong> Difficulty moving the joint closest to the infected bone.</li><li><strong>Irritability and Malaise:</strong> General unwellness, fatigue, and fussiness, especially in younger children and infants.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Prompt Diagnosis:</strong> Early recognition and diagnosis are critical to prevent chronic osteomyelitis, bone damage, and growth plate disturbances.</li><li><strong>Complete Antibiotic Course:</strong> Adherence to the full prescribed antibiotic regimen, which can be prolonged, is essential even if symptoms improve.</li><li><strong>Monitoring for Complications:</strong> Vigilance for signs of abscess formation, septic arthritis, or pathological fractures is necessary throughout treatment.</li><li><strong>Surgical Intervention:</strong> Be prepared for potential surgical drainage or debridement if medical management alone is insufficient or if an abscess is present.</li><li><strong>Pain Management:</strong> Ensure adequate pain relief is provided to enhance comfort and facilitate recovery.</li><li><strong>Immobilization:</strong> Temporary immobilization of the affected limb may be required to reduce pain and protect the bone.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Nutritional Support:</strong> A well-balanced, nutrient-dense diet is crucial to support the child's immune system and promote bone healing during infection.</li><li><strong>Adequate Hydration:</strong> Encourage consistent fluid intake, especially when the child has a fever, to prevent dehydration.</li><li><strong>Protein-Rich Foods:</strong> Include lean proteins (e.g., chicken, fish, beans, lentils) to aid in tissue repair and immune cell production.</li><li><strong>Vitamins and Minerals:</strong> Ensure intake of vitamins C and D, and minerals like zinc and calcium, which are vital for immune function and bone health.</li><li><strong>Avoidance of Processed Foods:</strong> Limit highly processed foods, sugary drinks, and unhealthy fats, which can contribute to inflammation and hinder recovery.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Seek Immediate Medical Attention:</strong> Any child presenting with unexplained bone pain, fever, and limping or refusal to move a limb requires urgent medical evaluation.</li><li><strong>Do Not Delay Treatment:</strong> Untreated or inadequately treated osteomyelitis can lead to severe, long-term complications including chronic pain, bone deformities, and growth disturbances.</li><li><strong>Strict Medication Adherence:</strong> Ensure all prescribed medications, especially intravenous antibiotics, are administered exactly as directed and on schedule.</li><li><strong>Monitor for Adverse Reactions:</strong> Observe for any signs of allergic reactions or side effects to antibiotics and report them promptly to the healthcare team.</li><li><strong>Attend Follow-up Appointments:</strong> Regular follow-up with pediatricians, orthopedic surgeons, and infectious disease specialists is crucial for monitoring treatment efficacy and bone healing.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Diagnostic Pathway:</strong> Diagnosis involves a combination of clinical assessment, blood tests (ESR, CRP, WBC count), imaging (X-rays, MRI, bone scan), and often bone aspiration or biopsy for culture.</li><li><strong>Treatment Cornerstone:</strong> The primary treatment is a prolonged course of antibiotics, typically initiated intravenously and then transitioned to oral therapy based on clinical response and culture results.</li><li><strong>Surgical Indications:</strong> Surgery is considered for cases with subperiosteal abscesses, sequestrum formation, or when medical management fails to control the infection.</li><li><strong>Multidisciplinary Approach:</strong> Effective management often requires collaboration between pediatricians, pediatric orthopedic surgeons, and infectious disease specialists.</li><li><strong>Prognosis:</strong> With early and appropriate treatment, the prognosis for acute osteomyelitis in children is generally good, though long-term follow-up is necessary to monitor for recurrence or complications.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Assessment:</strong> Conduct thorough physical assessments, including palpation for tenderness, observation for swelling and warmth, and evaluation of range of motion in affected limbs.</li><li><strong>Medication Management:</strong> Administer antibiotics safely, monitor for therapeutic effects, and identify potential adverse drug reactions. Educate families on home antibiotic administration if applicable.</li><li><strong>Pain Management:</strong> Utilize age-appropriate pain assessment tools and implement pharmacological and non-pharmacological interventions to ensure adequate pain control.</li><li><strong>Wound Care:</strong> If surgical debridement is performed, provide meticulous wound care, monitor for signs of infection, and educate caregivers on dressing changes.</li><li><strong>Patient and Family Education:</strong> Provide clear, concise information about the disease, treatment plan, medication adherence, signs of complications, and the importance of follow-up care.</li><li><strong>Psychosocial Support:</strong> Address the emotional and psychological needs of the child and family, as prolonged illness and hospitalization can be stressful.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>ICD-10 Codes:</strong> M86.x (e.g., M86.1- Acute osteomyelitis, M86.3- Chronic osteomyelitis).</li><li><strong>Common Pathogens:</strong> *Staphylococcus aureus* (most common), *Kingella kingae* (in infants/toddlers), *Streptococcus pyogenes*, *Salmonella spp.* (especially in sickle cell disease).</li><li><strong>Diagnostic Markers:</strong> Elevated C-reactive protein (CRP), Erythrocyte Sedimentation Rate (ESR), Leukocytosis (elevated white blood cell count).</li><li><strong>Imaging Modalities:</strong> Magnetic Resonance Imaging (MRI) is highly sensitive for early detection; X-rays may be normal in early stages; Bone Scintigraphy (bone scan) can identify areas of increased bone turnover.</li><li><strong>Antibiotic Regimens:</strong> Empiric therapy often includes agents like clindamycin, vancomycin, or cefazolin, tailored based on culture and sensitivity results.</li><li><strong>Potential Complications:</strong> Septic arthritis, pathological fractures, growth plate arrest, chronic osteomyelitis, Brodie's abscess, and spread of infection.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

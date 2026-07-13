@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of an adult patient, male or female, with a cast on an arm or leg, sitting comfortably at home. The patient is looking at a discharge instruction leaflet. Surrounding elements include a calendar with a marked follow-up appointment, a glass of water, and healthy food items (e.g., fruit, vegetables). The overall scene conveys recovery, care, and adherence to medical advice. Soft, clean lines and a reassuring color palette.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./fracture_in_adults___discharge_instructions.jpg" class="card-banner" alt="Fracture in adults – Discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-children-s-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Children's health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-children-s-health-injuries-first-aid-and-cpr-for-children" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Injuries, first aid, and CPR for children</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Fracture in adults – Discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Children's health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Injuries, first aid, and CPR for children</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding Your Fracture</strong>: A fracture is a break in a bone. Healing time varies significantly based on the fracture type, location, severity, and individual health factors.</li><li><strong>Immobilization is Crucial</strong>: Your cast, splint, or brace is essential for maintaining proper bone alignment and facilitating healing. Do not attempt to remove or adjust it without explicit medical guidance.</li><li><strong>Pain Management Expectations</strong>: Expect some level of pain, particularly in the initial days following the injury. Adhere strictly to the prescribed pain medication regimen.</li><li><strong>Swelling Reduction Techniques</strong>: Elevate the injured limb above heart level, especially during the first 48-72 hours post-injury, to minimize swelling. Apply ice packs as directed, ensuring a protective barrier between the ice and your skin or cast.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Persistent or Worsening Pain</strong>: Pain that intensifies or is not adequately relieved by prescribed medication and elevation.</li><li><strong>New Numbness or Tingling</strong>: Any new onset or exacerbation of numbness, tingling, or a 'pins and needles' sensation in the limb distal to the injury.</li><li><strong>Changes in Skin Color</strong>: Observation of pale, bluish, or dusky discoloration of the skin below the cast or splint.</li><li><strong>Unusual Coldness or Severe Swelling</strong>: The affected limb feeling unusually cold to the touch or experiencing sudden, significant swelling.</li><li><strong>Foul Odor or Drainage</strong>: Any unpleasant smell or discharge emanating from beneath the cast or dressing.</li><li><strong>Systemic Symptoms</strong>: Development of fever or chills, which could indicate an infection.</li><li><strong>Cast or Splint Discomfort</strong>: A cast or splint that feels excessively tight, too loose, or creates new pressure points or skin irritation.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Cast and Splint Care</strong>: Keep your cast or splint completely dry. Use a waterproof cover when showering or bathing. Never insert objects inside the cast to scratch an itch.</li><li><strong>Weight-Bearing Restrictions</strong>: Strictly follow all instructions regarding weight-bearing status (e.g., non-weight-bearing, partial weight-bearing) as advised by your physician. Utilize crutches, a walker, or a sling as prescribed.</li><li><strong>Activity Modification</strong>: Avoid strenuous activities, heavy lifting, and participation in sports until you receive explicit clearance from your doctor. Follow specific guidelines for daily activities.</li><li><strong>Skin Integrity Monitoring</strong>: Regularly inspect the skin around the edges of your cast or splint for any signs of redness, blistering, or skin breakdown. Report any concerns to your healthcare provider.</li><li><strong>Medication Adherence</strong>: Take all prescribed medications, including pain relievers and any prophylactic antibiotics, precisely as directed by your physician.</li><li><strong>Driving Limitations</strong>: Refrain from driving while taking opioid pain medication or if your injury significantly impairs your ability to safely operate a vehicle.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Adequate Hydration</strong>: Maintain sufficient fluid intake to support overall healing and prevent constipation, especially if you are taking opioid pain medications.</li><li><strong>Bone-Healing Nutrients</strong>: Focus on a balanced diet rich in protein (for tissue repair), calcium, and Vitamin D (essential for bone health). Include lean meats, dairy products, leafy green vegetables, and fortified foods.</li><li><strong>Fiber for Digestion</strong>: Increase your intake of dietary fiber through fruits, vegetables, and whole grains to help counteract potential constipation caused by immobility or pain medications.</li><li><strong>Avoidance of Detrimental Substances</strong>: Strictly refrain from alcohol consumption and smoking, as both can significantly impair bone healing and increase the risk of complications.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Symptoms</strong>: Seek immediate medical attention (call 911 or go to the nearest emergency department) for sudden, severe pain, complete loss of sensation, inability to move fingers or toes, uncontrolled bleeding, or signs suggestive of compartment syndrome (severe pain disproportionate to injury, limb tightness, pallor, paresthesia, pulselessness).</li><li><strong>Cast Damage</strong>: If your cast becomes cracked, soft, significantly damaged, or causes new pain, contact your healthcare provider without delay.</li><li><strong>Persistent High Fever</strong>: A fever exceeding 101°F (38.3°C) accompanied by other concerning symptoms warrants medical evaluation.</li><li><strong>Unusual Odor or Drainage</strong>: Any foul-smelling discharge or persistent wetness from the cast requires prompt medical assessment.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Scheduled Follow-up</strong>: Attend all scheduled follow-up appointments to allow for monitoring of the healing process and adjustment of your treatment plan as necessary.</li><li><strong>Rehabilitation Engagement</strong>: Actively participate in prescribed physical or occupational therapy exercises once cleared by your physician, as these are vital for restoring strength, flexibility, and functional independence.</li><li><strong>Patience in Recovery</strong>: Bone healing is a gradual and often lengthy process. Exercise patience with your recovery journey and consistently adhere to your care team's instructions.</li><li><strong>Prompt Reporting of Concerns</strong>: Do not hesitate to contact your healthcare provider with any questions or if new or concerning symptoms arise during your recovery.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Reinforce Patient Education</strong>: Provide comprehensive education to patients on proper cast/splint care, identification of neurovascular compromise and infection signs, and effective pain management strategies.</li><li><strong>Medication Reconciliation and Teaching</strong>: Conduct a thorough review of all discharge medications with the patient, explaining dosage, frequency, purpose, and potential side effects.</li><li><strong>Mobility and Assistive Device Training</strong>: Instruct patients on the safe and correct use of assistive devices (e.g., crutches, walker) and provide gait training as indicated.</li><li><strong>Wound Care Instructions</strong>: If applicable, provide clear, step-by-step instructions for any required wound care or dressing changes.</li><li><strong>Psychosocial Assessment and Support</strong>: Assess for and address any anxiety, depression, or practical challenges related to immobility and the recovery process, offering appropriate support or referrals.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Fracture Classification Systems</strong>: Understanding the specific type of fracture (e.g., open vs. closed, displaced vs. non-displaced, comminuted, spiral) is fundamental for guiding prognosis and treatment protocols.</li><li><strong>Neurovascular Assessment (5 P's)</strong>: Ongoing monitoring for Pain, Pallor, Paresthesia, Pulselessness, and Paralysis is critical for early detection of complications such as compartment syndrome.</li><li><strong>Radiographic Monitoring</strong>: Serial X-rays are routinely utilized to assess fracture alignment, evaluate callus formation, and track the overall progression of bone healing.</li><li><strong>Stages of Bone Healing</strong>: Familiarity with the inflammatory, soft callus, hard callus, and remodeling stages provides a framework for patient expectations and timing of rehabilitation interventions.</li><li><strong>Deep Vein Thrombosis (DVT) Prophylaxis</strong>: Consideration of DVT prophylaxis is important, particularly for lower extremity fractures or periods of prolonged immobility, based on individual patient risk factors.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

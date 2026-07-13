@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a patient, possibly a child or adult, with an EEG cap on their head, connected by wires to a modern EEG machine. The machine's screen displays stylized brain wave patterns. The background is clean and clinical, with subtle neurological elements like abstract brain shapes or neural networks. The overall design is friendly, informative, and optimized for public health awareness, avoiding any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./eeg.jpg" class="card-banner" alt="EEG Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-brain-and-nerves" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Brain and nerves</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-brain-and-nerves-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Tests</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>EEG</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Brain and nerves</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Tests</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose of EEG:</strong> An Electroencephalogram (EEG) measures electrical activity in the brain using small metal discs (electrodes) attached to the scalp.</li><li><strong>Non-invasive Procedure:</strong> It is a safe, painless, and non-invasive test that records brain wave patterns.</li><li><strong>Diagnostic Tool:</strong> Primarily used to diagnose and monitor neurological conditions such as epilepsy, sleep disorders, and certain types of brain dysfunction.</li><li><strong>Duration:</strong> A routine EEG typically lasts 20-40 minutes, but longer monitoring (e.g., 24-hour ambulatory EEG or video EEG) may be required.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Recurrent Seizures or Convulsions:</strong> Unexplained episodes of altered consciousness, involuntary movements, or sensory disturbances.</li><li><strong>Unexplained Loss of Consciousness:</strong> Episodes of fainting, syncope, or altered mental status without clear cause.</li><li><strong>Persistent Headaches or Migraines:</strong> Especially when accompanied by neurological symptoms or changes in pattern.</li><li><strong>Sleep Disturbances:</strong> Chronic insomnia, excessive daytime sleepiness, narcolepsy, or suspected sleep apnea.</li><li><strong>Cognitive Impairment:</strong> Memory loss, confusion, or difficulties with attention and concentration.</li><li><strong>Stroke or Brain Injury:</strong> To assess brain function and potential seizure activity following a cerebrovascular event or trauma.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Hair Preparation:</strong> Wash hair the night before or morning of the test; avoid using conditioners, hairsprays, gels, or oils as they can interfere with electrode adhesion.</li><li><strong>Medication Review:</strong> Inform your physician about all current medications, as some (e.g., sedatives, anticonvulsants) may need to be adjusted or temporarily withheld prior to the test.</li><li><strong>Caffeine and Stimulants:</strong> Avoid caffeine (coffee, tea, soda, energy drinks) and other stimulants for at least 8-12 hours before the EEG, unless otherwise instructed.</li><li><strong>Sleep Deprivation (if ordered):</strong> For specific types of EEG (e.g., sleep-deprived EEG), you may be instructed to get less sleep the night before to increase the likelihood of capturing abnormal brain activity.</li><li><strong>Patient Comfort:</strong> Remain as still and relaxed as possible during the recording to minimize muscle artifact that can obscure brain wave patterns.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Caffeine Restriction:</strong> Strictly avoid all caffeine-containing beverages and foods for at least 8-12 hours prior to the EEG to prevent interference with brain wave patterns.</li><li><strong>Normal Meal Intake:</strong> Unless specifically instructed for a particular type of EEG, eat your regular meals before the test to avoid low blood sugar, which can affect brain activity.</li><li><strong>Hydration:</strong> Maintain normal fluid intake, but avoid excessive consumption of liquids that might lead to frequent restroom breaks during the procedure.</li><li><strong>Avoid Stimulants:</strong> Refrain from consuming any other stimulants, including certain over-the-counter medications or supplements, as advised by your healthcare provider.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Patient Reassurance:</strong> Provide clear explanations of the procedure to alleviate patient anxiety and ensure cooperation.</li><li><strong>Environmental Control:</strong> Ensure a quiet, dimly lit, and comfortable environment to facilitate relaxation and optimal recording conditions.</li><li><strong>Electrode Application:</strong> Meticulously apply electrodes according to the 10-20 system, ensuring good skin contact and impedance levels for accurate signal acquisition.</li><li><strong>Monitoring for Artifacts:</strong> Continuously monitor the EEG tracing for artifacts (e.g., muscle movement, eye blinks, electrical interference) and guide the patient to minimize them.</li><li><strong>Post-Procedure Care:</strong> Assist with electrode removal and provide wipes or shampoo for gel residue, ensuring the patient is comfortable before discharge.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Clinical Correlation:</strong> EEG findings must always be interpreted in conjunction with the patient's clinical history, symptoms, and other diagnostic test results.</li><li><strong>Epilepsy Diagnosis:</strong> EEG is a cornerstone in the diagnosis and classification of seizure disorders, helping to localize seizure onset and guide treatment.</li><li><strong>Prognostic Value:</strong> Can provide valuable prognostic information in conditions like anoxic brain injury or severe encephalopathy.</li><li><strong>Limitations:</strong> A normal EEG does not definitively rule out a seizure disorder, as abnormal activity may be intermittent or occur in areas not easily captured by scalp electrodes.</li><li><strong>Serial EEGs:</strong> Repeat EEGs may be necessary to monitor disease progression, assess treatment efficacy, or capture elusive abnormal activity.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Understanding Waveforms:</strong> Differentiate between normal brain rhythms (alpha, beta, theta, delta) and abnormal patterns (e.g., spikes, sharp waves, generalized slowing).</li><li><strong>Patient Education:</strong> Educate patients on pre-test preparations (hair care, medication, caffeine) and what to expect during the procedure to enhance compliance.</li><li><strong>Artifact Management:</strong> Learn to identify and troubleshoot common EEG artifacts, distinguishing them from true cerebral activity.</li><li><strong>Seizure Observation:</strong> During prolonged EEG monitoring, accurately document any observed seizure activity, including onset, duration, and associated clinical manifestations.</li><li><strong>Safety Protocols:</strong> Ensure patient safety, especially during activation procedures (e.g., hyperventilation, photic stimulation) or if a seizure is anticipated.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Electroencephalography (EEG):</strong> The neurophysiological measurement of the electrical activity of the brain.</li><li><strong>10-20 System:</strong> Standardized method for electrode placement on the scalp to ensure consistent and reproducible recordings.</li><li><strong>Epileptiform Discharges:</strong> Abnormal electrical activity in the brain, such as spikes or sharp waves, indicative of seizure potential.</li><li><strong>Activation Procedures:</strong> Techniques like hyperventilation, photic stimulation, or sleep deprivation used to provoke abnormal brain activity.</li><li><strong>Ambulatory EEG:</strong> Portable EEG recording device allowing continuous monitoring over 24-72 hours in a patient's natural environment.</li><li><strong>Video EEG Monitoring:</strong> Simultaneous recording of EEG and video to correlate clinical events with brain electrical activity, often used in epilepsy monitoring units.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

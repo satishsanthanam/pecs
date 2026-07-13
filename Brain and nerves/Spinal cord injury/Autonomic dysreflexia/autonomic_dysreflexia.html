@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for public awareness. A person with a spinal cord injury in a wheelchair experiencing symptoms of autonomic dysreflexia: flushed face, sweating, prominent headache lines, and a worried expression. A healthcare professional (nurse or doctor) is calmly checking their blood pressure with a cuff, while another points to a diagram illustrating the spinal cord and the sympathetic/parasympathetic nervous system imbalance. Include subtle icons representing bladder distension and bowel impaction as potential triggers. Clean, modern design with a focus on patient care and urgent medical attention.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./autonomic_dysreflexia.jpg" class="card-banner" alt="Autonomic dysreflexia Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-brain-and-nerves" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Brain and nerves</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-brain-and-nerves-spinal-cord-injury" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Spinal cord injury</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Autonomic dysreflexia</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Brain and nerves</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Spinal cord injury</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Autonomic dysreflexia (AD) is a sudden, dangerous elevation in blood pressure in individuals with spinal cord injury (SCI) at T6 or above.</li><li><strong>Trigger Mechanism:</strong> It is caused by noxious stimuli below the level of the spinal cord injury, leading to an uninhibited sympathetic nervous system response.</li><li><strong>Medical Emergency:</strong> AD is a life-threatening medical emergency requiring immediate recognition and intervention to prevent severe complications.</li><li><strong>Potential Complications:</strong> Untreated AD can lead to stroke, myocardial infarction, seizures, retinal hemorrhage, and even death.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Sudden Hypertension:</strong> Abrupt increase in systolic blood pressure (typically 20-40 mmHg or more above baseline).</li><li><strong>Pounding Headache:</strong> Often severe and throbbing, a primary indicator of elevated intracranial pressure.</li><li><strong>Profuse Sweating:</strong> Especially above the level of injury, often accompanied by flushing of the skin.</li><li><strong>Bradycardia:</strong> Reflexive slowing of the heart rate due to baroreceptor stimulation, despite sympathetic overactivity.</li><li><strong>Nasal Congestion:</strong> Due to vasodilation in the nasal passages above the injury level.</li><li><strong>Piloerection:</strong> Goosebumps and pallor below the level of injury, indicating vasoconstriction.</li><li><strong>Anxiety and Apprehension:</strong> Patients may report a feeling of impending doom or unease.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Identify Triggers:</strong> Systematically check for and eliminate common triggers such as bladder distension (kinked catheter, full bag), bowel impaction, pressure sores, tight clothing, or ingrown toenails.</li><li><strong>Immediate Positioning:</strong> If AD is suspected, immediately sit the patient upright (elevate head of bed to 90 degrees) and lower their legs to promote orthostatic hypotension.</li><li><strong>Loosen Clothing:</strong> Remove any restrictive clothing or binders, especially around the abdomen and lower extremities.</li><li><strong>Monitor Vitals Closely:</strong> Continuously monitor blood pressure and heart rate every 2-5 minutes until symptoms resolve.</li><li><strong>Patient Education:</strong> Educate the patient and caregivers on the signs, symptoms, and immediate management steps for AD.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Bowel Regularity:</strong> Maintain a high-fiber diet and adequate fluid intake to prevent constipation and fecal impaction, which are common AD triggers.</li><li><strong>Hydration Status:</strong> Ensure consistent and sufficient fluid intake to prevent urinary tract infections and bladder stones, both potential triggers for AD.</li><li><strong>Scheduled Bowel Program:</strong> Adhere strictly to a prescribed bowel management program to prevent fecal loading and impaction.</li><li><strong>Bladder Irritants:</strong> Limit intake of caffeine and alcohol if they are known to contribute to bladder spasms or urinary frequency, potentially leading to bladder overdistension.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Protocol:</strong> Be thoroughly familiar with your facility's specific emergency protocol for managing autonomic dysreflexia.</li><li><strong>Rapid Response:</strong> Act immediately upon recognizing signs of AD; delay can lead to severe complications.</li><li><strong>Seek Assistance:</strong> Alert the nursing staff and physician immediately upon suspicion of AD, even while initiating initial interventions.</li><li><strong>Documentation:</strong> Meticulously document all interventions performed, the patient's response, and vital signs throughout the episode.</li><li><strong>Environmental Scan:</strong> Quickly scan the patient's environment for potential triggers, such as temperature extremes or uncomfortable positioning.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Prompt Diagnosis:</strong> Rapidly diagnose AD based on clinical presentation and exclude other causes of hypertension in SCI patients.</li><li><strong>Pharmacological Intervention:</strong> Administer rapid-acting antihypertensive agents (e.g., nifedipine, nitrates, hydralazine) if the noxious stimulus cannot be removed or if blood pressure remains dangerously high.</li><li><strong>Trigger Management:</strong> Emphasize thorough investigation and management of underlying triggers to prevent recurrent episodes.</li><li><strong>Patient and Family Education:</strong> Provide comprehensive education to patients and their families on AD recognition, prevention, and emergency response.</li><li><strong>Long-Term Management:</strong> Consider prophylactic medications for patients with frequent or severe AD episodes that are difficult to control with trigger management alone.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pathophysiology Understanding:</strong> Grasp the neurological mechanisms of AD, including the uninhibited sympathetic reflex and compensatory parasympathetic response.</li><li><strong>Assessment Skills:</strong> Develop proficiency in rapidly assessing for common AD triggers (bladder, bowel, skin, environmental).</li><li><strong>Intervention Sequence:</strong> Master the critical sequence of interventions: elevate head, loosen clothing, identify/remove trigger, monitor vitals, and administer medication as ordered.</li><li><strong>Patient Teaching:</strong> Learn effective strategies for educating patients and caregivers on AD prevention, early recognition, and immediate actions.</li><li><strong>Documentation Accuracy:</strong> Understand the importance of precise and timely documentation for legal, communication, and continuity of care purposes during an AD episode.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>ICD-10 Code:</strong> G90.8 (Other disorders of autonomic nervous system).</li><li><strong>Spinal Cord Level:</strong> Primarily affects individuals with spinal cord injury at or above the T6 dermatome.</li><li><strong>Key Neurotransmitters:</strong> Involves a massive sympathetic discharge of norepinephrine below the lesion and a compensatory vagal (parasympathetic) response above.</li><li><strong>Diagnostic Criteria:</strong> Acute onset of hypertension (systolic BP increase of 20-40 mmHg or more above baseline) with at least one associated symptom.</li><li><strong>Management Guidelines:</strong> Refer to established clinical practice guidelines for spinal cord injury management, specifically those addressing autonomic dysreflexia.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

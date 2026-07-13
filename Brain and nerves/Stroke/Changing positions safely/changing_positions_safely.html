@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a stroke patient being safely assisted by a caregiver during a transfer from a bed to a wheelchair. The patient is an elderly person with mild hemiparesis, wearing comfortable clothes. The caregiver is a healthcare professional, using a gait belt and proper body mechanics. The background shows a clean, modern hospital room or home setting with assistive devices like a walker nearby. Emphasize safety, support, and gentle movement. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./changing_positions_safely.jpg" class="card-banner" alt="Changing positions safely Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-brain-and-nerves" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Brain and nerves</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-brain-and-nerves-stroke" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Stroke</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Changing positions safely</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Brain and nerves</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Stroke</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Preventing Complications:</strong> Safe position changes are critical for stroke patients to prevent falls, skin breakdown (pressure injuries), and muscle contractures.</li>
+        <li><strong>Promoting Independence:</strong> Gradual, safe assistance with position changes helps patients regain strength, balance, and confidence, fostering greater independence in daily activities.</li>
+        <li><strong>Caregiver Safety:</strong> Proper techniques protect both the patient and the caregiver from injury during transfers and repositioning.</li>
+        <li><strong>Individualized Approach:</strong> Each patient's mobility needs and abilities are unique; techniques must be tailored to their specific deficits and progress.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Hemiparesis/Hemiplegia:</strong> Weakness or paralysis on one side of the body, making independent movement difficult or impossible.</li>
+        <li><strong>Balance Impairment:</strong> Difficulty maintaining an upright posture, leading to increased risk of falls during transfers.</li>
+        <li><strong>Spasticity/Flaccidity:</strong> Abnormal muscle tone affecting limb movement and stability during repositioning.</li>
+        <li><strong>Cognitive Deficits:</strong> Impaired judgment, attention, or ability to follow instructions, requiring clear, simple cues and close supervision.</li>
+        <li><strong>Visual Field Cuts:</strong> Reduced awareness of one side of the environment, increasing fall risk and requiring careful guidance.</li>
+        <li><strong>Dysphagia:</strong> Swallowing difficulties that necessitate specific upright positioning during and after meals.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Assess Environment:</strong> Ensure the area is clear of obstacles, well-lit, and that all equipment (bed brakes, wheelchair locks) is secured before any movement.</li>
+        <li><strong>Use Proper Body Mechanics:</strong> Caregivers should bend at the knees, keep the back straight, and use leg muscles to lift, avoiding twisting motions.</li>
+        <li><strong>Utilize Assistive Devices:</strong> Always use gait belts, slide boards, trapeze bars, or mechanical lifts as indicated and trained, ensuring they are in good working order.</li>
+        <li><strong>Monitor for Orthostatic Hypotension:</strong> Observe for dizziness, lightheadedness, or pallor when moving from lying to sitting or standing, allowing slow transitions.</li>
+        <li><strong>Communicate Clearly:</strong> Explain each step to the patient in simple terms, ensuring they understand and can participate to their fullest ability.</li>
+        <li><strong>Never Rush:</strong> Take time with each movement, allowing the patient to adjust and regain balance.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Upright Positioning for Meals:</strong> Ensure the patient is in a fully upright position (90-degree angle) during all oral intake to minimize aspiration risk.</li>
+        <li><strong>Maintain Position Post-Meal:</strong> Keep the patient upright for at least 30-60 minutes after eating to aid digestion and prevent reflux or aspiration.</li>
+        <li><strong>Hydration for Mobility:</strong> Adequate hydration helps prevent orthostatic hypotension, which can cause dizziness and increase fall risk during position changes.</li>
+        <li><strong>Bowel Regularity:</strong> Proper positioning can assist with bowel movements; ensure comfortable and private positioning for toileting needs.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>One-Person vs. Two-Person Assist:</strong> Always assess the patient's functional level and determine if one or two caregivers are needed for safe transfer.</li>
+        <li><strong>Clear Communication:</strong> Use consistent, simple commands (e.g., "Ready? On three... 1, 2, 3, stand!") and ensure the patient is engaged.</li>
+        <li><strong>Support Weak Side:</strong> Always support the patient's weaker side during transfers, guiding them towards their stronger side if possible.</li>
+        <li><strong>Never Leave Unattended:</strong> Do not leave a patient unattended during any part of a transfer or while they are in an unstable position.</li>
+        <li><strong>Know Emergency Procedures:</strong> Be prepared for a controlled fall if the patient loses balance, knowing how to safely lower them to the floor.</li>
+        <li><strong>Regular Repositioning:</strong> For bed-bound patients, reposition every 2 hours to prevent pressure injuries, using pillows and wedges for support.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Risk Assessment:</strong> Physicians regularly assess a stroke patient's mobility, balance, and cognitive status to determine appropriate levels of assistance and rehabilitation goals.</li>
+        <li><strong>Preventing Secondary Complications:</strong> Safe mobility protocols are crucial to prevent falls, fractures, deep vein thrombosis (DVT), and pressure ulcers, which can significantly impede recovery.</li>
+        <li><strong>Rehabilitation Prescription:</strong> Physical and occupational therapy are vital for teaching safe transfer techniques, strengthening muscles, and improving balance.</li>
+        <li><strong>Medication Review:</strong> Review medications that may affect balance or cause orthostatic hypotension, adjusting as necessary to enhance patient safety during movement.</li>
+        <li><strong>Family Education:</strong> Educating family and caregivers on safe handling techniques is paramount for continuity of care at home.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Mobility Assessment:</strong> Nurses use standardized tools (e.g., Braden Scale for pressure injury risk, Berg Balance Scale) to assess mobility and risk factors.</li>
+        <li><strong>Transfer Techniques:</strong> Mastering various transfer techniques (e.g., stand-pivot, squat-pivot, sliding board, mechanical lift) is fundamental for patient safety.</li>
+        <li><strong>Patient Education:</strong> Educate patients and families on the importance of gradual movements, using assistive devices, and reporting any dizziness or pain.</li>
+        <li><strong>Documentation:</strong> Accurately document the patient's mobility status, type of assistance required, devices used, and any adverse events during transfers.</li>
+        <li><strong>Skin Integrity Monitoring:</strong> Regularly inspect skin, especially over bony prominences, for signs of redness or breakdown, which can be exacerbated by improper positioning.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Orthostatic Hypotension:</strong> A sudden drop in blood pressure when standing up, often causing dizziness or fainting.</li>
+        <li><strong>Pressure Injuries (Bedsores):</strong> Localized damage to the skin and underlying tissue, usually over a bony prominence, resulting from pressure or pressure in combination with shear.</li>
+        <li><strong>Contractures:</strong> Shortening of muscle or connective tissue, leading to deformity and rigidity of joints, often preventable with regular movement and positioning.</li>
+        <li><strong>Hemiplegia/Hemiparesis:</strong> Paralysis or weakness affecting one side of the body, a common sequela of stroke.</li>
+        <li><strong>Spasticity:</strong> A form of muscle hypertonia characterized by velocity-dependent resistance to passive stretch, common after stroke.</li>
+        <li><strong>Gait Belt:</strong> A safety device used by caregivers to assist patients with transfers and ambulation, providing a secure grip point.</li>
+        <li><strong>Slide Board:</strong> A device used to bridge gaps between surfaces, allowing a patient to slide across with minimal lifting.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

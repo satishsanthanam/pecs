@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a human brain with subtle, abstract patterns representing neurological activity. Surrounding the brain are interconnected elements symbolizing the multifaceted impact of Huntington disease: a stylized figure in motion (motor symptoms), gears or a lightbulb (cognitive decline), and a spectrum of facial expressions (psychiatric symptoms). A subtle, intertwined DNA helix is integrated into the background, emphasizing the genetic origin. The overall design uses a clean, modern color palette with muted tones and clear lines, suitable for public health awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./huntington_disease.jpg" class="card-banner" alt="Huntington disease Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-brain-and-nerves" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Brain and nerves</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-brain-and-nerves-neuromuscular-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Neuromuscular disorders</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Huntington disease</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Brain and nerves</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Neuromuscular disorders</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Genetic Basis</strong>: Huntington disease (HD) is an inherited neurodegenerative disorder caused by a mutation in the HTT gene.</li><li><strong>Progressive Decline</strong>: Characterized by a gradual and relentless deterioration of motor control, cognitive abilities, and psychiatric health.</li><li><strong>Autosomal Dominant</strong>: A single copy of the mutated gene is sufficient to cause the disease, meaning each child of an affected parent has a 50% chance of inheriting it.</li><li><strong>Variable Onset</strong>: Symptoms typically manifest in mid-life (30s-50s), but can appear earlier (juvenile HD) or later in life.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Motor Dysfunction</strong>: Involuntary, jerky movements (chorea), dystonia, impaired gait, difficulty with balance, and problems with speech (dysarthria) and swallowing (dysphagia).</li><li><strong>Cognitive Impairment</strong>: Progressive decline in memory, executive functions (planning, problem-solving), judgment, and slowed thought processing.</li><li><strong>Psychiatric Disturbances</strong>: Common manifestations include depression, anxiety, irritability, obsessive-compulsive behaviors, apathy, and sometimes psychosis.</li><li><strong>Weight Loss</strong>: Unexplained and significant weight loss is often observed, even with adequate caloric intake, due to increased metabolic demands and difficulty eating.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Fall Prevention</strong>: Implement safety measures such as removing tripping hazards, installing grab bars, and using assistive devices to mitigate the risk of falls due to motor instability.</li><li><strong>Aspiration Risk Management</strong>: Closely monitor for signs of dysphagia and modify food and liquid consistencies as recommended by a speech-language pathologist to prevent aspiration pneumonia.</li><li><strong>Medication Adherence & Monitoring</strong>: Ensure strict adherence to prescribed medications for symptom management (e.g., chorea, psychiatric symptoms) and monitor for potential side effects.</li><li><strong>Genetic Counseling</strong>: Provide comprehensive genetic counseling to affected individuals and at-risk family members to facilitate informed decision-making regarding testing and family planning.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Modified Food Textures</strong>: Adapt food textures (e.g., soft, pureed) and liquid consistencies (e.g., thickened liquids) to ensure safe swallowing and prevent choking or aspiration.</li><li><strong>High Calorie & Nutrient-Dense Diet</strong>: Encourage frequent, small, high-calorie, and nutrient-dense meals and snacks to combat weight loss and meet increased metabolic demands.</li><li><strong>Hydration Strategies</strong>: Ensure adequate fluid intake, especially when using thickened liquids, to prevent dehydration.</li><li><strong>Feeding Assistance</strong>: Provide assistance with feeding as motor skills decline to ensure sufficient intake and maintain nutritional status.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Environmental Safety</strong>: Maintain a safe and clutter-free environment to prevent injuries from falls or uncontrolled movements.</li><li><strong>Communication Support</strong>: Be patient and allow ample time for communication; utilize alternative communication methods if speech becomes severely impaired.</li><li><strong>Behavioral Observation</strong>: Closely observe and document any changes in mood, behavior, or cognitive function, reporting them promptly to the healthcare team.</li><li><strong>Swallowing Protocol Adherence</strong>: Strictly follow prescribed dietary and swallowing protocols to minimize the risk of aspiration during meals and fluid intake.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Diagnostic Confirmation</strong>: Diagnosis is primarily clinical, supported by a family history and confirmed by genetic testing for the CAG repeat expansion in the HTT gene.</li><li><strong>Symptomatic Treatment</strong>: Management is largely symptomatic, focusing on medications to control chorea (e.g., tetrabenazine, deutetrabenazine) and psychiatric symptoms (e.g., antidepressants, antipsychotics).</li><li><strong>Multidisciplinary Approach</strong>: Emphasize a comprehensive, multidisciplinary care team including neurologists, psychiatrists, physical, occupational, and speech therapists, and dietitians.</li><li><strong>Prognosis & Support</strong>: Provide realistic expectations regarding disease progression and offer robust psychological and social support services for patients and their families.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Holistic Assessment</strong>: Conduct thorough assessments of motor function, cognitive status, mood, nutritional intake, and swallowing ability to guide care planning.</li><li><strong>Individualized Care Plans</strong>: Develop and implement individualized care plans addressing mobility, communication, nutrition, safety, and emotional well-being.</li><li><strong>Patient & Family Education</strong>: Educate patients and families about disease progression, medication management, safety measures, and available support groups and resources.</li><li><strong>Ethical Considerations</strong>: Understand the complex ethical issues surrounding genetic testing, predictive testing, and end-of-life care planning in HD.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Genetic Mutation</strong>: Caused by an expanded CAG trinucleotide repeat in exon 1 of the HTT gene on chromosome 4p16.3.</li><li><strong>Pathophysiology</strong>: Characterized by selective neuronal degeneration, particularly in the striatum (caudate and putamen) and cerebral cortex, leading to neurotransmitter imbalances.</li><li><strong>Diagnostic Criteria</strong>: Clinical presentation of characteristic motor, cognitive, and/or psychiatric symptoms, confirmed by genetic testing showing ≥36 CAG repeats.</li><li><strong>Pharmacological Interventions</strong>: Tetrabenazine and deutetrabenazine are FDA-approved for chorea; other medications target psychiatric symptoms (e.g., SSRIs, antipsychotics).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

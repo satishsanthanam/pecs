@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A vibrant flat vector illustration depicting an adult (diverse ethnicity) actively managing Type 1 diabetes. The scene includes elements like the adult checking a continuous glucose monitor (CGM) on their arm, holding an insulin pen, and a plate with a balanced meal (vegetables, lean protein, small portion of whole grains). A medical alert bracelet is visible on their wrist. The background features subtle, abstract shapes suggesting an active lifestyle, such as a person walking or cycling. The overall style is clean, modern, and friendly, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./type_1_diabetes_in_adults.jpg" class="card-banner" alt="Type 1 diabetes in adults Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-children-s-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Children's health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-children-s-health-diabetes-in-children" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Diabetes in children</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Type 1 diabetes in adults</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Children's health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Diabetes in children</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Autoimmune Condition:</strong> Type 1 diabetes is an autoimmune disease where the body's immune system mistakenly attacks and destroys the insulin-producing beta cells in the pancreas.</li><li><strong>Insulin Deficiency:</strong> This destruction leads to a complete or near-complete lack of insulin, a hormone essential for glucose to enter cells for energy.</li><li><strong>Lifelong Management:</strong> Individuals with Type 1 diabetes require lifelong insulin therapy, typically through injections or an insulin pump, to regulate blood glucose levels.</li><li><strong>Onset at Any Age:</strong> While often diagnosed in childhood or adolescence, Type 1 diabetes can develop at any age, including adulthood, sometimes referred to as Latent Autoimmune Diabetes in Adults (LADA).</li><li><strong>Not Preventable:</strong> Unlike Type 2 diabetes, Type 1 diabetes is not caused by lifestyle factors and cannot be prevented.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Frequent Urination (Polyuria):</strong> Excessive urination, especially at night, due to high blood glucose levels drawing water from the body.</li><li><strong>Increased Thirst (Polydipsia):</strong> Persistent and intense thirst as the body tries to replenish lost fluids.</li><li><strong>Increased Hunger (Polyphagia):</strong> Despite eating, cells are starved of glucose, leading to constant hunger.</li><li><strong>Unexplained Weight Loss:</strong> The body starts breaking down muscle and fat for energy due to lack of glucose utilization.</li><li><strong>Fatigue and Weakness:</strong> Lack of energy from glucose not reaching cells, leading to persistent tiredness.</li><li><strong>Blurred Vision:</strong> High blood glucose can cause fluid shifts in the eye lenses, affecting vision temporarily.</li><li><strong>Diabetic Ketoacidosis (DKA):</strong> Severe symptoms like nausea, vomiting, abdominal pain, fruity-smelling breath, and rapid breathing may indicate DKA, a life-threatening complication.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Consistent Blood Glucose Monitoring:</strong> Regularly check blood glucose levels using a meter or continuous glucose monitor (CGM) to guide insulin dosing and prevent hypo/hyperglycemia.</li><li><strong>Proper Insulin Administration:</strong> Learn and practice correct insulin injection techniques or pump management, including site rotation and storage.</li><li><strong>Hypoglycemia Awareness and Treatment:</strong> Recognize symptoms of low blood sugar (shakiness, sweating, confusion) and carry fast-acting carbohydrates (e.g., glucose tablets, juice) for immediate treatment.</li><li><strong>Hyperglycemia and DKA Prevention:</strong> Understand the causes of high blood sugar and DKA, and know when to administer correction doses of insulin and seek medical attention.</li><li><strong>Regular Medical Check-ups:</strong> Adhere to scheduled appointments with endocrinologists, diabetes educators, and other specialists for ongoing management and screening for complications.</li><li><strong>Foot Care:</strong> Inspect feet daily for cuts, blisters, or infections, and wear protective footwear to prevent diabetic foot complications.</li><li><strong>Eye and Kidney Screenings:</strong> Undergo annual dilated eye exams and regular kidney function tests (e.g., urine albumin-to-creatinine ratio) to detect and manage retinopathy and nephropathy early.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Carbohydrate Counting:</strong> Learn to accurately count carbohydrates in meals and snacks to match insulin doses, ensuring stable blood glucose levels.</li><li><strong>Balanced Meal Planning:</strong> Incorporate a variety of non-starchy vegetables, lean proteins, and healthy fats alongside measured carbohydrates for optimal nutrition and glucose control.</li><li><strong>Consistent Meal Timing:</strong> Maintain a consistent eating schedule, especially if on fixed insulin regimens, to prevent blood glucose fluctuations.</li><li><strong>Hydration:</strong> Ensure adequate fluid intake, primarily water, to support overall health and help manage blood glucose.</li><li><strong>Limit Sugary Beverages:</strong> Avoid sugar-sweetened drinks and highly processed foods that can cause rapid spikes in blood glucose.</li><li><strong>Fiber-Rich Foods:</strong> Prioritize foods high in fiber (whole grains, fruits, vegetables) to help slow glucose absorption and improve satiety.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Preparedness:</strong> Always carry a medical identification (e.g., bracelet, necklace) indicating Type 1 diabetes and have glucagon readily available for severe hypoglycemia.</li><li><strong>Sick Day Management:</strong> Follow specific sick day rules, including more frequent blood glucose monitoring, ketone testing, and adjusting insulin doses as advised by a healthcare provider during illness.</li><li><strong>Support System Engagement:</strong> Educate family, friends, and colleagues about Type 1 diabetes, including how to recognize and respond to hypoglycemia.</li><li><strong>Travel Planning:</strong> Plan ahead for travel by ensuring sufficient insulin, supplies, and necessary documentation for security checks.</li><li><strong>Medication Adherence:</strong> Strictly adhere to prescribed insulin regimens and any other medications to maintain optimal health and prevent complications.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Individualized Treatment Plans:</strong> Emphasize that Type 1 diabetes management is highly individualized, requiring close collaboration between the patient and a multidisciplinary healthcare team.</li><li><strong>Advanced Technologies:</strong> Encourage the use of continuous glucose monitoring (CGM) and insulin pump therapy for improved glucose control and quality of life where appropriate.</li><li><strong>Holistic Approach:</strong> Stress the importance of addressing not only physical health but also mental and emotional well-being, as living with a chronic condition can be challenging.</li><li><strong>Regular Screenings:</strong> Advocate for consistent screening for long-term complications, including cardiovascular disease, neuropathy, nephropathy, and retinopathy.</li><li><strong>Education and Empowerment:</strong> Highlight the critical role of ongoing patient education to empower individuals to actively manage their condition effectively.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pathophysiology Review:</strong> Understand the autoimmune destruction of pancreatic beta cells, leading to absolute insulin deficiency and subsequent hyperglycemia.</li><li><strong>Insulin Types and Action:</strong> Differentiate between rapid-acting, short-acting, intermediate-acting, and long-acting insulins, including their onset, peak, and duration of action.</li><li><strong>Patient Education Strategies:</strong> Develop effective teaching plans for insulin injection techniques, carbohydrate counting, blood glucose monitoring, and sick day management.</li><li><strong>Acute Complication Management:</strong> Be proficient in recognizing and managing diabetic ketoacidosis (DKA) and severe hypoglycemia, including emergency protocols.</li><li><strong>Psychosocial Support:</strong> Recognize the psychological impact of Type 1 diabetes and provide appropriate emotional support and resources for patients and their families.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Diagnostic Criteria:</strong> Fasting plasma glucose &#x2265; 126 mg/dL, 2-hour plasma glucose &#x2265; 200 mg/dL during OGTT, HbA1c &#x2265; 6.5%, or random plasma glucose &#x2265; 200 mg/dL with classic symptoms.</li><li><strong>Autoantibody Testing:</strong> Presence of islet cell autoantibodies (ICA), glutamic acid decarboxylase autoantibodies (GADA), insulin autoantibodies (IAA), or tyrosine phosphatase-like autoantibodies (IA-2A) confirms autoimmune etiology.</li><li><strong>C-peptide Levels:</strong> Low or undetectable C-peptide levels indicate minimal to no endogenous insulin production, distinguishing Type 1 from Type 2 diabetes.</li><li><strong>Insulin Regimens:</strong> Basal-bolus insulin therapy (long-acting basal insulin with rapid-acting bolus insulin for meals and corrections) is the standard of care.</li><li><strong>Long-term Complications:</strong> Microvascular (retinopathy, nephropathy, neuropathy) and macrovascular (cardiovascular disease, stroke, peripheral artery disease) complications are significant concerns.</li><li><strong>Emerging Therapies:</strong> Research areas include artificial pancreas systems, islet cell transplantation, and immunomodulatory therapies to preserve beta cell function.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

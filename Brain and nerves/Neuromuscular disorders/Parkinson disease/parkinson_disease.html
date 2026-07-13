@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a stylized human head in profile, with a visible brain showing neural pathways. Subtle, abstract representations of movement or tremors emanating from the brain area. A gentle, supportive hand reaching towards the head, symbolizing care and support. Clean lines, soft color palette, public awareness design, no text.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./parkinson_disease.jpg" class="card-banner" alt="Parkinson disease Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-brain-and-nerves" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Brain and nerves</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-brain-and-nerves-neuromuscular-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Neuromuscular disorders</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Parkinson disease</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Brain and nerves</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Neuromuscular disorders</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Progressive Neurodegenerative Disorder:</strong> Parkinson disease is a chronic, progressive condition affecting the central nervous system, primarily impacting motor control.</li><li><strong>Dopamine Deficiency:</strong> It results from the degeneration of dopamine-producing neurons in the substantia nigra region of the brain.</li><li><strong>Cardinal Motor Symptoms:</strong> Characterized by resting tremor, bradykinesia (slowness of movement), rigidity (stiffness), and postural instability (impaired balance).</li><li><strong>Non-Motor Manifestations:</strong> Patients often experience non-motor symptoms such as olfactory dysfunction, sleep disturbances, mood disorders, and cognitive changes, which can precede motor symptoms.</li><li><strong>No Cure, Manageable Symptoms:</strong> While there is currently no cure, treatments focus on managing symptoms and improving quality of life.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Resting Tremor:</strong> Involuntary rhythmic shaking, often starting in one limb (e.g., 'pill-rolling' tremor of the hand), typically present at rest and diminishing with voluntary movement.</li><li><strong>Bradykinesia:</strong> Generalized slowness of movement, leading to difficulty initiating and executing voluntary movements, affecting daily tasks like dressing and eating.</li><li><strong>Rigidity:</strong> Stiffness and inflexibility of the limbs and trunk, often described as 'cogwheel rigidity' (jerky resistance to passive movement) or 'lead-pipe rigidity' (sustained resistance).</li><li><strong>Postural Instability:</strong> Impaired balance and coordination, increasing the risk of falls, especially during turns or when standing up.</li><li><strong>Gait Disturbances:</strong> Shuffling gait, reduced arm swing, and 'freezing of gait' (sudden, temporary inability to move forward).</li><li><strong>Dysphagia:</strong> Difficulty swallowing, which can lead to choking, aspiration, and weight loss.</li><li><strong>Dysarthria and Hypophonia:</strong> Slurred, monotonous, and soft speech.</li><li><strong>Non-Motor Symptoms:</strong> Including anosmia (loss of smell), constipation, REM sleep behavior disorder, depression, anxiety, fatigue, and cognitive impairment.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Fall Prevention:</strong> Implement home safety modifications (e.g., removing rugs, installing grab bars), encourage assistive devices (walkers), and advise on slow, deliberate movements to prevent falls due to postural instability.</li><li><strong>Medication Adherence:</strong> Emphasize strict adherence to prescribed medication schedules, especially for levodopa, to maintain consistent drug levels and minimize 'off' periods and dyskinesias.</li><li><strong>Aspiration Risk Management:</strong> Monitor for signs of dysphagia and implement strategies such as thickened liquids, modified food textures, and upright positioning during meals to prevent aspiration pneumonia.</li><li><strong>Orthostatic Hypotension Monitoring:</strong> Educate patients on symptoms of orthostatic hypotension (dizziness, lightheadedness upon standing) and advise on slow position changes to prevent falls.</li><li><strong>Impulse Control Disorder Awareness:</strong> Be vigilant for and educate patients/caregivers about potential impulse control disorders (e.g., pathological gambling, hypersexuality) associated with dopamine agonist medications.</li><li><strong>Skin Integrity:</strong> Due to reduced mobility, ensure regular repositioning and skin assessments to prevent pressure injuries.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Protein Distribution for Levodopa:</strong> Advise patients taking levodopa to distribute protein intake throughout the day, as high protein meals can interfere with its absorption; often, limiting protein around medication times is beneficial.</li><li><strong>Adequate Hydration:</strong> Encourage ample fluid intake to combat constipation, a common non-motor symptom, and to help manage orthostatic hypotension.</li><li><strong>Fiber-Rich Foods:</strong> Promote a diet rich in fiber (fruits, vegetables, whole grains) to aid in bowel regularity and alleviate constipation.</li><li><strong>Texture Modification for Dysphagia:</strong> For patients with swallowing difficulties, recommend a speech-language pathologist's assessment for appropriate food texture and liquid consistency modifications (e.g., soft, puréed foods, thickened liquids).</li><li><strong>Small, Frequent Meals:</strong> Suggest smaller, more frequent meals to manage nausea, a potential side effect of some Parkinson's medications, and to ensure adequate caloric intake.</li><li><strong>Avoidance of Certain Supplements:</strong> Advise caution with iron supplements, as iron can chelate levodopa, reducing its absorption; separate administration times if necessary.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Precise Medication Administration:</strong> Administer all Parkinson's medications exactly as prescribed, paying close attention to timing relative to meals and other medications to optimize efficacy and minimize side effects.</li><li><strong>Assistance with Mobility:</strong> Provide consistent support during ambulation, transfers, and activities of daily living, especially during 'off' periods or when freezing of gait occurs, to ensure safety and prevent falls.</li><li><strong>Communication Facilitation:</strong> Allow ample time for patients to communicate, as dysarthria and bradykinesia can slow speech; use visual cues or alternative communication methods if necessary.</li><li><strong>Observation for Medication Side Effects:</strong> Closely monitor for adverse effects of medications, including dyskinesias (involuntary movements), hallucinations, delusions, and orthostatic hypotension.</li><li><strong>Bowel Regimen Management:</strong> Implement a regular bowel regimen, including adequate hydration and fiber, and consider stool softeners or laxatives as prescribed to manage chronic constipation.</li><li><strong>Psychosocial Support:</strong> Offer emotional support and encourage participation in support groups to address the psychological impact of living with a progressive neurological condition.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early and Accurate Diagnosis:</strong> Essential for initiating timely symptomatic treatment and establishing a long-term management plan, often involving a neurologist specializing in movement disorders.</li><li><strong>Multidisciplinary Care:</strong> Emphasize a comprehensive team approach, including neurologists, physical therapists, occupational therapists, speech-language pathologists, dietitians, and social workers, to address the multifaceted challenges of the disease.</li><li><strong>Individualized Treatment Plans:</strong> Treatment is highly individualized, tailored to the patient's specific symptom profile, disease stage, age, and response to medications.</li><li><strong>Pharmacological Management:</strong> Levodopa remains the most effective symptomatic treatment, often combined with carbidopa; other medications include dopamine agonists, MAO-B inhibitors, COMT inhibitors, and amantadine.</li><li><strong>Non-Pharmacological Interventions:</strong> Strongly advocate for regular exercise, physical therapy, occupational therapy, and speech therapy to maintain mobility, function, and communication skills.</li><li><strong>Surgical Options:</strong> Deep Brain Stimulation (DBS) may be considered for select patients with advanced Parkinson's disease who experience motor fluctuations and dyskinesias refractory to optimal medical therapy.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pathophysiology Understanding:</strong> Grasp the degeneration of dopaminergic neurons in the substantia nigra and its impact on the basal ganglia's role in motor control.</li><li><strong>Pharmacology of Anti-Parkinsonian Drugs:</strong> Learn the mechanisms of action, common dosages, side effects, and critical administration considerations for levodopa/carbidopa, dopamine agonists, and other adjunctive therapies.</li><li><strong>Comprehensive Assessment Skills:</strong> Develop proficiency in assessing motor symptoms (e.g., using the Unified Parkinson's Disease Rating Scale - UPDRS), non-motor symptoms, functional status, and medication efficacy/side effects.</li><li><strong>Patient and Caregiver Education:</strong> Provide thorough education on medication schedules, potential side effects, fall prevention strategies, dysphagia precautions, and recognition of 'on/off' fluctuations.</li><li><strong>Rehabilitation Principles:</strong> Understand the goals and techniques of physical, occupational, and speech therapy in maintaining patient independence, improving mobility, and managing communication and swallowing difficulties.</li><li><strong>Ethical Considerations:</strong> Address ethical dilemmas related to advanced care planning, end-of-life discussions, and managing neuropsychiatric symptoms.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Substantia Nigra:</strong> A basal ganglia structure in the midbrain that plays a crucial role in reward and movement; its degeneration is central to Parkinson disease.</li><li><strong>Lewy Bodies:</strong> Abnormal aggregates of protein (alpha-synuclein) that develop inside neurons, a pathological hallmark of Parkinson disease and Lewy body dementia.</li><li><strong>Bradykinesia:</strong> A cardinal motor symptom characterized by slowness of movement, reduced amplitude, and progressive hesitations or arrests of ongoing movement.</li><li><strong>Dyskinesia:</strong> Involuntary, erratic, writhing movements, often a side effect of long-term levodopa therapy, particularly at peak drug concentrations.</li><li><strong>Unified Parkinson's Disease Rating Scale (UPDRS):</strong> A widely used clinical tool to assess the severity and progression of Parkinson's disease, evaluating motor and non-motor symptoms.</li><li><strong>Deep Brain Stimulation (DBS):</strong> A neurosurgical procedure involving the implantation of electrodes into specific brain areas (e.g., subthalamic nucleus, globus pallidus internus) to deliver electrical impulses that modulate abnormal brain activity.</li><li><strong>Freezing of Gait (FOG):</strong> A sudden, brief episode of inability to move forward, often occurring when initiating walking, turning, or passing through narrow spaces.</li><li><strong>REM Sleep Behavior Disorder (RBD):</strong> A parasomnia characterized by vivid dreams and acting out dreams during REM sleep, often an early non-motor symptom of Parkinson disease.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

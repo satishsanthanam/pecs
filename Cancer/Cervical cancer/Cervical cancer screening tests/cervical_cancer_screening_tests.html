@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a diverse woman interacting with a friendly female healthcare provider in a modern clinic setting. The scene should subtly incorporate elements representing cervical cancer screening, such as a stylized speculum or collection brush, microscopic views of healthy and abnormal cervical cells, and abstract representations of the HPV virus. Include a calendar or clock icon to symbolize regular screening and prevention. The overall design should convey awareness, early detection, and women's health, using a clean, approachable, and inclusive aesthetic with soft, inviting colors. Avoid any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./cervical_cancer_screening_tests.jpg" class="card-banner" alt="Cervical cancer screening tests Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Cancer</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-cancer-cervical-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Cervical cancer</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Cervical cancer screening tests</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Cancer</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Cervical cancer</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose of Screening</strong>: Cervical cancer screening tests, primarily Pap tests and HPV tests, are crucial for detecting abnormal cervical cells or high-risk human papillomavirus (HPV) types before cancer develops.</li><li><strong>Key Tests Explained</strong>: The Pap test (Papanicolaou test) examines cervical cells for abnormalities, while the HPV test identifies the presence of high-risk HPV strains that can lead to cancer.</li><li><strong>Target Population & Age</strong>: Screening typically begins at age 21 and continues through age 65, with specific guidelines varying by age, previous results, and individual risk factors.</li><li><strong>Screening Frequency</strong>: Recommended intervals for screening vary, often every 3 years for a Pap test alone, or every 5 years for co-testing (Pap and HPV test) in women aged 30-65.</li><li><strong>Prevention & Early Detection</strong>: Regular screening is the most effective method for preventing cervical cancer by identifying and treating precancerous lesions early.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Asymptomatic Early Stages</strong>: Early cervical changes and even early-stage cervical cancer often present without any noticeable symptoms, highlighting the importance of screening.</li><li><strong>Abnormal Vaginal Bleeding</strong>: Clinical indications for screening or symptoms of advanced disease include bleeding between menstrual periods, after sexual intercourse, or post-menopause.</li><li><strong>Unusual Vaginal Discharge</strong>: Persistent, watery, bloody, or foul-smelling vaginal discharge can be a symptom prompting further investigation.</li><li><strong>Pelvic Pain or Discomfort</strong>: Unexplained or persistent pelvic pain, especially during sexual intercourse (dyspareunia), may warrant clinical evaluation.</li><li><strong>Risk Factors for Screening</strong>: Key risk factors that prompt regular screening include persistent high-risk HPV infection, a history of abnormal Pap tests, multiple sexual partners, early age of first intercourse, and a weakened immune system.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Douching</strong>: Refrain from douching for at least 24-48 hours before your cervical cancer screening appointment, as it can wash away abnormal cells.</li><li><strong>No Vaginal Products</strong>: Do not use vaginal creams, jellies, suppositories, or medications for 24-48 hours prior to the test, as these can interfere with cell collection.</li><li><strong>Sexual Intercourse Restriction</strong>: Avoid sexual intercourse for at least 24-48 hours before the screening to ensure optimal cell sample quality.</li><li><strong>Menstrual Cycle Timing</strong>: Ideally, schedule your Pap test when you are not menstruating. Heavy bleeding can obscure cell samples, leading to inconclusive results.</li><li><strong>Inform Provider of Pregnancy</strong>: If you are pregnant, inform your healthcare provider. Pap tests are generally safe during pregnancy, but specific considerations may apply.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>No Specific Dietary Restrictions</strong>: Cervical cancer screening tests do not typically require any specific dietary changes or fasting before the procedure.</li><li><strong>Normal Hydration</strong>: Maintain your usual hydration levels unless otherwise instructed by your healthcare provider for co-scheduled procedures.</li><li><strong>Medication Adherence</strong>: Continue taking all prescribed medications as usual, unless your healthcare provider specifically advises otherwise.</li><li><strong>Post-Procedure Considerations</strong>: There are no specific dietary restrictions or reintroduction protocols required after a routine cervical cancer screening test.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Understand Your Results</strong>: Ensure you know when and how you will receive your screening test results, and what they mean for your health.</li><li><strong>Follow-Up Recommendations</strong>: Strictly adhere to any recommended follow-up appointments, additional diagnostic tests (e.g., colposcopy), or treatment plans.</li><li><strong>Report New Symptoms</strong>: Do not hesitate to contact your healthcare provider if you develop new or worsening symptoms, even after a normal screening result.</li><li><strong>Open Communication</strong>: Discuss any concerns, anxieties, or questions you have about the screening procedure or your results with your healthcare provider.</li><li><strong>Maintain Regular Screenings</strong>: Consistent adherence to recommended screening schedules is paramount for effective cervical cancer prevention.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Importance of Regular Screening</strong>: Regular cervical cancer screening is a cornerstone of women's health, offering the best chance for early detection and successful intervention against precancerous changes.</li><li><strong>HPV Vaccination</strong>: Physicians strongly recommend HPV vaccination for eligible individuals, as it is a highly effective primary prevention strategy against the most common causes of cervical cancer.</li><li><strong>Personalized Screening Plans</strong>: Screening frequency and type of test should be tailored to individual patient factors, including age, medical history, and previous screening results.</li><li><strong>Early Intervention Saves Lives</strong>: Detecting and treating cervical intraepithelial neoplasia (CIN) before it progresses to invasive cancer is critical for preventing morbidity and mortality.</li><li><strong>Addressing Patient Concerns</strong>: Healthcare providers are committed to educating patients about the screening process, dispelling myths, and alleviating anxieties to ensure compliance.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education</strong>: Nurses play a vital role in educating patients about the purpose, procedure, and importance of cervical cancer screening, including pre-test instructions.</li><li><strong>Ensuring Patient Comfort</strong>: Provide a private and comfortable environment, explain each step of the procedure, and offer emotional support to reduce patient anxiety during the examination.</li><li><strong>Accurate Specimen Collection</strong>: Proper technique for collecting cervical cell samples (e.g., using a broom or spatula and brush) is essential for obtaining an adequate and representative specimen.</li><li><strong>Specimen Handling & Labeling</strong>: Meticulous labeling and correct handling of samples (e.g., liquid-based cytology vials) are crucial to prevent errors and ensure accurate laboratory processing.</li><li><strong>Post-Procedure Guidance</strong>: Advise patients on potential mild spotting or discomfort after the test and instruct them on when to seek medical attention for unusual symptoms.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Papanicolaou (Pap) Test</strong>: Cytological examination of exfoliated cervical cells to detect abnormal changes indicative of precancerous or cancerous lesions.</li><li><strong>HPV DNA Testing</strong>: Molecular test to detect high-risk types of human papillomavirus DNA in cervical samples, often performed concurrently with a Pap test (co-testing).</li><li><strong>Co-testing</strong>: The combined use of a Pap test and an HPV test, typically recommended for women aged 30-65, offering enhanced sensitivity for detecting cervical disease.</li><li><strong>ASCCP Guidelines</strong>: The American Society for Colposcopy and Cervical Pathology provides evidence-based guidelines for the management of abnormal cervical cancer screening results.</li><li><strong>Cervical Intraepithelial Neoplasia (CIN)</strong>: A precancerous condition characterized by abnormal growth of squamous cells on the surface of the cervix, graded I, II, or III based on severity.</li><li><strong>Liquid-Based Cytology (LBC)</strong>: A modern method for Pap test specimen preparation where cells are collected into a liquid medium, improving sample quality and allowing for additional tests from the same sample.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

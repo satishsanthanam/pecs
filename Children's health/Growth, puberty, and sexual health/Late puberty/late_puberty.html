@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration depicting a timeline of child development with a noticeable gap or delay in the puberty stage. Show silhouettes of children growing, with one child appearing younger than their peers at the expected age for puberty. Include subtle medical symbols like a growth chart, a clock indicating time passing, and a supportive, caring adult figure (e.g., parent or doctor) gently guiding the child. Use soft, reassuring colors and clean lines, suitable for a public health awareness campaign on children's health.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./late_puberty.jpg" class="card-banner" alt="Late puberty Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-children-s-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Children's health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-children-s-health-growth-puberty-and-sexual-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Growth, puberty, and sexual health</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Late puberty</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Children's health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Growth, puberty, and sexual health</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Late puberty refers to the absence of any signs of pubertal development by an age at which 95% of children of that sex and population have initiated puberty.</li><li><strong>Girls:</strong> Lack of breast development by age 13 or no menarche by age 16.</li><li><strong>Boys:</strong> Lack of testicular enlargement (testicular volume less than 4 mL) by age 14.</li><li><strong>Common Cause:</strong> Constitutional Delay of Growth and Puberty (CDGP) is the most frequent cause, characterized by a temporary delay in the pubertal growth spurt and sexual maturation, often with a family history.</li><li><strong>Other Causes:</strong> Can include chronic systemic illnesses, nutritional deficiencies, genetic disorders (e.g., Turner syndrome, Klinefelter syndrome), or disorders of the hypothalamic-pituitary-gonadal axis.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Delayed Secondary Sexual Characteristics:</strong> Absence of breast budding in girls or testicular enlargement in boys by the expected age.</li><li><strong>Lack of Pubic Hair:</strong> Absence of pubic or axillary hair development.</li><li><strong>Growth Pattern:</strong> Often presents with short stature for age, with a normal growth velocity that slows down before the pubertal growth spurt.</li><li><strong>Psychosocial Impact:</strong> May lead to significant emotional distress, body image concerns, anxiety, and social withdrawal in adolescents.</li><li><strong>Primary Amenorrhea:</strong> In girls, the absence of menstrual periods by age 16, even if some breast development has occurred.</li><li><strong>Skeletal Maturation:</strong> Bone age is typically delayed compared to chronological age.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Early Consultation:</strong> Seek evaluation by a pediatrician or pediatric endocrinologist if pubertal signs are absent by the defined age limits.</li><li><strong>Avoid Self-Diagnosis:</strong> Do not assume it is 'just a late bloomer' without medical assessment, as underlying conditions require specific management.</li><li><strong>Monitor Growth:</strong> Regularly track height and weight on growth charts to identify deviations from expected growth patterns.</li><li><strong>Nutritional Support:</strong> Ensure adequate caloric and nutrient intake, especially for adolescents with chronic illnesses that may contribute to delayed puberty.</li><li><strong>Psychological Support:</strong> Address the emotional and social challenges faced by the adolescent, providing reassurance and professional counseling if needed.</li><li><strong>Avoid Unproven Remedies:</strong> Do not use unprescribed supplements or 'growth hormones' without medical guidance.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Balanced Nutrition:</strong> Emphasize a diet rich in whole foods, including lean proteins, complex carbohydrates, and healthy fats to support overall growth and development.</li><li><strong>Bone Health Nutrients:</strong> Ensure adequate intake of calcium (dairy products, fortified plant milks, leafy greens) and Vitamin D (fatty fish, fortified foods, sunlight exposure) for optimal bone mineralization.</li><li><strong>Energy Requirements:</strong> Provide sufficient calories to meet the increased energy demands of growth and pubertal development, especially during potential growth spurts.</li><li><strong>Iron-Rich Foods:</strong> Encourage consumption of iron-rich foods (red meat, beans, fortified cereals) to prevent iron deficiency, which can impact energy levels and overall health.</li><li><strong>Avoid Excessive Restrictions:</strong> Unless medically indicated for an underlying condition, avoid overly restrictive diets that could compromise nutrient intake essential for growth.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Regular Follow-up:</strong> Adhere to scheduled appointments with healthcare providers to monitor pubertal progression and overall health.</li><li><strong>Educate the Child/Adolescent:</strong> Provide age-appropriate information about puberty, explaining the process and reassuring them about their individual development.</li><li><strong>Observe for Changes:</strong> Be vigilant for any new symptoms or changes in growth, mood, or physical development, and report them promptly to the medical team.</li><li><strong>Supportive Environment:</strong> Foster an open and supportive home environment where the child feels comfortable discussing their feelings and concerns about their development.</li><li><strong>Medication Adherence:</strong> If hormone therapy is prescribed, ensure strict adherence to the dosage and schedule, and understand potential side effects.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive Evaluation:</strong> A thorough history, physical examination (including Tanner staging), and assessment of growth velocity are crucial.</li><li><strong>Bone Age Radiograph:</strong> A left hand and wrist X-ray for bone age assessment is a key diagnostic tool to determine skeletal maturity.</li><li><strong>Hormonal Assays:</strong> Blood tests for LH, FSH, estradiol (girls), testosterone (boys), thyroid hormones, and prolactin may be indicated.</li><li><strong>Genetic Testing:</strong> Karyotyping may be necessary in girls with very short stature or specific dysmorphic features (e.g., Turner syndrome).</li><li><strong>Imaging Studies:</strong> Pituitary MRI may be considered if central causes of hypogonadism are suspected.</li><li><strong>Treatment Options:</strong> Management ranges from watchful waiting for CDGP to short-course sex steroid therapy to initiate puberty or address specific underlying conditions.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Tanner Staging:</strong> Proficiently assess and document pubertal development using the Tanner stages (sexual maturity rating).</li><li><strong>Patient Education:</strong> Provide clear, empathetic education to adolescents and their families regarding the normal variations of puberty and the specific diagnosis.</li><li><strong>Growth Chart Interpretation:</strong> Accurately plot and interpret growth charts, identifying deviations that may signal delayed puberty.</li><li><strong>Emotional Support:</strong> Offer psychological support and resources, recognizing the potential for body image issues and social anxiety.</li><li><strong>Medication Management:</strong> Educate on hormone therapy administration (e.g., oral, transdermal, intramuscular), potential side effects, and the importance of adherence.</li><li><strong>Interdisciplinary Collaboration:</strong> Work with endocrinologists, psychologists, school nurses, and social workers to provide holistic care.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Constitutional Delay of Growth and Puberty (CDGP):</strong> A common, benign variant of normal development.</li><li><strong>Hypogonadotropic Hypogonadism (HH):</strong> Caused by a deficiency in GnRH, LH, or FSH, leading to impaired gonadal function.</li><li><strong>Hypergonadotropic Hypogonadism (HH):</strong> Characterized by primary gonadal failure with elevated LH and FSH levels.</li><li><strong>Kallmann Syndrome:</strong> A form of HH associated with anosmia or hyposmia (impaired sense of smell).</li><li><strong>Turner Syndrome (45,XO):</strong> A genetic condition in girls causing ovarian dysgenesis and short stature.</li><li><strong>Klinefelter Syndrome (47,XXY):</strong> A genetic condition in boys causing testicular dysfunction and often tall stature.</li><li><strong>Chronic Systemic Diseases:</strong> Conditions like celiac disease, inflammatory bowel disease, cystic fibrosis, and severe asthma can delay puberty.</li><li><strong>Hypothyroidism:</strong> Untreated severe hypothyroidism can cause delayed puberty.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

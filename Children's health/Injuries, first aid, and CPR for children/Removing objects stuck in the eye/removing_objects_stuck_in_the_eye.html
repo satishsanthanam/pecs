@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration depicting a concerned parent gently examining their child's eye, which appears red and watery. The child is looking up, slightly distressed. In the background, a medical professional (doctor or nurse) is calmly preparing a sterile saline solution for eye irrigation. The scene conveys care, first aid, and the importance of seeking medical help for eye injuries in children. Soft, reassuring colors. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./removing_objects_stuck_in_the_eye.jpg" class="card-banner" alt="Removing objects stuck in the eye Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-children-s-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Children's health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-children-s-health-injuries-first-aid-and-cpr-for-children" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Injuries, first aid, and CPR for children</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Removing objects stuck in the eye</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Children's health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Injuries, first aid, and CPR for children</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Immediate Danger:</strong> Objects in a child's eye can cause significant pain, damage to the cornea or conjunctiva, and potentially lead to vision impairment if not addressed promptly and correctly.</li>
+        <li><strong>Do Not Rub:</strong> Instruct the child immediately not to rub their eye, as this can embed the object deeper or cause further abrasion.</li>
+        <li><strong>Identify Type:</strong> Determine if the object is superficial (e.g., dust, eyelash) or if it appears embedded or sharp, which requires immediate professional medical attention.</li>
+        <li><strong>Chemical Exposure:</strong> If a chemical splash occurs, immediately flush the eye with copious amounts of water for at least 15-20 minutes and seek emergency care.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Excessive Tearing:</strong> The eye's natural response to irritation, attempting to flush out the foreign body.</li>
+        <li><strong>Redness and Irritation:</strong> Visible inflammation of the conjunctiva or sclera.</li>
+        <li><strong>Pain or Discomfort:</strong> The child may complain of a "scratchy" or "gritty" sensation, or express general eye pain.</li>
+        <li><strong>Light Sensitivity (Photophobia):</strong> Squinting or aversion to bright lights.</li>
+        <li><strong>Frequent Blinking:</strong> An involuntary attempt to dislodge the object.</li>
+        <li><strong>Blurred Vision:</strong> If the object is on the cornea or causes significant irritation, vision may be temporarily impaired.</li>
+        <li><strong>Visible Object:</strong> A foreign body may be seen on the surface of the eye, under the eyelid, or in the corner.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Hand Hygiene:</strong> Always wash hands thoroughly with soap and water before attempting any examination or first aid to prevent infection.</li>
+        <li><strong>Avoid Rubbing:</strong> Strictly prevent the child from rubbing the affected eye, as this can worsen the injury or embed the object.</li>
+        <li><strong>No Forceful Removal:</strong> Never attempt to remove an object that is embedded in the eye, appears sharp, or is causing severe pain. This requires immediate medical intervention.</li>
+        <li><strong>Do Not Use Unsterile Tools:</strong> Avoid using tweezers, cotton swabs, or any unsterile or sharp objects to try and remove a foreign body.</li>
+        <li><strong>Protect the Eye:</strong> If an object is embedded, gently tape a paper cup or eye shield over the affected eye to prevent further movement or pressure during transport to a medical facility.</li>
+        <li><strong>Chemical Exposure Protocol:</strong> For chemical splashes, immediately flush the eye with lukewarm water for at least 15-20 minutes, holding the eyelids open, before seeking emergency medical care.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Pre-Medical Intervention:</strong> If the child is experiencing significant pain or distress, or if immediate medical attention is required (e.g., emergency room visit), it is advisable to withhold food and drink. This precaution is in case sedation or anesthesia is needed for examination or removal of the foreign body.</li>
+        <li><strong>Hydration for Comfort:</strong> Once the immediate issue is addressed and if the child is stable, ensure adequate hydration with clear fluids to help manage discomfort and prevent dehydration, especially if crying has been extensive.</li>
+        <li><strong>Post-Procedure Considerations:</strong> If any sedatives or pain medications are administered, follow specific post-medication dietary guidelines provided by the healthcare professional, which may include starting with clear liquids and gradually advancing diet.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Seek Emergency Care Immediately If:</strong> The object is embedded, vision changes occur, there is severe pain, the object is sharp, or you suspect a chemical burn or globe rupture.</li>
+        <li><strong>Transport Safely:</strong> If an embedded object is present, ensure the child is transported to the nearest emergency department without further disturbing the eye. Secure a protective shield (e.g., paper cup) over the eye.</li>
+        <li><strong>Provide History:</strong> Be prepared to inform medical staff about what happened, when it happened, what type of object is suspected, and any first aid measures already attempted.</li>
+        <li><strong>Monitor for Complications:</strong> Even after successful removal, monitor the child for persistent pain, redness, discharge, or vision changes, and seek follow-up care if these symptoms develop.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Thorough Examination:</strong> A comprehensive eye examination, often using a slit lamp, is crucial to accurately locate the foreign body, assess for corneal abrasions, and rule out deeper penetration.</li>
+        <li><strong>Irrigation as First Line:</strong> For superficial, non-embedded objects, gentle irrigation with sterile saline is often the safest and most effective initial removal method.</li>
+        <li><strong>Sterile Removal Techniques:</strong> If irrigation fails, a sterile moistened cotton swab or a specialized ophthalmic spud may be used by a trained professional to carefully lift or sweep away the object.</li>
+        <li><strong>Fluorescein Staining:</strong> This dye helps visualize corneal abrasions or the presence of a foreign body that might otherwise be missed.</li>
+        <li><strong>Post-Removal Care:</strong> Topical antibiotic drops or ointment are typically prescribed to prevent infection, and cycloplegic drops may be used to reduce pain from ciliary spasm.</li>
+        <li><strong>Ophthalmology Referral:</strong> Any embedded object, suspected globe rupture, persistent symptoms, or vision changes warrant immediate referral to an ophthalmologist.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Patient Assessment:</strong> Conduct a focused assessment including visual acuity (if age-appropriate), pupil reaction, and careful inspection of the conjunctiva, cornea, and under both upper and lower eyelids.</li>
+        <li><strong>Pain Management:</strong> Utilize age-appropriate pain scales and interventions. Topical anesthetic drops can facilitate examination and removal, but their use should be limited due to potential corneal toxicity.</li>
+        <li><strong>Irrigation Procedure:</strong> Position the child appropriately, use a sterile saline solution, and direct the flow from the inner canthus to the outer canthus to flush the eye effectively.</li>
+        <li><strong>Parental Education:</strong> Educate parents on proper eye care, signs of infection or complications, correct administration of prescribed eye drops, and the importance of follow-up appointments.</li>
+        <li><strong>Documentation:</strong> Meticulously document the type of foreign body, location, removal method, post-removal findings, medications administered, and patient/parent education provided.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Corneal Abrasion:</strong> A scratch on the clear, protective outer layer of the eye (cornea), often caused by foreign bodies.</li>
+        <li><strong>Conjunctivitis:</strong> Inflammation of the conjunctiva, the membrane lining the eyelid and covering the white part of the eye, which can be caused by irritation from a foreign body.</li>
+        <li><strong>Globe Rupture:</strong> A severe injury where the integrity of the eyeball is compromised, often due to penetrating trauma.</li>
+        <li><strong>Fluorescein Staining:</strong> A diagnostic technique using an orange dye and a blue light to highlight corneal abrasions or foreign bodies.</li>
+        <li><strong>Slit Lamp Examination:</strong> A biomicroscope used by ophthalmologists to examine the anterior and posterior segments of the eye in detail.</li>
+        <li><strong>Ophthalmic Spud:</strong> A specialized sterile instrument used by healthcare professionals to carefully remove superficial foreign bodies from the eye.</li>
+        <li><strong>ICD-10 Codes:</strong> Relevant codes may include T15.00XA (Foreign body in cornea, unspecified eye, initial encounter), T15.10XA (Foreign body in conjunctival sac, unspecified eye, initial encounter), H16.11 (Corneal abrasion).</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>
