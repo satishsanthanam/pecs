@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+import re
 
 TARGET_DIR = "."
 EXCLUDE_DIRS = {'.git', '.github', '.rclone-spool'}
@@ -65,28 +66,33 @@ def inject_home_buttons():
             if f.endswith('.html') and f != 'index.html':
                 file_path = os.path.join(root, f)
                 
-                # Force read/write cleanly to apply the structural layout changes
                 with open(file_path, 'r', encoding='utf-8', errors='ignore') as file_data:
-                    content = file_data.read()
+                    original_content = file_data.read()
 
-                # Wipe the old styling block if it exists to overwrite it cleanly
-                if '<!-- GLOBAL HOME BUTTON START -->' in content:
-                    start_idx = content.find('<!-- GLOBAL HOME BUTTON START -->')
-                    end_idx = content.find('<!-- GLOBAL HOME BUTTON END -->') + len('<!-- GLOBAL HOME BUTTON END -->')
-                    content = content[:start_idx] + content[end_idx:]
+                # 1. Aggressively strip old block AND any surrounding whitespace/creeping newlines
+                content_clean = re.sub(
+                    r'\s*<!-- GLOBAL HOME BUTTON START -->.*?<!-- GLOBAL HOME BUTTON END -->\s*', 
+                    '', 
+                    original_content, 
+                    flags=re.DOTALL
+                )
 
-                body_tag_index = content.find('<body')
+                # 2. Re-inject the button structure cleanly right after the <body> tag
+                body_tag_index = content_clean.find('<body')
                 if body_tag_index != -1:
-                    closing_bracket_index = content.find('>', body_tag_index)
+                    closing_bracket_index = content_clean.find('>', body_tag_index)
                     if closing_bracket_index != -1:
                         updated_content = (
-                            content[:closing_bracket_index + 1] + 
-                            "\n" + home_button_markup + 
-                            content[closing_bracket_index + 1:]
+                            content_clean[:closing_bracket_index + 1] + 
+                            "\n" + home_button_markup + "\n" + 
+                            content_clean[closing_bracket_index + 1:]
                         )
-                        with open(file_path, 'w', encoding='utf-8') as file_data:
-                            file_data.write(updated_content)
-                        modified_count += 1
+                        
+                        # 3. 🛡️ IDEMPOTENCY GUARD: Only rewrite if modifications actually occurred
+                        if original_content != updated_content:
+                            with open(file_path, 'w', encoding='utf-8') as file_data:
+                                file_data.write(updated_content)
+                            modified_count += 1
 
     print(f"🏁 Finished! Updated {modified_count} pages with responsive navigation links.")
 
