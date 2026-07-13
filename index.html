@@ -59,7 +59,7 @@
     <div class="container">
         <header>
             <div class="header-title">
-                <h1>Clinical Reference Library</h1>
+                <h1><a href="index.html" style="text-decoration: none; color: inherit; transition: opacity 0.2s;">Clinical Reference Library</a></h1>
                 <p class="subtitle">System Resource Index & Documentation Database</p>
             </div>
             <a href="/search.html" class="search-nav-btn">
@@ -74,10 +74,10 @@
 
         <div id="libraryRoot">
 		<details class="category" data-node="category">
-			<summary>📁 Adult general health</summary>
+			<summary id="cat-adult-general-health">📁 Adult general health</summary>
 			<div class="category-content">
 				<details class="subcategory" data-node="subcategory">
-					<summary>📂 Cancer screening</summary>
+					<summary id="sub-adult-general-health-cancer-screening">📂 Cancer screening</summary>
 					<div class="subcategory-content">
 						<ul class="topic-list">
 							<li class="topic-item" data-node="topic">
@@ -141,7 +141,7 @@
 					</div>
 				</details>
 				<details class="subcategory" data-node="subcategory">
-					<summary>📂 Complementary and alternative medicine</summary>
+					<summary id="sub-adult-general-health-complementary-and-alternative-medicine">📂 Complementary and alternative medicine</summary>
 					<div class="subcategory-content">
 						<ul class="topic-list">
 							<li class="topic-item" data-node="topic">
@@ -157,7 +157,7 @@
 					</div>
 				</details>
 				<details class="subcategory" data-node="subcategory">
-					<summary>📂 Cost of healthcare</summary>
+					<summary id="sub-adult-general-health-cost-of-healthcare">📂 Cost of healthcare</summary>
 					<div class="subcategory-content">
 						<ul class="topic-list">
 							<li class="topic-item" data-node="topic">
@@ -170,7 +170,7 @@
 					</div>
 				</details>
 				<details class="subcategory" data-node="subcategory">
-					<summary>📂 Dental health in adults</summary>
+					<summary id="sub-adult-general-health-dental-health-in-adults">📂 Dental health in adults</summary>
 					<div class="subcategory-content">
 						<ul class="topic-list">
 							<li class="topic-item" data-node="topic">
@@ -186,7 +186,7 @@
 					</div>
 				</details>
 				<details class="subcategory" data-node="subcategory">
-					<summary>📂 Genetic testing</summary>
+					<summary id="sub-adult-general-health-genetic-testing">📂 Genetic testing</summary>
 					<div class="subcategory-content">
 						<ul class="topic-list">
 							<li class="topic-item" data-node="topic">
@@ -196,7 +196,7 @@
 					</div>
 				</details>
 				<details class="subcategory" data-node="subcategory">
-					<summary>📂 Injuries, first aid, and CPR for adults</summary>
+					<summary id="sub-adult-general-health-injuries-first-aid-and-cpr-for-adults">📂 Injuries, first aid, and CPR for adults</summary>
 					<div class="subcategory-content">
 						<ul class="topic-list">
 							<li class="topic-item" data-node="topic">
@@ -332,7 +332,7 @@
 					</div>
 				</details>
 				<details class="subcategory" data-node="subcategory">
-					<summary>📂 Leaving the hospital</summary>
+					<summary id="sub-adult-general-health-leaving-the-hospital">📂 Leaving the hospital</summary>
 					<div class="subcategory-content">
 						<ul class="topic-list">
 							<li class="topic-item" data-node="topic">
@@ -354,7 +354,7 @@
 					</div>
 				</details>
 				<details class="subcategory" data-node="subcategory">
-					<summary>📂 Managing medicines</summary>
+					<summary id="sub-adult-general-health-managing-medicines">📂 Managing medicines</summary>
 					<div class="subcategory-content">
 						<ul class="topic-list">
 							<li class="topic-item" data-node="topic">
@@ -427,7 +427,7 @@
 					</div>
 				</details>
 				<details class="subcategory" data-node="subcategory">
-					<summary>📂 Pending Reviews</summary>
+					<summary id="sub-adult-general-health-pending-reviews">📂 Pending Reviews</summary>
 					<div class="subcategory-content">
 						<ul class="topic-list">
 							<li class="topic-item" data-node="topic">
@@ -494,5 +494,27 @@
             }
         }
     </script>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    const handleHash = () => {
+        const hash = window.location.hash;
+        if (!hash) return;
+        const target = document.querySelector(hash);
+        if (target) {
+            let parent = target.closest('details');
+            while (parent) {
+                parent.open = true;
+                parent = parent.parentElement.closest('details');
+            }
+            setTimeout(() => {
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 150);
+        }
+    };
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+});
+</script>
 </body>
 </html>
