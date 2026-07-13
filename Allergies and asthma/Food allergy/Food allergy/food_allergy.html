@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A vibrant flat vector illustration depicting various common food allergens like peanuts, milk, eggs, and fish, with a red 'X' over them. Surrounding these foods are diverse people, including children and adults, demonstrating awareness and safety measures, such as reading food labels with a magnifying glass, a person holding an epinephrine auto-injector, and a chef preparing food safely in a kitchen. The overall scene conveys public health awareness, safety, and vigilance regarding food allergies, with a clean, modern design and no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./food_allergy.jpg" class="card-banner" alt="Food allergy Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-allergies-and-asthma" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Allergies and asthma</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-allergies-and-asthma-food-allergy" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Food allergy</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Food allergy</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Allergies and asthma</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Food allergy</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Immune System Reaction:</strong> A food allergy is an adverse immune response to specific food proteins, distinct from food intolerance, which does not involve the immune system.</li><li><strong>Common Allergens:</strong> The 'Big 8' allergens include milk, eggs, peanuts, tree nuts, soy, wheat, fish, and shellfish, accounting for over 90% of food allergies.</li><li><strong>Severity Spectrum:</strong> Reactions can range from mild skin rashes or digestive upset to severe, life-threatening anaphylaxis.</li><li><strong>Lifelong Condition:</strong> While some childhood food allergies (e.g., milk, egg) may be outgrown, others (e.g., peanut, tree nut, shellfish) are often lifelong.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Skin Manifestations:</strong> Hives (urticaria), eczema flare-ups, flushing, or swelling (angioedema) of the face, lips, or throat.</li><li><strong>Gastrointestinal Distress:</strong> Nausea, vomiting, abdominal cramps, diarrhea, or oral allergy syndrome (itching/tingling in the mouth).</li><li><strong>Respiratory Symptoms:</strong> Wheezing, shortness of breath, nasal congestion, runny nose, or difficulty swallowing.</li><li><strong>Cardiovascular Signs:</strong> Dizziness, lightheadedness, fainting, or a sudden drop in blood pressure, indicative of severe anaphylaxis.</li><li><strong>Anaphylaxis:</strong> A severe, potentially fatal systemic allergic reaction involving multiple body systems, requiring immediate medical intervention.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Strict Allergen Avoidance:</strong> Diligently avoid all identified allergenic foods and products containing them.</li><li><strong>Label Reading Vigilance:</strong> Always read food labels carefully for allergen declarations, as ingredients can change.</li><li><strong>Cross-Contamination Prevention:</strong> Be mindful of shared utensils, cooking surfaces, and food preparation areas to prevent accidental exposure.</li><li><strong>Emergency Medication:</strong> Always carry prescribed emergency medications, such as an epinephrine auto-injector, and know how to use it.</li><li><strong>Inform Others:</strong> Educate family, friends, school staff, and caregivers about the allergy and emergency protocols.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Complete Allergen Exclusion:</strong> Absolutely eliminate the specific food allergen(s) from the diet. This includes all forms and derivatives.</li><li><strong>Ingredient Scrutiny:</strong> Carefully review all food labels, menus, and ingredient lists for hidden allergens or 'may contain' warnings.</li><li><strong>Safe Food Preparation:</strong> Use separate cutting boards, utensils, and cooking surfaces for allergen-free meals to prevent cross-contact.</li><li><strong>Nutrient Replacement:</strong> Identify safe alternative food sources to ensure adequate nutrient intake if staple foods are restricted (e.g., calcium sources if dairy is avoided).</li><li><strong>Dining Out Protocols:</strong> Communicate clearly with restaurant staff about allergies and cross-contamination risks; choose restaurants with allergen-aware practices.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Recognize Anaphylaxis:</strong> Be aware of the signs of a severe allergic reaction, which can progress rapidly and involve multiple body systems.</li><li><strong>Administer Epinephrine Promptly:</strong> If anaphylaxis is suspected, administer the epinephrine auto-injector immediately as prescribed. Do not delay.</li><li><strong>Call Emergency Services:</strong> After administering epinephrine, always call 911 (or local emergency number) for immediate medical transport, even if symptoms improve.</li><li><strong>Positioning for Anaphylaxis:</strong> Lay the person flat with legs elevated; if vomiting or difficulty breathing, sit them up.</li><li><strong>Post-Epinephrine Monitoring:</strong> Observe the individual closely for rebound anaphylaxis, which can occur hours after the initial reaction.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Accurate Diagnosis:</strong> Diagnosis involves a detailed history, skin prick tests, specific IgE blood tests, and sometimes supervised oral food challenges.</li><li><strong>Personalized Management Plan:</strong> Develop an individualized Food Allergy Action Plan (FAAP) outlining allergen avoidance, symptom recognition, and emergency treatment.</li><li><strong>Epinephrine Prescription:</strong> Prescribe and educate on the proper use of an epinephrine auto-injector for all patients at risk of anaphylaxis.</li><li><strong>Referral to Allergist:</strong> Recommend consultation with a board-certified allergist for comprehensive evaluation, testing, and ongoing management.</li><li><strong>Regular Follow-up:</strong> Schedule periodic reviews to assess allergy status, update action plans, and discuss new research or treatment options.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Immunological Basis:</strong> Understand the IgE-mediated hypersensitivity reaction (Type I) involving mast cells and basophils, leading to histamine release.</li><li><strong>Differential Diagnosis:</strong> Differentiate food allergy from food intolerance (e.g., lactose intolerance), celiac disease, and other adverse food reactions.</li><li><strong>Patient Education:</strong> Provide comprehensive education on allergen identification, label reading, cross-contamination prevention, and emergency action plan implementation.</li><li><strong>Emergency Protocol Adherence:</strong> Ensure proficiency in recognizing anaphylaxis and administering epinephrine according to institutional guidelines and the patient's FAAP.</li><li><strong>Psychosocial Impact:</strong> Address the psychological burden of living with food allergies, including anxiety, social isolation, and quality of life concerns.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Specific IgE (sIgE) Testing:</strong> Measurement of allergen-specific antibodies in the blood, often reported in kU/L, aiding in risk assessment.</li><li><strong>Oral Food Challenge (OFC):</strong> A gold standard diagnostic test performed under medical supervision to confirm or rule out a food allergy.</li><li><strong>Epinephrine Auto-injector:</strong> A pre-filled syringe of epinephrine (adrenaline) designed for rapid intramuscular injection during anaphylaxis.</li><li><strong>Anaphylaxis Grading Systems:</strong> Clinical scales (e.g., Sampson criteria, NIAID/FAAN criteria) used to classify the severity of anaphylactic reactions.</li><li><strong>Allergen Immunotherapy:</strong> Emerging treatments like oral immunotherapy (OIT) and epicutaneous immunotherapy (EPIT) for desensitization to specific food allergens.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

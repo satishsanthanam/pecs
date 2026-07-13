@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a patient in a hospital bed, looking comfortable and calm, with a continuous infusion pain pump clearly visible next to them. A healthcare professional (nurse or doctor) is gently checking the pump or interacting with the patient. The background is a clean, modern hospital room with subtle medical equipment. Focus on clear lines, soft colors, and a sense of relief and care. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./continuous_infusion_pain_pump.jpg" class="card-banner" alt="Continuous infusion pain pump Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-anesthesia" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Anesthesia</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-anesthesia-anesthesia-for-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Anesthesia for surgery</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Continuous infusion pain pump</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Anesthesia</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Anesthesia for surgery</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose:</strong> Continuous infusion pain pumps deliver a steady flow of pain medication, often opioids or local anesthetics, directly into the body to manage post-operative or chronic pain.</li><li><strong>Mechanism:</strong> These devices can be programmed to provide a continuous basal rate of medication, with some allowing for patient-controlled boluses (PCA) within set safety limits.</li><li><strong>Types:</strong> Can be intravenous (IV), epidural, or regional nerve blocks, depending on the pain source and surgical site.</li><li><strong>Goal:</strong> To provide consistent pain relief, reduce overall pain scores, and minimize the need for frequent oral pain medication.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Severe Post-Operative Pain:</strong> Indicated for patients experiencing significant pain after surgery that requires continuous analgesia.</li><li><strong>Chronic Pain Conditions:</strong> Used in specific cases for persistent pain that has not responded to other management strategies.</li><li><strong>Breakthrough Pain:</strong> While the pump provides a basal rate, patients may still experience intermittent spikes in pain, which can sometimes be managed with patient-controlled boluses.</li><li><strong>Pain-Related Impairment:</strong> When pain significantly limits mobility, sleep, or ability to participate in recovery activities.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Respiratory Depression Monitoring:</strong> Close observation for signs of decreased breathing rate or depth, especially with opioid infusions.</li><li><strong>Sedation Assessment:</strong> Regular evaluation of the patient's level of consciousness to prevent over-sedation.</li><li><strong>Allergy Check:</strong> Verify no known allergies to the infused medication (e.g., opioids, local anesthetics).</li><li><strong>Pump Site Care:</strong> Maintain strict aseptic technique for dressing changes and monitor for signs of infection (redness, swelling, discharge).</li><li><strong>Patient Education:</strong> Instruct the patient on how to use any patient-controlled bolus feature and what symptoms to report immediately.</li><li><strong>Contraindications:</strong> Avoid use in patients with severe respiratory compromise, certain neurological conditions, or active infection at the insertion site.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Nausea Management:</strong> Opioids can cause nausea and vomiting; start with clear liquids and advance diet slowly as tolerated.</li><li><strong>Constipation Prevention:</strong> Opioids commonly cause constipation; encourage adequate fluid intake and fiber-rich foods (if permitted post-op) to mitigate this side effect.</li><li><strong>Hydration:</strong> Maintain good hydration, as it supports overall recovery and helps with medication metabolism and excretion.</li><li><strong>Avoid Alcohol:</strong> Strictly avoid alcohol consumption while on opioid pain medication due to increased risk of central nervous system depression.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Do Not Tamper:</strong> Family members or attendants must never press any buttons on the pain pump or attempt to adjust settings.</li><li><strong>Report Changes:</strong> Immediately notify nursing staff if the patient exhibits increased pain, excessive drowsiness, difficulty breathing, or if the pump alarm sounds.</li><li><strong>Assist with Mobility:</strong> Be aware that the patient may experience dizziness or sedation, requiring assistance with ambulation and transfers.</li><li><strong>Monitor for Side Effects:</strong> Watch for and report common opioid side effects such as itching, nausea, or difficulty urinating.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Individualized Pain Plan:</strong> Pain management with continuous infusion pumps is tailored to each patient's specific needs, surgical procedure, and pain intensity.</li><li><strong>Multimodal Analgesia:</strong> These pumps are often part of a comprehensive pain strategy, combining different types of pain relief to optimize outcomes and minimize opioid use.</li><li><strong>Risk-Benefit Discussion:</strong> Physicians will discuss the potential benefits of effective pain control against the risks of medication side effects and complications.</li><li><strong>Weaning Strategy:</strong> A clear plan for discontinuing the pain pump and transitioning to oral analgesia will be established as the patient recovers.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pump Programming & Verification:</strong> Understand the principles of pump programming, including basal rates, bolus doses, lockout intervals, and drug concentration, with independent double-checks.</li><li><strong>Pain & Sedation Assessment:</strong> Proficiently use validated pain scales (e.g., NRS, VAS) and sedation scales (e.g., RASS) to monitor patient response and adjust care.</li><li><strong>Site Assessment:</strong> Regularly inspect the catheter insertion site for signs of infection, dislodgement, or leakage.</li><li><strong>Troubleshooting Alarms:</strong> Be familiar with common pump alarms (e.g., occlusion, air in line, low battery) and appropriate interventions.</li><li><strong>Patient Education Reinforcement:</strong> Continuously educate patients and families on pump function, pain goals, and reporting adverse effects.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pharmacology:</strong> Opioid agonists (e.g., hydromorphone, fentanyl), local anesthetics (e.g., bupivacaine, ropivacaine), and adjuncts (e.g., clonidine).</li><li><strong>Delivery Systems:</strong> Patient-Controlled Analgesia (PCA) pumps, Patient-Controlled Epidural Analgesia (PCEA) pumps, elastomeric pumps.</li><li><strong>Complications:</strong> Respiratory depression, pruritus, nausea/vomiting, urinary retention, constipation, catheter-related infection, nerve injury (for regional blocks).</li><li><strong>Monitoring Parameters:</strong> Respiratory rate, oxygen saturation, heart rate, blood pressure, pain score, sedation score, pupil size.</li><li><strong>Regulatory Guidelines:</strong> Adherence to institutional policies and national guidelines for safe opioid administration and pain management.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

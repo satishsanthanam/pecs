@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a calm child, approximately 6-8 years old, using a metered dose inhaler (MDI) with a spacer device. A caring parent or guardian is gently guiding the child's hand or observing with a reassuring smile. The background is a soft, clean home or clinic setting, emphasizing a sense of safety and education. Focus on clear, simple lines and bright, friendly colors. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./how_to_use_your_child_s_metered_dose_inhaler.jpg" class="card-banner" alt="How to use your child's metered dose inhaler Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-allergies-and-asthma" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Allergies and asthma</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-allergies-and-asthma-asthma" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Asthma</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>How to use your child's metered dose inhaler</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Allergies and asthma</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Asthma</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Purpose of MDIs:</strong> Metered Dose Inhalers deliver medication directly to the lungs, crucial for managing asthma symptoms and preventing exacerbations.</li>
+        <li><strong>Importance of Spacer:</strong> A spacer device is highly recommended for children as it helps deliver more medication to the lungs and reduces medication deposition in the mouth and throat.</li>
+        <li><strong>Regular Use:</strong> Controller medications in MDIs must be used regularly as prescribed, even when the child feels well, to maintain asthma control.</li>
+        <li><strong>Rescue Inhalers:</strong> Rescue inhalers (e.g., albuterol) are used for quick relief of sudden asthma symptoms like wheezing or shortness of breath.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Wheezing:</strong> A high-pitched whistling sound, especially when exhaling, indicating narrowed airways.</li>
+        <li><strong>Shortness of Breath:</strong> Difficulty breathing, rapid breathing, or gasping for air.</li>
+        <li><strong>Persistent Cough:</strong> A cough that is dry, hacking, or worsens at night or with activity.</li>
+        <li><strong>Chest Tightness:</strong> A feeling of pressure or squeezing in the chest.</li>
+        <li><strong>Exercise-Induced Symptoms:</strong> Coughing, wheezing, or shortness of breath during or after physical activity.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Shake Inhaler Well:</strong> Always shake the MDI vigorously for 5 seconds before each puff to ensure proper mixing of the medication.</li>
+        <li><strong>Prime New Inhalers:</strong> If the inhaler is new or hasn't been used for several days, prime it by spraying a few test puffs into the air away from the face until a fine mist appears.</li>
+        <li><strong>Check Expiration Date:</strong> Ensure the medication has not expired. Expired medication may be less effective.</li>
+        <li><strong>Clean Spacer Regularly:</strong> Wash the spacer device at least once a week with warm water and mild detergent, air dry completely without wiping to prevent static.</li>
+        <li><strong>Monitor for Side Effects:</strong> Observe for potential side effects such as jitters, increased heart rate (with rescue inhalers), or oral thrush (with steroid inhalers).</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Post-Inhalation Oral Care:</strong> After using a corticosteroid inhaler, have the child rinse their mouth thoroughly with water and spit it out to prevent oral thrush. Brushing teeth afterward is also beneficial.</li>
+        <li><strong>Hydration:</strong> Encourage adequate fluid intake, especially during asthma exacerbations, to help thin mucus and ease breathing.</li>
+        <li><strong>Avoid Irritants:</strong> While not a dietary restriction, avoid foods or beverages that may trigger reflux, which can sometimes exacerbate asthma symptoms in sensitive individuals.</li>
+        <li><strong>No Specific Food Restrictions:</strong> There are no general dietary restrictions directly associated with the use of metered dose inhalers themselves, beyond managing potential side effects like oral thrush.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Follow Asthma Action Plan:</strong> Adhere strictly to the child's individualized asthma action plan provided by their healthcare provider.</li>
+        <li><strong>Emergency Situations:</strong> Seek immediate medical attention if the child's breathing difficulty worsens rapidly, lips or fingernails turn blue, or they have trouble speaking.</li>
+        <li><strong>Correct Dosage:</strong> Never exceed the prescribed number of puffs or frequency of use without consulting a healthcare professional.</li>
+        <li><strong>Do Not Share:</strong> Inhalers are prescribed for individual use and should never be shared with others.</li>
+        <li><strong>Proper Storage:</strong> Store inhalers at room temperature, away from extreme heat or cold, and out of direct sunlight.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Demonstrate Technique:</strong> Parents/guardians should be able to confidently demonstrate the correct inhaler technique with a spacer to their physician or nurse.</li>
+        <li><strong>Regular Follow-ups:</strong> Schedule regular appointments to review the child's asthma control, adjust medication as needed, and re-evaluate inhaler technique.</li>
+        <li><strong>Personalized Action Plan:</strong> Ensure the family has a clear, written asthma action plan detailing daily management and steps for worsening symptoms.</li>
+        <li><strong>Adherence is Key:</strong> Emphasize that consistent and correct use of controller medications is vital for preventing asthma attacks and improving quality of life.</li>
+        <li><strong>Environmental Triggers:</strong> Advise on identifying and minimizing exposure to environmental asthma triggers in the home and school.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Patient Education:</strong> Educate parents/guardians and older children on the purpose, correct technique, and maintenance of MDIs and spacers.</li>
+        <li><strong>Technique Assessment:</strong> Observe and assess the child's and caregiver's inhaler technique, providing constructive feedback and re-demonstration as needed.</li>
+        <li><strong>Spacer Selection:</strong> Understand the different types of spacers available (e.g., valved holding chambers) and their appropriate use for various age groups.</li>
+        <li><strong>Documentation:</strong> Document patient education provided, demonstrated technique, and any observed challenges or side effects.</li>
+        <li><strong>Recognizing Poor Technique:</strong> Identify common errors such as not shaking the inhaler, incorrect breathing coordination, or inadequate spacer seal.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>MDI Components:</strong> Comprises a pressurized canister containing medication, a metering valve, and an actuator.</li>
+        <li><strong>Mechanism of Action:</strong> Delivers a precise dose of medication as a fine mist, which is inhaled into the lungs.</li>
+        <li><strong>Spacer Functionality:</strong> Reduces the velocity of the aerosolized medication, allowing for better coordination of inhalation and minimizing oropharyngeal deposition.</li>
+        <li><strong>Common Medications:</strong> Includes bronchodilators (e.g., albuterol, levalbuterol) and inhaled corticosteroids (e.g., fluticasone, budesonide).</li>
+        <li><strong>Flow Rate & Coordination:</strong> Optimal MDI use requires slow, deep inhalation coordinated with actuation, which spacers facilitate, especially in children.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

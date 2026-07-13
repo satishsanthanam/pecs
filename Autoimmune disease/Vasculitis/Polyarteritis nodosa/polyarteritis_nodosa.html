@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human body with highlighted inflamed medium-sized blood vessels. Various organs like kidneys, intestines, and peripheral nerves are subtly depicted with signs of damage or ischemia. A magnifying glass hovers over a blood vessel showing microscopic inflammation. Elements like a microscope, medication bottles, and a doctor's stethoscope are present in the background, all in a clean, public awareness design style with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./polyarteritis_nodosa.jpg" class="card-banner" alt="Polyarteritis nodosa Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-autoimmune-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Autoimmune disease</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-autoimmune-disease-vasculitis" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Vasculitis</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Polyarteritis nodosa</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Autoimmune disease</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Vasculitis</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Systemic Vasculitis:</strong> Polyarteritis nodosa (PAN) is a rare, severe form of necrotizing vasculitis primarily affecting medium-sized muscular arteries.</li><li><strong>Organ Involvement:</strong> It can damage multiple organ systems, including the kidneys, gastrointestinal tract, peripheral nerves, skin, and heart. The lungs are typically spared.</li><li><strong>Pathology:</strong> Characterized by segmental inflammation and necrosis of arterial walls, leading to microaneurysms, thrombosis, and subsequent ischemia or infarction of affected tissues.</li><li><strong>Etiology:</strong> The cause is often unknown (idiopathic), but a significant subset of cases is associated with chronic Hepatitis B virus (HBV) infection.</li><li><strong>Prognosis:</strong> Untreated PAN carries a high mortality rate, but with timely diagnosis and aggressive immunosuppressive therapy, remission is often achievable.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Constitutional Symptoms:</strong> Persistent fever, profound fatigue, unexplained weight loss, and general malaise are common initial presentations.</li><li><strong>Renal Manifestations:</strong> New-onset or worsening hypertension (due to renal artery involvement), impaired kidney function, proteinuria, and hematuria.</li><li><strong>Gastrointestinal Issues:</strong> Severe abdominal pain, nausea, vomiting, diarrhea, gastrointestinal bleeding, and potentially bowel infarction.</li><li><strong>Neurological Symptoms:</strong> Mononeuritis multiplex (foot drop, wrist drop), other peripheral neuropathies, and less commonly, central nervous system events like stroke or seizures.</li><li><strong>Dermatological Signs:</strong> Livedo reticularis (mottled skin pattern), subcutaneous nodules, skin ulcers, purpura, and digital gangrene.</li><li><strong>Musculoskeletal Pain:</strong> Generalized myalgia (muscle pain) and arthralgia (joint pain) without significant arthritis.</li><li><strong>Cardiovascular Complications:</strong> Angina, myocardial infarction, or heart failure dueating to coronary artery involvement.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Prompt Diagnosis:</strong> Early recognition and diagnosis are critical to prevent irreversible organ damage and improve patient outcomes.</li><li><strong>Tissue Biopsy:</strong> A definitive diagnosis often requires a biopsy of an affected organ (e.g., nerve, muscle, skin, kidney) to demonstrate characteristic vasculitic changes.</li><li><strong>Hepatitis B Screening:</strong> All patients suspected of PAN must be screened for Hepatitis B virus infection, as its presence dictates specific treatment strategies.</li><li><strong>Immunosuppression Management:</strong> Close monitoring for side effects of corticosteroids and other immunosuppressants (e.g., cyclophosphamide), including infection risk and bone density loss.</li><li><strong>Blood Pressure Control:</strong> Aggressive management of hypertension is vital to protect renal function and prevent cardiovascular complications.</li><li><strong>Avoid NSAIDs:</strong> Non-steroidal anti-inflammatory drugs should generally be avoided, especially in patients with renal involvement, as they can worsen kidney function.</li><li><strong>Regular Monitoring:</strong> Consistent follow-up with blood tests (ESR, CRP, creatinine, liver function) and imaging to assess disease activity and treatment response.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Corticosteroid-Related Adjustments:</strong> Patients on corticosteroids may need a low-sodium diet to manage fluid retention and hypertension, and increased intake of potassium-rich foods to counteract potassium depletion.</li><li><strong>Bone Health Support:</strong> Adequate calcium and Vitamin D intake, often through supplementation, is crucial to mitigate the risk of osteoporosis induced by long-term corticosteroid use.</li><li><strong>Blood Glucose Management:</strong> Dietary modifications to help control blood sugar levels may be necessary for patients experiencing steroid-induced hyperglycemia.</li><li><strong>Renal Impairment Considerations:</strong> If kidney function is significantly impaired, protein intake may need to be restricted, and fluid intake carefully monitored as advised by a nephrologist.</li><li><strong>Gastrointestinal Symptom Relief:</strong> During periods of active gastrointestinal inflammation or ulceration, a bland, low-residue diet may be recommended to minimize irritation.</li><li><strong>Hydration:</strong> Maintain adequate hydration unless fluid restriction is specifically indicated due to renal or cardiac issues.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Medication Adherence:</strong> Strict adherence to the prescribed immunosuppressive regimen is paramount for controlling disease activity and preventing relapses.</li><li><strong>Report New Symptoms:</strong> Immediately report any new or worsening symptoms, such as fever, severe pain, changes in sensation, or skin lesions, to your healthcare provider.</li><li><strong>Infection Prevention:</strong> Be vigilant about infection prevention, including meticulous hand hygiene and avoiding exposure to sick individuals, due to immunosuppression.</li><li><strong>Vaccination Status:</strong> Discuss your vaccination schedule with your physician, as some live vaccines may be contraindicated while on immunosuppressive therapy.</li><li><strong>Avoid Smoking:</strong> Smoking can exacerbate vascular damage and should be strictly avoided.</li><li><strong>Regular Dental Care:</strong> Maintain good oral hygiene and regular dental check-ups to prevent infections that could be problematic with immunosuppression.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Multidisciplinary Care:</strong> Effective management of PAN often requires a collaborative approach involving rheumatologists, nephrologists, gastroenterologists, neurologists, and dermatologists.</li><li><strong>Biopsy Confirmation:</strong> Emphasize the critical role of tissue biopsy for definitive diagnosis, as clinical presentation can mimic other conditions.</li><li><strong>HBV-Associated PAN:</strong> For HBV-associated PAN, antiviral therapy is as crucial as immunosuppression and should be initiated promptly.</li><li><strong>Individualized Treatment:</strong> Treatment protocols must be tailored to the individual patient, considering disease severity, organ involvement, and presence of HBV infection.</li><li><strong>Long-term Monitoring:</strong> Stress the importance of long-term follow-up to monitor disease activity, manage treatment side effects, and detect potential relapses.</li><li><strong>Patient Education:</strong> Empower patients with comprehensive knowledge about their condition, treatment plan, and potential complications to foster adherence and self-management.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Assessment:</strong> Conduct thorough assessments focusing on vital signs, pain levels, neurological status, skin integrity, and signs of organ ischemia or dysfunction.</li><li><strong>Medication Management:</strong> Understand the indications, dosages, administration routes, and potential side effects of corticosteroids and cytotoxic agents used in PAN treatment.</li><li><strong>Infection Control:</strong> Implement strict infection control measures and educate patients on strategies to minimize infection risk due to immunosuppression.</li><li><strong>Fluid & Electrolyte Balance:</strong> Monitor intake and output, serum electrolytes, and signs of fluid overload or dehydration, especially in patients with renal involvement.</li><li><strong>Patient Education:</strong> Provide clear, concise education on medication adherence, symptom recognition, dietary modifications, and the importance of follow-up appointments.</li><li><strong>Psychosocial Support:</strong> Offer emotional support and resources to help patients cope with the challenges of a chronic, severe autoimmune disease.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Diagnostic Criteria:</strong> While no single set of criteria is universally accepted, the American College of Rheumatology (ACR) criteria for PAN are often used, though biopsy remains the gold standard.</li><li><strong>Histopathology:</strong> Characterized by transmural inflammation of medium-sized arteries, fibrinoid necrosis, and often microaneurysm formation, with varying stages of inflammation and healing.</li><li><strong>Angiography:</strong> Mesenteric or renal angiography may reveal characteristic microaneurysms, stenoses, and occlusions in affected arteries.</li><li><strong>Laboratory Markers:</strong> Common findings include elevated erythrocyte sedimentation rate (ESR), C-reactive protein (CRP), leukocytosis, anemia, and elevated creatinine. Anti-neutrophil cytoplasmic antibodies (ANCA) are typically negative.</li><li><strong>Treatment Modalities:</strong> High-dose glucocorticoids (e.g., prednisone) are the cornerstone of therapy, often combined with cyclophosphamide for severe disease. Antiviral therapy is crucial for HBV-associated PAN.</li><li><strong>Differential Diagnosis:</strong> Important to differentiate from other vasculitides (e.g., GPA, MPA, EGPA), other causes of secondary vasculitis, and conditions mimicking PAN.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

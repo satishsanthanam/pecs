@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a patient's arm with a blood draw, a laboratory technician holding a vial of blood, and a digital display showing 'INR 2.5'. Surrounding elements include a stylized coagulation cascade diagram, a calendar with marked dates for monitoring, and various food icons (e.g., leafy greens, cranberry) with 'caution' symbols. The overall design should be clean, modern, and convey medical precision and patient awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./prothrombin_time_and_inr__pt_inr_.jpg" class="card-banner" alt="Prothrombin time and INR (PT/INR) Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-blood-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Blood disorders</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-blood-disorders-anticoagulation" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Anticoagulation</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Prothrombin time and INR (PT/INR)</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Blood disorders</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Anticoagulation</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose of PT/INR:</strong> Prothrombin time (PT) measures the time it takes for blood plasma to clot, primarily assessing the extrinsic and common pathways of coagulation. The International Normalized Ratio (INR) standardizes PT results, allowing for consistent interpretation across different laboratories.</li><li><strong>Monitoring Anticoagulation:</strong> PT/INR is crucial for monitoring the effectiveness of vitamin K antagonist anticoagulant therapy, such as warfarin, to ensure the dose is within a therapeutic range, preventing both excessive bleeding and dangerous clotting.</li><li><strong>Indications for Testing:</strong> Beyond anticoagulant monitoring, PT/INR is used to evaluate liver function, screen for bleeding disorders, and assess coagulation status before surgical or invasive procedures.</li><li><strong>Understanding INR Values:</strong> A higher INR indicates blood that clots more slowly (thinner blood), increasing bleeding risk. A lower INR indicates blood that clots more quickly (thicker blood), increasing clotting risk.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Excessive Bleeding:</strong> Unexplained bruising, frequent nosebleeds, bleeding gums, prolonged bleeding from minor cuts, blood in urine (hematuria), or black/tarry stools (melena) may indicate an INR that is too high.</li><li><strong>Signs of Clotting:</strong> Symptoms such as sudden pain, swelling, redness, or warmth in a limb (deep vein thrombosis - DVT), or chest pain, shortness of breath, and dizziness (pulmonary embolism - PE) may suggest an INR that is too low or an underlying clotting disorder.</li><li><strong>Liver Dysfunction:</strong> Jaundice (yellowing of skin/eyes), fatigue, nausea, vomiting, dark urine, or abdominal swelling can be signs of liver disease, which can impair clotting factor production and affect PT/INR.</li><li><strong>Unexplained Bruising/Bleeding Tendency:</strong> A history of easy bruising, heavy menstrual bleeding, or prolonged bleeding after dental work can prompt PT/INR testing to investigate potential bleeding disorders.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Medication Interactions:</strong> Many medications, including antibiotics, antifungals, NSAIDs, certain antidepressants, and herbal supplements (e.g., St. John's Wort, ginkgo biloba), can significantly alter PT/INR levels. Always inform your healthcare provider about all medications and supplements.</li><li><strong>Dietary Consistency:</strong> Maintain a consistent intake of Vitamin K-rich foods (e.g., leafy green vegetables like spinach, kale, broccoli) if on warfarin. Drastic changes in Vitamin K consumption can destabilize INR.</li><li><strong>Risk of Bleeding:</strong> Patients with high INR are at increased risk of bleeding. Avoid activities that could lead to injury, use a soft-bristle toothbrush, and be cautious with sharp objects. Report any signs of bleeding immediately.</li><li><strong>Alcohol Consumption:</strong> Excessive alcohol intake can affect liver function and interact with anticoagulants, potentially altering INR. Moderate consumption, if permitted by your physician, should be consistent.</li><li><strong>Pre-Procedure Notification:</strong> Always inform dentists, surgeons, and other healthcare providers about your anticoagulant therapy and recent PT/INR results before any procedure, including minor dental work.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Consistent Vitamin K Intake:</strong> For patients on warfarin, maintaining a consistent daily intake of Vitamin K is paramount. Do not drastically increase or decrease consumption of foods rich in Vitamin K, such as spinach, kale, collard greens, broccoli, and Brussels sprouts.</li><li><strong>Avoid Cranberry Products:</strong> Cranberry juice and supplements can potentiate the effects of warfarin, leading to an elevated INR and increased bleeding risk. It is generally recommended to avoid these.</li><li><strong>Grapefruit and Star Fruit:</strong> Grapefruit and its juice can interact with warfarin metabolism, potentially increasing INR. Star fruit can also have similar effects and should be avoided.</li><li><strong>Herbal Supplements:</strong> Many herbal supplements, including ginkgo biloba, ginseng, garlic, and dong quai, can affect blood clotting and interact with anticoagulants. Discuss all supplements with your physician.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Adherence to Dosing:</strong> Take anticoagulant medication exactly as prescribed by your physician. Do not skip doses, double doses, or adjust the dosage without explicit medical instruction.</li><li><strong>Regular Monitoring:</strong> Attend all scheduled PT/INR blood tests. These tests are vital for adjusting medication doses to maintain therapeutic levels and prevent complications.</li><li><strong>Emergency Situations:</strong> Seek immediate medical attention for severe bleeding (e.g., heavy nosebleeds that won't stop, blood in vomit or stool, severe headache, sudden weakness, or vision changes).</li><li><strong>Medical Alert Identification:</strong> Consider wearing a medical alert bracelet or carrying a card indicating you are on anticoagulant therapy, especially in case of an emergency.</li><li><strong>Reporting Changes:</strong> Inform your healthcare provider about any new medications, over-the-counter drugs, herbal supplements, significant dietary changes, or new symptoms, as these can impact your PT/INR.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Individualized Therapy:</strong> Anticoagulation therapy, particularly with warfarin, requires highly individualized dosing based on patient-specific factors, comorbidities, and ongoing PT/INR monitoring.</li><li><strong>Risk-Benefit Assessment:</strong> Physicians constantly weigh the risk of bleeding against the risk of thrombotic events when managing anticoagulant therapy. Patient education is critical for shared decision-making.</li><li><strong>Bridging Anticoagulation:</strong> For patients requiring temporary interruption of warfarin for procedures, bridging therapy with a short-acting anticoagulant (e.g., heparin) may be necessary, requiring careful management.</li><li><strong>Transition to DOACs:</strong> While PT/INR is specific to vitamin K antagonists, physicians may consider direct oral anticoagulants (DOACs) for certain indications, which generally do not require routine PT/INR monitoring.</li><li><strong>Comprehensive Patient Education:</strong> Emphasize the importance of patient understanding regarding medication adherence, dietary considerations, recognition of bleeding/clotting signs, and the necessity of regular follow-up.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Role:</strong> Nurses are frontline educators, teaching patients about their anticoagulant medication, the importance of PT/INR monitoring, dietary considerations, and signs/symptoms of complications.</li><li><strong>Medication Administration:</strong> Ensure accurate administration of anticoagulants, verifying the correct dose, route, and timing. For warfarin, confirm the most recent INR before administration.</li><li><strong>Assessment for Complications:</strong> Regularly assess patients for signs of bleeding (e.g., petechiae, ecchymosis, hematoma, melena, hematuria) and clotting (e.g., DVT, PE symptoms). Monitor vital signs for changes indicating hemorrhage.</li><li><strong>Lab Result Interpretation:</strong> Understand the therapeutic range for PT/INR based on the patient's condition and communicate critical values to the physician promptly.</li><li><strong>Documentation:</strong> Meticulously document medication administration, patient education provided, assessment findings, and any reported symptoms or concerns related to anticoagulation.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Coagulation Pathways:</strong> PT primarily assesses the extrinsic pathway (Factor VII) and the common pathway (Factors X, V, II [prothrombin], I [fibrinogen]).</li><li><strong>INR Calculation:</strong> INR = (Patient PT / Mean Normal PT)^ISI, where ISI (International Sensitivity Index) is a value assigned to each batch of thromboplastin reagent to standardize results.</li><li><strong>Therapeutic Ranges:</strong> Common therapeutic INR ranges include 2.0-3.0 for conditions like atrial fibrillation, DVT/PE treatment, and recurrent DVT. Higher ranges (e.g., 2.5-3.5) may be targeted for mechanical heart valves.</li><li><strong>Interfering Factors:</strong> Besides medications and diet, conditions like liver disease, Vitamin K deficiency, disseminated intravascular coagulation (DIC), and certain genetic clotting factor deficiencies can affect PT/INR.</li><li><strong>Point-of-Care Testing (POCT):</strong> Portable devices allow for rapid PT/INR testing outside the laboratory setting, often used for patient self-monitoring or in clinics, requiring careful quality control.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

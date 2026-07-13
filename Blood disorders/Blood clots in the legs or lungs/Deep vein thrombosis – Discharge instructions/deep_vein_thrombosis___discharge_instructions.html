@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration in a public awareness design style. The scene depicts a diverse patient, possibly an older adult, being discharged from a hospital. A friendly nurse or doctor is handing them a leaflet or prescription. The patient's leg is subtly highlighted with a compression stocking. Around them are symbolic elements: a calendar with a marked follow-up appointment, a pill bottle representing medication, a glass of water for hydration, and a small icon of a blood clot with a 'no' symbol over it. The overall mood is reassuring and educational, with clean lines and a bright, accessible color palette. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./deep_vein_thrombosis___discharge_instructions.jpg" class="card-banner" alt="Deep vein thrombosis – Discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-blood-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Blood disorders</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-blood-disorders-blood-clots-in-the-legs-or-lungs" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Blood clots in the legs or lungs</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Deep vein thrombosis – Discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Blood disorders</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Blood clots in the legs or lungs</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Understanding DVT:</strong> Deep vein thrombosis (DVT) is a blood clot that forms in a deep vein, usually in the leg. It requires ongoing management to prevent serious complications like pulmonary embolism (PE).</li>
+        <li><strong>Importance of Anticoagulants:</strong> Your prescribed anticoagulant medication is vital to prevent the clot from growing and to reduce the risk of new clots forming. Adherence is crucial for your safety.</li>
+        <li><strong>Risk of Recurrence:</strong> DVT can recur. Understanding the signs and maintaining preventative measures are key to long-term health.</li>
+        <li><strong>Follow-Up Care:</strong> Regular appointments with your healthcare provider are essential to monitor your condition, adjust medications, and address any concerns.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Leg Swelling and Pain:</strong> Persistent or worsening swelling, pain, tenderness, or warmth in one leg, especially in the calf or thigh, could indicate a new or worsening clot.</li>
+        <li><strong>Redness or Discoloration:</strong> Noticeable redness or bluish discoloration of the skin over the affected area.</li>
+        <li><strong>Pulmonary Embolism (PE) Signs:</strong> Sudden shortness of breath, chest pain (especially when breathing deeply), rapid heart rate, lightheadedness, or coughing up blood are emergency signs of PE and require immediate medical attention.</li>
+        <li><strong>Unexplained Bruising or Bleeding:</strong> While on anticoagulants, watch for excessive bruising, nosebleeds, gum bleeding, blood in urine or stool, or unusually heavy menstrual bleeding.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Anticoagulant Adherence:</strong> Take your anticoagulant medication exactly as prescribed. Do not skip doses or double up. If you miss a dose, follow your doctor's specific instructions.</li>
+        <li><strong>Bleeding Risk Management:</strong> Be cautious with activities that could cause injury. Use a soft toothbrush, electric razor, and avoid contact sports. Inform all healthcare providers (including dentists) that you are on blood thinners.</li>
+        <li><strong>Avoid Prolonged Immobility:</strong> Get up and move around frequently. If you must sit for long periods, perform leg exercises (ankle pumps, calf raises) every hour.</li>
+        <li><strong>Compression Stockings:</strong> Wear prescribed compression stockings as directed. They help improve blood flow and reduce swelling.</li>
+        <li><strong>Hydration:</strong> Maintain adequate fluid intake to prevent dehydration, which can increase blood viscosity.</li>
+        <li><strong>Medication Interactions:</strong> Discuss all other medications, supplements, and herbal remedies with your doctor or pharmacist, as they can interact with anticoagulants. Avoid NSAIDs (e.g., ibuprofen, naproxen) unless specifically approved by your doctor.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Consistent Vitamin K Intake (for Warfarin users):</strong> If you are taking warfarin, maintain a consistent intake of Vitamin K-rich foods (e.g., leafy green vegetables like spinach, kale, broccoli). Do not drastically increase or decrease your consumption without consulting your doctor, as this can affect your INR.</li>
+        <li><strong>Avoid Excessive Alcohol:</strong> Limit or avoid alcohol consumption, as it can increase the risk of bleeding and interact with anticoagulants.</li>
+        <li><strong>Hydration:</strong> Drink plenty of water throughout the day to stay well-hydrated.</li>
+        <li><strong>Balanced Nutrition:</strong> Focus on a generally healthy and balanced diet to support overall well-being and recovery.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Emergency Recognition:</strong> Family members or caregivers should be aware of the signs of DVT recurrence or pulmonary embolism (PE) and know when to seek immediate medical help (e.g., severe shortness of breath, sudden chest pain, uncontrolled bleeding).</li>
+        <li><strong>Medication Management Support:</strong> Assist the patient in remembering to take medications as prescribed and help manage refills. Keep a current list of all medications.</li>
+        <li><strong>Fall Prevention:</strong> Help create a safe home environment to minimize fall risks, especially for patients on anticoagulants where falls can lead to serious bleeding.</li>
+        <li><strong>Communication with Healthcare Team:</strong> Be prepared to communicate any changes in the patient's condition, side effects, or concerns to the healthcare provider.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Adherence is Paramount:</strong> Your commitment to taking anticoagulant medication as prescribed is the single most important factor in preventing life-threatening complications.</li>
+        <li><strong>Proactive Symptom Monitoring:</strong> Be vigilant for any new or worsening symptoms, especially those indicating DVT recurrence or PE. Early reporting can save lives.</li>
+        <li><strong>Lifestyle Modifications:</strong> Incorporate regular, gentle physical activity as tolerated, maintain a healthy weight, and avoid smoking to reduce future clot risk.</li>
+        <li><strong>Open Communication:</strong> Do not hesitate to contact our office with any questions or concerns. We are here to support your recovery and long-term health.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Patient Education on Anticoagulants:</strong> Reinforce teaching on medication purpose, dosage, administration, potential side effects (especially bleeding), and drug/food interactions. Emphasize the importance of consistent INR monitoring for warfarin users.</li>
+        <li><strong>Assessment for Complications:</strong> Educate patients and caregivers on signs of DVT recurrence (leg pain, swelling, warmth, redness) and PE (dyspnea, chest pain, tachycardia), stressing the need for immediate medical attention.</li>
+        <li><strong>Compression Therapy:</strong> Instruct on proper application and care of compression stockings, explaining their role in reducing edema and preventing post-thrombotic syndrome.</li>
+        <li><strong>Mobility and Activity:</strong> Encourage gradual increase in activity, emphasizing frequent leg exercises and avoiding prolonged immobility. Discuss safe activity levels post-discharge.</li>
+        <li><strong>Bleeding Precautions:</strong> Review safety measures to minimize bleeding risk (e.g., soft toothbrush, electric razor, avoiding sharp objects, reporting unusual bleeding).</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Anticoagulant Regimens:</strong> Patients are typically discharged on direct oral anticoagulants (DOACs) such as rivaroxaban, apixaban, dabigatran, or edoxaban, or a Vitamin K antagonist (VKA) like warfarin. Duration of therapy varies based on DVT etiology (provoked vs. unprovoked).</li>
+        <li><strong>INR Monitoring (for Warfarin):</strong> Regular International Normalized Ratio (INR) testing is critical for warfarin management to maintain a therapeutic range (typically 2.0-3.0). Patients require education on factors affecting INR.</li>
+        <li><strong>Post-Thrombotic Syndrome (PTS):</strong> A common long-term complication characterized by chronic leg pain, swelling, heaviness, skin changes, and ulceration. Compression therapy and early ambulation are key preventative measures.</li>
+        <li><strong>Risk Factor Modification:</strong> Address modifiable risk factors such as obesity, smoking, and sedentary lifestyle. Consider genetic thrombophilia screening for unprovoked DVT.</li>
+        <li><strong>Follow-Up Imaging:</strong> Serial duplex ultrasound may be indicated in some cases to monitor clot resolution or assess for recurrence.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

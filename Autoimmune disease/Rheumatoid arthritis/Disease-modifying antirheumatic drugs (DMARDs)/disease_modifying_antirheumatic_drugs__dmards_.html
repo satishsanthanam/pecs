@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a diverse group of patients with rheumatoid arthritis receiving care. One patient is taking an oral medication, another is administering a subcutaneous injection, and a third is consulting with a doctor or nurse. Joints, particularly hands and knees, are subtly highlighted to represent affected areas. The overall scene conveys relief, hope, and effective management through disease-modifying antirheumatic drugs (DMARDs). Clean lines, soft colors, and a public awareness design aesthetic.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./disease_modifying_antirheumatic_drugs__dmards_.jpg" class="card-banner" alt="Disease-modifying antirheumatic drugs (DMARDs) Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-autoimmune-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Autoimmune disease</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-autoimmune-disease-rheumatoid-arthritis" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Rheumatoid arthritis</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Disease-modifying antirheumatic drugs (DMARDs)</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Autoimmune disease</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Rheumatoid arthritis</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Core Purpose:</strong> Disease-modifying antirheumatic drugs (DMARDs) are a class of medications used to slow the progression of autoimmune diseases like rheumatoid arthritis (RA) by targeting the underlying immune system dysfunction.</li><li><strong>Mechanism of Action:</strong> Unlike symptomatic treatments (NSAIDs, corticosteroids), DMARDs work to modify the disease course, reduce joint damage, and preserve joint function over time.</li><li><strong>Types of DMARDs:</strong> They are broadly categorized into conventional synthetic DMARDs (csDMARDs, e.g., methotrexate, hydroxychloroquine), targeted synthetic DMARDs (tsDMARDs, e.g., tofacitinib), and biological DMARDs (bDMARDs, e.g., etanercept, adalimumab).</li><li><strong>Delayed Onset:</strong> DMARDs typically take several weeks to months to show their full therapeutic effect, requiring patience and consistent adherence.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Persistent Joint Pain:</strong> Chronic, often symmetrical, pain in multiple joints, particularly small joints of the hands and feet.</li><li><strong>Joint Swelling and Tenderness:</strong> Inflammation leading to palpable swelling and tenderness upon touch in affected joints.</li><li><strong>Morning Stiffness:</strong> Prolonged stiffness in joints, especially in the morning or after periods of inactivity, lasting more than 30 minutes.</li><li><strong>Fatigue:</strong> Significant and often debilitating fatigue, a common systemic symptom of active rheumatoid arthritis.</li><li><strong>Reduced Range of Motion:</strong> Progressive loss of joint flexibility and difficulty performing daily activities due to pain and stiffness.</li><li><strong>Systemic Manifestations:</strong> May include low-grade fever, weight loss, and rheumatoid nodules in some patients, indicating systemic inflammation.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Regular Monitoring:</strong> Frequent blood tests (e.g., complete blood count, liver and kidney function tests) are essential to monitor for potential side effects and drug toxicity, especially with csDMARDs like methotrexate.</li><li><strong>Infection Risk:</strong> DMARDs, particularly biologics and tsDMARDs, can suppress the immune system, increasing susceptibility to infections. Report any signs of infection (fever, chills, persistent cough) immediately.</li><li><strong>Vaccination Status:</strong> Live vaccines are generally contraindicated while on certain DMARDs. Discuss your vaccination history and future vaccination plans with your healthcare provider.</li><li><strong>Pregnancy and Breastfeeding:</strong> Many DMARDs are contraindicated during pregnancy and breastfeeding due to potential harm to the fetus or infant. Strict contraception is often required for women of childbearing potential.</li><li><strong>Drug Interactions:</strong> Inform your physician about all other medications, supplements, and herbal remedies you are taking to avoid potential adverse drug interactions.</li><li><strong>Pre-screening for Biologics:</strong> Before initiating biologic DMARDs, patients are typically screened for latent infections such as tuberculosis (TB) and hepatitis B/C.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Alcohol Restriction:</strong> Alcohol consumption should be limited or avoided, especially with methotrexate, due to the increased risk of liver toxicity.</li><li><strong>Folic Acid Supplementation:</strong> Patients taking methotrexate are often prescribed folic acid supplements to reduce common side effects like nausea, oral ulcers, and liver enzyme elevation.</li><li><strong>Hydration:</strong> Maintaining adequate hydration is important for overall health and kidney function, particularly when taking medications that are renally excreted.</li><li><strong>Anti-inflammatory Diet Principles:</strong> While not a direct restriction, adopting an anti-inflammatory diet rich in fruits, vegetables, whole grains, and omega-3 fatty acids may complement DMARD therapy in managing RA symptoms.</li><li><strong>Grapefruit Interaction:</strong> Be aware of potential interactions with grapefruit or grapefruit juice for certain medications, though less common with DMARDs, always consult your pharmacist.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Strict Adherence:</strong> Take DMARDs exactly as prescribed by your physician, without skipping doses or altering the schedule, to achieve optimal therapeutic outcomes and prevent disease flares.</li><li><strong>Do Not Stop Abruptly:</strong> Never discontinue DMARDs without consulting your healthcare provider, as this can lead to a rapid worsening of disease activity and joint damage.</li><li><strong>Report Side Effects:</strong> Promptly report any new or worsening side effects, such as severe nausea, persistent fever, unusual bruising, or skin rashes, to your medical team.</li><li><strong>Avoid Self-Medication:</strong> Do not take over-the-counter medications, herbal supplements, or new prescriptions without first discussing them with your doctor or pharmacist due to potential interactions.</li><li><strong>Regular Follow-ups:</strong> Attend all scheduled appointments for clinical assessments and laboratory monitoring to ensure the safety and efficacy of your treatment.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early Intervention is Key:</strong> Initiating DMARD therapy early in the course of rheumatoid arthritis is crucial to prevent irreversible joint damage and preserve long-term function.</li><li><strong>Personalized Treatment:</strong> DMARD selection is highly individualized, based on disease activity, patient comorbidities, previous treatment responses, and potential side effect profiles.</li><li><strong>Combination Therapy:</strong> Often, a combination of DMARDs (e.g., methotrexate with a biologic) is more effective than monotherapy in achieving disease control.</li><li><strong>Managing Expectations:</strong> Patients should understand that DMARDs aim for disease remission or low disease activity, but may not eliminate all symptoms, and require long-term commitment.</li><li><strong>Shared Decision-Making:</strong> Open communication between patient and physician is vital for discussing treatment goals, potential risks, and benefits to arrive at the most suitable therapeutic plan.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Educate patients thoroughly on the purpose, administration (oral vs. injectable), potential side effects, and importance of adherence to DMARD therapy.</li><li><strong>Infection Surveillance:</strong> Monitor patients for signs and symptoms of infection, especially those on immunosuppressive DMARDs, and provide guidance on infection prevention strategies.</li><li><strong>Injection Technique Training:</strong> For subcutaneous DMARDs, provide clear instructions and demonstrations on proper injection technique, site rotation, and safe disposal of sharps.</li><li><strong>Laboratory Monitoring Schedule:</strong> Understand the specific laboratory monitoring requirements for each DMARD (e.g., weekly CBC/LFTs for initial methotrexate, less frequent for others) and ensure timely follow-up.</li><li><strong>Medication Reconciliation:</strong> Conduct thorough medication reconciliation to identify potential drug interactions and ensure patient safety.</li><li><strong>Psychosocial Support:</strong> Recognize the chronic nature of RA and the impact of DMARD therapy on quality of life, offering emotional support and resources as needed.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Methotrexate (MTX):</strong> A cornerstone csDMARD, often first-line, acting as a folate antagonist. Requires folic acid supplementation.</li><li><strong>Hydroxychloroquine (HCQ):</strong> A milder csDMARD, often used for less severe RA or in combination. Requires ophthalmologic screening due to retinal toxicity risk.</li><li><strong>Sulfasalazine (SSZ):</strong> A csDMARD with anti-inflammatory and immunomodulatory effects.</li><li><strong>Leflunomide:</strong> A pyrimidine synthesis inhibitor, another effective csDMARD.</li><li><strong>TNF Inhibitors (e.g., Etanercept, Adalimumab, Infliximab):</strong> Biologic DMARDs targeting Tumor Necrosis Factor-alpha, a key inflammatory cytokine.</li><li><strong>JAK Inhibitors (e.g., Tofacitinib, Baricitinib):</strong> Targeted synthetic DMARDs that block Janus Kinase pathways involved in immune cell signaling.</li><li><strong>Disease Activity Scores:</strong> Tools like DAS28 (Disease Activity Score 28 joints) and CDAI (Clinical Disease Activity Index) are used to objectively measure disease activity and guide treatment adjustments.</li><li><strong>Pharmacovigilance:</strong> Ongoing monitoring for adverse drug reactions and reporting to regulatory bodies is crucial for all DMARDs.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>
