@@ -69,30 +69,37 @@ def inject_home_buttons():
                 with open(file_path, 'r', encoding='utf-8', errors='ignore') as file_data:
                     original_content = file_data.read()
 
-                # 1. Aggressively strip old block AND any surrounding whitespace/creeping newlines
-                content_clean = re.sub(
-                    r'\s*<!-- GLOBAL HOME BUTTON START -->.*?<!-- GLOBAL HOME BUTTON END -->\s*', 
-                    '', 
-                    original_content, 
-                    flags=re.DOTALL
-                )
+                # 🛡️ THE PERMANENT FIX: Precise In-Place Swapping
+                button_pattern = r'<!-- GLOBAL HOME BUTTON START -->.*?<!-- GLOBAL HOME BUTTON END -->'
+                
+                if re.search(button_pattern, original_content, flags=re.DOTALL):
+                    # Block exists: Replace it precisely in its boundary without shifting outside newlines
+                    updated_content = re.sub(button_pattern, home_button_markup, original_content, flags=re.DOTALL)
+                else:
+                    # Block does not exist (Raw Cloud Pull): Cleanly inject right after the <body> tag
+                    body_tag_index = original_content.find('<body')
+                    if body_tag_index != -1:
+                        closing_bracket_index = original_content.find('>', body_tag_index)
+                        if closing_bracket_index != -1:
+                            remainder = original_content[closing_bracket_index + 1:]
+                            # Strip out immediate raw whitespace gaps before the infographic-card to ensure baseline parity
+                            remainder_clean = remainder.lstrip('\r\n ')
+                            
+                            updated_content = (
+                                original_content[:closing_bracket_index + 1] + 
+                                "\n" + home_button_markup + "\n" + 
+                                remainder_clean
+                            )
+                        else:
+                            updated_content = original_content
+                    else:
+                        updated_content = original_content
 
-                # 2. Re-inject the button structure cleanly right after the <body> tag
-                body_tag_index = content_clean.find('<body')
-                if body_tag_index != -1:
-                    closing_bracket_index = content_clean.find('>', body_tag_index)
-                    if closing_bracket_index != -1:
-                        updated_content = (
-                            content_clean[:closing_bracket_index + 1] + 
-                            "\n" + home_button_markup + "\n" + 
-                            content_clean[closing_bracket_index + 1:]
-                        )
-                        
-                        # 3. 🛡️ IDEMPOTENCY GUARD: Only rewrite if modifications actually occurred
-                        if original_content != updated_content:
-                            with open(file_path, 'w', encoding='utf-8') as file_data:
-                                file_data.write(updated_content)
-                            modified_count += 1
+                # 3. IDEMPOTENCY GUARD: Write only if content actually altered
+                if original_content != updated_content:
+                    with open(file_path, 'w', encoding='utf-8') as file_data:
+                        file_data.write(updated_content)
+                    modified_count += 1
 
     print(f"🏁 Finished! Updated {modified_count} pages with responsive navigation links.")
 
