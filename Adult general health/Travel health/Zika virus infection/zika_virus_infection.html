@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A vibrant flat vector illustration for public health awareness about Zika virus. The scene depicts a tropical environment with lush greenery and a clear sky. In the foreground, diverse individuals (including a pregnant woman) are actively engaged in mosquito protection: one person is applying insect repellent, another is wearing long-sleeved clothing, and a window has a protective screen. A stylized Aedes mosquito is visible in the background, with a subtle 'no' symbol indicating prevention. The overall design is clean, modern, and conveys a message of safety and prevention without being alarming.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./zika_virus_infection.jpg" class="card-banner" alt="Zika virus infection Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-adult-general-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Adult general health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-adult-general-health-travel-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Travel health</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Zika virus infection</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Adult general health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Travel health</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Primary Transmission</strong>: Zika virus is primarily transmitted to humans through the bite of infected Aedes species mosquitoes (A. aegypti and A. albopictus).</li><li><strong>Sexual Transmission Risk</strong>: The virus can also be transmitted sexually from an infected person to their partners, even if the infected person shows no symptoms.</li><li><strong>Maternal-Fetal Transmission</strong>: A significant concern is transmission from a pregnant woman to her fetus, which can lead to severe birth defects, including microcephaly (congenital Zika syndrome).</li><li><strong>Geographic Prevalence</strong>: Zika is endemic in many tropical and subtropical regions, including parts of Africa, Southeast Asia, the Pacific Islands, and the Americas.</li><li><strong>Asymptomatic Infections</strong>: A large percentage of Zika virus infections are asymptomatic, meaning individuals may be infected and transmit the virus without realizing it.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Common Manifestations</strong>: Typical symptoms include fever, rash (maculopapular), joint pain (arthralgia), and conjunctivitis (red eyes).</li><li><strong>Additional Symptoms</strong>: Some individuals may also experience muscle pain (myalgia), headache, and pain behind the eyes.</li><li><strong>Symptom Duration</strong>: Symptoms are generally mild and usually last for several days to a week.</li><li><strong>Neurological Complications</strong>: In rare cases, Zika infection has been linked to Guillain-Barré syndrome (GBS) in adults.</li><li><strong>Congenital Zika Syndrome (CZS)</strong>: Infants infected prenatally may present with microcephaly, brain abnormalities, eye damage, hearing loss, and joint contractures.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Mosquito Bite Prevention</strong>: Use EPA-registered insect repellents, wear long-sleeved shirts and long pants, and stay in screened or air-conditioned rooms.</li><li><strong>Travel Advisories</strong>: Consult current travel advisories from health organizations (e.g., CDC, WHO) before traveling to Zika-affected areas.</li><li><strong>Sexual Transmission Prevention</strong>: Use condoms consistently and correctly or abstain from sex if you or your partner have traveled to a Zika-affected area or have confirmed infection.</li><li><strong>Pregnant Women & Partners</strong>: Advise against travel to areas with active Zika transmission. If travel is unavoidable, rigorous mosquito bite prevention and safe sex practices are paramount.</li><li><strong>Blood Donation Deferral</strong>: Individuals who have traveled to Zika-affected regions may be deferred from donating blood for a specified period to prevent transfusion-related transmission.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration During Illness</strong>: Maintain adequate fluid intake, especially if experiencing fever or other symptoms, to prevent dehydration.</li><li><strong>Nutrient-Rich Foods</strong>: Consume a balanced diet rich in fruits, vegetables, and lean proteins to support immune function during recovery.</li><li><strong>Avoidance of Alcohol</strong>: Limit or avoid alcohol consumption, particularly if experiencing fever or taking medications that may interact.</li><li><strong>No Specific Food Restrictions</strong>: There are no specific dietary restrictions directly imposed by Zika virus infection itself; focus on general supportive nutrition.</li><li><strong>Post-Illness Recovery</strong>: Prioritize nutrient-dense foods to aid in energy restoration and overall recovery after the acute phase of illness.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Pregnant Individuals</strong>: Seek immediate medical attention if pregnant and experiencing Zika symptoms or having traveled to a Zika-affected area.</li><li><strong>Post-Travel Monitoring</strong>: Travelers returning from Zika-endemic regions should monitor for symptoms for at least two weeks and practice mosquito bite prevention for three weeks to prevent local transmission.</li><li><strong>Healthcare Provider Reporting</strong>: Healthcare providers are mandated to report suspected and confirmed Zika virus cases to local public health authorities.</li><li><strong>Blood Safety Protocols</strong>: Adhere to established blood screening and deferral guidelines to ensure the safety of the blood supply in affected regions.</li><li><strong>Vector Control Efforts</strong>: Participate in community-wide efforts to eliminate mosquito breeding sites, such as emptying standing water from containers.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Clinical Diagnosis & Confirmation</strong>: Diagnosis is primarily clinical, confirmed by laboratory tests such as RT-PCR for acute infection or serology for past exposure.</li><li><strong>Supportive Care Only</strong>: There is no specific antiviral treatment for Zika virus; management is supportive, focusing on symptom relief (rest, fluids, acetaminophen for fever/pain).</li><li><strong>NSAID Caution</strong>: Advise against the use of aspirin and other NSAIDs until dengue infection has been ruled out, due to the potential risk of hemorrhage.</li><li><strong>Patient Counseling</strong>: Provide comprehensive counseling on prevention strategies, especially for pregnant women and couples planning pregnancy.</li><li><strong>Long-Term Follow-up</strong>: For infants diagnosed with congenital Zika syndrome, multidisciplinary long-term follow-up and supportive care are essential.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Focus</strong>: Educate patients on effective mosquito bite prevention techniques and the critical importance of preventing sexual transmission.</li><li><strong>Symptom Differentiation</strong>: Train in recognizing Zika symptoms and differentiating them from other arboviral infections like dengue and chikungunya.</li><li><strong>Thorough Travel History</strong>: Emphasize the importance of obtaining a detailed travel history from all patients, particularly pregnant women, during assessment.</li><li><strong>Public Health Role</strong>: Understand the nurse's role in public health surveillance, case reporting, and community education regarding arboviral diseases.</li><li><strong>Maternal-Child Health Implications</strong>: Focus on the unique risks, screening protocols, and care needs for pregnant women and infants affected by Zika virus.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathogen Classification</strong>: Zika virus (ZIKV), a member of the Flaviviridae family, genus Flavivirus.</li><li><strong>Primary Vectors</strong>: Aedes aegypti and Aedes albopictus mosquitoes.</li><li><strong>Incubation Period</strong>: Typically ranges from 3 to 14 days.</li><li><strong>Diagnostic Modalities</strong>: RT-PCR on serum, urine, or cerebrospinal fluid (CSF) for acute infection; IgM and IgG serology for recent or past exposure.</li><li><strong>Key Complications</strong>: Guillain-Barré Syndrome (GBS) in adults; Congenital Zika Syndrome (CZS) in infants.</li><li><strong>ICD-10 Codes</strong>: A92.8 (Other specified mosquito-borne viral fevers); P35.8 (Other congenital viral diseases, specifically for CZS).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

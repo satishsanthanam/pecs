@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A vibrant flat vector illustration depicting a diverse group of people traveling safely and healthily. The scene includes elements like a person applying sunscreen, another drinking from a sealed water bottle, someone using hand sanitizer, and a traveler wearing a mosquito net. A first-aid kit and a world map with health icons are subtly integrated into the background, emphasizing global health awareness and preventative measures. The style is clean, modern, and optimized for public health campaigns, avoiding any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./staying_healthy_when_you_travel.jpg" class="card-banner" alt="Staying healthy when you travel Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-adult-general-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Adult general health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-adult-general-health-travel-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Travel health</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Staying healthy when you travel</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Adult general health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Travel health</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Pre-Travel Consultation:</strong> Schedule a visit with your healthcare provider at least 4-6 weeks before your trip to discuss destination-specific health risks, required vaccinations, and necessary prophylactic medications.</li><li><strong>Vaccination Status:</strong> Ensure all routine immunizations are up-to-date. Inquire about recommended travel-specific vaccines such as Hepatitis A, Typhoid, Yellow Fever, or Meningococcal disease based on your itinerary.</li><li><strong>Travel Insurance:</strong> Obtain comprehensive travel health insurance that covers medical emergencies, evacuations, and repatriation, especially when traveling internationally.</li><li><strong>Medication Management:</strong> Carry an adequate supply of all prescription medications in their original packaging, along with a copy of your prescriptions and a letter from your doctor explaining your medical conditions.</li><li><strong>First-Aid Kit:</strong> Pack a basic first-aid kit including pain relievers, anti-diarrhea medication, antiseptic wipes, bandages, and any personal over-the-counter remedies.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Traveler's Diarrhea:</strong> Characterized by loose stools, abdominal cramps, nausea, and sometimes fever, often due to contaminated food or water.</li><li><strong>Fever and Chills:</strong> Can indicate various infections, including malaria, dengue, or other vector-borne diseases, especially after returning from endemic areas.</li><li><strong>Respiratory Symptoms:</strong> Cough, sore throat, or shortness of breath may suggest common colds, flu, or more serious respiratory infections, particularly in crowded travel environments.</li><li><strong>Skin Rashes or Lesions:</strong> Could be reactions to insect bites, allergic reactions, or signs of infectious diseases like measles or chickenpox if not immunized.</li><li><strong>Deep Vein Thrombosis (DVT):</strong> Swelling, pain, or tenderness in one leg, often in the calf or thigh, can occur after prolonged immobility during long flights or drives.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Hand Hygiene:</strong> Frequently wash hands with soap and water, especially before eating and after using the restroom. Use an alcohol-based hand sanitizer (at least 60% alcohol) when soap and water are unavailable.</li><li><strong>Safe Food and Water:</strong> Adhere to the 'boil it, cook it, peel it, or forget it' rule. Avoid raw or undercooked foods, unpasteurized dairy, and tap water. Opt for bottled water or treated water for drinking and brushing teeth.</li><li><strong>Insect Bite Prevention:</strong> Use insect repellent containing DEET or picaridin, wear long sleeves and pants, and sleep under mosquito nets in areas with vector-borne diseases.</li><li><strong>Sun Protection:</strong> Apply broad-spectrum sunscreen with an SPF of 30 or higher, wear protective clothing, and seek shade during peak sun hours to prevent sunburn and heat-related illnesses.</li><li><strong>Personal Safety:</strong> Be aware of your surroundings, secure your belongings, and avoid risky behaviors to minimize the chance of injury or exposure to infectious agents.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration:</strong> Drink plenty of safe fluids (bottled water, boiled water, sealed beverages) to prevent dehydration, especially in hot climates or during air travel.</li><li><strong>Avoid Tap Water:</strong> Do not drink tap water, use ice made from tap water, or brush teeth with tap water in areas where water safety is questionable.</li><li><strong>Cooked Foods Only:</strong> Prioritize foods that are thoroughly cooked and served hot. Avoid raw fruits and vegetables unless you can peel them yourself.</li><li><strong>Dairy and Street Food Caution:</strong> Be wary of unpasteurized dairy products and street vendor food unless you can verify its preparation hygiene.</li><li><strong>Alcohol Moderation:</strong> Limit alcohol consumption, as it can contribute to dehydration and impair judgment, increasing health risks.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Medical Alert Information:</strong> If you have chronic conditions or severe allergies, wear a medical alert bracelet and carry relevant medical information translated into the local language.</li><li><strong>Emergency Contacts:</strong> Keep a list of emergency contacts, including family members, your doctor, and your travel insurance provider, readily accessible.</li><li><strong>Chronic Condition Management:</strong> Ensure stable management of pre-existing conditions (e.g., diabetes, hypertension) before and during travel. Consult your doctor for specific advice on managing these conditions while abroad.</li><li><strong>Seeking Medical Help:</strong> Know how to access local medical services. Your embassy or consulate can often provide a list of reputable healthcare providers.</li><li><strong>Post-Travel Monitoring:</strong> Monitor your health for several weeks after returning home. Seek medical attention if you develop fever, rash, persistent diarrhea, or other unusual symptoms, informing your doctor of your travel history.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Individualized Risk Assessment:</strong> Every traveler's health needs are unique. A thorough pre-travel consultation allows for a personalized risk assessment based on destination, duration, planned activities, and individual health status.</li><li><strong>Prophylactic Strategies:</strong> Physicians will recommend specific prophylactic medications (e.g., for malaria) or vaccinations based on the epidemiological profile of the travel destination.</li><li><strong>Medication Adherence:</strong> Emphasize strict adherence to prescribed medication schedules, especially for chronic conditions or prophylactic regimens, to maintain health and prevent complications.</li><li><strong>Recognizing Red Flags:</strong> Educate patients on critical symptoms that warrant immediate medical attention during or after travel, such as high fever, severe abdominal pain, or neurological changes.</li><li><strong>Post-Travel Evaluation:</strong> Advise patients to seek prompt medical evaluation for any concerning symptoms post-travel, ensuring they disclose their travel itinerary to facilitate accurate diagnosis and treatment.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education on Vaccinations:</strong> Nurses play a crucial role in educating patients about the importance of travel vaccinations, their schedules, and potential side effects.</li><li><strong>Medication Reconciliation for Travelers:</strong> Assist patients in organizing their medications for travel, ensuring correct dosages, proper storage, and understanding of administration times across time zones.</li><li><strong>Hygiene Practices Reinforcement:</strong> Provide clear instructions on effective hand hygiene, safe food preparation, and water purification methods to prevent common travel-related illnesses.</li><li><strong>Symptom Recognition and Reporting:</strong> Train patients to recognize early signs of illness (e.g., dehydration, infection) and when to seek medical care, emphasizing the importance of reporting travel history.</li><li><strong>Wound Care and First Aid:</strong> Educate travelers on basic wound care, management of minor injuries, and the appropriate use of a travel first-aid kit.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Vector-Borne Diseases:</strong> Infections transmitted by arthropod vectors (e.g., mosquitoes, ticks), including malaria, dengue fever, Zika virus, and chikungunya.</li><li><strong>Traveler's Diarrhea Etiology:</strong> Primarily bacterial (e.g., E. coli, Campylobacter, Salmonella), but also viral (e.g., Norovirus) or parasitic (e.g., Giardia).</li><li><strong>Immunoprophylaxis:</strong> The administration of vaccines or immunoglobulins to prevent infectious diseases, a cornerstone of travel medicine.</li><li><strong>Deep Vein Thrombosis (DVT) Prophylaxis:</strong> Measures to prevent blood clots during prolonged immobility, such as regular movement, compression stockings, and hydration.</li><li><strong>Altitude Sickness (Acute Mountain Sickness):</strong> A condition affecting individuals ascending rapidly to high altitudes, characterized by headache, nausea, dizziness, and fatigue.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

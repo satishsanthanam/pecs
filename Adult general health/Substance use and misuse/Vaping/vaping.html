@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration for public awareness about vaping. The central image features a stylized vape pen with a 'no' symbol or a red 'X' over it. Surrounding the vape pen are subtle, abstract representations of damaged lungs, a stressed heart, and a brain showing signs of addiction, all in a clean, modern style. The color palette should be muted blues and greens with prominent warning reds and oranges. Avoid any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./vaping.jpg" class="card-banner" alt="Vaping Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-adult-general-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Adult general health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-adult-general-health-substance-use-and-misuse" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Substance use and misuse</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Vaping</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Adult general health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Substance use and misuse</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Vaping involves inhaling an aerosol produced by an electronic nicotine delivery system (ENDS) or e-cigarette, which heats a liquid containing nicotine, flavorings, and other chemicals.</li><li><strong>Misconception:</strong> Often marketed as a safer alternative to traditional cigarettes, but evidence suggests significant health risks and addiction potential.</li><li><strong>Prevalence:</strong> Increasingly common among adolescents and young adults, often leading to nicotine dependence.</li><li><strong>Components:</strong> Devices typically consist of a battery, a heating element, and a cartridge or tank holding e-liquid.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Respiratory Issues:</strong> Chronic cough, shortness of breath, wheezing, chest pain, and increased susceptibility to respiratory infections.</li><li><strong>Nicotine Addiction:</strong> Cravings, irritability, anxiety, difficulty concentrating, and withdrawal symptoms when not vaping.</li><li><strong>Cardiovascular Effects:</strong> Increased heart rate, elevated blood pressure, and potential for cardiac arrhythmias due to nicotine exposure.</li><li><strong>Oral Health Concerns:</strong> Dry mouth, gum inflammation, increased risk of cavities, and potential for oral lesions.</li><li><strong>Gastrointestinal Distress:</strong> Nausea, vomiting, and abdominal pain, particularly with high nicotine concentrations or accidental ingestion.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Cessation is Key:</strong> The safest approach is to avoid initiating vaping or to cease use entirely, especially for non-smokers.</li><li><strong>Nicotine Poisoning:</strong> Keep e-liquids and devices out of reach of children and pets due to the high risk of accidental nicotine poisoning.</li><li><strong>Battery Safety:</strong> Use only manufacturer-approved chargers and avoid damaged devices to prevent battery explosions or fires.</li><li><strong>Pregnancy and Lactation:</strong> Vaping is contraindicated during pregnancy and breastfeeding due to nicotine's harmful effects on fetal and infant development.</li><li><strong>Avoid Modifying Devices:</strong> Do not tamper with or modify vaping devices or e-liquids, as this can increase the risk of injury or exposure to harmful substances.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration:</strong> Vaping can contribute to dry mouth; ensure adequate fluid intake to maintain oral health and overall hydration.</li><li><strong>Caffeine and Stimulants:</strong> Be mindful of combining nicotine (a stimulant) with other stimulants like caffeine, as this can exacerbate cardiovascular effects.</li><li><strong>Oral Hygiene:</strong> Maintain rigorous oral hygiene practices, including regular brushing and flossing, to mitigate potential oral health impacts.</li><li><strong>Nutrient Absorption:</strong> While not a direct dietary restriction, nicotine can affect appetite; focus on a balanced diet to ensure adequate nutrient intake, especially during cessation.</li><li><strong>Post-Cessation Weight Management:</strong> Be aware that nicotine cessation can sometimes lead to increased appetite and weight gain; plan for healthy dietary choices during this period.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Seek Professional Help:</strong> Individuals struggling with vaping addiction should seek support from healthcare providers or cessation programs.</li><li><strong>Report Adverse Events:</strong> Any severe health symptoms or device malfunctions should be reported to healthcare professionals and relevant regulatory bodies.</li><li><strong>Protect Others:</strong> Avoid vaping in enclosed spaces or around vulnerable populations, such as children, pregnant women, and individuals with respiratory conditions, due to secondhand aerosol exposure.</li><li><strong>Safe Disposal:</strong> Properly dispose of used vaping devices and e-liquid cartridges according to local regulations to prevent environmental contamination and accidental exposure.</li><li><strong>Monitor for EVALI Symptoms:</strong> Be vigilant for symptoms of E-cigarette or Vaping Product Use-Associated Lung Injury (EVALI), including cough, shortness of breath, chest pain, nausea, vomiting, diarrhea, and fever.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Strong Recommendation for Cessation:</strong> Physicians strongly advise against vaping due to its known health risks and addictive nature, especially for non-smokers.</li><li><strong>Comprehensive Assessment:</strong> Clinicians should routinely screen patients for vaping use and assess their readiness to quit.</li><li><strong>Evidence-Based Treatment:</strong> Offer and recommend evidence-based nicotine cessation therapies, including pharmacotherapy (e.g., nicotine replacement therapy, bupropion, varenicline) and behavioral counseling.</li><li><strong>Risk Communication:</strong> Educate patients on the specific health risks associated with vaping, including respiratory, cardiovascular, and addiction concerns.</li><li><strong>Long-Term Monitoring:</strong> Advise regular follow-up to monitor for potential long-term health effects and support sustained cessation efforts.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Role:</strong> Nurses are crucial in educating patients and their families about the dangers of vaping, dispelling myths, and promoting cessation.</li><li><strong>Assessment Skills:</strong> Develop proficiency in assessing vaping habits, nicotine dependence levels, and identifying associated physical and psychological symptoms.</li><li><strong>Intervention Strategies:</strong> Learn to provide brief interventions, motivational interviewing techniques, and referrals to specialized cessation programs.</li><li><strong>Public Health Advocacy:</strong> Understand the public health implications of vaping, including its impact on youth and vulnerable populations, and advocate for preventative measures.</li><li><strong>Pharmacological Knowledge:</strong> Familiarize oneself with various nicotine cessation pharmacotherapies, their mechanisms of action, side effects, and appropriate patient selection.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>EVALI Pathophysiology:</strong> E-cigarette or Vaping Product Use-Associated Lung Injury involves acute lung damage, often linked to vitamin E acetate in THC-containing vape products, but other constituents may also contribute.</li><li><strong>Nicotine Pharmacology:</strong> Nicotine acts as an agonist at nicotinic acetylcholine receptors (nAChRs) in the brain, leading to dopamine release and reinforcing addictive behaviors.</li><li><strong>Aerosol Composition:</strong> Vaping aerosols contain ultrafine particles, heavy metals (e.g., nickel, tin, lead), volatile organic compounds (e.g., benzene, toluene), and flavorings (e.g., diacetyl) linked to lung disease.</li><li><strong>Cardiovascular Impact:</strong> Nicotine induces vasoconstriction, increases heart rate and blood pressure, and promotes endothelial dysfunction, contributing to cardiovascular disease risk.</li><li><strong>Regulatory Landscape:</strong> Ongoing research and evolving regulations by bodies like the FDA (Food and Drug Administration) address product standards, marketing, and sales restrictions for ENDS.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration depicting a diverse group of adults traveling, with clear visual cues for food safety. Show a person choosing bottled water over tap, another avoiding unpeeled fruit, and someone else opting for a well-cooked meal. Include icons representing common Listeria sources like soft cheese and deli meat with a 'no' symbol. The overall design should be clean, informative, and suitable for a public health awareness campaign, avoiding text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./listeria_infection.jpg" class="card-banner" alt="Listeria infection Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-adult-general-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Adult general health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-adult-general-health-travel-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Travel health</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Listeria infection</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Adult general health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Travel health</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Listeriosis Overview:</strong> Listeria infection, or listeriosis, is a serious bacterial illness caused by *Listeria monocytogenes*, primarily contracted through contaminated food.</li><li><strong>High-Risk Groups:</strong> Individuals most vulnerable include pregnant women, newborns, older adults, and people with weakened immune systems.</li><li><strong>Travel-Related Risk:</strong> Travel to regions with less stringent food safety standards or consumption of street food and unverified local produce significantly increases exposure risk.</li><li><strong>Severity:</strong> While often mild in healthy adults, it can lead to severe, invasive disease affecting the brain, spinal cord, or bloodstream in high-risk populations.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Mild Symptoms:</strong> Often presents with flu-like symptoms such as fever, muscle aches, nausea, vomiting, and diarrhea.</li><li><strong>Severe Symptoms (Invasive Listeriosis):</strong> Can include headache, stiff neck, confusion, loss of balance, and convulsions if the infection spreads to the nervous system.</li><li><strong>Pregnant Women:</strong> May experience only mild, flu-like symptoms, but the infection can lead to miscarriage, stillbirth, premature delivery, or life-threatening infection in the newborn.</li><li><strong>Incubation Period:</strong> Symptoms can appear anywhere from a few days to several weeks after consuming contaminated food, making it challenging to pinpoint the source.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Food Selection While Traveling:</strong> Avoid unpasteurized dairy products, soft cheeses (e.g., feta, brie, camembert, blue-veined), deli meats, pâtés, and raw sprouts.</li><li><strong>Thorough Cooking:</strong> Ensure all meat, poultry, and seafood are cooked to their appropriate internal temperatures, especially when dining out or consuming street food.</li><li><strong>Refrigeration and Storage:</strong> Keep perishable foods refrigerated at or below 4°C (40°F) and consume them promptly. Avoid foods that have been left at room temperature for extended periods.</li><li><strong>Cross-Contamination Prevention:</strong> Use separate cutting boards and utensils for raw and cooked foods. Wash hands thoroughly before and after handling food.</li><li><strong>Water Safety:</strong> Drink only bottled or boiled water, and avoid ice made from tap water in areas with questionable water quality.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Avoid Unpasteurized Products:</strong> Strictly avoid raw milk and any dairy products made from unpasteurized milk, including many artisanal cheeses found in local markets.</li><li><strong>Limit Deli Meats and Smoked Seafood:</strong> Unless thoroughly reheated to steaming hot, avoid pre-packaged deli meats, hot dogs, and smoked seafood (e.g., lox, smoked salmon) while traveling.</li><li><strong>Raw Produce Caution:</strong> Consume only fruits and vegetables that you can peel yourself, or those that have been thoroughly washed with safe water and cooked.</li><li><strong>Buffet and Street Food Vigilance:</strong> Be wary of foods served at buffets or from street vendors that may not have been kept at safe temperatures (hot foods hot, cold foods cold).</li><li><strong>Restaurant Choices:</strong> Opt for reputable restaurants with good hygiene practices and avoid establishments where food handling appears questionable.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Prompt Medical Attention:</strong> Seek immediate medical care if you develop flu-like symptoms, fever, or neurological signs, especially after recent travel or consumption of high-risk foods.</li><li><strong>Inform Healthcare Provider:</strong> Always inform your doctor about your recent travel history and any specific foods consumed if you suspect listeriosis.</li><li><strong>Pregnant Women Alert:</strong> Any pregnant woman experiencing fever or flu-like symptoms should contact her healthcare provider immediately, as early treatment is crucial to prevent harm to the fetus.</li><li><strong>Food Recall Awareness:</strong> Stay informed about any food safety alerts or recalls, particularly for products commonly associated with Listeria outbreaks.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early Diagnosis:</strong> Timely diagnosis through blood or CSF culture is critical, particularly for high-risk patients, to initiate appropriate antibiotic therapy.</li><li><strong>Antibiotic Treatment:</strong> Listeriosis is typically treated with antibiotics, often ampicillin, sometimes in combination with gentamicin, for several weeks.</li><li><strong>Patient Education:</strong> Physicians must counsel patients, especially those at high risk, on stringent food safety practices and foods to avoid, both at home and during travel.</li><li><strong>Travel History Importance:</strong> A detailed travel and dietary history is paramount in identifying potential sources of infection and guiding diagnostic and treatment decisions.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Role:</strong> Nurses play a vital role in educating patients about safe food handling, storage, and preparation to prevent Listeria infection, especially for vulnerable populations.</li><li><strong>Symptom Monitoring:</strong> Monitor high-risk patients for subtle signs of infection, including fever, muscle aches, and any neurological changes that may indicate invasive disease.</li><li><strong>Travel Health Counseling:</strong> Provide pre-travel counseling on food and water safety precautions, emphasizing specific foods to avoid in different regions.</li><li><strong>Post-Exposure Guidance:</strong> Advise patients on when to seek medical attention following potential exposure, particularly if they are pregnant or immunocompromised.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Causative Agent:</strong> *Listeria monocytogenes*, a Gram-positive, facultative anaerobic bacterium.</li><li><strong>Pathogenesis:</strong> Intracellular pathogen capable of crossing the intestinal, blood-brain, and placental barriers, leading to systemic infection.</li><li><strong>Diagnosis:</strong> Confirmed by isolation of *L. monocytogenes* from normally sterile sites (e.g., blood, cerebrospinal fluid, amniotic fluid).</li><li><strong>Treatment Protocol:</strong> Standard treatment involves intravenous antibiotics, typically ampicillin, often combined with gentamicin for synergistic effect, for a duration determined by the site and severity of infection.</li><li><strong>Public Health Significance:</strong> A notifiable disease, requiring prompt reporting to public health authorities for surveillance and outbreak investigation.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>
