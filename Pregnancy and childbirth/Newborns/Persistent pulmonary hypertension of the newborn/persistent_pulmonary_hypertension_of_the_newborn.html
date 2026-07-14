@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration of a newborn infant in a neonatal intensive care unit (NICU) incubator. The infant is gently swaddled, with subtle medical tubing for a ventilator and an IV line visible. Monitors display abstract vital signs. A stylized representation of the infant's chest shows the heart and lungs, with a subtle visual cue of restricted blood flow in the pulmonary arteries. The background is soft and clean, emphasizing delicate care and advanced medical technology. Use a palette of soft blues, greens, and muted grays. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./persistent_pulmonary_hypertension_of_the_newborn.jpg" class="card-banner" alt="Persistent pulmonary hypertension of the newborn Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-pregnancy-and-childbirth" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Pregnancy and childbirth</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-pregnancy-and-childbirth-newborns" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Newborns</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Persistent pulmonary hypertension of the newborn</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Pregnancy and childbirth</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Newborns</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Persistent pulmonary hypertension of the newborn (PPHN) is a condition where the pulmonary vascular resistance remains abnormally high after birth, leading to right-to-left shunting of blood and severe hypoxemia.</li><li><strong>Pathophysiology:</strong> Failure of the normal circulatory transition from fetal to neonatal life, characterized by persistent pulmonary vasoconstriction.</li><li><strong>Key Feature:</strong> Blood bypasses the lungs through the foramen ovale and/or ductus arteriosus, resulting in poorly oxygenated systemic blood flow.</li><li><strong>Incidence:</strong> Primarily affects term or near-term infants, often associated with underlying conditions.</li><li><strong>Risk Factors:</strong> Perinatal asphyxia, meconium aspiration syndrome (MAS), sepsis, congenital diaphragmatic hernia (CDH), pneumonia, and maternal NSAID use late in pregnancy.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Cyanosis:</strong> Central cyanosis, often severe and refractory to oxygen administration.</li><li><strong>Tachypnea:</strong> Rapid breathing, indicating respiratory distress.</li><li><strong>Increased Work of Breathing:</strong> Nasal flaring, retractions (subcostal, intercostal, suprasternal), and grunting.</li><li><strong>Hypoxemia:</strong> Profoundly low oxygen saturation levels, often labile and fluctuating with minimal stimulation.</li><li><strong>Differential Cyanosis:</strong> May be present if shunting occurs primarily through the ductus arteriosus (pre-ductal vs. post-ductal oxygen saturation differences).</li><li><strong>Heart Murmur:</strong> A murmur of tricuspid regurgitation may be heard due to high right ventricular pressure.</li><li><strong>Systemic Hypotension:</strong> Can occur due to poor cardiac output or effects of medications.</li><li><strong>Metabolic Acidosis:</strong> Often present due to tissue hypoperfusion and anaerobic metabolism.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Minimize Stimulation:</strong> Handle the infant gently and minimize environmental stimuli (noise, light) to prevent pulmonary vasoconstriction.</li><li><strong>Maintain Normothermia:</strong> Ensure stable body temperature to reduce metabolic demand and prevent cold stress.</li><li><strong>Optimize Ventilation:</strong> Carefully manage mechanical ventilation to achieve optimal lung inflation and promote pulmonary vasodilation without causing barotrauma.</li><li><strong>Avoid Hypoxia and Acidosis:</strong> Promptly correct any episodes of hypoxemia or acidosis, as these exacerbate pulmonary vasoconstriction.</li><li><strong>Fluid Management:</strong> Maintain strict fluid balance to prevent pulmonary edema while ensuring adequate systemic perfusion.</li><li><strong>Sedation and Analgesia:</strong> Judicious use of sedatives and analgesics to reduce stress, pain, and oxygen consumption.</li><li><strong>Monitor for Systemic Hypotension:</strong> Closely monitor blood pressure and intervene promptly to maintain adequate systemic perfusion pressure.</li><li><strong>Prepare for iNO:</strong> Ensure readiness for inhaled nitric oxide (iNO) administration, a selective pulmonary vasodilator.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>NPO Status:</strong> Infants with severe PPHN are typically kept nil per os (NPO) initially due to respiratory distress and the risk of necrotizing enterocolitis (NEC).</li><li><strong>Parenteral Nutrition:</strong> Intravenous fluids and total parenteral nutrition (TPN) are initiated early to provide essential nutrients and maintain hydration.</li><li><strong>Trophic Feeds:</strong> Minimal enteral feeds (trophic feeds) may be introduced cautiously once the infant is hemodynamically stable and respiratory status improves.</li><li><strong>Breast Milk Preference:</strong> If enteral feeds are tolerated, breast milk is preferred due to its protective properties.</li><li><strong>Monitoring for Intolerance:</strong> Closely monitor for signs of feeding intolerance, abdominal distension, or other indicators of NEC.</li><li><strong>Gradual Advancement:</strong> Enteral feeds are advanced slowly and incrementally as the infant's condition allows.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Continuous Monitoring:</strong> Implement continuous monitoring of heart rate, respiratory rate, oxygen saturation (pre- and post-ductal), blood pressure, and end-tidal CO2.</li><li><strong>Blood Gas Analysis:</strong> Perform frequent arterial or capillary blood gas analyses to assess oxygenation, ventilation, and acid-base status.</li><li><strong>Medication Titration:</strong> Administer and titrate pulmonary vasodilators (e.g., inhaled nitric oxide, sildenafil) and inotropes (e.g., dopamine, dobutamine) precisely as ordered.</li><li><strong>Ventilator Checks:</strong> Regularly check ventilator settings and alarms, ensuring proper function and patient-ventilator synchrony.</li><li><strong>Cluster Care:</strong> Organize care activities to minimize disturbances and allow for periods of uninterrupted rest.</li><li><strong>ECMO Readiness:</strong> Be prepared for potential escalation to extracorporeal membrane oxygenation (ECMO) in cases of refractory PPHN.</li><li><strong>Parental Communication:</strong> Provide clear, empathetic communication to parents regarding the infant's condition, treatment plan, and prognosis.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early Diagnosis:</strong> Prompt diagnosis, often confirmed by echocardiography, is crucial to differentiate PPHN from structural heart disease and guide therapy.</li><li><strong>Multimodal Therapy:</strong> Management involves a comprehensive approach including optimizing oxygenation, ventilation, systemic blood pressure, and targeted pulmonary vasodilation.</li><li><strong>Inhaled Nitric Oxide (iNO):</strong> Consider iNO as a first-line selective pulmonary vasodilator, carefully monitoring for response and potential side effects.</li><li><strong>Systemic Support:</strong> Ensure adequate systemic blood pressure and cardiac output to maintain perfusion to vital organs, often requiring inotropic support.</li><li><strong>Addressing Underlying Causes:</strong> Identify and treat any underlying conditions such as sepsis, meconium aspiration, or pneumonia.</li><li><strong>ECMO Consideration:</strong> Timely referral to an ECMO center should be considered for infants who fail to respond to conventional medical therapies.</li><li><strong>Neurodevelopmental Follow-up:</strong> Emphasize the importance of long-term neurodevelopmental follow-up due to the increased risk of adverse outcomes in survivors.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Fetal Circulation Review:</strong> Understand the unique aspects of fetal circulation and the normal transition at birth to grasp PPHN pathophysiology.</li><li><strong>Assessment of Respiratory Distress:</strong> Develop keen skills in assessing and scoring neonatal respiratory distress, including subtle signs of worsening condition.</li><li><strong>iNO Administration:</strong> Learn the principles of inhaled nitric oxide delivery, monitoring for methemoglobinemia, and weaning protocols.</li><li><strong>Hemodynamic Monitoring:</strong> Interpret arterial line waveforms, central venous pressures, and understand their implications for PPHN management.</li><li><strong>Fluid and Electrolyte Balance:</strong> Master the calculation and monitoring of fluid intake/output and electrolyte levels in critically ill neonates.</li><li><strong>Parental Support:</strong> Practice providing compassionate and informative support to parents navigating the complexities of their infant's critical illness.</li><li><strong>Ventilator Management Basics:</strong> Understand basic ventilator modes, settings, and how they impact pulmonary vascular resistance.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Echocardiography:</strong> Diagnostic tool to confirm PPHN, assess pulmonary artery pressures, shunt direction/magnitude, and rule out congenital heart disease.</li><li><strong>Pre- and Post-Ductal Oxygen Saturations:</strong> Used to detect right-to-left shunting across the ductus arteriosus (e.g., right hand vs. foot sats).</li><li><strong>Inhaled Nitric Oxide (iNO):</strong> A selective pulmonary vasodilator administered via the ventilator circuit.</li><li><strong>High-Frequency Oscillatory Ventilation (HFOV):</strong> An advanced ventilation strategy often used to optimize lung recruitment and oxygenation in PPHN.</li><li><strong>Extracorporeal Membrane Oxygenation (ECMO):</strong> A life support system providing temporary cardiac and/or respiratory support for severe, refractory cases.</li><li><strong>Sildenafil:</strong> An oral phosphodiesterase-5 inhibitor used as a pulmonary vasodilator, sometimes as an adjunct or alternative to iNO.</li><li><strong>Prostacyclin Analogs:</strong> Medications like epoprostenol or iloprost, which are potent pulmonary vasodilators, sometimes used in severe cases.</li><li><strong>Cardiac Catheterization:</strong> Rarely performed for diagnosis, but can provide definitive hemodynamic measurements.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

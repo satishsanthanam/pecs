@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a human torso with a focus on the kidney area. One kidney is subtly highlighted with a faint surgical incision line. Surrounding elements include abstract representations of medical care, a doctor's gloved hand, and a healthy kidney icon. The style is clean, modern, and informative, suitable for public health awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./nephrectomy.jpg" class="card-banner" alt="Nephrectomy Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-kidneys-and-urinary-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Kidneys and urinary system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-kidneys-and-urinary-system-tests-and-procedures" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Tests and procedures</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Nephrectomy</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Kidneys and urinary system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Tests and procedures</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Surgical Removal:</strong> Nephrectomy is the surgical removal of a kidney, or a portion of a kidney.</li><li><strong>Primary Indications:</strong> Most commonly performed for kidney cancer, but also for severe kidney damage, non-functioning kidneys, or congenital abnormalities.</li><li><strong>Types of Nephrectomy:</strong> Can be radical (entire kidney, adrenal gland, lymph nodes), partial (only the diseased part), or simple (entire kidney only).</li><li><strong>Surgical Approaches:</strong> Performed via open surgery, laparoscopically, or with robotic assistance, each with varying recovery times.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Persistent Flank Pain:</strong> Unexplained or chronic pain in the side or back, often radiating.</li><li><strong>Hematuria:</strong> Presence of blood in the urine, which may be visible or microscopic.</li><li><strong>Palpable Abdominal Mass:</strong> A lump or swelling that can be felt in the abdomen or flank area.</li><li><strong>Unexplained Weight Loss:</strong> Significant and unintentional decrease in body weight.</li><li><strong>Recurrent Urinary Tract Infections:</strong> Frequent or difficult-to-treat infections of the urinary system.</li><li><strong>Fatigue and Anemia:</strong> General tiredness and low red blood cell count, sometimes associated with kidney dysfunction or cancer.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Pre-operative Renal Assessment:</strong> Thorough evaluation of the remaining kidney's function is critical before surgery.</li><li><strong>Anticoagulant Management:</strong> Discontinuation of blood-thinning medications as directed by the surgical team to minimize bleeding risk.</li><li><strong>Infection Prophylaxis:</strong> Administration of prophylactic antibiotics before surgery to prevent surgical site infections.</li><li><strong>Allergy Disclosure:</strong> Informing the medical team of all known allergies, especially to medications or latex.</li><li><strong>Smoking Cessation:</strong> Advising patients to stop smoking several weeks prior to surgery to improve healing and reduce respiratory complications.</li><li><strong>Post-operative Monitoring:</strong> Close observation for signs of bleeding, infection, pain, and adequate urine output.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-operative Fasting:</strong> Strict adherence to nil per os (NPO) guidelines for a specified period before surgery.</li><li><strong>Gradual Reintroduction Post-op:</strong> Starting with clear liquids, progressing to full liquids, and then soft foods as tolerated after surgery.</li><li><strong>Avoidance of Gas-Producing Foods:</strong> Initially limiting foods that can cause bloating or discomfort, such as beans, cabbage, and carbonated beverages.</li><li><strong>Adequate Hydration:</strong> Encouraging sufficient fluid intake to support kidney function and prevent constipation, once oral intake is permitted.</li><li><strong>Sodium Restriction (if indicated):</strong> Depending on the patient's blood pressure and the function of the remaining kidney.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Pain Management Adherence:</strong> Following the prescribed pain medication schedule to ensure comfort and facilitate recovery.</li><li><strong>Incision Site Care:</strong> Keeping the surgical wound clean and dry, monitoring for redness, swelling, discharge, or increased pain.</li><li><strong>Activity Restrictions:</strong> Avoiding heavy lifting, strenuous exercise, and activities that strain abdominal muscles for several weeks post-surgery.</li><li><strong>Monitoring Urine Output:</strong> Reporting any significant decrease in urine volume or changes in urine color to the nursing staff.</li><li><strong>Early Ambulation:</strong> Encouraging gentle walking as soon as medically cleared to prevent complications like deep vein thrombosis (DVT).</li><li><strong>Signs of Complications:</strong> Seeking immediate medical attention for fever, chills, severe abdominal pain, excessive bleeding, or shortness of breath.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive Pre-surgical Workup:</strong> Essential for assessing overall patient health, staging disease (if cancerous), and evaluating the contralateral kidney.</li><li><strong>Individualized Treatment Plan:</strong> Tailoring the surgical approach and extent of nephrectomy based on the patient's specific condition and comorbidities.</li><li><strong>Multidisciplinary Team Approach:</strong> Collaboration with oncologists, nephrologists, radiologists, and pain management specialists for optimal outcomes.</li><li><strong>Patient Education and Counseling:</strong> Thorough discussion of potential risks, benefits, alternative treatments, and expected recovery course.</li><li><strong>Long-term Follow-up:</strong> Crucial for monitoring remaining kidney function, blood pressure, and for cancer surveillance if the nephrectomy was performed for malignancy.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pre-operative Patient Teaching:</strong> Educating patients on surgical expectations, pain management, and post-operative care routines.</li><li><strong>Post-operative Assessment:</strong> Meticulous monitoring of vital signs, fluid balance, incision site, pain levels, and bowel function.</li><li><strong>Fluid and Electrolyte Management:</strong> Careful administration of intravenous fluids and monitoring of electrolyte levels to prevent imbalances.</li><li><strong>Mobility and DVT Prophylaxis:</strong> Assisting with early ambulation and ensuring compliance with DVT prevention strategies (e.g., sequential compression devices, anticoagulants).</li><li><strong>Urinary Catheter Care:</strong> Maintaining patency and sterility of the indwelling urinary catheter, if present, and monitoring output.</li><li><strong>Discharge Planning:</strong> Providing clear, concise instructions for home care, medication administration, activity restrictions, and warning signs to report.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>ICD-10 Codes:</strong> C64 (Malignant neoplasm of kidney, except renal pelvis), N28.8 (Other specified disorders of kidney and ureter).</li><li><strong>CPT Codes:</strong> 50220 (Nephrectomy, including partial ureterectomy, any open approach, simple), 50240 (Nephrectomy, radical, including regional lymphadenectomy and/or vena caval thrombectomy, any open approach), 50543 (Laparoscopy, surgical; partial nephrectomy).</li><li><strong>Pathology:</strong> Histopathological examination of the excised kidney tissue is standard for definitive diagnosis and staging.</li><li><strong>Imaging Modalities:</strong> CT scan, MRI, and ultrasound are commonly used for diagnosis, staging, and pre-operative planning.</li><li><strong>Anesthesia:</strong> Typically performed under general anesthesia, with regional blocks sometimes used for post-operative pain control.</li><li><strong>Potential Complications:</strong> Hemorrhage, infection, injury to adjacent organs, renal insufficiency, and incisional hernia.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

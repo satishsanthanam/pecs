@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting an adult figure, gender-neutral, sitting thoughtfully with a gentle, hopeful expression. The figure is surrounded by subtle symbols of support and recovery: a small plant growing, a calendar with a marked follow-up appointment, a subtle medical cross, and a comforting hand on their shoulder (representing support). The background is soft and calming, with elements suggesting a path towards well-being and discharge from care. Clean lines, public awareness design, no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./depression_in_adults___discharge_instructions.jpg" class="card-banner" alt="Depression in adults – Discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-mental-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Mental health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-mental-health-depression" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Depression</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Depression in adults – Discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Mental health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Depression</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Understanding Depression:</strong> Depression is a serious medical illness that negatively affects how you feel, think, and act. It is not a sign of weakness and is treatable.</li>
+        <li><strong>Treatment Adherence:</strong> Consistent adherence to prescribed medications and therapy appointments is crucial for sustained recovery and preventing relapse.</li>
+        <li><strong>Relapse Prevention:</strong> Be aware of early warning signs of worsening mood or return of symptoms, such as changes in sleep, appetite, energy, or increased feelings of hopelessness.</li>
+        <li><strong>Support Systems:</strong> Identify and utilize your personal support network (family, friends) and professional resources available in the community.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Persistent Sadness:</strong> Feelings of sadness, emptiness, or hopelessness that last for most of the day, nearly every day.</li>
+        <li><strong>Loss of Interest:</strong> Markedly diminished interest or pleasure in all, or almost all, activities most of the day, nearly every day.</li>
+        <li><strong>Sleep Disturbances:</strong> Insomnia (difficulty sleeping) or hypersomnia (sleeping too much) nearly every day.</li>
+        <li><strong>Appetite Changes:</strong> Significant unintentional weight loss or gain, or decrease/increase in appetite nearly every day.</li>
+        <li><strong>Fatigue:</strong> Loss of energy or increased fatigue nearly every day.</li>
+        <li><strong>Psychomotor Changes:</strong> Observable psychomotor agitation or retardation nearly every day.</li>
+        <li><strong>Feelings of Worthlessness:</strong> Feelings of worthlessness or excessive or inappropriate guilt nearly every day.</li>
+        <li><strong>Concentration Issues:</strong> Diminished ability to think or concentrate, or indecisiveness, nearly every day.</li>
+        <li><strong>Suicidal Ideation:</strong> Recurrent thoughts of death, recurrent suicidal ideation without a specific plan, or a suicide attempt or a specific plan for committing suicide.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Medication Management:</strong> Take all medications exactly as prescribed. Do not stop or adjust doses without consulting your physician, even if you feel better.</li>
+        <li><strong>Side Effect Monitoring:</strong> Be vigilant for potential side effects of new medications and report any concerning symptoms (e.g., severe nausea, agitation, unusual thoughts) to your healthcare provider immediately.</li>
+        <li><strong>Suicide Risk Assessment:</strong> If you experience thoughts of self-harm or suicide, immediately contact emergency services (e.g., 911, crisis hotline), go to the nearest emergency room, or reach out to your support system.</li>
+        <li><strong>Substance Avoidance:</strong> Avoid alcohol and illicit drugs, as they can worsen depressive symptoms and interfere with medication effectiveness.</li>
+        <li><strong>Driving Restrictions:</strong> Be aware that some medications may cause drowsiness or impair judgment; avoid driving or operating heavy machinery until you know how they affect you.</li>
+        <li><strong>Follow-up Appointments:</strong> Ensure all scheduled follow-up appointments with your psychiatrist, therapist, or primary care provider are attended.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Regular Meal Patterns:</strong> Maintain consistent meal times to help stabilize blood sugar levels, which can impact mood and energy.</li>
+        <li><strong>Hydration:</strong> Ensure adequate fluid intake, especially water, to support overall physiological function and medication absorption.</li>
+        <li><strong>Alcohol Restriction:</strong> Strictly avoid alcohol, as it is a central nervous system depressant and can exacerbate depressive symptoms and interact negatively with antidepressant medications.</li>
+        <li><strong>Caffeine Moderation:</strong> Limit excessive caffeine intake, as it can contribute to anxiety, sleep disturbances, and agitation in some individuals.</li>
+        <li><strong>Grapefruit Interaction:</strong> Be aware that grapefruit and grapefruit juice can interact with certain antidepressant medications (e.g., some SSRIs), affecting their metabolism. Consult your pharmacist or physician.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Observe for Changes:</strong> Closely monitor the patient for any changes in mood, behavior, sleep patterns, or increased agitation, especially in the initial weeks post-discharge or after medication changes.</li>
+        <li><strong>Medication Adherence Support:</strong> Assist the patient in adhering to their medication schedule and attending appointments.</li>
+        <li><strong>Safety Planning:</strong> Be aware of the patient's safety plan, including crisis contact numbers and what to do if suicidal ideation emerges. Remove access to means of self-harm if concerns arise.</li>
+        <li><strong>Encourage Engagement:</strong> Support the patient in engaging in therapeutic activities, social interactions, and maintaining a structured daily routine.</li>
+        <li><strong>Communication with Healthcare Team:</strong> Maintain open communication with the patient's healthcare providers regarding any concerns or observations.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Chronic Management:</strong> Depression is often a chronic condition requiring ongoing management. View treatment as a journey, not a quick fix.</li>
+        <li><strong>Holistic Approach:</strong> Successful recovery involves a combination of pharmacotherapy, psychotherapy, and lifestyle adjustments.</li>
+        <li><strong>Open Communication:</strong> Be honest and open with your healthcare team about your symptoms, side effects, and any challenges you face.</li>
+        <li><strong>Early Intervention:</strong> Do not hesitate to seek help if symptoms return or worsen. Early intervention can prevent a full relapse.</li>
+        <li><strong>Self-Compassion:</strong> Be kind to yourself during the recovery process. Healing takes time and effort.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Patient Education:</strong> Reinforce education on medication purpose, dosage, administration, potential side effects, and the importance of adherence.</li>
+        <li><strong>Safety Assessment:</strong> Conduct ongoing suicide risk assessments and implement safety protocols as needed, including crisis planning and environmental safety.</li>
+        <li><strong>Coping Strategies:</strong> Educate patients on healthy coping mechanisms, stress reduction techniques, and problem-solving skills.</li>
+        <li><strong>Resource Navigation:</strong> Provide information and support for accessing community mental health resources, support groups, and follow-up care.</li>
+        <li><strong>Therapeutic Communication:</strong> Utilize active listening and empathetic communication to build rapport and encourage patients to express their feelings and concerns.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>DSM-5 Criteria:</strong> Major Depressive Disorder (MDD) diagnosis based on criteria from the Diagnostic and Statistical Manual of Mental Disorders, 5th Edition.</li>
+        <li><strong>Pharmacotherapy:</strong> Common antidepressant classes include Selective Serotonin Reuptake Inhibitors (SSRIs), Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs), Atypical Antidepressants, Tricyclic Antidepressants (TCAs), and Monoamine Oxidase Inhibitors (MAOIs).</li>
+        <li><strong>Psychotherapy:</strong> Evidence-based therapies such as Cognitive Behavioral Therapy (CBT), Interpersonal Therapy (IPT), and Dialectical Behavior Therapy (DBT) are crucial components of treatment.</li>
+        <li><strong>Risk Factors:</strong> Genetic predisposition, traumatic life events, chronic medical conditions, substance abuse, and certain personality traits.</li>
+        <li><strong>Crisis Hotlines:</strong> National Suicide Prevention Lifeline (e.g., 988 in the US), local mental health crisis services.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

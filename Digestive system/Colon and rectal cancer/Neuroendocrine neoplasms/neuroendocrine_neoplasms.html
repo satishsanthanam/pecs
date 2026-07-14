@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting the lower digestive system (colon and rectum) with a subtle, stylized representation of neuroendocrine cells. One section of the colon shows a small, distinct cluster of these cells, symbolizing a neuroendocrine neoplasm. Surrounding elements include abstract medical icons like a magnifying glass, a DNA helix, and a syringe, all rendered in a clean, modern design with a soft, muted color palette, suitable for public health awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./neuroendocrine_neoplasms.jpg" class="card-banner" alt="Neuroendocrine neoplasms Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-digestive-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Digestive system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-digestive-system-colon-and-rectal-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Colon and rectal cancer</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Neuroendocrine neoplasms</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Digestive system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Colon and rectal cancer</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding Neuroendocrine Neoplasms (NENs):</strong> These are rare tumors originating from neuroendocrine cells found throughout the body, including the colon and rectum.</li><li><strong>Spectrum of Behavior:</strong> Colorectal NENs can range from slow-growing, well-differentiated neuroendocrine tumors (NETs) to aggressive, poorly differentiated neuroendocrine carcinomas (NECs).</li><li><strong>Rarity in Colon and Rectum:</strong> While NENs can occur in the digestive system, they are less common in the colon and rectum compared to adenocarcinomas, making their diagnosis challenging.</li><li><strong>Functional vs. Non-functional:</strong> Most colorectal NENs are non-functional, meaning they do not secrete hormones that cause specific syndromes, but some can be functional.</li><li><strong>Importance of Staging and Grading:</strong> Accurate assessment of tumor grade (G1, G2, G3) and stage is crucial for determining prognosis and guiding treatment decisions.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Abdominal Discomfort:</strong> Persistent or intermittent pain, cramping, or a feeling of fullness in the abdomen.</li><li><strong>Changes in Bowel Habits:</strong> Unexplained diarrhea, constipation, or alternating patterns that persist over time.</li><li><strong>Rectal Bleeding:</strong> Presence of blood in stool, dark tarry stools (melena), or bright red blood from the rectum.</li><li><strong>Unexplained Weight Loss:</strong> Significant and unintentional loss of body weight without changes in diet or activity.</li><li><strong>Fatigue and Weakness:</strong> Persistent tiredness and a general feeling of malaise that does not improve with rest.</li><li><strong>Bowel Obstruction:</strong> In advanced cases, tumor growth can lead to partial or complete blockage of the bowel, causing severe pain, nausea, and vomiting.</li><li><strong>Carcinoid Syndrome (Rare):</strong> If the tumor is functional and has metastasized to the liver, symptoms like flushing, diarrhea, and wheezing may occur, though less common with hindgut NENs.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Adherence to Surveillance:</strong> Following recommended schedules for imaging and biomarker monitoring after initial diagnosis and treatment is vital for detecting recurrence.</li><li><strong>Prompt Symptom Reporting:</strong> Any new or worsening gastrointestinal symptoms, unexplained weight loss, or changes in bowel habits should be reported to a healthcare provider immediately.</li><li><strong>Genetic Counseling Consideration:</strong> For individuals with a family history of NENs or associated syndromes (e.g., MEN1, VHL), genetic counseling may be appropriate.</li><li><strong>Medication Compliance:</strong> Strict adherence to prescribed medications, such as somatostatin analogs, is essential for symptom control and disease management.</li><li><strong>Avoidance of Carcinoid Crisis Triggers:</strong> For patients with functional tumors, identifying and avoiding specific triggers like alcohol, certain foods, or stress can help prevent symptom exacerbation.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Small, Frequent Meals:</strong> To help manage digestive symptoms like diarrhea or abdominal discomfort, consuming smaller portions more often can be beneficial.</li><li><strong>Hydration Management:</strong> Maintaining adequate fluid intake is crucial, especially if experiencing diarrhea, to prevent dehydration.</li><li><strong>Identification of Trigger Foods:</strong> For patients with carcinoid syndrome, working with a dietitian to identify and limit foods that exacerbate flushing or diarrhea (e.g., alcohol, spicy foods, aged cheeses) is important.</li><li><strong>Nutritional Support:</strong> If experiencing significant weight loss or malabsorption, nutritional supplements or dietary modifications may be necessary to maintain adequate caloric and nutrient intake.</li><li><strong>Fiber Adjustment:</strong> Dietary fiber intake may need to be adjusted based on individual bowel habits; a low-fiber diet might be recommended during periods of diarrhea, while adequate fiber can help with constipation.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Urgent Reporting of Acute Symptoms:</strong> Seek immediate medical attention for severe abdominal pain, persistent vomiting, signs of bowel obstruction, or significant rectal bleeding.</li><li><strong>Monitoring for Treatment Side Effects:</strong> Be vigilant for and report any adverse effects from medications (e.g., somatostatin analogs, chemotherapy) or other therapies to the medical team.</li><li><strong>Scheduled Follow-up Compliance:</strong> Ensure all scheduled appointments for imaging, blood tests, and clinical evaluations are attended to monitor disease progression or recurrence.</li><li><strong>Biomarker Tracking:</strong> Understand the importance of regular blood and urine tests (e.g., Chromogranin A, 5-HIAA) as indicators of disease activity and treatment response.</li><li><strong>Communication with Healthcare Team:</strong> Maintain open and honest communication with all members of the multidisciplinary care team regarding symptoms, concerns, and quality of life.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early and Accurate Diagnosis:</strong> Due to their rarity and often non-specific symptoms, colorectal NENs can be challenging to diagnose; a high index of suspicion is crucial.</li><li><strong>Multidisciplinary Team Approach:</strong> Optimal management requires collaboration among gastroenterologists, surgeons, oncologists, endocrinologists, radiologists, and pathologists.</li><li><strong>Individualized Treatment Strategy:</strong> Treatment plans are highly personalized, considering tumor grade, stage, location, functionality, and patient comorbidities.</li><li><strong>Long-term Surveillance:</strong> Even after successful treatment, NENs often require lifelong follow-up due to their potential for recurrence or metastasis.</li><li><strong>Consideration of Advanced Therapies:</strong> For advanced or metastatic disease, options such as somatostatin analogs, targeted therapies, PRRT (Peptide Receptor Radionuclide Therapy), or chemotherapy may be considered.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education on Disease:</strong> Provide comprehensive education regarding the nature of neuroendocrine neoplasms, their potential for hormone secretion, and the importance of adherence to treatment.</li><li><strong>Symptom Assessment and Management:</strong> Closely monitor and assess patients for gastrointestinal symptoms, pain, and signs of carcinoid syndrome, implementing appropriate nursing interventions.</li><li><strong>Medication Administration and Teaching:</strong> Safely administer prescribed medications, including subcutaneous somatostatin analogs, and educate patients on self-administration techniques and potential side effects.</li><li><strong>Pre- and Post-Procedure Care:</strong> Prepare patients for diagnostic procedures (e.g., endoscopy, biopsy, imaging) and surgical interventions, providing post-operative care and monitoring for complications.</li><li><strong>Psychosocial Support:</strong> Address the emotional and psychological impact of a NEN diagnosis, offering support and resources for coping, anxiety, and quality of life concerns.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Histopathological Classification:</strong> Grading based on mitotic count and Ki-67 index (G1, G2, G3) and differentiation (well-differentiated NET vs. poorly differentiated NEC).</li><li><strong>TNM Staging System:</strong> Specific staging criteria for colorectal NENs, assessing tumor size, nodal involvement, and distant metastasis.</li><li><strong>Biomarkers:</strong> Serum Chromogranin A (CgA), Synaptophysin, and urinary 5-hydroxyindoleacetic acid (5-HIAA) as diagnostic and monitoring tools.</li><li><strong>Imaging Modalities:</strong> Contrast-enhanced CT, MRI, Somatostatin Receptor Scintigraphy (Octreoscan), and Ga-68 DOTATATE PET/CT for localization and staging.</li><li><strong>Therapeutic Interventions:</strong> Surgical resection (curative or palliative), somatostatin analogs (octreotide, lanreotide), targeted therapies (everolimus, sunitinib), Peptide Receptor Radionuclide Therapy (PRRT), and systemic chemotherapy.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

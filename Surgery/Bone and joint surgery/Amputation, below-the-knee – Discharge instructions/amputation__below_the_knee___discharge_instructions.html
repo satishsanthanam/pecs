@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a person recovering from a below-the-knee amputation. The person is sitting comfortably on a couch, gently inspecting their bandaged residual limb, with a supportive family member or caregiver nearby. A physical therapist is demonstrating a simple exercise in the background. The scene should convey comfort, support, and a sense of progress. Soft, warm color palette. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./amputation__below_the_knee___discharge_instructions.jpg" class="card-banner" alt="Amputation, below-the-knee – Discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Surgery</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-surgery-bone-and-joint-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Bone and joint surgery</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Amputation, below-the-knee – Discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Surgery</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Bone and joint surgery</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding Your Recovery:</strong> Recovery from below-the-knee amputation is a significant journey requiring patience, consistent effort, and strict adherence to medical and rehabilitation instructions.</li><li><strong>Stump Care is Paramount:</strong> Proper care of your residual limb (stump) is crucial for preventing infection, promoting healing, and preparing it for a future prosthesis.</li><li><strong>Rehabilitation is Key:</strong> Active participation in physical and occupational therapy is essential for regaining strength, mobility, and independence.</li><li><strong>Pain Management:</strong> Expect some level of pain, including phantom limb sensations or pain. It is manageable with prescribed medications and other therapies.</li><li><strong>Emotional Adjustment:</strong> It is normal to experience a range of emotions, including grief, frustration, or anxiety. Seek support from your healthcare team, family, or support groups.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Signs of Infection:</strong> Immediately report increased redness, warmth, swelling, pus-like drainage, or a foul odor from the surgical site.</li><li><strong>Uncontrolled Pain:</strong> Contact your physician if your pain is severe, worsening, or not adequately managed by prescribed medications.</li><li><strong>Fever or Chills:</strong> These can indicate a systemic infection and require prompt medical evaluation.</li><li><strong>Deep Vein Thrombosis (DVT) Symptoms:</strong> Report new or worsening swelling, pain, tenderness, or warmth in your remaining leg, calf, or thigh.</li><li><strong>Pulmonary Embolism (PE) Symptoms:</strong> Seek emergency care for sudden shortness of breath, chest pain, rapid heart rate, or coughing up blood.</li><li><strong>Excessive Bleeding:</strong> Any active bleeding that soaks through dressings or appears excessive warrants immediate medical attention.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Stump Dressing Management:</strong> Follow your surgeon's specific instructions for dressing changes, including frequency, sterile technique, and type of dressing. Do not remove dressings prematurely.</li><li><strong>Proper Positioning:</strong> Avoid prolonged hip and knee flexion (bending) of the residual limb to prevent contractures. Lie prone (on your stomach) for 20-30 minutes several times a day if tolerated, to stretch the hip flexors.</li><li><strong>Fall Prevention:</strong> Use prescribed assistive devices (walker, crutches) consistently. Ensure your home environment is free of tripping hazards, well-lit, and has grab bars in bathrooms.</li><li><strong>Skin Integrity Monitoring:</strong> Inspect your residual limb daily using a mirror for any signs of redness, blisters, skin breakdown, or pressure areas. Report any concerns to your healthcare provider.</li><li><strong>Medication Adherence:</strong> Take all prescribed medications, including pain relievers, antibiotics, and anticoagulants, exactly as directed. Do not skip doses or share medications.</li><li><strong>Smoking Cessation:</strong> Avoid smoking entirely, as it significantly impairs wound healing, increases infection risk, and can compromise circulation.</li><li><strong>Driving Restrictions:</strong> Do not drive until cleared by your surgeon, especially if you are taking opioid pain medication or if your amputation affects your ability to safely operate a vehicle.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Protein-Rich Diet:</strong> Consume adequate lean protein (e.g., chicken, fish, eggs, beans, lentils) to support tissue repair and wound healing.</li><li><strong>Hydration:</strong> Maintain excellent hydration by drinking plenty of water and other clear fluids to aid recovery and prevent constipation, a common side effect of pain medications.</li><li><strong>Fiber Intake:</strong> Incorporate high-fiber foods (fruits, vegetables, whole grains) into your diet to prevent constipation and promote regular bowel movements.</li><li><strong>Vitamin and Mineral Support:</strong> Focus on a balanced diet rich in vitamins (especially Vitamin C for collagen synthesis) and minerals (e.g., zinc for immune function) to optimize healing.</li><li><strong>Blood Sugar Control:</strong> If you have diabetes, strict adherence to your diabetic diet and medication regimen is critical for optimal wound healing and infection prevention.</li><li><strong>Avoid Excessive Sodium:</strong> Limit high-sodium foods to help manage swelling and support cardiovascular health.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Caregiver Education:</strong> Ensure all primary caregivers are thoroughly educated on wound care, medication schedules, signs of complications, and emergency procedures.</li><li><strong>Emergency Contact Information:</strong> Keep a readily accessible list of your surgeon's office, rehabilitation team, and emergency services contact numbers.</li><li><strong>Home Safety Modifications:</strong> Assist the patient in making necessary home modifications, such as removing throw rugs, ensuring adequate lighting, and installing shower chairs or grab bars.</li><li><strong>Psychological Support:</strong> Be vigilant for signs of depression, anxiety, or withdrawal. Encourage open communication and facilitate access to psychological support or counseling if needed.</li><li><strong>Mobility Assistance:</strong> Provide support and supervision during transfers and ambulation, especially in the initial stages of recovery, to prevent falls.</li><li><strong>Medication Management:</strong> Help organize and administer medications as prescribed, ensuring correct dosages and timings.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Adhere to Follow-Up Schedule:</strong> Attending all scheduled post-operative appointments with your surgeon and rehabilitation team is non-negotiable for monitoring healing and progress.</li><li><strong>Commit to Rehabilitation:</strong> Your active and consistent participation in physical and occupational therapy is the most critical factor in achieving optimal functional outcomes and regaining independence.</li><li><strong>Manage Underlying Conditions:</strong> Continue to diligently manage any pre-existing conditions such as diabetes, peripheral vascular disease, or heart disease, as these can impact your overall recovery and long-term health.</li><li><strong>Communicate Openly:</strong> Do not hesitate to discuss any concerns, pain, emotional challenges, or questions with your healthcare team. Early intervention can prevent complications.</li><li><strong>Long-Term Prosthetic Care:</strong> Understand that prosthetic use requires ongoing adjustments, maintenance, and potential revisions. Work closely with your prosthetist.</li><li><strong>Prevent Future Complications:</strong> Adopt a healthy lifestyle, including regular exercise (as prescribed), a balanced diet, and avoiding tobacco, to prevent further vascular issues or complications.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Patient Education:</strong> Prioritize teaching patients and caregivers about residual limb care, pain management strategies, safe transfers, and recognition of infection signs.</li><li><strong>Contracture Prevention:</strong> Emphasize proper positioning techniques (e.g., avoiding prolonged hip/knee flexion, prone lying) to prevent hip and knee flexion contractures.</li><li><strong>Psychosocial Assessment:</strong> Regularly assess the patient's emotional state, coping mechanisms, and body image concerns, providing appropriate referrals for psychological support.</li><li><strong>Phantom Limb Management:</strong> Educate patients on phantom limb sensations and pain, discussing various pharmacological and non-pharmacological interventions (e.g., mirror therapy).</li><li><strong>Mobility and Transfer Training:</strong> Provide hands-on instruction and supervision for safe bed mobility, transfers, and use of assistive devices, progressing as tolerated.</li><li><strong>Discharge Planning Coordination:</strong> Collaborate with the interdisciplinary team to ensure seamless discharge planning, including home health services, equipment needs, and outpatient rehabilitation.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Residual Limb Edema Management:</strong> Application of compression therapy (e.g., elastic bandages, shrinkers) to reduce swelling, promote healing, and shape the residual limb for prosthetic fitting.</li><li><strong>Wound Healing Phases:</strong> Understanding the inflammatory, proliferative, and remodeling phases of wound healing and factors that can impede them (e.g., infection, poor nutrition, vascular insufficiency).</li><li><strong>Prosthetic Prescription & Training:</strong> The process involves evaluation, casting, fabrication, fitting, and gait training with a prosthetist and physical therapist.</li><li><strong>Common Complications:</strong> Includes wound infection, dehiscence, hematoma, deep vein thrombosis (DVT), pulmonary embolism (PE), stump breakdown, and joint contractures.</li><li><strong>Pain Management Modalities:</strong> Pharmacological (opioids, NSAIDs, neuropathic agents) and non-pharmacological approaches (e.g., TENS, massage, mirror therapy, psychological counseling).</li><li><strong>Rehabilitation Progression:</strong> Typically involves pre-prosthetic training (stump conditioning, strengthening), prosthetic training (donning/doffing, balance, gait), and lifelong functional maintenance.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

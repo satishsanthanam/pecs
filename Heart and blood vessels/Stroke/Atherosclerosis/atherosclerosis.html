@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human torso with a transparent overlay showing the circulatory system. Focus on a narrowed artery with yellow plaque buildup, depicting the process of atherosclerosis. Include a subtle representation of the heart and brain, with a red arrow indicating restricted blood flow towards the brain, symbolizing stroke risk. The style should be clean, modern, and suitable for public health awareness, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./atherosclerosis.jpg" class="card-banner" alt="Atherosclerosis Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-stroke" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Stroke</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Atherosclerosis</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Stroke</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Atherosclerosis is a chronic inflammatory disease characterized by the buildup of plaque (fats, cholesterol, calcium, and other substances) inside the arteries.</li><li><strong>Artery Hardening:</strong> This plaque hardens and narrows the arteries, restricting blood flow to vital organs and tissues.</li><li><strong>Stroke Connection:</strong> When atherosclerosis affects the arteries supplying the brain (carotid or vertebral arteries), it significantly increases the risk of ischemic stroke due to clot formation or plaque rupture.</li><li><strong>Systemic Impact:</strong> While often associated with heart disease, atherosclerosis can affect arteries throughout the body, leading to various cardiovascular and cerebrovascular conditions.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Angina Pectoris:</strong> Chest pain or discomfort, often triggered by exertion, indicating narrowed coronary arteries.</li><li><strong>Transient Ischemic Attacks (TIAs):</strong> Temporary stroke-like symptoms (e.g., sudden weakness, numbness, vision changes, speech difficulty) due to temporary blockage of blood flow to the brain.</li><li><strong>Claudication:</strong> Leg pain, cramping, or numbness during walking or exercise, relieved by rest, indicating peripheral artery disease.</li><li><strong>Dyspnea:</strong> Shortness of breath, especially during exertion, which can be a sign of coronary artery disease or heart failure.</li><li><strong>Fatigue:</strong> Unexplained tiredness or weakness, potentially linked to reduced blood flow to muscles and organs.</li><li><strong>Sudden Weakness/Numbness:</strong> Unilateral weakness or numbness in the face, arm, or leg, a critical sign of potential stroke.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Blood Pressure Management:</strong> Maintain blood pressure within target ranges through medication and lifestyle modifications to reduce arterial stress.</li><li><strong>Cholesterol Control:</strong> Adhere to prescribed lipid-lowering medications (e.g., statins) and dietary guidelines to manage LDL cholesterol levels.</li><li><strong>Diabetes Management:</strong> Strictly control blood glucose levels to prevent vascular damage associated with hyperglycemia.</li><li><strong>Smoking Cessation:</strong> Immediately cease all tobacco product use, as smoking is a major accelerator of atherosclerosis.</li><li><strong>Regular Exercise:</strong> Engage in consistent moderate-intensity physical activity to improve cardiovascular health and blood flow.</li><li><strong>Antiplatelet Therapy Adherence:</strong> Take prescribed antiplatelet medications (e.g., aspirin, clopidogrel) as directed to prevent clot formation in narrowed arteries.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Limit Saturated & Trans Fats:</strong> Restrict intake of red meat, full-fat dairy, fried foods, and processed snacks to reduce LDL cholesterol.</li><li><strong>Increase Soluble Fiber:</strong> Incorporate oats, barley, fruits (apples, citrus), and legumes to help lower cholesterol absorption.</li><li><strong>Emphasize Omega-3 Fatty Acids:</strong> Consume fatty fish (salmon, mackerel), flaxseeds, and walnuts for their anti-inflammatory and cardiovascular benefits.</li><li><strong>Reduce Sodium Intake:</strong> Limit processed foods, canned goods, and excessive salt to help manage blood pressure.</li><li><strong>Choose Lean Proteins:</strong> Opt for poultry without skin, fish, legumes, and plant-based proteins over high-fat meats.</li><li><strong>Hydration:</strong> Maintain adequate fluid intake, primarily water, to support overall circulatory health.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Recognize Stroke Symptoms (FAST):</strong> Be aware of Face drooping, Arm weakness, Speech difficulty, Time to call emergency services immediately.</li><li><strong>Medication Adherence:</strong> Never skip or alter prescribed medications for blood pressure, cholesterol, or antiplatelet therapy without consulting a physician.</li><li><strong>Monitor for New Symptoms:</strong> Report any new or worsening chest pain, leg discomfort, or neurological changes to a healthcare provider promptly.</li><li><strong>Avoid Self-Treatment:</strong> Do not rely on unproven supplements or alternative therapies as substitutes for evidence-based medical treatment.</li><li><strong>Emergency Preparedness:</strong> Ensure family members are aware of your condition and know how to respond in a medical emergency.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early Intervention is Key:</strong> Proactive management of risk factors like hypertension, dyslipidemia, and diabetes is crucial to slow disease progression.</li><li><strong>Personalized Risk Assessment:</strong> Each patient's risk profile for atherosclerosis and stroke is unique and requires individualized treatment plans.</li><li><strong>Lifestyle as Foundation:</strong> While medications are vital, sustained lifestyle modifications (diet, exercise, smoking cessation) form the cornerstone of prevention and management.</li><li><strong>Regular Screening:</strong> Periodic lipid panels, blood pressure checks, and potentially carotid ultrasounds are essential for monitoring disease status.</li><li><strong>Adherence to Therapy:</strong> Consistent adherence to prescribed medications and follow-up appointments significantly reduces the risk of adverse cardiovascular events.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pathophysiology of Plaque:</strong> Understand the inflammatory process involving endothelial injury, lipid deposition, foam cell formation, and fibrous cap development.</li><li><strong>Risk Factor Education:</strong> Educate patients on modifiable risk factors (smoking, diet, inactivity, stress) and non-modifiable factors (age, genetics, sex).</li><li><strong>Medication Teaching:</strong> Provide clear instructions on medication purpose, dosage, timing, potential side effects, and importance of adherence.</li><li><strong>Stroke Prevention Strategies:</strong> Counsel patients on recognizing TIA symptoms and the importance of immediate medical attention for stroke.</li><li><strong>Lifestyle Modification Support:</strong> Assist patients in setting realistic goals for dietary changes, exercise routines, and smoking cessation programs.</li><li><strong>Post-Procedure Care:</strong> Understand nursing care for patients undergoing revascularization procedures like angioplasty or carotid endarterectomy.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Diagnostic Tests:</strong> Lipid panel, C-reactive protein (CRP), ankle-brachial index (ABI), carotid ultrasound, coronary angiography, CT angiography, MRI.</li><li><strong>Pharmacological Treatments:</strong> Statins (e.g., atorvastatin, rosuvastatin), antiplatelet agents (e.g., aspirin, clopidogrel), ACE inhibitors/ARBs, beta-blockers, PCSK9 inhibitors.</li><li><strong>Surgical/Interventional Procedures:</strong> Percutaneous coronary intervention (PCI) with stenting, coronary artery bypass grafting (CABG), carotid endarterectomy, peripheral angioplasty.</li><li><strong>Key Biomarkers:</strong> LDL-C, HDL-C, triglycerides, Lp(a), hs-CRP.</li><li><strong>Clinical Guidelines:</strong> ACC/AHA Guidelines for the Prevention of Cardiovascular Disease, ESC Guidelines on Dyslipidaemias.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

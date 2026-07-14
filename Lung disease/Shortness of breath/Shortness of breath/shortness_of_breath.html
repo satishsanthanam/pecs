@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a person experiencing shortness of breath, clutching their chest, with a concerned expression. A medical professional (doctor or nurse) is calmly assessing them, perhaps with a stethoscope or pulse oximeter. The background features subtle, abstract representations of lungs or a heart, indicating the internal struggle. The color palette is clean and reassuring, with soft blues, greens, and whites. The overall design is optimized for public health awareness, conveying urgency and care without being overly alarming. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./shortness_of_breath.jpg" class="card-banner" alt="Shortness of breath Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-lung-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Lung disease</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-lung-disease-shortness-of-breath" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Shortness of breath</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Shortness of breath</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Lung disease</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Shortness of breath</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Shortness of breath, or dyspnea, is the subjective sensation of uncomfortable breathing, often described as difficulty breathing, breathlessness, or a feeling of not getting enough air.</li><li><strong>Symptom, Not Disease:</strong> It is a symptom of an underlying medical condition, not a disease itself.</li><li><strong>Common Causes:</strong> Can stem from pulmonary issues (e.g., asthma, COPD, pneumonia), cardiac problems (e.g., heart failure, angina), anemia, anxiety, or obesity.</li><li><strong>Severity Varies:</strong> Ranges from mild, temporary discomfort after exertion to severe, debilitating breathlessness at rest.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Chest Tightness or Pain:</strong> A constricting sensation in the chest, often accompanying difficulty breathing.</li><li><strong>Wheezing or Coughing:</strong> High-pitched whistling sounds during breathing or a persistent cough, especially with lung conditions.</li><li><strong>Fatigue and Weakness:</strong> General tiredness and lack of energy due to increased effort in breathing or reduced oxygenation.</li><li><strong>Dizziness or Lightheadedness:</strong> Feeling faint or unsteady, potentially due to insufficient oxygen reaching the brain.</li><li><strong>Rapid, Shallow Breathing:</strong> An increased respiratory rate with less effective air exchange.</li><li><strong>Cyanosis:</strong> Bluish discoloration of the lips, fingers, or skin, indicating severe oxygen deprivation (a medical emergency).</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Immediate Medical Attention:</strong> Seek emergency care for sudden, severe, or worsening shortness of breath, especially if accompanied by chest pain, fainting, or confusion.</li><li><strong>Avoid Triggers:</strong> Identify and avoid environmental irritants, allergens, smoke, and pollutants that can exacerbate respiratory symptoms.</li><li><strong>Adhere to Prescribed Medications:</strong> Consistently use inhalers, oxygen therapy, or other medications as directed by your physician to manage underlying conditions.</li><li><strong>Monitor Oxygen Saturation:</strong> If advised, regularly check oxygen levels with a pulse oximeter and report significant drops to your healthcare provider.</li><li><strong>Proper Positioning:</strong> Utilize upright positions (e.g., sitting up, leaning forward) to facilitate lung expansion and ease breathing.</li><li><strong>Avoid Strenuous Activity:</strong> Limit physical exertion during acute episodes of dyspnea to prevent further respiratory distress.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Small, Frequent Meals:</strong> Consume smaller portions more often to prevent a full stomach from pressing on the diaphragm, which can worsen breathing.</li><li><strong>Adequate Hydration:</strong> Maintain good fluid intake (unless fluid-restricted for cardiac conditions) to keep respiratory secretions thin and easier to clear.</li><li><strong>Avoid Gas-Producing Foods:</strong> Limit foods like beans, broccoli, and carbonated beverages that can cause bloating and abdominal distension.</li><li><strong>Limit Sodium Intake:</strong> If shortness of breath is related to heart failure, restrict sodium to help manage fluid retention.</li><li><strong>Nutrient-Dense Foods:</strong> Focus on easily digestible, high-calorie, and high-protein foods to maintain energy and muscle mass, combating fatigue.</li><li><strong>Eat Slowly:</strong> Take time to eat, chewing food thoroughly to reduce the effort of digestion and prevent breathlessness during meals.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Recognize Respiratory Distress:</strong> Be aware of signs such as increased breathing rate, use of accessory muscles, nasal flaring, grunting, or cyanosis.</li><li><strong>Assist with Positioning:</strong> Help the individual into an upright or comfortable position that facilitates breathing, such as sitting on the edge of the bed or leaning forward.</li><li><strong>Administer Oxygen (if prescribed and trained):</strong> If the patient has prescribed oxygen, ensure it is correctly applied and flowing at the specified rate.</li><li><strong>Stay Calm and Reassure:</strong> Maintain a calm demeanor and offer reassurance to help reduce anxiety, which can worsen dyspnea.</li><li><strong>Call Emergency Services:</strong> Immediately contact emergency medical services if the individual's condition rapidly deteriorates, they become unresponsive, or breathing stops.</li><li><strong>Monitor Vital Signs:</strong> Continuously observe respiratory rate, effort, skin color, and level of consciousness while awaiting medical help.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Thorough Diagnostic Workup:</strong> A comprehensive evaluation including physical examination, pulmonary function tests, electrocardiogram (ECG), chest X-ray, and blood tests is crucial to identify the underlying cause.</li><li><strong>Tailored Treatment Plan:</strong> Management is highly individualized, focusing on treating the specific cause, whether it's bronchodilators for asthma, diuretics for heart failure, or antibiotics for infection.</li><li><strong>Medication Adherence:</strong> Emphasize the critical importance of consistent adherence to prescribed medications and proper use of inhaler devices.</li><li><strong>Lifestyle Modifications:</strong> Advise on smoking cessation, weight management, regular physical activity (as tolerated), and stress reduction techniques.</li><li><strong>Referral to Specialists:</strong> Consider referrals to pulmonologists, cardiologists, or other specialists for complex or persistent cases of dyspnea.</li><li><strong>Patient Education:</strong> Educate patients on recognizing worsening symptoms, managing their condition, and when to seek urgent medical care.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Nursing Assessment:</strong> Conduct a comprehensive respiratory assessment including rate, rhythm, depth, effort, use of accessory muscles, breath sounds, and oxygen saturation.</li><li><strong>Interventions for Dyspnea:</strong> Implement interventions such as oxygen therapy, bronchodilator administration, positioning (e.g., high-Fowler's), pursed-lip breathing, and energy conservation techniques.</li><li><strong>Patient Education:</strong> Educate patients on disease process, medication regimen, trigger avoidance, symptom recognition, and when to seek medical attention.</li><li><strong>Monitoring and Documentation:</strong> Continuously monitor vital signs, oxygen saturation, respiratory status, and document all findings and interventions accurately.</li><li><strong>Anxiety Management:</strong> Address patient anxiety related to breathlessness through therapeutic communication, relaxation techniques, and creating a calm environment.</li><li><strong>Collaboration:</strong> Collaborate with physicians, respiratory therapists, and other healthcare team members to optimize patient care and outcomes.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Dyspnea:</strong> Medical term for shortness of breath.</li><li><strong>Hypoxia/Hypoxemia:</strong> Reduced oxygen supply to tissues/low oxygen levels in the blood.</li><li><strong>Pulmonary Function Tests (PFTs):</strong> Diagnostic tests measuring lung volume, capacity, rates of flow, and gas exchange.</li><li><strong>Arterial Blood Gas (ABG):</strong> Blood test measuring oxygen and carbon dioxide levels, and pH.</li><li><strong>COPD (Chronic Obstructive Pulmonary Disease):</strong> Progressive lung diseases including emphysema and chronic bronchitis.</li><li><strong>Asthma:</strong> Chronic inflammatory airway disease causing reversible airflow obstruction.</li><li><strong>Heart Failure:</strong> Condition where the heart cannot pump enough blood to meet the body's needs.</li><li><strong>Pulmonary Embolism (PE):</strong> Blockage in one of the pulmonary arteries in the lungs, often by a blood clot.</li><li><strong>Anemia:</strong> Condition characterized by a deficiency of red blood cells or hemoglobin.</li><li><strong>Pneumonia:</strong> Infection that inflames air sacs in one or both lungs.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

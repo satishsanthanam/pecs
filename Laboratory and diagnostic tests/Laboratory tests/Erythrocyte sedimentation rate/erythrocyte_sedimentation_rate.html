@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a laboratory setting. In the foreground, a clear test tube shows a column of red blood cells settled at the bottom, with a ruler indicating millimeters per hour. A gloved hand points to the settled cells. In the background, subtle icons of a microscope, a medical chart, and a stylized inflammation symbol (like a small red burst) are visible. The overall aesthetic is clean, modern, and informative, with a focus on clarity and medical accuracy.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./erythrocyte_sedimentation_rate.jpg" class="card-banner" alt="Erythrocyte sedimentation rate Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-laboratory-and-diagnostic-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Laboratory and diagnostic tests</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-laboratory-and-diagnostic-tests-laboratory-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Laboratory tests</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Erythrocyte sedimentation rate</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Laboratory and diagnostic tests</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Laboratory tests</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> The Erythrocyte Sedimentation Rate (ESR) measures how quickly red blood cells (erythrocytes) settle to the bottom of a test tube in one hour.</li><li><strong>Purpose:</strong> It is a non-specific blood test used to detect and monitor inflammation or infection in the body.</li><li><strong>Mechanism:</strong> Inflammation causes red blood cells to clump together, making them heavier and settle faster than normal.</li><li><strong>Clinical Utility:</strong> Often used to help diagnose and monitor conditions such as autoimmune diseases, infections, and certain cancers.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Unexplained Fever:</strong> Persistent or recurrent fever without an identifiable cause.</li><li><strong>Joint Pain and Stiffness:</strong> Especially morning stiffness lasting more than 30 minutes, indicative of inflammatory arthritis.</li><li><strong>Muscle Aches and Weakness:</strong> Widespread myalgia or unexplained muscle weakness.</li><li><strong>Fatigue:</strong> Chronic and debilitating tiredness not relieved by rest.</li><li><strong>Unintentional Weight Loss:</strong> Significant weight loss without changes in diet or exercise.</li><li><strong>Headaches:</strong> Persistent, severe headaches, particularly in older adults, which may suggest temporal arteritis.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Medication Impact:</strong> Inform your physician about all medications, including over-the-counter drugs and supplements, as some can influence ESR results (e.g., corticosteroids, NSAIDs, oral contraceptives).</li><li><strong>Physiological Factors:</strong> Pregnancy, menstruation, and advanced age can naturally elevate ESR levels, which should be considered during interpretation.</li><li><strong>Anemia:</strong> Severe anemia can falsely elevate ESR due to reduced red blood cell mass.</li><li><strong>Polycythemia:</strong> High red blood cell counts can falsely lower ESR.</li><li><strong>Technical Factors:</strong> Proper blood sample collection and timely processing are critical; delayed processing can lead to inaccurate results.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>No Fasting Required:</strong> Generally, no specific dietary restrictions or fasting are required before an ESR blood test.</li><li><strong>Routine Hydration:</strong> Maintain your usual hydration status; extreme dehydration can affect blood viscosity and potentially influence results.</li><li><strong>Avoid Alcohol:</strong> While not strictly required, it's advisable to avoid excessive alcohol consumption prior to any blood test as it can affect various blood parameters.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Non-Specific Test:</strong> The ESR is a non-specific marker of inflammation and does not diagnose a particular disease on its own.</li><li><strong>Clinical Correlation:</strong> Results must always be interpreted in conjunction with a patient's clinical symptoms, medical history, and other diagnostic tests.</li><li><strong>Trend Monitoring:</strong> Serial ESR measurements are often more valuable than a single result for monitoring disease activity and response to treatment.</li><li><strong>False Positives/Negatives:</strong> Be aware that various non-inflammatory conditions can affect ESR, leading to false positives or negatives.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Screening Tool:</strong> ESR serves as an effective initial screening tool for inflammatory conditions when patients present with non-specific symptoms.</li><li><strong>Disease Activity:</strong> It is particularly useful for monitoring the activity of chronic inflammatory diseases such as rheumatoid arthritis, lupus, and giant cell arteritis.</li><li><strong>Treatment Response:</strong> A decreasing ESR often indicates a positive response to anti-inflammatory treatment, while a rising ESR may suggest disease flare-up or inadequate therapy.</li><li><strong>Differential Diagnosis:</strong> While not diagnostic, an elevated ESR can help narrow down the differential diagnosis in complex cases.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Explain the purpose of the ESR test to the patient, clarifying that it indicates inflammation but not a specific disease.</li><li><strong>Venipuncture Technique:</strong> Ensure proper venipuncture technique to obtain an adequate, non-hemolyzed blood sample.</li><li><strong>Sample Handling:</strong> Collect blood in an EDTA (lavender top) tube and ensure it is mixed gently and transported to the laboratory promptly.</li><li><strong>Documentation:</strong> Accurately document the time of collection and any relevant patient conditions or medications that might influence the result.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Methodology:</strong> The Westergren method is the most common and standardized technique for ESR measurement.</li><li><strong>Units:</strong> Results are typically reported in millimeters per hour (mm/hr).</li><li><strong>Normal Ranges:</strong> Generally, normal ranges are <15 mm/hr for men and <20 mm/hr for women, with slight variations based on age and laboratory.</li><li><strong>Factors Influencing Rate:</strong> Plasma protein composition (especially fibrinogen), red blood cell size and shape, and temperature can all affect the sedimentation rate.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human heart with stylized arteries, surrounded by various medication pills and capsules. A gentle, calming aura emanates from the heart, symbolizing relief and improved health. The color palette is soft and reassuring, with blues, greens, and subtle reds. No text or complex patterns. Focus on clarity and medical relevance.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./medicines_for_angina.jpg" class="card-banner" alt="Medicines for angina Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-understanding-medicines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Understanding medicines</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-understanding-medicines-medicines-for-specific-health-problems" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Medicines for specific health problems</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Medicines for angina</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Understanding medicines</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Medicines for specific health problems</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Angina Pectoris Overview:</strong> Angina is chest pain or discomfort caused by reduced blood flow to the heart muscle, often a symptom of coronary artery disease.</li><li><strong>Primary Treatment Goals:</strong> Medications aim to relieve symptoms, prevent future angina attacks, and reduce the risk of serious cardiovascular events like heart attack or stroke.</li><li><strong>Key Medication Classes:</strong> Treatment typically involves nitrates, beta-blockers, calcium channel blockers, ranolazine, antiplatelet agents (e.g., aspirin), statins, and ACE inhibitors, each targeting different aspects of the condition.</li><li><strong>Individualized Therapy:</strong> The specific combination and dosage of medicines are tailored to the individual patient's symptoms, underlying conditions, and response to treatment.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Chest Discomfort:</strong> A sensation of pressure, squeezing, fullness, or pain in the center of the chest, often radiating to the left arm, neck, jaw, back, or stomach.</li><li><strong>Shortness of Breath:</strong> Feeling breathless, especially during physical exertion or emotional stress, accompanying chest pain.</li><li><strong>Fatigue and Weakness:</strong> Unusual tiredness or a general feeling of weakness, which may be a subtle sign of reduced cardiac efficiency.</li><li><strong>Nausea and Sweating:</strong> Some individuals may experience nausea, lightheadedness, or cold sweats during an angina episode.</li><li><strong>Symptoms Prompting Intervention:</strong> These symptoms are the primary clinical indicators that necessitate medical evaluation and the initiation or adjustment of angina medications.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Nitrate Interactions:</strong> Avoid concurrent use of nitrates (e.g., nitroglycerin) with phosphodiesterase-5 (PDE5) inhibitors (e.g., sildenafil, tadalafil) due to the risk of severe hypotension.</li><li><strong>Beta-Blocker Withdrawal:</strong> Do not abruptly discontinue beta-blockers, as this can lead to rebound angina, myocardial infarction, or arrhythmias. Tapering is essential under medical supervision.</li><li><strong>Hypotension Risk:</strong> Monitor blood pressure regularly, especially when initiating or adjusting doses of nitrates, beta-blockers, and calcium channel blockers, due to the risk of orthostatic hypotension.</li><li><strong>Bleeding Risk with Antiplatelets:</strong> Be aware of increased bleeding risk with antiplatelet medications (e.g., aspirin, clopidogrel); report any unusual bruising, bleeding, or black/tarry stools.</li><li><strong>Asthma/COPD with Beta-Blockers:</strong> Use beta-blockers cautiously in patients with asthma or severe chronic obstructive pulmonary disease (COPD) due to the potential for bronchospasm.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Grapefruit and Medications:</strong> Avoid grapefruit and grapefruit juice when taking certain calcium channel blockers (e.g., felodipine, nifedipine) and some statins (e.g., simvastatin, atorvastatin) as it can increase drug levels and side effects.</li><li><strong>Alcohol Consumption:</strong> Limit or avoid alcohol, as it can exacerbate the hypotensive effects of nitrates and other cardiovascular medications, leading to dizziness or fainting.</li><li><strong>Sodium Intake Management:</strong> Adhere to a low-sodium diet to help manage blood pressure, which is crucial for reducing cardiac workload and supporting the efficacy of angina medications.</li><li><strong>Balanced Fat Intake:</strong> Focus on a diet low in saturated and trans fats to help manage cholesterol levels, thereby reducing the progression of atherosclerosis, the underlying cause of angina.</li><li><strong>Hydration Status:</strong> Maintain adequate hydration, especially if experiencing side effects like dizziness or lightheadedness, but avoid excessive fluid intake if there are concerns about fluid overload.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Acute Angina Protocol:</strong> If experiencing an angina attack, follow prescribed instructions for sublingual nitroglycerin. If pain persists after one dose or worsens, seek immediate emergency medical attention.</li><li><strong>Medication Adherence:</strong> Take all prescribed medications exactly as directed, even if symptoms improve. Missing doses can lead to uncontrolled symptoms and increased cardiovascular risk.</li><li><strong>Side Effect Reporting:</strong> Promptly report any new or worsening side effects, such as severe dizziness, persistent headache, swelling, or unusual bleeding, to your healthcare provider.</li><li><strong>Lifestyle Integration:</strong> Incorporate physician-recommended lifestyle modifications, including smoking cessation, regular physical activity within limits, and stress management, as integral components of angina management alongside medication.</li><li><strong>Regular Monitoring:</strong> Attend all scheduled follow-up appointments and laboratory tests to monitor medication effectiveness and potential side effects.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Personalized Treatment Plans:</strong> Angina management is highly individualized. Your physician will select medications based on your specific type of angina, comorbidities, and risk factors.</li><li><strong>Comprehensive Risk Factor Management:</strong> Beyond symptom relief, the goal is to aggressively manage all cardiovascular risk factors, including hypertension, dyslipidemia, and diabetes, to prevent disease progression.</li><li><strong>Importance of Communication:</strong> Always inform your doctor about all medications, supplements, and over-the-counter drugs you are taking to prevent adverse drug interactions.</li><li><strong>Recognizing Worsening Symptoms:</strong> Understand the signs of worsening or unstable angina and when to seek urgent medical care, as this may indicate an impending cardiac event.</li><li><strong>Long-Term Prognosis:</strong> Consistent adherence to medication and lifestyle changes significantly improves long-term prognosis and quality of life for patients with angina.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Priority:</strong> Nurses play a critical role in educating patients about their angina medications, including purpose, dosage, administration, potential side effects, and warning signs.</li><li><strong>Vital Sign Monitoring:</strong> Meticulously monitor blood pressure and heart rate before and after administering cardiovascular medications, especially nitrates and beta-blockers, to assess efficacy and detect adverse effects.</li><li><strong>Pain Assessment:</strong> Conduct thorough pain assessments (PQRST) during angina episodes and evaluate the effectiveness of interventions, including sublingual nitroglycerin.</li><li><strong>Medication Reconciliation:</strong> Perform comprehensive medication reconciliation to identify potential drug interactions or duplications, particularly with new admissions or transfers.</li><li><strong>Emergency Preparedness:</strong> Be proficient in the acute management of angina, including assisting with sublingual nitroglycerin administration and preparing for potential cardiac emergencies.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Nitrates (e.g., Nitroglycerin, Isosorbide):</strong> Mechanism involves vasodilation, primarily of veins, reducing preload and myocardial oxygen demand. Also dilates coronary arteries.</li><li><strong>Beta-Blockers (e.g., Metoprolol, Atenolol):</strong> Reduce heart rate, myocardial contractility, and blood pressure, thereby decreasing myocardial oxygen demand.</li><li><strong>Calcium Channel Blockers (e.g., Amlodipine, Diltiazem, Verapamil):</strong> Reduce myocardial oxygen demand by decreasing peripheral vascular resistance and/or heart rate; also dilate coronary arteries.</li><li><strong>Ranolazine:</strong> Acts by inhibiting the late sodium current in cardiac myocytes, improving myocardial relaxation and reducing oxygen demand without significantly affecting heart rate or blood pressure.</li><li><strong>Antiplatelet Agents (e.g., Aspirin, Clopidogrel):</strong> Prevent platelet aggregation and thrombus formation, reducing the risk of myocardial infarction and stroke in patients with atherosclerosis.</li><li><strong>Statins (e.g., Atorvastatin, Rosuvastatin):</strong> Lower cholesterol levels, stabilize atherosclerotic plaques, and reduce inflammation, thereby slowing disease progression.</li><li><strong>ACE Inhibitors (e.g., Lisinopril, Ramipril):</strong> Reduce blood pressure and improve endothelial function, offering cardioprotective benefits, especially in patients with hypertension or heart failure.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

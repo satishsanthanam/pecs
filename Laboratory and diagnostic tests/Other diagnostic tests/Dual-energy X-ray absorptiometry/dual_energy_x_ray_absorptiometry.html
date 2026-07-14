@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a patient lying on a DEXA scan machine, with the scanner arm positioned over their body. The illustration should depict a clean, modern medical environment with subtle bone or skeletal graphics in the background. Emphasize a sense of calm and precision. Use a soft color palette with blues, greens, and whites. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./dual_energy_x_ray_absorptiometry.jpg" class="card-banner" alt="Dual-energy X-ray absorptiometry Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-laboratory-and-diagnostic-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Laboratory and diagnostic tests</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-laboratory-and-diagnostic-tests-other-diagnostic-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Other diagnostic tests</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Dual-energy X-ray absorptiometry</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Laboratory and diagnostic tests</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Other diagnostic tests</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose:</strong> Dual-energy X-ray absorptiometry (DEXA) is the gold standard for measuring bone mineral density (BMD) and assessing osteoporosis risk.</li><li><strong>Detection:</strong> Primarily used to diagnose osteoporosis, osteopenia, and predict future fracture risk.</li><li><strong>Method:</strong> Utilizes two distinct X-ray energies to differentiate between bone and soft tissue, providing precise measurements, typically of the hip, spine, or forearm.</li><li><strong>Procedure Duration:</strong> The scan is non-invasive and typically takes between 10 to 20 minutes to complete.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Postmenopausal Women:</strong> Especially those with additional risk factors like early menopause or low body weight.</li><li><strong>Men Over 70:</strong> Recommended for screening due to increased risk of bone loss with age.</li><li><strong>Fragility Fractures:</strong> History of fractures occurring from a fall from standing height or less.</li><li><strong>Medication Use:</strong> Patients on long-term corticosteroids, certain anticonvulsants, or other bone-affecting medications.</li><li><strong>Underlying Conditions:</strong> Presence of conditions associated with secondary osteoporosis, such as rheumatoid arthritis, hyperparathyroidism, or malabsorption syndromes.</li><li><strong>Height Loss/Posture Changes:</strong> Significant loss of height (e.g., >1.5 inches) or development of a stooped posture (kyphosis).</li><li><strong>Unexplained Back Pain:</strong> May indicate vertebral compression fractures, prompting further investigation.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Pregnancy Status:</strong> DEXA scans are contraindicated during pregnancy due to radiation exposure; inform your provider if you are pregnant or suspect you might be.</li><li><strong>Recent Contrast Studies:</strong> Avoid scheduling a DEXA scan within 7-10 days of having a barium study, IV contrast, or nuclear medicine scan, as residual contrast can interfere with results.</li><li><strong>Metal Implants:</strong> Inform the technologist about any metal implants (e.g., hip replacements, spinal rods) as they can affect BMD readings in the immediate vicinity of the implant.</li><li><strong>Jewelry and Metal Objects:</strong> Remove all jewelry, eyeglasses, and clothing containing metal zippers, buttons, or buckles before the scan.</li><li><strong>Radiation Exposure:</strong> While the radiation dose is very low, it is still an X-ray procedure; discuss any concerns with your physician.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>General Diet:</strong> No specific dietary restrictions are typically required before a DEXA scan.</li><li><strong>Calcium Supplements:</strong> Avoid taking calcium supplements on the day of your scan, as they can temporarily affect the accuracy of the bone density measurement if taken shortly beforehand.</li><li><strong>Hydration:</strong> Maintain normal fluid intake; there are no specific hydration requirements for this procedure.</li><li><strong>Fasting:</strong> Fasting is generally not required for a DEXA scan.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Clothing Selection:</strong> Wear loose, comfortable clothing free of metal components (zippers, buttons, buckles, underwire bras) to avoid artifacts in the images.</li><li><strong>Stillness During Scan:</strong> It is crucial to remain as still as possible during the entire scanning process to ensure clear and accurate images.</li><li><strong>Communication with Technologist:</strong> Inform the technologist immediately if you experience any discomfort or find it difficult to maintain the required position.</li><li><strong>Post-Scan Activities:</strong> There are no restrictions on activities, diet, or medication after a DEXA scan; you can resume normal routines immediately.</li><li><strong>Results Discussion:</strong> Your referring physician will interpret the scan results and discuss the findings, including T-scores and Z-scores, and any necessary management plans.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Screening Recommendations:</strong> DEXA is a vital tool for screening individuals at high risk for osteoporosis, guiding early intervention and prevention strategies.</li><li><strong>Treatment Monitoring:</strong> It is essential for monitoring the effectiveness of osteoporosis treatments, with follow-up scans typically performed every 1-2 years.</li><li><strong>Clinical Context:</strong> BMD results (T-scores and Z-scores) must always be interpreted in conjunction with the patient's complete clinical history, risk factors, and other diagnostic findings.</li><li><strong>Fracture Risk Assessment:</strong> The scan provides critical data for calculating an individual's 10-year probability of major osteoporotic and hip fractures using tools like FRAX.</li><li><strong>Referral for Management:</strong> Physicians use DEXA results to determine the need for pharmacologic therapy and to refer patients for appropriate lifestyle modifications and fall prevention programs.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Educate patients on the importance of DEXA for bone health, explaining the procedure, its safety, and what to expect.</li><li><strong>Pre-Procedure Checklist:</strong> Verify patient pregnancy status, recent contrast media exposure, and ensure removal of all metallic items before the scan.</li><li><strong>Patient Positioning:</strong> Assist patients with correct and comfortable positioning on the DEXA table to ensure optimal image acquisition and minimize motion artifacts.</li><li><strong>Risk Factor Identification:</strong> Be proficient in identifying and documenting key risk factors for osteoporosis, such as age, gender, family history, lifestyle choices, and medication use.</li><li><strong>Post-Scan Reassurance:</strong> Reassure patients that the procedure is quick, painless, and has no post-scan restrictions, allowing them to resume normal activities immediately.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Principle of Operation:</strong> DEXA operates on the principle of differential attenuation of two distinct X-ray photon energies by bone and soft tissue, allowing for precise quantification of BMD.</li><li><strong>Output Parameters:</strong> Key outputs include T-score (comparison to young adult reference population) and Z-score (comparison to age-matched population), expressed in standard deviations.</li><li><strong>Anatomical Sites:</strong> Standard measurement sites include the lumbar spine (L1-L4), proximal femur (total hip and femoral neck), and sometimes the non-dominant forearm.</li><li><strong>Radiation Dose:</strong> The effective radiation dose from a DEXA scan is extremely low, typically less than 10 µSv, which is comparable to a few days of natural background radiation.</li><li><strong>Diagnostic Criteria:</strong> According to WHO criteria, osteoporosis is defined by a T-score of -2.5 or lower at any site, while osteopenia is defined by a T-score between -1.0 and -2.5.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

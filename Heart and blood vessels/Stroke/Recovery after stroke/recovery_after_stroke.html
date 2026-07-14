@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration depicting stroke recovery. A diverse group of individuals, including a patient using a walker, another doing arm exercises with a therapist, and someone practicing speech therapy with cards. Elements like a brain icon with connecting pathways, a heart symbol, and a supportive hand are subtly integrated. The overall scene conveys progress, rehabilitation, and hope, set against a clean, modern medical or home environment backdrop. Soft, encouraging color palette. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./recovery_after_stroke.jpg" class="card-banner" alt="Recovery after stroke Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-stroke" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Stroke</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Recovery after stroke</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Stroke</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Early Rehabilitation is Key:</strong> Initiating rehabilitation as soon as medically stable significantly improves recovery outcomes and functional independence.</li><li><strong>Neuroplasticity Potential:</strong> The brain's ability to reorganize itself (neuroplasticity) is highest in the initial months post-stroke, making this a critical window for intensive therapy.</li><li><strong>Multidisciplinary Approach:</strong> Recovery involves a team including neurologists, physiatrists, physical therapists, occupational therapists, speech-language pathologists, nurses, and social workers.</li><li><strong>Long-Term Process:</strong> Stroke recovery is often a long-term journey, with ongoing improvements possible for years, though the rate may slow over time.</li><li><strong>Individualized Plans:</strong> Each patient's recovery plan is tailored to their specific deficits, goals, and overall health status.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Motor Weakness (Hemiparesis/Hemiplegia):</strong> Weakness or paralysis on one side of the body, affecting limbs and facial muscles.</li><li><strong>Speech and Language Difficulties (Aphasia):</strong> Problems understanding, speaking, reading, or writing due to brain damage.</li><li><strong>Swallowing Difficulties (Dysphagia):</strong> Impaired ability to swallow, increasing risk of aspiration and malnutrition.</li><li><strong>Cognitive Impairments:</strong> Issues with memory, attention, problem-solving, and executive functions.</li><li><strong>Visual Field Deficits:</strong> Loss of vision in part of the visual field, such as hemianopia.</li><li><strong>Spasticity:</strong> Increased muscle tone causing stiffness and involuntary muscle spasms, often in affected limbs.</li><li><strong>Fatigue:</strong> Profound and persistent tiredness that is not relieved by rest, common post-stroke.</li><li><strong>Emotional Lability:</strong> Uncontrollable crying or laughing, or sudden mood swings.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Fall Prevention:</strong> Implement strategies such as using assistive devices, removing trip hazards, and ensuring adequate lighting, especially with motor deficits or balance issues.</li><li><strong>Aspiration Risk Management:</strong> Adhere strictly to modified diets and swallowing strategies recommended by speech-language pathology to prevent food or liquid entering the lungs.</li><li><strong>Skin Integrity:</strong> Regularly reposition patients with mobility limitations to prevent pressure injuries, especially over bony prominences.</li><li><strong>Medication Adherence:</strong> Consistently take prescribed medications (e.g., antiplatelets, anticoagulants, antihypertensives) to prevent recurrent stroke and manage comorbidities.</li><li><strong>Blood Pressure Monitoring:</strong> Maintain blood pressure within target ranges as advised by the physician to reduce risk of further vascular events.</li><li><strong>Recognize Recurrent Stroke Signs:</strong> Educate patients and caregivers on the 'FAST' acronym (Face drooping, Arm weakness, Speech difficulty, Time to call emergency services) for prompt action.</li><li><strong>Depression Screening:</strong> Monitor for signs of post-stroke depression, which is common and can impede rehabilitation progress, and seek appropriate intervention.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Dysphagia Management:</strong> Follow specific texture-modified diets (e.g., pureed, minced, soft) and thickened liquids as recommended by a speech-language pathologist to ensure safe swallowing.</li><li><strong>Hydration Status:</strong> Ensure adequate fluid intake, especially with thickened liquids, to prevent dehydration and constipation.</li><li><strong>Nutritional Adequacy:</strong> Focus on nutrient-dense foods to support healing and energy levels, potentially requiring supplements if intake is poor.</li><li><strong>Heart-Healthy Diet:</strong> Emphasize a diet low in saturated and trans fats, cholesterol, and sodium, rich in fruits, vegetables, and whole grains to reduce risk factors for recurrent stroke.</li><li><strong>Blood Sugar Control:</strong> For diabetic patients, strict adherence to a diabetic diet is crucial to manage blood glucose levels and prevent complications.</li><li><strong>Medication Interactions:</strong> Be aware of potential food-drug interactions, especially with anticoagulants (e.g., warfarin and vitamin K-rich foods), and consult with a pharmacist or physician.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Assist with Mobility:</strong> Provide consistent support during transfers and ambulation, using proper body mechanics to prevent injury to both patient and attendant.</li><li><strong>Medication Management:</strong> Maintain an organized medication schedule and ensure timely administration, understanding the purpose of each drug.</li><li><strong>Communication Support:</strong> Facilitate communication for patients with aphasia, using visual aids, gestures, or communication boards as needed.</li><li><strong>Monitor for Changes:</strong> Be vigilant for any sudden changes in neurological status, new symptoms, or signs of complications (e.g., fever, increased weakness, confusion).</li><li><strong>Emotional Support:</strong> Offer encouragement and patience, recognizing the emotional challenges of stroke recovery for the patient and family.</li><li><strong>Therapy Adherence:</strong> Support and encourage participation in prescribed therapy exercises and activities outside of formal therapy sessions.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Individualized Rehabilitation Plan:</strong> A comprehensive, patient-centered rehabilitation plan is crucial, continuously adapted based on progress and evolving needs.</li><li><strong>Secondary Prevention:</strong> Aggressive management of stroke risk factors (hypertension, diabetes, hyperlipidemia, atrial fibrillation) is paramount to prevent recurrence.</li><li><strong>Medication Review:</strong> Regular review of all medications is essential to optimize efficacy, minimize side effects, and ensure adherence.</li><li><strong>Realistic Expectations:</strong> While significant recovery is possible, some residual deficits may persist; focus on maximizing functional independence and quality of life.</li><li><strong>Referral to Specialists:</strong> Timely referrals to physiatrists, neurologists, cardiologists, and various therapists are integral to a holistic recovery approach.</li><li><strong>Mental Health Screening:</strong> Proactive screening and management of post-stroke depression and anxiety are vital for overall well-being and rehabilitation engagement.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Early Mobilization Protocols:</strong> Understand and implement protocols for early and safe mobilization to prevent deconditioning and complications.</li><li><strong>Neurological Assessments:</strong> Perform frequent and accurate neurological assessments (e.g., NIHSS, GCS) to monitor for changes and guide interventions.</li><li><strong>Dysphagia Screening:</strong> Conduct initial dysphagia screenings as per protocol before oral intake to identify aspiration risk.</li><li><strong>Bowel and Bladder Management:</strong> Implement strategies for managing neurogenic bowel and bladder dysfunction, including scheduled toileting and bowel regimens.</li><li><strong>Patient and Family Education:</strong> Educate patients and caregivers on stroke pathophysiology, recovery process, medication management, and warning signs.</li><li><strong>Discharge Planning:</strong> Collaborate with the multidisciplinary team for comprehensive discharge planning, including home safety assessments and community resources.</li><li><strong>Spasticity Management:</strong> Recognize and assist with interventions for spasticity, including positioning, stretching, and medication administration.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Modified Rankin Scale (mRS):</strong> A common scale used to measure the degree of disability or dependence in daily activities of people who have had a stroke.</li><li><strong>National Institutes of Health Stroke Scale (NIHSS):</strong> A systematic assessment tool used to quantify neurological deficits resulting from a stroke.</li><li><strong>Fugl-Meyer Assessment (FMA):</strong> A comprehensive quantitative measure of motor function, balance, sensation, and joint function in patients with post-stroke hemiplegia.</li><li><strong>Neuroplasticity:</strong> The brain's ability to reorganize itself by forming new neural connections throughout life, crucial for stroke recovery.</li><li><strong>Constraint-Induced Movement Therapy (CIMT):</strong> A rehabilitation technique that forces the use of the affected limb by restraining the unaffected limb.</li><li><strong>Dysphagia Screening Tools:</strong> Standardized assessments (e.g., bedside swallow screen) used to identify patients at risk for aspiration.</li><li><strong>Antiplatelet/Anticoagulant Therapy:</strong> Medications used to prevent blood clot formation and reduce the risk of recurrent ischemic stroke.</li><li><strong>Spasticity Management:</strong> Clinical approaches including physical therapy, oral medications (e.g., baclofen, tizanidine), botulinum toxin injections, and intrathecal baclofen pumps.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

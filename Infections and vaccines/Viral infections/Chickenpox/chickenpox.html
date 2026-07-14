@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a diverse group of children, one child prominently showing a mild chickenpox rash with small, scattered red bumps and a few crusted lesions. Surrounding elements include a stylized vaccine syringe, a bottle of calamine lotion, and a comforting hand gently applying cream. The background features subtle, abstract representations of the Varicella-zoster virus and a calendar with a marked 'isolation' period, all rendered in a clean, public awareness design style with soft, reassuring colors. Avoid any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./chickenpox.jpg" class="card-banner" alt="Chickenpox Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-infections-and-vaccines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Infections and vaccines</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-infections-and-vaccines-viral-infections" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Viral infections</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Chickenpox</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Infections and vaccines</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Viral infections</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Highly Contagious Viral Infection:</strong> Chickenpox, or varicella, is caused by the Varicella-zoster virus (VZV), primarily affecting children but possible at any age.</li><li><strong>Characteristic Rash:</strong> Defined by an itchy, blister-like rash that appears all over the body, accompanied by fever and fatigue.</li><li><strong>Vaccination is Key:</strong> The varicella vaccine is highly effective in preventing the disease or significantly reducing its severity and complications.</li><li><strong>Lifelong Immunity:</strong> Once infected, most individuals develop lifelong immunity, though the virus remains dormant and can reactivate later as shingles.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Prodromal Phase:</strong> Often begins with a mild fever, headache, general malaise, and loss of appetite 1-2 days before the rash appears.</li><li><strong>Itchy Rash Development:</strong> Starts as small red bumps (macules) that quickly progress to fluid-filled blisters (vesicles) which eventually burst and scab over.</li><li><strong>Rash Distribution:</strong> Typically appears first on the chest, back, and face, then spreads to the rest of the body, including the scalp, mouth, and genitals.</li><li><strong>Fatigue and Irritability:</strong> Common accompanying symptoms due to the systemic viral infection and discomfort from itching.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Isolation Measures:</strong> Infected individuals must be isolated from others until all lesions have crusted over, typically 5-7 days after rash onset, to prevent transmission.</li><li><strong>Varicella Vaccination:</strong> Ensure all eligible individuals, especially children, receive the recommended two doses of the varicella vaccine for optimal protection.</li><li><strong>Avoid Aspirin:</strong> Never administer aspirin or aspirin-containing products to children or adolescents with chickenpox due to the risk of Reye's syndrome.</li><li><strong>Protect Vulnerable Populations:</strong> Shield immunocompromised individuals, pregnant women, and newborns from exposure, as chickenpox can be severe in these groups.</li><li><strong>Hand Hygiene:</strong> Frequent and thorough handwashing is essential for both the infected individual and caregivers to prevent secondary bacterial infections and spread.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Maintain Hydration:</strong> Encourage ample fluid intake (water, clear broths, electrolyte solutions) to prevent dehydration, especially if fever is present.</li><li><strong>Soft, Bland Foods:</strong> Offer easy-to-swallow, non-acidic foods such as yogurt, mashed potatoes, soups, bananas, and cooked cereals to avoid irritating mouth sores.</li><li><strong>Avoid Acidic and Spicy Foods:</strong> Citrus fruits, tomatoes, spicy dishes, and salty snacks can cause discomfort if lesions are present in the mouth or throat.</li><li><strong>Small, Frequent Meals:</strong> May be better tolerated than large meals, especially if the individual is experiencing discomfort or loss of appetite.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Monitor for Complications:</strong> Watch for signs of secondary bacterial skin infections (increasing redness, warmth, pus, pain), pneumonia (cough, difficulty breathing), encephalitis (severe headache, confusion), or severe abdominal pain.</li><li><strong>Antiviral Therapy Consideration:</strong> Antiviral medications (e.g., acyclovir) may be prescribed for severe cases or high-risk individuals, ideally within 24 hours of rash onset.</li><li><strong>Itch Management:</strong> Utilize calamine lotion, cool compresses, oatmeal baths, and oral antihistamines (under medical guidance) to alleviate severe itching.</li><li><strong>Prevent Scratching:</strong> Keep fingernails short and clean, and consider mittens for young children, to minimize skin damage and secondary infection from scratching.</li><li><strong>Post-Exposure Prophylaxis:</strong> For high-risk, unvaccinated individuals exposed to chickenpox, varicella-zoster immune globulin (VZIG) or antiviral medication may be considered.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Clinical Diagnosis:</strong> Chickenpox is typically diagnosed clinically based on the characteristic rash. Laboratory confirmation (PCR, serology) is rarely needed but available.</li><li><strong>Supportive Care Focus:</strong> Management is primarily supportive, focusing on symptom relief and preventing complications. Antivirals are reserved for specific indications.</li><li><strong>Vaccination Advocacy:</strong> Strongly recommend the varicella vaccine for all eligible patients as the most effective strategy for disease prevention and public health.</li><li><strong>Risk Assessment:</strong> Evaluate patients for risk factors for severe disease, such as immunocompromise, pregnancy, or age extremes, to guide management and prophylaxis.</li><li><strong>Education on Contagion:</strong> Emphasize the highly contagious nature of chickenpox and the importance of isolation to prevent community spread.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Assessment:</strong> Assess rash characteristics (stage, distribution), fever, hydration status, pain, and itching levels. Document progression of lesions.</li><li><strong>Patient and Family Education:</strong> Provide clear instructions on symptom management, medication administration (e.g., antihistamines), infection control, and signs requiring immediate medical attention.</li><li><strong>Vaccine Administration Protocol:</strong> Understand the varicella vaccine schedule (two doses), proper administration technique, contraindications (e.g., pregnancy, severe immunodeficiency), and storage requirements.</li><li><strong>Infection Control Implementation:</strong> Apply airborne and contact precautions in healthcare settings for suspected or confirmed chickenpox cases to prevent nosocomial transmission.</li><li><strong>Psychosocial Support:</strong> Address the child's discomfort and parental anxiety, offering strategies for comfort and distraction during the illness.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Etiological Agent:</strong> Varicella-zoster virus (VZV), a human alphaherpesvirus.</li><li><strong>Mode of Transmission:</strong> Primarily airborne via respiratory droplets and direct contact with vesicle fluid.</li><li><strong>Incubation Period:</strong> Typically 10-21 days, with an average of 14-16 days post-exposure.</li><li><strong>Period of Contagiousness:</strong> From 1-2 days before rash onset until all lesions have crusted over (usually 5-7 days after rash appearance).</li><li><strong>Potential Complications:</strong> Secondary bacterial skin infections, pneumonia, encephalitis, Reye's syndrome (with aspirin use), congenital varicella syndrome (if maternal infection during pregnancy), and later reactivation as herpes zoster (shingles).</li><li><strong>ICD-10 Code:</strong> B01 (Varicella [chickenpox]).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

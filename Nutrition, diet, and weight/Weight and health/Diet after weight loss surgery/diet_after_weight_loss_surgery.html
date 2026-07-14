@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a diverse group of people, including a bariatric patient, happily eating small, healthy portions of food at a table. A friendly dietitian is guiding them with a plate showing a balanced meal. Elements like a water bottle, vitamin supplements, and a calendar indicating gradual dietary progression are subtly included. The overall scene conveys support, health, and mindful eating. Clean lines, vibrant colors, public awareness design.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./diet_after_weight_loss_surgery.jpg" class="card-banner" alt="Diet after weight loss surgery Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-nutrition-diet-and-weight" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Nutrition, diet, and weight</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-nutrition-diet-and-weight-weight-and-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Weight and health</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Diet after weight loss surgery</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Nutrition, diet, and weight</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Weight and health</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+  <h2>&#128161; What You Need to Know</h2>
+  <ul>
+    <li><strong>Gradual Progression:</strong> The post-surgical diet advances through distinct stages, starting with clear liquids and slowly progressing to solid foods over several weeks to allow the stomach to heal and adapt.</li>
+    <li><strong>Small, Frequent Meals:</strong> Due to the reduced stomach capacity, patients must consume very small portions multiple times a day to meet nutritional needs and prevent discomfort.</li>
+    <li><strong>Protein Priority:</strong> High protein intake is crucial for healing, muscle preservation, and satiety, often requiring protein supplements in the initial phases.</li>
+    <li><strong>Lifelong Commitment:</strong> Adherence to dietary guidelines, vitamin, and mineral supplementation is a permanent lifestyle change essential for long-term health and weight management.</li>
+  </ul>
+</div>
+<div class='symptoms-section'>
+  <h2>&#129298; Associated Symptoms</h2>
+  <ul>
+    <li><strong>Dumping Syndrome:</strong> Rapid gastric emptying of high-sugar or high-fat foods can cause nausea, vomiting, diarrhea, abdominal cramping, sweating, and dizziness.</li>
+    <li><strong>Dehydration:</strong> Insufficient fluid intake, often due to difficulty drinking large volumes, can lead to fatigue, dizziness, and concentrated urine.</li>
+    <li><strong>Nausea and Vomiting:</strong> Eating too quickly, consuming too much, or not chewing food thoroughly can cause discomfort and emesis.</li>
+    <li><strong>Nutrient Deficiencies:</strong> Inadequate intake or malabsorption can result in fatigue, hair loss, brittle nails, and neurological symptoms (e.g., B12 deficiency).</li>
+    <li><strong>Constipation:</strong> Reduced food intake, dehydration, and lack of fiber can contribute to infrequent or difficult bowel movements.</li>
+  </ul>
+</div>
+<div class='precautions-section'>
+  <h2>&#128737; Crucial Precautions</h2>
+  <ul>
+    <li><strong>Avoid Sugary and High-Fat Foods:</strong> These can trigger dumping syndrome and hinder weight loss. Focus on lean proteins, non-starchy vegetables, and complex carbohydrates in moderation.</li>
+    <li><strong>Chew Thoroughly:</strong> Every bite of food must be chewed to a pureed consistency to prevent blockages, discomfort, and vomiting.</li>
+    <li><strong>Separate Solids and Liquids:</strong> Do not drink fluids with meals or for 30 minutes before and after eating to prevent feeling overly full, diluting digestive enzymes, and rapid food passage.</li>
+    <li><strong>Avoid Carbonated Beverages:</strong> Carbonation can cause gas, bloating, and stretch the newly formed stomach pouch.</li>
+    <li><strong>Stay Hydrated:</strong> Sip fluids constantly throughout the day between meals to prevent dehydration, aiming for at least 64 ounces (approx. 1.9 liters) daily.</li>
+  </ul>
+</div>
+<div class='dietary-section'>
+  <h2>&#127869; Dietary Directions & Restrictions</h2>
+  <ul>
+    <li><strong>Stage 1: Clear Liquid Diet (Days 1-7 post-op):</strong> Focus on sugar-free, non-carbonated clear liquids like water, broth, sugar-free gelatin, and decaffeinated tea.</li>
+    <li><strong>Stage 2: Full Liquid Diet (Weeks 1-3 post-op):</strong> Introduce protein shakes (sugar-free, low-fat), skim milk, thin cream soups, and strained hot cereals.</li>
+    <li><strong>Stage 3: Pureed Diet (Weeks 3-5 post-op):</strong> Incorporate pureed lean meats, fish, eggs, cottage cheese, soft cooked vegetables, and fruits without skins or seeds.</li>
+    <li><strong>Stage 4: Soft Food Diet (Weeks 5-8 post-op):</strong> Gradually add soft, easily chewable foods like flaked fish, ground poultry, soft fruits, and well-cooked vegetables.</li>
+    <li><strong>Stage 5: Stabilization/Regular Diet (Week 8+ post-op):</strong> Transition to a healthy, balanced diet with lean proteins, non-starchy vegetables, and whole grains, maintaining small portions and mindful eating.</li>
+    <li><strong>Vitamin and Mineral Supplementation:</strong> Lifelong daily intake of a bariatric multivitamin, calcium with vitamin D, and vitamin B12 is essential to prevent deficiencies.</li>
+  </ul>
+</div>
+<div class='warning-box'>
+  <h2>&#9888;&#65039; Attendant Guidelines</h2>
+  <ul>
+    <li><strong>Follow Dietitian's Plan Strictly:</strong> Adhere precisely to the individualized dietary progression provided by the bariatric dietitian to ensure proper healing and nutrient intake.</li>
+    <li><strong>Monitor for Warning Signs:</strong> Report persistent nausea, vomiting, severe abdominal pain, fever, or signs of dehydration to the medical team immediately.</li>
+    <li><strong>Regular Follow-ups:</strong> Attend all scheduled appointments with the bariatric team, including the surgeon, dietitian, and psychologist, for ongoing support and monitoring.</li>
+    <li><strong>Mindful Eating Practices:</strong> Eat slowly, put down utensils between bites, and stop eating at the first sign of fullness to prevent overstretching the pouch.</li>
+  </ul>
+</div>
+<div class='doctor-advice'>
+  <h2>&#129658; Physician's Perspective</h2>
+  <ul>
+    <li><strong>Long-Term Lifestyle Change:</strong> Weight loss surgery is a tool, not a cure. Sustained success depends on strict adherence to dietary and lifestyle modifications.</li>
+    <li><strong>Multidisciplinary Support:</strong> Engage with the entire bariatric team – surgeon, dietitian, psychologist, and exercise physiologist – for comprehensive care and optimal outcomes.</li>
+    <li><strong>Address Complications Promptly:</strong> Any symptoms of dumping syndrome, dehydration, or nutrient deficiencies warrant immediate medical evaluation and dietary adjustment.</li>
+    <li><strong>Psychological Adaptation:</strong> Be prepared for emotional and psychological adjustments to new eating habits and body image changes, seeking support as needed.</li>
+  </ul>
+</div>
+<div class='student-nurse-index'>
+  <h2>&#127891; Academic & Nursing Corner</h2>
+  <ul>
+    <li><strong>Patient Education:</strong> Nurses play a critical role in reinforcing dietary instructions, explaining the stages of diet progression, and demonstrating proper eating techniques.</li>
+    <li><strong>Monitoring for Complications:</strong> Assess patients for signs of dehydration, dumping syndrome, nausea, vomiting, and nutrient deficiency symptoms post-operatively.</li>
+    <li><strong>Medication Administration:</strong> Understand how bariatric surgery affects medication absorption and the need for crushed or liquid forms in the initial phases.</li>
+    <li><strong>Nutritional Assessment:</strong> Conduct ongoing nutritional assessments, including weight trends, dietary intake, and laboratory values (e.g., albumin, prealbumin, vitamin levels).</li>
+  </ul>
+</div>
+<div class='technical-index'>
+  <h2>&#128300; Clinical Reference Index</h2>
+  <ul>
+    <li><strong>Micronutrient Deficiencies:</strong> Common deficiencies include Vitamin B12, Iron, Folate, Calcium, Vitamin D, Thiamine, and Fat-soluble vitamins (A, D, E, K), requiring specific supplementation protocols.</li>
+    <li><strong>Protein Requirements:</strong> Typically 60-80 grams of protein per day, crucial for wound healing, lean muscle mass preservation, and preventing sarcopenia.</li>
+    <li><strong>Malabsorption Syndromes:</strong> More pronounced in malabsorptive procedures (e.g., Roux-en-Y gastric bypass) compared to restrictive procedures (e.g., sleeve gastrectomy), necessitating closer monitoring of nutrient levels.</li>
+    <li><strong>Gastric Pouch Capacity:</strong> Initial capacity is typically 1-2 ounces (30-60 mL), gradually expanding to 4-6 ounces (120-180 mL) over time, dictating portion sizes.</li>
+    <li><strong>Fluid Intake Goals:</strong> Aim for 1.5-2 liters of non-caloric, non-carbonated, non-caffeinated fluids daily, sipped slowly throughout the day.</li>
+  </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

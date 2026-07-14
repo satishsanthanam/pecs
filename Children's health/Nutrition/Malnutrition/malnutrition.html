@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A vibrant flat vector illustration for children's health awareness. The central focus is a diverse group of happy, healthy children of various ages and ethnicities, some holding colorful fruits and vegetables. In the background, subtle elements like a growth chart with an upward trend, a balanced meal plate, and a caring parent figure are visible. The style is clean, friendly, and optimistic, with soft shadows and a bright color palette, avoiding any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./malnutrition.jpg" class="card-banner" alt="Malnutrition Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-children-s-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Children's health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-children-s-health-nutrition" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Nutrition</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Malnutrition</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Children's health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Nutrition</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Malnutrition in children refers to deficiencies, excesses, or imbalances in a child's intake of energy and/or nutrients. It encompasses undernutrition (stunting, wasting, underweight), micronutrient deficiencies, and overnutrition (overweight and obesity).</li><li><strong>Impact on Growth:</strong> Undernutrition significantly impairs physical growth, cognitive development, and immune function, leading to long-term health and developmental consequences.</li><li><strong>Types of Undernutrition:</strong> Includes 'wasting' (low weight-for-height, indicating acute malnutrition), 'stunting' (low height-for-age, indicating chronic malnutrition), and 'underweight' (low weight-for-age).</li><li><strong>Micronutrient Deficiencies:</strong> Common deficiencies include iron, vitamin A, iodine, and zinc, each with specific health implications for children.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Undernutrition (Wasting/Stunting):</strong> Visible severe wasting of muscle and fat, edema (swelling) in feet, irritability, apathy, frequent infections, delayed developmental milestones, and poor academic performance.</li><li><strong>Micronutrient Deficiencies:</strong> Pallor and fatigue (iron deficiency anemia), night blindness and impaired immunity (vitamin A deficiency), goiter and developmental delays (iodine deficiency), and recurrent diarrhea or skin lesions (zinc deficiency).</li><li><strong>Overnutrition (Overweight/Obesity):</strong> Excessive weight gain for age and height, fatigue, shortness of breath with activity, early onset of puberty, and increased risk for type 2 diabetes and hypertension.</li><li><strong>Feeding Difficulties:</strong> Poor appetite, difficulty sucking or swallowing, frequent vomiting, or refusal to eat certain food groups can be indicative of underlying nutritional issues.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Early Identification:</strong> Regular growth monitoring using WHO growth charts is essential for early detection of growth faltering or excessive weight gain.</li><li><strong>Nutritional Screening:</strong> Implement routine screening for malnutrition, especially in vulnerable populations and during illness, using tools like Mid-Upper Arm Circumference (MUAC) tapes.</li><li><strong>Promote Breastfeeding:</strong> Exclusive breastfeeding for the first six months of life, followed by continued breastfeeding with appropriate complementary foods up to two years or beyond, is critical.</li><li><strong>Hygiene and Sanitation:</strong> Ensure access to clean water and promote good hygiene practices to prevent infections that can exacerbate malnutrition.</li><li><strong>Address Underlying Causes:</strong> Investigate and address socio-economic factors, food insecurity, chronic diseases, and inappropriate feeding practices contributing to malnutrition.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>For Undernutrition:</strong> Provide nutrient-dense, energy-rich foods, often in small, frequent meals. Therapeutic feeding products (e.g., Ready-to-Use Therapeutic Food - RUTF) may be prescribed for severe acute malnutrition.</li><li><strong>Micronutrient Supplementation:</strong> Administer specific micronutrient supplements (e.g., iron, vitamin A, zinc) as per national guidelines and clinical assessment.</li><li><strong>For Overnutrition:</strong> Encourage a balanced diet rich in fruits, vegetables, whole grains, and lean proteins. Restrict intake of sugary drinks, processed foods, and foods high in saturated and trans fats.</li><li><strong>Complementary Feeding:</strong> Introduce appropriate, safe, and nutrient-rich complementary foods from six months of age, ensuring variety and adequate portion sizes.</li><li><strong>Hydration:</strong> Ensure adequate fluid intake, primarily water, avoiding sugary beverages.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Severe Acute Malnutrition (SAM):</strong> Children with SAM require urgent medical attention and often inpatient care due to high risk of complications like hypothermia, hypoglycemia, and severe infection.</li><li><strong>Refeeding Syndrome:</strong> Be vigilant for refeeding syndrome during nutritional rehabilitation, especially in severely malnourished children, which can lead to electrolyte imbalances and cardiac complications.</li><li><strong>Infection Management:</strong> Promptly identify and treat infections, as they are a major cause of morbidity and mortality in malnourished children.</li><li><strong>Caregiver Education:</strong> Provide comprehensive education to caregivers on appropriate feeding practices, hygiene, and recognition of danger signs.</li><li><strong>Psychosocial Support:</strong> Address the psychosocial needs of malnourished children and their families, as stress and lack of stimulation can hinder recovery.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive Assessment:</strong> A thorough clinical, anthropometric, dietary, and biochemical assessment is crucial to diagnose the type and severity of malnutrition and identify underlying causes.</li><li><strong>Individualized Treatment Plan:</strong> Develop a tailored nutritional rehabilitation plan, often involving a multidisciplinary team including dietitians, social workers, and child development specialists.</li><li><strong>Monitoring and Follow-up:</strong> Regular monitoring of growth parameters, clinical status, and adherence to the feeding plan is essential for successful outcomes.</li><li><strong>Address Comorbidities:</strong> Actively screen for and manage co-existing medical conditions, such as chronic infections, malabsorption syndromes, or genetic disorders.</li><li><strong>Preventive Strategies:</strong> Advocate for public health interventions that address food security, access to healthcare, and maternal and child nutrition education.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Screening and Assessment:</strong> Nurses play a vital role in routine growth monitoring, MUAC screening, and identifying clinical signs of malnutrition during clinic visits and community outreach.</li><li><strong>Nutritional Support:</strong> Administering therapeutic feeds, monitoring intake, and educating caregivers on proper preparation and feeding techniques are key nursing responsibilities.</li><li><strong>Infection Control:</strong> Implementing strict infection control measures and recognizing early signs of infection in malnourished children is critical to prevent deterioration.</li><li><strong>Patient Education:</strong> Providing practical, culturally sensitive education to families on healthy eating, hygiene, and recognizing danger signs requiring medical attention.</li><li><strong>Documentation:</strong> Meticulous documentation of anthropometric measurements, dietary intake, clinical progress, and family education is essential for continuity of care.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>WHO Growth Standards:</strong> International standards for assessing the growth of children from birth to 5 years of age, including weight-for-age, length/height-for-age, weight-for-length/height, and BMI-for-age.</li><li><strong>MUAC (Mid-Upper Arm Circumference):</strong> A simple, effective tool for screening acute malnutrition in children aged 6-59 months, with specific cut-offs for SAM and MAM.</li><li><strong>Diagnostic Criteria for SAM:</strong> Defined by a MUAC < 11.5 cm, weight-for-height Z-score < -3 SD, or presence of bilateral pitting edema.</li><li><strong>Refeeding Syndrome Protocols:</strong> Clinical guidelines for the cautious reintroduction of nutrients to severely malnourished patients to prevent metabolic and electrolyte disturbances.</li><li><strong>Integrated Management of Childhood Illness (IMCI):</strong> A WHO/UNICEF strategy for managing common childhood illnesses, including malnutrition, in resource-limited settings.</li><li><strong>Ready-to-Use Therapeutic Food (RUTF):</strong> Energy-dense, micronutrient-enriched food used for the community-based management of uncomplicated severe acute malnutrition.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

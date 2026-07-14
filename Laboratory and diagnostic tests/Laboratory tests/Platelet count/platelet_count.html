@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a medical laboratory setting. A diverse group of healthcare professionals (doctor, nurse, lab technician) are observing a magnified view of blood cells, specifically focusing on small, irregular-shaped platelets. The background features lab equipment like microscopes, test tubes, and a blood analyzer. The overall design is clean, modern, and uses a palette of blues, greens, and whites, emphasizing precision and scientific inquiry. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./platelet_count.jpg" class="card-banner" alt="Platelet count Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-laboratory-and-diagnostic-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Laboratory and diagnostic tests</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-laboratory-and-diagnostic-tests-laboratory-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Laboratory tests</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Platelet count</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Laboratory and diagnostic tests</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Laboratory tests</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Purpose of Platelet Count:</strong> Measures the number of platelets (thrombocytes) in a microliter of blood, which are crucial for blood clotting and preventing excessive bleeding.</li>
+        <li><strong>Normal Range:</strong> Typically between 150,000 to 450,000 platelets per microliter (µL) of blood, though specific ranges can vary slightly by laboratory.</li>
+        <li><strong>Thrombocytopenia (Low Platelets):</strong> A count below 150,000/µL, increasing the risk of bleeding. This can result from decreased production, increased destruction, or sequestration of platelets.</li>
+        <li><strong>Thrombocytosis (High Platelets):</strong> A count above 450,000/µL, which can increase the risk of blood clot formation (thrombosis) or, in very rare and extreme cases, paradoxical bleeding.</li>
+        <li><strong>Clinical Significance:</strong> This test is vital for diagnosing and monitoring various bleeding disorders, bone marrow conditions, inflammatory diseases, and evaluating overall hemostasis.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Symptoms Prompting Test (Low Platelets):</strong> Easy bruising, petechiae (small red spots), purpura (larger purple patches), prolonged bleeding from minor cuts, frequent nosebleeds, gum bleeding, unusually heavy menstrual bleeding, blood in urine or stool, or unexplained fatigue.</li>
+        <li><strong>Symptoms Prompting Test (High Platelets):</strong> Headaches, dizziness, weakness, vision changes, burning or tingling sensations in hands and feet (erythromelalgia), chest pain, or symptoms indicative of a blood clot (e.g., leg pain, swelling, shortness of breath).</li>
+        <li><strong>General Indications:</strong> A platelet count is often part of a routine complete blood count (CBC), ordered for unexplained bleeding or bruising, to monitor known blood disorders, or to evaluate response to certain medical treatments.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Medication Review:</strong> Inform the healthcare provider about all current medications, including over-the-counter drugs, supplements, and herbal remedies, as many can affect platelet count or function (e.g., aspirin, NSAIDs, certain antibiotics, chemotherapy agents).</li>
+        <li><strong>Venipuncture Site Care:</strong> Apply firm and sustained pressure to the venipuncture site for several minutes after blood collection to minimize the risk of hematoma, especially if the patient is on anticoagulants or has a known low platelet count.</li>
+        <li><strong>Avoidance of Trauma:</strong> Patients with significantly low platelet counts should be advised to avoid activities that could lead to injury or bleeding, such as contact sports, vigorous brushing, or sharp objects.</li>
+        <li><strong>Monitoring for Bleeding:</strong> Be vigilant for any new or worsening signs of bleeding (e.g., new bruises, petechiae, nosebleeds, blood in stool/urine) if a low platelet count is suspected or confirmed, and report findings immediately.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>No Pre-Test Restrictions:</strong> No specific fasting or dietary restrictions are typically required before a platelet count blood test.</li>
+        <li><strong>Nutritional Support for Platelet Production:</strong> While not a direct restriction, adequate intake of essential nutrients such as iron, folate, and Vitamin B12 is important for overall bone marrow health and optimal platelet production, particularly in cases of nutritional deficiency.</li>
+        <li><strong>Avoidance of Platelet-Inhibiting Foods/Supplements (Clinical Context):</strong> In specific clinical scenarios, patients with increased bleeding risk may be advised to limit foods or supplements known to have antiplatelet effects (e.g., high doses of omega-3 fatty acids, garlic, ginger, ginkgo biloba), but this is not a general pre-test instruction.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Urgent Medical Attention:</strong> Seek immediate medical care for severe or uncontrolled bleeding (e.g., heavy nosebleeds that do not stop, blood in vomit, severe headache with vision changes, signs of stroke or heart attack), especially if an abnormal platelet count is known.</li>
+        <li><strong>Medication Adherence:</strong> Strictly adhere to prescribed medication regimens for conditions affecting platelet count (e.g., corticosteroids for ITP, hydroxyurea for essential thrombocythemia). Do not discontinue or alter medications without consulting a physician.</li>
+        <li><strong>Regular Monitoring:</strong> Attend all scheduled follow-up appointments and repeat blood tests as advised by the healthcare provider to monitor platelet levels and assess the effectiveness of any ongoing treatment.</li>
+        <li><strong>Avoidance of Self-Medication:</strong> Do not take over-the-counter pain relievers or cold medications without first consulting a pharmacist or doctor, as many contain NSAIDs or aspirin that can significantly affect platelet function.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Contextual Interpretation:</strong> Platelet count results must always be interpreted within the context of the patient's complete clinical history, physical examination findings, and other concurrent laboratory results (e.g., CBC differentials, peripheral blood smear).</li>
+        <li><strong>Further Investigations:</strong> Abnormal platelet counts frequently necessitate additional diagnostic workup, which may include a detailed peripheral blood smear review, bone marrow biopsy, comprehensive coagulation studies, or specific antibody tests to identify the underlying cause.</li>
+        <li><strong>Risk Stratification:</strong> The severity of thrombocytopenia or thrombocytosis dictates the urgency and type of clinical intervention. For instance, very low counts (&lt;20,000/µL) carry a high risk of spontaneous bleeding, while very high counts (&gt;1,000,000/µL) pose a significant thrombotic risk.</li>
+        <li><strong>Management Strategy:</strong> Treatment focuses on addressing the root cause of the platelet abnormality, which could involve medication adjustments, platelet transfusions, splenectomy, or specific therapies for myeloproliferative neoplasms.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Patient Education:</strong> Educate patients thoroughly on the significance of their platelet count, potential symptoms of bleeding or clotting, and the critical importance of medication adherence and follow-up care.</li>
+        <li><strong>Bleeding Precautions:</strong> Implement appropriate nursing interventions for patients with thrombocytopenia, such as using soft toothbrushes, avoiding intramuscular injections, applying prolonged pressure after venipuncture, and meticulous assessment for signs of bleeding.</li>
+        <li><strong>Thrombosis Prevention:</strong> For patients with thrombocytosis, educate on the signs and symptoms of clotting, encourage mobility, ensure adequate hydration, and emphasize adherence to prescribed anticoagulant therapy if applicable.</li>
+        <li><strong>Medication Reconciliation:</strong> Conduct a thorough review of the patient's medication list for any drugs that could affect platelet count or function, and promptly communicate any pertinent findings to the medical team.</li>
+        <li><strong>Specimen Collection:</strong> Ensure proper venipuncture technique to prevent hemolysis or platelet clumping, which can lead to inaccurate and misleading laboratory results.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Related Conditions (Thrombocytopenia):</strong> Immune Thrombocytopenic Purpura (ITP), Thrombotic Thrombocytopenic Purpura (TTP), Disseminated Intravascular Coagulation (DIC), Heparin-Induced Thrombocytopenia (HIT), aplastic anemia, leukemia, liver disease, and various viral infections (e.g., dengue, HIV).</li>
+        <li><strong>Related Conditions (Thrombocytosis):</strong> Essential Thrombocythemia (ET), Polycythemia Vera (PV), chronic myeloid leukemia (CML), and reactive thrombocytosis (often secondary to infection, inflammation, iron deficiency, or post-splenectomy).</li>
+        <li><strong>Relevant ICD-10 Codes:</strong> D69.4 (Other primary thrombocytopenia), D69.5 (Secondary thrombocytopenia), D75.81 (Myelofibrosis), D47.3 (Essential (hemorrhagic) thrombocythemia), D75.82 (Essential thrombocytosis).</li>
+        <li><strong>Associated Lab Tests:</strong> Complete Blood Count (CBC) with differential, Peripheral Blood Smear, Coagulation Panel (Prothrombin Time (PT), activated Partial Thromboplastin Time (aPTT), Fibrinogen), Bone Marrow Biopsy, and Anti-platelet antibody tests.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

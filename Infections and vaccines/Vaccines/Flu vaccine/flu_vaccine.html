@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for public awareness of flu vaccination. Depict a diverse group of people (adults, children, elderly) receiving or having received a flu shot, symbolized by a small bandage or a syringe. Include elements of protection, such as a shield or a protective aura around the vaccinated individuals. Use a clean, modern design with a palette of blues, greens, and purples. Emphasize community health and prevention. No text or complex backgrounds.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./flu_vaccine.jpg" class="card-banner" alt="Flu vaccine Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-infections-and-vaccines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Infections and vaccines</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-infections-and-vaccines-vaccines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Vaccines</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Flu vaccine</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Infections and vaccines</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Vaccines</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Annual Vaccination:</strong> The influenza virus constantly evolves, necessitating a new vaccine each year to protect against the most prevalent strains.</li><li><strong>Disease Prevention:</strong> Flu vaccines significantly reduce the risk of contracting influenza, lessening symptom severity, and preventing serious complications like pneumonia, hospitalization, and death.</li><li><strong>Optimal Timing:</strong> Vaccination is most effective when received before the peak of flu season, typically in the fall, to allow time for immunity to develop.</li><li><strong>Types of Vaccines:</strong> Available forms include inactivated (shot), live attenuated (nasal spray, for eligible individuals), and recombinant vaccines, each with specific indications.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Influenza Symptoms Prevented:</strong> The vaccine targets symptoms such as high fever, body aches, severe fatigue, persistent cough, sore throat, and headache.</li><li><strong>Common Vaccine Side Effects:</strong> Mild and temporary reactions may include soreness, redness, or swelling at the injection site, low-grade fever, headache, and muscle aches.</li><li><strong>Indications for Vaccination:</strong> Clinical risk factors or patient complaints that prompt vaccination include age (6 months and older), chronic medical conditions, pregnancy, and close contact with vulnerable individuals.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Allergic Reactions:</strong> Individuals with a history of severe, life-threatening allergic reactions to a previous flu vaccine or any vaccine component (e.g., egg protein, though many are egg-free) should consult their physician.</li><li><strong>Guillain-Barré Syndrome (GBS):</strong> A history of GBS within 6 weeks following a previous influenza vaccination is a contraindication for some individuals; discuss with a healthcare provider.</li><li><strong>Acute Illness:</strong> Vaccination should be deferred in individuals experiencing an acute moderate or severe illness with fever until symptoms improve.</li><li><strong>Live Attenuated Influenza Vaccine (LAIV) Contraindications:</strong> LAIV (nasal spray) is not recommended for pregnant women, immunocompromised individuals, children under 2 years, adults over 50 years, or those with certain chronic medical conditions like asthma.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration:</strong> Maintain adequate fluid intake before and after vaccination to support overall well-being, especially if experiencing mild post-vaccine symptoms.</li><li><strong>Nutritional Support:</strong> A balanced diet rich in vitamins and minerals can support a healthy immune system, potentially optimizing the body's response to the vaccine.</li><li><strong>Alcohol Consumption:</strong> Excessive alcohol intake may temporarily suppress immune function; moderation is advisable around the time of vaccination.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Post-Vaccination Observation:</strong> Patients should be observed for 15-20 minutes post-injection for immediate allergic reactions, especially if there is a history of allergies.</li><li><strong>Injection Site Care:</strong> Advise against vigorous rubbing of the injection site; applying a cool compress can help alleviate soreness.</li><li><strong>Reporting Adverse Events:</strong> Instruct patients on how to report any serious or unexpected adverse events to their healthcare provider or relevant public health surveillance systems (e.g., VAERS in the US).</li><li><strong>Understanding Vaccine Efficacy:</strong> Explain that the vaccine does not cause influenza, but it takes about two weeks to develop full protection, and mild side effects are normal.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Universal Recommendation:</strong> Annual influenza vaccination is strongly recommended for nearly all individuals 6 months of age and older, barring specific contraindications.</li><li><strong>Protection for Vulnerable Groups:</strong> Emphasize the critical importance of vaccination for high-risk populations, including pregnant women, young children, older adults, and individuals with chronic health conditions.</li><li><strong>Community Immunity:</strong> Widespread vaccination contributes to herd immunity, protecting those who cannot be vaccinated or who may have a weaker immune response.</li><li><strong>Co-administration:</strong> The flu vaccine can often be safely administered concurrently with other recommended vaccines, such as COVID-19 or RSV vaccines, during the same visit.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Vaccine Administration Techniques:</strong> Review proper intramuscular (IM) injection technique, appropriate needle gauge and length, and correct site selection (deltoid muscle for adults/older children, anterolateral thigh for infants).</li><li><strong>Patient Education Essentials:</strong> Focus on educating patients about the benefits of vaccination, potential side effects, the importance of annual vaccination, and when to seek medical attention for adverse reactions.</li><li><strong>Cold Chain Management:</strong> Reinforce the critical importance of maintaining the cold chain for vaccine storage and handling to preserve vaccine potency and efficacy.</li><li><strong>Thorough Screening:</strong> Practice comprehensive pre-vaccination screening for contraindications and precautions, including allergy history and current health status.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Antigenic Drift and Shift:</strong> Understand the mechanisms of antigenic drift (minor changes) and antigenic shift (major changes) that necessitate annual vaccine reformulation and contribute to pandemic potential.</li><li><strong>Vaccine Efficacy vs. Effectiveness:</strong> Differentiate between vaccine efficacy (performance in controlled trials) and effectiveness (performance in real-world settings), noting factors like circulating strains and host immunity.</li><li><strong>Immunogenicity:</strong> Study the immune response elicited by different vaccine types, including humoral (antibody production) and cellular immunity.</li><li><strong>Vaccine Composition:</strong> Familiarize with the specific influenza A (H1N1, H3N2) and B (Victoria, Yamagata lineages) strains included in current trivalent and quadrivalent vaccine formulations.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

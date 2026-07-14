@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a senior patient in a hospital bed, with a concerned but caring medical team (doctor and nurse) at the bedside. The patient's skin shows a subtle, stylized pattern of a rash. Prominent elements include a magnifying glass hovering over a list of medications, several prescription bottles with clear warning labels, and a calendar with recent dates highlighted, symbolizing medication changes. The overall aesthetic is clean, modern, and reassuring, using soft, muted colors. Avoid any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./stevens_johnson_syndrome_and_toxic_epidermal_necrolysis.jpg" class="card-banner" alt="Stevens-Johnson syndrome and toxic epidermal necrolysis Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-senior-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Senior health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-senior-health-managing-medicines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Managing medicines</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Stevens-Johnson syndrome and toxic epidermal necrolysis</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Senior health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Managing medicines</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Life-Threatening Reaction:</strong> Stevens-Johnson syndrome (SJS) and toxic epidermal necrolysis (TEN) are severe, potentially fatal mucocutaneous reactions.</li><li><strong>Drug-Induced Origin:</strong> Most cases are triggered by medications, making careful drug management crucial, especially in seniors with polypharmacy.</li><li><strong>Rapid Progression:</strong> Characterized by widespread blistering, epidermal detachment, and severe mucosal involvement.</li><li><strong>Spectrum of Severity:</strong> SJS involves less than 10% body surface area (BSA) detachment, SJS/TEN overlap 10-30% BSA, and TEN more than 30% BSA.</li><li><strong>Medical Emergency:</strong> Requires immediate hospitalization, often in a burn unit or intensive care unit, due to high mortality rates and extensive organ involvement.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Prodromal Phase:</strong> Often begins with non-specific flu-like symptoms such as fever, malaise, myalgia, and arthralgia, preceding skin lesions by several days.</li><li><strong>Skin Manifestations:</strong> Widespread erythematous macules, targetoid lesions, rapidly progressing to flaccid blisters and extensive epidermal detachment.</li><li><strong>Mucosal Involvement:</strong> Painful erosions and crusting affecting at least two mucosal sites, commonly oral, ocular, and genital.</li><li><strong>Ocular Symptoms:</strong> Severe conjunctivitis, photophobia, blurred vision, and potential corneal erosions.</li><li><strong>Systemic Signs:</strong> Tachycardia, hypotension, and signs of organ dysfunction (e.g., renal impairment, respiratory distress) due to systemic inflammation and fluid loss.</li><li><strong>Severe Pain:</strong> Patients experience excruciating pain due to extensive skin and mucosal damage.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Medication Reconciliation:</strong> Meticulously review all current and recently started medications, especially within the preceding 8 weeks, for potential culprits.</li><li><strong>High-Risk Medications:</strong> Be vigilant with drugs commonly implicated, including allopurinol, sulfonamide antibiotics, anti-epileptics (e.g., carbamazepine, lamotrigine, phenytoin), and certain NSAIDs.</li><li><strong>Early Symptom Recognition:</strong> Educate patients and caregivers to promptly report any new rash, blistering, or mucosal pain, particularly if accompanied by fever or flu-like symptoms.</li><li><strong>Avoid Re-exposure:</strong> Absolutely critical to identify and permanently discontinue the causative drug and all chemically related compounds to prevent recurrence.</li><li><strong>Genetic Screening:</strong> Consider pharmacogenetic testing (e.g., HLA-B*1502 for carbamazepine in certain Asian populations, HLA-B*5801 for allopurinol in specific ethnic groups) where indicated.</li><li><strong>Hydration and Nutrition:</strong> Proactively manage fluid and electrolyte balance and ensure adequate nutritional support, often intravenously or via enteral feeding, due to severe oral pain.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Soft/Liquid Diet:</strong> Due to severe and painful oral and pharyngeal erosions, patients typically require a soft, bland, or liquid diet.</li><li><strong>Nutritional Support:</strong> Many patients will require enteral (e.g., nasogastric tube) or parenteral nutrition if oral intake is severely compromised or impossible.</li><li><strong>Hydration Management:</strong> Aggressive intravenous fluid replacement is essential to compensate for significant fluid loss through denuded skin and impaired oral intake.</li><li><strong>Avoid Irritants:</strong> Restrict acidic, spicy, hot, or coarse foods and beverages that can exacerbate oral and esophageal lesions.</li><li><strong>Temperature Control:</strong> Prefer cool or lukewarm foods and liquids to minimize discomfort and irritation to damaged mucous membranes.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Immediate Transfer:</strong> Patients with suspected SJS/TEN require urgent transfer to a specialized burn unit or intensive care unit for expert management.</li><li><strong>Offending Drug Withdrawal:</strong> Prompt and complete discontinuation of all non-essential medications, especially the suspected causative agent, is the most critical intervention.</li><li><strong>Supportive Care Focus:</strong> Meticulous wound care, fluid and electrolyte balance, pain control, and aggressive infection prevention are paramount.</li><li><strong>Ocular Care:</strong> Regular ophthalmology consultation and intensive ocular lubrication are vital to prevent long-term vision impairment.</li><li><strong>Temperature Regulation:</strong> Monitor and manage body temperature closely, as extensive skin loss impairs thermoregulation.</li><li><strong>Psychological Support:</strong> Provide comprehensive emotional and psychological support for patients and their families coping with a severe, disfiguring, and life-threatening illness.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>High Index of Suspicion:</strong> Maintain a high index of suspicion for SJS/TEN in any patient presenting with an acute, widespread rash and mucosal involvement, particularly following new medication exposure.</li><li><strong>Timely Diagnosis:</strong> Rapid diagnosis and immediate withdrawal of the offending drug are the most crucial factors influencing patient outcomes.</li><li><strong>Multidisciplinary Team:</strong> Effective management necessitates a collaborative approach involving dermatologists, intensivists, ophthalmologists, and burn specialists.</li><li><strong>Prognosis Awareness:</strong> Be aware of the significant mortality rates, especially in TEN, and the potential for severe long-term sequelae affecting multiple organ systems.</li><li><strong>Patient Education:</strong> Emphasize thorough patient and family education regarding the identified causative agent and the absolute necessity of avoiding future exposure to prevent recurrence.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Assessment:</strong> Perform meticulous skin and mucosal assessments, documenting the extent of blistering and epidermal detachment (e.g., using the SCORTEN score).</li><li><strong>Aseptic Wound Care:</strong> Implement strict aseptic techniques for wound care, treating denuded areas similarly to severe burns to prevent secondary infections.</li><li><strong>Fluid Balance Monitoring:</strong> Accurately monitor intake and output, recognizing the significant fluid and electrolyte losses through extensive skin damage.</li><li><strong>Pain Management:</strong> Administer prescribed analgesics effectively, utilizing a multi-modal approach to manage the severe pain associated with SJS/TEN.</li><li><strong>Infection Surveillance:</strong> Closely monitor for signs of infection, including fever, changes in wound appearance, and elevated inflammatory markers.</li><li><strong>Psychosocial Support:</strong> Provide empathetic care, addressing the patient's and family's emotional distress and anxiety related to the severe nature of the illness.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathophysiology:</strong> Characterized by widespread keratinocyte apoptosis, primarily mediated by cytotoxic T lymphocytes and granulysin, leading to epidermal detachment.</li><li><strong>SCORTEN Score:</strong> A validated prognostic tool used to estimate mortality risk in SJS/TEN based on seven clinical parameters (age, malignancy, heart rate, BSA detachment, serum urea, glucose, bicarbonate).</li><li><strong>Histopathology:</strong> Biopsy typically reveals full-thickness epidermal necrosis with a sparse lymphocytic infiltrate at the dermo-epidermal junction.</li><li><strong>Immunomodulatory Therapies:</strong> While supportive care is primary, various immunomodulatory agents (e.g., IVIG, cyclosporine, systemic corticosteroids) have been explored, with varying and often controversial evidence of efficacy.</li><li><strong>Long-Term Sequelae:</strong> Common complications include chronic dry eyes, corneal scarring, synechiae, skin dyspigmentation, scarring, nail dystrophy, and mucosal strictures.</li><li><strong>Pharmacogenomics:</strong> Specific HLA alleles (e.g., HLA-B*1502, HLA-B*5801) are strongly associated with an increased risk of SJS/TEN induced by certain drugs in genetically predisposed individuals.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

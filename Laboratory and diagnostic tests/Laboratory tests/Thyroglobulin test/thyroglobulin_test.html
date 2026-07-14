@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for public awareness: A stylized human neck and thyroid gland, with a small blood sample tube next to it. The thyroid gland shows subtle indicators of monitoring or surveillance (e.g., a magnifying glass icon or a subtle graph line). A medical professional (doctor or nurse) is gently explaining something to a patient, both in a clean, modern clinic setting. Use soft, professional colors like blues, greens, and muted yellows. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./thyroglobulin_test.jpg" class="card-banner" alt="Thyroglobulin test Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-laboratory-and-diagnostic-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Laboratory and diagnostic tests</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-laboratory-and-diagnostic-tests-laboratory-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Laboratory tests</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Thyroglobulin test</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Laboratory and diagnostic tests</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Laboratory tests</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Purpose of the Test:</strong> The thyroglobulin (Tg) test is primarily used as a tumor marker to monitor for recurrence or persistence of differentiated thyroid cancer (papillary and follicular types) after thyroidectomy and radioactive iodine ablation.</li>
+        <li><strong>Thyroglobulin Production:</strong> Thyroglobulin is a protein produced exclusively by thyroid follicular cells, both normal and cancerous. Its presence in the blood after total thyroidectomy indicates residual thyroid tissue or recurrent/metastatic disease.</li>
+        <li><strong>Monitoring Tool:</strong> It is a crucial biomarker for surveillance, often measured serially over time to detect changes that may indicate disease progression.</li>
+        <li><strong>TSH Stimulation:</strong> Levels are often measured under TSH stimulation (either by thyroid hormone withdrawal or administration of recombinant human TSH) to maximize the release of Tg from any remaining thyroid cells.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Post-Thyroidectomy Surveillance:</strong> The test is indicated for patients who have undergone total thyroidectomy for differentiated thyroid cancer, regardless of current symptoms, as part of routine follow-up.</li>
+        <li><strong>Suspected Recurrence:</strong> Clinical signs or symptoms suggestive of thyroid cancer recurrence, such as a new neck lump, persistent cough, voice changes (hoarseness), difficulty swallowing, or enlarged lymph nodes in the neck.</li>
+        <li><strong>Metastatic Disease:</strong> Evaluation in patients with suspected distant metastases from differentiated thyroid cancer, particularly in bone or lung.</li>
+        <li><strong>Elevated Risk Factors:</strong> Patients with a history of aggressive thyroid cancer subtypes or extensive initial disease may undergo more frequent monitoring.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Thyroglobulin Antibodies (TgAb):</strong> The presence of TgAb can interfere with Tg assay results, potentially leading to falsely low or undetectable Tg levels. TgAb levels should always be measured concurrently with Tg.</li>
+        <li><strong>Recent Surgical Intervention:</strong> Thyroglobulin levels can be transiently elevated for several weeks or months following thyroid surgery or biopsy due to tissue manipulation. Interpretation should consider the timing relative to these procedures.</li>
+        <li><strong>TSH Levels:</strong> Tg levels are TSH-dependent. For optimal sensitivity in detecting residual disease, Tg is often measured when TSH is elevated (e.g., >30 mIU/L), either endogenously (after thyroid hormone withdrawal) or exogenously (after recombinant TSH administration).</li>
+        <li><strong>Pregnancy:</strong> Thyroglobulin levels can be physiologically elevated during pregnancy, which may affect interpretation in pregnant patients with a history of thyroid cancer.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Standard Blood Draw:</strong> For a routine thyroglobulin blood test, no specific fasting or dietary restrictions are typically required. Patients can eat and drink normally before the blood draw.</li>
+        <li><strong>Thyroid Hormone Withdrawal:</strong> If the test is part of a TSH stimulation protocol involving thyroid hormone withdrawal, patients will be instructed by their physician regarding medication cessation. This is not a dietary restriction but a medication protocol impacting metabolism.</li>
+        <li><strong>Recombinant TSH Administration:</strong> If recombinant human TSH (rhTSH) is used for stimulation, there are no specific dietary restrictions associated with its administration, but patients should follow all instructions regarding injection timing.</li>
+        <li><strong>Hydration:</strong> Adequate hydration is always recommended for easier blood sample collection.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Consistent Laboratory:</strong> For serial monitoring, it is highly recommended to have all thyroglobulin and TgAb tests performed at the same laboratory using the same assay method to ensure comparability of results.</li>
+        <li><strong>Comprehensive Interpretation:</strong> Thyroglobulin results must always be interpreted in conjunction with TSH levels, TgAb status, clinical examination findings, and imaging studies (e.g., neck ultrasound, whole-body scan).</li>
+        <li><strong>Not a Screening Test:</strong> Thyroglobulin is not recommended as a screening test for initial diagnosis of thyroid cancer in individuals without a prior history of the disease.</li>
+        <li><strong>False Negatives/Positives:</strong> Be aware of potential false negatives due to TgAb interference or false positives due to residual benign thyroid tissue or recent trauma.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Primary Surveillance Marker:</strong> Thyroglobulin is the most important biochemical marker for surveillance of differentiated thyroid cancer after total thyroidectomy and radioactive iodine ablation.</li>
+        <li><strong>Dynamic Interpretation:</strong> A single Tg value is less informative than the trend of serial measurements. A rising Tg level, especially when TSH is suppressed, is highly suggestive of recurrent or metastatic disease.</li>
+        <li><strong>TgAb Management:</strong> In patients with detectable TgAb, the Tg level is unreliable. In these cases, monitoring TgAb trends and relying more heavily on imaging studies (e.g., neck ultrasound) becomes critical.</li>
+        <li><strong>Risk Stratification:</strong> Tg levels, particularly stimulated Tg, contribute significantly to post-treatment risk stratification and guide further management decisions, including the need for additional imaging or therapy.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Patient Education:</strong> Educate patients on the purpose of the thyroglobulin test, its role in monitoring their cancer, and the importance of consistent follow-up.</li>
+        <li><strong>Sample Collection:</strong> Ensure proper venipuncture technique and correct handling of blood samples (serum tube, centrifugation, storage) to prevent hemolysis or degradation that could affect results.</li>
+        <li><strong>TSH Stimulation Protocol:</strong> Understand the specific instructions for patients undergoing thyroid hormone withdrawal (e.g., symptoms of hypothyroidism) or recombinant TSH administration (e.g., injection schedule, potential side effects).</li>
+        <li><strong>Explaining TgAb:</strong> Be prepared to explain to patients why TgAb is also measured and how its presence can impact the interpretation of their Tg results.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Reference Ranges:</strong> Unstimulated Tg levels are typically &lt;0.2 ng/mL in successfully treated patients with total thyroidectomy and ablation. Stimulated Tg levels should ideally be &lt;1 ng/mL. Ranges vary by laboratory and assay.</li>
+        <li><strong>Assay Methodologies:</strong> Most common methods are immunometric assays (IMAs), including radioimmunoassays (RIAs) and enzyme-linked immunosorbent assays (ELISAs). Newer mass spectrometry methods are emerging, particularly useful in TgAb-positive patients.</li>
+        <li><strong>TSH Stimulation:</strong> Achieved either by endogenous TSH elevation (thyroid hormone withdrawal for 3-6 weeks) or exogenous recombinant human TSH (rhTSH, Thyrogen®) administration.</li>
+        <li><strong>Analytical Sensitivity:</strong> The lower limit of detection (LLOD) or functional sensitivity of the Tg assay is critical for accurate monitoring, especially for very low levels. Assays with higher sensitivity are preferred.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human torso with a stylized heart visible. An ultrasound probe is gently placed on the chest, emitting blue sound waves that penetrate towards the heart. A monitor screen in the background displays a simplified, dynamic image of the heart's chambers and valves. The overall design is clean, modern, and conveys a sense of medical technology and diagnostic clarity, suitable for public health awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./echocardiogram.jpg" class="card-banner" alt="Echocardiogram Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-tests-and-procedures" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Tests and procedures</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Echocardiogram</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Tests and procedures</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Non-Invasive Imaging:</strong> An echocardiogram is an ultrasound of the heart, using sound waves to create moving pictures of the heart's structure and function.</li><li><strong>Key Diagnostic Tool:</strong> It provides detailed information about heart chambers, valves, major blood vessels, and the pericardium.</li><li><strong>Blood Flow Assessment:</strong> Doppler echocardiography measures the speed and direction of blood flow through the heart and vessels.</li><li><strong>No Radiation Exposure:</strong> Unlike X-rays, echocardiograms do not use ionizing radiation, making them safe for repeated use and during pregnancy.</li><li><strong>Common Types:</strong> Includes Transthoracic Echocardiogram (TTE), Transesophageal Echocardiogram (TEE), and Stress Echocardiogram.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Chest Pain or Discomfort:</strong> Investigating potential causes such as coronary artery disease or pericarditis.</li><li><strong>Shortness of Breath (Dyspnea):</strong> Evaluating for heart failure, valvular disease, or pulmonary hypertension.</li><li><strong>Palpitations:</strong> Assessing for structural abnormalities that may contribute to arrhythmias.</li><li><strong>Swelling (Edema):</strong> Particularly in the legs or ankles, indicating potential heart failure.</li><li><strong>Dizziness or Fainting (Syncope):</strong> Ruling out cardiac causes like severe valvular stenosis or cardiomyopathy.</li><li><strong>Heart Murmurs:</strong> Characterizing the severity and origin of abnormal heart sounds detected during a physical exam.</li><li><strong>Fatigue:</strong> Unexplained persistent fatigue, which can be a symptom of various cardiac conditions.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Transesophageal Echocardiogram (TEE) Fasting:</strong> Patients undergoing TEE must be NPO (nothing by mouth) for 4-6 hours prior to the procedure to prevent aspiration due to sedation.</li><li><strong>Sedation for TEE:</strong> Be aware that sedation will be administered for TEE, requiring a responsible adult to drive the patient home and assist with post-procedure care.</li><li><strong>Stress Echocardiogram Medications:</strong> Patients may be advised to temporarily stop certain heart medications (e.g., beta-blockers) before a stress echocardiogram, as directed by their physician.</li><li><strong>Allergies and Medical History:</strong> Inform the medical team of any known allergies, especially to contrast agents if a bubble study is planned, and disclose all current medications and medical conditions.</li><li><strong>Pacemakers/Defibrillators:</strong> While generally safe, inform the technician if you have an implanted cardiac device.</li><li><strong>Post-Procedure Monitoring (TEE):</strong> Do not eat or drink until the gag reflex has fully returned after a TEE to prevent choking.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Transthoracic Echocardiogram (TTE):</strong> No specific dietary restrictions are typically required before a standard TTE.</li><li><strong>Transesophageal Echocardiogram (TEE):</strong> Strict NPO (nothing by mouth) for 4-6 hours prior to the procedure, including water, due to the use of sedation and the risk of aspiration.</li><li><strong>Post-TEE Reintroduction:</strong> After a TEE, begin with sips of water to ensure the gag reflex has returned, then gradually reintroduce soft foods as tolerated.</li><li><strong>Stress Echocardiogram (Pharmacological):</strong> If a pharmacological stress agent (e.g., dobutamine, adenosine) is used, avoid caffeine-containing products (coffee, tea, soda, chocolate) for 24 hours prior to the test.</li><li><strong>Hydration for Stress Echo:</strong> Maintain adequate hydration before a stress echocardiogram, unless otherwise instructed.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Post-Sedation Transport:</strong> For Transesophageal Echocardiogram (TEE), a responsible adult must be available to transport the patient home due to the effects of sedation.</li><li><strong>Activity Restrictions Post-TEE:</strong> Avoid driving, operating heavy machinery, or making important decisions for 12-24 hours following a TEE due to residual sedative effects.</li><li><strong>Report Discomfort:</strong> Patients should immediately report any chest pain, severe shortness of breath, dizziness, or unusual symptoms during or after the procedure.</li><li><strong>Gag Reflex Check:</strong> After a TEE, ensure the patient's gag reflex has fully returned before allowing any oral intake to prevent aspiration.</li><li><strong>Stress Echo Monitoring:</strong> Attendants should be aware that patients undergoing a stress echocardiogram will be closely monitored for cardiac symptoms and vital sign changes during the exercise or pharmacological stress phase.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive Cardiac Assessment:</strong> Echocardiography is indispensable for evaluating cardiac structure, function, and hemodynamics, guiding diagnosis and management of numerous heart conditions.</li><li><strong>Valvular Heart Disease:</strong> Essential for diagnosing and quantifying the severity of valvular stenosis or regurgitation, informing surgical or interventional planning.</li><li><strong>Heart Failure Management:</strong> Provides critical metrics like ejection fraction, chamber sizes, and filling pressures, crucial for diagnosing heart failure and monitoring treatment efficacy.</li><li><strong>Cardiomyopathy Evaluation:</strong> Used to identify and characterize different types of cardiomyopathies (e.g., dilated, hypertrophic, restrictive) and assess their impact on cardiac function.</li><li><strong>Pericardial Disease:</strong> Highly effective in detecting pericardial effusions, tamponade, and constrictive pericarditis.</li><li><strong>Congenital Heart Defects:</strong> A primary tool for diagnosing and following up on congenital heart anomalies in both pediatric and adult patients.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Provide clear, concise explanations of the echocardiogram procedure, addressing patient anxieties and ensuring understanding of pre-test instructions (e.g., NPO for TEE).</li><li><strong>Pre-Procedure Preparation:</strong> For TEE, ensure IV access is established, consent is obtained, and the patient adheres to fasting guidelines.</li><li><strong>Monitoring During TEE:</strong> Continuously monitor vital signs, oxygen saturation, and cardiac rhythm during TEE due to sedation and potential for complications.</li><li><strong>Post-Procedure Care (TEE):</strong> Assess for return of gag reflex, monitor for sore throat, and ensure patient safety during recovery from sedation.</li><li><strong>Stress Echocardiogram Support:</strong> Assist with patient preparation for exercise or pharmacological stress, monitor for symptoms, and ensure rapid response if adverse events occur.</li><li><strong>Documentation:</strong> Accurately document patient tolerance, vital signs, medications administered, and any observed complications during and after the procedure.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Transducer Technology:</strong> Utilizes piezoelectric crystals to generate and receive high-frequency sound waves (2-7 MHz for adult cardiac imaging).</li><li><strong>Doppler Principles:</strong> Employs the Doppler effect to measure blood flow velocity and direction, crucial for assessing valvular gradients and shunts.</li><li><strong>2D and M-Mode Imaging:</strong> Provides real-time cross-sectional views (2D) and precise measurements of cardiac structures over time (M-mode).</li><li><strong>Ejection Fraction (EF):</strong> A key quantitative measure of left ventricular systolic function, typically calculated using Simpson's method.</li><li><strong>Strain Imaging:</strong> Advanced technique to assess myocardial deformation and regional wall motion, useful in early detection of cardiac dysfunction.</li><li><strong>Contrast Echocardiography:</strong> Involves intravenous injection of microbubble contrast agents to enhance endocardial border delineation and assess myocardial perfusion.</li><li><strong>Indications:</strong> Diagnosis of ischemic heart disease, valvular heart disease, cardiomyopathies, pericardial disease, endocarditis, and congenital heart disease.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

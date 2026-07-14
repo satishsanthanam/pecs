@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration depicting a serene and comforting end-of-life care scene. A gentle, warm color palette. An elderly person is resting peacefully in bed, surrounded by a caring family member or caregiver holding their hand. Soft light fills the room. Elements symbolizing peace, dignity, and support are present, such as a subtle heart icon or a comforting blanket. The overall mood is calm and reassuring, focusing on human connection and compassionate care.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./how_to_tell_when_death_is_near.jpg" class="card-banner" alt="How to tell when death is near Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-senior-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Senior health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-senior-health-end-of-life" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">End of life</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>How to tell when death is near</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Senior health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">End of life</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding the Process:</strong> The dying process is a natural and unique journey for each individual, often characterized by a gradual decline in physical function and increased need for comfort.</li><li><strong>Focus on Comfort:</strong> The primary goal during this stage shifts from curative treatment to palliative care, emphasizing symptom management, pain relief, and emotional support to ensure dignity.</li><li><strong>Communication is Key:</strong> Open and honest communication with healthcare providers, the patient (if able), and family members is crucial for understanding changes and making informed decisions.</li><li><strong>Anticipatory Grief:</strong> Families and caregivers may experience anticipatory grief, a normal emotional response to the impending loss, which requires understanding and support.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Decreased Appetite and Thirst:</strong> A significant reduction in the desire for food and fluids is common as the body's metabolic needs decrease.</li><li><strong>Increased Sleep and Weakness:</strong> The individual may spend more time sleeping or drifting in and out of consciousness, accompanied by profound weakness and fatigue.</li><li><strong>Changes in Breathing Patterns:</strong> Breathing may become irregular, with periods of rapid breathing followed by pauses (Cheyne-Stokes respiration), or shallow, labored breaths.</li><li><strong>Circulatory Changes:</strong> Skin may become cool to the touch, especially in the extremities, and may appear mottled or discolored due as circulation diminishes.</li><li><strong>Urinary and Bowel Changes:</strong> Decreased urine output, changes in bowel habits, and potential incontinence are common as organ systems begin to shut down.</li><li><strong>Withdrawal and Restlessness:</strong> Some individuals may withdraw from their surroundings, while others may experience restlessness, agitation, or repetitive movements.</li><li><strong>Sensory Alterations:</strong> Vision may blur, and hearing is often believed to be one of the last senses to diminish, making gentle verbal communication important.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Force-Feeding:</strong> Do not attempt to force food or fluids, as this can increase the risk of aspiration and cause discomfort.</li><li><strong>Maintain Oral Hygiene:</strong> Regularly moisten lips and mouth with sponges or ice chips to prevent dryness and discomfort, even if the patient is not drinking.</li><li><strong>Ensure Pain Management:</strong> Administer prescribed pain medications consistently to prevent suffering, adjusting dosages as needed under medical guidance.</li><li><strong>Prevent Skin Breakdown:</strong> Reposition the patient frequently, use soft bedding, and keep skin clean and dry to prevent pressure ulcers.</li><li><strong>Create a Calm Environment:</strong> Minimize noise and bright lights, and maintain a peaceful atmosphere to promote comfort and reduce agitation.</li><li><strong>Respect Patient Wishes:</strong> Always refer to the patient's advance directives or expressed wishes regarding care, resuscitation, and life-sustaining treatments.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Reduced Intake is Normal:</strong> Explain to families that decreased desire for food and fluids is a natural part of the dying process and not a sign of starvation.</li><li><strong>Focus on Oral Comfort:</strong> Offer small sips of water, ice chips, or use moist sponges to keep the mouth and lips hydrated, primarily for comfort rather than nutrition.</li><li><strong>Avoid Artificial Hydration:</strong> Discuss with the medical team the appropriateness of intravenous fluids, as they may not prolong life and can sometimes increase discomfort (e.g., edema, respiratory secretions).</li><li><strong>No Solid Foods:</strong> Generally, solid foods should be avoided due to increased risk of aspiration as swallowing reflexes diminish.</li><li><strong>Small, Frequent Offerings:</strong> If the patient expresses a desire for food, offer very small amounts of easily digestible, soft foods, but do not insist.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Be Present and Reassuring:</strong> Your presence, gentle touch, and soft words can provide immense comfort, even if the patient appears unresponsive.</li><li><strong>Observe and Report Changes:</strong> Continuously monitor for new symptoms or changes in existing ones, and report them promptly to the nursing staff or physician.</li><li><strong>Facilitate Spiritual Support:</strong> If desired by the patient or family, assist in arranging visits from spiritual advisors or clergy.</li><li><strong>Support Family Members:</strong> Offer emotional support to family members, help them understand the process, and encourage them to take breaks and care for themselves.</li><li><strong>Maintain Dignity:</strong> Ensure the patient's privacy and dignity are respected at all times, especially during personal care.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early Palliative Care Referral:</strong> Recommend early involvement of palliative care specialists to optimize symptom management and support for the patient and family.</li><li><strong>Re-evaluate Treatment Goals:</strong> Shift focus from curative interventions to comfort care, aligning treatment plans with the patient's end-of-life wishes and goals.</li><li><strong>Prognostication with Sensitivity:</strong> Communicate the likely trajectory of illness and impending death with empathy and clarity, preparing families for what to expect.</li><li><strong>Medication Review:</strong> Discontinue non-essential medications and optimize those for symptom control (e.g., pain, anxiety, nausea, dyspnea).</li><li><strong>Address Ethical Dilemmas:</strong> Guide discussions around withdrawal of life support, artificial nutrition/hydration, and other ethical considerations in accordance with advance directives.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Holistic Assessment:</strong> Conduct comprehensive assessments focusing on physical, psychological, social, and spiritual needs, recognizing that comfort is paramount.</li><li><strong>Effective Communication:</strong> Practice therapeutic communication techniques, including active listening and empathetic responses, when interacting with dying patients and their families.</li><li><strong>Symptom Management Protocols:</strong> Understand and apply protocols for managing common end-of-life symptoms such as pain, dyspnea, nausea, and agitation.</li><li><strong>Cultural Competence:</strong> Be aware of and respect diverse cultural and religious beliefs surrounding death and dying, adapting care accordingly.</li><li><strong>Grief Support:</strong> Provide initial grief support and resources to families, understanding the stages of grief and the importance of compassionate presence.</li><li><strong>Post-Mortem Care:</strong> Be prepared to provide respectful and dignified post-mortem care according to institutional policies and cultural practices.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Cheyne-Stokes Respiration:</strong> A pattern of breathing characterized by progressively deeper, and sometimes faster, breathing followed by a gradual decrease that results in a temporary stop in breathing called an apnea.</li><li><strong>Mottling:</strong> A purplish or reddish-blue blotchy appearance of the skin, often seen on the extremities, indicating poor circulation and impending circulatory collapse.</li><li><strong>Terminal Agitation/Restlessness:</strong> A state of increased physical and/or psychological activity, often seen in the final hours or days of life, which may manifest as picking at bedclothes, calling out, or attempting to get out of bed.</li><li><strong>Death Rattle:</strong> Noisy breathing caused by secretions accumulating in the throat and upper airways, which the dying person is too weak to clear.</li><li><strong>Advance Directives:</strong> Legal documents (e.g., living will, durable power of attorney for healthcare) that allow individuals to make decisions about their medical care in advance, should they become unable to communicate their wishes.</li><li><strong>Palliative Sedation:</strong> The use of sedative medications to relieve intractable suffering in a terminally ill patient, typically when other palliative measures have failed.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

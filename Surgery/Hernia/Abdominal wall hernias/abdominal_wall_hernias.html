@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human torso, focusing on the abdominal area. A subtle, transparent bulge is visible on the lower abdomen or groin, indicating a hernia. The illustration should highlight the anatomical layers of the abdominal wall with a faint outline. A small, stylized mesh patch could be subtly integrated near the bulge, representing surgical repair. The overall aesthetic should be clean, informative, and suitable for a public health awareness template, avoiding any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./abdominal_wall_hernias.jpg" class="card-banner" alt="Abdominal wall hernias Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Surgery</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-surgery-hernia" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Hernia</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Abdominal wall hernias</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Surgery</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Hernia</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> An abdominal wall hernia occurs when an organ, intestine, or fatty tissue protrudes through a weak spot in the abdominal muscle wall.</li><li><strong>Common Types:</strong> Includes inguinal (groin), umbilical (navel), incisional (at a surgical scar), and femoral hernias.</li><li><strong>Causes:</strong> Often results from a combination of muscle weakness and increased intra-abdominal pressure (e.g., heavy lifting, chronic cough, straining during bowel movements, pregnancy).</li><li><strong>Complications:</strong> Can lead to incarceration (hernia contents trapped) or strangulation (blood supply cut off), which is a medical emergency.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Visible Bulge:</strong> A noticeable lump or swelling in the abdomen or groin area, which may become more prominent with coughing, straining, or standing.</li><li><strong>Pain or Discomfort:</strong> An aching, burning, or heavy sensation at the site of the bulge, often worsening with activity.</li><li><strong>Pressure Sensation:</strong> A feeling of pressure or weakness in the affected area.</li><li><strong>Digestive Changes:</strong> In cases of incarcerated or strangulated hernias, symptoms may include nausea, vomiting, severe abdominal pain, and changes in bowel habits.</li><li><strong>Irreducibility:</strong> The bulge cannot be pushed back into the abdomen, indicating potential incarceration.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Heavy Lifting:</strong> Post-operatively, strictly adhere to weight restrictions to prevent strain on the surgical repair and reduce recurrence risk.</li><li><strong>Manage Chronic Conditions:</strong> Address chronic cough, constipation, or urinary retention to minimize intra-abdominal pressure.</li><li><strong>Monitor for Complications:</strong> Be vigilant for signs of incarceration or strangulation, such as sudden severe pain, fever, rapid heart rate, or a discolored, tender, irreducible bulge.</li><li><strong>Proper Wound Care:</strong> Follow all post-operative instructions for incision care to prevent infection and promote healing.</li><li><strong>Smoking Cessation:</strong> Smoking impairs wound healing and increases the risk of hernia recurrence due to collagen degradation.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-operative Fasting:</strong> Adhere strictly to NPO (nil per os) guidelines provided by the surgical team to prevent aspiration during anesthesia.</li><li><strong>Post-operative Hydration:</strong> Begin with clear liquids post-surgery, gradually advancing to a regular diet as tolerated, ensuring adequate fluid intake.</li><li><strong>Fiber-Rich Diet:</strong> Incorporate high-fiber foods (e.g., fruits, vegetables, whole grains) post-operatively to prevent constipation and straining during bowel movements.</li><li><strong>Avoid Gas-Producing Foods:</strong> Initially, limit foods known to cause bloating and gas (e.g., beans, broccoli, carbonated drinks) to minimize abdominal discomfort.</li><li><strong>Small, Frequent Meals:</strong> Opt for smaller, more frequent meals to aid digestion and reduce abdominal distension during recovery.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Care:</strong> Seek immediate medical attention if experiencing sudden, severe pain at the hernia site, accompanied by nausea, vomiting, fever, or a hard, tender, irreducible bulge.</li><li><strong>Post-operative Adherence:</strong> Strictly follow all discharge instructions regarding activity restrictions, wound care, and medication regimens to ensure proper healing and prevent complications.</li><li><strong>Pain Management:</strong> Take prescribed pain medication as directed; do not self-medicate with over-the-counter drugs without consulting your physician, especially if on other medications.</li><li><strong>Activity Restrictions:</strong> Avoid strenuous activities, heavy lifting, and excessive straining for the duration recommended by your surgeon.</li><li><strong>Report Changes:</strong> Promptly report any signs of infection (redness, swelling, pus), persistent pain, or recurrence of the bulge to your healthcare provider.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early Diagnosis:</strong> Prompt clinical evaluation is crucial for accurate diagnosis and to differentiate between reducible and irreducible hernias, guiding timely intervention.</li><li><strong>Surgical Necessity:</strong> Surgical repair is the definitive treatment for most abdominal wall hernias to prevent complications such as incarceration and strangulation.</li><li><strong>Individualized Approach:</strong> Surgical options (open vs. laparoscopic, mesh vs. non-mesh repair) are tailored based on hernia type, size, patient health, and surgeon expertise.</li><li><strong>Pre-operative Assessment:</strong> A thorough pre-operative assessment is essential to identify co-morbidities and optimize patient health before surgery.</li><li><strong>Recurrence Risk:</strong> Patients should be counseled on factors that increase recurrence risk and strategies to mitigate them, including lifestyle modifications.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Educate patients on hernia types, symptoms, pre-operative preparation (NPO, skin prep), and post-operative expectations (pain, activity, wound care).</li><li><strong>Pre-operative Checklist:</strong> Ensure all pre-operative assessments are complete, including vital signs, lab results, and patient understanding of the procedure.</li><li><strong>Post-operative Monitoring:</strong> Closely monitor vital signs, pain levels, incision site for signs of infection or hematoma, and assess for return of bowel function.</li><li><strong>Pain Management:</strong> Administer analgesics as prescribed and assess pain effectiveness; educate on non-pharmacological pain relief methods.</li><li><strong>Mobility & Activity:</strong> Assist with early ambulation post-surgery to prevent complications like DVT and pneumonia, while adhering to activity restrictions.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Anatomical Locations:</strong> Inguinal canal (direct/indirect), femoral canal, umbilical ring, linea alba (epigastric), previous surgical incision (incisional), Spigelian fascia.</li><li><strong>Pathophysiology:</strong> Protrusion of peritoneum or viscera through a congenital or acquired defect in the musculoaponeurotic layer of the abdominal wall, often exacerbated by increased intra-abdominal pressure.</li><li><strong>Diagnostic Modalities:</strong> Primarily clinical examination; imaging (ultrasound, CT scan, MRI) may be used for equivocal cases, occult hernias, or to assess contents/complications.</li><li><strong>Surgical Techniques:</strong> Herniorrhaphy (tissue repair, e.g., Bassini, Shouldice), Hernioplasty (mesh repair, e.g., Lichtenstein, TAPP, TEP), robotic-assisted repair.</li><li><strong>Complications:</strong> Incarceration, strangulation, bowel obstruction, chronic post-herniorrhaphy pain (CPHP), surgical site infection, hematoma, seroma, recurrence.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a person struggling with jet lag. The scene includes an airplane flying across a world map with multiple time zones indicated by clocks showing different times. The person is shown yawning, rubbing their eyes, and looking tired, perhaps with a coffee cup in one hand and a pillow in the other. Elements like a sun rising on one side and a moon setting on the other symbolize the time zone shift. The overall style is clean, modern, and uses a calming color palette, suitable for public health awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./jet_lag.jpg" class="card-banner" alt="Jet lag Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-sleep" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Sleep</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-sleep-jet-lag" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Jet lag</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Jet lag</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Sleep</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Jet lag</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Circadian Rhythm Disruption:</strong> Jet lag is a temporary sleep disorder caused by rapid travel across multiple time zones, disrupting the body's internal clock.</li><li><strong>Mismatch of Internal and External Clocks:</strong> The body's natural sleep-wake cycle (circadian rhythm) remains aligned with the departure time zone, while the external environment shifts.</li><li><strong>Severity Factors:</strong> Symptoms are generally more pronounced when crossing more than three time zones, and often worse with eastward travel (losing time) compared to westward travel (gaining time).</li><li><strong>Adjustment Period:</strong> The body typically adjusts at a rate of approximately one time zone per day, though individual experiences vary.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Sleep Disturbances:</strong> Difficulty falling asleep at the new local bedtime (insomnia) or waking up too early, and excessive daytime sleepiness.</li><li><strong>Profound Fatigue:</strong> General tiredness, lack of energy, and reduced physical and mental stamina.</li><li><strong>Cognitive Impairment:</strong> Difficulty concentrating, impaired memory, reduced alertness, and decreased performance on tasks.</li><li><strong>Gastrointestinal Distress:</strong> Nausea, indigestion, constipation, or diarrhea due to disrupted eating schedules and gut microbiome.</li><li><strong>Mood Alterations:</strong> Irritability, malaise, anxiety, and a general feeling of being unwell.</li><li><strong>Headaches:</strong> A common accompanying symptom, often mild to moderate in intensity.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Pre-Travel Sleep Adjustment:</strong> Gradually shift your sleep schedule by 30-60 minutes each day for a few days before travel to align closer with the destination time zone.</li><li><strong>Optimal Hydration:</strong> Drink plenty of water before, during, and after your flight to counteract dehydration, which can exacerbate jet lag symptoms.</li><li><strong>Strategic Light Exposure:</strong> Seek bright natural light upon arrival during the local daytime to help reset your circadian rhythm; avoid bright light before local bedtime.</li><li><strong>Avoid Excessive Caffeine & Alcohol:</strong> Limit or avoid these substances, especially several hours before your intended sleep time, as they can disrupt sleep patterns.</li><li><strong>Planned Napping:</strong> If necessary, take short power naps (20-30 minutes) during the day to combat fatigue, but avoid long naps that can deepen sleep and further disrupt night sleep.</li><li><strong>Consult for Medications:</strong> Discuss with a physician about the potential use of melatonin or short-acting hypnotics for severe sleep disturbances, understanding their risks and benefits.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Prioritize Hydration:</strong> Maintain consistent fluid intake, primarily water, throughout your journey and upon arrival to mitigate dehydration effects.</li><li><strong>Restrict Stimulants & Depressants:</strong> Avoid or significantly limit caffeine and alcoholic beverages, particularly during the flight and close to your new local bedtime, as they interfere with sleep architecture.</li><li><strong>Align Meal Times:</strong> Begin eating meals according to the destination's local time as soon as possible to help synchronize your body's internal clock.</li><li><strong>Opt for Lighter Meals:</strong> Choose easily digestible, lighter meals, especially during the initial adjustment period and before your new local bedtime.</li><li><strong>Avoid Heavy Feasts:</strong> Refrain from consuming large, heavy, or spicy meals close to your intended sleep time, as they can cause digestive discomfort and disrupt sleep.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Patience is Key:</strong> Advise individuals that full adjustment to a new time zone takes time, and symptoms will gradually subside.</li><li><strong>Avoid Impaired Activities:</strong> Caution against driving, operating heavy machinery, or making critical decisions if experiencing significant fatigue or cognitive impairment.</li><li><strong>Exacerbation of Conditions:</strong> Be aware that jet lag can worsen symptoms of pre-existing medical conditions, such as cardiovascular disease, diabetes, or mental health disorders.</li><li><strong>Vulnerable Populations:</strong> Recognize that children, older adults, and individuals with chronic illnesses may experience more severe or prolonged jet lag symptoms.</li><li><strong>Medication Timing:</strong> For individuals on time-sensitive medications, consult a physician on how to adjust dosing schedules to the new time zone.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Individualized Management:</strong> Recommend personalized strategies based on the patient's travel itinerary, health status, and previous jet lag experiences.</li><li><strong>Melatonin Guidance:</strong> Provide specific advice on melatonin dosage (typically 0.5-5 mg) and timing (e.g., 30-60 minutes before desired sleep time at destination) for sleep onset.</li><li><strong>Short-Term Hypnotics:</strong> Consider prescribing short-acting hypnotics for severe, debilitating insomnia, emphasizing their short-term use and potential side effects like rebound insomnia or dependency.</li><li><strong>Pre-existing Sleep Disorders:</strong> Screen for and address any underlying sleep disorders (e.g., sleep apnea, restless legs syndrome) that could complicate jet lag recovery.</li><li><strong>Environmental Adjustments:</strong> Counsel patients on optimizing their sleep environment at the destination (dark, quiet, cool room) and utilizing light therapy devices if appropriate.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Focus:</strong> Educate patients on the physiological basis of jet lag, effective non-pharmacological interventions, and the importance of adherence to new time zone schedules.</li><li><strong>Comprehensive Assessment:</strong> Conduct a thorough assessment of the patient's usual sleep patterns, travel history, current symptoms, and any co-morbidities that may influence jet lag severity.</li><li><strong>Implementation of Non-Pharmacological Strategies:</strong> Guide patients on practical strategies such as timed light exposure, strategic napping, and maintaining hydration.</li><li><strong>Monitoring and Evaluation:</strong> Monitor the patient's progress in adjusting to the new time zone, assess symptom severity, and evaluate the effectiveness of implemented interventions.</li><li><strong>Special Considerations for Flight Crew:</strong> Understand the unique challenges faced by airline personnel and frequent business travelers, offering tailored advice for chronic circadian disruption.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Circadian Rhythm:</strong> An endogenous 24-hour cycle that regulates physiological processes, including the sleep-wake cycle, hormone secretion, and body temperature.</li><li><strong>Suprachiasmatic Nucleus (SCN):</strong> The primary pacemaker of the circadian rhythm, located in the hypothalamus, which receives light input from the retina.</li><li><strong>Zeitgebers:</strong> External cues (e.g., light, social interaction, meal times) that synchronize the SCN with the external environment.</li><li><strong>Melatonin:</strong> A hormone secreted by the pineal gland, primarily at night, which signals darkness and promotes sleep, playing a key role in circadian rhythm regulation.</li><li><strong>Phase Shift:</strong> The adjustment of the circadian rhythm to a new time zone, which involves either advancing (eastward travel) or delaying (westward travel) the internal clock.</li><li><strong>Chronotherapy:</strong> A treatment approach that involves strategically timed exposure to light or melatonin to help reset the circadian rhythm.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

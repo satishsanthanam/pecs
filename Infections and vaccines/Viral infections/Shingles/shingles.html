@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a person, possibly an older adult, with a distinct, unilateral rash of fluid-filled blisters on their torso, following a dermatomal pattern. The person's expression should convey discomfort but also a sense of seeking relief or prevention. Elements like a subtle nerve pathway overlay or a protective bandage over the rash can be included. In the background, subtly illustrate a vaccine syringe or a calendar marking a vaccination schedule. Use a clean, modern aesthetic with a limited, calming color palette suitable for public health awareness, avoiding any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./shingles.jpg" class="card-banner" alt="Shingles Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-infections-and-vaccines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Infections and vaccines</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-infections-and-vaccines-viral-infections" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Viral infections</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Shingles</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Infections and vaccines</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Viral infections</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Shingles, or herpes zoster, is a painful viral infection caused by the reactivation of the varicella-zoster virus (VZV), the same virus that causes chickenpox.</li><li><strong>Cause:</strong> After a chickenpox infection, VZV remains dormant in nerve tissue near the spinal cord and brain, reactivating years later due to factors like age or weakened immunity.</li><li><strong>Manifestation:</strong> Characterized by a painful rash with fluid-filled blisters, typically appearing on one side of the body or face, following a dermatomal pattern.</li><li><strong>Risk Factors:</strong> Advanced age (over 50), weakened immune system (due to illness, stress, or medications), and having had chickenpox are primary risk factors.</li><li><strong>Contagion:</strong> While shingles itself is not contagious, the VZV can be transmitted from a person with active shingles blisters to individuals who have never had chickenpox or the chickenpox vaccine, causing them to develop chickenpox.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Early Symptoms:</strong> Often begins with localized pain, burning, tingling, numbness, or itching in the area where the rash will eventually appear, days before the rash develops.</li><li><strong>Rash Development:</strong> A red rash typically emerges, followed by clusters of fluid-filled blisters that usually break open, crust over, and then heal over several weeks.</li><li><strong>Rash Pattern:</strong> The rash is almost always unilateral, affecting only one side of the body, and follows the distribution of a single nerve (dermatome).</li><li><strong>Systemic Symptoms:</strong> May include fever, headache, fatigue, and an upset stomach, particularly in the initial stages.</li><li><strong>Complications:</strong> Potential complications include postherpetic neuralgia (PHN), vision loss (if affecting the eye, known as herpes zoster ophthalmicus), and hearing or balance problems (Ramsay Hunt syndrome).</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Vaccination:</strong> The recombinant zoster vaccine (RZV) is highly recommended for adults aged 50 and older, even if they have had shingles before, to prevent future episodes and reduce the risk of PHN.</li><li><strong>Avoid Contact:</strong> Individuals with active shingles should cover their rash and avoid contact with pregnant women who haven't had chickenpox, premature infants, and immunocompromised individuals until the blisters have crusted over.</li><li><strong>Hand Hygiene:</strong> Frequent and thorough hand washing is essential to prevent the spread of the virus, especially after touching the rash.</li><li><strong>Immunocompromised Patients:</strong> Extra vigilance and prompt medical attention are crucial for individuals with weakened immune systems who develop shingles, as they are at higher risk for severe disease and complications.</li><li><strong>Early Treatment:</strong> Seek medical attention promptly, ideally within 72 hours of rash onset, for antiviral therapy to reduce the severity and duration of the illness and lower the risk of complications.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Immune Support:</strong> Focus on a balanced diet rich in vitamins and minerals to support overall immune function during recovery.</li><li><strong>Hydration:</strong> Maintain adequate fluid intake, especially if experiencing fever or discomfort, to prevent dehydration.</li><li><strong>Avoid Inflammatory Foods:</strong> Some individuals may find it beneficial to limit processed foods, high sugar intake, and excessive saturated fats, which can contribute to inflammation.</li><li><strong>Nutrient-Dense Foods:</strong> Incorporate foods rich in B vitamins (e.g., whole grains, leafy greens), Vitamin C (e.g., citrus fruits, berries), and Zinc (e.g., nuts, legumes) to support nerve health and immune response.</li><li><strong>Soft Foods (if oral lesions):</strong> If shingles affects the mouth or causes discomfort with chewing, opt for soft, bland foods and liquids to ease consumption.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Antiviral Therapy:</strong> Administer antiviral medications (e.g., acyclovir, valacyclovir, famciclovir) as prescribed, emphasizing the importance of starting treatment within 72 hours of rash onset for optimal efficacy.</li><li><strong>Pain Management:</strong> Provide appropriate analgesics, ranging from over-the-counter pain relievers to prescription neuropathic pain medications (e.g., gabapentin, pregabalin), to manage the often severe pain.</li><li><strong>Wound Care:</strong> Instruct patients to keep the blistered areas clean and dry, avoiding scratching to prevent secondary bacterial infections and scarring. Cool compresses may offer relief.</li><li><strong>Ophthalmological Consultation:</strong> Immediately refer patients with suspected herpes zoster ophthalmicus (shingles affecting the eye or forehead) to an ophthalmologist to prevent permanent vision loss.</li><li><strong>Patient Education on Transmission:</strong> Educate patients on covering lesions and avoiding contact with susceptible individuals (non-immune pregnant women, infants, immunocompromised) until all lesions have crusted over.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Diagnosis:</strong> Clinical diagnosis is typically made based on the characteristic unilateral, dermatomal rash and associated pain; laboratory confirmation (PCR) may be used for atypical presentations.</li><li><strong>Treatment Goals:</strong> Primary goals are to alleviate acute pain, shorten the duration of the rash, and prevent complications, particularly postherpetic neuralgia (PHN).</li><li><strong>Vaccine Efficacy:</strong> Emphasize the high efficacy of the recombinant zoster vaccine (Shingrix) in preventing shingles and significantly reducing the incidence and severity of PHN.</li><li><strong>Patient Education:</strong> Counsel patients on the natural history of the disease, the importance of adherence to antiviral therapy, pain management strategies, and the benefits of vaccination.</li><li><strong>Referrals:</strong> Consider referrals to pain specialists for intractable PHN, ophthalmologists for ocular involvement, or neurologists for rare neurological complications.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pathophysiology Review:</strong> Understand the reactivation of latent VZV in dorsal root ganglia and its dermatomal spread, leading to characteristic symptoms.</li><li><strong>Assessment Skills:</strong> Accurately assess the rash's distribution, blister characteristics, and pain intensity using appropriate pain scales. Monitor for signs of secondary infection or complications.</li><li><strong>Medication Administration & Education:</strong> Ensure timely administration of antiviral medications and provide comprehensive patient education on dosage, side effects, and the importance of adherence.</li><li><strong>Infection Control:</strong> Implement contact precautions for hospitalized patients with active, uncovered lesions to prevent nosocomial transmission of VZV.</li><li><strong>Patient Support & Counseling:</strong> Offer emotional support and practical advice for managing discomfort, preventing transmission, and coping with potential chronic pain (PHN).</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>ICD-10 Codes:</strong> B02.9 (Zoster without complication), B02.3 (Zoster ophthalmicus), G53.0 (Postherpetic neuralgia).</li><li><strong>Pharmacology:</strong> Antivirals (Acyclovir, Valacyclovir, Famciclovir); Neuropathic pain agents (Gabapentin, Pregabalin); Topical analgesics (Lidocaine patches, Capsaicin cream).</li><li><strong>Vaccine:</strong> Recombinant Zoster Vaccine (RZV), e.g., Shingrix, administered in two doses.</li><li><strong>Complications:</strong> Postherpetic Neuralgia (PHN), Herpes Zoster Ophthalmicus (HZO), Ramsay Hunt Syndrome (RHS), bacterial superinfection, motor neuropathy.</li><li><strong>Diagnostic Tests:</strong> Primarily clinical; PCR for VZV DNA from lesion fluid or crusts for atypical cases or confirmation in immunocompromised patients.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

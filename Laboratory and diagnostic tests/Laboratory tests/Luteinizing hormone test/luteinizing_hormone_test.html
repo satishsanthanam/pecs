@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a diverse group of medical professionals (doctor, nurse, lab technician) discussing a Luteinizing Hormone (LH) test result with a patient. The scene should include subtle visual elements like a stylized hormone molecule, a calendar with a marked date, or a microscope, symbolizing the diagnostic process. The overall design should be clean, modern, and suitable for public health awareness, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./luteinizing_hormone_test.jpg" class="card-banner" alt="Luteinizing hormone test Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-laboratory-and-diagnostic-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Laboratory and diagnostic tests</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-laboratory-and-diagnostic-tests-laboratory-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Laboratory tests</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Luteinizing hormone test</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Laboratory and diagnostic tests</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Laboratory tests</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Test Purpose:</strong> The Luteinizing Hormone (LH) test measures the level of LH in blood or urine, a crucial hormone produced by the pituitary gland.</li><li><strong>Role in Women:</strong> LH triggers ovulation and stimulates the corpus luteum to produce progesterone after ovulation.</li><li><strong>Role in Men:</strong> LH stimulates Leydig cells in the testes to produce testosterone.</li><li><strong>Clinical Indications:</strong> Used to evaluate infertility, menstrual irregularities, pituitary disorders, and issues related to puberty in both sexes.</li><li><strong>Interpretation:</strong> Abnormal LH levels can indicate various conditions, including polycystic ovary syndrome (PCOS), primary ovarian failure, hypogonadism, or pituitary dysfunction.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>For Women:</strong> Irregular menstrual cycles, amenorrhea (absence of periods), difficulty conceiving, recurrent miscarriages, or symptoms suggestive of menopause (e.g., hot flashes, vaginal dryness).</li><li><strong>For Men:</strong> Low libido, erectile dysfunction, fatigue, reduced muscle mass, gynecomastia, or infertility.</li><li><strong>In Children:</strong> Signs of delayed puberty (lack of secondary sexual characteristics by expected age) or precocious puberty (early onset of puberty).</li><li><strong>General:</strong> Unexplained weight changes, mood disturbances, or other symptoms indicative of hormonal imbalance.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Medication Disclosure:</strong> Inform your clinician about all medications, supplements, and hormonal therapies you are taking, as they can significantly impact LH levels (e.g., oral contraceptives, clomiphene, digoxin).</li><li><strong>Timing for Women:</strong> For women, the timing of the test relative to the menstrual cycle is critical; multiple samples may be required over several days to track ovulation.</li><li><strong>Recent Illness/Stress:</strong> Acute illness, significant stress, or strenuous exercise can temporarily influence hormone levels; discuss any such factors with your healthcare provider.</li><li><strong>Pregnancy Status:</strong> Pregnancy can affect LH levels; ensure your clinician is aware if there is any possibility of pregnancy.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Fasting Requirements:</strong> Typically, no specific fasting is required for an LH blood test unless other concurrent blood tests (e.g., glucose, lipid panel) necessitate it. Always confirm with your laboratory or clinician.</li><li><strong>Hydration:</strong> Maintain normal hydration; excessive fluid intake or dehydration is generally not a direct concern for LH testing but can affect overall blood draw ease.</li><li><strong>Alcohol/Caffeine:</strong> No specific restrictions on alcohol or caffeine intake are usually required before an LH test, but moderation is always advised for general health.</li><li><strong>Pre-test Meals:</strong> You can generally eat and drink as usual before an LH test, unless advised otherwise for specific reasons by your healthcare provider.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Sample Collection:</strong> LH is most commonly measured via a blood sample (venipuncture). Urine samples can also be used, particularly for ovulation prediction kits.</li><li><strong>Blood Draw Procedure:</strong> A healthcare professional will draw blood, usually from a vein in your arm. The procedure is quick and generally well-tolerated.</li><li><strong>Urine Collection:</strong> If a urine test is ordered, specific instructions regarding collection time (e.g., first morning urine, multiple daily samples) will be provided. Follow these carefully for accurate results.</li><li><strong>Timing for Ovulation Tracking:</strong> For women tracking ovulation, tests may be performed daily or every other day around the expected time of ovulation to detect the LH surge.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive Evaluation:</strong> LH test results are rarely interpreted in isolation; they are considered alongside other hormone levels (e.g., FSH, estrogen, testosterone, progesterone) and the patient's clinical history and symptoms.</li><li><strong>Diagnostic Clarity:</strong> Crucial for differentiating between primary (gonadal) and secondary (pituitary/hypothalamic) causes of reproductive dysfunction.</li><li><strong>Treatment Guidance:</strong> Abnormal LH levels guide decisions regarding fertility treatments, hormone replacement therapy, or further diagnostic imaging (e.g., pituitary MRI).</li><li><strong>Patient Counseling:</strong> Emphasize the importance of adhering to specific test timing instructions, especially for women, to ensure the most accurate and clinically relevant results.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Physiological Basis:</strong> LH is a gonadotropin, regulated by Gonadotropin-Releasing Hormone (GnRH) from the hypothalamus. Its pulsatile release is key to its function.</li><li><strong>Clinical Significance in PCOS:</strong> Women with PCOS often exhibit an elevated LH:FSH ratio, contributing to anovulation and androgen excess.</li><li><strong>Nursing Responsibilities:</strong> Educating patients on the purpose of the test, proper sample collection techniques (especially for urine kits), and the importance of disclosing all medications.</li><li><strong>Monitoring & Support:</strong> Nurses play a vital role in monitoring patients for symptoms related to hormonal imbalances and providing emotional support during fertility investigations.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Related Hormones:</strong> Follicle-Stimulating Hormone (FSH), Estrogen (Estradiol), Progesterone, Testosterone, Gonadotropin-Releasing Hormone (GnRH).</li><li><strong>Associated Conditions:</strong> Polycystic Ovary Syndrome (PCOS), Hypogonadotropic Hypogonadism, Primary Ovarian Insufficiency, Pituitary Adenoma, Menopause, Precocious Puberty.</li><li><strong>Diagnostic Pathways:</strong> Often part of a fertility panel, pituitary function tests, or workup for menstrual disorders and pubertal abnormalities.</li><li><strong>ICD-10 Codes:</strong> Relevant codes include E28.2 (Polycystic ovarian syndrome), E23.0 (Hypopituitarism), N97.9 (Female infertility, unspecified), E29.1 (Testicular hypofunction).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

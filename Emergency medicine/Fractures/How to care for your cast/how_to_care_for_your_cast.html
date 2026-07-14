@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a patient, possibly a child or adult, with a cast on their arm or leg. The scene depicts elements of cast care: a hand gently elevating the casted limb, a water droplet icon with a 'no' symbol, and a small first-aid cross. The background is clean and modern, with subtle medical or home care elements. The overall style is friendly, informative, and emphasizes safety and healing.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./how_to_care_for_your_cast.jpg" class="card-banner" alt="How to care for your cast Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-emergency-medicine" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency medicine</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-emergency-medicine-fractures" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Fractures</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>How to care for your cast</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Emergency medicine</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Fractures</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose of Cast</strong>: A cast immobilizes a fractured bone or injured limb, providing stability essential for proper healing and preventing further damage.</li><li><strong>Initial Swelling Expectation</strong>: It is common to experience some swelling in the affected limb immediately after cast application. Elevating the limb above heart level helps reduce this.</li><li><strong>Keep the Cast Dry</strong>: Water can weaken plaster casts, cause skin irritation, and promote infection under fiberglass casts. Always protect the cast from moisture.</li><li><strong>Do Not Insert Objects</strong>: Never insert anything into the cast to scratch an itch or retrieve items. This can damage the skin, leading to infection or pressure sores.</li><li><strong>Scheduled Follow-up Appointments</strong>: Adhere strictly to all scheduled follow-up appointments with your physician to monitor healing progress and address any concerns.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Increased or Worsening Pain</strong>: Persistent, severe, or increasing pain, especially if it's sharp, throbbing, or not relieved by prescribed medication, warrants immediate medical attention.</li><li><strong>Numbness or Tingling Sensation</strong>: New onset of numbness, tingling, or a 'pins and needles' sensation in the fingers or toes of the affected limb can indicate nerve compression or circulatory compromise.</li><li><strong>Excessive Swelling or Tightness</strong>: Swelling that causes the cast to feel excessively tight, or swelling in the exposed digits that is disproportionate to initial expectations, requires evaluation.</li><li><strong>Skin Discoloration</strong>: Any change in the color of the exposed skin (fingers or toes) to pale, blue, or purple, or if they feel unusually cold, suggests impaired circulation.</li><li><strong>Foul Odor or Discharge</strong>: A persistent foul smell emanating from the cast, or any visible discharge seeping from the cast, is a strong indicator of infection or skin breakdown underneath.</li><li><strong>Fever or Chills</strong>: Systemic symptoms such as fever, chills, or general malaise can signal an infection related to the injury or cast.</li><li><strong>Cast Damage or Looseness</strong>: Cracks, soft spots, or a noticeable change in the fit of the cast (too loose or too tight) can compromise its effectiveness and require assessment.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Limb Elevation</strong>: Keep the casted limb elevated above the level of your heart as much as possible, especially during the first 24-48 hours, to minimize swelling.</li><li><strong>Ice Application (Indirect)</strong>: Apply ice packs wrapped in a thin towel to the areas *around* the cast, not directly on it, to help reduce swelling and pain.</li><li><strong>Avoid Weight Bearing</strong>: Unless explicitly instructed by your physician, do not put any weight or pressure on the casted limb to prevent re-injury or displacement of the fracture.</li><li><strong>No Self-Adjustment or Removal</strong>: Never attempt to trim, cut, or remove the cast yourself. Any modifications must be performed by a healthcare professional.</li><li><strong>Protect from Impact</strong>: Shield the cast from bumps, knocks, or direct pressure that could damage it or the underlying injury.</li><li><strong>Regular Neurovascular Checks</strong>: Periodically check the color, warmth, sensation, and movement of your exposed fingers or toes to monitor for signs of circulatory or nerve compromise.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Adequate Hydration</strong>: Maintain a consistent intake of water and other non-caffeinated fluids to support overall healing, prevent constipation (common with reduced mobility and pain medications), and maintain skin integrity.</li><li><strong>Nutrient-Rich Diet</strong>: Focus on a diet rich in protein (for tissue repair), calcium and Vitamin D (for bone formation), and Vitamin C (for collagen synthesis and wound healing).</li><li><strong>Fiber Intake</strong>: Increase dietary fiber from fruits, vegetables, and whole grains to prevent constipation, which can be exacerbated by inactivity and opioid pain medications.</li><li><strong>Avoid Smoking and Excessive Alcohol</strong>: Both smoking and excessive alcohol consumption are known to impair bone healing and increase the risk of complications.</li><li><strong>Monitor for Medication-Related Nausea</strong>: If pain medications cause nausea, try eating small, bland meals and avoid fatty or spicy foods.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Assist with Daily Activities</strong>: Provide assistance with activities of daily living (ADLs) such as dressing, bathing, and mobility, especially if the patient's independence is compromised by the cast.</li><li><strong>Monitor for Warning Signs</strong>: Be vigilant in observing the patient for any of the 'Associated Symptoms' listed above (e.g., increased pain, discoloration, foul odor) and report them promptly to medical staff.</li><li><strong>Ensure Proper Positioning</strong>: Help the patient maintain proper elevation of the casted limb and ensure it is supported comfortably to prevent pressure points.</li><li><strong>Medication Adherence Support</strong>: Ensure the patient takes prescribed pain medications and any other medications as directed, monitoring for side effects.</li><li><strong>Safe Transportation</strong>: Assist with safe transfers and transportation for follow-up appointments, ensuring the casted limb is protected and supported.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Strict Adherence to Instructions</strong>: The success of fracture healing largely depends on strict adherence to cast care instructions, activity restrictions, and medication regimens.</li><li><strong>Prompt Reporting of Concerns</strong>: Do not hesitate to contact your healthcare provider immediately if you experience any concerning symptoms or changes in your condition. Early intervention can prevent serious complications.</li><li><strong>Immobilization is Paramount</strong>: The cast's primary role is to provide stable immobilization. Any attempt to remove or tamper with it can jeopardize the healing process and necessitate further intervention.</li><li><strong>Anticipate Rehabilitation</strong>: Understand that once the cast is removed, a period of physical therapy or rehabilitation will likely be necessary to regain strength, flexibility, and function in the affected limb.</li><li><strong>Effective Pain Management</strong>: Utilize prescribed analgesics as directed to manage pain effectively, which is crucial for comfort and adherence to rest protocols.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Neurovascular Assessment (5 Ps)</strong>: Routinely assess the 5 Ps: Pain, Pallor, Paresthesia, Pulselessness, and Paralysis in the affected extremity to detect early signs of compartment syndrome or neurovascular compromise.</li><li><strong>Comprehensive Patient Education</strong>: Provide thorough education on cast care, warning signs, activity restrictions, and proper use of assistive devices (e.g., crutches), ensuring patient and caregiver understanding.</li><li><strong>Skin Integrity Monitoring</strong>: Inspect skin around cast edges for redness, irritation, pressure areas, or signs of breakdown. Teach patients how to protect skin from cast edges.</li><li><strong>Pain Management and Assessment</strong>: Assess pain levels using appropriate scales, administer prescribed analgesics, and evaluate their effectiveness, adjusting care plans as needed.</li><li><strong>Mobility and Safety</strong>: Instruct on safe transfer techniques and ambulation with assistive devices, emphasizing fall prevention and proper body mechanics to protect the casted limb.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Compartment Syndrome</strong>: A serious condition where increased pressure within a confined muscle compartment compromises circulation and nerve function, requiring immediate fasciotomy.</li><li><strong>Pressure Ulcers (Sores)</strong>: Localized injury to the skin and/or underlying tissue, usually over a bony prominence, resulting from prolonged pressure under the cast.</li><li><strong>Deep Vein Thrombosis (DVT)</strong>: Formation of a blood clot in a deep vein, often in the leg, a risk factor due to immobility associated with cast wear.</li><li><strong>Cast Types</strong>: Includes Plaster of Paris (heavier, less durable when wet) and Fiberglass (lighter, more durable, water-resistant exterior but not waterproof).</li><li><strong>Ischemic Contracture</strong>: Permanent shortening of a muscle or joint due to prolonged lack of blood supply, a severe complication of untreated compartment syndrome.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

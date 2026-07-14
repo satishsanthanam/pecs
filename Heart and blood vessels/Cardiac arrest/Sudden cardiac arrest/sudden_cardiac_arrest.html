@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for public awareness of sudden cardiac arrest. Depict a stylized human heart with a lightning bolt or electrical surge icon emanating from it, symbolizing an electrical malfunction. Around the heart, show simplified figures performing CPR and using an AED. Include a clock or timer element to emphasize urgency. The overall design should be clean, modern, and convey a sense of emergency and immediate action. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./sudden_cardiac_arrest.jpg" class="card-banner" alt="Sudden cardiac arrest Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-cardiac-arrest" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Cardiac arrest</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Sudden cardiac arrest</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Cardiac arrest</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Sudden cardiac arrest (SCA) is an abrupt loss of heart function, breathing, and consciousness, resulting from an electrical disturbance in the heart that disrupts its pumping action.</li><li><strong>Distinction from Heart Attack:</strong> SCA is an electrical problem, while a heart attack is a 'plumbing' problem (blocked artery). A heart attack can sometimes lead to SCA.</li><li><strong>Urgency:</strong> SCA is a medical emergency requiring immediate intervention (CPR and defibrillation) to restore heart rhythm and prevent brain damage or death.</li><li><strong>Primary Cause:</strong> Often caused by life-threatening arrhythmias, most commonly ventricular fibrillation (VF) or pulseless ventricular tachycardia (pVT).</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Sudden Collapse:</strong> The individual suddenly falls or slumps over without warning.</li><li><strong>Unresponsiveness:</strong> The person does not respond to shaking or shouting.</li><li><strong>Absence of Breathing:</strong> No breathing or only gasping/agonal breaths are observed.</li><li><strong>No Pulse:</strong> There is no detectable pulse in major arteries (e.g., carotid or femoral).</li><li><strong>Loss of Consciousness:</strong> Immediate and complete loss of awareness.</li><li><strong>Preceding Symptoms (less common):</strong> Some individuals may experience chest pain, shortness of breath, palpitations, dizziness, or lightheadedness shortly before collapse.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Risk Factor Management:</strong> Actively manage underlying conditions such as coronary artery disease, heart failure, hypertension, hyperlipidemia, and diabetes through medication and lifestyle modifications.</li><li><strong>Arrhythmia Screening:</strong> Individuals with a family history of SCA or known cardiac conditions should undergo regular cardiac evaluations, including ECGs and potentially electrophysiology studies.</li><li><strong>AED Accessibility:</strong> Advocate for and learn the location of automated external defibrillators (AEDs) in public and workplace settings.</li><li><strong>CPR Training:</strong> Undergo basic life support (BLS) training, including hands-on CPR practice, to be prepared for an emergency.</li><li><strong>Medication Adherence:</strong> Strictly follow prescribed medication regimens for cardiac conditions to prevent rhythm disturbances.</li><li><strong>Electrolyte Balance:</strong> Monitor and manage electrolyte imbalances (e.g., potassium, magnesium) which can predispose to arrhythmias.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Post-Resuscitation Reintroduction:</strong> Following successful resuscitation, dietary intake is gradually reintroduced, often starting with clear liquids and progressing to soft, easily digestible foods as tolerated and neurological status permits.</li><li><strong>Heart-Healthy Diet (Long-term):</strong> Adhere to a diet low in saturated and trans fats, cholesterol, and sodium to manage underlying cardiovascular disease risk factors.</li><li><strong>Sodium Restriction:</strong> Limit sodium intake to help manage blood pressure and reduce fluid retention, especially in patients with heart failure.</li><li><strong>Potassium and Magnesium Monitoring:</strong> Ensure adequate intake of potassium and magnesium through fruits, vegetables, and whole grains, as these electrolytes are crucial for cardiac rhythm, but monitor closely in patients on certain medications (e.g., diuretics).</li><li><strong>Avoid Stimulants:</strong> Limit or avoid excessive caffeine and other stimulants that can potentially trigger or exacerbate arrhythmias in susceptible individuals.</li><li><strong>Hydration:</strong> Maintain adequate hydration, but fluid intake may be restricted in specific clinical scenarios (e.g., severe heart failure, post-resuscitation cerebral edema).</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Call Emergency Services:</strong> Immediately call 911 or your local emergency number upon recognizing signs of SCA.</li><li><strong>Initiate CPR:</strong> Begin chest compressions without delay, pushing hard and fast in the center of the chest (at least 100-120 compressions per minute).</li><li><strong>Locate AED:</strong> If an AED is available, retrieve it and follow its voice prompts for application and shock delivery.</li><li><strong>Do Not Leave Patient:</strong> Remain with the patient and continue CPR until emergency medical services arrive or an AED is ready for use.</li><li><strong>Maintain Airway:</strong> If trained, ensure an open airway and provide rescue breaths (30 compressions to 2 breaths) if comfortable and able.</li><li><strong>Inform EMS:</strong> Provide clear and concise information to emergency responders upon their arrival, including the patient's status and actions taken.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Time is Myocardium and Brain:</strong> Every minute without CPR and defibrillation significantly reduces survival and increases the risk of neurological damage. Early intervention is paramount.</li><li><strong>Post-Resuscitation Care:</strong> Following successful resuscitation, comprehensive critical care, including targeted temperature management (therapeutic hypothermia), is crucial to improve neurological outcomes.</li><li><strong>Diagnostic Workup:</strong> A thorough investigation to identify the underlying cause of SCA (e.g., coronary angiography, electrophysiology studies, cardiac MRI) is essential for secondary prevention.</li><li><strong>Secondary Prevention:</strong> For survivors, an implantable cardioverter-defibrillator (ICD) is often recommended to prevent future episodes of SCA by delivering life-saving shocks.</li><li><strong>Family Screening:</strong> Consider screening first-degree relatives for inherited cardiac conditions if the cause of SCA is suspected to be genetic.</li><li><strong>Medication Optimization:</strong> Optimize medical therapy for underlying cardiac conditions to reduce the risk of recurrent arrhythmias.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>BLS/ACLS Protocols:</strong> Master the American Heart Association (AHA) Basic Life Support (BLS) and Advanced Cardiovascular Life Support (ACLS) algorithms for cardiac arrest management.</li><li><strong>Post-Cardiac Arrest Syndrome:</strong> Understand the pathophysiology and management of post-cardiac arrest syndrome, including brain injury, myocardial dysfunction, systemic ischemia/reperfusion response, and persistent precipitating pathology.</li><li><strong>Therapeutic Hypothermia:</strong> Learn the indications, contraindications, target temperatures, and nursing interventions for targeted temperature management (TTM) in post-cardiac arrest patients.</li><li><strong>ICD Management:</strong> Educate patients and families on ICD function, battery life, activity restrictions, and potential complications.</li><li><strong>Medication Administration:</strong> Be proficient in the rapid and accurate administration of emergency cardiac medications (e.g., epinephrine, amiodarone, lidocaine) during resuscitation.</li><li><strong>Family Support:</strong> Provide empathetic support and clear communication to families during and after a cardiac arrest event, addressing their questions and concerns.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Ventricular Fibrillation (VF):</strong> A chaotic electrical activity in the ventricles, leading to ineffective pumping and cardiac arrest.</li><li><strong>Pulseless Ventricular Tachycardia (pVT):</strong> Rapid, organized ventricular electrical activity that does not produce a palpable pulse.</li><li><strong>Asystole:</strong> Complete absence of electrical and mechanical activity in the heart, often referred to as 'flatline'.</li><li><strong>Pulseless Electrical Activity (PEA):</strong> Organized electrical activity on the ECG without a corresponding palpable pulse.</li><li><strong>Chain of Survival:</strong> A sequence of actions that, when performed quickly, can improve the outcome for victims of SCA (early recognition, early CPR, early defibrillation, early advanced life support, post-cardiac arrest care).</li><li><strong>Implantable Cardioverter-Defibrillator (ICD):</strong> A small device implanted in the chest to monitor heart rhythm and deliver electrical shocks to correct life-threatening arrhythmias.</li><li><strong>Targeted Temperature Management (TTM):</strong> Therapeutic hypothermia used in post-cardiac arrest patients to improve neurological outcomes by reducing metabolic demand and preventing secondary brain injury.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

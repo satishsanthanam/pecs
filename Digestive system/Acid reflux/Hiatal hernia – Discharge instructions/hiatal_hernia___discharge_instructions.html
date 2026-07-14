@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human torso showing the digestive system. The diaphragm is visible, with a portion of the stomach protruding through the esophageal hiatus, representing a hiatal hernia. Surrounding elements include a person experiencing mild discomfort (heartburn icon), a person making healthy food choices (apple, water bottle), and a bed with an elevated head. The overall design should be clean, informative, and suitable for a public health awareness template, avoiding text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./hiatal_hernia___discharge_instructions.jpg" class="card-banner" alt="Hiatal hernia – Discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-digestive-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Digestive system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-digestive-system-acid-reflux" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Acid reflux</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Hiatal hernia – Discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Digestive system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Acid reflux</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Understanding Your Condition:</strong> A hiatal hernia occurs when part of your stomach pushes up through the diaphragm into your chest. Discharge instructions are vital for managing symptoms and preventing complications.</li>
+        <li><strong>Post-Operative Recovery (if applicable):</strong> If you had surgery, expect some discomfort at the incision site. Pain management will be prescribed, and it's crucial to follow the schedule. Avoid heavy lifting and strenuous activities for the recommended period.</li>
+        <li><strong>Symptom Management:</strong> Focus on lifestyle and dietary changes to minimize acid reflux symptoms like heartburn and regurgitation. Consistency is key for long-term relief.</li>
+        <li><strong>When to Seek Medical Attention:</strong> Be aware of warning signs such as severe abdominal pain, persistent vomiting, difficulty swallowing, or black, tarry stools, which require immediate medical evaluation.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Persistent Heartburn or Regurgitation:</strong> If your acid reflux symptoms do not improve with prescribed medications and lifestyle changes, or if they worsen significantly.</li>
+        <li><strong>Difficulty Swallowing (Dysphagia):</strong> New or worsening sensation of food getting stuck in your throat or chest, which could indicate inflammation or a complication.</li>
+        <li><strong>Severe Abdominal or Chest Pain:</strong> Sharp, sudden, or radiating pain that is not relieved by usual pain medication, especially if accompanied by nausea or vomiting.</li>
+        <li><strong>Nausea and Vomiting:</strong> Persistent vomiting, especially if it contains blood (looks like coffee grounds) or if you are unable to keep fluids down.</li>
+        <li><strong>Gastrointestinal Bleeding:</strong> Black, tarry stools (melena) or bright red blood in your stool, indicating potential bleeding from the hernia or esophagus.</li>
+        <li><strong>Inability to Pass Gas or Stool:</strong> This could be a sign of bowel obstruction, particularly if you've had surgery.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Activity Restrictions:</strong> Avoid lifting objects heavier than 10-15 pounds (check with your surgeon for specific limits) and refrain from strenuous activities or abdominal straining for 4-6 weeks post-surgery.</li>
+        <li><strong>Medication Adherence:</strong> Take all prescribed medications, especially proton pump inhibitors (PPIs) or H2 blockers, exactly as directed to reduce stomach acid and promote healing. Do not stop without consulting your doctor.</li>
+        <li><strong>Sleeping Position:</strong> Elevate the head of your bed by 6-8 inches using blocks under the bedposts or a wedge pillow to help prevent stomach acid from flowing back into the esophagus during sleep.</li>
+        <li><strong>Avoid Tight Clothing:</strong> Refrain from wearing tight belts or clothing around your abdomen, as this can increase pressure on your stomach and diaphragm.</li>
+        <li><strong>Smoking and Alcohol Cessation:</strong> Smoking and alcohol can irritate the esophagus and increase acid production, worsening symptoms. Quitting is strongly advised.</li>
+        <li><strong>Follow-Up Appointments:</strong> Ensure you attend all scheduled post-operative or follow-up appointments to monitor your recovery and adjust your treatment plan as needed.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Small, Frequent Meals:</strong> Eat smaller portions more frequently throughout the day instead of three large meals to avoid overfilling the stomach and increasing pressure on the hernia.</li>
+        <li><strong>Avoid Trigger Foods:</strong> Limit or eliminate foods known to worsen acid reflux, including fatty foods, spicy foods, acidic foods (citrus, tomatoes), chocolate, peppermint, caffeine, and carbonated beverages.</li>
+        <li><strong>Do Not Eat Before Bed:</strong> Avoid eating or drinking anything (except water) for at least 2-3 hours before lying down or going to sleep to allow for proper digestion and reduce reflux.</li>
+        <li><strong>Chew Food Thoroughly:</strong> Take your time eating and chew food completely to aid digestion and reduce the amount of air swallowed.</li>
+        <li><strong>Stay Hydrated:</strong> Drink plenty of water throughout the day, but avoid large volumes of fluid with meals if it causes excessive fullness.</li>
+        <li><strong>Weight Management:</strong> If overweight, gradual weight loss can help reduce abdominal pressure and alleviate symptoms.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Monitor for Complications:</strong> Be vigilant for signs of worsening condition such as severe pain, persistent vomiting, fever, difficulty breathing, or signs of bleeding (black stools, vomiting blood). Contact emergency services if these occur.</li>
+        <li><strong>Medication Assistance:</strong> Help the patient adhere to their medication schedule, ensuring they take prescribed PPIs or pain relievers as directed.</li>
+        <li><strong>Support Dietary Modifications:</strong> Assist in preparing appropriate meals and ensuring adherence to dietary restrictions, avoiding trigger foods.</li>
+        <li><strong>Activity Supervision:</strong> Remind the patient about activity restrictions, especially avoiding heavy lifting or straining, to prevent complications or recurrence.</li>
+        <li><strong>Emotional Support:</strong> Provide encouragement and support during the recovery period, as lifestyle changes can be challenging.</li>
+        <li><strong>Emergency Contact Information:</strong> Keep a list of emergency contacts, including the surgeon's office and nearest hospital, readily accessible.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Adherence to Treatment Plan:</strong> Following all discharge instructions, including medication regimens and lifestyle modifications, is paramount for successful recovery and long-term symptom control.</li>
+        <li><strong>Lifestyle Modifications are Key:</strong> Dietary adjustments, weight management, avoiding trigger foods, and elevating the head of the bed are fundamental to managing hiatal hernia symptoms, whether post-surgery or managed conservatively.</li>
+        <li><strong>Recognize Red Flags:</strong> Be aware of symptoms that warrant immediate medical attention, such as acute severe abdominal pain, persistent vomiting, signs of internal bleeding, or inability to swallow. These could indicate a serious complication.</li>
+        <li><strong>Regular Follow-Up:</strong> Scheduled follow-up appointments are crucial to monitor your progress, assess the effectiveness of treatment, and make any necessary adjustments to your care plan.</li>
+        <li><strong>Avoid Self-Medication:</strong> Do not introduce new medications or discontinue prescribed ones without consulting your healthcare provider, as this can interfere with your recovery.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Comprehensive Patient Education:</strong> Emphasize the importance of clear, concise discharge teaching covering medication adherence, dietary modifications, activity restrictions, and symptom recognition for complications.</li>
+        <li><strong>Post-Operative Assessment:</strong> Focus on assessing pain levels, incision site for signs of infection, bowel sounds, and ability to tolerate oral intake. Monitor for dysphagia or gas-bloat syndrome post-fundoplication.</li>
+        <li><strong>Medication Teaching:</strong> Educate patients on the purpose, dosage, timing, and potential side effects of PPIs or H2 blockers. Stress the importance of taking them as prescribed, often 30-60 minutes before the first meal.</li>
+        <li><strong>Lifestyle Counseling:</strong> Reinforce the impact of lifestyle choices (e.g., smoking, alcohol, tight clothing, eating habits) on hiatal hernia symptoms and recovery. Provide practical tips for implementing changes.</li>
+        <li><strong>Emergency Preparedness:</strong> Instruct patients and caregivers on specific warning signs (e.g., severe pain, persistent vomiting, melena) that necessitate immediate medical attention and provide clear contact information.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Surgical Techniques:</strong> Common surgical interventions include Nissen fundoplication (laparoscopic or open), Toupet fundoplication, or repair with mesh reinforcement. Understanding the specific procedure is key for post-op care.</li>
+        <li><strong>Potential Complications:</strong> Post-operative complications can include dysphagia, gas-bloat syndrome, recurrence of hernia, infection, bleeding, or injury to surrounding structures. Non-surgical complications include strangulation or obstruction.</li>
+        <li><strong>Diagnostic Modalities:</strong> Diagnosis typically involves barium swallow, upper endoscopy with biopsy, and esophageal manometry to assess motility and confirm GERD.</li>
+        <li><strong>Pharmacological Management:</strong> Primary medications include Proton Pump Inhibitors (PPIs) like omeprazole or pantoprazole, and H2 Receptor Blockers like famotidine, which reduce gastric acid secretion.</li>
+        <li><strong>Anatomical Considerations:</strong> A hiatal hernia involves the protrusion of the stomach through the esophageal hiatus of the diaphragm. Types include sliding (Type I) and paraesophageal (Types II, III, IV).</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

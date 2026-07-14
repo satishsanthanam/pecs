@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a person with a pained expression, gently holding their jaw or cheek, indicating a toothache. A stylized, slightly glowing or throbbing tooth icon is visible near their face. The background features subtle, clean dental elements like a toothbrush, floss, or a dentist's chair in a modern, public awareness design template. Colors are soft and inviting, avoiding harsh contrasts. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./toothache.jpg" class="card-banner" alt="Toothache Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-dental-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Dental health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-dental-health-teeth" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Teeth</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Toothache</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Dental health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Teeth</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> A toothache is pain in or around a tooth, often indicating an underlying dental or medical issue.</li><li><strong>Common Causes:</strong> Most frequently caused by dental caries (cavities), pulpitis (inflammation of the tooth pulp), dental abscesses, gum disease (periodontitis), cracked teeth, or exposed tooth roots.</li><li><strong>Urgency:</strong> While some toothaches are mild and intermittent, persistent or severe pain warrants prompt dental evaluation to prevent complications like spreading infection or tooth loss.</li><li><strong>Referred Pain:</strong> Pain originating from other areas, such as sinus infections, ear infections, or temporomandibular joint (TMJ) disorders, can sometimes manifest as a toothache.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Pain Characteristics:</strong> Can range from a sharp, shooting pain to a dull, throbbing ache; may be constant or intermittent.</li><li><strong>Sensitivity:</strong> Increased sensitivity to hot, cold, sweet, or acidic foods and beverages.</li><li><strong>Swelling:</strong> Swelling around the affected tooth, in the gums, or even in the jaw or face.</li><li><strong>Fever:</strong> Presence of fever, especially if an infection is spreading.</li><li><strong>Bad Taste/Odor:</strong> A foul taste in the mouth or bad breath, often indicative of an abscess or infection.</li><li><strong>Pain on Chewing:</strong> Discomfort or sharp pain when biting down or applying pressure to the tooth.</li><li><strong>Headache/Earache:</strong> Pain may radiate to the jaw, ear, or head.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Aggravating Factors:</strong> Refrain from consuming extremely hot, cold, sweet, or acidic foods and drinks that can exacerbate pain.</li><li><strong>Maintain Oral Hygiene:</strong> Continue gentle brushing and flossing around the affected area to prevent further plaque buildup, even if sensitive.</li><li><strong>Do Not Self-Medicate Indiscriminately:</strong> Use over-the-counter pain relievers (e.g., ibuprofen, acetaminophen) as directed for temporary relief, but do not rely on them as a substitute for professional dental care.</li><li><strong>Monitor for Spreading Infection:</strong> Watch for signs of worsening swelling, difficulty swallowing or breathing, or fever, which indicate a serious infection requiring immediate medical attention.</li><li><strong>Avoid Home Remedies:</strong> While some temporary relief might be found, avoid placing aspirin directly on the gum or tooth, as it can cause chemical burns.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Soft Food Diet:</strong> Opt for soft, easy-to-chew foods such as soups, yogurt, mashed potatoes, scrambled eggs, and smoothies to minimize stress on the affected tooth.</li><li><strong>Temperature Control:</strong> Avoid foods and drinks that are extremely hot or cold, as temperature extremes can trigger or intensify pain.</li><li><strong>Limit Sugary/Acidic Items:</strong> Restrict intake of sugary snacks, candies, and acidic beverages (e.g., sodas, citrus juices) which can irritate exposed nerves or worsen decay.</li><li><strong>Chew on Unaffected Side:</strong> Whenever possible, chew food on the side of the mouth opposite the painful tooth to reduce discomfort.</li><li><strong>Hydration:</strong> Maintain adequate hydration with room-temperature water.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Seek Prompt Dental Care:</strong> A persistent toothache is a signal that professional dental attention is required; delaying treatment can lead to more severe complications.</li><li><strong>Emergency Situations:</strong> Immediately seek emergency medical care if a toothache is accompanied by facial swelling that is rapidly spreading, difficulty breathing or swallowing, or a high fever, as these can indicate a serious infection (e.g., cellulitis, Ludwig's angina).</li><li><strong>Do Not Ignore Pain:</strong> Pain is the body's warning system; ignoring a toothache can result in irreversible damage to the tooth, surrounding tissues, or systemic health.</li><li><strong>Antibiotic Use:</strong> If antibiotics are prescribed for an infection, complete the entire course as directed, even if symptoms improve, to ensure eradication of the infection.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Thorough Diagnosis:</strong> A comprehensive dental examination, including X-rays, is crucial to identify the exact cause of the toothache and rule out other conditions.</li><li><strong>Treatment Modalities:</strong> Treatment options vary based on the diagnosis and may include fillings for cavities, root canal therapy for infected pulp, extraction for irreparable teeth, or periodontal treatment for gum disease.</li><li><strong>Pain Management:</strong> Prescribing appropriate analgesics and, if necessary, antibiotics to manage pain and infection while definitive treatment is planned.</li><li><strong>Referral:</strong> Collaboration with dental specialists (e.g., endodontists, oral surgeons, periodontists) may be necessary for complex cases.</li><li><strong>Preventive Counseling:</strong> Emphasize the importance of regular dental check-ups and good oral hygiene practices to prevent future toothaches.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Assessment:</strong> Conduct a focused pain assessment (PQRST method), inquire about associated symptoms, and observe for signs of facial swelling or systemic infection.</li><li><strong>Oral Hygiene Education:</strong> Instruct patients on proper brushing and flossing techniques, emphasizing gentle care around sensitive areas.</li><li><strong>Medication Administration:</strong> Administer prescribed analgesics and antibiotics, ensuring patient understanding of dosage, frequency, and potential side effects.</li><li><strong>Post-Procedure Care:</strong> Provide clear instructions for post-dental procedure care, including dietary restrictions, pain management, and signs of complications.</li><li><strong>Referral Pathways:</strong> Understand the appropriate referral pathways to dental professionals for definitive diagnosis and treatment.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Etiologies:</strong> Dental caries, pulpitis (reversible/irreversible), periapical abscess, periodontal abscess, cracked tooth syndrome, dentin hypersensitivity, pericoronitis, trigeminal neuralgia, sinusitis.</li><li><strong>Diagnostic Tools:</strong> Clinical examination, dental radiographs (periapical, bitewing, panoramic), pulp vitality tests (electric pulp tester, cold/heat tests), percussion/palpation tests, transillumination.</li><li><strong>Differential Diagnoses:</strong> TMJ disorders, sinusitis, otitis media, angina pectoris (rarely), salivary gland pathology, neuropathic pain.</li><li><strong>Pharmacology:</strong> NSAIDs (ibuprofen, naproxen), acetaminophen, opioid analgesics (for severe pain), antibiotics (amoxicillin, clindamycin, metronidazole) for bacterial infections.</li><li><strong>Complications:</strong> Cellulitis, osteomyelitis, Ludwig's angina, cavernous sinus thrombosis, sepsis.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

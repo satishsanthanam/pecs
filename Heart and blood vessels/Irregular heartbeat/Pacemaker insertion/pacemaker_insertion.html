@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a patient with a pacemaker, showing the device implanted under the skin near the collarbone and leads extending into the heart chambers. The heart is depicted with subtle electrical impulses. A medical professional, possibly a cardiologist or nurse, is explaining the device to the patient. The background features subtle cardiac rhythm lines and technological elements, emphasizing heart health and advanced medical care. Clean, modern design with a focus on clarity and patient understanding.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./pacemaker_insertion.jpg" class="card-banner" alt="Pacemaker insertion Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-irregular-heartbeat" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Irregular heartbeat</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Pacemaker insertion</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Irregular heartbeat</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose of Pacemaker:</strong> A small, battery-powered device implanted under the skin, usually near the collarbone, to help regulate a slow or irregular heartbeat (bradycardia or heart block).</li><li><strong>How it Works:</strong> It sends electrical impulses to the heart muscle to maintain an adequate heart rate, ensuring sufficient blood flow to the body.</li><li><strong>Procedure Overview:</strong> Typically a minor surgical procedure performed under local anesthesia and sedation, involving the insertion of leads (thin wires) into a vein, guided to the heart, and connected to the pulse generator.</li><li><strong>Types of Pacemakers:</strong> Can be single-chamber (pacing one chamber), dual-chamber (pacing two chambers), or biventricular (for heart failure, pacing both lower chambers).</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Fatigue and Weakness:</strong> Persistent tiredness and lack of energy, often due to insufficient blood flow from a slow heart rate.</li><li><strong>Dizziness or Lightheadedness:</strong> Sensation of spinning or feeling faint, especially upon standing or with exertion.</li><li><strong>Syncope (Fainting):</strong> Temporary loss of consciousness caused by a sudden drop in blood flow to the brain.</li><li><strong>Shortness of Breath:</strong> Difficulty breathing, particularly during physical activity, as the heart struggles to pump enough oxygenated blood.</li><li><strong>Chest Pain or Discomfort:</strong> Aching or pressure in the chest, which can sometimes be related to an inadequate heart rate.</li><li><strong>Palpitations:</strong> Sensation of a racing, pounding, or fluttering heart, even if the overall rate is slow or irregular.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Pre-Procedure Medication Review:</strong> Inform your physician about all medications, especially blood thinners (anticoagulants), which may need to be stopped several days before surgery.</li><li><strong>Fasting Instructions:</strong> Adhere strictly to NPO (nothing by mouth) guidelines, typically after midnight, to prevent aspiration during sedation.</li><li><strong>Post-Operative Arm Restrictions:</strong> Avoid raising the arm on the side of the implant above shoulder level for several weeks to prevent lead dislodgement.</li><li><strong>Incision Site Care:</strong> Keep the incision clean and dry; monitor for signs of infection such as redness, swelling, warmth, or discharge.</li><li><strong>Electromagnetic Interference:</strong> Avoid strong electromagnetic fields (e.g., MRI unless device is MRI-compatible, large industrial magnets, certain power tools) that can interfere with pacemaker function.</li><li><strong>Regular Follow-ups:</strong> Attend all scheduled pacemaker checks to ensure proper device function, battery life, and lead integrity.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-Procedure Fasting:</strong> Strictly observe the NPO (nil per os) order, typically for 6-8 hours prior to the procedure, to minimize aspiration risk during anesthesia.</li><li><strong>Post-Sedation Hydration:</strong> Begin with clear liquids and gradually advance to a regular diet as tolerated once fully awake and alert after the procedure.</li><li><strong>Avoid Alcohol Post-Procedure:</strong> Refrain from alcohol consumption for at least 24-48 hours post-procedure, especially if sedatives were administered, to prevent adverse interactions and impaired judgment.</li><li><strong>No Specific Long-Term Dietary Restrictions:</strong> The pacemaker itself does not impose specific dietary restrictions; however, patients with underlying cardiac conditions may have diet recommendations from their cardiologist.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Monitor for Complications:</strong> Observe the patient for signs of infection at the incision site (redness, swelling, fever) or symptoms like dizziness, persistent chest pain, or shortness of breath.</li><li><strong>Assist with Activity Restrictions:</strong> Help the patient adhere to arm movement limitations on the implant side to prevent lead dislodgement in the initial weeks post-procedure.</li><li><strong>Medication Reminders:</strong> Ensure the patient takes prescribed medications as directed, especially pain relief or antibiotics, and understands any new prescriptions.</li><li><strong>Emergency Contact Preparedness:</strong> Know when and how to contact emergency services or the cardiology team if the patient experiences concerning symptoms or device-related issues.</li><li><strong>Support During Recovery:</strong> Provide emotional support and assist with daily activities that may be challenging during the initial recovery period.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Individualized Treatment:</strong> Pacemaker implantation is a highly individualized decision based on the patient's specific cardiac rhythm disorder, symptoms, and overall health status.</li><li><strong>Adherence to Post-Op Care:</strong> Strict adherence to post-operative instructions, including activity restrictions and wound care, is paramount for successful recovery and device longevity.</li><li><strong>Device Longevity and Monitoring:</strong> Modern pacemakers have extended battery lives, but regular follow-up checks are crucial to monitor device function, battery status, and lead integrity.</li><li><strong>Recognizing Warning Signs:</strong> Patients must be educated on symptoms that warrant immediate medical attention, such as persistent dizziness, fainting spells, or signs of infection at the implant site.</li><li><strong>Quality of Life Improvement:</strong> For appropriate candidates, a pacemaker can significantly improve quality of life by alleviating debilitating symptoms and reducing the risk of serious cardiac events.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pre-Operative Assessment:</strong> Comprehensive assessment including cardiac history, current medications, allergies, and patient education regarding the procedure and post-operative expectations.</li><li><strong>Post-Operative Monitoring:</strong> Close monitoring of vital signs, cardiac rhythm, incision site for bleeding/hematoma/infection, and assessment for pneumothorax (e.g., diminished breath sounds).</li><li><strong>Patient Education:</strong> Instructing patients on activity restrictions, wound care, signs of infection, electromagnetic interference precautions, and the importance of follow-up appointments.</li><li><strong>Pain Management:</strong> Administering analgesics as prescribed and assessing pain levels to ensure patient comfort and facilitate recovery.</li><li><strong>Understanding Device Function:</strong> Familiarity with basic pacemaker terminology (e.g., leads, pulse generator, sensing, pacing), different pacing modes, and troubleshooting common alarms.</li><li><strong>Discharge Planning:</strong> Coordinating home care needs, medication reconciliation, and ensuring the patient has clear instructions for follow-up and emergency contacts.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Bradycardia:</strong> Abnormally slow heart rate, typically below 60 beats per minute.</li><li><strong>Atrioventricular (AV) Block:</strong> A disorder in the heart's electrical conduction system that slows or blocks the electrical signals between the atria and ventricles.</li><li><strong>Sick Sinus Syndrome (SSS):</strong> A group of heart rhythm disorders in which the heart's natural pacemaker (sinoatrial node) malfunctions.</li><li><strong>Electrophysiology Study (EPS):</strong> A diagnostic procedure used to evaluate the heart's electrical system and identify the cause of arrhythmias.</li><li><strong>Pulse Generator:</strong> The component of the pacemaker that contains the battery and electronic circuitry to generate electrical impulses.</li><li><strong>Leads (Electrodes):</strong> Insulated wires that transmit electrical impulses from the pulse generator to the heart muscle and carry information about the heart's natural electrical activity back to the generator.</li><li><strong>MRI Compatibility:</strong> Refers to pacemakers designed to be safely used in a Magnetic Resonance Imaging (MRI) environment under specific conditions.</li><li><strong>ACC/AHA/HRS Guidelines:</strong> Clinical practice guidelines from the American College of Cardiology, American Heart Association, and Heart Rhythm Society for the implantation of cardiac pacemakers.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

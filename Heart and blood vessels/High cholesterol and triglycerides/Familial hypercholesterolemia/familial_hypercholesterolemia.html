@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a family tree with several members highlighted, symbolizing the genetic inheritance of familial hypercholesterolemia. The illustration also includes a stylized heart with visible arterial plaque, alongside various healthy food items like fruits, vegetables, and fish, and a few medication bottles. The design should be clean, modern, and informative, suitable for public health awareness campaigns, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./familial_hypercholesterolemia.jpg" class="card-banner" alt="Familial hypercholesterolemia Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-high-cholesterol-and-triglycerides" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">High cholesterol and triglycerides</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Familial hypercholesterolemia</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">High cholesterol and triglycerides</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Genetic Inheritance:</strong> Familial hypercholesterolemia (FH) is an inherited disorder causing very high levels of low-density lipoprotein cholesterol (LDL-C) from birth.</li><li><strong>Primary Cause:</strong> It results from genetic mutations, most commonly in the LDLR, APOB, or PCSK9 genes, impairing the body's ability to clear LDL-C from the blood.</li><li><strong>Prevalence:</strong> Heterozygous FH affects approximately 1 in 250 individuals, making it one of the most common genetic disorders.</li><li><strong>Significant Risk:</strong> Individuals with FH face a substantially increased risk of premature atherosclerotic cardiovascular disease (ASCVD), including heart attacks and strokes, often before age 55 in men and 60 in women.</li><li><strong>Diagnosis Methods:</strong> Diagnosis is typically based on clinical criteria (e.g., Dutch Lipid Clinic Network criteria, Simon Broome Register) and can be confirmed with genetic testing.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Tendon Xanthomas:</strong> Cholesterol deposits appearing as firm, painless nodules, most commonly in the Achilles tendons, but also over elbows and knees.</li><li><strong>Xanthelasmas:</strong> Yellowish cholesterol deposits on or around the eyelids.</li><li><strong>Corneal Arcus:</strong> A white or gray ring around the iris, particularly significant if present before the age of 45.</li><li><strong>Angina Pectoris:</strong> Chest pain or discomfort due to reduced blood flow to the heart, often presenting at a younger age than in the general population.</li><li><strong>Myocardial Infarction:</strong> Heart attack occurring prematurely, sometimes in the 30s or 40s.</li><li><strong>Peripheral Artery Disease Symptoms:</strong> Leg pain during walking (claudication) or other signs of reduced blood flow to the extremities.</li><li><strong>Stroke or Transient Ischemic Attack (TIA):</strong> Neurological symptoms resulting from atherosclerosis affecting cerebral arteries.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Early Identification:</strong> Prompt diagnosis of FH is critical to initiate aggressive lipid-lowering therapy and prevent severe cardiovascular complications.</li><li><strong>Cascade Screening:</strong> Systematic screening of first-degree relatives (parents, siblings, children) of an affected individual is essential to identify other family members at risk.</li><li><strong>Aggressive Lipid Management:</strong> Standard lipid-lowering strategies are often insufficient; high-intensity statins, often combined with ezetimibe, PCSK9 inhibitors, or other advanced therapies, are typically required.</li><li><strong>Lifestyle Integration:</strong> While genetic, a heart-healthy diet, regular physical activity, and maintaining a healthy weight are important adjuncts to medical therapy, though insufficient alone.</li><li><strong>Avoidance of Smoking:</strong> Smoking cessation is paramount as it significantly accelerates the progression of atherosclerosis in FH patients.</li><li><strong>Regular Cardiovascular Monitoring:</strong> Consistent follow-up with a cardiologist or lipid specialist for lipid panel checks, blood pressure monitoring, and cardiovascular risk assessment.</li><li><strong>Pregnancy Planning:</strong> Women with FH planning pregnancy require careful counseling regarding medication safety and management during gestation.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Limit Saturated Fats:</strong> Restrict intake of red meat, full-fat dairy products, butter, and tropical oils (coconut, palm oil).</li><li><strong>Avoid Trans Fats:</strong> Eliminate foods containing partially hydrogenated oils, commonly found in processed snacks, fried foods, and some baked goods.</li><li><strong>Increase Soluble Fiber:</strong> Incorporate foods rich in soluble fiber such as oats, barley, legumes, fruits (apples, citrus), and vegetables to help reduce LDL-C absorption.</li><li><strong>Consume Plant Sterols/Stanols:</strong> Include foods fortified with plant sterols or stanols (e.g., certain margarines, yogurts, orange juice) which can block cholesterol absorption.</li><li><strong>Lean Protein Sources:</strong> Choose lean protein sources like poultry without skin, fish (especially fatty fish rich in omega-3s), and plant-based proteins.</li><li><strong>Sodium Control:</strong> Adhere to a low-sodium diet to help manage blood pressure and reduce overall cardiovascular risk.</li><li><strong>Limit Cholesterol Intake:</strong> Reduce consumption of high-cholesterol foods such as organ meats and egg yolks, though dietary cholesterol has a lesser impact than saturated/trans fats.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Medication Adherence:</strong> Emphasize the critical importance of consistent and lifelong adherence to prescribed lipid-lowering medications.</li><li><strong>Genetic Counseling:</strong> Refer patients and their families for genetic counseling to understand the inheritance pattern, implications for family members, and reproductive options.</li><li><strong>Symptom Recognition:</strong> Educate patients on recognizing and immediately reporting symptoms of cardiovascular events, such as chest pain, shortness of breath, or sudden weakness.</li><li><strong>Emergency Protocol:</strong> Ensure patients understand when and how to seek emergency medical attention for acute cardiovascular symptoms.</li><li><strong>Psychosocial Support:</strong> Acknowledge the psychological burden of a lifelong genetic condition and the risk of premature disease; provide resources for support groups if available.</li><li><strong>Regular Health Screenings:</strong> Encourage regular check-ups beyond lipid panels, including blood pressure, blood glucose, and weight management.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Aggressive Treatment Paradigm:</strong> FH mandates a more aggressive and often multi-drug approach to LDL-C reduction than typical hypercholesterolemia.</li><li><strong>Early Intervention Benefits:</strong> Initiating lipid-lowering therapy in childhood or adolescence significantly improves long-term cardiovascular outcomes.</li><li><strong>Risk Assessment Tools:</strong> Utilize advanced risk assessment tools, including coronary artery calcium (CAC) scoring, to refine individual cardiovascular risk stratification.</li><li><strong>Combination Therapy Necessity:</strong> Most FH patients will require combination therapy, often including high-dose statins, ezetimibe, and a PCSK9 inhibitor, to achieve target LDL-C levels.</li><li><strong>Referral to Specialists:</strong> Consider referral to a lipid specialist or cardiologist for complex cases, especially those with very high LDL-C, poor response to therapy, or early-onset ASCVD.</li><li><strong>Long-term Management:</strong> FH is a lifelong condition requiring continuous monitoring and adaptation of treatment strategies based on patient response and evolving guidelines.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Specialist:</strong> Nurses are pivotal in educating patients and families about FH, its genetic basis, the importance of medication adherence, and lifestyle modifications.</li><li><strong>Cascade Screening Facilitator:</strong> Understand the process and importance of cascade screening to identify at-risk family members and provide guidance on genetic testing.</li><li><strong>Medication Management & Monitoring:</strong> Monitor patients for adherence to lipid-lowering medications and potential side effects (e.g., myalgia with statins, injection site reactions with PCSK9 inhibitors).</li><li><strong>Dietary Counseling:</strong> Provide practical, evidence-based dietary advice tailored to FH patients, emphasizing low saturated/trans fats and high soluble fiber.</li><li><strong>Cardiovascular Risk Assessment:</strong> Assist in routine cardiovascular risk assessments, including blood pressure measurement, lipid panel review, and symptom screening.</li><li><strong>Advocacy & Support:</strong> Act as an advocate for patients, ensuring they receive appropriate referrals and support for managing their condition.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>LDL-C:</strong> Low-density lipoprotein cholesterol, often referred to as 'bad' cholesterol, the primary target for reduction in FH.</li><li><strong>ASCVD:</strong> Atherosclerotic Cardiovascular Disease, a condition where plaque builds up inside the arteries, leading to heart attacks, strokes, and peripheral artery disease.</li><li><strong>PCSK9 Inhibitors:</strong> A class of injectable medications (e.g., evolocumab, alirocumab) that significantly lower LDL-C by preventing the degradation of LDL receptors.</li><li><strong>LDLR Gene:</strong> Low-density lipoprotein receptor gene, the most common gene mutated in FH, responsible for clearing LDL-C from the blood.</li><li><strong>Homozygous FH (HoFH):</strong> A rare, severe form of FH where an individual inherits two affected genes, leading to extremely high LDL-C and very early, aggressive ASCVD.</li><li><strong>LDL Apheresis:</strong> A medical procedure similar to dialysis that physically removes LDL-C from the blood, typically reserved for severe HoFH or refractory HeFH.</li><li><strong>Dutch Lipid Clinic Network (DLCN) Criteria:</strong> A widely used clinical scoring system for diagnosing FH based on family history, clinical features, and LDL-C levels.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

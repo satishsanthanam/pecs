@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a concerned parent gently checking the forehead of a young child (3 months to 3 years old) who is resting comfortably in bed. The child has slightly flushed cheeks. A thermometer is visible nearby. The background features soft, comforting elements like a blanket and a small toy. The overall mood is one of care and vigilance, with a clean, modern design suitable for public health awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./fever_in_children_3_months_to_3_years___ed_discharge_instructions.jpg" class="card-banner" alt="Fever in children 3 months to 3 years – ED discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-emergency-medicine" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency medicine</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-emergency-medicine-emergency-department-discharge-instructions" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency department discharge instructions</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Fever in children 3 months to 3 years – ED discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Emergency medicine</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Emergency department discharge instructions</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Fever Definition:</strong> A rectal temperature of 100.4°F (38°C) or higher is considered a fever.</li><li><strong>Purpose of ED Visit:</strong> Your child was evaluated for potential serious infections and received initial management.</li><li><strong>Fever's Role:</strong> Fever is often the body's natural response to fight infection, not always harmful itself.</li><li><strong>Common Causes:</strong> Most fevers in this age group are caused by viral infections and resolve on their own.</li><li><strong>Focus on Comfort:</strong> The primary goal at home is to keep your child comfortable, not necessarily to eliminate the fever completely.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Irritability or Lethargy:</strong> Increased fussiness, inconsolable crying, or unusual sleepiness and lack of interest in surroundings.</li><li><strong>Poor Feeding:</strong> Refusal to drink fluids or significantly decreased intake of breast milk, formula, or solids.</li><li><strong>Rash:</strong> Any new rash, especially one that does not fade when pressed (non-blanching).</li><li><strong>Difficulty Breathing:</strong> Fast breathing, nasal flaring, grunting, or retractions (skin pulling in between ribs or above collarbone).</li><li><strong>Signs of Dehydration:</strong> Dry mouth, no tears when crying, sunken soft spot (fontanelle), decreased wet diapers (fewer than 3-4 in 24 hours).</li><li><strong>Stiff Neck:</strong> Resistance to moving the head or neck.</li><li><strong>Persistent Vomiting/Diarrhea:</strong> Frequent episodes that prevent fluid retention.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Accurate Medication Dosing:</strong> Always use the correct dose of acetaminophen (Tylenol) or ibuprofen (Motrin/Advil) based on your child's current weight, not age. Use a measuring device (syringe, dropper) provided with the medication.</li><li><strong>Aspirin Avoidance:</strong> Never give aspirin or aspirin-containing products to children due to the risk of Reye's syndrome.</li><li><strong>Alternating Medications:</strong> Do not alternate between acetaminophen and ibuprofen without explicit instruction from a healthcare provider.</li><li><strong>Environmental Control:</strong> Dress your child in light clothing and ensure the room temperature is comfortable, not too warm. Avoid bundling.</li><li><strong>Continuous Monitoring:</strong> Observe your child closely for any worsening symptoms or new concerns.</li><li><strong>When to Return to ED:</strong> Return immediately if your child develops a non-blanching rash, severe lethargy, difficulty breathing, stiff neck, inconsolable crying, or if you are significantly concerned about their appearance or behavior.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Frequent Hydration:</strong> Offer small, frequent amounts of clear fluids (breast milk, formula, oral rehydration solution, water for children over 6 months) to prevent dehydration.</li><li><strong>Avoid Sugary Drinks:</strong> Limit fruit juices and sugary sodas as they can worsen diarrhea and do not provide adequate electrolytes.</li><li><strong>Continue Regular Diet:</strong> If your child is tolerating food, continue offering their usual diet. Do not force them to eat if they have a poor appetite.</li><li><strong>Monitor Wet Diapers:</strong> Track the number of wet diapers to ensure adequate fluid intake (aim for at least 3-4 wet diapers in 24 hours).</li><li><strong>Signs of Dehydration:</strong> Watch for dry mouth, absence of tears, sunken soft spot, and decreased urine output.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Trust Your Parental Instincts:</strong> If your child looks or acts sicker than usual, or if you have a strong feeling that something is wrong, seek medical attention immediately.</li><li><strong>Follow-up with Primary Care:</strong> Schedule a follow-up appointment with your child's pediatrician within 24-48 hours, or as advised by the ED physician.</li><li><strong>Proper Temperature Taking:</strong> For children in this age group, a rectal temperature is the most accurate method. Ensure proper technique.</li><li><strong>Medication Storage:</strong> Keep all medications out of reach and sight of children in a locked cabinet.</li><li><strong>Emergency Contact Information:</strong> Have your pediatrician's number and the nearest emergency services contact readily available.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Behavior Over Temperature:</strong> Focus more on how your child is acting (alertness, activity, feeding) rather than solely on the temperature reading. A child with a high fever who is still playful and drinking is often less concerning than a child with a lower fever who is lethargic.</li><li><strong>Viral vs. Bacterial:</strong> Most fevers in this age group are viral and do not require antibiotics. Antibiotics are only effective against bacterial infections.</li><li><strong>When to Call:</strong> Contact your pediatrician if fever persists for more than 72 hours, if your child is under 3 months with any fever, or if you notice any of the red flag symptoms mentioned.</li><li><strong>Comfort Measures:</strong> Antipyretics are primarily for comfort; they do not treat the underlying cause of the fever.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Assessment:</strong> Prioritize a thorough head-to-toe assessment, including vital signs, hydration status, and neurological assessment, to identify signs of serious bacterial infection (SBI) or sepsis.</li><li><strong>Parental Education:</strong> Provide clear, concise, and empathetic education to caregivers on fever management, medication administration (dose, frequency, side effects), and critical 'red flag' symptoms warranting immediate return to care.</li><li><strong>Fluid Balance Monitoring:</strong> Emphasize the importance of monitoring fluid intake and output, and educate on recognizing early signs of dehydration.</li><li><strong>Antipyretic Guidelines:</strong> Review institutional guidelines for acetaminophen and ibuprofen dosing based on weight, contraindications, and potential adverse effects.</li><li><strong>Safety Netting:</strong> Ensure caregivers understand the importance of follow-up and have clear instructions on when and where to seek further medical attention.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Febrile Seizures:</strong> Generalized tonic-clonic seizures occurring in children aged 6 months to 5 years, associated with fever, without evidence of intracranial infection or other defined cause. Typically benign but require parental education.</li><li><strong>Serious Bacterial Infection (SBI):</strong> Includes conditions like bacteremia, meningitis, urinary tract infection, pneumonia, and osteomyelitis. Risk stratification tools (e.g., Rochester, Philadelphia, Boston criteria) are used in the ED for this age group.</li><li><strong>Toxic Appearance:</strong> Clinical signs indicating severe illness, including lethargy, poor perfusion, cyanosis, hyperventilation, or hypoventilation. Requires immediate and aggressive medical intervention.</li><li><strong>Antipyretic Mechanism of Action:</strong> Acetaminophen inhibits prostaglandin synthesis in the central nervous system. Ibuprofen is a non-steroidal anti-inflammatory drug (NSAID) that inhibits cyclooxygenase enzymes (COX-1 and COX-2), reducing prostaglandin production systemically.</li><li><strong>Sepsis Screening:</strong> Systematic screening for sepsis in febrile infants and young children is crucial, involving clinical assessment and laboratory markers (e.g., CRP, procalcitonin, lactate).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

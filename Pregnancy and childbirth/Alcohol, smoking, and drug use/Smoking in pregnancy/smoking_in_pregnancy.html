@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for public awareness: A pregnant woman gently cradling her belly, with a subtle, transparent 'no smoking' symbol overlaid. On one side, a healthy, vibrant baby, and on the other, a slightly faded or less vibrant baby, symbolizing the risks. The background features soft, supportive elements like leaves or gentle curves, avoiding any harsh or alarming imagery. Clean lines, minimal detail, and a palette of calming blues, greens, and warm yellows.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./smoking_in_pregnancy.jpg" class="card-banner" alt="Smoking in pregnancy Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-pregnancy-and-childbirth" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Pregnancy and childbirth</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-pregnancy-and-childbirth-alcohol-smoking-and-drug-use" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Alcohol, smoking, and drug use</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Smoking in pregnancy</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Pregnancy and childbirth</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Alcohol, smoking, and drug use</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Profound Fetal Harm:</strong> Smoking during pregnancy significantly increases the risk of serious health problems for the developing fetus, including premature birth, low birth weight, and birth defects such as cleft lip or palate.</li><li><strong>Placental Complications:</strong> It heightens the risk of placental abruption, where the placenta detaches from the uterine wall prematurely, and placenta previa, where the placenta covers the cervix, both leading to severe bleeding and potential fetal distress.</li><li><strong>Increased Miscarriage & Ectopic Risk:</strong> Maternal smoking is a known risk factor for miscarriage and ectopic pregnancy, where the fertilized egg implants outside the uterus.</li><li><strong>Sudden Infant Death Syndrome (SIDS):</strong> Exposure to cigarette smoke, both prenatally and postnatally, is a major contributing factor to Sudden Infant Death Syndrome (SIDS).</li><li><strong>Long-Term Child Health Issues:</strong> Children exposed to smoke in utero are at higher risk for respiratory problems (asthma), ear infections, developmental delays, and behavioral issues.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Maternal Respiratory Distress:</strong> Pregnant individuals who smoke may experience increased coughing, shortness of breath, and exacerbation of pre-existing respiratory conditions.</li><li><strong>Fetal Growth Restriction:</strong> Routine prenatal ultrasounds may reveal signs of intrauterine growth restriction (IUGR) or a smaller-than-expected fetal size, indicating impaired nutrient and oxygen delivery.</li><li><strong>Vaginal Bleeding:</strong> Increased incidence of vaginal bleeding can be a symptom of placental complications like abruption or previa, which are more common in smokers.</li><li><strong>Preterm Labor Signs:</strong> Smokers have a higher risk of preterm labor, which may manifest as regular contractions, pelvic pressure, or changes in vaginal discharge before 37 weeks of gestation.</li><li><strong>Reduced Fetal Movement:</strong> While not exclusive to smoking, any significant reduction in perceived fetal movement should be promptly evaluated, as it can indicate fetal distress.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Immediate Cessation:</strong> The most critical precaution is to stop smoking immediately upon discovering pregnancy or even when planning conception. Any reduction in smoking is beneficial, but complete cessation is ideal.</li><li><strong>Avoid Secondhand Smoke:</strong> Pregnant individuals must actively avoid environments where others are smoking, as secondhand smoke carries similar risks to direct smoking.</li><li><strong>Consult Healthcare Provider for NRT:</strong> If struggling to quit, discuss nicotine replacement therapy (NRT) options with a healthcare provider. While not risk-free, NRT may be a safer alternative than continued smoking.</li><li><strong>Attend All Prenatal Appointments:</strong> Regular prenatal care is essential for monitoring fetal growth, placental health, and maternal well-being, allowing for early detection and management of potential complications.</li><li><strong>Develop a Support Plan:</strong> Engage with support groups, counseling services, or cessation programs tailored for pregnant individuals to enhance the chances of successful quitting.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Nutrient-Dense Diet:</strong> Focus on a diet rich in fruits, vegetables, lean proteins, and whole grains to support fetal development and counteract potential nutritional deficiencies exacerbated by smoking.</li><li><strong>Adequate Hydration:</strong> Maintain optimal fluid intake with water to support overall maternal health and placental function.</li><li><strong>Vitamin Supplementation:</strong> Ensure adequate intake of prenatal vitamins, especially folic acid, as smoking can interfere with nutrient absorption and increase the risk of certain birth defects.</li><li><strong>Avoid Other Harmful Substances:</strong> Strictly abstain from alcohol, illicit drugs, and excessive caffeine, as these can compound the risks associated with smoking during pregnancy.</li><li><strong>Monitor Weight Gain:</strong> Work with a healthcare provider to ensure healthy weight gain throughout pregnancy, as smoking can sometimes lead to inadequate maternal weight gain, impacting fetal growth.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Report Bleeding Immediately:</strong> Any vaginal bleeding, spotting, or fluid leakage must be reported to a healthcare provider without delay, as it could indicate a serious placental complication.</li><li><strong>Monitor Fetal Movement:</strong> Pay close attention to fetal movement patterns. A significant decrease or absence of movement warrants immediate medical evaluation.</li><li><strong>Recognize Preterm Labor Signs:</strong> Be aware of the signs of preterm labor, such as persistent contractions, backache, pelvic pressure, or changes in vaginal discharge, and seek urgent medical attention if they occur.</li><li><strong>Educate Household Members:</strong> Ensure all household members and close contacts understand the critical importance of a smoke-free environment for the pregnant individual and the newborn.</li><li><strong>Prepare for Postnatal Risks:</strong> Understand the increased risk of SIDS and respiratory issues in infants of mothers who smoked, and implement safe sleep practices rigorously.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive Counseling:</strong> Physicians must provide empathetic, non-judgmental counseling on the profound risks of smoking during pregnancy and the benefits of cessation for both mother and baby.</li><li><strong>Offer Cessation Resources:</strong> Proactively offer and refer patients to evidence-based smoking cessation programs, support groups, and pharmacotherapy options (e.g., NRT) under medical supervision.</li><li><strong>Intensified Fetal Monitoring:</strong> Recommend more frequent prenatal visits and specialized fetal monitoring, such as serial ultrasounds for growth and placental assessment, for pregnant individuals who continue to smoke.</li><li><strong>Address Co-occurring Conditions:</strong> Screen for and address co-occurring mental health conditions or substance use disorders that may complicate smoking cessation efforts.</li><li><strong>Postnatal Follow-up:</strong> Emphasize the importance of maintaining a smoke-free environment post-delivery to reduce the risk of SIDS and childhood respiratory illnesses.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Thorough Smoking Assessment:</strong> Nurses should conduct a comprehensive assessment of smoking status, history, and readiness to quit at every prenatal visit, using validated screening tools.</li><li><strong>Patient Education & Support:</strong> Provide clear, concise education on the specific risks of smoking in pregnancy (e.g., carbon monoxide, nicotine effects on fetal development) and offer continuous encouragement and practical tips for quitting.</li><li><strong>Referral Pathways:</strong> Be knowledgeable about local and national smoking cessation resources and facilitate timely referrals for pregnant patients seeking support.</li><li><strong>Safe Sleep Education:</strong> Educate parents on safe sleep practices to mitigate the increased SIDS risk associated with maternal smoking, including back sleeping, firm sleep surface, and no loose bedding.</li><li><strong>Advocacy for Smoke-Free Environments:</strong> Advocate for smoke-free policies in healthcare settings and communities to protect pregnant individuals and children from secondhand smoke exposure.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Carbon Monoxide (CO):</strong> A toxic gas in cigarette smoke that binds to fetal hemoglobin, reducing oxygen delivery to the fetus (fetal hypoxia).</li><li><strong>Nicotine:</strong> A vasoconstrictor that reduces uteroplacental blood flow and can directly affect fetal brain and lung development.</li><li><strong>Placental Insufficiency:</strong> Impaired function of the placenta, leading to reduced nutrient and oxygen transfer to the fetus, often resulting in intrauterine growth restriction (IUGR).</li><li><strong>Cotinine:</strong> A primary metabolite of nicotine, used as a biomarker to objectively measure tobacco exposure in pregnant individuals and newborns.</li><li><strong>Epigenetic Modifications:</strong> Smoking can induce changes in gene expression without altering the DNA sequence, potentially leading to long-term health consequences for the offspring.</li><li><strong>Preterm Premature Rupture of Membranes (PPROM):</strong> Increased risk of the amniotic sac breaking before 37 weeks of gestation and before the onset of labor, leading to increased risk of infection and preterm birth.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

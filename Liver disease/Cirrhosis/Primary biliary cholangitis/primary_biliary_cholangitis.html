@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A clean, flat vector illustration for public awareness of Primary Biliary Cholangitis. The central focus is a stylized human liver with delicate, branching bile ducts highlighted within. Some ducts appear slightly inflamed or constricted, symbolizing the disease. Surrounding the liver are subtle, illustrative elements representing key symptoms: a small, tired figure for fatigue, gentle scratch marks for pruritus, and a magnifying glass over the liver for diagnosis. The color palette is calming, with shades of green, yellow, and muted blues, conveying a medical yet approachable tone. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./primary_biliary_cholangitis.jpg" class="card-banner" alt="Primary biliary cholangitis Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-liver-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Liver disease</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-liver-disease-cirrhosis" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Cirrhosis</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Primary biliary cholangitis</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Liver disease</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Cirrhosis</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Autoimmune Liver Disease:</strong> Primary biliary cholangitis (PBC) is a chronic autoimmune condition primarily affecting the small bile ducts within the liver.</li><li><strong>Bile Duct Damage:</strong> Inflammation and destruction of these bile ducts lead to impaired bile flow (cholestasis), causing bile acids and toxins to accumulate in the liver.</li><li><strong>Progressive Nature:</strong> Over time, this damage can lead to fibrosis, cirrhosis, and ultimately liver failure if not managed.</li><li><strong>Demographics:</strong> PBC predominantly affects women, typically between the ages of 40 and 60, though it can occur at any age.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Persistent Fatigue:</strong> Profound and often debilitating tiredness is one of the most common and earliest symptoms.</li><li><strong>Intense Pruritus:</strong> Severe, generalized itching, often worse at night, is a hallmark symptom due to bile salt accumulation.</li><li><strong>Jaundice:</strong> Yellowing of the skin and eyes, indicating advanced liver disease and impaired bilirubin excretion.</li><li><strong>Dry Eyes and Mouth:</strong> Often associated with Sjögren's syndrome, which can co-occur with PBC.</li><li><strong>Right Upper Quadrant Pain:</strong> Discomfort or pain in the area of the liver.</li><li><strong>Xanthelasmas/Xanthomas:</strong> Fatty deposits under the skin, particularly around the eyes, due to high cholesterol levels.</li><li><strong>Dark Urine and Pale Stools:</strong> Resulting from impaired bile flow and bilirubin excretion.</li><li><strong>Bone Pain/Osteoporosis:</strong> Increased risk of bone density loss and fractures due to malabsorption of fat-soluble vitamins and chronic inflammation.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Regular Monitoring:</strong> Consistent follow-up with a hepatologist for liver function tests, bilirubin, alkaline phosphatase, and imaging to track disease progression.</li><li><strong>Avoid Hepatotoxins:</strong> Strictly abstain from alcohol and avoid medications known to be harmful to the liver unless prescribed by a physician aware of the PBC diagnosis.</li><li><strong>Vaccination Status:</strong> Ensure up-to-date vaccinations for Hepatitis A and B, influenza, and pneumococcal disease to prevent additional liver stress or infections.</li><li><strong>Bone Health Screening:</strong> Regular bone density scans (DEXA) to monitor for osteoporosis and initiate appropriate treatment if needed.</li><li><strong>Symptom Management:</strong> Proactive management of pruritus with prescribed medications and emollients to prevent skin breakdown and improve quality of life.</li><li><strong>Screening for Complications:</strong> Regular screening for portal hypertension, esophageal varices, and hepatocellular carcinoma as the disease progresses.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Fat-Soluble Vitamin Supplementation:</strong> Due to impaired bile flow, supplementation with vitamins A, D, E, and K is often necessary, typically in water-soluble forms.</li><li><strong>Calcium and Vitamin D Intake:</strong> Essential for bone health, especially given the increased risk of osteoporosis; ensure adequate dietary intake or supplementation.</li><li><strong>Low-Fat Diet for Steatorrhea:</strong> If experiencing fatty stools (steatorrhea), a diet lower in fat may help manage symptoms and improve nutrient absorption.</li><li><strong>Sodium Restriction:</strong> If ascites (fluid accumulation in the abdomen) develops, strict sodium restriction is crucial to manage fluid balance.</li><li><strong>Adequate Hydration:</strong> Maintain good hydration, especially if experiencing dry mouth or other sicca symptoms.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Medication Adherence:</strong> Strict adherence to prescribed medications, particularly ursodeoxycholic acid (UDCA), is vital for slowing disease progression.</li><li><strong>Report Worsening Symptoms:</strong> Immediately report any new or worsening symptoms such as increased jaundice, severe abdominal pain, swelling in the legs or abdomen, or changes in mental status.</li><li><strong>Drug Interactions:</strong> Always inform all healthcare providers about your PBC diagnosis and current medications to avoid potential drug interactions.</li><li><strong>Fatigue Management:</strong> Develop strategies for managing chronic fatigue, including pacing activities and prioritizing rest.</li><li><strong>Mental Health Support:</strong> Seek support for managing the psychological impact of chronic illness, including anxiety and depression.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early Diagnosis is Key:</strong> Identifying PBC early allows for timely initiation of treatment, which can significantly slow disease progression and improve long-term outcomes.</li><li><strong>First-Line Therapy:</strong> Ursodeoxycholic acid (UDCA) remains the cornerstone of PBC treatment, improving liver biochemistry and delaying progression to cirrhosis.</li><li><strong>Second-Line Options:</strong> For patients with an inadequate response to UDCA, second-line therapies like obeticholic acid or fibrates may be considered to further reduce cholestasis.</li><li><strong>Complication Management:</strong> Proactive management of PBC-related complications, such as osteoporosis, pruritus, and portal hypertension, is crucial for patient well-being.</li><li><strong>Liver Transplant Consideration:</strong> For patients who progress to end-stage liver disease despite medical therapy, liver transplantation offers a life-saving option.</li><li><strong>Multidisciplinary Care:</strong> A collaborative approach involving hepatologists, gastroenterologists, nutritionists, and mental health professionals optimizes patient care.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Educate patients on the importance of medication adherence, symptom recognition, and lifestyle modifications.</li><li><strong>Symptom Assessment:</strong> Regularly assess and document the severity of pruritus, fatigue, and other symptoms, and evaluate the effectiveness of interventions.</li><li><strong>Nutritional Support:</strong> Provide counseling on dietary modifications, vitamin supplementation, and monitoring for signs of malabsorption.</li><li><strong>Bone Health Advocacy:</strong> Emphasize the importance of calcium and vitamin D intake and encourage regular bone density screenings.</li><li><strong>Psychosocial Support:</strong> Offer emotional support and resources for coping with chronic illness, including support groups and mental health services.</li><li><strong>Monitoring for Complications:</strong> Be vigilant for signs of disease progression or complications such as ascites, edema, or hepatic encephalopathy.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Diagnostic Markers:</strong> Elevated alkaline phosphatase (ALP), positive anti-mitochondrial antibodies (AMA), and elevated IgM levels are characteristic. Liver biopsy confirms diagnosis and staging.</li><li><strong>Histopathology:</strong> Key features include non-suppurative destructive cholangitis and the 'florid duct lesion' in early stages.</li><li><strong>Staging Systems:</strong> Histological staging (e.g., Scheuer stages I-IV) describes the progression from portal inflammation to cirrhosis.</li><li><strong>Treatment Modalities:</strong> Ursodeoxycholic acid (UDCA) is the primary therapy. Obeticholic acid (OCA) is approved for UDCA non-responders or those intolerant to UDCA. Fibrates are used off-label for pruritus and biochemical improvement.</li><li><strong>Associated Conditions:</strong> Often co-occurs with other autoimmune diseases such as Sjögren's syndrome, rheumatoid arthritis, and autoimmune thyroiditis.</li><li><strong>Complications:</strong> Osteoporosis, portal hypertension (varices, ascites, encephalopathy), fat-soluble vitamin deficiencies, and increased risk of hepatocellular carcinoma (HCC).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a simplified human torso with the digestive system highlighted, specifically focusing on the colon. A subtle, clean graphic representation of a section of the colon being removed or surgically repaired, with a focus on healing and recovery. The style should be modern, clean, and suitable for a public health awareness campaign, avoiding any text or complex medical instruments.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./colectomy.jpg" class="card-banner" alt="Colectomy Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-digestive-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Digestive system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-digestive-system-colon-and-rectal-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Colon and rectal cancer</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Colectomy</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Digestive system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Colon and rectal cancer</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Surgical Procedure:</strong> Colectomy is the surgical removal of all or part of the colon (large intestine).</li><li><strong>Primary Indications:</strong> Commonly performed for colorectal cancer, inflammatory bowel disease (Crohn's disease, ulcerative colitis), severe diverticulitis, large polyps, or bowel obstruction.</li><li><strong>Types of Colectomy:</strong> Can range from partial removal (hemicolectomy, segmental colectomy) to total removal (total colectomy, proctocolectomy), depending on the extent of the disease.</li><li><strong>Ostomy Consideration:</strong> May involve creating a temporary or permanent colostomy or ileostomy, where a portion of the intestine is brought through the abdominal wall to divert waste.</li><li><strong>Surgical Approaches:</strong> Can be performed via open surgery (laparotomy) or minimally invasive techniques (laparoscopic or robotic-assisted surgery).</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Rectal Bleeding:</strong> Presence of blood in stool, which can be bright red or dark/tarry.</li><li><strong>Changes in Bowel Habits:</strong> Persistent diarrhea, constipation, or alternating patterns, often accompanied by a change in stool consistency or caliber.</li><li><strong>Abdominal Pain or Cramping:</strong> Chronic or severe discomfort in the abdomen, often localized.</li><li><strong>Unexplained Weight Loss:</strong> Significant and unintentional decrease in body weight.</li><li><strong>Persistent Fatigue:</strong> Chronic tiredness often linked to anemia from blood loss.</li><li><strong>Iron Deficiency Anemia:</strong> Low red blood cell count due to chronic blood loss from the gastrointestinal tract.</li><li><strong>Feeling of Incomplete Evacuation:</strong> Sensation that the bowel has not emptied completely after a bowel movement.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Pre-operative Assessment:</strong> Thorough medical evaluation including cardiac, pulmonary, and renal function tests to ensure surgical fitness.</li><li><strong>Medication Review:</strong> Discontinue blood thinners (anticoagulants, antiplatelets) as advised by the surgeon, typically 5-7 days prior to surgery, to minimize bleeding risk.</li><li><strong>Bowel Preparation:</strong> Adhere strictly to prescribed bowel cleansing regimen (laxatives, enemas) to clear the colon, reducing infection risk.</li><li><strong>NPO Status:</strong> Maintain nothing by mouth (NPO) status for the specified duration before surgery to prevent aspiration.</li><li><strong>Infection Prevention:</strong> Administer prophylactic antibiotics as directed before incision to reduce surgical site infection risk.</li><li><strong>DVT Prophylaxis:</strong> Implement measures such as compression stockings and subcutaneous heparin to prevent deep vein thrombosis.</li><li><strong>Post-operative Monitoring:</strong> Vigilantly monitor for signs of complications like anastomotic leak (fever, severe abdominal pain, tachycardia), bleeding, or infection.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-operative Clear Liquid Diet:</strong> Follow a clear liquid diet for 1-2 days prior to surgery, as instructed, to aid bowel preparation.</li><li><strong>NPO Before Surgery:</strong> Strictly adhere to nothing by mouth (NPO) guidelines for food and drink for several hours before the procedure.</li><li><strong>Post-operative Gradual Reintroduction:</strong> Progress from clear liquids to full liquids, then soft, low-residue foods as tolerated, typically starting within 1-3 days post-surgery.</li><li><strong>Avoid Gas-Producing Foods:</strong> Initially avoid foods known to cause gas (e.g., beans, broccoli, carbonated beverages) to prevent discomfort and distension.</li><li><strong>Small, Frequent Meals:</strong> Consume smaller, more frequent meals to aid digestion and reduce the burden on the healing bowel.</li><li><strong>Adequate Hydration:</strong> Maintain good fluid intake to prevent dehydration, especially important if an ostomy is present.</li><li><strong>Low-Residue Diet:</strong> Follow a low-fiber, low-residue diet for several weeks post-surgery to allow the bowel to heal, gradually reintroducing fiber as advised.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Early Ambulation:</strong> Encourage and assist with early and frequent walking post-surgery to prevent complications like DVT and promote bowel function.</li><li><strong>Pain Management Adherence:</strong> Administer prescribed pain medication regularly to ensure comfort and facilitate mobility and deep breathing exercises.</li><li><strong>Incentive Spirometry:</strong> Instruct and encourage regular use of an incentive spirometer to prevent pulmonary complications like atelectasis and pneumonia.</li><li><strong>Wound Care:</strong> Provide meticulous wound care, monitoring for signs of infection (redness, swelling, discharge, increased pain) and ensuring dressing changes as ordered.</li><li><strong>Stoma Care Education:</strong> If an ostomy is created, provide comprehensive education on stoma care, appliance management, and skin protection to the patient and caregivers.</li><li><strong>Monitor Bowel Function:</strong> Closely observe for return of bowel sounds, passage of flatus, and first bowel movement, indicating resolution of post-operative ileus.</li><li><strong>Discharge Instructions:</strong> Ensure the patient and family understand all discharge instructions, including medication schedules, activity restrictions, dietary guidelines, and signs of complications requiring immediate medical attention.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Shared Decision-Making:</strong> Engage patients in a comprehensive discussion regarding surgical options, potential risks, benefits, and expected outcomes, aligning with their values and preferences.</li><li><strong>Multidisciplinary Approach:</strong> Emphasize the importance of a collaborative team including surgeons, oncologists, gastroenterologists, stoma nurses, and dietitians for optimal patient care.</li><li><strong>Realistic Expectations:</strong> Counsel patients on the anticipated recovery timeline, potential for temporary or permanent ostomy, and necessary lifestyle adjustments post-colectomy.</li><li><strong>Oncologic Principles:</strong> For cancer cases, ensure adherence to oncologic principles, including adequate margin assessment and lymph node dissection, to optimize long-term survival.</li><li><strong>Post-operative Surveillance:</strong> Stress the critical need for long-term follow-up, including imaging and colonoscopies, to monitor for disease recurrence or new pathology, especially in cancer or IBD patients.</li><li><strong>ERAS Protocols:</strong> Advocate for the implementation of Enhanced Recovery After Surgery (ERAS) protocols to accelerate recovery, reduce complications, and shorten hospital stays.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pre-operative Teaching:</strong> Educate patients on the surgical process, pain management strategies, importance of early ambulation, and use of incentive spirometry.</li><li><strong>Post-operative Assessment:</strong> Conduct frequent assessments of vital signs, pain level, abdominal distension, bowel sounds, wound integrity, and urine output.</li><li><strong>Fluid and Electrolyte Balance:</strong> Monitor intravenous fluid administration and electrolyte levels, especially in patients with high ostomy output or prolonged ileus.</li><li><strong>Stoma Site Care:</strong> Provide meticulous care for new stomas, including assessing viability, managing effluent, and preventing skin irritation.</li><li><strong>Patient Education for Discharge:</strong> Reinforce dietary guidelines, activity restrictions, medication regimen, wound care, and signs/symptoms to report to the healthcare provider.</li><li><strong>Psychosocial Support:</strong> Address patient concerns regarding body image changes, particularly with ostomy creation, and provide resources for support groups.</li><li><strong>Pain Management:</strong> Administer analgesia as prescribed, utilizing a multimodal approach, and assess effectiveness regularly.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>ICD-10 Codes:</strong> Relevant codes include C18 (Malignant neoplasm of colon), K51 (Ulcerative colitis), K50 (Crohn's disease), K57 (Diverticular disease of intestine).</li><li><strong>CPT Codes:</strong> Common codes include 44140 (Colectomy, partial; with anastomosis), 44150 (Colectomy, total, abdominal, without proctectomy), 44160 (Colectomy, partial; with removal of terminal ileum and ileocolostomy).</li><li><strong>Anastomotic Techniques:</strong> Surgical rejoining of bowel segments can be hand-sewn or stapled, with various configurations (end-to-end, side-to-side, end-to-side).</li><li><strong>Surgical Approaches:</strong> Open colectomy, laparoscopic colectomy, robotic-assisted colectomy, each with distinct advantages and recovery profiles.</li><li><strong>Pathology Reporting:</strong> Critical for cancer staging (TNM classification), margin assessment, lymph node yield, and identification of specific tumor characteristics.</li><li><strong>Enhanced Recovery After Surgery (ERAS):</strong> A multimodal perioperative care pathway designed to achieve early recovery for patients undergoing major surgery.</li><li><strong>Potential Complications:</strong> Anastomotic leak, surgical site infection, ileus, bowel obstruction, bleeding, deep vein thrombosis, pulmonary embolism, stoma complications (if applicable).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

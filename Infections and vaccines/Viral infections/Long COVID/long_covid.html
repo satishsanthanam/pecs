@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a diverse group of people experiencing various symptoms of Long COVID. One person is slumped with a cloud over their head symbolizing brain fog, another is holding their chest indicating shortness of breath or heart palpitations, and a third is sitting fatigued with a thermometer. Subtle elements like a winding path or a calendar with marked days in the background suggest the prolonged nature of the condition. The overall color palette is muted and slightly somber, with elements of gentle light or support to convey hope and ongoing care. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./long_covid.jpg" class="card-banner" alt="Long COVID Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-infections-and-vaccines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Infections and vaccines</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-infections-and-vaccines-viral-infections" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Viral infections</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Long COVID</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Infections and vaccines</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Viral infections</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Long COVID, also known as Post-Acute Sequelae of SARS-CoV-2 infection (PASC), refers to a wide range of new, returning, or ongoing health problems that people experience four or more weeks after first being infected with SARS-CoV-2.</li><li><strong>Persistence:</strong> Symptoms can last for weeks, months, or even years after the initial infection, regardless of the severity of the acute illness.</li><li><strong>Multi-systemic Impact:</strong> It can affect nearly every organ system in the body, leading to a diverse array of symptoms that vary significantly among individuals.</li><li><strong>Variability:</strong> The severity and type of symptoms can fluctuate over time, making diagnosis and management challenging.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Profound Fatigue:</strong> Often described as debilitating and not relieved by rest, frequently accompanied by post-exertional malaise (worsening of symptoms after physical or mental exertion).</li><li><strong>Cognitive Dysfunction ('Brain Fog'):</strong> Difficulties with memory, concentration, decision-making, and mental clarity.</li><li><strong>Respiratory Issues:</strong> Persistent shortness of breath, cough, chest pain, and reduced exercise tolerance.</li><li><strong>Cardiovascular Symptoms:</strong> Palpitations, rapid heart rate (tachycardia), chest discomfort, and symptoms consistent with postural orthostatic tachycardia syndrome (POTS).</li><li><strong>Neurological Manifestations:</strong> Headaches, dizziness, nerve pain, tingling sensations, and altered sense of smell or taste.</li><li><strong>Musculoskeletal Pain:</strong> Joint pain (arthralgia) and muscle aches (myalgia) that can be widespread and persistent.</li><li><strong>Sleep Disturbances:</strong> Insomnia, unrefreshing sleep, and altered sleep-wake cycles.</li><li><strong>Mental Health Impacts:</strong> Increased rates of anxiety, depression, and post-traumatic stress disorder (PTSD).</li><li><strong>Digestive Problems:</strong> Nausea, diarrhea, abdominal pain, and appetite changes.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Pacing Activities:</strong> Learn to manage energy levels and avoid overexertion to prevent triggering or worsening post-exertional malaise.</li><li><strong>Symptom Monitoring:</strong> Keep a detailed log of symptoms, their triggers, and their severity to aid in medical assessment and treatment adjustments.</li><li><strong>Preventing Reinfection:</strong> Continue to practice infection control measures, including vaccination, masking in crowded indoor spaces, and hand hygiene, as reinfection can potentially worsen or prolong Long COVID symptoms.</li><li><strong>Gradual Rehabilitation:</strong> Engage in physical and occupational therapy under professional guidance, focusing on gentle, progressive activity rather than pushing through fatigue.</li><li><strong>Mental Health Support:</strong> Actively seek support for mental health challenges, including counseling, therapy, or support groups, to manage anxiety, depression, and the psychological burden of chronic illness.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Anti-inflammatory Diet:</strong> Focus on whole, unprocessed foods, including plenty of fruits, vegetables, lean proteins, and healthy fats (e.g., Mediterranean-style diet) to potentially reduce systemic inflammation.</li><li><strong>Adequate Hydration:</strong> Maintain consistent fluid intake, especially for those experiencing orthostatic intolerance or fatigue, to support overall physiological function.</li><li><strong>Avoid Processed Foods & Sugars:</strong> Limit intake of highly processed foods, sugary drinks, and excessive saturated fats, which can contribute to inflammation and energy crashes.</li><li><strong>Gut Health Support:</strong> Consider incorporating probiotic-rich foods (e.g., yogurt, kefir) and prebiotics (e.g., fiber-rich foods) to support a healthy gut microbiome, which may be disrupted in Long COVID.</li><li><strong>Small, Frequent Meals:</strong> For individuals experiencing fatigue or digestive issues, smaller, more frequent meals may be easier to digest and help maintain stable energy levels.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Multidisciplinary Care:</strong> Emphasize the need for a coordinated approach involving various specialists (e.g., pulmonologists, cardiologists, neurologists, rehabilitation therapists, mental health professionals).</li><li><strong>Reporting Acute Changes:</strong> Instruct patients to immediately report any sudden worsening of symptoms, new severe symptoms, or signs of acute complications (e.g., severe chest pain, sudden difficulty breathing, neurological deficits).</li><li><strong>Avoid Unproven Treatments:</strong> Caution against unverified or experimental treatments, stressing the importance of evidence-based care and consultation with healthcare providers.</li><li><strong>Patient Advocacy:</strong> Encourage patients and their caregivers to actively participate in their care plan, ask questions, and seek second opinions if needed.</li><li><strong>Mental Health Vigilance:</strong> Be alert for signs of severe depression, anxiety, or suicidal ideation, and ensure immediate access to mental health crisis resources.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Holistic Assessment:</strong> Conduct a comprehensive evaluation, considering the patient's full symptom profile, medical history, and psychosocial factors, as Long COVID is a diagnosis of exclusion.</li><li><strong>Personalized Management:</strong> Develop individualized treatment plans focusing on symptom management, rehabilitation, and addressing specific organ system dysfunctions.</li><li><strong>Referral Pathways:</strong> Utilize appropriate referrals to specialists (e.g., cardiology for POTS, pulmonology for persistent dyspnea, neurology for cognitive issues) to ensure targeted care.</li><li><strong>Patient Education:</strong> Educate patients on the current understanding of Long COVID, the importance of pacing, and realistic expectations for recovery, which can be prolonged.</li><li><strong>Ongoing Research:</strong> Stay informed about the evolving research on Long COVID pathophysiology, diagnostic biomarkers, and therapeutic interventions to provide the most current care.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Assessment:</strong> Conduct thorough head-to-toe assessments, paying close attention to subtle changes in vital signs, neurological status, respiratory effort, and psychological well-being.</li><li><strong>Symptom Management Education:</strong> Educate patients on strategies for managing fatigue, pain, dyspnea, and cognitive difficulties, including energy conservation techniques and cognitive rehabilitation exercises.</li><li><strong>Emotional Support:</strong> Provide empathetic listening and emotional support, recognizing the significant psychological burden and frustration associated with chronic, fluctuating symptoms.</li><li><strong>Care Coordination:</strong> Facilitate communication and coordination among the multidisciplinary healthcare team, ensuring seamless transitions of care and adherence to treatment plans.</li><li><strong>Advocacy & Resources:</strong> Advocate for patients' needs and connect them with appropriate community resources, support groups, and mental health services.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Post-Acute Sequelae of SARS-CoV-2 Infection (PASC):</strong> The formal medical term encompassing the long-term health effects following COVID-19.</li><li><strong>Myalgic Encephalomyelitis/Chronic Fatigue Syndrome (ME/CFS):</strong> A chronic, complex illness with significant symptom overlap with Long COVID, particularly post-exertional malaise.</li><li><strong>Dysautonomia:</strong> Dysfunction of the autonomic nervous system, commonly manifesting as postural orthostatic tachycardia syndrome (POTS) in Long COVID patients.</li><li><strong>Mast Cell Activation Syndrome (MCAS):</strong> A condition where mast cells release too many inflammatory mediators, potentially contributing to allergic-like symptoms in some Long COVID cases.</li><li><strong>Microclots:</strong> Emerging research suggests the presence of persistent microclots in the blood of some Long COVID patients, potentially contributing to impaired oxygen delivery and symptoms.</li><li><strong>Neuroinflammation:</strong> Inflammation within the brain and nervous system, hypothesized to contribute to cognitive dysfunction and neurological symptoms.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

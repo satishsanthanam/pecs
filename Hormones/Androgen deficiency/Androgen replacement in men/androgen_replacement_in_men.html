@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration depicting a male figure in a medical setting, with subtle glowing lines or symbols around his endocrine system, specifically highlighting the testes and pituitary gland. A doctor figure is consulting with him, pointing to a chart showing hormone levels. Elements like a syringe, a transdermal patch, and a gel tube are subtly integrated into the background or foreground, representing different forms of androgen replacement. The overall design should be clean, modern, and convey a sense of medical care and hormonal balance, using a palette of blues, greens, and muted earth tones. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./androgen_replacement_in_men.jpg" class="card-banner" alt="Androgen replacement in men Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-hormones" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Hormones</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-hormones-androgen-deficiency" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Androgen deficiency</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Androgen replacement in men</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Hormones</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Androgen deficiency</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+  <h2>&#128161; What You Need to Know</h2>
+  <ul>
+    <li><strong>Purpose of Therapy:</strong> Androgen replacement therapy (ART), primarily testosterone replacement, is prescribed to men diagnosed with clinically significant hypogonadism, a condition characterized by abnormally low testosterone levels and associated symptoms.</li>
+    <li><strong>Goal of Treatment:</strong> The aim is to restore testosterone levels to a physiological range, alleviating symptoms such as low libido, fatigue, mood disturbances, and improving bone density and muscle mass.</li>
+    <li><strong>Forms of Administration:</strong> Testosterone can be administered via various routes including intramuscular injections, transdermal gels or patches, buccal tablets, and subcutaneous pellets, each with specific dosing schedules and considerations.</li>
+  </ul>
+</div>
+<div class='symptoms-section'>
+  <h2>&#129298; Associated Symptoms</h2>
+  <ul>
+    <li><strong>Sexual Dysfunction:</strong> Decreased libido, erectile dysfunction, and reduced spontaneous erections are common indicators of low testosterone.</li>
+    <li><strong>Physical Changes:</strong> Reduced muscle mass and strength, increased body fat (especially abdominal), decreased bone mineral density leading to osteoporosis risk, and hot flashes.</li>
+    <li><strong>Mood and Cognitive Impact:</strong> Fatigue, decreased energy, depressed mood, irritability, difficulty concentrating, and impaired memory can be associated with hypogonadism.</li>
+    <li><strong>Hair and Skin Changes:</strong> Loss of body hair and thinning of skin may also be observed.</li>
+  </ul>
+</div>
+<div class='precautions-section'>
+  <h2>&#128737; Crucial Precautions</h2>
+  <ul>
+    <li><strong>Prostate Health Monitoring:</strong> Regular prostate-specific antigen (PSA) testing and digital rectal exams (DRE) are essential, especially in older men, due to concerns about potential prostate cancer progression. ART is contraindicated in men with known prostate cancer.</li>
+    <li><strong>Cardiovascular Risk:</strong> Patients with pre-existing cardiovascular disease or risk factors require careful monitoring, as ART's long-term cardiovascular safety is still under investigation.</li>
+    <li><strong>Polycythemia Risk:</strong> Testosterone therapy can increase red blood cell count (hematocrit), leading to polycythemia, which increases the risk of blood clots. Regular hematocrit monitoring is crucial.</li>
+    <li><strong>Sleep Apnea Exacerbation:</strong> ART may worsen pre-existing sleep apnea; patients should be screened and monitored for this condition.</li>
+    <li><strong>Fertility Impact:</strong> Exogenous testosterone can suppress endogenous testosterone production and spermatogenesis, potentially leading to infertility. This should be discussed with men of reproductive age.</li>
+  </ul>
+</div>
+<div class='dietary-section'>
+  <h2>&#127869; Dietary Directions & Restrictions</h2>
+  <ul>
+    <li><strong>Weight Management:</strong> Maintaining a healthy body weight through balanced nutrition is important, as obesity can negatively impact endogenous testosterone levels and may influence ART efficacy.</li>
+    <li><strong>Cardiovascular Health:</strong> Adopting a heart-healthy diet, rich in fruits, vegetables, whole grains, and lean proteins, while limiting saturated and trans fats, can help mitigate potential cardiovascular risks associated with ART.</li>
+    <li><strong>Alcohol Consumption:</strong> Excessive alcohol intake can negatively affect liver function and hormone metabolism; moderation is advised to support overall health and treatment effectiveness.</li>
+    <li><strong>Bone Health Support:</strong> Adequate intake of calcium and Vitamin D through diet or supplementation is beneficial to support bone density, especially given the potential for improved bone health with ART.</li>
+  </ul>
+</div>
+<div class='warning-box'>
+  <h2>&#9888;&#65039; Attendant Guidelines</h2>
+  <ul>
+    <li><strong>Adherence to Dosage:</strong> Strictly follow the prescribed dosage and administration schedule for your specific testosterone formulation to ensure optimal therapeutic effects and minimize side effects.</li>
+    <li><strong>Regular Monitoring:</strong> Attend all scheduled follow-up appointments for blood tests (testosterone levels, hematocrit, PSA) and clinical evaluations to assess treatment efficacy and monitor for adverse events.</li>
+    <li><strong>Reporting Side Effects:</strong> Promptly report any new or worsening symptoms, such as skin irritation at application sites, mood changes, breast tenderness, or signs of blood clots, to your healthcare provider.</li>
+    <li><strong>Proper Application Techniques:</strong> For transdermal gels or patches, ensure correct application to avoid transference to others, especially women and children. Wash hands thoroughly after application.</li>
+  </ul>
+</div>
+<div class='doctor-advice'>
+  <h2>&#129658; Physician's Perspective</h2>
+  <ul>
+    <li><strong>Individualized Treatment:</strong> Androgen replacement therapy is highly individualized; the choice of formulation, dosage, and monitoring frequency will be tailored to each patient's specific needs, symptoms, and risk profile.</li>
+    <li><strong>Risk-Benefit Discussion:</strong> A thorough discussion of the potential benefits and risks, including long-term implications, is crucial before initiating ART. It is not a universal solution for aging-related symptoms.</li>
+    <li><strong>Not for Performance Enhancement:</strong> Testosterone therapy is not indicated for athletic performance enhancement or for men with normal testosterone levels who seek anti-aging benefits, as this carries significant health risks.</li>
+    <li><strong>Holistic Approach:</strong> ART should be part of a comprehensive management plan that may also include lifestyle modifications, addressing co-morbidities, and psychological support.</li>
+  </ul>
+</div>
+<div class='student-nurse-index'>
+  <h2>&#127891; Academic & Nursing Corner</h2>
+  <ul>
+    <li><strong>Patient Education:</strong> Nurses play a vital role in educating patients on proper administration techniques for various testosterone formulations, potential side effects, and the importance of adherence and follow-up.</li>
+    <li><strong>Monitoring for Adverse Effects:</strong> Be vigilant for signs of polycythemia (e.g., headache, dizziness), cardiovascular events, skin reactions at application sites, and mood disturbances.</li>
+    <li><strong>Counseling on Fertility:</strong> Provide clear information regarding the potential impact of ART on fertility and discuss options for fertility preservation if relevant for younger patients.</li>
+    <li><strong>Transference Prevention:</strong> Educate patients using topical testosterone about the risk of secondary exposure to women and children and instruct on proper hand hygiene and application site coverage.</li>
+  </ul>
+</div>
+<div class='technical-index'>
+  <h2>&#128300; Clinical Reference Index</h2>
+  <ul>
+    <li><strong>Hypogonadism Classification:</strong> Differentiate between primary hypogonadism (testicular failure, high LH/FSH) and secondary hypogonadism (hypothalamic-pituitary dysfunction, low/normal LH/FSH).</li>
+    <li><strong>Diagnostic Criteria:</strong> Diagnosis typically requires consistently low morning total testosterone levels (e.g., &lt;300 ng/dL) on at least two separate occasions, coupled with characteristic symptoms.</li>
+    <li><strong>Monitoring Parameters:</strong> Key lab tests include total testosterone (target range typically 400-700 ng/dL), free testosterone, hematocrit, PSA, and liver function tests (for oral formulations).</li>
+    <li><strong>Formulations and Pharmacokinetics:</strong> Understand the different half-lives and peak times of various testosterone esters (e.g., cypionate, enanthate, undecanoate) and non-esterified forms.</li>
+    <li><strong>Contraindications:</strong> Absolute contraindications include prostate cancer, breast cancer, severe untreated sleep apnea, uncontrolled heart failure, and hematocrit &gt;50%.</li>
+  </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

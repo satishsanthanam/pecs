@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for public awareness about lung cancer screening. A diverse group of people, including older adults, are standing near a stylized CT scanner. One person is receiving a low-dose CT scan, with a subtle glow around their chest area indicating the scan. Lungs are subtly visible within the chest, with a magnifying glass icon hovering over them, symbolizing early detection. Elements of a healthy lifestyle, like a green leaf or a 'no smoking' sign, are in the background. The overall design is clean, hopeful, and emphasizes prevention and early care, without any text.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./lung_cancer_screening.jpg" class="card-banner" alt="Lung cancer screening Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-lung-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Lung disease</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-lung-disease-lung-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Lung cancer</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Lung cancer screening</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Lung disease</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Lung cancer</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Purpose of Screening:</strong> Lung cancer screening utilizes a low-dose computed tomography (LDCT) scan to detect lung cancer early, often before symptoms manifest, in high-risk individuals.</li>
+        <li><strong>Eligibility Criteria:</strong> Screening is typically recommended for adults aged 50-80 years who possess a 20 pack-year or greater smoking history and currently smoke or have quit within the past 15 years.</li>
+        <li><strong>Early Detection Benefits:</strong> Identifying lung cancer at an early stage significantly enhances treatment efficacy and improves patient survival rates.</li>
+        <li><strong>Annual Screening Protocol:</strong> Eligible individuals are generally advised to undergo annual LDCT scans as part of a structured lung cancer screening program.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Asymptomatic Focus:</strong> Lung cancer screening is specifically designed for individuals who are currently asymptomatic but are at elevated risk due to their smoking history.</li>
+        <li><strong>Primary Risk Factors:</strong> Key risk factors that prompt screening eligibility include a substantial cumulative smoking exposure (quantified in pack-years) and age within the recommended demographic.</li>
+        <li><strong>Diagnostic Indications:</strong> The presence of symptoms such as persistent cough, dyspnea, chest pain, unexplained weight loss, or hemoptysis necessitates a comprehensive diagnostic workup, not merely screening.</li>
+        <li><strong>Family History Consideration:</strong> While not a primary screening criterion, a significant family history of lung cancer may warrant a more detailed individual risk assessment.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Radiation Exposure:</strong> Although the LDCT scan uses low-dose radiation, cumulative exposure carries a small theoretical risk; however, for high-risk individuals, the benefits of early detection generally outweigh this risk.</li>
+        <li><strong>False Positives:</strong> LDCT scans can identify benign abnormalities, leading to false-positive results that may necessitate further investigations, cause patient anxiety, and potentially lead to invasive procedures.</li>
+        <li><strong>False Negatives:</strong> It is possible for a screening to miss an existing cancer (false negative), which can provide a misleading sense of security and delay appropriate treatment.</li>
+        <li><strong>Overdiagnosis Risk:</strong> Screening may detect indolent cancers that would not have progressed or caused harm during a patient's lifetime, potentially leading to unnecessary medical interventions.</li>
+        <li><strong>Smoking Cessation Imperative:</strong> Lung cancer screening serves as an adjunct to, not a replacement for, smoking cessation, which remains the most impactful strategy for reducing lung cancer risk.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>No Specific Restrictions:</strong> For a low-dose CT scan for lung cancer screening, there are typically no specific dietary restrictions or fasting requirements.</li>
+        <li><strong>General Hydration:</strong> Maintaining adequate hydration is generally beneficial for overall health, but it is not a specific procedural requirement for this type of scan.</li>
+        <li><strong>Medication Adherence:</strong> Patients should continue all prescribed medications as per their usual schedule unless explicitly instructed otherwise by their healthcare provider.</li>
+        <li><strong>Contrast Agent Absence:</strong> Lung cancer screening LDCT typically does not involve the administration of intravenous contrast agents, thus eliminating associated dietary or medication precautions.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Shared Decision-Making:</strong> Patients must engage in a comprehensive discussion with their healthcare provider to fully understand the benefits, risks, and limitations of lung cancer screening before consenting to the procedure.</li>
+        <li><strong>Strict Eligibility:</strong> Adherence to established eligibility criteria is paramount to ensure the screening's effectiveness and minimize potential harms.</li>
+        <li><strong>Follow-up Compliance:</strong> Consistent adherence to recommended follow-up schedules for any abnormal findings is critical for the overall success and efficacy of the screening program.</li>
+        <li><strong>Integrated Cessation Support:</strong> Lung cancer screening programs should actively incorporate robust smoking cessation counseling and provide accessible resources for current smokers.</li>
+        <li><strong>Symptomatic Exclusion:</strong> Individuals presenting with new or worsening respiratory symptoms should undergo a diagnostic evaluation rather than a screening procedure.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Guideline Adherence:</strong> Physicians are advised to strictly follow national and international guidelines (e.g., USPSTF, NCCN) for determining lung cancer screening eligibility and subsequent management.</li>
+        <li><strong>Risk-Benefit Communication:</strong> It is crucial to clearly articulate both the potential benefits (e.g., early detection, improved survival) and potential harms (e.g., false positives, radiation exposure, overdiagnosis) to patients.</li>
+        <li><strong>Integrated Care Model:</strong> Screening should be integrated into a broader lung health program encompassing smoking cessation, comprehensive risk factor modification, and appropriate follow-up protocols.</li>
+        <li><strong>Multidisciplinary Approach:</strong> The management of positive screening findings often necessitates a collaborative approach involving pulmonologists, radiologists, thoracic surgeons, and oncologists.</li>
+        <li><strong>Patient Empowerment:</strong> Educating patients with accurate and accessible information empowers them to make informed decisions and fosters compliance with screening protocols.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Patient Education Role:</strong> Nurses are instrumental in educating patients about lung cancer screening, covering eligibility criteria, procedural details, and the critical importance of follow-up.</li>
+        <li><strong>Anxiety Management:</strong> Provide empathetic support and address patient anxieties related to the screening process, potential findings, and concerns about radiation exposure.</li>
+        <li><strong>Smoking Cessation Counseling:</strong> Deliver brief interventions and facilitate referrals to comprehensive smoking cessation programs for eligible patients.</li>
+        <li><strong>Accurate Documentation:</strong> Ensure meticulous documentation of patient eligibility, informed consent, screening results, and all subsequent follow-up plans.</li>
+        <li><strong>Resource Navigation:</strong> Assist patients in navigating the healthcare system for scheduling appointments, coordinating follow-up tests, and facilitating specialist referrals.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>USPSTF Guidelines:</strong> U.S. Preventive Services Task Force recommendations for lung cancer screening, including specific age and smoking history criteria (Grade B recommendation).</li>
+        <li><strong>NCCN Guidelines:</strong> National Comprehensive Cancer Network guidelines for lung cancer screening and the management of incidental pulmonary nodules.</li>
+        <li><strong>Lung-RADS Classification:</strong> The Lung CT Screening Reporting and Data System, a standardized lexicon for categorizing lung nodule findings on LDCT scans and guiding subsequent clinical management.</li>
+        <li><strong>Pack-Year Calculation:</strong> A metric defined as the number of packs of cigarettes smoked per day multiplied by the number of years the person has smoked (where 1 pack equals 20 cigarettes).</li>
+        <li><strong>Shared Decision-Making Tools:</strong> Clinical resources and patient-facing tools designed to facilitate informed patient choices regarding participation in lung cancer screening.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

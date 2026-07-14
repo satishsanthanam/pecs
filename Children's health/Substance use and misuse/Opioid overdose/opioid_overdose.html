@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for a public awareness campaign on opioid overdose in children. The image depicts a concerned parent or caregiver securing medication bottles in a locked cabinet, while in the foreground, a child plays safely with toys. A subtle, transparent overlay of a medical cross or a naloxone nasal spray device could be present, symbolizing emergency preparedness. The color palette should be calm yet convey urgency, with clear, simple shapes. No text or complex details.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./opioid_overdose.jpg" class="card-banner" alt="Opioid overdose Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-children-s-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Children's health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-children-s-health-substance-use-and-misuse" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Substance use and misuse</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Opioid overdose</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Children's health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Substance use and misuse</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Life-Threatening Emergency:</strong> Opioid overdose in children is a critical medical emergency requiring immediate intervention due to rapid respiratory depression.</li>
+        <li><strong>Accidental Ingestion Risk:</strong> Young children are particularly vulnerable to accidental ingestion of opioids found unsecured in the home, often prescribed to adults.</li>
+        <li><strong>Naloxone Availability:</strong> Naloxone is a life-saving medication that can reverse an opioid overdose; caregivers should be aware of its availability and proper use.</li>
+        <li><strong>Call 911 Immediately:</strong> Always call emergency services (911) at the first sign of a suspected opioid overdose in a child, even if naloxone is administered.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Pinpoint Pupils:</strong> Characteristically small, constricted pupils, often referred to as "pinpoint" pupils.</li>
+        <li><strong>Slow or Shallow Breathing:</strong> Breathing may become very slow, irregular, or stop entirely (respiratory depression).</li>
+        <li><strong>Unresponsiveness:</strong> The child may be difficult to wake up, unresponsive to voice or touch, or completely unconscious.</li>
+        <li><strong>Blue Lips or Fingernails:</strong> Cyanosis, a bluish discoloration of the lips, fingertips, or skin, indicating lack of oxygen.</li>
+        <li><strong>Limp Body:</strong> The child's body may appear unusually limp and flaccid.</li>
+        <li><strong>Gurgling or Choking Sounds:</strong> Due to compromised airway protection and potential aspiration.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Secure Medication Storage:</strong> Store all prescription and over-the-counter medications, especially opioids, in a locked cabinet or secure location out of children's reach and sight.</li>
+        <li><strong>Proper Disposal of Unused Medications:</strong> Safely dispose of unused or expired opioid medications through drug take-back programs or by following FDA guidelines for household disposal.</li>
+        <li><strong>Educate Caregivers:</strong> Ensure all adults and older children in the household understand the dangers of opioids and the importance of secure storage.</li>
+        <li><strong>Recognize Risk Factors:</strong> Be vigilant if opioids are present in the home, particularly in environments with substance use disorder or where medications are not securely stored.</li>
+        <li><strong>Naloxone Accessibility:</strong> For households with opioid prescriptions or risk factors, discuss obtaining a naloxone prescription with a healthcare provider.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>NPO Status During Acute Event:</strong> During an active opioid overdose, the child must remain NPO (nil per os - nothing by mouth) to prevent aspiration due to depressed gag reflex and consciousness.</li>
+        <li><strong>Post-Stabilization Hydration:</strong> Once the child is fully conscious, alert, and has a confirmed intact gag reflex, gradual reintroduction of clear fluids may begin under medical supervision.</li>
+        <li><strong>Avoid Oral Intake if Unconscious:</strong> Absolutely no food or drink should be given to an unconscious or semi-conscious child suspected of overdose.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Call 911 Immediately:</strong> Dial emergency services (911) without delay. Provide clear details about the child's condition and location.</li>
+        <li><strong>Administer Naloxone (If Available & Trained):</strong> If you have naloxone and are trained, administer it according to instructions (e.g., intranasal spray, intramuscular injection).</li>
+        <li><strong>Position Safely:</strong> If the child is unconscious but breathing, place them in the recovery position to prevent aspiration.</li>
+        <li><strong>Stay with the Child:</strong> Do not leave the child unattended. Continue to monitor their breathing and responsiveness until emergency medical personnel arrive.</li>
+        <li><strong>Provide Information to EMS:</strong> Be prepared to inform paramedics about any medications the child may have ingested, the amount, and when.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Rapid Intervention is Key:</strong> Early recognition and immediate administration of naloxone are critical for preventing irreversible brain damage and death in pediatric opioid overdose.</li>
+        <li><strong>Comprehensive Assessment:</strong> Beyond overdose reversal, a thorough medical evaluation is essential to identify the source of opioid exposure and assess for any co-ingestions or complications.</li>
+        <li><strong>Addressing Underlying Factors:</strong> Physicians must engage with families to address secure medication storage, safe disposal practices, and, when appropriate, screen for parental substance use disorder.</li>
+        <li><strong>Education and Prevention:</strong> Proactive counseling on opioid safety, especially in households with young children, is paramount for prevention.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>ABCs of Resuscitation:</strong> Prioritize Airway, Breathing, and Circulation. Ensure a patent airway, support ventilation, and monitor vital signs continuously.</li>
+        <li><strong>Naloxone Administration:</strong> Understand appropriate pediatric dosages and routes (intranasal, intramuscular, intravenous) and be prepared for repeat doses due to naloxone's shorter half-life compared to many opioids.</li>
+        <li><strong>Continuous Monitoring:</strong> Closely monitor respiratory rate, oxygen saturation, heart rate, blood pressure, and level of consciousness for rebound respiratory depression.</li>
+        <li><strong>Patient and Family Education:</strong> Educate caregivers on overdose signs, naloxone use, and crucial prevention strategies, including secure medication storage and disposal.</li>
+        <li><strong>Psychosocial Support:</strong> Provide empathetic support to families, recognizing the traumatic nature of the event and potential underlying social determinants of health.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Opioid Receptor Pharmacology:</strong> Opioids exert their effects primarily through mu-opioid receptors, leading to central nervous system and respiratory depression. Naloxone is a competitive antagonist at these receptors.</li>
+        <li><strong>Naloxone Half-Life:</strong> Naloxone has a shorter half-life (30-90 minutes) than many opioids, necessitating close observation and potential redosing to prevent re-narcosis.</li>
+        <li><strong>Differential Diagnosis:</strong> Consider other causes of altered mental status and respiratory depression in children, such as benzodiazepine overdose, head trauma, hypoglycemia, or severe infection.</li>
+        <li><strong>Toxicology Screening:</strong> Urine and blood toxicology screens are crucial for identifying the specific opioid(s) involved and detecting co-ingestions, guiding further management.</li>
+        <li><strong>Withdrawal Syndrome:</strong> Be prepared for potential opioid withdrawal symptoms in opioid-dependent children following naloxone administration, which can be severe.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

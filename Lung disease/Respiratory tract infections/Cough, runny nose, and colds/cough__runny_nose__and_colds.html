@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a person with a gentle, slightly unwell expression, holding a tissue to a runny nose and another hand covering a cough. They are surrounded by elements like a steaming mug, a box of tissues, and a soft blanket, suggesting comfort and recovery. The color palette is soft and muted, emphasizing a calm, caring atmosphere. The background is simple, hinting at a cozy indoor setting. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./cough__runny_nose__and_colds.jpg" class="card-banner" alt="Cough, runny nose, and colds Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-lung-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Lung disease</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-lung-disease-respiratory-tract-infections" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Respiratory tract infections</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Cough, runny nose, and colds</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Lung disease</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Respiratory tract infections</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Common Viral Infections:</strong> Colds are typically mild, self-limiting viral infections primarily affecting the upper respiratory tract.</li><li><strong>Highly Contagious:</strong> Spread easily through respiratory droplets from coughing, sneezing, or close contact.</li><li><strong>Seasonal Prevalence:</strong> More common during colder months but can occur year-round.</li><li><strong>Impact on Lung Health:</strong> While usually mild, colds can exacerbate underlying chronic lung conditions like asthma or COPD.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Cough:</strong> Can be dry or productive, often worsening at night.</li><li><strong>Runny Nose (Rhinorrhea):</strong> Clear, watery discharge initially, potentially thickening and becoming discolored later.</li><li><strong>Nasal Congestion:</strong> Stuffy nose, difficulty breathing through the nostrils.</li><li><strong>Sore Throat:</strong> Scratchiness, pain, or irritation in the throat.</li><li><strong>Sneezing:</strong> Frequent, often forceful expulsion of air from the nose and mouth.</li><li><strong>Fatigue:</strong> General tiredness, malaise, or low energy levels.</li><li><strong>Low-grade Fever:</strong> Mild elevation in body temperature, typically below 100.4°F (38°C).</li><li><strong>Headache:</strong> Mild to moderate pain in the head, often associated with sinus pressure.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Hand Hygiene:</strong> Frequent and thorough hand washing with soap and water for at least 20 seconds, or use an alcohol-based hand sanitizer.</li><li><strong>Respiratory Etiquette:</strong> Cover coughs and sneezes with a tissue or into the elbow, not the hands.</li><li><strong>Avoid Touching Face:</strong> Minimize touching eyes, nose, and mouth to prevent germ transmission.</li><li><strong>Limit Close Contact:</strong> Maintain distance from others, especially vulnerable individuals, when symptomatic.</li><li><strong>Disinfect Surfaces:</strong> Regularly clean and disinfect frequently touched objects and surfaces.</li><li><strong>Stay Home When Sick:</strong> Isolate to prevent spreading the virus to colleagues, classmates, or family members.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Maintain Hydration:</strong> Drink plenty of fluids such as water, clear broths, herbal teas, and electrolyte solutions to prevent dehydration and thin mucus.</li><li><strong>Soothing Liquids:</strong> Warm liquids like honey-lemon water (for adults and children over 1 year) can help soothe a sore throat and cough.</li><li><strong>Easily Digestible Foods:</strong> Opt for soft, bland, and nutrient-rich foods like soups, purees, and cooked vegetables when appetite is low.</li><li><strong>Avoid Dehydrating Beverages:</strong> Limit intake of caffeine and alcohol, which can contribute to dehydration.</li><li><strong>Limit Irritants:</strong> Avoid overly spicy, acidic, or very cold foods that might irritate a sore throat or trigger coughing.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Monitor for Worsening Symptoms:</strong> Watch for signs of complications such as difficulty breathing, persistent high fever, severe chest pain, or symptoms lasting longer than 10 days.</li><li><strong>Avoid Unnecessary Antibiotics:</strong> Colds are viral infections; antibiotics are ineffective and should not be used unless a secondary bacterial infection is confirmed.</li><li><strong>Over-the-Counter (OTC) Medication Use:</strong> Use decongestants, cough suppressants, and pain relievers cautiously and strictly according to package instructions.</li><li><strong>Children's Medications:</strong> Exercise extreme caution with OTC cold and cough medications in young children; always consult a pediatrician before administration.</li><li><strong>Seek Medical Advice:</strong> Consult a healthcare provider if symptoms are severe, rapidly worsening, or if you have underlying chronic health conditions.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Symptomatic Management:</strong> The primary focus is on alleviating symptoms to improve patient comfort and support the body's natural healing process.</li><li><strong>Differential Diagnosis:</strong> Clinically distinguish common colds from influenza, allergic rhinitis, or early stages of bacterial infections.</li><li><strong>Patient Education:</strong> Emphasize the viral nature of colds, the importance of hygiene, and appropriate use of OTC remedies.</li><li><strong>When to Re-evaluate:</strong> Advise patients to return if symptoms persist beyond typical duration, worsen significantly, or new concerning symptoms emerge.</li><li><strong>Vaccination Awareness:</strong> Remind patients about the importance of annual influenza vaccination to prevent more severe respiratory illnesses.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Assessment Skills:</strong> Develop proficiency in assessing respiratory symptoms, differentiating between viral and potential bacterial etiologies.</li><li><strong>Patient Education:</strong> Provide clear instructions on symptom management, hydration, infection control, and when to seek further medical attention.</li><li><strong>Pharmacology Knowledge:</strong> Understand the indications, contraindications, and side effects of common OTC cold medications.</li><li><strong>Infection Control Protocols:</strong> Reinforce the importance of standard precautions and droplet precautions in clinical settings to prevent transmission.</li><li><strong>Vulnerable Populations:</strong> Recognize and address the increased risk of complications in infants, the elderly, and immunocompromised individuals.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Etiology:</strong> Predominantly Rhinoviruses (30-80%), Coronaviruses (10-15%), Adenoviruses, Parainfluenza viruses, and Respiratory Syncytial Virus (RSV).</li><li><strong>Pathophysiology:</strong> Viral replication in the nasal mucosa and pharynx leads to local inflammation, increased vascular permeability, and mucus production.</li><li><strong>Transmission:</strong> Primarily via direct contact with respiratory secretions or inhalation of airborne droplets.</li><li><strong>Incubation Period:</strong> Typically 1-3 days, with symptoms lasting 7-10 days, sometimes longer.</li><li><strong>Complications:</strong> Secondary bacterial infections (e.g., acute otitis media, sinusitis, bronchitis, pneumonia), exacerbation of asthma or COPD.</li><li><strong>ICD-10 Codes:</strong> J00 (Acute nasopharyngitis [common cold]), J02.9 (Acute pharyngitis, unspecified).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

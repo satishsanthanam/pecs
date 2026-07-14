@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a child's arm with a red, blistered chemical burn. A parent or caregiver is gently flushing the arm under cool running water from a faucet. Nearby, there are safety symbols like a 'keep out of reach of children' icon and a 'wear gloves' icon. The scene is clean, informative, and emphasizes immediate first aid. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./chemical_skin_burn.jpg" class="card-banner" alt="Chemical skin burn Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-emergency-medicine" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency medicine</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-emergency-medicine-injuries-first-aid-and-cpr-for-children" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Injuries, first aid, and CPR for children</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Chemical skin burn</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Emergency medicine</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Injuries, first aid, and CPR for children</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Chemical burns occur when skin or tissue comes into contact with corrosive substances, leading to tissue damage.</li><li><strong>Rapid Onset:</strong> Unlike thermal burns, chemical burns can continue to cause damage long after initial contact if the chemical is not removed.</li><li><strong>Common Sources in Children:</strong> Household cleaning products (e.g., drain cleaners, oven cleaners, bleach), car battery acid, pool chemicals, and certain industrial agents.</li><li><strong>Severity Factors:</strong> The type of chemical (acid vs. alkali), concentration, duration of contact, and the area of the body affected determine the burn's severity. Alkalis often cause deeper, more insidious damage (liquefactive necrosis).</li><li><strong>Systemic Effects:</strong> Some chemicals can be absorbed through the skin, leading to systemic toxicity, especially in children due to their thinner skin and larger surface area to volume ratio.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Intense Pain:</strong> A burning or stinging sensation at the site of contact, though some severe burns may initially cause numbness.</li><li><strong>Skin Discoloration:</strong> Redness, blistering, peeling, or blackening of the skin. The color can vary depending on the chemical.</li><li><strong>Tissue Damage:</strong> Visible destruction of skin, which may appear leathery, waxy, or charred.</li><li><strong>Swelling:</strong> Edema around the affected area.</li><li><strong>Itching:</strong> May develop during the healing process.</li><li><strong>Signs of Shock:</strong> Pale, clammy skin, rapid pulse, rapid shallow breathing, and confusion, especially in extensive burns or if systemic absorption occurs.</li><li><strong>Respiratory Distress:</strong> If chemical fumes were inhaled, symptoms like coughing, wheezing, or shortness of breath may occur.</li><li><strong>Eye Irritation:</strong> If chemicals splashed into the eyes, severe pain, redness, tearing, and vision changes are immediate concerns.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Chemical Storage:</strong> Always store household chemicals, cleaning agents, and industrial products in their original, clearly labeled containers, securely closed, and out of reach and sight of children.</li><li><strong>Personal Protective Equipment (PPE):</strong> When handling chemicals, wear appropriate gloves, eye protection, and protective clothing to prevent skin contact.</li><li><strong>Ventilation:</strong> Use chemicals in well-ventilated areas to avoid inhaling fumes.</li><li><strong>Immediate Flushing:</strong> In case of contact, immediately flush the affected area with copious amounts of cool running water for at least 20-30 minutes. Do NOT attempt to neutralize the chemical with another substance.</li><li><strong>Remove Contaminated Clothing:</strong> Carefully remove any clothing or jewelry that has come into contact with the chemical to prevent further exposure.</li><li><strong>Avoid Rubbing:</strong> Do not rub or apply pressure to the affected area, as this can spread the chemical or worsen tissue damage.</li><li><strong>Seek Medical Attention:</strong> Always seek immediate medical evaluation for any chemical burn, especially in children, or if the burn is large, deep, on the face, hands, feet, genitals, or across a joint.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration:</strong> Maintain adequate fluid intake to support overall physiological function and aid in the healing process, especially important for children to prevent dehydration.</li><li><strong>Nutrient-Rich Diet:</strong> Encourage a diet rich in protein, vitamins (especially C and A), and minerals (like zinc) to support tissue repair and immune function during recovery.</li><li><strong>Small, Frequent Meals:</strong> If the child is experiencing discomfort or nausea, offering smaller, more frequent meals can help ensure adequate caloric and nutrient intake.</li><li><strong>Avoid Irritants:</strong> If there's any concern about oral exposure or systemic effects causing gastrointestinal upset, avoid highly acidic, spicy, or very hot foods.</li><li><strong>Monitor Appetite:</strong> Closely monitor the child's appetite and intake, as adequate nutrition is critical for healing and preventing complications.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Ensure Personal Safety:</strong> Before approaching the child, ensure the scene is safe and wear appropriate PPE if there's a risk of personal chemical exposure.</li><li><strong>Call Emergency Services:</strong> Immediately call 911 or your local emergency number.</li><li><strong>Remove Chemical Source:</strong> Quickly and safely remove the child from the source of the chemical.</li><li><strong>Flush with Water:</strong> Begin continuous irrigation of the affected area with cool running water for at least 20-30 minutes. Use a shower or hose if available.</li><li><strong>Remove Contaminated Items:</strong> Carefully remove any clothing, diapers, or jewelry that may have chemical residue. Cut clothing away if necessary to avoid further contact.</li><li><strong>Cover the Burn:</strong> After flushing, cover the burn loosely with a clean, dry dressing or plastic wrap to protect it from contamination.</li><li><strong>Monitor for Shock:</strong> Observe for signs of shock (e.g., pale skin, rapid pulse, shallow breathing) and keep the child warm.</li><li><strong>Do Not Apply Creams:</strong> Avoid applying any ointments, creams, or home remedies to the burn.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Rapid Assessment:</strong> Promptly assess the type of chemical, duration of contact, depth of burn, and total body surface area (TBSA) affected, as these dictate treatment.</li><li><strong>Continued Irrigation:</strong> Emphasize the importance of prolonged irrigation, sometimes continuing for hours, especially with alkali burns.</li><li><strong>Pain Management:</strong> Administer appropriate analgesia to manage severe pain, which can be significant in chemical burns.</li><li><strong>Wound Care:</strong> Debridement of necrotic tissue, application of specialized dressings, and infection prevention are critical components of burn management.</li><li><strong>Tetanus Prophylaxis:</strong> Assess tetanus immunization status and administer prophylaxis as indicated.</li><li><strong>Referral to Burn Center:</strong> Consider immediate referral to a specialized burn center for severe burns, burns involving critical areas (face, hands, feet, perineum), or burns with systemic toxicity.</li><li><strong>Long-term Follow-up:</strong> Counsel on potential for scarring, contractures, and the need for physical therapy or reconstructive surgery.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>ABC Assessment:</strong> Prioritize airway, breathing, and circulation, especially if fumes were inhaled or systemic toxicity is suspected.</li><li><strong>Continuous Irrigation Protocol:</strong> Understand the importance and technique of continuous irrigation, ensuring water temperature is appropriate to prevent hypothermia, especially in children.</li><li><strong>Pain Assessment & Management:</strong> Utilize age-appropriate pain scales and administer prescribed analgesics effectively, monitoring for side effects.</li><li><strong>Wound Care Principles:</strong> Master aseptic technique for wound cleaning, dressing changes, and monitoring for signs of infection (redness, swelling, purulent discharge, fever).</li><li><strong>Fluid Balance Monitoring:</strong> Closely monitor intake and output, and signs of dehydration or fluid overload, particularly in pediatric patients with extensive burns.</li><li><strong>Patient and Family Education:</strong> Educate caregivers on wound care at home, signs of infection, pain management, and the importance of follow-up appointments.</li><li><strong>Psychological Support:</strong> Provide emotional support to the child and family, addressing fears and anxieties related to the injury and recovery process.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Chemical Agents:</strong> Classification includes acids (e.g., hydrochloric, sulfuric), alkalis (e.g., sodium hydroxide, lye), oxidizers (e.g., bleach, peroxides), reducing agents, desiccants, and vesicants.</li><li><strong>Mechanism of Injury:</strong> Acids typically cause coagulation necrosis, forming an eschar that limits penetration. Alkalis cause liquefactive necrosis, allowing deeper tissue penetration and ongoing damage.</li><li><strong>Burn Depth Classification:</strong> Superficial (epidermis), partial-thickness (epidermis and dermis), and full-thickness (all skin layers and potentially underlying tissue).</li><li><strong>Systemic Toxicity:</strong> Absorption of certain chemicals (e.g., hydrofluoric acid, phenol) can lead to severe systemic effects, including electrolyte imbalances, cardiac arrhythmias, and organ damage.</li><li><strong>Escharotomy:</strong> Surgical incision through the eschar to relieve pressure and restore circulation, particularly in circumferential full-thickness burns.</li><li><strong>Compartment Syndrome:</strong> A potential complication of deep burns, especially circumferential burns, leading to increased pressure within a muscle compartment, compromising blood flow.</li><li><strong>pH Monitoring:</strong> In some cases, pH paper can be used to confirm the cessation of chemical activity after prolonged irrigation.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a diverse group of people, some elderly, some middle-aged, interacting with a large, stylized plate of various foods. The plate contains both green leafy vegetables (like spinach and kale) and other common foods. A subtle, transparent overlay of a blood drop or a stylized heart icon is present, symbolizing blood health. Around the plate, small icons represent a doctor, a nurse, and a pharmacist, all looking towards the food and patients, emphasizing medical guidance. The overall scene conveys balance, consistency, and informed dietary choices in the context of medication, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./warfarin_and_your_diet.jpg" class="card-banner" alt="Warfarin and your diet Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-nutrition-diet-and-weight" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Nutrition, diet, and weight</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-nutrition-diet-and-weight-special-diets" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Special diets</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Warfarin and your diet</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Nutrition, diet, and weight</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Special diets</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Warfarin's Mechanism:</strong> Warfarin is an anticoagulant (blood thinner) that works by interfering with the body's ability to use Vitamin K to produce clotting factors.</li><li><strong>Narrow Therapeutic Window:</strong> Maintaining a stable International Normalized Ratio (INR) is crucial. Too high an INR increases bleeding risk; too low increases clotting risk.</li><li><strong>Vitamin K Interaction:</strong> Dietary Vitamin K directly counteracts warfarin's effect. Consistency in Vitamin K intake is more important than strict avoidance.</li><li><strong>Regular Monitoring:</strong> Frequent INR blood tests are essential to adjust warfarin dosage and ensure it remains within the therapeutic range.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Signs of High INR (Excessive Anticoagulation):</strong> Easy bruising, prolonged bleeding from minor cuts, nosebleeds, bleeding gums, blood in urine or stool (dark, tarry stools), unusually heavy menstrual bleeding.</li><li><strong>Signs of Low INR (Insufficient Anticoagulation):</strong> Symptoms related to blood clot formation, such as chest pain, shortness of breath, sudden weakness or numbness, swelling or pain in a leg, vision changes.</li><li><strong>Unexplained Fatigue or Weakness:</strong> Can sometimes indicate internal bleeding, especially if accompanied by other bleeding signs.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Consistent Vitamin K Intake:</strong> Do not drastically change your intake of Vitamin K-rich foods. Maintain a consistent daily amount rather than eliminating them.</li><li><strong>Avoid Cranberry Products:</strong> Cranberry juice and supplements can significantly increase warfarin's effect, leading to a higher risk of bleeding.</li><li><strong>Grapefruit and Star Fruit:</strong> These fruits can interfere with warfarin metabolism, potentially increasing its effect. Avoid or consume with caution and monitor INR closely.</li><li><strong>Alcohol Consumption:</strong> Limit alcohol intake as it can affect warfarin metabolism and increase bleeding risk. Discuss safe limits with your physician.</li><li><strong>Herbal Supplements:</strong> Many herbal supplements (e.g., St. John's Wort, ginkgo biloba, garlic, ginseng) can interact with warfarin. Always consult your doctor before taking any new supplement.</li><li><strong>Over-the-Counter Medications:</strong> Be cautious with NSAIDs (e.g., ibuprofen, naproxen) and aspirin, as they can increase bleeding risk when taken with warfarin. Acetaminophen is generally safer for pain relief.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>High Vitamin K Foods (Consume Consistently):</strong> Green leafy vegetables like spinach, kale, collard greens, turnip greens, Swiss chard, mustard greens, parsley, broccoli, Brussels sprouts, and green tea.</li><li><strong>Moderate Vitamin K Foods:</strong> Asparagus, cabbage, lettuce, green beans, peas, avocado, and certain vegetable oils (soybean, canola, olive oil).</li><li><strong>Dietary Consistency:</strong> The key is to eat a consistent amount of Vitamin K-containing foods daily or weekly, rather than avoiding them entirely. Sudden large increases or decreases can destabilize INR.</li><li><strong>Avoid Extreme Diets:</strong> Rapid weight loss diets or fad diets that drastically alter food intake can impact warfarin effectiveness.</li><li><strong>Food Labels:</strong> Be aware of foods fortified with Vitamin K, though this is less common.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Inform All Healthcare Providers:</strong> Always inform any doctor, dentist, pharmacist, or other healthcare provider that you are taking warfarin.</li><li><strong>Report Dietary Changes:</strong> Immediately inform your physician or anticoagulation clinic of any significant changes in your diet, especially regarding Vitamin K-rich foods or new supplements.</li><li><strong>Emergency Signs:</strong> Seek immediate medical attention for severe bleeding, head injury, sudden severe headache, or any signs of stroke or deep vein thrombosis.</li><li><strong>Carry Identification:</strong> Consider carrying a medical alert card or wearing a bracelet indicating you are on warfarin.</li><li><strong>Adherence to Dosing:</strong> Take warfarin exactly as prescribed; do not skip doses or take extra doses.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Individualized Management:</strong> Warfarin therapy is highly individualized. Dietary advice must be tailored to the patient's existing eating habits and INR stability.</li><li><strong>Education is Key:</strong> Comprehensive patient education on food-drug interactions, especially with Vitamin K, is paramount for safe and effective anticoagulation.</li><li><strong>Regular INR Monitoring:</strong> Emphasize the critical role of consistent INR monitoring to guide dosage adjustments and mitigate risks.</li><li><strong>Holistic View:</strong> Consider all factors influencing INR, including diet, medications, alcohol, illness, and lifestyle, when managing warfarin patients.</li><li><strong>Proactive Communication:</strong> Encourage patients to proactively communicate any dietary changes, new medications, or concerning symptoms.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Strategies:</strong> Develop clear, concise educational materials on warfarin and diet, focusing on consistency rather than restriction of Vitamin K. Use visual aids for food examples.</li><li><strong>INR Interpretation:</strong> Understand the target INR range for various indications (e.g., atrial fibrillation, mechanical heart valves) and how dietary fluctuations can impact these values.</li><li><strong>Medication Reconciliation:</strong> Conduct thorough medication reconciliation, including over-the-counter drugs, herbal remedies, and supplements, to identify potential interactions.</li><li><strong>Bleeding Risk Assessment:</strong> Regularly assess patients for signs of bleeding and educate them on what symptoms warrant immediate medical attention.</li><li><strong>Nutritional Counseling:</strong> Provide practical dietary counseling, helping patients integrate their warfarin regimen into their daily eating patterns without undue stress or dietary deprivation.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Vitamin K Antagonist (VKA):</strong> Warfarin's classification as a drug that inhibits Vitamin K-dependent clotting factor synthesis.</li><li><strong>International Normalized Ratio (INR):</strong> A standardized measure of prothrombin time, used to monitor warfarin's anticoagulant effect.</li><li><strong>Cytochrome P450 Enzymes (CYP450):</strong> Liver enzymes, particularly CYP2C9, involved in warfarin metabolism, making it susceptible to numerous drug and food interactions.</li><li><strong>Phylloquinone (Vitamin K1):</strong> The primary form of Vitamin K found in plants, which directly impacts warfarin's efficacy.</li><li><strong>Drug-Food Interactions:</strong> Specific interactions between warfarin and foods/beverages like cranberry, grapefruit, and alcohol.</li><li><strong>Anticoagulation Clinic:</strong> Specialized clinics providing comprehensive management and monitoring for patients on anticoagulant therapy.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

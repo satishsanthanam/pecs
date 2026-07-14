@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a person with an ileostomy bag, surrounded by a balanced selection of recommended foods (e.g., peeled apple, cooked chicken, white rice, water bottle) and a few restricted items (e.g., corn on the cob, nuts, popcorn) with a clear 'X' over them. The illustration should emphasize hydration with water droplets and a healthy digestive system, using a clean, modern design suitable for public health awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./ileostomy_diet.jpg" class="card-banner" alt="Ileostomy diet Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-nutrition-diet-and-weight" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Nutrition, diet, and weight</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-nutrition-diet-and-weight-special-diets" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Special diets</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Ileostomy diet</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Nutrition, diet, and weight</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Special diets</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose of Ileostomy Diet:</strong> To prevent dehydration, electrolyte imbalances, stoma blockages, and manage stool output consistency after ileostomy surgery.</li><li><strong>Initial Phase:</strong> A low-fiber diet is typically recommended immediately post-surgery to allow the bowel to heal and adapt, gradually transitioning to a more varied diet.</li><li><strong>Hydration is Key:</strong> Individuals with an ileostomy are at higher risk of dehydration due to reduced water absorption in the colon, necessitating increased fluid intake.</li><li><strong>Electrolyte Management:</strong> Significant fluid and electrolyte losses can occur, requiring careful attention to sodium and potassium intake.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>High Stoma Output:</strong> Excessive watery stool output, often indicating dehydration risk or malabsorption.</li><li><strong>Signs of Dehydration:</strong> Thirst, dry mouth, decreased urine output, fatigue, dizziness, and muscle cramps.</li><li><strong>Abdominal Pain & Cramping:</strong> Can signal a potential food blockage, especially after consuming high-fiber or poorly chewed foods.</li><li><strong>Nausea & Vomiting:</strong> May accompany abdominal pain and distension, strongly suggesting a partial or complete stoma blockage.</li><li><strong>Electrolyte Imbalance:</strong> Symptoms like weakness, irregular heartbeat, confusion, or severe fatigue, often linked to low sodium or potassium.</li><li><strong>Stoma Bleeding or Swelling:</strong> While not directly dietary, these can be exacerbated by straining or certain food textures and require immediate medical attention.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Thorough Chewing:</strong> Always chew food very well to a liquid consistency to prevent undigested food particles from causing stoma blockages.</li><li><strong>Gradual Food Introduction:</strong> Reintroduce high-fiber foods, raw fruits, and vegetables slowly and one at a time, monitoring stoma output and comfort.</li><li><strong>Adequate Fluid Intake:</strong> Aim for 8-10 glasses (2-3 liters) of fluid daily, including electrolyte-rich beverages, unless medically contraindicated.</li><li><strong>Identify Trigger Foods:</strong> Keep a food diary to identify foods that cause excessive gas, odor, high output, or discomfort, and adjust intake accordingly.</li><li><strong>Medication Timing:</strong> Be aware that some medications (e.g., sustained-release, enteric-coated) may not be fully absorbed due to rapid transit time; consult your physician or pharmacist.</li><li><strong>Avoid Laxatives:</strong> Over-the-counter laxatives are generally contraindicated as they can lead to severe dehydration and electrolyte disturbances.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Low-Fiber Initial Phase:</strong> Focus on refined grains (white bread, pasta), peeled fruits, well-cooked vegetables without skins/seeds, and tender meats.</li><li><strong>Hydrating Fluids:</strong> Water, diluted fruit juices, broths, sports drinks (for electrolytes), and oral rehydration solutions are encouraged.</li><li><strong>Sodium & Potassium Rich Foods:</strong> Include salty snacks, broths, bananas, potatoes, and avocados to replenish lost electrolytes.</li><li><strong>Foods to Thicken Stool:</strong> Bananas, applesauce, white rice, pasta, peanut butter, marshmallows, and tapioca can help reduce watery output.</li><li><strong>Foods to Avoid (Initially/Cautiously):</strong> High-fiber foods like raw vegetables, corn, nuts, seeds, popcorn, tough meats, fruit skins, and dried fruits due to blockage risk.</li><li><strong>Gas-Producing Foods:</strong> Carbonated beverages, beans, broccoli, cabbage, onions, and spicy foods may increase gas and odor; consume cautiously.</li><li><strong>Alcohol & Caffeine:</strong> Limit intake as they can contribute to dehydration and increase stoma output.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Recognize Blockage Signs:</strong> Persistent abdominal pain, cramping, nausea, vomiting, and absence of stoma output for several hours are emergency signs requiring immediate medical attention.</li><li><strong>Monitor Stoma Output:</strong> Regularly assess the volume, consistency, and color of stoma output to detect changes indicative of dehydration or other issues.</li><li><strong>Consult a Registered Dietitian:</strong> Seek individualized dietary counseling from a dietitian specializing in ostomy care for personalized guidance and meal planning.</li><li><strong>Stay Hydrated During Illness:</strong> Increase fluid and electrolyte intake during periods of illness, especially with fever, vomiting, or diarrhea, to prevent rapid dehydration.</li><li><strong>Empty Pouch Regularly:</strong> Empty the ostomy pouch when it is one-third to half full to prevent leakage and maintain comfort.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Individualized Approach:</strong> Dietary recommendations for ileostomy patients must be highly individualized, considering the patient's specific surgical history, remaining bowel length, and tolerance.</li><li><strong>Preventing Complications:</strong> The primary goals are to prevent dehydration, electrolyte imbalances, and mechanical blockages, which can lead to significant morbidity.</li><li><strong>Regular Follow-up:</strong> Patients require ongoing medical supervision to monitor nutritional status, adjust dietary advice, and manage any emerging complications.</li><li><strong>Role of Multidisciplinary Team:</strong> Collaboration with ostomy nurses, dietitians, and surgeons is crucial for comprehensive patient care and education.</li><li><strong>Nutritional Supplementation:</strong> Consider vitamin B12, fat-soluble vitamins, and other micronutrient supplementation as indicated by laboratory monitoring, especially in cases of extensive small bowel resection.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Priority:</strong> Nurses play a critical role in educating patients on ileostomy diet principles, including food choices, chewing techniques, and hydration strategies.</li><li><strong>Output Assessment:</strong> Accurately assess and document stoma output characteristics (volume, color, consistency) as a key indicator of fluid balance and potential complications.</li><li><strong>Recognizing Dehydration:</strong> Be proficient in identifying signs and symptoms of dehydration and electrolyte imbalance in ileostomy patients and initiating appropriate interventions.</li><li><strong>Blockage Management:</strong> Understand initial steps for managing suspected food blockages (e.g., warm bath, gentle abdominal massage, fluid intake) and when to escalate to medical staff.</li><li><strong>Psychosocial Support:</strong> Address patient concerns regarding diet, body image, and social eating, providing empathetic support and resources.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Short Bowel Syndrome (SBS):</strong> Patients with extensive small bowel resection may develop SBS, requiring more aggressive nutritional support, potentially including parenteral nutrition.</li><li><strong>Osmotic Diarrhea:</strong> Certain foods (e.g., high sugar content, sugar alcohols) can exert an osmotic effect, drawing water into the lumen and increasing stoma output.</li><li><strong>Fat Malabsorption:</strong> In cases of significant ileal resection, bile salt malabsorption can occur, leading to steatorrhea and fat-soluble vitamin deficiencies (A, D, E, K).</li><li><strong>Vitamin B12 Deficiency:</strong> The terminal ileum is the primary site of B12 absorption; patients with ileal resection are at high risk and often require lifelong parenteral B12 supplementation.</li><li><strong>Medication Absorption:</strong> Altered gastrointestinal transit time can affect the absorption of various medications, necessitating dose adjustments or alternative formulations.</li><li><strong>Renal Calculi Risk:</strong> Chronic dehydration and electrolyte imbalances can increase the risk of kidney stone formation in ileostomy patients.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a patient, possibly an older adult, gently touching their chest where an insertable cardiac monitor (ICM) is located. The patient is looking at a remote monitoring device (e.g., a small tablet or smartphone) displaying a heart rhythm graph. A subtle, transparent overlay of a heart icon or ECG line is visible near the ICM site. The background features soft, abstract medical or home environment elements, emphasizing comfort and technology integration. Clean lines, friendly colors, public awareness design.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./insertable_cardiac_monitor_placement___discharge_instructions.jpg" class="card-banner" alt="Insertable cardiac monitor placement – Discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-irregular-heartbeat" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Irregular heartbeat</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Insertable cardiac monitor placement – Discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Irregular heartbeat</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Device Purpose:</strong> Your insertable cardiac monitor (ICM) is a small device placed under the skin to continuously record your heart's electrical activity, helping to detect irregular heart rhythms that may be infrequent or difficult to capture with other tests.</li><li><strong>Post-Procedure Expectation:</strong> You may experience mild discomfort, bruising, or swelling at the insertion site for a few days. This is normal and should gradually improve.</li><li><strong>Monitoring Function:</strong> The ICM automatically detects and records abnormal heart rhythms. You will also be provided with a patient activator to manually record symptoms you experience, such as palpitations, dizziness, or fainting.</li><li><strong>Follow-up Importance:</strong> Regular follow-up appointments are crucial to review the data collected by your ICM and ensure its proper functioning.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Symptoms Prompting ICM:</strong> The ICM was placed to investigate symptoms such as unexplained fainting (syncope), recurrent dizziness, palpitations, or stroke of unknown cause.</li><li><strong>Report Worsening Original Symptoms:</strong> If you experience a recurrence or worsening of the symptoms that led to the ICM placement, use your patient activator to record the event and contact your clinic.</li><li><strong>Infection Signs:</strong> Immediately report any signs of infection at the insertion site, including increased redness, warmth, swelling, pus-like drainage, or fever.</li><li><strong>Unusual Pain or Discomfort:</strong> While mild discomfort is expected, report any severe or persistent pain at the insertion site that is not relieved by over-the-counter pain medication.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Incision Site Care:</strong> Keep the insertion site clean and dry for at least 7 days, or as instructed by your healthcare provider. Avoid submerging the site in baths, hot tubs, or swimming pools until cleared.</li><li><strong>Activity Restrictions:</strong> Avoid strenuous activities, heavy lifting, or repetitive arm movements on the side of the implant for 1-2 weeks to allow the incision to heal properly.</li><li><strong>Electromagnetic Interference:</strong> While ICMs are generally safe, avoid direct contact with strong magnetic fields (e.g., MRI machines unless cleared, large industrial magnets, certain security detectors) as they may temporarily interfere with device function. Always inform medical personnel about your ICM.</li><li><strong>Device ID Card:</strong> Always carry your ICM identification card, which contains important information about your device, especially when traveling or seeking medical care.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Post-Sedation Hydration:</strong> If you received sedation, start with clear liquids and light foods, gradually returning to your normal diet as tolerated. Avoid alcohol for at least 24 hours post-sedation.</li><li><strong>General Hydration:</strong> Maintain adequate hydration to support overall healing and well-being.</li><li><strong>Caffeine and Alcohol:</strong> If caffeine or alcohol are known triggers for your arrhythmias, continue to limit or avoid them as advised by your physician, as they can influence heart rhythm.</li><li><strong>Nutrient-Rich Diet:</strong> Focus on a balanced, nutrient-rich diet to support your body's recovery and overall cardiovascular health.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Services (Call 911):</strong> Seek immediate emergency medical attention if you experience severe chest pain, sudden shortness of breath, prolonged fainting spells, or severe dizziness.</li><li><strong>Contact Clinic/Doctor:</strong> Call your cardiology clinic or physician's office if you notice signs of infection at the insertion site (fever, increased redness, swelling, drainage), persistent or worsening pain, or if you have difficulty using your patient activator or remote monitor.</li><li><strong>Device Malfunction:</strong> If you receive an alert from your remote monitor indicating a device malfunction or low battery, contact your clinic promptly.</li><li><strong>Driving Post-Sedation:</strong> Do not drive or operate heavy machinery for at least 24 hours after receiving sedation. Ensure a responsible adult can transport you home.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Adherence to Monitoring:</strong> It is paramount to consistently use your patient activator to mark symptomatic events and ensure your remote monitor is properly transmitting data. This provides critical information for diagnosis and treatment.</li><li><strong>Medication Review:</strong> Continue all prescribed medications as directed. Do not stop or change any medications without consulting your physician, especially those related to your heart condition.</li><li><strong>Lifestyle Modifications:</strong> Discuss any necessary lifestyle modifications, such as managing stress, maintaining a healthy weight, and avoiding arrhythmia triggers, to optimize your heart health.</li><li><strong>Long-Term Management:</strong> The ICM is a diagnostic tool. Your physician will use the collected data to formulate a long-term management plan, which may include medication adjustments, further interventions, or continued monitoring.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Reinforcement:</strong> Nurses should reinforce all discharge instructions, particularly regarding incision care, activity restrictions, and the proper use of the patient activator and remote monitor.</li><li><strong>Insertion Site Assessment:</strong> Educate patients on how to monitor their insertion site for signs of infection (REEDA: Redness, Edema, Ecchymosis, Drainage, Approximation) and when to report concerns.</li><li><strong>Remote Monitoring Setup:</strong> Assist patients in understanding the setup and function of their remote monitoring system, ensuring they know how to place it and confirm data transmission.</li><li><strong>Symptom Correlation:</strong> Emphasize the importance of correlating symptoms with manual event recordings to provide comprehensive data for the physician.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Device Model & Manufacturer:</strong> Note the specific model and manufacturer of the implanted ICM for future reference and compatibility with diagnostic equipment.</li><li><strong>Remote Monitoring System:</strong> Document the type of remote monitoring system provided (e.g., bedside monitor, smartphone app) and confirm successful initial setup and data transmission.</li><li><strong>Battery Life Expectancy:</strong> Provide the patient with an estimated battery life for their specific ICM model, typically 3-5 years, and explain that the device will alert when battery replacement is needed.</li><li><strong>Event Recorder Usage:</strong> Detail the specific instructions for using the patient event recorder, including how to activate it during symptomatic episodes and how to confirm successful recording.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting two kidneys, one with multiple fluid-filled cysts of varying sizes, and the other appearing normal for contrast. The illustration should also subtly incorporate elements representing other affected organs like the brain (with a small aneurysm symbol) and liver (with small cysts). The overall design should be clean, informative, and use a medical-themed color palette, suitable for public health awareness materials. Avoid any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./polycystic_kidney_disease.jpg" class="card-banner" alt="Polycystic kidney disease Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-kidneys-and-urinary-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Kidneys and urinary system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-kidneys-and-urinary-system-polycystic-kidney-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Polycystic kidney disease</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Polycystic kidney disease</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Kidneys and urinary system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Polycystic kidney disease</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Inherited Disorder:</strong> Polycystic kidney disease (PKD) is a genetic disorder characterized by the growth of numerous fluid-filled cysts in the kidneys.</li><li><strong>Kidney Function Impairment:</strong> These cysts enlarge the kidneys and can eventually lead to kidney damage, reduced function, and ultimately kidney failure.</li><li><strong>Two Main Types:</strong> Autosomal Dominant PKD (ADPKD) is the most common, typically manifesting in adulthood. Autosomal Recessive PKD (ARPKD) is rarer and often presents in infancy or childhood.</li><li><strong>Systemic Impact:</strong> Cysts can also develop in other organs, such as the liver, pancreas, and spleen. PKD is also associated with an increased risk of intracranial aneurysms.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Flank or Abdominal Pain:</strong> Often due to enlarged kidneys or cyst rupture.</li><li><strong>Hematuria:</strong> Blood in the urine, which can be microscopic or visible, often from cyst rupture.</li><li><strong>Hypertension:</strong> High blood pressure is a common early symptom and a significant risk factor for disease progression.</li><li><strong>Recurrent Urinary Tract Infections (UTIs):</strong> Cysts can predispose individuals to infections.</li><li><strong>Kidney Stones:</strong> Increased incidence of stone formation.</li><li><strong>Abdominal Fullness or Enlargement:</strong> Due to the increasing size of the kidneys.</li><li><strong>Headaches:</strong> Can be a symptom of hypertension or, less commonly, an intracranial aneurysm.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Blood Pressure Management:</strong> Strict control of hypertension is paramount to slow kidney disease progression.</li><li><strong>Pain Medication Avoidance:</strong> Avoid non-steroidal anti-inflammatory drugs (NSAIDs) as they can harm kidney function; discuss safe pain relief options with a physician.</li><li><strong>Hydration:</strong> Maintain adequate fluid intake to help prevent kidney stones and UTIs, unless fluid restriction is medically advised.</li><li><strong>Nephrotoxic Agents:</strong> Be cautious with medications and substances known to be toxic to the kidneys; always inform healthcare providers about PKD.</li><li><strong>Aneurysm Screening:</strong> Regular screening for intracranial aneurysms, especially with a family history, is crucial.</li><li><strong>Genetic Counseling:</strong> Consider genetic counseling for family planning and to understand inheritance patterns.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Sodium Restriction:</strong> Limit dietary sodium intake to help manage blood pressure and reduce fluid retention.</li><li><strong>Protein Moderation:</strong> In advanced stages of kidney disease, a moderate protein diet may be recommended to reduce kidney workload.</li><li><strong>Adequate Fluid Intake:</strong> Encourage drinking plenty of water throughout the day, unless specific fluid restrictions are in place due to advanced kidney failure.</li><li><strong>Potassium and Phosphorus Monitoring:</strong> As kidney function declines, dietary restrictions on potassium and phosphorus may be necessary; follow specific medical advice.</li><li><strong>Caffeine and Alcohol:</strong> Moderate intake is generally advised, as excessive amounts can impact blood pressure and hydration status.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Regular Nephrology Follow-ups:</strong> Adhere strictly to scheduled appointments with a nephrologist for ongoing monitoring and management.</li><li><strong>Symptom Vigilance:</strong> Promptly report any new or worsening symptoms, such as severe pain, sudden changes in vision, or persistent headaches, to your healthcare provider.</li><li><strong>Medication Adherence:</strong> Take all prescribed medications, especially antihypertensives, exactly as directed to optimize disease management.</li><li><strong>Emergency Preparedness:</strong> Understand the signs and symptoms that warrant immediate medical attention, such as severe, sudden headache (potential aneurysm rupture) or signs of acute kidney injury.</li><li><strong>Family Awareness:</strong> Inform family members about the hereditary nature of PKD and encourage screening for at-risk relatives.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early Diagnosis and Intervention:</strong> Early identification of PKD allows for timely interventions to manage symptoms and potentially slow disease progression.</li><li><strong>Holistic Management:</strong> A multidisciplinary approach involving nephrologists, geneticists, neurologists, and dietitians is often beneficial for comprehensive patient care.</li><li><strong>Tolvaptan Consideration:</strong> For eligible ADPKD patients, specific medications like tolvaptan may be considered to slow the rate of kidney function decline.</li><li><strong>Renal Replacement Therapy Planning:</strong> Proactive discussions about potential future needs for dialysis or kidney transplantation are essential as the disease progresses.</li><li><strong>Patient Education:</strong> Empowering patients with knowledge about their condition, treatment options, and self-management strategies is crucial for long-term health.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education on Disease Progression:</strong> Educate patients and families about the genetic basis, progressive nature, and potential complications of PKD.</li><li><strong>Blood Pressure Monitoring:</strong> Instruct patients on proper home blood pressure monitoring techniques and the importance of maintaining target blood pressure.</li><li><strong>Medication Adherence Support:</strong> Reinforce the importance of consistent medication intake, especially for blood pressure control, and educate on potential side effects.</li><li><strong>Fluid Balance Assessment:</strong> Monitor fluid intake and output, and educate patients on signs of adequate hydration versus fluid overload or dehydration.</li><li><strong>Pain Management Strategies:</strong> Assess chronic pain levels and educate on non-pharmacological and safe pharmacological pain management options, avoiding nephrotoxic agents.</li><li><strong>Urinary Symptom Management:</strong> Provide guidance on recognizing and reporting symptoms of UTIs or kidney stones.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Genetic Basis:</strong> ADPKD is primarily linked to mutations in the <em>PKD1</em> (85% of cases) and <em>PKD2</em> genes. ARPKD is caused by mutations in the <em>PKHD1</em> gene.</li><li><strong>Diagnosis:</strong> Typically diagnosed via imaging studies such as ultrasound, CT, or MRI, which reveal multiple renal cysts and often increased kidney volume. Genetic testing can confirm diagnosis.</li><li><strong>Complications:</strong> Renal failure, hypertension, intracranial aneurysms, liver cysts, cardiac valvular disease, diverticulosis, and inguinal/abdominal hernias.</li><li><strong>Treatment Modalities:</strong> Blood pressure control (ACE inhibitors/ARBs), pain management, management of UTIs, and in specific cases, tolvaptan. Renal replacement therapy (dialysis or transplantation) for end-stage renal disease.</li><li><strong>Prognosis:</strong> Variable, influenced by genetic mutation (<em>PKD1</em> mutations generally lead to more severe disease and earlier onset of ESRD than <em>PKD2</em>), age of onset, and effectiveness of blood pressure control.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

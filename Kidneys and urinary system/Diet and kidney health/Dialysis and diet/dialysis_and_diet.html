@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a person sitting comfortably next to a modern dialysis machine, with a table in front of them holding a plate of kidney-friendly food like white rice, grilled chicken, and a few berries. A glass of water with a measured line is also visible. The background features subtle, abstract icons representing kidneys and healthy food choices. The overall style is clean, modern, and designed for public health awareness, avoiding any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./dialysis_and_diet.jpg" class="card-banner" alt="Dialysis and diet Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-kidneys-and-urinary-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Kidneys and urinary system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-kidneys-and-urinary-system-diet-and-kidney-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Diet and kidney health</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Dialysis and diet</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Kidneys and urinary system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Diet and kidney health</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Dialysis Function</strong>: Dialysis is a life-sustaining treatment that filters waste products and excess fluid from the blood when kidneys fail.</li><li><strong>Dietary Cornerstone</strong>: A carefully managed diet is paramount for individuals on dialysis to prevent complications and maintain nutritional status.</li><li><strong>Individualized Plans</strong>: Dietary requirements vary significantly based on the type of dialysis (hemodialysis vs. peritoneal dialysis), residual kidney function, and individual lab results.</li><li><strong>Goal of Renal Diet</strong>: The primary goal is to balance nutrient intake, control fluid and electrolyte levels, and minimize the accumulation of toxins between dialysis sessions.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Fluid Overload</strong>: Swelling in legs, ankles, hands, shortness of breath, and elevated blood pressure due to excessive fluid intake.</li><li><strong>Hyperkalemia</strong>: Muscle weakness, fatigue, nausea, and potentially life-threatening irregular heartbeats from high potassium levels.</li><li><strong>Hyperphosphatemia</strong>: Severe itching, bone pain, and increased risk of bone disease and cardiovascular calcification due to high phosphorus.</li><li><strong>Malnutrition/Cachexia</strong>: Unintended weight loss, muscle wasting, and fatigue, often resulting from inadequate protein or calorie intake, or poor appetite.</li><li><strong>Anemia</strong>: Persistent fatigue, weakness, and pallor, which can be exacerbated by dietary deficiencies in iron or B vitamins.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Strict Fluid Restriction</strong>: Adhere rigorously to prescribed fluid limits to prevent dangerous fluid overload, which can strain the heart and lungs.</li><li><strong>Potassium Monitoring</strong>: Avoid high-potassium foods (e.g., bananas, oranges, potatoes, tomatoes) and monitor lab results closely to prevent hyperkalemia.</li><li><strong>Phosphorus Control</strong>: Limit high-phosphorus foods (e.g., dairy products, nuts, whole grains, dark colas) and take prescribed phosphate binders with meals.</li><li><strong>Sodium Limitation</strong>: Minimize sodium intake to control thirst, reduce fluid retention, and manage blood pressure effectively.</li><li><strong>Protein Balance</strong>: Consume adequate high-quality protein (e.g., lean meats, poultry, fish, eggs) as recommended by a dietitian, as dialysis removes protein.</li><li><strong>Medication Adherence</strong>: Take all prescribed medications, especially phosphate binders and vitamin supplements, as directed to manage mineral and vitamin balance.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Protein Intake</strong>: Focus on high-quality protein sources like lean beef, chicken, fish, and eggs. Requirements are often higher for dialysis patients than for those with early-stage kidney disease.</li><li><strong>Sodium Restriction</strong>: Choose fresh foods over processed, canned, or fast foods. Use herbs and spices for flavoring instead of salt.</li><li><strong>Potassium Management</strong>: Limit high-potassium fruits (e.g., bananas, oranges, melons) and vegetables (e.g., potatoes, tomatoes, spinach). Leaching vegetables by boiling can reduce potassium content.</li><li><strong>Phosphorus Control</strong>: Avoid foods high in phosphorus additives (often found in processed foods). Limit dairy products, nuts, seeds, and whole grains.</li><li><strong>Fluid Limits</strong>: Measure and track all fluid intake, including beverages, soups, and foods that melt at room temperature (e.g., ice cream, gelatin).</li><li><strong>Calcium & Vitamin D</strong>: Often supplemented, but dietary sources of calcium (e.g., fortified rice milk, certain green vegetables) should be monitored due to phosphorus content.</li><li><strong>Healthy Fats</strong>: Include monounsaturated and polyunsaturated fats from sources like olive oil, avocado, and fatty fish (in moderation for phosphorus).</li><li><strong>Carbohydrates</strong>: Prioritize complex carbohydrates for energy, choosing low-potassium and low-phosphorus options like white bread, white rice, and certain pastas.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Regular Lab Monitoring</strong>: Consistent blood tests for potassium, phosphorus, calcium, and albumin are crucial for adjusting dietary plans.</li><li><strong>Consult a Renal Dietitian</strong>: Always work closely with a registered renal dietitian to develop a personalized meal plan that meets specific needs and dialysis modality.</li><li><strong>Read Food Labels Carefully</strong>: Pay close attention to sodium, potassium, and phosphorus content, especially in packaged and processed foods.</li><li><strong>Cooking Methods</strong>: Boiling vegetables can help reduce potassium content. Drain and rinse canned foods to reduce sodium.</li><li><strong>Weight Management</strong>: Monitor weight regularly to detect fluid retention or unintended weight loss, which can indicate dietary issues.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Integrated Care</strong>: Dietary management is an integral part of comprehensive dialysis care, directly impacting patient outcomes and quality of life.</li><li><strong>Preventing Complications</strong>: Strict adherence to dietary guidelines is essential to prevent acute complications like hyperkalemia and fluid overload, which can be life-threatening.</li><li><strong>Bone Health</strong>: Managing phosphorus and calcium intake, often with binders and active vitamin D, is critical for preventing renal bone disease.</li><li><strong>Nutritional Status</strong>: Physicians emphasize maintaining adequate protein and calorie intake to prevent malnutrition, which is common in dialysis patients and affects prognosis.</li><li><strong>Patient Education</strong>: Empowering patients with a thorough understanding of their dietary restrictions and the rationale behind them is key to long-term success.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Role</strong>: Nurses play a vital role in reinforcing dietary teaching, explaining restrictions, and answering patient questions about food choices.</li><li><strong>Fluid Balance Assessment</strong>: Accurately monitor and document fluid intake and output, daily weights, and signs of fluid overload or dehydration.</li><li><strong>Medication Administration & Teaching</strong>: Educate patients on the correct timing and importance of phosphate binders with meals and other prescribed supplements.</li><li><strong>Recognizing Dietary Non-Adherence</strong>: Identify signs and symptoms of electrolyte imbalances or fluid overload that may indicate non-adherence to dietary restrictions.</li><li><strong>Interdisciplinary Collaboration</strong>: Collaborate closely with renal dietitians, nephrologists, and social workers to ensure holistic patient support and dietary plan adjustments.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Uremic Toxin Accumulation</strong>: Dietary protein restriction in pre-dialysis stages aims to reduce nitrogenous waste, but protein needs increase once dialysis begins due to protein loss during treatment.</li><li><strong>Mineral and Bone Disorder (CKD-MBD)</strong>: A complex syndrome involving abnormal calcium, phosphorus, PTH, and vitamin D metabolism, significantly influenced by dietary phosphorus and managed with binders and active vitamin D.</li><li><strong>Dialysis Modality Differences</strong>: Peritoneal dialysis (PD) patients often have higher protein and fluid allowances than hemodialysis (HD) patients due to continuous waste removal and glucose absorption from dialysate.</li><li><strong>Electrolyte Homeostasis</strong>: Dialysis aims to restore electrolyte balance; however, dietary intake between sessions significantly impacts serum levels of potassium, sodium, and phosphorus.</li><li><strong>Nutritional Assessment Tools</strong>: Tools like Subjective Global Assessment (SGA) or Malnutrition Inflammation Score (MIS) are used to assess nutritional status in dialysis patients, guiding dietary interventions.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a patient experiencing chest pain, clutching their chest, with a transparent overlay showing a heart and intricate blood vessels. A medical professional, wearing scrubs, is gently drawing blood from the patient's arm. In the foreground, a magnified view of a blood sample with distinct troponin protein molecules is visible. The background features a clean, modern laboratory setting with various test tubes, a centrifuge, and a microscope. The overall design should be optimized for public health awareness, using a calm color palette and avoiding any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./troponin_test.jpg" class="card-banner" alt="Troponin test Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-tests-and-procedures" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Tests and procedures</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Troponin test</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Tests and procedures</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Cardiac Biomarker:</strong> The troponin test measures the levels of cardiac troponins (cTnI and cTnT), which are proteins released into the bloodstream when the heart muscle is damaged.</li>
+        <li><strong>Myocardial Injury Detection:</strong> It is the most sensitive and specific blood test for detecting myocardial injury, primarily used to diagnose acute myocardial infarction (heart attack).</li>
+        <li><strong>Differentiating Chest Pain:</strong> Helps clinicians distinguish between chest pain caused by a heart attack and other non-cardiac or less severe cardiac conditions.</li>
+        <li><strong>Types of Troponin:</strong> Cardiac troponin I (cTnI) and cardiac troponin T (cTnT) are specific to heart muscle and are the forms measured in clinical practice.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Chest Pain or Discomfort:</strong> Often described as pressure, tightness, squeezing, or aching in the center of the chest, which may radiate.</li>
+        <li><strong>Shortness of Breath (Dyspnea):</strong> Difficulty breathing, especially with exertion or at rest, often accompanying chest discomfort.</li>
+        <li><strong>Pain Radiating to Other Areas:</strong> Discomfort that spreads to the left arm, jaw, neck, back, or stomach.</li>
+        <li><strong>Sweating (Diaphoresis):</strong> Sudden onset of cold sweat, often without physical exertion.</li>
+        <li><strong>Nausea or Vomiting:</strong> Gastrointestinal symptoms that can sometimes accompany cardiac events.</li>
+        <li><strong>Lightheadedness or Dizziness:</strong> Feeling faint or unsteady, potentially indicating reduced blood flow to the brain.</li>
+        <li><strong>Unusual Fatigue:</strong> Profound or unexplained tiredness, particularly in women, which can precede or accompany a cardiac event.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Serial Measurements:</strong> A single troponin level is often insufficient; serial measurements over several hours are crucial to observe the rise and fall pattern indicative of acute injury.</li>
+        <li><strong>False Positives:</strong> Be aware that elevated troponin levels can occur in conditions other than acute myocardial infarction, such as severe sepsis, renal failure, pulmonary embolism, or myocarditis.</li>
+        <li><strong>Timing of Blood Draw:</strong> The timing of the blood draw relative to symptom onset is critical for accurate interpretation, as troponin levels may not rise immediately.</li>
+        <li><strong>Immediate Medical Attention:</strong> Any patient presenting with symptoms suggestive of acute coronary syndrome requires immediate medical evaluation and monitoring, regardless of initial troponin results.</li>
+        <li><strong>Medication Review:</strong> Inform healthcare providers of all current medications, as some may affect cardiac function or test interpretation.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>No Fasting Required:</strong> A troponin blood test typically does not require any specific fasting or dietary restrictions prior to the blood draw.</li>
+        <li><strong>Maintain Hydration:</strong> Adequate hydration is generally recommended to facilitate easier venous access for blood collection.</li>
+        <li><strong>Avoid Stimulants:</strong> If experiencing symptoms, avoid excessive caffeine or other stimulants, as they can sometimes mimic or exacerbate cardiac symptoms and anxiety.</li>
+        <li><strong>Usual Diet:</strong> Patients should generally continue their usual diet unless otherwise instructed by a healthcare provider for other concurrent medical reasons.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Remain Calm and Follow Instructions:</strong> Patients experiencing symptoms should remain as calm as possible and strictly follow all instructions from medical personnel.</li>
+        <li><strong>Report Worsening Symptoms:</strong> Immediately report any new or worsening symptoms, such as increased chest pain, shortness of breath, or dizziness, to the medical team.</li>
+        <li><strong>Understand Urgency:</strong> Recognize that troponin test results are often critical and require prompt interpretation to guide urgent treatment decisions.</li>
+        <li><strong>Prepare for Further Tests:</strong> Be prepared for additional diagnostic tests (e.g., ECG, echocardiogram) and potential interventions based on troponin levels and clinical presentation.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Diagnostic Cornerstone for ACS:</strong> Troponin is the primary biomarker for diagnosing acute coronary syndrome (ACS), including STEMI and NSTEMI.</li>
+        <li><strong>Serial Testing Protocol:</strong> Adherence to established serial testing protocols (e.g., 0-hour/3-hour or 0-hour/1-hour using high-sensitivity assays) is essential for accurate rule-in/rule-out of MI.</li>
+        <li><strong>Clinical Correlation:</strong> Troponin results must always be interpreted in conjunction with the patient's clinical presentation, ECG findings, and other cardiac risk factors.</li>
+        <li><strong>Guides Treatment Decisions:</strong> Elevated and rising troponin levels often dictate urgent interventions such as reperfusion therapy (PCI or thrombolysis) and anti-ischemic medications.</li>
+        <li><strong>Prognostic Indicator:</strong> Persistently elevated troponin levels, even in the absence of acute MI, can indicate underlying cardiac stress or injury and may carry prognostic implications.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Accurate Blood Collection:</strong> Ensure proper venipuncture technique and timely specimen collection to prevent hemolysis and ensure sample integrity.</li>
+        <li><strong>Timely Lab Transport:</strong> Promptly transport blood samples to the laboratory to minimize pre-analytical delays that could affect result turnaround time.</li>
+        <li><strong>Patient Education:</strong> Educate patients and families on the purpose of the troponin test, the need for serial draws, and the importance of reporting symptom changes.</li>
+        <li><strong>Monitoring for Changes:</strong> Continuously monitor patients for changes in cardiac symptoms, vital signs, and ECG findings, correlating with troponin results.</li>
+        <li><strong>Understanding Protocols:</strong> Familiarize with institutional protocols for rapid rule-in/rule-out of MI using high-sensitivity troponin assays.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>High-Sensitivity Troponin (hs-cTn):</strong> Modern assays can detect very low levels of troponin, allowing for earlier detection of myocardial injury and faster rule-out protocols.</li>
+        <li><strong>99th Percentile Upper Reference Limit (URL):</strong> A troponin elevation is defined as a value above the 99th percentile of a healthy reference population.</li>
+        <li><strong>Dynamic Change:</strong> A significant rise and/or fall in troponin levels, rather than a single elevated value, is characteristic of acute myocardial infarction.</li>
+        <li><strong>Non-Ischemic Elevations:</strong> Causes of elevated troponin not due to acute coronary ischemia include myocarditis, heart failure exacerbation, renal failure, pulmonary embolism, and severe sepsis.</li>
+        <li><strong>Half-Life Considerations:</strong> Cardiac troponins have a relatively long half-life, meaning they can remain elevated for several days after an acute event.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

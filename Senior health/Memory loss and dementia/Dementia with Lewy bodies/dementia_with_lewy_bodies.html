@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a senior person with a gentle, thoughtful expression, surrounded by subtle visual cues representing the core symptoms of Dementia with Lewy bodies. Elements include a clock with slightly blurred or shifting numbers to symbolize fluctuating cognition, a faint, non-threatening, abstract visual element (like a soft, indistinct butterfly or shape) in the background to represent visual hallucinations, and a hand with a very slight, almost imperceptible tremor holding a teacup, indicating Parkinsonism. The overall color palette is soft and empathetic, with a focus on clarity and accessibility. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./dementia_with_lewy_bodies.jpg" class="card-banner" alt="Dementia with Lewy bodies Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-senior-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Senior health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-senior-health-memory-loss-and-dementia" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Memory loss and dementia</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Dementia with Lewy bodies</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Senior health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Memory loss and dementia</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Defining DLB:</strong> Dementia with Lewy bodies (DLB) is a progressive neurodegenerative disorder characterized by abnormal protein deposits called Lewy bodies in the brain, affecting thinking, movement, behavior, and mood.</li><li><strong>Key Features:</strong> It is distinguished by a triad of core clinical features: fluctuating cognition, recurrent visual hallucinations, and spontaneous Parkinsonism.</li><li><strong>Overlap with Parkinson's:</strong> DLB shares pathological features with Parkinson's disease, but in DLB, cognitive symptoms typically appear before or concurrently with motor symptoms (within one year).</li><li><strong>REM Sleep Behavior Disorder:</strong> Often an early and prominent symptom, involving acting out dreams during sleep.</li><li><strong>Medication Sensitivity:</strong> Individuals with DLB are highly sensitive to certain medications, especially conventional antipsychotics, which can worsen symptoms or cause severe adverse reactions.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Fluctuating Cognition:</strong> Profound variations in attention and alertness over hours or days, impacting problem-solving and executive function.</li><li><strong>Recurrent Visual Hallucinations:</strong> Typically well-formed, detailed, and often of people or animals, which can be distressing or benign.</li><li><strong>Parkinsonism:</strong> Spontaneous development of motor symptoms such as rigidity, bradykinesia (slowness of movement), tremor, and gait instability.</li><li><strong>REM Sleep Behavior Disorder (RBD):</strong> Physical enactment of dreams due to loss of muscle paralysis during REM sleep, leading to shouting, punching, or kicking.</li><li><strong>Autonomic Dysfunction:</strong> Symptoms like orthostatic hypotension (dizziness upon standing), constipation, urinary incontinence, and impaired temperature regulation.</li><li><strong>Mood Disturbances:</strong> Depression, anxiety, and apathy are common, often preceding cognitive decline.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Antipsychotic Sensitivity:</strong> Avoid conventional antipsychotics (neuroleptics) due to high risk of severe neuroleptic malignant syndrome-like reactions, worsening Parkinsonism, or profound sedation. Use atypical antipsychotics with extreme caution and at very low doses if absolutely necessary.</li><li><strong>Fall Risk Management:</strong> Implement comprehensive fall prevention strategies due to gait instability, Parkinsonism, orthostatic hypotension, and visual hallucinations.</li><li><strong>Swallowing Assessment:</strong> Monitor for dysphagia (difficulty swallowing) and implement aspiration precautions as needed, especially as the disease progresses.</li><li><strong>Cognitive Fluctuation Adaptation:</strong> Recognize and adapt care plans to the significant day-to-day or even hour-to-hour variability in cognitive function and alertness.</li><li><strong>Driving Safety:</strong> Advise against driving due to impaired judgment, visual hallucinations, and fluctuating attention.</li><li><strong>Caregiver Support:</strong> Provide robust support and education for caregivers, as DLB presents unique challenges and high burden.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration Focus:</strong> Ensure adequate fluid intake to prevent dehydration, which can exacerbate orthostatic hypotension and constipation.</li><li><strong>Fiber-Rich Diet:</strong> Encourage a diet high in fiber to manage chronic constipation, a common autonomic symptom in DLB.</li><li><strong>Small, Frequent Meals:</strong> Offer smaller, more frequent meals to accommodate fluctuating appetite, energy levels, and potential for early satiety.</li><li><strong>Texture Modification:</strong> If dysphagia develops, modify food textures (e.g., pureed, soft foods) and liquid consistency (e.g., thickened liquids) to prevent aspiration.</li><li><strong>Avoidance of Sedatives/Alcohol:</strong> Limit or avoid alcohol and sedating substances that can worsen cognitive symptoms, increase confusion, and heighten fall risk.</li><li><strong>Nutrient Density:</strong> Focus on nutrient-dense foods to maintain weight and energy, especially given potential for motor difficulties affecting self-feeding.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Medication Vigilance:</strong> Carefully review all medications for potential interactions and contraindications, especially regarding neuroleptic sensitivity. Administer Parkinson's medications cautiously, as they can sometimes worsen hallucinations.</li><li><strong>Environmental Safety:</strong> Create a safe, well-lit, and uncluttered environment to minimize confusion, reduce fall risk, and manage visual hallucinations.</li><li><strong>Communication Strategies:</strong> Use clear, simple language. Validate the person's experiences, especially during hallucinations, without reinforcing delusions. Redirect gently if needed.</li><li><strong>Monitoring for Changes:</strong> Closely observe for acute changes in cognition, behavior, motor function, or new medication side effects, reporting promptly to the healthcare team.</li><li><strong>Sleep Environment:</strong> Ensure a safe sleep environment for individuals with REM sleep behavior disorder, removing sharp objects and padding bed rails if necessary.</li><li><strong>Routine and Structure:</strong> Maintain a consistent daily routine to provide predictability and reduce anxiety, while remaining flexible to accommodate cognitive fluctuations.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early and Accurate Diagnosis:</strong> Crucial for guiding appropriate management, avoiding contraindicated medications, and initiating supportive therapies.</li><li><strong>Multidisciplinary Care:</strong> A team approach involving neurologists, geriatricians, psychiatrists, physical therapists, occupational therapists, and speech-language pathologists is essential.</li><li><strong>Symptomatic Management:</strong> Cholinesterase inhibitors (e.g., donepezil, rivastigmine) are often used for cognitive and behavioral symptoms. Levodopa may be used cautiously for motor symptoms, balancing benefit against potential for worsening hallucinations.</li><li><strong>Non-Pharmacological Interventions:</strong> Prioritize non-drug strategies for managing behavioral symptoms, such as environmental modifications, routine, and redirection.</li><li><strong>Caregiver Education and Support:</strong> Emphasize the importance of educating caregivers about the disease course, medication sensitivities, and available support resources.</li><li><strong>Regular Reassessment:</strong> Frequent clinical re-evaluation is necessary to adjust treatments as symptoms evolve and to monitor for medication side effects.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Assessment:</strong> Focus on detailed assessment of cognitive fluctuations, visual hallucinations, motor symptoms (Parkinsonism), and sleep disturbances (RBD).</li><li><strong>Medication Safety:</strong> Understand the profound neuroleptic sensitivity in DLB and advocate for appropriate medication choices and dosages.</li><li><strong>Fall Prevention Protocols:</strong> Implement and reinforce evidence-based fall prevention strategies tailored to the unique motor and cognitive challenges of DLB.</li><li><strong>Therapeutic Communication:</strong> Develop skills in communicating with patients experiencing hallucinations, validating their feelings while gently reorienting to reality.</li><li><strong>Patient and Family Education:</strong> Educate families on the unpredictable nature of DLB, medication precautions, and strategies for managing challenging behaviors and sleep disturbances.</li><li><strong>Autonomic Symptom Management:</strong> Monitor and intervene for orthostatic hypotension, constipation, and other autonomic dysfunctions.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathophysiology:</strong> Characterized by alpha-synuclein protein aggregates (Lewy bodies) in the brainstem, limbic system, and neocortex, leading to neuronal dysfunction and loss.</li><li><strong>Diagnostic Criteria:</strong> Clinical diagnosis based on consensus criteria (e.g., McKeith criteria), requiring core features (fluctuating cognition, visual hallucinations, Parkinsonism) and suggestive features (RBD, severe neuroleptic sensitivity).</li><li><strong>Differential Diagnosis:</strong> Key differentiators include Alzheimer's disease (less prominent motor/hallucinations), Parkinson's disease dementia (motor symptoms precede dementia by >1 year), and vascular dementia.</li><li><strong>Biomarkers:</strong> DAT scans (DaTscan) can show reduced dopamine transporter uptake, supporting DLB diagnosis by differentiating it from Alzheimer's. CSF alpha-synuclein levels are under investigation.</li><li><strong>Pharmacological Management:</strong> Cholinesterase inhibitors (e.g., donepezil, rivastigmine) for cognitive symptoms. Levodopa for motor symptoms (with caution). Atypical antipsychotics (e.g., quetiapine, clozapine) at very low doses for severe behavioral symptoms resistant to non-pharmacological approaches.</li><li><strong>Prognosis:</strong> DLB typically has a more rapid progression than Alzheimer's disease, with a mean survival of 5-8 years from diagnosis.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

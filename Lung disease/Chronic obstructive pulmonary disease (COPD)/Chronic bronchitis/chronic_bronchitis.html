@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting the human respiratory system with a focus on the bronchial tubes. The bronchi show signs of inflammation and excessive mucus production, represented by subtle red hues and wavy, translucent green/yellow shapes within the airways. A stylized figure of a person is gently coughing or exhaling, with a faint outline of their chest. Elements like a crossed-out cigarette and an inhaler or nebulizer are subtly integrated into the background or foreground, symbolizing prevention and treatment. The overall style is clean, modern, and uses a limited, calming color palette suitable for public health awareness, avoiding any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./chronic_bronchitis.jpg" class="card-banner" alt="Chronic bronchitis Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-lung-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Lung disease</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-lung-disease-chronic-obstructive-pulmonary-disease-copd" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Chronic obstructive pulmonary disease (COPD)</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Chronic bronchitis</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Lung disease</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Chronic obstructive pulmonary disease (COPD)</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Chronic bronchitis is a long-term inflammation of the bronchial tubes, characterized by a persistent, productive cough.</li><li><strong>Key Diagnostic Feature:</strong> A daily productive cough for at least three months in two consecutive years, in the absence of other causes.</li><li><strong>Primary Cause:</strong> Most commonly caused by long-term exposure to irritants, particularly cigarette smoke, but also air pollution and occupational dusts/chemicals.</li><li><strong>Pathophysiology:</strong> Leads to increased mucus production, thickening of the bronchial walls, and impaired ciliary function, making airways more susceptible to infection.</li><li><strong>COPD Component:</strong> It is a major component of Chronic Obstructive Pulmonary Disease (COPD), often co-existing with emphysema.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Persistent Cough:</strong> A chronic, daily cough that produces mucus (sputum), often worse in the morning and in damp weather.</li><li><strong>Sputum Production:</strong> Mucus can be clear, white, yellow, or green, and its quantity may vary.</li><li><strong>Shortness of Breath (Dyspnea):</strong> Initially with exertion, progressing to dyspnea at rest as the disease advances.</li><li><strong>Wheezing:</strong> A whistling or squeaky sound during breathing, especially during exhalation.</li><li><strong>Chest Discomfort:</strong> A feeling of tightness or heaviness in the chest.</li><li><strong>Frequent Respiratory Infections:</strong> Increased susceptibility to colds, flu, and pneumonia due to impaired airway clearance.</li><li><strong>Fatigue:</strong> General tiredness and lack of energy, often due to increased breathing effort and poor sleep.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Smoking Cessation:</strong> Absolutely paramount to halt disease progression and improve lung function. Avoid all forms of tobacco.</li><li><strong>Avoid Irritants:</strong> Minimize exposure to secondhand smoke, air pollution, chemical fumes, dust, and other respiratory irritants.</li><li><strong>Vaccinations:</strong> Ensure up-to-date annual influenza and pneumococcal vaccinations to prevent severe respiratory infections.</li><li><strong>Hand Hygiene:</strong> Practice frequent and thorough hand washing to reduce the risk of viral and bacterial infections.</li><li><strong>Medication Adherence:</strong> Consistently take all prescribed bronchodilators, corticosteroids, and other medications as directed.</li><li><strong>Early Symptom Recognition:</strong> Be vigilant for signs of exacerbation, such as increased cough, changes in sputum color/volume, worsening dyspnea, or fever, and seek prompt medical attention.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Adequate Hydration:</strong> Drink plenty of fluids (water, clear broths) to help thin mucus, making it easier to clear from the airways.</li><li><strong>Small, Frequent Meals:</strong> Opt for smaller, more frequent meals to avoid feeling overly full, which can put pressure on the diaphragm and worsen breathing difficulties.</li><li><strong>Nutrient-Dense Foods:</strong> Focus on a balanced diet rich in fruits, vegetables, lean proteins, and whole grains to support overall health and immune function.</li><li><strong>Limit Inflammatory Foods:</strong> Reduce intake of highly processed foods, excessive sugars, and unhealthy fats that may contribute to systemic inflammation.</li><li><strong>Avoid Gas-Producing Foods:</strong> Identify and limit foods that cause bloating (e.g., certain beans, carbonated drinks) as abdominal distension can impede diaphragm movement.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Signs:</strong> Seek immediate medical attention for severe shortness of breath, bluish discoloration of lips or fingertips (cyanosis), confusion, or severe chest pain.</li><li><strong>Proper Inhaler Technique:</strong> Ensure correct use of inhalers and nebulizers; improper technique can reduce medication effectiveness.</li><li><strong>Oxygen Therapy Safety:</strong> If prescribed oxygen, strictly adhere to safety guidelines, including avoiding open flames and ensuring proper storage.</li><li><strong>Pulmonary Rehabilitation Participation:</strong> Actively engage in prescribed pulmonary rehabilitation programs, which include exercise, breathing techniques, and education.</li><li><strong>Infection Prevention:</strong> Avoid crowded places during peak flu season and practice good respiratory etiquette (e.g., covering coughs/sneezes).</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Diagnosis Confirmation:</strong> Diagnosis relies on clinical history, physical examination, and spirometry to assess airflow limitation.</li><li><strong>Treatment Goals:</strong> Focus on symptom management, prevention of exacerbations, improvement of quality of life, and slowing disease progression.</li><li><strong>Pharmacological Management:</strong> Includes bronchodilators (short-acting and long-acting), inhaled corticosteroids, and sometimes oral steroids or antibiotics during acute exacerbations.</li><li><strong>Lifestyle Interventions:</strong> Emphasize smoking cessation as the most critical intervention; counseling and pharmacotherapy are often recommended.</li><li><strong>Regular Monitoring:</strong> Consistent follow-up appointments are essential to monitor lung function, adjust medications, and address emerging complications.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pathophysiology Review:</strong> Understand the role of chronic inflammation, goblet cell hyperplasia, mucous gland hypertrophy, and ciliary dysfunction in mucus hypersecretion and airway obstruction.</li><li><strong>Nursing Assessment:</strong> Focus on respiratory rate, oxygen saturation, breath sounds (rhonchi, wheezing), sputum characteristics, cough effectiveness, and signs of respiratory distress.</li><li><strong>Airway Clearance Techniques:</strong> Educate and assist patients with controlled coughing, huff coughing, and potentially chest physiotherapy or vibratory devices.</li><li><strong>Patient Education:</strong> Provide comprehensive teaching on medication administration, symptom recognition, energy conservation techniques, and the importance of infection prevention.</li><li><strong>Oxygen Therapy Management:</strong> Monitor oxygen saturation and ensure correct flow rate and delivery device for prescribed oxygen therapy.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>ICD-10 Codes:</strong> J42 (Unspecified chronic bronchitis), J44.0 (Chronic obstructive pulmonary disease with acute lower respiratory infection), J44.1 (Chronic obstructive pulmonary disease with acute exacerbation, unspecified).</li><li><strong>Diagnostic Criteria (Clinical):</strong> Productive cough for at least 3 months in 2 consecutive years, in the absence of other identifiable causes.</li><li><strong>Spirometry Findings:</strong> Often shows post-bronchodilator FEV1/FVC ratio < 0.70, indicating airflow limitation consistent with COPD.</li><li><strong>Key Pharmacological Classes:</strong> Long-acting beta-agonists (LABAs), long-acting muscarinic antagonists (LAMAs), inhaled corticosteroids (ICS), phosphodiesterase-4 inhibitors (e.g., roflumilast).</li><li><strong>Complications:</strong> Acute exacerbations, recurrent respiratory infections, cor pulmonale, secondary polycythemia, respiratory failure.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a patient lying on a diagnostic imaging table, with a large, modern gamma camera positioned above them. The patient's skeleton is subtly highlighted with glowing 'hot spots' indicating areas of increased activity, representing the tracer uptake. A medical professional in scrubs is observing from a control room window. The overall design is clean, informative, and uses a palette of blues, greens, and soft grays, suitable for public health awareness materials. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./bone_scan.jpg" class="card-banner" alt="Bone scan Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-laboratory-and-diagnostic-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Laboratory and diagnostic tests</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-laboratory-and-diagnostic-tests-other-diagnostic-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Other diagnostic tests</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Bone scan</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Laboratory and diagnostic tests</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Other diagnostic tests</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose:</strong> A bone scan is a nuclear medicine imaging test used to detect bone abnormalities such as fractures, infections, tumors, and arthritis.</li><li><strong>Procedure Overview:</strong> A small amount of radioactive tracer (radiopharmaceutical) is injected into a vein, which travels through the bloodstream and accumulates in areas of increased bone metabolism.</li><li><strong>Imaging Process:</strong> After a waiting period (typically 2-4 hours), a special camera (gamma camera) scans the body to detect the radiation emitted by the tracer, creating images of the bones.</li><li><strong>Detection Mechanism:</strong> Areas with higher tracer uptake, appearing as 'hot spots' on the scan, indicate increased bone activity, which can be associated with various bone conditions.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Persistent Bone Pain:</strong> Unexplained or chronic localized bone pain that does not resolve with conservative treatment.</li><li><strong>Unexplained Fractures:</strong> Suspected stress fractures, pathological fractures, or fractures not evident on standard X-rays.</li><li><strong>Suspected Metastasis:</strong> In patients with a known primary cancer, to evaluate for spread to the bones.</li><li><strong>Bone Infection (Osteomyelitis):</strong> Clinical signs of infection such as fever, localized pain, swelling, and redness over a bone.</li><li><strong>Arthritis Evaluation:</strong> To assess the extent of inflammation or damage in certain types of arthritis.</li><li><strong>Paget's Disease:</strong> To diagnose and monitor the activity of this chronic bone disorder.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Pregnancy Status:</strong> Inform your physician immediately if you are pregnant or suspect you might be, as the radioactive tracer can pose risks to the fetus.</li><li><strong>Breastfeeding:</strong> Discuss with your doctor if you are breastfeeding, as temporary cessation and pumping/discarding milk may be necessary after tracer injection.</li><li><strong>Recent Barium Studies:</strong> Inform the imaging department if you have had a barium study (e.g., barium swallow, CT with oral contrast) within the last few days, as it can interfere with scan results.</li><li><strong>Allergies:</strong> While rare, inform staff of any known allergies, especially to medications or contrast agents.</li><li><strong>Kidney Function:</strong> Patients with severe kidney impairment may have altered tracer excretion, which should be discussed with the ordering physician.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>No Fasting Required:</strong> Generally, there are no specific dietary restrictions or fasting requirements before a bone scan. You can eat and drink normally.</li><li><strong>Hydration Encouragement:</strong> It is crucial to drink plenty of fluids (water, juice) between the tracer injection and the actual scan to help clear any unbound tracer from your system and improve image quality.</li><li><strong>Post-Scan Hydration:</strong> Continue to drink extra fluids for 24 hours after the scan to help excrete the remaining radioactive tracer from your body.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Arrival Time:</strong> Arrive promptly at your scheduled appointment time, as there is a specific window for tracer injection and subsequent imaging.</li><li><strong>Clothing:</strong> Wear comfortable, loose-fitting clothing. You may be asked to remove jewelry, belts, or any metal objects that could interfere with the scan.</li><li><strong>Voiding Before Scan:</strong> You will be asked to empty your bladder immediately before the scan to improve image clarity, especially in the pelvic region.</li><li><strong>Post-Procedure Contact:</strong> For a short period (typically 24 hours) after the scan, minimize prolonged close contact with pregnant women, infants, and young children due to the small amount of residual radioactivity.</li><li><strong>Movement During Scan:</strong> It is important to remain as still as possible during the imaging process to ensure clear and accurate images.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Clinical Correlation:</strong> Bone scan results must always be interpreted in conjunction with the patient's clinical history, physical examination findings, and other diagnostic tests.</li><li><strong>Tracer Uptake Patterns:</strong> The pattern and intensity of tracer uptake are critical for differentiating between various conditions, such as trauma, infection, degenerative changes, and malignancy.</li><li><strong>Follow-up Imaging:</strong> Abnormal findings on a bone scan often necessitate further targeted imaging (e.g., X-ray, MRI, CT) for more precise anatomical localization and characterization.</li><li><strong>Therapeutic Implications:</strong> The findings can guide treatment decisions, including biopsy sites, radiation therapy planning, or surgical interventions.</li><li><strong>Serial Scans:</strong> For monitoring disease progression or treatment response, serial bone scans may be ordered to track changes over time.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Provide clear explanations of the procedure, including the injection, waiting period, and scanning process, to alleviate patient anxiety.</li><li><strong>IV Access:</strong> Ensure secure intravenous access for the radiotracer injection and monitor the site for any signs of extravasation.</li><li><strong>Hydration Protocol:</strong> Actively encourage and facilitate fluid intake for the patient between injection and scanning, and post-procedure.</li><li><strong>Radiation Safety:</strong> Adhere to ALARA (As Low As Reasonably Achievable) principles for radiation exposure, including proper handling of radiopharmaceuticals and patient guidance.</li><li><strong>Comfort and Positioning:</strong> Assist patients with comfortable positioning on the imaging table, especially for those with pain or mobility limitations, to ensure stillness during the scan.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Radiopharmaceutical:</strong> The most commonly used tracer is Technetium-99m methylene diphosphonate (Tc-99m MDP), which localizes in areas of increased osteoblastic activity.</li><li><strong>Mechanism of Uptake:</strong> Tc-99m MDP binds to hydroxyapatite crystals on the bone surface, particularly in areas of new bone formation or increased blood flow.</li><li><strong>Three-Phase Bone Scan:</strong> Involves immediate dynamic imaging (flow phase), early static images (blood pool phase), and delayed static images (bone phase) to differentiate between vascular, inflammatory, and osseous processes.</li><li><strong>SPECT/CT:</strong> Single-photon emission computed tomography (SPECT) combined with computed tomography (CT) provides precise anatomical localization of tracer uptake, improving diagnostic accuracy.</li><li><strong>Dosimetry:</strong> The radiation dose from a bone scan is comparable to or slightly higher than that of a standard X-ray series, with the majority of the dose delivered to the bladder and bone marrow.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

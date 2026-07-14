@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a concerned older woman, possibly in her 50s or 60s, with a thoughtful or slightly worried expression, gently touching her lower abdomen. In the background, subtle medical symbols like a stylized uterus icon or a gynecological caduceus are visible. The color palette is soft and reassuring, featuring blues, greens, and muted purples. The style is clean, modern, and optimized for public awareness design, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./bleeding_after_menopause.jpg" class="card-banner" alt="Bleeding after menopause Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-hormones" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Hormones</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-hormones-menopause" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Menopause</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Bleeding after menopause</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Hormones</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Menopause</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Definition:</strong> Postmenopausal bleeding (PMB) is any vaginal bleeding, spotting, or staining that occurs one year or more after a woman's last menstrual period.</li>
+        <li><strong>Urgency:</strong> PMB is never considered normal and always warrants immediate medical evaluation by a healthcare provider to determine its cause.</li>
+        <li><strong>Common Causes:</strong> Frequently benign conditions such as endometrial atrophy (thinning of the uterine lining), vaginal atrophy, or benign endometrial/cervical polyps.</li>
+        <li><strong>Serious Concerns:</strong> PMB can be an early symptom of more serious conditions, including endometrial hyperplasia (precancerous changes) or endometrial cancer, which is why prompt investigation is critical.</li>
+        <li><strong>Hormone Therapy:</strong> Women on hormone replacement therapy (HRT) may experience expected withdrawal bleeding; however, any unexpected or irregular bleeding still requires assessment.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Vaginal Spotting or Bleeding:</strong> Ranging from light pink or brown spotting to heavier red bleeding, occurring at any time after menopause.</li>
+        <li><strong>Abnormal Vaginal Discharge:</strong> May be watery, blood-tinged, or have an unusual odor, especially if infection or malignancy is present.</li>
+        <li><strong>Pelvic Pain or Pressure:</strong> While not always present, some underlying causes like fibroids or advanced malignancy can cause discomfort or a feeling of fullness in the pelvis.</li>
+        <li><strong>Painful Intercourse (Dyspareunia):</strong> Often associated with vaginal atrophy, which can also contribute to postmenopausal bleeding.</li>
+        <li><strong>Changes in Urinary Habits:</strong> In some cases, advanced gynecological conditions can affect bladder function, leading to increased frequency or urgency.</li>
+        <li><strong>Unexplained Weight Loss:</strong> A less common but concerning symptom that may accompany advanced malignancy.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Do Not Ignore:</strong> Any instance of postmenopausal bleeding, no matter how slight, must be reported to a healthcare provider without delay.</li>
+        <li><strong>Avoid Self-Diagnosis:</strong> Refrain from attributing bleeding to minor causes without professional medical evaluation, as serious conditions can present subtly.</li>
+        <li><strong>Medication Review:</strong> Inform your physician about all medications, including hormone therapy, blood thinners (anticoagulants), and herbal supplements, as these can influence bleeding.</li>
+        <li><strong>Avoid Vaginal Irritants:</strong> Do not use douches, perfumed feminine hygiene products, or unprescribed vaginal creams, as these can irritate tissues and obscure diagnostic findings.</li>
+        <li><strong>Maintain Regular Check-ups:</strong> Continue with annual gynecological examinations even after menopause, as these can aid in early detection of issues.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Iron-Rich Foods:</strong> If experiencing chronic or heavy bleeding, focus on consuming iron-rich foods (e.g., lean meats, fortified cereals, leafy greens) to prevent or manage iron-deficiency anemia.</li>
+        <li><strong>Hydration:</strong> Maintain adequate fluid intake to support overall health and cellular function, especially if undergoing diagnostic procedures or experiencing stress.</li>
+        <li><strong>Balanced Nutrition:</strong> Emphasize a diet rich in fruits, vegetables, and whole grains to support general well-being and immune function during investigation and potential treatment.</li>
+        <li><strong>Avoid Excessive Caffeine/Alcohol:</strong> While not directly causing PMB, excessive intake can sometimes exacerbate symptoms like hot flashes or impact overall hormonal balance and recovery.</li>
+        <li><strong>Calcium and Vitamin D:</strong> Ensure adequate intake to support bone health, which is crucial in the postmenopausal period, though not directly related to the bleeding itself.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Prompt Reporting:</strong> Contact your healthcare provider immediately upon noticing any postmenopausal bleeding, regardless of amount or duration.</li>
+        <li><strong>Bleeding Log:</strong> Keep a detailed record of bleeding episodes, including date, duration, estimated amount (e.g., number of pads/tampons), color, and any associated symptoms.</li>
+        <li><strong>Prepare for Diagnostics:</strong> Be ready for potential diagnostic tests such as a transvaginal ultrasound, endometrial biopsy, or hysteroscopy, which are essential for determining the cause.</li>
+        <li><strong>Follow-up Adherence:</strong> Strictly adhere to all scheduled follow-up appointments and complete any recommended treatments or further investigations.</li>
+        <li><strong>Emotional Support:</strong> Seek emotional support if needed, as the uncertainty and potential for serious diagnoses can be distressing.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Mandatory Evaluation:</strong> Postmenopausal bleeding is a critical symptom that mandates a thorough and timely gynecological evaluation to rule out malignancy.</li>
+        <li><strong>Comprehensive Workup:</strong> Initial assessment typically includes a detailed history, physical exam, transvaginal ultrasound to assess endometrial thickness, and often an endometrial biopsy.</li>
+        <li><strong>Risk Stratification:</strong> Factors such as age, obesity, diabetes, hypertension, and a history of unopposed estrogen exposure can increase the risk of endometrial pathology.</li>
+        <li><strong>Early Detection:</strong> Early diagnosis of endometrial hyperplasia or cancer significantly improves prognosis and allows for less invasive treatment options.</li>
+        <li><strong>Individualized Management:</strong> Treatment will be tailored to the underlying cause, ranging from observation for atrophy to surgical intervention for polyps or cancer.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Patient Education:</strong> Educate patients on the significance of PMB, emphasizing that it is not a normal part of aging and requires medical attention.</li>
+        <li><strong>Pre-Procedure Counseling:</strong> Prepare patients for diagnostic procedures (e.g., endometrial biopsy, hysteroscopy), explaining the process, potential discomfort, and post-procedure care.</li>
+        <li><strong>Emotional Support:</strong> Provide empathetic support, addressing patient anxieties related to potential diagnoses and the diagnostic process.</li>
+        <li><strong>Monitoring for Anemia:</strong> Assess for signs and symptoms of anemia, especially in cases of prolonged or heavy bleeding, and educate on iron supplementation if prescribed.</li>
+        <li><strong>Documentation:</strong> Accurately document all reported bleeding characteristics, patient history, and education provided.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Endometrial Atrophy:</strong> Thinning of the uterine lining due to lack of estrogen, a common benign cause of PMB.</li>
+        <li><strong>Endometrial Polyp:</strong> Benign growths on the inner lining of the uterus that can cause irregular bleeding.</li>
+        <li><strong>Endometrial Hyperplasia:</strong> Overgrowth of the endometrial lining, which can be simple, complex, or atypical, with atypical hyperplasia being precancerous.</li>
+        <li><strong>Endometrial Carcinoma:</strong> Cancer of the uterine lining, the most common gynecological malignancy in postmenopausal women.</li>
+        <li><strong>Transvaginal Ultrasound (TVUS):</strong> Imaging technique used to measure endometrial thickness and identify structural abnormalities.</li>
+        <li><strong>Endometrial Biopsy:</strong> Procedure to obtain a tissue sample from the uterine lining for histological examination.</li>
+        <li><strong>Hysteroscopy:</strong> Procedure involving insertion of a thin, lighted scope into the uterus to visualize the endometrial cavity and perform targeted biopsies or polyp removal.</li>
+        <li><strong>Dilation and Curettage (D&C):</strong> Surgical procedure to scrape tissue from the uterine lining, often performed if biopsy is inconclusive or for therapeutic purposes.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

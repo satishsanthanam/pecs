@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting an adult, possibly a woman, looking pale and holding her stomach, with a subtle green hue around her face to indicate nausea. She is leaning over a small, simple basin or trash can, suggesting vomiting. In the background, there are faint, stylized icons of bacteria or germs, and a discarded plate with a half-eaten, ambiguous food item, all rendered in a clean, public awareness design style with soft, muted colors. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./nausea_and_vomiting_in_adults.jpg" class="card-banner" alt="Nausea and vomiting in adults Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-digestive-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Digestive system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-digestive-system-food-poisoning" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Food poisoning</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Nausea and vomiting in adults</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Digestive system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Food poisoning</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Nausea is the unpleasant sensation of needing to vomit, while vomiting is the forceful expulsion of stomach contents. In food poisoning, it's often a protective mechanism.</li><li><strong>Common Causes (Food Poisoning):</strong> Ingestion of food contaminated with bacteria (e.g., *Salmonella*, *E. coli*, *Staphylococcus aureus*), viruses (e.g., Norovirus), parasites, or their toxins.</li><li><strong>Onset:</strong> Symptoms can appear rapidly, often within hours of consuming contaminated food, depending on the causative agent.</li><li><strong>Key Concern:</strong> Dehydration and electrolyte imbalance are significant risks, especially with persistent vomiting.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Primary Symptoms:</strong> Intense nausea and recurrent vomiting.</li><li><strong>Gastrointestinal Distress:</strong> Abdominal cramps, pain, and often diarrhea.</li><li><strong>Systemic Reactions:</strong> Headache, general malaise, weakness, and sometimes a low-grade fever.</li><li><strong>Dehydration Indicators:</strong> Dry mouth, increased thirst, decreased urination, dizziness, and lightheadedness.</li><li><strong>Severe Signs:</strong> Bloody vomit or stool, severe abdominal pain, high fever, or signs of shock require immediate medical attention.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Hydration Management:</strong> Sip small, frequent amounts of clear fluids (water, oral rehydration solutions, clear broths) to prevent dehydration. Avoid large gulps which can trigger more vomiting.</li><li><strong>Food Safety Practices:</strong> Adhere strictly to proper food handling, cooking temperatures, and storage guidelines to prevent contamination. Avoid cross-contamination between raw and cooked foods.</li><li><strong>Hand Hygiene:</strong> Wash hands thoroughly with soap and water before eating, after using the restroom, and after handling raw food.</li><li><strong>Avoid Self-Medication:</strong> Do not take anti-diarrheal or anti-emetic medications without consulting a healthcare provider, as they can sometimes prolong toxin exposure or mask serious conditions.</li><li><strong>Monitor Symptoms:</strong> Watch for worsening symptoms, signs of severe dehydration, or the presence of blood in vomit or stool, which warrant immediate medical evaluation.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Initial Rest:</strong> If vomiting is severe, consider a brief period of NPO (nothing by mouth) for 1-2 hours to allow the stomach to settle.</li><li><strong>Fluid Reintroduction:</strong> Begin with small, frequent sips of clear liquids such as water, ice chips, clear broth, or oral rehydration solutions. Avoid sugary drinks or fruit juices initially.</li><li><strong>Bland Food Progression:</strong> Once vomiting subsides and tolerance improves, gradually introduce bland, easy-to-digest foods like plain toast, rice, bananas, applesauce, or crackers (BRAT diet).</li><li><strong>Foods to Avoid:</strong> Steer clear of fatty, greasy, spicy, acidic, or high-fiber foods. Also avoid dairy products, caffeine, and alcohol until fully recovered.</li><li><strong>Small Portions:</strong> Eat small, frequent meals rather than large ones to minimize gastric distension and reduce the likelihood of triggering nausea.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Fluid Monitoring:</strong> Closely monitor the patient's fluid intake and output. Encourage sips of oral rehydration solution.</li><li><strong>Comfort Measures:</strong> Provide an emesis basin, cool compresses for the forehead, and a quiet, well-ventilated environment to reduce sensory stimulation.</li><li><strong>Oral Hygiene:</strong> Assist the patient with oral rinsing or brushing after vomiting to remove acidic residue and improve comfort.</li><li><strong>Infection Control:</strong> If food poisoning is suspected to be infectious, practice strict hand hygiene and proper disposal of contaminated materials to prevent spread.</li><li><strong>Recognize Deterioration:</strong> Be vigilant for signs of worsening dehydration, persistent high fever, severe abdominal pain, or altered mental status, and report immediately.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Clinical Assessment:</strong> A thorough history focusing on recent food intake, symptom onset, duration, and associated symptoms is crucial. Physical examination will assess hydration status and abdominal tenderness.</li><li><strong>Diagnostic Approach:</strong> Diagnosis is often clinical. Stool cultures or specific toxin assays may be considered in severe cases, outbreaks, or if specific pathogens (e.g., *E. coli* O157:H7) are suspected.</li><li><strong>Treatment Focus:</strong> Primary treatment is supportive, emphasizing aggressive rehydration and electrolyte replacement, often orally, but intravenously if severe.</li><li><strong>Pharmacological Interventions:</strong> Anti-emetics (e.g., ondansetron) may be prescribed for severe, intractable vomiting, but their use should be judicious, especially if the cause is unknown.</li><li><strong>Antibiotic Use:</strong> Antibiotics are generally not recommended for most food poisoning cases as they can sometimes worsen outcomes (e.g., *E. coli* O157:H7) or are ineffective against toxins. They are reserved for specific bacterial infections confirmed by culture.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Nursing Assessment:</strong> Systematically assess hydration status (skin turgor, mucous membranes, capillary refill, urine output, vital signs), frequency and character of emesis, and pain level.</li><li><strong>Fluid & Electrolyte Balance:</strong> Understand the pathophysiology of fluid and electrolyte loss due to vomiting and diarrhea, and the importance of oral rehydration therapy (ORT).</li><li><strong>Patient Education:</strong> Educate patients on the importance of small, frequent sips of ORS, gradual reintroduction of bland foods, and signs/symptoms requiring urgent medical attention.</li><li><strong>Medication Administration:</strong> Administer prescribed anti-emetics and monitor for effectiveness and side effects.</li><li><strong>Documentation:</strong> Accurately document all symptoms, interventions, fluid balance, and patient response to treatment.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathophysiology:</strong> Nausea and vomiting are mediated by the chemoreceptor trigger zone (CTZ) and the vomiting center in the medulla, activated by toxins, gastric distension, or visceral afferents.</li><li><strong>Etiological Agents:</strong> Common bacterial culprits include *Staphylococcus aureus* (preformed toxin), *Bacillus cereus* (emetic toxin), *Clostridium perfringens*, *Salmonella*, *Campylobacter*, and *E. coli*. Viral agents like Norovirus are also frequent.</li><li><strong>Complications:</strong> Hypovolemia, electrolyte imbalances (e.g., hypokalemia, hyponatremia, metabolic alkalosis), aspiration pneumonia, Mallory-Weiss tears.</li><li><strong>Pharmacology:</strong> Key anti-emetic classes include 5-HT3 receptor antagonists (e.g., ondansetron), dopamine antagonists (e.g., metoclopramide, prochlorperazine), and antihistamines/anticholinergics (e.g., promethazine).</li><li><strong>Differential Diagnosis:</strong> Consider other causes of nausea/vomiting such as gastroenteritis from other etiologies, appendicitis, cholecystitis, pancreatitis, migraine, pregnancy, or medication side effects.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

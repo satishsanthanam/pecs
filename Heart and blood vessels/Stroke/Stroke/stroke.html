@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human head with a transparent overlay showing the brain and its intricate network of blood vessels. One section of a brain artery is depicted with a blockage (ischemic stroke) and another with a rupture (hemorrhagic stroke). Surrounding elements include a clock indicating urgency, a medical cross, and subtle icons representing speech bubbles, a weak arm, and a drooping face, all in a clean, public awareness design style with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./stroke.jpg" class="card-banner" alt="Stroke Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-stroke" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Stroke</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Stroke</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Stroke</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> A stroke occurs when blood flow to a part of the brain is interrupted or reduced, depriving brain tissue of oxygen and nutrients. Brain cells begin to die within minutes.</li><li><strong>Types:</strong> Primarily ischemic (due to a clot blocking a blood vessel) or hemorrhagic (due to a ruptured blood vessel causing bleeding in the brain).</li><li><strong>Urgency:</strong> Stroke is a medical emergency. Prompt treatment is crucial to minimize brain damage and potential complications.</li><li><strong>Impact:</strong> Can lead to long-term disability affecting movement, speech, cognition, and sensation, depending on the brain area affected.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>FAST Recognition:</strong> This acronym helps identify stroke symptoms: <strong>F</strong>ace drooping, <strong>A</strong>rm weakness, <strong>S</strong>peech difficulty, <strong>T</strong>ime to call emergency services.</li><li><strong>Sudden Numbness or Weakness:</strong> Often on one side of the body, affecting the face, arm, or leg.</li><li><strong>Confusion or Trouble Speaking:</strong> Difficulty understanding speech, slurred speech, or inability to form words.</li><li><strong>Vision Problems:</strong> Sudden trouble seeing in one or both eyes, blurred vision, or double vision.</li><li><strong>Severe Headache:</strong> A sudden, severe headache with no known cause, especially if accompanied by other neurological symptoms.</li><li><strong>Trouble Walking:</strong> Sudden dizziness, loss of balance, or lack of coordination.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Blood Pressure Management:</strong> Maintain blood pressure within target ranges as advised by a physician to reduce stroke risk.</li><li><strong>Cholesterol Control:</strong> Monitor and manage cholesterol levels through diet, exercise, and medication if necessary.</li><li><strong>Diabetes Management:</strong> Keep blood sugar levels under strict control to prevent vascular damage.</li><li><strong>Smoking Cessation:</strong> Quitting smoking significantly reduces the risk of stroke.</li><li><strong>Regular Physical Activity:</strong> Engage in moderate-intensity exercise most days of the week.</li><li><strong>Healthy Diet:</strong> Adopt a diet rich in fruits, vegetables, whole grains, and lean proteins, low in saturated fats, trans fats, and sodium.</li><li><strong>Atrial Fibrillation (AFib) Management:</strong> If diagnosed with AFib, adhere strictly to prescribed anticoagulant medications to prevent clot formation.</li><li><strong>Antiplatelet/Anticoagulant Adherence:</strong> If prescribed for stroke prevention or after a previous stroke, take medications exactly as directed.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Sodium Restriction:</strong> Limit intake of processed foods, canned goods, and high-sodium snacks to help manage blood pressure.</li><li><strong>Healthy Fats:</strong> Prioritize monounsaturated and polyunsaturated fats (e.g., olive oil, avocados, nuts) over saturated and trans fats.</li><li><strong>Fiber-Rich Foods:</strong> Increase consumption of fruits, vegetables, legumes, and whole grains to support cardiovascular health.</li><li><strong>Lean Proteins:</strong> Choose lean protein sources such as fish, poultry without skin, and plant-based proteins.</li><li><strong>Alcohol Moderation:</strong> Limit alcohol intake to recommended guidelines (up to one drink per day for women, up to two for men).</li><li><strong>Hydration Post-Stroke:</strong> For patients with dysphagia, thickened liquids may be necessary; otherwise, ensure adequate fluid intake as tolerated and advised by a speech-language pathologist.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Call Emergency Immediately:</strong> If you suspect someone is having a stroke, call 911 (or your local emergency number) without delay.</li><li><strong>Note Time of Symptom Onset:</strong> This information is critical for medical professionals to determine eligibility for time-sensitive treatments.</li><li><strong>Do Not Give Food or Drink:</strong> A person experiencing a stroke may have difficulty swallowing, increasing the risk of choking or aspiration.</li><li><strong>Keep the Person Calm:</strong> Loosen tight clothing around the neck and position them comfortably, preferably lying on their side if unconscious to prevent aspiration.</li><li><strong>Prepare Information:</strong> Be ready to provide paramedics with the person's medical history, current medications, and any known allergies.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Time is Brain:</strong> Emphasize that early recognition and immediate medical attention are paramount for improving outcomes in stroke patients.</li><li><strong>Acute Interventions:</strong> Highlight the importance of rapid assessment for eligibility for thrombolytic therapy (e.g., tPA) or mechanical thrombectomy in ischemic stroke.</li><li><strong>Risk Factor Modification:</strong> Stress the critical role of managing hypertension, diabetes, hyperlipidemia, and atrial fibrillation in both primary and secondary stroke prevention.</li><li><strong>Rehabilitation:</strong> Advise on the necessity of comprehensive, multidisciplinary rehabilitation post-stroke to maximize functional recovery and quality of life.</li><li><strong>Individualized Care:</strong> Each stroke is unique; treatment and recovery plans must be tailored to the specific patient's needs and stroke characteristics.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Neurological Assessment:</strong> Perform frequent and thorough neurological assessments, including the NIH Stroke Scale (NIHSS), to monitor changes in patient status.</li><li><strong>Vital Sign Monitoring:</strong> Closely monitor blood pressure, heart rate, oxygen saturation, and temperature, managing deviations as per protocol.</li><li><strong>Dysphagia Screening:</strong> Conduct bedside swallow screens to identify aspiration risk and implement appropriate feeding precautions (e.g., NPO, thickened liquids).</li><li><strong>Medication Administration:</strong> Administer antiplatelets, anticoagulants, antihypertensives, and other prescribed medications, understanding their indications and contraindications.</li><li><strong>Patient and Family Education:</strong> Educate patients and families on stroke signs, risk factor management, medication adherence, and rehabilitation goals.</li><li><strong>Mobility and Skin Integrity:</strong> Implement early mobilization strategies and skin care protocols to prevent complications like pressure injuries and deep vein thrombosis.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Ischemic Stroke:</strong> Accounts for approximately 87% of all strokes, caused by a blockage in a blood vessel supplying the brain.</li><li><strong>Hemorrhagic Stroke:</strong> Occurs when a blood vessel ruptures and bleeds into the brain, including intracerebral hemorrhage and subarachnoid hemorrhage.</li><li><strong>Transient Ischemic Attack (TIA):</strong> A 'mini-stroke' caused by a temporary blockage of blood flow to the brain, serving as a warning sign for future stroke.</li><li><strong>NIH Stroke Scale (NIHSS):</strong> A standardized 15-item neurological examination stroke scale used to quantify the severity of stroke deficits.</li><li><strong>Tissue Plasminogen Activator (tPA):</strong> A thrombolytic drug administered intravenously to dissolve clots in acute ischemic stroke, effective within a narrow time window.</li><li><strong>Mechanical Thrombectomy:</strong> A procedure to physically remove a large blood clot from a brain artery in acute ischemic stroke, often used in conjunction with tPA.</li><li><strong>Carotid Endarterectomy/Stenting:</strong> Surgical procedures to remove plaque or place a stent in the carotid arteries to prevent stroke in patients with significant stenosis.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

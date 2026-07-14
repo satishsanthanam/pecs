@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting cadmium toxicity. The central element is a stylized human figure, subtly highlighting affected organs like the kidneys, lungs, and bones with a faint, distressed texture. Surrounding the figure are various sources of cadmium: a smoking cigarette, industrial factory chimneys emitting smoke, a battery, and stylized food items such as a fish and rice stalks, all with a subtle metallic sheen. The color palette is muted and clinical, with hints of grey, yellow, and a touch of red for danger, rendered in a clean, modern, and easily digestible public awareness design.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./cadmium_toxicity.jpg" class="card-banner" alt="Cadmium toxicity Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-emergency-medicine" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency medicine</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-emergency-medicine-poisoning-and-overdose" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Poisoning and overdose</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Cadmium toxicity</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Emergency medicine</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Poisoning and overdose</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Cadmium Sources</strong>: Cadmium is a heavy metal found in industrial emissions, cigarette smoke, contaminated food (e.g., shellfish, organ meats, rice), and certain batteries.</li><li><strong>Accumulation in Body</strong>: It accumulates in the body, primarily in the kidneys and liver, with a very long biological half-life, leading to chronic toxicity.</li><li><strong>Routes of Exposure</strong>: Main routes are inhalation (occupational exposure) and ingestion (contaminated food/water).</li><li><strong>Systemic Effects</strong>: Can cause damage to multiple organ systems, including renal, skeletal, respiratory, and gastrointestinal systems.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Acute Inhalation</strong>: Flu-like symptoms (fever, chills), chest pain, dyspnea, chemical pneumonitis, pulmonary edema.</li><li><strong>Acute Ingestion</strong>: Severe nausea, vomiting, abdominal pain, diarrhea, and potential gastrointestinal hemorrhage.</li><li><strong>Chronic Renal Effects</strong>: Proteinuria, glucosuria, aminoaciduria, renal tubular dysfunction, and eventually kidney failure.</li><li><strong>Chronic Skeletal Effects</strong>: Osteomalacia, osteoporosis, bone pain, and increased fracture risk (e.g., Itai-itai disease).</li><li><strong>Chronic Respiratory Effects</strong>: Emphysema, chronic bronchitis, and increased risk of lung cancer.</li><li><strong>Other Chronic Symptoms</strong>: Anemia, anosmia (loss of smell), liver dysfunction, and hypertension.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Occupational Safety</strong>: Implement strict industrial hygiene practices, including ventilation systems and mandatory use of personal protective equipment (PPE) like respirators and gloves in high-risk industries.</li><li><strong>Smoking Cessation</strong>: Advise against smoking and exposure to secondhand smoke, as tobacco is a significant source of cadmium.</li><li><strong>Environmental Control</strong>: Ensure proper disposal of cadmium-containing waste and control industrial emissions to prevent environmental contamination.</li><li><strong>Food Safety Awareness</strong>: Educate on limiting consumption of foods known to accumulate high levels of cadmium, such as certain shellfish, organ meats, and rice from contaminated areas.</li><li><strong>Emergency Response</strong>: For acute exposure, ensure immediate removal from the source, decontamination, and prompt medical evaluation.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Acute Ingestion Management</strong>: Initially NPO (nil per os), followed by gradual reintroduction of clear fluids and a bland diet as tolerated, under strict medical supervision.</li><li><strong>Chronic Exposure Mitigation</strong>: Advise limiting intake of specific foods known to be high in cadmium, such as kidney, liver, and some bivalve mollusks.</li><li><strong>Nutritional Support</strong>: Encourage adequate intake of essential minerals like iron, zinc, and calcium, as deficiencies can enhance cadmium absorption.</li><li><strong>Hydration Status</strong>: Maintain good hydration to support renal function, especially in cases of acute exposure or suspected kidney involvement.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Immediate Medical Evaluation</strong>: Any suspected acute cadmium exposure requires urgent medical attention and emergency department evaluation.</li><li><strong>Decontamination Procedures</strong>: For skin exposure, remove contaminated clothing and wash affected areas thoroughly with soap and water.</li><li><strong>Respiratory Support Preparedness</strong>: Be prepared for airway management and respiratory support, including oxygen therapy and mechanical ventilation, for severe inhalation toxicity.</li><li><strong>Fluid and Electrolyte Monitoring</strong>: Closely monitor fluid balance and electrolyte levels, especially in patients with severe gastrointestinal symptoms or renal involvement.</li><li><strong>Renal Function Assessment</strong>: Perform serial monitoring of renal function tests (e.g., serum creatinine, BUN, urine output) in all cases of significant exposure.</li><li><strong>Chelation Therapy Caution</strong>: Avoid indiscriminate use of chelating agents; their efficacy and safety in chronic cadmium toxicity are controversial and may increase renal toxicity.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Diagnostic Approach</strong>: Consider cadmium toxicity in patients presenting with unexplained renal tubular dysfunction, osteomalacia, or chronic respiratory symptoms, particularly with a history of occupational or environmental exposure.</li><li><strong>Exposure History</strong>: A detailed history of potential cadmium sources (workplace, hobbies, diet, smoking) is paramount for diagnosis.</li><li><strong>Biomarker Interpretation</strong>: Utilize blood cadmium levels to assess recent exposure and urine cadmium levels to estimate total body burden and chronic exposure.</li><li><strong>Supportive Treatment Focus</strong>: Emphasize that treatment is primarily supportive, aimed at symptom management, preventing further exposure, and monitoring organ function.</li><li><strong>Long-term Surveillance</strong>: Patients with chronic exposure require ongoing monitoring for renal, pulmonary, and skeletal complications.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education</strong>: Educate patients and their families on identifying sources of cadmium, recognizing symptoms of toxicity, and implementing preventive measures.</li><li><strong>Vital Sign Monitoring</strong>: Meticulously monitor vital signs, respiratory status, and urine output, especially in acute exposure scenarios.</li><li><strong>Fluid Management</strong>: Administer intravenous fluids as prescribed and monitor for signs of fluid overload or dehydration.</li><li><strong>Symptom Management</strong>: Provide supportive care for pain, nausea, vomiting, and respiratory distress as per physician orders.</li><li><strong>Occupational Health Role</strong>: Understand the critical role of occupational health nursing in screening, surveillance, and education for workers at risk of cadmium exposure.</li><li><strong>Environmental Health Awareness</strong>: Recognize the broader public health implications of cadmium contamination in food, water, and air.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Mechanism of Toxicity</strong>: Cadmium exerts toxicity by binding to sulfhydryl groups of proteins, interfering with enzyme function, inducing oxidative stress, and impairing cellular repair mechanisms.</li><li><strong>Primary Target Organs</strong>: Kidneys (proximal tubular damage), bones (osteomalacia, osteoporosis), lungs (emphysema, fibrosis, cancer), and liver.</li><li><strong>Key Biomarkers</strong>: Urine cadmium (reflects body burden), blood cadmium (reflects recent exposure), beta-2 microglobulin (marker for renal tubular damage).</li><li><strong>Itai-itai Disease</strong>: A severe form of chronic cadmium poisoning characterized by osteomalacia, kidney failure, and excruciating bone pain, historically linked to contaminated rice in Japan.</li><li><strong>Chelating Agents Efficacy</strong>: Chelating agents (e.g., EDTA, DMSA) are generally not recommended for chronic cadmium toxicity due to poor efficacy in removing tissue-bound cadmium and potential for increased renal toxicity.</li><li><strong>Regulatory Guidelines</strong>: Refer to World Health Organization (WHO) and environmental protection agencies (e.g., EPA) guidelines for permissible cadmium levels in air, water, and food.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

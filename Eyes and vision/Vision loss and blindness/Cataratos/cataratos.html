@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a human eye with a visibly cloudy lens, symbolizing a cataract. The surrounding area of the eye shows subtle visual distortions like blurriness and glare. A healthcare professional's hand gently points towards the affected eye, while a patient with a calm, hopeful expression looks towards the doctor. The background is clean, featuring soft medical blues and greens, with abstract shapes suggesting light rays or vision improvement. Avoid any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./cataratos.jpg" class="card-banner" alt="Cataratos Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-eyes-and-vision" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Eyes and vision</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-eyes-and-vision-vision-loss-and-blindness" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Vision loss and blindness</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Cataratos</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Eyes and vision</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Vision loss and blindness</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Lens Clouding:</strong> Cataracts involve the gradual clouding of the eye's natural lens, which is normally clear.</li><li><strong>Vision Impairment:</strong> This clouding leads to blurred, hazy, or less colorful vision, significantly impacting daily activities.</li><li><strong>Progression:</strong> Most cataracts develop slowly over time, often affecting both eyes, though one eye may be more advanced.</li><li><strong>Primary Treatment:</strong> Surgical removal of the cloudy lens and replacement with an artificial intraocular lens (IOL) is the only effective treatment.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Blurred or Dim Vision:</strong> A progressive, painless blurring or dimming of vision, as if looking through a frosty window.</li><li><strong>Increased Glare:</strong> Heightened sensitivity to light, especially from headlights at night or bright sunlight during the day.</li><li><strong>Halos Around Lights:</strong> Seeing rings or halos around light sources.</li><li><strong>Poor Night Vision:</strong> Significant difficulty seeing in low-light conditions or driving at night.</li><li><strong>Fading Colors:</strong> Colors may appear dull, faded, or yellowish.</li><li><strong>Frequent Prescription Changes:</strong> A need for more frequent changes in eyeglass or contact lens prescriptions.</li><li><strong>Double Vision:</strong> Occasionally experiencing double vision in one eye.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Regular Ophthalmic Exams:</strong> Schedule routine comprehensive eye examinations for early detection and monitoring of cataract progression.</li><li><strong>UV Protection:</strong> Wear sunglasses that block 100% of UV-A and UV-B rays to protect the eyes from sun damage, which can contribute to cataract development.</li><li><strong>Blood Sugar Control:</strong> For individuals with diabetes, strict management of blood glucose levels is crucial to reduce the risk and progression of cataracts.</li><li><strong>Smoking Cessation:</strong> Avoid smoking, as it is a significant risk factor for cataract formation and progression.</li><li><strong>Steroid Use Review:</strong> Discuss long-term corticosteroid use with your physician, as it can increase cataract risk; explore alternative treatments if possible.</li><li><strong>Post-Surgical Adherence:</strong> Strictly follow all post-operative instructions, including eye drop schedules and activity restrictions, to ensure proper healing and prevent complications.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-Operative Fasting:</strong> Adhere strictly to NPO (nil per os) guidelines, typically requiring no food or drink after midnight the day before cataract surgery.</li><li><strong>Post-Operative Hydration:</strong> Gradually reintroduce clear fluids post-anesthesia, progressing to light, easily digestible meals as tolerated.</li><li><strong>Nutrient-Rich Intake:</strong> While not a cure, a diet rich in antioxidants (e.g., vitamins C and E, lutein, zeaxanthin) found in fruits, vegetables, and leafy greens may support overall ocular health.</li><li><strong>Alcohol Restriction:</strong> Avoid alcohol consumption before and immediately after surgery, as it can interfere with medications and recovery processes.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Driving Restrictions:</strong> Patients must refrain from driving immediately after cataract surgery and until cleared by their ophthalmologist due to impaired vision and potential glare.</li><li><strong>Eye Protection:</strong> Wear the prescribed eye shield or patch as instructed, especially during sleep, to protect the healing eye from accidental trauma or pressure.</li><li><strong>Activity Limitations:</strong> Avoid strenuous activities, heavy lifting, bending at the waist, or any actions that could increase intraocular pressure for several weeks post-surgery.</li><li><strong>Reporting Acute Symptoms:</strong> Immediately contact your ophthalmologist if you experience sudden vision loss, severe eye pain, increased redness, discharge, or flashes of light post-surgery.</li><li><strong>Medication Compliance:</strong> Diligently administer all prescribed eye drops (antibiotics, anti-inflammatory agents) exactly as directed to prevent infection and manage inflammation.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Timely Intervention:</strong> Early diagnosis and discussion of surgical options are crucial for maintaining quality of life as cataracts progress.</li><li><strong>High Success Rate:</strong> Cataract surgery is one of the most common and successful surgical procedures, with excellent outcomes in restoring vision for most patients.</li><li><strong>Personalized IOL Selection:</strong> The choice of intraocular lens (IOL) is highly individualized, considering patient lifestyle, visual needs, and pre-existing astigmatism or presbyopia.</li><li><strong>Risk-Benefit Assessment:</strong> A thorough discussion of potential surgical risks, though rare, versus the significant benefits of improved vision is essential for informed consent.</li><li><strong>Post-Operative Care:</strong> Adherence to the post-operative regimen is paramount for optimal healing and preventing complications, ensuring the best possible visual outcome.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pre-Operative Education:</strong> Provide comprehensive patient education on pre-surgical preparations, including fasting instructions, medication adjustments, and what to expect on the day of surgery.</li><li><strong>Post-Operative Teaching:</strong> Instruct patients and caregivers on proper eye drop administration technique, signs of complications to watch for, and activity restrictions post-surgery.</li><li><strong>Visual Acuity Assessment:</strong> Accurately assess and document pre- and post-operative visual acuity using standardized charts to monitor treatment effectiveness.</li><li><strong>Fall Risk Mitigation:</strong> Implement fall prevention strategies for patients with impaired vision, especially in the immediate post-operative period, by ensuring clear pathways and adequate lighting.</li><li><strong>Pain Management:</strong> Assess and manage post-operative discomfort, differentiating between expected mild irritation and signs of more serious complications requiring physician notification.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathophysiology:</strong> Involves the denaturation and aggregation of lens proteins (crystallins), leading to increased light scattering and opacification.</li><li><strong>Etiology:</strong> Primarily age-related (senile cataracts), but can also be congenital, traumatic, secondary to systemic diseases (e.g., diabetes), or medication-induced (e.g., corticosteroids).</li><li><strong>Diagnosis:</strong> Confirmed via comprehensive ophthalmic examination, including visual acuity testing, slit-lamp biomicroscopy, and often glare testing.</li><li><strong>Surgical Techniques:</strong> Predominantly phacoemulsification (ultrasound fragmentation and aspiration), or extracapsular cataract extraction (ECCE) for very dense cataracts.</li><li><strong>Intraocular Lenses (IOLs):</strong> Artificial lenses implanted to replace the natural lens; types include monofocal, multifocal, extended depth of focus (EDOF), and toric IOLs.</li><li><strong>Potential Complications:</strong> Include posterior capsular opacification (PCO), endophthalmitis, retinal detachment, cystoid macular edema, and corneal edema.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

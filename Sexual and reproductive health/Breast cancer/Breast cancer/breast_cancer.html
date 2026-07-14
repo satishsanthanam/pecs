@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a diverse group of women of various ages and ethnicities, some performing breast self-exams, others receiving mammograms, and a central figure holding a pink breast cancer awareness ribbon. The background features subtle medical symbols like stethoscopes and microscopes, alongside elements representing support and community. The overall design is clean, modern, and emphasizes early detection, support, and empowerment, with a soft color palette.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./breast_cancer.jpg" class="card-banner" alt="Breast cancer Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-sexual-and-reproductive-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Sexual and reproductive health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-sexual-and-reproductive-health-breast-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Breast cancer</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Breast cancer</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Sexual and reproductive health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Breast cancer</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Prevalence:</strong> Breast cancer is the most common cancer among women worldwide, though it can also affect men.</li><li><strong>Early Detection:</strong> Early detection through screening and self-awareness significantly improves prognosis and treatment outcomes.</li><li><strong>Risk Factors:</strong> Factors include genetics (BRCA1/2 mutations), age, dense breast tissue, obesity, alcohol consumption, and certain hormone therapies.</li><li><strong>Types:</strong> Common types include invasive ductal carcinoma (IDC) and invasive lobular carcinoma (ILC), with various less common forms.</li><li><strong>Impact:</strong> Diagnosis and treatment can profoundly impact physical, emotional, and sexual health, requiring comprehensive support.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>New Lump or Mass:</strong> A new lump or thickening in the breast or underarm that feels different from the surrounding tissue.</li><li><strong>Skin Changes:</strong> Dimpling, puckering, redness, scaling, or thickening of the breast skin.</li><li><strong>Nipple Changes:</strong> Nipple inversion, discharge (other than breast milk), or scaling of the nipple or breast skin.</li><li><strong>Breast Pain:</strong> Persistent breast or nipple pain that does not resolve with the menstrual cycle.</li><li><strong>Swelling:</strong> Swelling of all or part of the breast, even if no distinct lump is felt.</li><li><strong>Lymph Node Changes:</strong> Swelling of lymph nodes around the collarbone or under the arm.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Regular Screening:</strong> Adhere to recommended mammography schedules based on age and risk factors, typically starting at age 40 or 50.</li><li><strong>Clinical Breast Exams:</strong> Undergo regular clinical breast exams by a healthcare professional as part of routine check-ups.</li><li><strong>Breast Self-Awareness:</strong> Be familiar with the normal look and feel of your breasts and report any changes promptly to a doctor.</li><li><strong>Genetic Counseling:</strong> Consider genetic counseling and testing if there is a strong family history of breast or ovarian cancer.</li><li><strong>Lifestyle Modifications:</strong> Maintain a healthy weight, limit alcohol intake, engage in regular physical activity, and avoid smoking.</li><li><strong>Hormone Therapy Review:</strong> Discuss the risks and benefits of hormone replacement therapy with your physician, especially if you have risk factors.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Plant-Based Focus:</strong> Emphasize a diet rich in fruits, vegetables, whole grains, and legumes to support overall health and potentially reduce recurrence risk.</li><li><strong>Limit Processed Foods:</strong> Reduce intake of highly processed foods, sugary drinks, and red and processed meats.</li><li><strong>Healthy Fats:</strong> Incorporate healthy fats from sources like avocados, nuts, seeds, and olive oil.</li><li><strong>Maintain Healthy Weight:</strong> Achieve and maintain a healthy body weight, as obesity is a known risk factor for breast cancer and recurrence.</li><li><strong>Hydration During Treatment:</strong> Ensure adequate fluid intake, especially during chemotherapy or radiation, to manage side effects and support recovery.</li><li><strong>Alcohol Restriction:</strong> Limit or avoid alcohol consumption, as even moderate intake can increase breast cancer risk.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Prompt Evaluation:</strong> Any new or persistent breast changes must be evaluated by a healthcare provider without delay.</li><li><strong>Adherence to Treatment:</strong> Strictly follow prescribed treatment plans, including medications, chemotherapy, radiation, and surgical aftercare.</li><li><strong>Side Effect Management:</strong> Report all treatment side effects to your medical team for appropriate management and support.</li><li><strong>Psychosocial Support:</strong> Seek support from family, friends, support groups, or mental health professionals to cope with the emotional impact.</li><li><strong>Fertility Preservation:</strong> Discuss fertility preservation options with your oncologist before starting treatment, if applicable.</li><li><strong>Sexual Health:</strong> Address concerns about sexual health and intimacy with your healthcare provider, as treatment can impact these areas.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Multidisciplinary Approach:</strong> Breast cancer care requires a team approach involving surgeons, oncologists, radiation oncologists, pathologists, and support staff.</li><li><strong>Personalized Treatment:</strong> Treatment plans are highly individualized, based on cancer type, stage, hormone receptor status, HER2 status, and patient preferences.</li><li><strong>Genetic Testing:</strong> Recommend genetic testing for patients with a strong family history or early-onset breast cancer to guide treatment and screening for relatives.</li><li><strong>Clinical Trials:</strong> Discuss participation in clinical trials for eligible patients to access innovative treatments.</li><li><strong>Survivorship Care:</strong> Emphasize the importance of long-term follow-up care, including surveillance for recurrence and management of late effects of treatment.</li><li><strong>Shared Decision-Making:</strong> Encourage patients to actively participate in treatment decisions, ensuring their values and goals are respected.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Educate patients on breast self-awareness, screening guidelines, and the importance of adherence to treatment.</li><li><strong>Pre- and Post-Operative Care:</strong> Provide comprehensive care for surgical patients, including pain management, wound care, and lymphedema prevention.</li><li><strong>Chemotherapy & Radiation Support:</strong> Monitor for and manage side effects of chemotherapy and radiation therapy, including nausea, fatigue, skin reactions, and myelosuppression.</li><li><strong>Psychosocial Assessment:</strong> Assess patients for psychological distress, body image concerns, and sexual health issues, providing appropriate referrals.</li><li><strong>Medication Management:</strong> Educate patients on hormone therapy, targeted therapy, and other medications, including potential side effects and adherence.</li><li><strong>Resource Navigation:</strong> Assist patients in accessing support groups, financial aid, and other community resources.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Mammography:</strong> X-ray imaging of the breast used for screening and diagnosis.</li><li><strong>Biopsy:</strong> Removal of tissue for microscopic examination (e.g., core needle biopsy, excisional biopsy).</li><li><strong>TNM Staging:</strong> Classification system (Tumor, Node, Metastasis) used to describe the extent of cancer.</li><li><strong>Hormone Receptor Status:</strong> Testing for estrogen receptor (ER) and progesterone receptor (PR) expression, guiding hormone therapy.</li><li><strong>HER2 Status:</strong> Testing for human epidermal growth factor receptor 2, guiding targeted therapy.</li><li><strong>Sentinel Lymph Node Biopsy:</strong> Surgical procedure to identify and remove the first lymph nodes to which cancer cells are likely to spread.</li><li><strong>Adjuvant Therapy:</strong> Treatment given after primary treatment (e.g., surgery) to reduce the risk of recurrence.</li><li><strong>Neoadjuvant Therapy:</strong> Treatment given before primary treatment (e.g., surgery) to shrink the tumor.</li><li><strong>Lymphedema:</strong> Swelling caused by lymph fluid buildup, often a side effect of lymph node removal or radiation.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

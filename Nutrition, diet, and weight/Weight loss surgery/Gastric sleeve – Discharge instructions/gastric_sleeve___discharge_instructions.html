@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a diverse patient recovering from gastric sleeve surgery. The patient is shown engaging in light activities like walking, holding a small plate with healthy food portions, and sipping water. Surrounding elements include a medical professional offering guidance, a calendar marking follow-up appointments, and icons representing vitamins and healthy food choices. The overall design should convey recovery, healthy lifestyle changes, and medical support, with a clean, modern aesthetic and no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./gastric_sleeve___discharge_instructions.jpg" class="card-banner" alt="Gastric sleeve – Discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-nutrition-diet-and-weight" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Nutrition, diet, and weight</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-nutrition-diet-and-weight-weight-loss-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Weight loss surgery</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Gastric sleeve – Discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Nutrition, diet, and weight</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Weight loss surgery</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Recovery Timeline:</strong> Expect a gradual recovery. Most patients return to light activities within 2-4 weeks, but full recovery and adaptation to new eating habits take several months.</li><li><strong>Follow-Up Appointments:</strong> Adhere strictly to all scheduled post-operative appointments with your surgeon, dietitian, and other specialists. These are crucial for monitoring progress and addressing concerns.</li><li><strong>Pain Management:</strong> Take prescribed pain medication as directed. Do not wait for pain to become severe before taking medication. Avoid NSAIDs (e.g., ibuprofen, naproxen) as they can irritate the new stomach pouch.</li><li><strong>Incision Care:</strong> Keep incision sites clean and dry. Report any signs of infection immediately, such as redness, swelling, warmth, pus, or increasing pain.</li><li><strong>Hydration is Key:</strong> Sip fluids constantly throughout the day to prevent dehydration. Aim for at least 64 ounces (approx. 2 liters) of non-carbonated, sugar-free fluids daily, separate from meals.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Persistent Nausea or Vomiting:</strong> While some post-operative nausea is normal, persistent or severe vomiting, especially after consuming small amounts of food/fluid, requires immediate medical attention.</li><li><strong>Fever and Chills:</strong> A temperature above 101°F (38.3°C) accompanied by chills can indicate infection and warrants urgent contact with your medical team.</li><li><strong>Severe Abdominal Pain:</strong> Worsening or new onset severe abdominal pain, particularly if localized, could signal a complication like a leak and requires immediate evaluation.</li><li><strong>Shortness of Breath or Chest Pain:</strong> These symptoms are serious and require emergency medical attention, as they could indicate a pulmonary embolism or cardiac issue.</li><li><strong>Signs of Wound Infection:</strong> Increased redness, warmth, swelling, pus-like drainage, or foul odor from incision sites are signs of infection and need prompt medical assessment.</li><li><strong>Leg Swelling or Pain:</strong> Unilateral leg swelling, pain, or tenderness could indicate a deep vein thrombosis (DVT) and requires urgent medical evaluation.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Heavy Lifting:</strong> Refrain from lifting anything heavier than 10-15 pounds (approx. 4.5-6.8 kg) for at least 4-6 weeks post-surgery to prevent strain on abdominal muscles and incision sites.</li><li><strong>Medication Adherence:</strong> Take all prescribed medications, including proton pump inhibitors (PPIs) and vitamin supplements, exactly as instructed. Crush or chew larger pills if necessary, as advised by your pharmacist or surgeon.</li><li><strong>No NSAIDs:</strong> Absolutely avoid non-steroidal anti-inflammatory drugs (NSAIDs) such as ibuprofen, naproxen, and aspirin (unless specifically prescribed by your surgeon for a cardiac condition) due to the risk of ulcers and bleeding.</li><li><strong>Driving Restrictions:</strong> Do not drive while taking narcotic pain medication or if you are still experiencing significant pain or discomfort. Ensure you can safely operate a vehicle without impairment.</li><li><strong>Avoid Carbonated Beverages:</strong> Carbonation can cause discomfort, gas, and stretch the new stomach pouch. Avoid all carbonated drinks indefinitely.</li><li><strong>No Smoking or Vaping:</strong> Smoking and vaping significantly impair healing, increase complication risks (e.g., ulcers, blood clots), and should be ceased permanently.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Phased Diet Progression:</strong> Follow the specific post-operative diet progression provided by your surgeon and dietitian. This typically starts with clear liquids, progresses to full liquids, pureed foods, soft foods, and then regular textured foods over several weeks.</li><li><strong>Small, Frequent Meals:</strong> Eat very small portions, typically 2-4 ounces (approx. 60-120 ml/g) per meal, 5-6 times a day. Your new stomach pouch has a limited capacity.</li><li><strong>Prioritize Protein:</strong> Focus on consuming protein-rich foods first at every meal to support healing and prevent muscle loss. Aim for 60-80 grams of protein daily, as advised by your dietitian.</li><li><strong>Separate Fluids from Meals:</strong> Do not drink fluids 30 minutes before, during, or 30 minutes after meals. This prevents feeling overly full, diluting stomach acid, and potentially flushing food through the pouch too quickly.</li><li><strong>Chew Thoroughly:</strong> Chew all solid foods to an applesauce consistency to prevent blockages and aid digestion. Eat slowly and mindfully.</li><li><strong>Avoid Sugary Foods and Drinks:</strong> High-sugar items can lead to 'dumping syndrome' (nausea, cramping, diarrhea, rapid heart rate) and hinder weight loss. Avoid sweets, sugary drinks, and high-fat foods.</li><li><strong>Vitamin and Mineral Supplementation:</strong> Lifelong daily vitamin and mineral supplementation (multivitamin, B12, calcium with D, iron) is essential to prevent deficiencies. Take as prescribed.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Monitor for Complications:</strong> Be vigilant for any signs of post-operative complications such as fever, severe pain, persistent vomiting, or wound issues, and report them to the medical team immediately.</li><li><strong>Assist with Medication Adherence:</strong> Help the patient remember and take all prescribed medications, including pain relievers and supplements, on schedule.</li><li><strong>Encourage Hydration and Diet Adherence:</strong> Support the patient in sipping fluids frequently and sticking to the strict phased diet plan. Offer small, appropriate portions.</li><li><strong>Provide Emotional Support:</strong> The post-surgical period can be challenging both physically and emotionally. Offer encouragement, patience, and understanding.</li><li><strong>Facilitate Light Activity:</strong> Encourage short, frequent walks as tolerated to aid circulation and recovery, but ensure no heavy lifting or strenuous activity.</li><li><strong>Transportation for Follow-ups:</strong> Ensure the patient has reliable transportation for all necessary follow-up appointments.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Commitment to Lifestyle Change:</strong> Gastric sleeve surgery is a powerful tool, but its long-term success hinges on your unwavering commitment to significant and permanent lifestyle changes, particularly regarding diet and physical activity.</li><li><strong>Psychological Support:</strong> Be aware that emotional and psychological adjustments are common after bariatric surgery. Seek support from your bariatric team, support groups, or a mental health professional if needed.</li><li><strong>Lifelong Monitoring:</strong> Regular follow-ups with your bariatric team are crucial for lifelong monitoring of nutritional status, weight management, and early detection of any potential complications.</li><li><strong>Listen to Your Body:</strong> Pay close attention to your body's signals regarding hunger, fullness, and tolerance to foods. Do not force yourself to eat if you feel full.</li><li><strong>Avoid Pregnancy for 12-18 Months:</strong> It is strongly advised to avoid pregnancy for at least 12-18 months post-surgery to ensure optimal healing, nutritional stability, and weight stabilization for both mother and baby.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pain Assessment and Management:</strong> Regularly assess the patient's pain level using a validated scale and administer analgesics as prescribed, educating on non-pharmacological pain relief methods.</li><li><strong>Wound Care Education:</strong> Provide clear, step-by-step instructions on incision care, including signs of infection to watch for and when to contact the healthcare provider.</li><li><strong>Nutritional Counseling Reinforcement:</strong> Reinforce the dietitian's instructions on the phased diet, portion control, protein prioritization, fluid intake, and the importance of lifelong supplementation.</li><li><strong>Dehydration Recognition:</strong> Educate the patient and family on signs and symptoms of dehydration (e.g., dry mouth, decreased urine output, dizziness, fatigue) and emphasize consistent fluid intake.</li><li><strong>Medication Teaching:</strong> Review all discharge medications, including purpose, dosage, frequency, potential side effects, and specific instructions for administration (e.g., crushing pills).</li><li><strong>Activity Progression Guidance:</strong> Instruct on safe activity progression, emphasizing the importance of ambulation while avoiding strenuous activities and heavy lifting.</li><li><strong>Dumping Syndrome Education:</strong> Explain the causes, symptoms, and prevention strategies for dumping syndrome, particularly related to high-sugar and high-fat foods.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Anastomotic Leak:</strong> A critical post-operative complication where gastric contents leak from the staple line. Symptoms include severe abdominal pain, tachycardia, fever, and shoulder pain. Requires immediate surgical intervention.</li><li><strong>Dumping Syndrome:</strong> A common post-bariatric surgery complication characterized by rapid gastric emptying, leading to symptoms like nausea, vomiting, diarrhea, sweating, and palpitations, often triggered by high-sugar or high-fat foods.</li><li><strong>Nutritional Deficiencies:</strong> Patients are at high risk for deficiencies in B12, iron, folate, calcium, and fat-soluble vitamins (A, D, E, K) due to reduced absorption and intake. Lifelong supplementation and monitoring are essential.</li><li><strong>Deep Vein Thrombosis (DVT) Prophylaxis:</strong> Continued use of compression stockings and/or anticoagulant medication (if prescribed) post-discharge is crucial to prevent blood clot formation, especially in the lower extremities.</li><li><strong>Stenosis/Stricture:</strong> Narrowing of the gastric sleeve lumen, which can cause dysphagia, vomiting, and reflux. May require endoscopic dilation.</li><li><strong>Gastroesophageal Reflux Disease (GERD):</strong> Can be exacerbated or newly developed post-sleeve gastrectomy in some patients due to altered anatomy and pressure changes. Managed with PPIs or, in severe cases, revisional surgery.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

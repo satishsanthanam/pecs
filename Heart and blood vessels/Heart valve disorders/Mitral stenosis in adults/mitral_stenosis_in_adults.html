@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for public health awareness: A stylized human heart, transparently showing the left atrium and left ventricle. The mitral valve between them is depicted as significantly narrowed and stiff, with calcification. Red arrows illustrate obstructed blood flow from the left atrium to the left ventricle, with a visible buildup of pressure indicated by a slightly distended left atrium. Clean, modern design, no text, white background.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./mitral_stenosis_in_adults.jpg" class="card-banner" alt="Mitral stenosis in adults Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-heart-valve-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart valve disorders</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Mitral stenosis in adults</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Heart valve disorders</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Mitral stenosis is a narrowing of the mitral valve opening, which obstructs blood flow from the left atrium to the left ventricle.</li><li><strong>Primary Cause:</strong> Most commonly a long-term complication of rheumatic fever, but can also be congenital, calcific, or radiation-induced.</li><li><strong>Progression:</strong> The condition often progresses slowly over decades, but can lead to significant symptoms and complications if untreated.</li><li><strong>Impact:</strong> Increased pressure in the left atrium and pulmonary circulation can lead to pulmonary hypertension and right heart failure.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Dyspnea:</strong> Shortness of breath, initially on exertion, progressing to orthopnea and paroxysmal nocturnal dyspnea.</li><li><strong>Fatigue:</strong> Due to reduced cardiac output and impaired oxygen delivery to tissues.</li><li><strong>Palpitations:</strong> Often associated with atrial fibrillation, a common arrhythmia in mitral stenosis.</li><li><strong>Hemoptysis:</strong> Coughing up blood, resulting from ruptured bronchial veins due to high pulmonary pressure.</li><li><strong>Chest Pain:</strong> Atypical chest discomfort, sometimes mistaken for angina, especially with pulmonary hypertension.</li><li><strong>Hoarseness:</strong> (Ortner's syndrome) due to compression of the left recurrent laryngeal nerve by a dilated pulmonary artery or left atrium.</li><li><strong>Edema:</strong> Peripheral swelling, ascites, and hepatomegaly in advanced stages due as a sign of right heart failure.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Infection Prophylaxis:</strong> Strict adherence to antibiotic prophylaxis for dental procedures or other invasive procedures, especially if a prosthetic valve is present or planned.</li><li><strong>Anticoagulation Management:</strong> Careful monitoring and strict adherence to anticoagulant therapy (e.g., warfarin) if atrial fibrillation or a history of thromboembolism is present.</li><li><strong>Activity Restriction:</strong> Avoid strenuous physical activity that can exacerbate symptoms, increase pulmonary pressure, or precipitate arrhythmias.</li><li><strong>Pregnancy Risk:</strong> Mitral stenosis poses significant risks during pregnancy; careful monitoring and management by a specialized team are essential.</li><li><strong>Diuretic Use:</strong> Monitor electrolyte balance and renal function closely if diuretics are prescribed for fluid overload, to prevent dehydration or electrolyte imbalance.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Sodium Restriction:</strong> Strict limitation of dietary sodium intake to manage fluid retention and reduce cardiac workload, especially in cases with heart failure symptoms.</li><li><strong>Fluid Management:</strong> Careful monitoring of fluid intake, particularly in cases of severe heart failure or pulmonary hypertension, as advised by a physician.</li><li><strong>Caffeine & Stimulants:</strong> Avoid excessive caffeine and other stimulants that can trigger or worsen arrhythmias like atrial fibrillation.</li><li><strong>Vitamin K Consistency:</strong> Maintain a consistent intake of Vitamin K-rich foods if on warfarin to ensure stable International Normalized Ratio (INR) levels.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Symptom Worsening:</strong> Immediately report any sudden worsening of dyspnea, chest pain, new onset of severe palpitations, or signs of stroke.</li><li><strong>Bleeding Signs:</strong> Watch for signs of bleeding (e.g., unusual bruising, blood in urine/stools, prolonged nosebleeds) if on anticoagulants and report promptly.</li><li><strong>Infection Symptoms:</strong> Promptly report fever, chills, or other signs of infection, especially if there is a history of rheumatic fever or a prosthetic valve.</li><li><strong>Medication Adherence:</strong> Emphasize strict adherence to all prescribed medications, including diuretics, beta-blockers, and anticoagulants, without self-adjustment.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early Diagnosis:</strong> Early diagnosis through echocardiography is crucial for timely intervention and management to prevent irreversible complications.</li><li><strong>Regular Monitoring:</strong> Lifelong follow-up with a cardiologist is essential to monitor disease progression, assess symptom severity, and manage complications.</li><li><strong>Intervention Options:</strong> Discuss surgical (valve replacement, open commissurotomy) or percutaneous (balloon mitral valvuloplasty) intervention options based on symptom severity, valve anatomy, and patient risk profile.</li><li><strong>Risk Stratification:</strong> Comprehensive risk assessment is vital before any invasive procedure, considering comorbidities, pulmonary hypertension, and left atrial thrombus.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Educate patients on symptom recognition, medication adherence, lifestyle modifications, and the importance of infection prophylaxis.</li><li><strong>Hemodynamic Monitoring:</strong> Understand the hemodynamic consequences of mitral stenosis, including elevated left atrial pressure, pulmonary hypertension, and reduced cardiac output.</li><li><strong>Pre- & Post-Procedure Care:</strong> Provide comprehensive pre-operative teaching and post-operative care for patients undergoing balloon valvuloplasty or valve replacement, focusing on vital signs, fluid balance, and pain management.</li><li><strong>Anticoagulation Teaching:</strong> Instruct patients on the importance of regular INR monitoring, potential drug/food interactions with anticoagulants, and signs of bleeding.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Echocardiography:</strong> Gold standard for diagnosis, assessing valve area, pressure gradients, pulmonary artery pressure, and left atrial size.</li><li><strong>Cardiac Catheterization:</strong> May be used to confirm diagnosis, assess pulmonary hypertension severity, or evaluate concomitant coronary artery disease.</li><li><strong>NYHA Functional Classification:</strong> Used to grade the severity of symptoms (Class I-IV) and guide management decisions and timing of intervention.</li><li><strong>Rheumatic Fever Prophylaxis:</strong> Secondary prevention strategies for rheumatic fever are critical in endemic areas to prevent recurrence and progression of valve damage.</li><li><strong>Surgical vs. Percutaneous:</strong> Decision-making between balloon mitral valvuloplasty (BMV) and surgical mitral valve repair/replacement is based on valve morphology (e.g., Wilkins score), presence of significant regurgitation, and left atrial thrombus.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

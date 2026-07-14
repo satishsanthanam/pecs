@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for public awareness: A diverse group of people actively managing their diabetes. Central elements include a glucose meter, a blood pressure cuff, and a stylized heart with cholesterol molecules. Icons representing A1C, blood pressure, and cholesterol are clearly visible. The scene depicts individuals engaged in healthy activities like checking blood sugar, eating balanced meals, and light exercise. Clean, modern design with a focus on health and proactive management. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./the_abcs_of_diabetes.jpg" class="card-banner" alt="The ABCs of diabetes Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-diabetes" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Diabetes</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-diabetes-blood-sugar-monitoring" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Blood sugar monitoring</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>The ABCs of diabetes</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Diabetes</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Blood sugar monitoring</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>A1C (Glycated Hemoglobin)</strong>: This test provides an average of your blood glucose levels over the past 2-3 months, indicating long-term glucose control.</li><li><strong>Blood Pressure (BP)</strong>: Managing blood pressure is crucial as hypertension significantly increases the risk of cardiovascular complications in individuals with diabetes.</li><li><strong>Cholesterol (Lipids)</strong>: Monitoring cholesterol levels, particularly LDL ('bad') cholesterol, is vital to reduce the risk of atherosclerosis and heart disease.</li><li><strong>Blood Glucose Monitoring</strong>: Regular self-monitoring of blood glucose (SMBG) or continuous glucose monitoring (CGM) provides real-time data for daily management and medication adjustments.</li><li><strong>Holistic Management</strong>: The ABCs represent key pillars of diabetes management, aiming to prevent or delay long-term complications affecting the heart, kidneys, eyes, and nerves.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Uncontrolled Hyperglycemia</strong>: Symptoms like increased thirst (polydipsia), frequent urination (polyuria), unexplained weight loss, and blurred vision often prompt initial diabetes diagnosis and highlight the need for ABCs monitoring.</li><li><strong>Fatigue and Weakness</strong>: Persistent tiredness can be a sign of suboptimal glucose control or other diabetes-related complications.</li><li><strong>Numbness or Tingling</strong>: Peripheral neuropathy, a common complication, can manifest as tingling, numbness, or pain in the extremities, indicating a need for strict glucose and BP control.</li><li><strong>Slow-Healing Sores</strong>: Impaired wound healing is a hallmark of poorly managed diabetes, underscoring the importance of comprehensive ABCs management.</li><li><strong>Asymptomatic Hypertension/Dyslipidemia</strong>: High blood pressure and abnormal cholesterol often present without noticeable symptoms, making regular screening and monitoring essential for early detection and intervention.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Consistent Monitoring Schedule</strong>: Adhere strictly to the prescribed schedule for blood glucose checks, blood pressure measurements, and lipid panel screenings.</li><li><strong>Medication Adherence</strong>: Take all prescribed medications for glucose control, hypertension, and dyslipidemia exactly as directed by your healthcare provider.</li><li><strong>Hypoglycemia Awareness</strong>: Be vigilant for symptoms of low blood sugar (shakiness, sweating, confusion) and know how to treat it promptly with fast-acting carbohydrates.</li><li><strong>Proper Device Usage</strong>: Ensure correct technique for using blood glucose meters and blood pressure cuffs, and calibrate devices as recommended.</li><li><strong>Regular Follow-ups</strong>: Maintain regular appointments with your endocrinologist, primary care physician, and other specialists to review ABCs targets and adjust treatment plans.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Carbohydrate Management</strong>: Focus on consistent carbohydrate intake, choosing complex carbohydrates with high fiber content, and distributing them evenly throughout the day.</li><li><strong>Sodium Restriction</strong>: Limit intake of high-sodium foods to help manage blood pressure, opting for fresh, unprocessed foods.</li><li><strong>Healthy Fats Emphasis</strong>: Prioritize monounsaturated and polyunsaturated fats (e.g., avocados, nuts, olive oil) while limiting saturated and trans fats to improve cholesterol profiles.</li><li><strong>Fiber-Rich Foods</strong>: Incorporate plenty of fruits, vegetables, and whole grains to aid in blood glucose control and promote cardiovascular health.</li><li><strong>Portion Control</strong>: Practice mindful eating and appropriate portion sizes to manage overall caloric intake and support weight management, which impacts all ABCs.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Recognize Hypoglycemic Crisis</strong>: If blood glucose drops below 70 mg/dL, consume 15 grams of fast-acting carbohydrates (e.g., glucose tablets, fruit juice) and recheck in 15 minutes.</li><li><strong>Identify Hyperglycemic Symptoms</strong>: Persistent high blood sugar, increased thirst, frequent urination, and fatigue warrant immediate contact with a healthcare provider.</li><li><strong>Medication Interactions</strong>: Always inform your physician and pharmacist about all medications, supplements, and herbal remedies you are taking to prevent adverse interactions.</li><li><strong>Sick Day Rules</strong>: During illness, continue monitoring blood glucose more frequently, stay hydrated, and follow specific sick day guidelines provided by your healthcare team.</li><li><strong>Emergency Contact Information</strong>: Keep an updated list of emergency contacts and your medical information readily accessible.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Individualized Targets</strong>: ABCs targets are personalized based on age, duration of diabetes, comorbidities, and risk of hypoglycemia; discuss your specific goals with your physician.</li><li><strong>Comprehensive Risk Reduction</strong>: Managing A1C, BP, and cholesterol concurrently is paramount for reducing the overall burden of microvascular and macrovascular complications.</li><li><strong>Lifestyle as Foundation</strong>: Emphasize that diet, regular physical activity, and weight management are foundational to effective diabetes control, complementing pharmacological therapies.</li><li><strong>Early Intervention</strong>: Proactive management and early intervention for elevated glucose, blood pressure, or lipids can significantly alter the disease trajectory and improve long-term outcomes.</li><li><strong>Patient Empowerment</strong>: Encourage active patient participation in self-management, education, and shared decision-making regarding treatment plans.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education on SMBG</strong>: Instruct patients on proper technique for self-monitoring blood glucose, including lancet use, meter operation, and logbook maintenance.</li><li><strong>Blood Pressure Measurement Accuracy</strong>: Ensure accurate blood pressure readings by using appropriate cuff size, correct patient positioning, and consistent measurement protocols.</li><li><strong>Medication Reconciliation & Adherence Counseling</strong>: Review medication lists, educate on purpose, dosage, side effects, and strategies to improve adherence for glucose, BP, and lipid-lowering agents.</li><li><strong>Hypoglycemia Management Protocol</strong>: Educate patients and caregivers on recognizing and treating hypoglycemia, including the 'Rule of 15' and when to seek emergency care.</li><li><strong>Nutritional Guidance Reinforcement</strong>: Reinforce dietary recommendations provided by registered dietitians, focusing on practical meal planning and healthy food choices.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>A1C Target</strong>: Generally <7.0% for most non-pregnant adults, but individualized.</li><li><strong>Blood Pressure Target</strong>: Typically <130/80 mmHg for most adults with diabetes.</li><li><strong>LDL-C Target</strong>: Often <100 mg/dL, with lower targets (<70 mg/dL) for those with established cardiovascular disease.</li><li><strong>SMBG (Self-Monitoring Blood Glucose)</strong>: Patient-performed capillary blood glucose testing using a glucometer.</li><li><strong>CGM (Continuous Glucose Monitoring)</strong>: Devices that measure interstitial glucose levels continuously, providing real-time data and trend analysis.</li><li><strong>ADA (American Diabetes Association)</strong>: Key organization providing clinical practice guidelines for diabetes management.</li><li><strong>ACC/AHA (American College of Cardiology/American Heart Association)</strong>: Provide guidelines for cardiovascular risk management, highly relevant for diabetes patients.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration depicting a stylized human torso with the upper abdominal organs (pancreas, duodenum, bile duct) highlighted. A subtle, abstract representation of surgical lines or a gentle 'removal' icon over the head of the pancreas, symbolizing the Whipple procedure. Clean, modern design with a focus on medical clarity and public awareness. No text or complex anatomical details, just a symbolic representation of the surgical area.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./whipple_procedure.jpg" class="card-banner" alt="Whipple procedure Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Surgery</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-surgery-general-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">General surgery</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Whipple procedure</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Surgery</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">General surgery</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Complex Surgical Procedure:</strong> The Whipple procedure, or pancreaticoduodenectomy, is a major operation to remove the head of the pancreas, the duodenum, the gallbladder, and part of the bile duct.</li><li><strong>Primary Indication:</strong> Most commonly performed to treat tumors in the head of the pancreas, but also for cancers of the bile duct, duodenum, or ampulla of Vater.</li><li><strong>Reconstruction:</strong> After removal, the remaining pancreas, bile duct, and stomach are reconnected to the small intestine (jejunum) to restore digestive function.</li><li><strong>High-Risk Surgery:</strong> It is a technically demanding procedure associated with significant risks and a long recovery period, requiring specialized surgical expertise.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Jaundice:</strong> Yellowing of the skin and eyes due to bile duct obstruction, often painless.</li><li><strong>Unexplained Weight Loss:</strong> Significant and unintentional loss of body weight.</li><li><strong>Abdominal Pain:</strong> Often vague discomfort in the upper abdomen, sometimes radiating to the back.</li><li><strong>Dark Urine & Pale Stools:</strong> Indicative of bile flow obstruction.</li><li><strong>Nausea and Vomiting:</strong> May occur due to tumor obstruction of the duodenum or bile duct.</li><li><strong>New-Onset Diabetes:</strong> Can be a symptom of pancreatic dysfunction caused by a tumor.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Pre-operative Optimization:</strong> Strict adherence to smoking cessation, nutritional support, and management of co-morbidities to improve surgical outcomes.</li><li><strong>Medication Review:</strong> Discontinuation of blood thinners (anticoagulants, antiplatelets) as advised by the surgical team well in advance of the procedure.</li><li><strong>Infection Prevention:</strong> Pre-operative antibiotics and meticulous sterile technique during and after surgery are critical to minimize infection risk.</li><li><strong>Post-operative Monitoring:</strong> Close observation for signs of complications such as pancreatic leak, bleeding, delayed gastric emptying, and infection.</li><li><strong>Pain Management:</strong> Effective post-operative pain control is essential for patient comfort and early mobilization.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-operative Fasting:</strong> Strict NPO (nil per os) status for a specified duration (typically 6-8 hours for solids, 2 hours for clear liquids) before surgery.</li><li><strong>Post-operative Diet Progression:</strong> Gradual reintroduction of fluids and food, starting with clear liquids, progressing to full liquids, and then soft, easily digestible foods as tolerated.</li><li><strong>Small, Frequent Meals:</strong> Patients are often advised to eat smaller portions more frequently to aid digestion and prevent discomfort.</li><li><strong>Low-Fat Diet:</strong> Restriction of high-fat foods to reduce the burden on the remaining digestive system and minimize symptoms of malabsorption.</li><li><strong>Pancreatic Enzyme Replacement Therapy (PERT):</strong> Often required long-term to aid digestion and nutrient absorption due to removal of pancreatic tissue.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Caregiver Support:</strong> Family or designated caregivers should be prepared to assist with post-operative care, including medication administration, wound care, and monitoring for complications at home.</li><li><strong>Understanding Discharge Instructions:</strong> Thorough review of all discharge instructions, including activity restrictions, dietary guidelines, and signs/symptoms requiring immediate medical attention.</li><li><strong>Emotional Support:</strong> Provide significant emotional and psychological support, as recovery can be prolonged and challenging.</li><li><strong>Follow-up Appointments:</strong> Ensure all scheduled follow-up appointments with the surgical team, oncologist, and other specialists are attended.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Multidisciplinary Approach:</strong> Optimal management involves a team including surgeons, oncologists, gastroenterologists, radiologists, dietitians, and pain specialists.</li><li><strong>Thorough Pre-operative Assessment:</strong> Comprehensive evaluation of patient fitness, tumor resectability, and potential risks is paramount.</li><li><strong>Patient Education:</strong> Crucial to educate patients and families about the complexity of the procedure, potential complications, and expected long-term changes in digestion and metabolism.</li><li><strong>Long-term Surveillance:</strong> Regular follow-up is essential for monitoring for disease recurrence, managing exocrine and endocrine insufficiency, and addressing nutritional deficiencies.</li><li><strong>Quality of Life Focus:</strong> While curative intent is primary, managing post-operative symptoms and optimizing quality of life are significant goals.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pre-operative Teaching:</strong> Educate patients on expected post-operative drains, tubes, pain management strategies, and early ambulation importance.</li><li><strong>Post-operative Assessment:</strong> Meticulous monitoring of vital signs, fluid balance, drain output (color, volume), bowel sounds, and signs of infection or hemorrhage.</li><li><strong>Wound Care:</strong> Aseptic technique for dressing changes and monitoring incision sites for redness, swelling, or discharge.</li><li><strong>Nutritional Support:</strong> Administering and monitoring parenteral or enteral nutrition as prescribed, and assisting with oral diet progression.</li><li><strong>Complication Recognition:</strong> Prompt identification and reporting of signs of pancreatic fistula, delayed gastric emptying, anastomotic leak, or new-onset diabetes.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pancreaticoduodenectomy:</strong> The formal medical term for the Whipple procedure, involving resection of specific upper gastrointestinal organs.</li><li><strong>Anastomosis:</strong> Surgical connection between two tubular structures, specifically the pancreaticojejunostomy, hepaticojejunostomy, and gastrojejunostomy in a Whipple.</li><li><strong>Pancreatic Fistula:</strong> A serious complication characterized by leakage of pancreatic fluid from the surgical site, often managed with drains.</li><li><strong>Delayed Gastric Emptying (DGE):</strong> A common post-operative complication where the stomach takes longer than usual to empty its contents, leading to nausea and vomiting.</li><li><strong>Exocrine Pancreatic Insufficiency (EPI):</strong> Impaired ability to digest food due to insufficient pancreatic enzyme production, requiring enzyme replacement.</li><li><strong>Ampulla of Vater:</strong> The junction of the pancreatic duct and common bile duct, where they empty into the duodenum; a common site for tumors treated by Whipple.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

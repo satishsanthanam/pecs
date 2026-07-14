@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a patient in a hospital bed, looking slightly pale and uncomfortable, with a gentle nurse offering an emesis basin and a glass of water. The background shows a clean, calm hospital room with soft, muted colors. Focus on compassionate care and relief from nausea and vomiting after surgery.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./nausea_and_vomiting_after_surgery.jpg" class="card-banner" alt="Nausea and vomiting after surgery Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Surgery</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-surgery-after-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">After surgery</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Nausea and vomiting after surgery</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Surgery</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">After surgery</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Common Occurrence:</strong> Postoperative Nausea and Vomiting (PONV) is a frequent complication after surgery, affecting a significant number of patients.</li><li><strong>Risk Factors:</strong> Susceptibility varies based on patient history (e.g., motion sickness, previous PONV), type of surgery, and specific anesthetic agents used.</li><li><strong>Potential Complications:</strong> While often transient, severe or prolonged PONV can lead to dehydration, electrolyte imbalances, aspiration, increased surgical site pain, and delayed discharge.</li><li><strong>Prophylactic Measures:</strong> Healthcare providers often administer antiemetic medications before, during, or immediately after surgery to prevent PONV, especially in high-risk individuals.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Nausea Sensation:</strong> A feeling of sickness in the stomach with an urge to vomit.</li><li><strong>Vomiting Episodes:</strong> Involuntary expulsion of stomach contents through the mouth.</li><li><strong>Dizziness and Lightheadedness:</strong> Often accompanying nausea, particularly if dehydration begins to set in.</li><li><strong>Abdominal Discomfort:</strong> General unease or cramping in the stomach area.</li><li><strong>Increased Salivation:</strong> A common physiological response preceding vomiting.</li><li><strong>Weakness and Fatigue:</strong> General malaise due to the discomfort and effort involved.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Pre-emptive Antiemetics:</strong> Discuss with the anesthesia team about prophylactic antiemetic administration, especially if you have a history of PONV or motion sickness.</li><li><strong>Gradual Oral Intake:</strong> Do not rush to eat or drink after surgery; wait until your gag reflex has returned and initial nausea has subsided.</li><li><strong>Avoid Strong Odors:</strong> Strong smells can trigger or worsen nausea; request a well-ventilated and odor-free environment.</li><li><strong>Hydration Management:</strong> Ensure adequate intravenous fluid intake as directed by your care team to prevent dehydration.</li><li><strong>Positioning:</strong> If nausea occurs, lie on your side to prevent aspiration of vomit, especially if still drowsy from anesthesia.</li><li><strong>Pain Management:</strong> Uncontrolled pain can exacerbate nausea; ensure your pain is adequately managed.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Initial NPO Status:</strong> Maintain nothing-by-mouth (NPO) status until your care team confirms it is safe to start oral intake, typically after the gag reflex returns and initial nausea subsides.</li><li><strong>Clear Liquids First:</strong> Begin with small sips of clear liquids such as water, ice chips, clear broth, or diluted apple juice.</li><li><strong>Gradual Progression:</strong> Advance to bland, soft foods like toast, crackers, or plain rice only as tolerated and if nausea does not recur.</li><li><strong>Small, Frequent Meals:</strong> Opt for smaller portions more frequently rather than large meals to avoid overwhelming the digestive system.</li><li><strong>Avoid Irritants:</strong> Steer clear of fatty, greasy, spicy, acidic, or heavily seasoned foods, as these can irritate the stomach and trigger nausea.</li><li><strong>Limit Dairy and Caffeine:</strong> Initially, avoid dairy products and caffeinated beverages, as they can sometimes worsen gastrointestinal upset.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emesis Basin Availability:</strong> Ensure an emesis basin is readily accessible to the patient at all times.</li><li><strong>Patient Positioning:</strong> Assist the patient to a comfortable position, often side-lying, to minimize aspiration risk during vomiting episodes.</li><li><strong>Oral Hygiene:</strong> Provide oral care (e.g., mouth rinse, toothbrush) after each vomiting episode to remove residual stomach acid and improve comfort.</li><li><strong>Fluid Monitoring:</strong> Closely monitor and document fluid intake and output, including the volume and characteristics of emesis, to assess hydration status.</li><li><strong>Comfort Measures:</strong> Offer cool compresses to the forehead or neck, maintain a quiet environment, and minimize strong odors to help alleviate discomfort.</li><li><strong>Prompt Reporting:</strong> Immediately report persistent or severe nausea and vomiting, signs of dehydration, or any new symptoms to the nursing staff or physician.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Individualized Risk Assessment:</strong> A thorough pre-operative assessment of PONV risk factors is crucial for tailoring prophylactic strategies.</li><li><strong>Multimodal Prophylaxis:</strong> Employing a combination of antiemetic agents from different pharmacological classes (e.g., 5-HT3 antagonists, corticosteroids, dopamine antagonists) is often most effective for high-risk patients.</li><li><strong>Differential Diagnosis:</strong> Always consider other potential causes of postoperative nausea and vomiting, such as opioid side effects, ileus, surgical complications, or electrolyte imbalances.</li><li><strong>Fluid and Electrolyte Management:</strong> Aggressive management of fluid balance and correction of electrolyte disturbances are paramount to prevent complications.</li><li><strong>Early Intervention:</strong> Do not delay treatment for established PONV; prompt administration of rescue antiemetics is essential to prevent escalation and patient distress.</li><li><strong>Anesthetic Technique Review:</strong> Evaluate anesthetic choices, such as minimizing volatile anesthetics and nitrous oxide, to reduce PONV incidence.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Assessment:</strong> Systematically assess the patient's nausea severity (e.g., using a 0-10 scale), frequency of vomiting, and characteristics of emesis.</li><li><strong>Non-Pharmacological Interventions:</strong> Implement comfort measures such as deep breathing exercises, distraction techniques, and maintaining a calm, quiet environment.</li><li><strong>Medication Administration:</strong> Administer prescribed antiemetics promptly, monitoring for effectiveness and potential side effects (e.g., QTc prolongation with ondansetron).</li><li><strong>Patient Education:</strong> Educate patients on the importance of gradual dietary progression, reporting symptoms, and proper positioning to prevent aspiration.</li><li><strong>Documentation Accuracy:</strong> Meticulously document all episodes of nausea and vomiting, including timing, patient response to interventions, and fluid balance.</li><li><strong>Post-Anesthesia Care Unit (PACU) Focus:</strong> Recognize that the PACU is a critical period for PONV onset and requires vigilant monitoring and proactive management.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathophysiology:</strong> PONV involves complex interactions between the chemoreceptor trigger zone (CTZ), vestibular system, vagal afferents, and higher cortical centers.</li><li><strong>Pharmacological Classes:</strong> Key antiemetic drug classes include serotonin (5-HT3) receptor antagonists, dopamine receptor antagonists, corticosteroids, anticholinergics, and neurokinin-1 (NK1) receptor antagonists.</li><li><strong>Apfel Score:</strong> A widely used risk assessment tool for predicting PONV, considering female gender, history of PONV/motion sickness, non-smoking status, and use of postoperative opioids.</li><li><strong>Complications:</strong> Severe PONV can lead to aspiration pneumonia, wound dehiscence (especially in abdominal surgeries), esophageal tears (Mallory-Weiss syndrome), and prolonged hospital stay.</li><li><strong>Anesthetic Contributors:</strong> Volatile anesthetic agents (e.g., sevoflurane, desflurane), nitrous oxide, and postoperative opioid use are significant contributors to PONV.</li><li><strong>Non-Pharmacological Modalities:</strong> Acupressure (P6 point), aromatherapy (e.g., peppermint oil), and adequate hydration are adjunctive strategies.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for public awareness: A vibrant, diverse collection of iron-rich foods arranged aesthetically. Include lean red meat, poultry, fish, lentils, spinach, kale, fortified cereal, pumpkin seeds, and dried apricots. Prominently feature citrus fruits (oranges, lemons) nearby, symbolizing Vitamin C's role in absorption. The style should be clean, modern, and inviting, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./good_food_sources_of_iron.jpg" class="card-banner" alt="Good food sources of iron Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-nutrition-diet-and-weight" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Nutrition, diet, and weight</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-nutrition-diet-and-weight-nutrient-deficiencies" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Nutrient deficiencies</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Good food sources of iron</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Nutrition, diet, and weight</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Nutrient deficiencies</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Essential Nutrient:</strong> Iron is vital for producing hemoglobin, a protein in red blood cells that carries oxygen from the lungs to the rest of the body.</li><li><strong>Energy Metabolism:</strong> It plays a crucial role in energy production and maintaining a healthy immune system.</li><li><strong>Two Forms of Iron:</strong> Dietary iron exists as heme iron (found in animal products, highly bioavailable) and non-heme iron (found in plant foods and fortified products, less bioavailable but absorption can be enhanced).</li><li><strong>Deficiency Impact:</strong> Insufficient iron intake or absorption can lead to iron deficiency anemia, characterized by reduced oxygen transport and various systemic symptoms.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Persistent Fatigue:</strong> Unexplained tiredness and lack of energy, even with adequate rest.</li><li><strong>Pallor:</strong> Pale skin, especially noticeable on the inner eyelids, gums, and nail beds, due to reduced red blood cell count.</li><li><strong>Shortness of Breath:</strong> Difficulty breathing, particularly during physical activity, as oxygen delivery is compromised.</li><li><strong>Dizziness and Lightheadedness:</strong> Often experienced upon standing or with exertion.</li><li><strong>Pica:</strong> Unusual cravings for non-nutritive substances like ice, dirt, or clay.</li><li><strong>Brittle Nails:</strong> Nails that are easily broken or spoon-shaped (koilonychia).</li><li><strong>Cold Extremities:</strong> Chronically cold hands and feet due to poor circulation.</li><li><strong>Headaches:</strong> Frequent or severe headaches.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Excessive Intake:</strong> While essential, excessive iron intake, especially from supplements without medical supervision, can be toxic and lead to conditions like hemochromatosis.</li><li><strong>Medication Interactions:</strong> Iron absorption can be affected by certain medications (e.g., antacids, proton pump inhibitors) and supplements (e.g., calcium). Separate intake times as advised by a clinician.</li><li><strong>Professional Diagnosis:</strong> Always consult a healthcare provider for diagnosis of iron deficiency before initiating iron supplementation, as symptoms can overlap with other conditions.</li><li><strong>Cooking Utensils:</strong> Cooking in cast iron cookware can significantly increase the iron content of food, particularly acidic foods.</li><li><strong>Underlying Causes:</strong> Investigate and address any underlying causes of iron deficiency, such as gastrointestinal bleeding or malabsorption disorders, rather than solely relying on dietary changes.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Heme Iron Sources:</strong> Prioritize lean red meats (beef, lamb, venison), poultry (chicken, turkey), fish (tuna, salmon, sardines), and organ meats (liver) for highly absorbable iron.</li><li><strong>Non-Heme Iron Sources:</strong> Include legumes (lentils, beans, chickpeas), dark leafy green vegetables (spinach, kale, collard greens), fortified cereals and breads, nuts (cashews, almonds), seeds (pumpkin, sesame), and dried fruits (raisins, apricots).</li><li><strong>Absorption Enhancers:</strong> Pair non-heme iron sources with foods rich in Vitamin C (ascorbic acid) to significantly boost absorption. Examples include citrus fruits, bell peppers, broccoli, strawberries, and tomatoes.</li><li><strong>Absorption Inhibitors:</strong> Be mindful of substances that can inhibit iron absorption, such as phytates (found in whole grains and legumes), oxalates (in spinach, rhubarb), tannins (in tea, coffee), and calcium (in dairy products and supplements). Consider separating their intake from iron-rich meals.</li><li><strong>Hydration:</strong> Maintain adequate hydration, especially when increasing fiber-rich iron sources, to support digestive health.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>High-Risk Populations:</strong> Pregnant women, infants, young children, menstruating women, and individuals following vegetarian or vegan diets have higher iron requirements and should pay close attention to their dietary iron intake.</li><li><strong>Regular Monitoring:</strong> For individuals at risk of iron deficiency, regular monitoring of iron status through blood tests (e.g., ferritin, hemoglobin) is crucial to guide dietary and potential supplemental interventions.</li><li><strong>Dietitian Consultation:</strong> Refer patients to a registered dietitian for personalized meal planning and education on optimizing iron absorption, especially for complex dietary needs or existing deficiencies.</li><li><strong>Supplement Administration:</strong> If iron supplements are prescribed, advise patients on proper administration (e.g., taking with Vitamin C, avoiding certain foods/medications) and potential side effects (e.g., constipation, dark stools).</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>First-Line Approach:</strong> Dietary modification to increase iron-rich food intake is the primary strategy for preventing and managing mild iron deficiency.</li><li><strong>Diagnostic Workup:</strong> For suspected iron deficiency, a thorough diagnostic workup is essential to confirm the diagnosis and identify any underlying causes, such as chronic blood loss or malabsorption.</li><li><strong>Supplementation Criteria:</strong> Iron supplementation should be considered only after a confirmed diagnosis of iron deficiency anemia and tailored to the individual's needs, with careful monitoring of response and side effects.</li><li><strong>Patient Education:</strong> Educate patients on the importance of dietary iron, how to enhance absorption, and the potential interactions with other foods and medications.</li><li><strong>Follow-up:</strong> Regular follow-up appointments and blood tests are necessary to assess the effectiveness of dietary changes and/or supplementation and to adjust treatment as needed.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Role:</strong> Nurses are key in educating patients about good food sources of iron, strategies for enhancing absorption, and identifying symptoms of deficiency or overload.</li><li><strong>Dietary Assessment:</strong> Conduct thorough dietary assessments to identify potential gaps in iron intake and provide practical, culturally sensitive recommendations.</li><li><strong>Monitoring & Documentation:</strong> Monitor patients for signs and symptoms of iron deficiency anemia and document dietary interventions and patient responses.</li><li><strong>Medication Adherence:</strong> For patients on iron supplements, educate on proper administration, potential side effects, and the importance of adherence to the prescribed regimen.</li><li><strong>Interdisciplinary Collaboration:</strong> Collaborate with dietitians and physicians to ensure a comprehensive approach to managing iron status, especially in vulnerable populations.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Recommended Daily Allowance (RDA):</strong> Varies by age, gender, and physiological status (e.g., 8 mg/day for adult men, 18 mg/day for adult premenopausal women, 27 mg/day for pregnant women).</li><li><strong>Bioavailability:</strong> Heme iron has a bioavailability of 15-35%, while non-heme iron has a bioavailability of 2-20%, significantly influenced by dietary enhancers and inhibitors.</li><li><strong>Hepcidin:</strong> A key hormone regulating systemic iron homeostasis, controlling iron absorption from the gut and release from macrophages.</li><li><strong>Diagnostic Markers:</strong> Key laboratory tests include serum ferritin (reflects iron stores), serum iron, total iron-binding capacity (TIBC), and transferrin saturation.</li><li><strong>Iron Overload:</strong> Conditions like hereditary hemochromatosis involve excessive iron absorption and accumulation, requiring careful management to prevent organ damage.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

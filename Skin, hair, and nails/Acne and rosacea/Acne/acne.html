@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a diverse group of individuals with varying skin tones and ages, gently touching their faces or applying a mild, non-comedogenic cream. Show subtle representations of common acne lesions like small red bumps, whiteheads, and blackheads on their skin. Include elements such as a magnifying glass examining skin texture, a water droplet symbolizing hydration, and a small plant leaf for natural care. The overall aesthetic should be clean, modern, and reassuring, conveying a sense of gentle care and effective treatment for skin health. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./acne.jpg" class="card-banner" alt="Acne Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-skin-hair-and-nails" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Skin, hair, and nails</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-skin-hair-and-nails-acne-and-rosacea" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Acne and rosacea</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Acne</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Skin, hair, and nails</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Acne and rosacea</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Acne vulgaris is a chronic inflammatory skin condition affecting hair follicles and sebaceous glands, primarily on the face, neck, chest, and back.</li><li><strong>Key Factors:</strong> Involves increased sebum production, follicular hyperkeratinization leading to clogged pores, proliferation of *Cutibacterium acnes* bacteria, and inflammation.</li><li><strong>Common Triggers:</strong> Hormonal fluctuations (androgens), genetics, stress, certain medications, and mechanical irritation can exacerbate acne.</li><li><strong>Clinical Presentation:</strong> Manifests as comedones (blackheads and whiteheads), papules, pustules, nodules, and cysts.</li><li><strong>Potential Outcomes:</strong> Can lead to post-inflammatory hyperpigmentation (PIH), erythema (PIE), and permanent scarring if left untreated or improperly managed.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Comedones:</strong> Small, non-inflammatory lesions, either open (blackheads) or closed (whiteheads).</li><li><strong>Papules:</strong> Small, red, tender bumps indicating inflammation.</li><li><strong>Pustules:</strong> Red, tender bumps with a white or yellow center of pus.</li><li><strong>Nodules:</strong> Large, solid, painful lumps deep beneath the skin surface.</li><li><strong>Cysts:</strong> Large, painful, pus-filled lesions that can cause significant tissue destruction.</li><li><strong>Erythema:</strong> Redness around lesions, indicating inflammation.</li><li><strong>Tenderness/Pain:</strong> Especially associated with deeper inflammatory lesions like nodules and cysts.</li><li><strong>Post-inflammatory Changes:</strong> Dark spots (hyperpigmentation) or red marks (erythema) remaining after lesions heal.</li><li><strong>Scarring:</strong> Pitted (atrophic) or raised (hypertrophic/keloidal) marks on the skin.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Picking/Squeezing:</strong> Refrain from manipulating lesions to prevent worsening inflammation, infection, and permanent scarring.</li><li><strong>Gentle Skin Care:</strong> Use mild, non-comedogenic cleansers twice daily; avoid harsh scrubbing or abrasive products that can irritate the skin.</li><li><strong>Non-Comedogenic Products:</strong> Select makeup, moisturizers, and sunscreens specifically labeled as 'non-comedogenic' or 'oil-free' to prevent pore clogging.</li><li><strong>Sun Protection:</strong> Apply broad-spectrum sunscreen with SPF 30 or higher daily, especially when using photosensitizing acne medications (e.g., retinoids, tetracyclines).</li><li><strong>Hygiene Practices:</strong> Regularly clean items that contact the face, such as phone screens, pillowcases, and headwear, to minimize bacterial transfer.</li><li><strong>Medication Adherence:</strong> Follow prescribed topical and oral medication instructions precisely to maximize efficacy and minimize side effects.</li><li><strong>Patch Testing:</strong> When introducing new topical products, perform a patch test on a small area to check for irritation or allergic reactions.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Glycemic Index Awareness:</strong> Some individuals may benefit from limiting high glycemic index foods (e.g., refined sugars, white bread) which have been linked to acne exacerbation in certain populations.</li><li><strong>Dairy Product Monitoring:</strong> For some, dairy consumption may correlate with acne flares; consider observing personal skin response to dairy intake.</li><li><strong>Adequate Hydration:</strong> Maintain sufficient fluid intake to support overall skin health and barrier function.</li><li><strong>Antioxidant-Rich Foods:</strong> Incorporate a diet rich in fruits, vegetables, and whole grains to provide antioxidants that may help reduce inflammation and support skin repair.</li><li><strong>Omega-3 Fatty Acids:</strong> Foods high in omega-3s (e.g., fatty fish, flaxseeds) may offer anti-inflammatory benefits relevant to acne management.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Photosensitivity Risk:</strong> Patients on retinoids (topical/oral) or tetracycline antibiotics must be educated on increased sun sensitivity and strict sun protection measures.</li><li><strong>Pregnancy & Lactation:</strong> Oral isotretinoin is a potent teratogen and absolutely contraindicated in pregnancy; other medications require careful risk-benefit assessment during pregnancy and breastfeeding.</li><li><strong>Mental Health Impact:</strong> Acne can significantly affect self-esteem and mental well-being; screen for signs of anxiety, depression, or body dysmorphia and offer appropriate support.</li><li><strong>Treatment Duration:</strong> Emphasize that acne treatment often requires several weeks to months to show significant improvement, and consistency is key.</li><li><strong>Scarring Prevention:</strong> Early and aggressive treatment of inflammatory acne is crucial to minimize the risk of permanent scarring.</li><li><strong>Drug Interactions:</strong> Be aware of potential interactions between acne medications and other prescribed drugs (e.g., oral contraceptives with some antibiotics).</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Personalized Treatment:</strong> Acne management requires a tailored approach based on severity, lesion type, patient age, skin type, and previous treatment responses.</li><li><strong>Combination Therapy:</strong> Often, combining topical agents (e.g., retinoids with benzoyl peroxide) or systemic with topical treatments yields superior results.</li><li><strong>Early Intervention:</strong> Prompt and effective treatment is paramount to prevent progression of acne and mitigate the risk of permanent scarring and post-inflammatory changes.</li><li><strong>Isotretinoin Consideration:</strong> For severe, nodulocystic, or recalcitrant acne, oral isotretinoin is highly effective but necessitates strict monitoring for side effects and pregnancy prevention.</li><li><strong>Patient Education:</strong> Thoroughly educate patients on the pathophysiology of acne, realistic treatment expectations, proper medication use, and potential side effects.</li><li><strong>Holistic Assessment:</strong> Consider contributing factors such as hormonal imbalances, stress, and lifestyle, integrating these into the overall management plan.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Assessment:</strong> Accurately assess acne severity, lesion types (comedones, papules, pustules, nodules, cysts), and distribution to inform treatment plans.</li><li><strong>Medication Education:</strong> Provide detailed instructions on proper application techniques for topical medications, dosage, frequency, and potential side effects of all prescribed treatments.</li><li><strong>Adherence Support:</strong> Educate patients on the importance of consistent treatment and offer strategies to improve adherence, such as setting reminders or integrating into daily routines.</li><li><strong>Skin Care Guidance:</strong> Instruct on gentle cleansing, moisturizing with non-comedogenic products, and diligent sun protection, especially with photosensitizing medications.</li><li><strong>Psychosocial Support:</strong> Recognize the emotional impact of acne; provide empathetic listening, validate concerns, and refer to mental health professionals if significant distress is identified.</li><li><strong>Referral Criteria:</strong> Understand when to refer patients to a dermatologist for specialized care, such as severe or recalcitrant acne, significant scarring, or diagnostic uncertainty.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathogenesis:</strong> Involves four primary factors: increased sebum production, follicular hyperkeratinization, *Cutibacterium acnes* proliferation, and inflammation.</li><li><strong>Classification:</strong> Typically categorized as mild, moderate, or severe based on the number and type of lesions present.</li><li><strong>Topical Treatments:</strong> Retinoids (tretinoin, adapalene, tazarotene), benzoyl peroxide, topical antibiotics (clindamycin, erythromycin), azelaic acid, salicylic acid.</li><li><strong>Systemic Treatments:</strong> Oral antibiotics (tetracyclines like doxycycline, minocycline), oral isotretinoin, hormonal therapies (oral contraceptives, spironolactone).</li><li><strong>Procedural Interventions:</strong> Chemical peels, laser and light therapies, manual extractions, intralesional corticosteroid injections for cystic lesions.</li><li><strong>Differential Diagnoses:</strong> Rosacea, perioral dermatitis, folliculitis, drug-induced acneiform eruptions, hidradenitis suppurativa.</li><li><strong>Complications:</strong> Post-inflammatory hyperpigmentation (PIH), post-inflammatory erythema (PIE), various types of scarring (atrophic: icepick, boxcar, rolling; hypertrophic/keloidal).</li><li><strong>Grading Scales:</strong> Commonly used scales include the Global Acne Grading System (GAGS) or Leeds revised acne grading system for objective assessment.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

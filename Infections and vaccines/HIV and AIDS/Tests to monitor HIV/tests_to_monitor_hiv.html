@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting HIV monitoring. In the foreground, a diverse group of people (patient, doctor, nurse) are interacting. The doctor points to a screen displaying a graph with a downward trend for 'Viral Load' and an upward trend for 'CD4 Count'. In the background, stylized laboratory equipment like test tubes, a microscope, and a blood sample vial are visible. The overall scene conveys a sense of medical care, data analysis, and patient empowerment, with clean lines and a modern, public awareness design. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./tests_to_monitor_hiv.jpg" class="card-banner" alt="Tests to monitor HIV Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-infections-and-vaccines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Infections and vaccines</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-infections-and-vaccines-hiv-and-aids" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">HIV and AIDS</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Tests to monitor HIV</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Infections and vaccines</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">HIV and AIDS</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose of Monitoring:</strong> Regular testing is essential for individuals living with HIV to track disease progression, assess the effectiveness of antiretroviral therapy (ART), and guide treatment adjustments.</li><li><strong>Key Indicators:</strong> The primary tests for monitoring HIV are the HIV viral load (measuring the amount of virus in the blood) and the CD4 T-cell count (measuring immune system strength).</li><li><strong>Treatment Goals:</strong> The ultimate goal of ART, monitored by these tests, is to achieve an 'undetectable' viral load, which means the virus is suppressed to a level where it cannot be transmitted sexually.</li><li><strong>Lifelong Management:</strong> HIV is a chronic condition requiring continuous monitoring and adherence to prescribed treatment regimens to maintain health and prevent opportunistic infections.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Persistent Fatigue:</strong> Unexplained and debilitating tiredness can indicate suboptimal viral suppression or early signs of opportunistic infections.</li><li><strong>Unexplained Weight Loss:</strong> Significant and unintentional decrease in body weight may signal disease progression or metabolic complications.</li><li><strong>Recurrent Infections:</strong> Frequent or severe bacterial, fungal, or viral infections (e.g., oral thrush, shingles) suggest a weakened immune system, often reflected by a low CD4 count.</li><li><strong>Chronic Diarrhea:</strong> Persistent gastrointestinal issues can be a symptom of HIV progression or side effects of certain medications.</li><li><strong>Swollen Lymph Nodes:</strong> Persistent enlargement of lymph nodes in the neck, armpits, or groin may indicate ongoing immune activation or infection.</li><li><strong>Fever and Night Sweats:</strong> Unexplained fevers and drenching night sweats can be signs of active infection or disease progression.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Strict ART Adherence:</strong> Consistently taking antiretroviral medications exactly as prescribed is paramount to achieving and maintaining viral suppression and preventing drug resistance.</li><li><strong>Regular Medical Follow-ups:</strong> Adhere to scheduled appointments with healthcare providers for clinical assessments and timely blood draws for monitoring tests.</li><li><strong>Safe Practices:</strong> Continue practicing safe sex (e.g., condom use) and avoid sharing needles to prevent HIV transmission and acquisition of other sexually transmitted infections.</li><li><strong>Opportunistic Infection Prevention:</strong> Discuss with your doctor about vaccinations and prophylactic medications to prevent common opportunistic infections, especially with lower CD4 counts.</li><li><strong>Medication Interactions:</strong> Always inform your healthcare provider about all medications, supplements, and herbal remedies you are taking to avoid potential interactions with ART.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Nutrient-Rich Diet:</strong> Focus on a balanced diet rich in fruits, vegetables, lean proteins, and whole grains to support overall immune function and energy levels.</li><li><strong>Hydration:</strong> Maintain adequate fluid intake, especially if experiencing side effects like diarrhea or fever, to prevent dehydration.</li><li><strong>Food Safety:</strong> Exercise caution with food preparation and consumption to minimize the risk of foodborne illnesses, particularly for individuals with compromised immune systems. Avoid raw or undercooked meats, unpasteurized dairy, and unwashed produce.</li><li><strong>Managing Side Effects:</strong> Adapt dietary choices to manage potential ART side effects such as nausea (small, frequent meals), appetite changes (nutrient-dense foods), or lipodystrophy (limiting saturated and trans fats).</li><li><strong>Alcohol and Drug Use:</strong> Limit or avoid alcohol and recreational drug use, as they can interfere with ART effectiveness, exacerbate side effects, and negatively impact liver function.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Do Not Miss Doses:</strong> Missing even a few doses of ART can lead to viral rebound and the development of drug resistance, making future treatment more challenging.</li><li><strong>Report Symptoms Promptly:</strong> Immediately inform your healthcare provider of any new or worsening symptoms, especially fever, rash, severe fatigue, or signs of infection.</li><li><strong>Understand Test Results:</strong> Actively engage with your healthcare team to understand your viral load and CD4 count results and what they mean for your health and treatment plan.</li><li><strong>Confidentiality:</strong> Discuss concerns about privacy and confidentiality with your healthcare provider regarding your HIV status and test results.</li><li><strong>Emergency Preparedness:</strong> Know who to contact and what steps to take in case of an urgent medical issue or if you run out of medication.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Consistent Monitoring is Key:</strong> Regular viral load and CD4 count monitoring are non-negotiable for effective HIV management, allowing for timely intervention and treatment optimization.</li><li><strong>Undetectable = Untransmittable (U=U):</strong> Achieving and maintaining an undetectable viral load is the primary goal, as it not only preserves the patient's health but also prevents sexual transmission of HIV.</li><li><strong>Personalized Treatment:</strong> ART regimens are highly individualized. Adherence to the prescribed regimen and open communication about side effects or challenges are crucial for long-term success.</li><li><strong>Holistic Care:</strong> Beyond viral suppression, managing co-morbidities, mental health, and social support are integral components of comprehensive HIV care.</li><li><strong>Early Intervention:</strong> Prompt identification and treatment of opportunistic infections or ART-related complications are vital to prevent severe illness and preserve immune function.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education on ART Adherence:</strong> Nurses play a critical role in educating patients about the importance of strict adherence to ART, potential side effects, and strategies for medication management.</li><li><strong>Specimen Collection Protocols:</strong> Ensure correct procedures for blood draws for viral load and CD4 counts, including proper labeling, storage, and timely transport to the laboratory.</li><li><strong>Interpreting Lab Results:</strong> Understand the clinical significance of viral load (copies/mL) and CD4 count (cells/mm³) trends, and how they inform patient care and treatment adjustments.</li><li><strong>Infection Control:</strong> Implement universal precautions rigorously when caring for patients with HIV to prevent transmission of bloodborne pathogens.</li><li><strong>Psychosocial Support:</strong> Provide empathetic support, address stigma, and connect patients with resources for mental health, financial assistance, and community support groups.</li><li><strong>Monitoring for Opportunistic Infections:</strong> Be vigilant for signs and symptoms of common opportunistic infections and educate patients on their prevention and early detection.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>HIV Viral Load Test (HIV RNA PCR):</strong> Measures the number of HIV RNA copies per milliliter of blood. A key indicator of ART effectiveness. Goal is typically <20-50 copies/mL (undetectable).</li><li><strong>CD4 T-cell Count:</strong> Quantifies the number of CD4+ T-lymphocytes, which are crucial immune cells targeted by HIV. Indicates immune system strength. Normal range is typically 500-1200 cells/mm³.</li><li><strong>CD4 Percentage:</strong> The proportion of lymphocytes that are CD4+ T-cells. Provides additional context to the absolute CD4 count.</li><li><strong>HIV Drug Resistance Testing:</strong> Performed when viral load is not suppressed despite ART, or before initiating ART in certain situations, to identify mutations that confer resistance to specific drugs.</li><li><strong>Genotype Assay:</strong> Identifies specific genetic mutations in the HIV virus that are associated with drug resistance.</li><li><strong>Phenotype Assay:</strong> Measures the actual susceptibility of the patient's HIV strain to various antiretroviral drugs.</li><li><strong>Complete Blood Count (CBC):</strong> Monitors for anemia, leukopenia, and thrombocytopenia, which can be caused by HIV itself or ART side effects.</li><li><strong>Liver Function Tests (LFTs):</strong> Monitors for hepatotoxicity, a potential side effect of some ART medications.</li><li><strong>Kidney Function Tests (Creatinine, eGFR):</strong> Monitors for nephrotoxicity, a potential side effect of some ART medications.</li><li><strong>Lipid Profile (Cholesterol, Triglycerides):</strong> Monitors for dyslipidemia, a common metabolic complication associated with HIV and some ART regimens.</li><li><strong>Glucose Levels (Fasting Glucose, HbA1c):</strong> Monitors for insulin resistance and diabetes, which can be associated with HIV and certain ART drugs.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

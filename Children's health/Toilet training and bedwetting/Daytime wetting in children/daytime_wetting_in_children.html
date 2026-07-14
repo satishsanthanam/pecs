@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a young child, approximately 6 years old, looking slightly concerned but being gently comforted by a parent or guardian. The child is standing near a toilet, and there are subtle visual cues like a clock showing daytime hours, a small water droplet, and a calendar with marked days in the background. The overall scene should convey understanding and support, with soft, reassuring colors. Avoid any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./daytime_wetting_in_children.jpg" class="card-banner" alt="Daytime wetting in children Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-children-s-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Children's health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-children-s-health-toilet-training-and-bedwetting" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Toilet training and bedwetting</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Daytime wetting in children</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Children's health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Toilet training and bedwetting</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Daytime wetting, or diurnal enuresis, refers to involuntary urination during waking hours in children aged 5 years or older.</li><li><strong>Prevalence:</strong> It is a common issue, affecting approximately 3-10% of school-aged children, with a higher incidence in younger children.</li><li><strong>Underlying Causes:</strong> Can stem from various factors including delayed bladder maturation, overactive bladder, infrequent voiding, constipation, urinary tract infections (UTIs), or psychological stressors.</li><li><strong>Impact:</strong> Can significantly affect a child's self-esteem, social interactions, and school performance if not addressed.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Urgency and Frequency:</strong> Sudden, strong urges to urinate, often leading to a rush to the bathroom, and frequent urination throughout the day.</li><li><strong>Holding Maneuvers:</strong> Children may exhibit behaviors like squatting, crossing legs, or holding the genital area to suppress urination.</li><li><strong>Infrequent Voiding:</strong> Despite urgency, some children may hold urine for extended periods, leading to large volume voids and potential overflow incontinence.</li><li><strong>Painful Urination:</strong> Dysuria, burning sensation, or discomfort during urination, which may indicate a urinary tract infection.</li><li><strong>Recurrent UTIs:</strong> Frequent episodes of urinary tract infections, which can be both a cause and a consequence of voiding dysfunction.</li><li><strong>Constipation:</strong> Difficulty passing stools, infrequent bowel movements, or hard stools, which can put pressure on the bladder and contribute to wetting.</li><li><strong>Encopresis:</strong> Involuntary passage of stool, often associated with chronic constipation, which can coexist with daytime wetting.</li><li><strong>Behavioral Changes:</strong> Increased anxiety, withdrawal from social activities, or irritability due to embarrassment or frustration.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Punishment:</strong> Never punish or shame a child for wetting incidents, as this can exacerbate anxiety and delay progress.</li><li><strong>Regular Voiding Schedule:</strong> Implement a strict schedule for bathroom breaks every 2-3 hours, regardless of whether the child feels the urge to urinate.</li><li><strong>Address Constipation:</strong> Proactively manage and prevent constipation through dietary changes and, if necessary, medical interventions, as it is a major contributor to bladder issues.</li><li><strong>Monitor Fluid Intake:</strong> Ensure adequate hydration throughout the day, but limit fluid intake, especially sugary or caffeinated drinks, in the late afternoon and evening.</li><li><strong>Proper Toileting Posture:</strong> Encourage children to sit properly on the toilet with feet supported, allowing for complete bladder emptying.</li><li><strong>Hygiene Practices:</strong> Teach proper wiping techniques (front to back) to prevent UTIs, especially in girls.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Bladder Irritants:</strong> Restrict or eliminate caffeine (sodas, chocolate), artificial colors, artificial sweeteners, and highly acidic foods (e.g., citrus fruits, tomatoes) which can irritate the bladder.</li><li><strong>Sugary Drinks:</strong> Limit intake of sugary beverages and fruit juices, as they can increase urine production and act as bladder irritants.</li><li><strong>Adequate Water Intake:</strong> Encourage consistent intake of plain water throughout the day to maintain hydration and prevent concentrated urine, but reduce intake in the hours leading up to bedtime.</li><li><strong>Fiber-Rich Diet:</strong> Promote a diet rich in fruits, vegetables, and whole grains to prevent constipation, which is a significant factor in bladder control issues.</li><li><strong>Regular Meal Times:</strong> Maintain regular meal schedules to support healthy bowel function and overall digestive regularity.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Seek Medical Evaluation:</strong> Consult a pediatrician if daytime wetting persists beyond age 5, is new onset, or is accompanied by pain, fever, excessive thirst, or changes in bowel habits.</li><li><strong>Maintain a Voiding Diary:</strong> Keep a detailed record of wetting incidents, fluid intake, voiding times, and bowel movements to help identify patterns and inform treatment strategies.</li><li><strong>Psychological Support:</strong> Be mindful of the child's emotional well-being; provide reassurance and support to mitigate feelings of shame or embarrassment.</li><li><strong>School Communication:</strong> Inform school staff about the child's condition and any necessary accommodations, such as frequent bathroom breaks.</li><li><strong>Avoid Diapers/Pull-ups:</strong> While convenient, prolonged use of diapers or pull-ups during the day can hinder a child's awareness of bladder fullness and the motivation to stay dry.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive Assessment:</strong> A thorough history, physical examination, and urinalysis are crucial to rule out underlying medical conditions such as UTIs, diabetes, or anatomical abnormalities.</li><li><strong>Behavioral Interventions First:</strong> Initial management typically focuses on behavioral strategies including timed voiding, fluid management, and addressing constipation.</li><li><strong>Bladder Training:</strong> Techniques to help children recognize bladder fullness and increase bladder capacity may be recommended.</li><li><strong>Biofeedback:</strong> In some cases, biofeedback therapy can be used to help children learn to control their pelvic floor muscles.</li><li><strong>Pharmacological Options:</strong> Medications (e.g., anticholinergics for overactive bladder) may be considered if behavioral interventions are insufficient and after ruling out other causes.</li><li><strong>Referral to Specialists:</strong> Referral to a pediatric urologist or nephrologist may be necessary for complex or refractory cases.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Nurses play a vital role in educating parents and children about the causes, management, and prevention of daytime wetting.</li><li><strong>Voiding Diary Instruction:</strong> Provide clear instructions on how to accurately complete a voiding and bowel diary, emphasizing its importance for diagnosis and treatment.</li><li><strong>Behavioral Strategy Reinforcement:</strong> Reinforce timed voiding schedules, proper fluid intake, and dietary modifications to prevent constipation.</li><li><strong>Emotional Support:</strong> Offer empathetic support to children and families, addressing the psychological impact of enuresis and promoting positive coping strategies.</li><li><strong>Monitoring for Complications:</strong> Educate on signs and symptoms of UTIs and other potential complications, advising when to seek further medical attention.</li><li><strong>Collaboration:</strong> Work collaboratively with physicians, dietitians, and school nurses to ensure a holistic and consistent approach to care.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Diurnal Enuresis:</strong> Involuntary urination during waking hours in children aged 5 years or older.</li><li><strong>Overactive Bladder (OAB):</strong> A condition characterized by urinary urgency, usually with frequency and nocturia, with or without urgency incontinence.</li><li><strong>Voiding Dysfunction:</strong> A broad term encompassing various issues with bladder emptying, including infrequent voiding, dysfunctional voiding, and detrusor-sphincter dyssynergia.</li><li><strong>Urinary Tract Infection (UTI):</strong> An infection in any part of the urinary system, often presenting with dysuria, frequency, and urgency.</li><li><strong>Constipation:</strong> Infrequent bowel movements or difficulty passing stools, a common comorbidity with daytime wetting.</li><li><strong>Pelvic Floor Dysfunction:</strong> Impaired function of the pelvic floor muscles, which can contribute to both urinary and bowel control issues.</li><li><strong>Timed Voiding:</strong> A behavioral intervention involving scheduled bathroom breaks to prevent bladder overfilling.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

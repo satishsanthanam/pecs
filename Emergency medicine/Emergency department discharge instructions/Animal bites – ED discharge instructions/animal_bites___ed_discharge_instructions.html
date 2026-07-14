@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a person's arm with a bandaged animal bite wound, surrounded by icons representing care instructions: a first aid kit, a thermometer for fever, a calendar for follow-up, a pill bottle for medication, and a clean water droplet. The background is a soft, calming medical blue. Clean lines, public awareness design, no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./animal_bites___ed_discharge_instructions.jpg" class="card-banner" alt="Animal bites – ED discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-emergency-medicine" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency medicine</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-emergency-medicine-emergency-department-discharge-instructions" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency department discharge instructions</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Animal bites – ED discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Emergency medicine</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Emergency department discharge instructions</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Wound Care Essentials:</strong> Keep the bite wound clean and dry. Change dressings as instructed by the emergency department staff.</li><li><strong>Infection Vigilance:</strong> Animal bites carry a significant risk of infection. Be alert for any signs of worsening condition.</li><li><strong>Rabies Protocol:</strong> Strictly adhere to all instructions regarding rabies post-exposure prophylaxis (PEP) if it has been initiated or recommended.</li><li><strong>Tetanus Status:</strong> Confirm your tetanus vaccination is current. A booster may have been administered or advised during your ED visit.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Increased Pain:</strong> Worsening or spreading pain at the bite site beyond the initial injury.</li><li><strong>Redness and Swelling:</strong> Expanding redness or increased swelling around the wound margins.</li><li><strong>Pus or Discharge:</strong> Any new yellow, green, or foul-smelling discharge from the wound.</li><li><strong>Fever and Chills:</strong> Systemic signs of infection, such as a fever (temperature >100.4°F or 38°C) or shivering.</li><li><strong>Red Streaks:</strong> Visible red lines extending from the wound towards the body, indicating lymphangitis.</li><li><strong>Loss of Function:</strong> Difficulty moving the affected limb or digit due to pain or swelling.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Strict Hand Hygiene:</strong> Always wash your hands thoroughly with soap and water before and after touching the wound or changing dressings.</li><li><strong>Avoid Contamination:</strong> Keep the wound covered and protected from dirt, pet dander, and other potential sources of infection.</li><li><strong>Medication Adherence:</strong> Take all prescribed antibiotics exactly as directed, completing the full course even if the wound appears to be healing. Do not stop early.</li><li><strong>Pain Management:</strong> Use prescribed or over-the-counter pain relievers as needed, strictly following dosage instructions.</li><li><strong>Activity Restriction:</strong> Avoid strenuous activities, heavy lifting, or immersing the wound in water (e.g., swimming, hot tubs) until it is fully healed.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration for Healing:</strong> Maintain adequate fluid intake to support overall bodily functions and aid in the healing process.</li><li><strong>Nutrient-Rich Diet:</strong> Consume a balanced diet rich in protein, vitamins (especially C), and minerals (like zinc) to promote tissue repair and immune function.</li><li><strong>Medication Interactions:</strong> Avoid alcohol and consult your pharmacist regarding any over-the-counter medications that might interact with your prescribed antibiotics or pain relievers.</li><li><strong>Avoid Smoking:</strong> Refrain from smoking, as it can significantly impair wound healing and increase the risk of infection.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Return to ED Immediately:</strong> Seek immediate medical attention if you develop a high fever, severe or rapidly worsening pain, spreading redness, pus, or feel generally unwell.</li><li><strong>Follow-up Appointments:</strong> Ensure you attend all scheduled follow-up appointments with your primary care physician or a wound care specialist.</li><li><strong>Rabies PEP Completion:</strong> If rabies post-exposure prophylaxis (PEP) was initiated, it is critical to complete the entire series of injections as scheduled.</li><li><strong>Animal Reporting:</strong> Report the animal bite incident to local animal control or public health authorities as required by local regulations.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>High Infection Risk:</strong> Animal bites, particularly from cats and humans, are associated with a high risk of infection due to deep puncture wounds and polymicrobial bacterial flora.</li><li><strong>Antibiotic Imperative:</strong> Completing the full course of prescribed antibiotics is paramount to prevent serious local complications and systemic infections like cellulitis or osteomyelitis.</li><li><strong>Rabies Assessment:</strong> A thorough risk assessment for rabies exposure is critical, and post-exposure prophylaxis (PEP) must be initiated promptly if indicated based on the animal's status and bite characteristics.</li><li><strong>Tetanus Prophylaxis:</strong> Tetanus immunization status must be evaluated, and appropriate prophylaxis administered if the patient is not adequately protected.</li><li><strong>Wound Management:</strong> Primary closure of bite wounds is often avoided due to the high infection risk; management typically involves irrigation, debridement, and often delayed primary closure or healing by secondary intention.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education on Wound Assessment:</strong> Instruct patients on how to daily inspect their wound for cardinal signs of infection: redness, swelling, warmth, increased pain, and purulent discharge.</li><li><strong>Dressing Change Demonstration:</strong> Provide clear, step-by-step instructions and, if possible, a demonstration of proper wound cleaning techniques and sterile dressing changes.</li><li><strong>Medication Teaching:</strong> Review the antibiotic regimen, emphasizing dosage, frequency, potential side effects, and the critical importance of completing the full course. Discuss pain management options.</li><li><strong>Rabies PEP Education:</strong> Explain the rabies post-exposure prophylaxis schedule, the necessity of completing all doses, and potential adverse effects.</li><li><strong>Return Precautions:</strong> Clearly articulate specific symptoms and circumstances that warrant immediate return to the emergency department or urgent medical consultation.</li><li><strong>Comprehensive Documentation:</strong> Accurately document all discharge instructions provided, assess patient understanding, and record any questions addressed and resources given.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Polymicrobial Infection:</strong> Bite wounds frequently involve multiple bacterial species, commonly including *Pasteurella multocida*, *Staphylococcus aureus*, *Streptococcus* species, and various anaerobes.</li><li><strong>Rabies Virus:</strong> A neurotropic RNA virus transmitted via saliva, leading to acute progressive encephalomyelitis. Post-exposure prophylaxis is a time-sensitive, life-saving intervention.</li><li><strong>Tetanus (Clostridium tetani):</strong> A severe bacterial infection causing muscle spasms and lockjaw, preventable through routine vaccination.</li><li><strong>Wound Classification:</strong> Animal bites can present as lacerations, puncture wounds, avulsions, or crush injuries, each influencing management strategies and infection risk.</li><li><strong>Prophylactic Antibiotics:</strong> Often prescribed for high-risk bites, such as deep punctures, bites to the hands or feet, or in immunocompromised patients, to prevent infection.</li><li><strong>Delayed Primary Closure:</strong> A surgical technique where a wound is initially left open for several days to reduce infection risk before being surgically closed.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

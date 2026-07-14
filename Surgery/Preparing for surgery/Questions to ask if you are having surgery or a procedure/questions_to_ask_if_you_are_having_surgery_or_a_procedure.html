@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a diverse patient, looking engaged and confident, sitting across from a friendly medical professional (doctor or nurse) in a modern clinic setting. The patient is holding a notepad with a question mark, actively listening and asking questions. Speech bubbles with question marks and medical symbols (like a heart, a band-aid, a clock for recovery) float around them, symbolizing the questions being asked and answered. The background is clean and bright, with subtle medical equipment or a calendar. The overall mood is informative, reassuring, and empowering, emphasizing patient education and shared decision-making.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./questions_to_ask_if_you_are_having_surgery_or_a_procedure.jpg" class="card-banner" alt="Questions to ask if you are having surgery or a procedure Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Surgery</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-surgery-preparing-for-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Preparing for surgery</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Questions to ask if you are having surgery or a procedure</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Surgery</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Preparing for surgery</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding Your Procedure:</strong> Always ask for a clear explanation of why the surgery is needed, what it involves, and what alternatives exist.</li><li><strong>Expected Outcomes:</strong> Inquire about the anticipated benefits, potential risks, and the likelihood of success for your specific condition.</li><li><strong>Recovery Timeline:</strong> Understand the typical recovery period, including hospital stay, return to daily activities, and full recuperation.</li><li><strong>Pain Management Plan:</strong> Discuss how pain will be managed during and after the procedure, including medication options and non-pharmacological approaches.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Pre-operative Symptoms:</strong> Clarify how your current symptoms (e.g., pain, functional limitation, specific disease manifestations) are expected to improve or resolve after the surgery.</li><li><strong>New or Worsening Symptoms:</strong> Ask what new symptoms or worsening of existing ones warrant immediate contact with your care team before or after the procedure.</li><li><strong>Underlying Conditions:</strong> Discuss how any pre-existing medical conditions (e.g., diabetes, heart disease, respiratory issues) might influence the surgical plan or recovery.</li><li><strong>Allergy Manifestations:</strong> Ensure all known allergies (medications, latex, food) are documented and understood by the surgical team to prevent adverse reactions.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Medication Review:</strong> Ask which of your regular medications (prescription, over-the-counter, supplements) need to be stopped or adjusted before surgery, and for how long.</li><li><strong>Fasting Instructions:</strong> Confirm precise fasting guidelines for food and liquids, including specific timings, to prevent aspiration risks during anesthesia.</li><li><strong>Activity Restrictions:</strong> Inquire about any physical activity limitations or specific preparations required in the days leading up to the procedure.</li><li><strong>Post-operative Monitoring:</strong> Understand what signs and symptoms to watch for after discharge that might indicate a complication, such as infection, bleeding, or adverse drug reactions.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-procedure Fasting:</strong> Confirm the exact time you must stop eating solid foods and drinking clear liquids before your scheduled surgery.</li><li><strong>Hydration Requirements:</strong> Ask if there are any specific hydration protocols or restrictions in the hours leading up to the procedure.</li><li><strong>Post-anesthesia Diet Progression:</strong> Inquire about the typical progression of diet post-surgery, starting with clear liquids, then soft foods, and when to expect a return to a regular diet.</li><li><strong>Nutritional Support:</strong> Discuss any specific dietary needs or restrictions that will be in place during your recovery period to optimize healing.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Discharge Criteria:</strong> Ask what conditions must be met for you to be discharged and if an attendant is required for transport and initial home care.</li><li><strong>Post-operative Care Instructions:</strong> Ensure your attendant understands all post-operative care instructions, including medication schedules, wound care, and activity restrictions.</li><li><strong>Emergency Contact Information:</strong> Provide your attendant with clear contact information for your surgical team or emergency services in case of concerns.</li><li><strong>Transportation Plan:</strong> Confirm the plan for safe transportation home after the procedure, especially if sedation or general anesthesia was administered.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Informed Consent:</strong> Physicians emphasize the importance of patients fully understanding the procedure, its risks, benefits, and alternatives before providing consent.</li><li><strong>Realistic Expectations:</strong> It is crucial for patients to have realistic expectations regarding surgical outcomes, recovery time, and potential limitations.</li><li><strong>Open Communication:</strong> Physicians encourage patients to ask all questions, no matter how minor, to ensure clarity and reduce anxiety.</li><li><strong>Adherence to Instructions:</strong> Strict adherence to pre- and post-operative instructions is vital for patient safety and optimal recovery.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Role:</strong> Nurses play a critical role in reinforcing surgical instructions, clarifying doubts, and ensuring patients feel prepared.</li><li><strong>Pre-operative Assessment:</strong> Comprehensive nursing assessments identify patient needs, potential risks, and educational gaps before surgery.</li><li><strong>Post-operative Monitoring:</strong> Nurses are key in monitoring for complications, managing pain, and educating patients and families on discharge care.</li><li><strong>Advocacy for Patients:</strong> Student nurses learn to advocate for patients by ensuring their questions are addressed and their concerns are heard by the medical team.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Informed Consent:</strong> Legal and ethical process ensuring patient autonomy in medical decisions.</li><li><strong>Anesthesia Protocol:</strong> Detailed plan for administering anesthetic agents, monitoring vital signs, and managing pain.</li><li><strong>Surgical Site Infection (SSI) Prevention:</strong> Measures taken to minimize the risk of infection at the surgical incision site.</li><li><strong>Deep Vein Thrombosis (DVT) Prophylaxis:</strong> Strategies to prevent blood clot formation in the deep veins, common post-surgery.</li><li><strong>Post-Anesthesia Care Unit (PACU):</strong> Area where patients are closely monitored immediately following surgery as they recover from anesthesia.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

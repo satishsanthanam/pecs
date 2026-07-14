@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a diverse person with diabetes, smiling confidently, wearing an insulin pump discreetly on their abdomen. The pump is connected via a thin tube. The person is holding a smartphone displaying a glucose monitoring app. In the background, subtle elements like a healthy meal, a pair of running shoes, and a calendar icon suggest an active and managed lifestyle. Clean, modern design with soft colors, optimized for public awareness and health education materials. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./insulin_pumps.jpg" class="card-banner" alt="Insulin pumps Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-diabetes" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Diabetes</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-diabetes-insulin" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Insulin</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Insulin pumps</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Diabetes</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Insulin</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Continuous Insulin Delivery:</strong> Insulin pumps are small, computerized devices that deliver insulin continuously throughout the day and night, mimicking the pancreas's natural function.</li>
+        <li><strong>Basal and Bolus Dosing:</strong> They provide a steady basal rate of insulin and allow for bolus doses to cover meals or correct high blood sugar, offering precise control.</li>
+        <li><strong>Improved Glycemic Management:</strong> Often used by individuals with Type 1 diabetes and some with Type 2 diabetes, pumps can significantly improve blood glucose control and reduce A1c levels.</li>
+        <li><strong>Personalized Therapy:</strong> Settings are highly customizable to an individual's specific insulin needs, activity levels, and dietary patterns.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Frequent Hypoglycemia:</strong> Recurrent low blood sugar episodes, especially nocturnal, despite careful management with multiple daily injections.</li>
+        <li><strong>Significant Hyperglycemia:</strong> Persistent high blood sugar levels that are difficult to control with conventional insulin regimens.</li>
+        <li><strong>Dawn Phenomenon:</strong> Consistently elevated morning blood glucose levels due to hormonal changes, which pumps can better manage with adjusted basal rates.</li>
+        <li><strong>Blood Glucose Variability:</strong> Wide fluctuations in blood sugar readings throughout the day, indicating a need for more precise insulin delivery.</li>
+        <li><strong>Unpredictable Lifestyle:</strong> Challenges in managing diabetes around variable work schedules, exercise, or travel with traditional injection methods.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Infusion Site Care:</strong> Rotate infusion sites every 2-3 days to prevent lipohypertrophy, infection, and ensure optimal insulin absorption. Clean the site thoroughly before insertion.</li>
+        <li><strong>Risk of Diabetic Ketoacidosis (DKA):</strong> Be vigilant for signs of DKA if the pump malfunctions, the infusion set dislodges, or insulin delivery is interrupted. Always have backup insulin and syringes.</li>
+        <li><strong>Pump Malfunction Awareness:</strong> Understand pump alarms and error messages. Carry emergency supplies, including long-acting insulin, in case of pump failure.</li>
+        <li><strong>Battery Management:</strong> Regularly check and replace pump batteries to prevent unexpected power loss and interruption of insulin delivery.</li>
+        <li><strong>Water Exposure:</strong> Be aware of the water resistance rating of your specific pump model. Disconnect or protect the pump during swimming or bathing as advised.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Accurate Carbohydrate Counting:</strong> Precise carbohydrate counting is essential for calculating appropriate mealtime bolus doses to match food intake.</li>
+        <li><strong>Meal Timing Flexibility:</strong> Pumps offer greater flexibility in meal timing compared to fixed injection schedules, but consistent carbohydrate intake helps maintain stability.</li>
+        <li><strong>Bolus Before Meals:</strong> Administering a bolus dose 15-20 minutes before eating can help prevent post-meal blood sugar spikes, especially for high-carbohydrate meals.</li>
+        <li><strong>Adjusting for High-Fat/Protein Meals:</strong> Consider extended boluses or dual-wave boluses for meals high in fat and protein, which can cause delayed blood sugar rises.</li>
+        <li><strong>Hydration:</strong> Maintain adequate hydration, especially during illness or exercise, as dehydration can affect blood glucose levels and pump function.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Emergency Contact Information:</strong> Ensure all attendants know who to contact in an emergency and have access to the patient's medical information and diabetes management plan.</li>
+        <li><strong>Hypoglycemia Protocol:</strong> Understand the signs and symptoms of low blood sugar and the protocol for treating it (e.g., fast-acting carbohydrates, glucagon administration).</li>
+        <li><strong>Hyperglycemia and Ketone Monitoring:</strong> Be aware of high blood sugar symptoms and the importance of checking for ketones, especially if blood sugar is persistently high or the pump is suspected to be malfunctioning.</li>
+        <li><strong>Pump Disconnection/Reconnection:</strong> Know how to safely disconnect and reconnect the pump for activities like showering, and understand the implications of prolonged disconnection.</li>
+        <li><strong>Backup Supplies:</strong> Verify that the patient always carries backup insulin, syringes/pens, blood glucose meter, ketone strips, and fast-acting glucose.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Patient Selection:</strong> Carefully assess patient motivation, adherence, and ability to manage complex technology for successful pump therapy.</li>
+        <li><strong>Comprehensive Training:</strong> Emphasize the necessity of thorough patient education and training on pump operation, carbohydrate counting, and troubleshooting.</li>
+        <li><strong>Regular Follow-ups:</strong> Schedule frequent follow-up appointments to review pump data, adjust settings, and address any challenges or complications.</li>
+        <li><strong>Integration with CGM:</strong> Recommend integration with continuous glucose monitoring (CGM) systems for enhanced glycemic insights and potential closed-loop system benefits.</li>
+        <li><strong>Individualized Treatment Goals:</strong> Set realistic and individualized A1c and time-in-range goals, considering patient age, comorbidities, and lifestyle.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Patient Education Role:</strong> Nurses play a critical role in educating patients on pump insertion, site care, bolus calculations, and alarm interpretation.</li>
+        <li><strong>Troubleshooting Common Issues:</strong> Be proficient in identifying and assisting patients with common pump issues such as occlusion alarms, low battery, or infusion set problems.</li>
+        <li><strong>DKA Prevention Strategies:</strong> Understand the increased risk of DKA with pump therapy if insulin delivery is interrupted and educate patients on preventative measures.</li>
+        <li><strong>Insulin Pump Types:</strong> Familiarize yourself with different types of insulin pumps (tethered, patch pumps) and their unique features and operational differences.</li>
+        <li><strong>Psychosocial Support:</strong> Recognize the psychological impact of living with an insulin pump and provide appropriate support and resources.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Insulin Type:</strong> Rapid-acting insulin analogs (e.g., aspart, lispro, glulisine) are exclusively used in insulin pumps due to their quick onset and short duration.</li>
+        <li><strong>Basal Rate Programming:</strong> Basal rates can be programmed in varying increments throughout the 24-hour cycle to match physiological insulin needs.</li>
+        <li><strong>Bolus Calculator Features:</strong> Modern pumps include bolus calculators that factor in current blood glucose, carbohydrate intake, insulin-to-carb ratio, and insulin sensitivity factor.</li>
+        <li><strong>Advanced Features:</strong> Explore features like temporary basal rates for exercise or illness, suspend-before-low technology, and integration with CGM for automated insulin delivery (AID) systems.</li>
+        <li><strong>Data Management Software:</strong> Utilize pump data management software for comprehensive analysis of glucose trends, insulin delivery, and therapy adjustments.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

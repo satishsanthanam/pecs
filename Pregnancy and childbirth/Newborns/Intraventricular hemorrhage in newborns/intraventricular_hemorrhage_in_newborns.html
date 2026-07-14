@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a newborn infant in a hospital incubator, with a subtle, abstract representation of the brain ventricles and a small red area indicating hemorrhage. The infant is surrounded by gentle, caring hands of medical professionals. Soft, muted color palette with a focus on medical care and fragility. Clean lines, no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./intraventricular_hemorrhage_in_newborns.jpg" class="card-banner" alt="Intraventricular hemorrhage in newborns Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-pregnancy-and-childbirth" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Pregnancy and childbirth</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-pregnancy-and-childbirth-newborns" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Newborns</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Intraventricular hemorrhage in newborns</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Pregnancy and childbirth</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Newborns</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Intraventricular hemorrhage (IVH) is bleeding into the fluid-filled ventricles of the brain, most commonly seen in premature infants.</li><li><strong>Risk Factors:</strong> Primarily extreme prematurity (especially &lt;32 weeks gestation), very low birth weight (&lt;1500g), respiratory distress syndrome, fluctuating blood pressure, and birth asphyxia.</li><li><strong>Grading System:</strong> IVH is graded from I to IV based on the extent of bleeding, with Grade I being minor bleeding confined to the subependymal germinal matrix and Grade IV involving bleeding into the brain tissue itself (parenchymal hemorrhage).</li><li><strong>Incidence:</strong> The incidence is inversely related to gestational age, with the highest rates in infants born before 28 weeks.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Apnea and Bradycardia:</strong> Sudden episodes of cessation of breathing and slowed heart rate.</li><li><strong>Lethargy and Poor Muscle Tone:</strong> Decreased activity, floppiness, and reduced responsiveness.</li><li><strong>Bulging Fontanelle:</strong> The soft spot on the baby's head may appear tense or bulging due to increased intracranial pressure.</li><li><strong>Seizures:</strong> Subtle or overt seizure activity, including eye deviation, lip smacking, or rhythmic movements.</li><li><strong>Changes in Level of Consciousness:</strong> Irritability, high-pitched cry, or decreased alertness.</li><li><strong>Pallor or Cyanosis:</strong> Pale skin or bluish discoloration, indicating poor circulation or oxygenation.</li><li><strong>Metabolic Acidosis:</strong> Imbalance in the body's acid-base status, often requiring medical intervention.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Antenatal Steroids:</strong> Administration of corticosteroids to mothers at risk of preterm birth to accelerate fetal lung maturation and reduce IVH risk.</li><li><strong>Gentle Handling:</strong> Minimize stress and sudden movements for premature infants to prevent fluctuations in cerebral blood flow.</li><li><strong>Blood Pressure Management:</strong> Careful monitoring and stabilization of blood pressure to avoid hypotensive or hypertensive episodes.</li><li><strong>Respiratory Support:</strong> Optimal ventilation strategies to prevent hypercapnia and hypoxemia, which can exacerbate cerebral blood flow instability.</li><li><strong>Delayed Cord Clamping:</strong> Consideration of delayed umbilical cord clamping in appropriate cases to improve neonatal blood volume and reduce IVH risk.</li><li><strong>Head Positioning:</strong> Maintain the infant's head in a neutral position to optimize cerebral venous drainage.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Gavage Feeding:</strong> Many affected newborns, especially those with severe IVH or extreme prematurity, will require feeding via an orogastric or nasogastric tube.</li><li><strong>Slow Advancement of Feeds:</strong> Introduction and increase of enteral feeds should be gradual and carefully monitored for signs of feeding intolerance or necrotizing enterocolitis.</li><li><strong>Parenteral Nutrition:</strong> Total parenteral nutrition (TPN) may be necessary to provide adequate caloric and nutritional support if enteral feeding is not tolerated or contraindicated.</li><li><strong>Monitoring for Abdominal Distension:</strong> Close observation for signs of abdominal distension, vomiting, or bloody stools, which could indicate gastrointestinal complications.</li><li><strong>Hydration Status:</strong> Meticulous monitoring of fluid intake and output to maintain appropriate hydration and electrolyte balance.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Immediate Neurological Assessment:</strong> Any sudden change in an infant's neurological status, such as new onset apnea, seizures, or bulging fontanelle, warrants immediate medical evaluation.</li><li><strong>Cranial Ultrasound:</strong> Routine cranial ultrasound screening is crucial for all preterm infants, especially those born before 30 weeks gestation, to detect IVH early.</li><li><strong>Monitoring for Hydrocephalus:</strong> Close monitoring of head circumference and serial cranial ultrasounds are essential to detect post-hemorrhagic hydrocephalus, a common complication.</li><li><strong>Avoidance of Vasopressors:</strong> Use of vasopressors should be carefully considered and monitored due to potential effects on cerebral blood flow.</li><li><strong>Parental Education:</strong> Educate parents on signs of worsening condition and the importance of follow-up appointments.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Prognosis Varies:</strong> The long-term prognosis for infants with IVH is highly dependent on the grade of hemorrhage, with lower grades generally having better outcomes.</li><li><strong>Neurodevelopmental Follow-up:</strong> All infants with IVH, especially those with Grade III or IV, require comprehensive neurodevelopmental follow-up to monitor for cerebral palsy, cognitive delays, and other neurological sequelae.</li><li><strong>Multidisciplinary Care:</strong> Management often involves a team approach including neonatologists, neurologists, neurosurgeons, physical therapists, occupational therapists, and developmental specialists.</li><li><strong>Hydrocephalus Management:</strong> If post-hemorrhagic hydrocephalus develops, neurosurgical intervention (e.g., ventricular reservoir, shunt placement) may be necessary.</li><li><strong>Early Intervention:</strong> Prompt diagnosis and early initiation of supportive therapies are critical to optimize outcomes.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Minimal Stimulation Environment:</strong> Provide a quiet, dimly lit environment with minimal handling to reduce stress and conserve energy for the fragile infant.</li><li><strong>Vital Sign Monitoring:</strong> Continuous monitoring of heart rate, respiratory rate, blood pressure, and oxygen saturation for any subtle changes.</li><li><strong>Head Circumference Measurement:</strong> Daily measurement of head circumference to detect rapid increases indicative of hydrocephalus.</li><li><strong>Pain Management:</strong> Assess and manage pain using appropriate neonatal pain scales and interventions.</li><li><strong>Parental Support and Education:</strong> Offer emotional support, provide clear explanations of the condition, and involve parents in care decisions.</li><li><strong>Fluid and Electrolyte Balance:</strong> Meticulous charting of intake and output, and monitoring of electrolyte levels.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Papile Classification:</strong> The most widely used grading system for IVH (Grades I-IV).</li><li><strong>Germinal Matrix:</strong> A highly vascularized area in the brain of premature infants, prone to hemorrhage due to its fragile blood vessels.</li><li><strong>Periventricular Leukomalacia (PVL):</strong> White matter injury often associated with severe IVH, contributing to long-term neurological deficits.</li><li><strong>Post-Hemorrhagic Hydrocephalus (PHH):</strong> Accumulation of cerebrospinal fluid in the ventricles following IVH, requiring intervention.</li><li><strong>Cranial Ultrasound:</strong> The primary diagnostic tool for detecting and grading IVH in newborns.</li><li><strong>Neuroimaging:</strong> MRI may be used for more detailed assessment of brain injury and prognosis, especially in higher-grade IVH.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

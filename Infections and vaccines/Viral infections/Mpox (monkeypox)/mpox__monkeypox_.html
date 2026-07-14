@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of diverse people interacting safely, with some showing mild, contained skin lesions (macules, papules, vesicles) on hands or arms. Emphasize public health awareness, prevention, and vaccination. Include elements like a syringe for vaccination, soap and water for hand hygiene, and a subtle representation of the virus particle. Clean, modern design with a focus on community health and safety. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./mpox__monkeypox_.jpg" class="card-banner" alt="Mpox (monkeypox) Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-infections-and-vaccines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Infections and vaccines</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-infections-and-vaccines-viral-infections" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Viral infections</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Mpox (monkeypox)</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Infections and vaccines</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Viral infections</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Mpox Virus:</strong> A viral zoonosis caused by the monkeypox virus, a member of the Orthopoxvirus genus.</li><li><strong>Transmission:</strong> Primarily through close, direct contact with an infected individual's rash, scabs, or body fluids. Can also spread via respiratory secretions during prolonged face-to-face contact or intimate physical contact, and indirectly through contaminated items (linens, clothing).</li><li><strong>Incubation Period:</strong> Typically 6 to 13 days, but can range from 5 to 21 days.</li><li><strong>Global Health Concern:</strong> Recognized as a public health emergency of international concern in 2022 due to widespread outbreaks.</li><li><strong>Vaccination:</strong> Vaccines (e.g., JYNNEOS) are available for pre-exposure prophylaxis (PrEP) and post-exposure prophylaxis (PEP) for individuals at high risk.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Rash Development:</strong> Characterized by a distinctive rash that progresses through several stages (macules, papules, vesicles, pustules, scabs). Lesions can be painful and itchy, appearing on the face, palms, soles, genitals, anus, and inside the mouth.</li><li><strong>Prodromal Symptoms:</strong> Often precedes the rash, including fever, headache, muscle aches, backache, swollen lymph nodes (lymphadenopathy), chills, and exhaustion.</li><li><strong>Lymphadenopathy:</strong> A key distinguishing feature from chickenpox, where lymph nodes typically swell.</li><li><strong>Severity:</strong> Symptoms usually last 2 to 4 weeks and resolve on their own, but severe cases can occur, especially in immunocompromised individuals, young children, and pregnant people.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Close Contact:</strong> Refrain from close, skin-to-skin contact with individuals who have a rash that looks like Mpox.</li><li><strong>Hand Hygiene:</strong> Wash hands frequently with soap and water or use an alcohol-based hand sanitizer, especially after contact with sick individuals or potentially contaminated surfaces.</li><li><strong>Personal Protective Equipment (PPE):</strong> Healthcare workers should use appropriate PPE (gloves, gown, N95 respirator, eye protection) when caring for Mpox patients.</li><li><strong>Isolation:</strong> Individuals with confirmed or suspected Mpox should isolate themselves until all lesions have crusted, fallen off, and a fresh layer of skin has formed.</li><li><strong>Vaccination Eligibility:</strong> Discuss vaccination with a healthcare provider if you are at high risk of exposure, including certain healthcare workers, laboratory personnel, and individuals with multiple sexual partners in areas with ongoing transmission.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration:</strong> Maintain adequate fluid intake, especially if fever or oral lesions are present, to prevent dehydration.</li><li><strong>Soft Foods:</strong> If oral lesions cause pain or difficulty swallowing, opt for soft, bland foods that are easy to chew and swallow. Avoid acidic, spicy, or rough-textured foods.</li><li><strong>Nutrient-Rich Diet:</strong> Focus on a balanced diet rich in vitamins and minerals to support immune function during recovery.</li><li><strong>Avoid Irritants:</strong> Refrain from consuming very hot or very cold beverages if they exacerbate oral discomfort.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Patient Education:</strong> Educate patients and their contacts on transmission routes, symptom recognition, and the importance of isolation.</li><li><strong>Contact Tracing:</strong> Assist public health authorities with contact tracing to identify and monitor individuals who may have been exposed.</li><li><strong>Environmental Disinfection:</strong> Implement thorough cleaning and disinfection protocols for surfaces and items in patient care areas using EPA-approved disinfectants for emerging viral pathogens.</li><li><strong>Specimen Collection:</strong> Follow strict biosafety protocols for collecting and handling specimens for Mpox testing.</li><li><strong>Vaccine Administration:</strong> Adhere to guidelines for proper storage, handling, and administration of Mpox vaccines.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Clinical Suspicion:</strong> Maintain a high index of suspicion for Mpox in patients presenting with characteristic rash and prodromal symptoms, especially with relevant epidemiological links.</li><li><strong>Differential Diagnosis:</strong> Differentiate Mpox from other rash-causing illnesses such as chickenpox, herpes simplex, syphilis, and allergic reactions.</li><li><strong>Testing:</strong> Utilize PCR testing of lesion swabs as the primary diagnostic method.</li><li><strong>Treatment Options:</strong> Consider antiviral treatments (e.g., tecovirimat) for severe cases, immunocompromised individuals, or those at high risk of severe disease.</li><li><strong>Public Health Reporting:</strong> Promptly report suspected and confirmed cases to local public health authorities.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Infection Control:</strong> Understand and apply standard, contact, and droplet precautions when caring for patients with suspected or confirmed Mpox.</li><li><strong>Patient Assessment:</strong> Conduct thorough skin assessments to identify and document the characteristics and progression of Mpox lesions.</li><li><strong>Symptom Management:</strong> Provide supportive care, including pain management for lesions, fever reduction, and hydration support.</li><li><strong>Vaccine Education:</strong> Educate patients about Mpox vaccines, including eligibility, administration, and potential side effects.</li><li><strong>Psychosocial Support:</strong> Address patient anxiety and stigma associated with Mpox diagnosis and isolation.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Etiology:</strong> Caused by the Mpox virus, an Orthopoxvirus. Two clades: Clade I (formerly Congo Basin) and Clade II (formerly West African). Clade IIb is responsible for the 2022 global outbreak.</li><li><strong>Pathogenesis:</strong> Virus enters through broken skin, respiratory tract, or mucous membranes, replicates at the site of infection, spreads to regional lymph nodes, and then disseminates via viremia.</li><li><strong>Diagnosis:</strong> Primarily by real-time PCR (RT-PCR) from lesion exudate, crusts, or biopsies. Electron microscopy and viral culture are also possible but less common for routine diagnosis.</li><li><strong>Treatment:</strong> Tecovirimat (TPOXX) is an antiviral approved for orthopoxviruses. Cidofovir and brincidofovir are alternative options. Supportive care is crucial.</li><li><strong>Vaccines:</strong> JYNNEOS (MVA-BN) is a live, non-replicating viral vaccine approved for Mpox and smallpox. ACAM2000 is a live, replicating smallpox vaccine that can be used for Mpox under specific circumstances.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

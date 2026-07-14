@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A serene flat vector illustration depicting a peaceful bedroom scene at night. A person is sleeping soundly in a comfortable bed under a cozy blanket. The room is dark with soft ambient light from a bedside lamp, no visible electronic screens. Elements like a quiet clock, a calming plant, and a cool temperature indicator are subtly present. The overall mood is tranquil and conducive to restful sleep, with a focus on healthy sleep habits.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./good_sleep_hygiene.jpg" class="card-banner" alt="Good sleep hygiene Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-sleep" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Sleep</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-sleep-sleep-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Sleep disorders</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Good sleep hygiene</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Sleep</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Sleep disorders</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Good sleep hygiene refers to a set of behavioral and environmental practices that promote healthy, restorative sleep.</li><li><strong>Core Principle:</strong> It involves establishing consistent routines and optimizing the sleep environment to facilitate falling asleep easily and staying asleep throughout the night.</li><li><strong>Impact on Health:</strong> Essential for cognitive function, mood regulation, immune system strength, metabolic health, and overall physical well-being.</li><li><strong>Management Tool:</strong> A foundational component in the management of various sleep disorders, including chronic insomnia.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Daytime Fatigue:</strong> Persistent tiredness, low energy, or drowsiness despite adequate sleep duration.</li><li><strong>Irritability &amp; Mood Swings:</strong> Increased emotional lability, anxiety, or depressive symptoms.</li><li><strong>Cognitive Impairment:</strong> Difficulty concentrating, memory problems, or reduced problem-solving abilities.</li><li><strong>Increased Accidents:</strong> Higher risk of errors or accidents due to impaired alertness and reaction time.</li><li><strong>Difficulty Initiating Sleep:</strong> Taking longer than 30 minutes to fall asleep at night.</li><li><strong>Frequent Nocturnal Awakenings:</strong> Waking up multiple times during the night and struggling to return to sleep.</li><li><strong>Non-Restorative Sleep:</strong> Feeling unrefreshed upon waking, even after a full night's sleep.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Stimulant Avoidance:</strong> Refrain from consuming caffeine, nicotine, or other stimulants at least 6-8 hours before bedtime.</li><li><strong>Alcohol Restriction:</strong> Limit alcohol intake, especially in the evening, as it can disrupt sleep architecture and cause fragmented sleep.</li><li><strong>Screen Time Limitation:</strong> Avoid exposure to blue light from electronic devices (phones, tablets, computers, TVs) for at least 1-2 hours before sleep.</li><li><strong>Consistent Sleep Schedule:</strong> Maintain a regular bedtime and wake-up time, even on weekends, to regulate the body's circadian rhythm.</li><li><strong>Heavy Meal Avoidance:</strong> Do not consume large, heavy, or spicy meals close to bedtime, as they can cause indigestion and discomfort.</li><li><strong>Strategic Napping:</strong> If napping is necessary, keep it short (20-30 minutes) and early in the afternoon to avoid interfering with nighttime sleep.</li><li><strong>Environmental Control:</strong> Ensure the sleep environment is dark, quiet, cool (ideally 60-67°F or 15-19°C), and free from distractions.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions &amp; Restrictions</h2><ul><li><strong>Caffeine Cut-off:</strong> Cease all caffeine intake (coffee, tea, energy drinks, certain sodas) by early afternoon.</li><li><strong>Alcohol Moderation:</strong> Limit or avoid alcoholic beverages, particularly in the hours leading up to sleep, due to their disruptive effects on sleep cycles.</li><li><strong>Evening Meal Timing:</strong> Consume dinner at least 2-3 hours before bedtime to allow for adequate digestion.</li><li><strong>Avoid Heavy &amp; Fatty Foods:</strong> Steer clear of rich, greasy, or highly acidic foods in the evening that can lead to heartburn or indigestion.</li><li><strong>Fluid Intake Management:</strong> Reduce fluid intake in the hour or two before bed to minimize nighttime awakenings for urination (nocturia).</li><li><strong>Light Evening Snack:</strong> If hunger is an issue, opt for a small, easily digestible snack like a banana, a handful of almonds, or a glass of warm milk.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Persistent Insomnia:</strong> If sleep difficulties persist despite consistent application of good sleep hygiene practices, seek medical evaluation to rule out underlying sleep disorders or medical conditions.</li><li><strong>Medication Review:</strong> Be aware that certain medications (e.g., decongestants, some antidepressants, corticosteroids) can interfere with sleep; consult a physician or pharmacist.</li><li><strong>Underlying Health Conditions:</strong> Recognize that conditions like sleep apnea, restless legs syndrome, chronic pain, or mental health disorders can significantly impact sleep and require specific medical intervention.</li><li><strong>Avoid Self-Medication:</strong> Do not rely on over-the-counter sleep aids or sedatives long-term without professional medical advice, as they can have side effects and lead to dependence.</li><li><strong>Safety in Sleep Environment:</strong> Ensure the bedroom is free from tripping hazards, especially for older adults, and that smoke detectors are functional.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Prioritize Consistency:</strong> Emphasize the critical importance of maintaining a regular sleep-wake schedule seven days a week to reinforce the body's natural circadian rhythm.</li><li><strong>Optimize Sleep Environment:</strong> Advise patients to create a conducive sleep space that is dark, quiet, cool, and comfortable, free from electronic devices.</li><li><strong>Establish a Relaxing Routine:</strong> Recommend developing a calming pre-sleep ritual, such as reading, taking a warm bath, or listening to soothing music, to signal the body it's time to wind down.</li><li><strong>Regular Physical Activity:</strong> Encourage daily exercise, but caution against vigorous activity too close to bedtime, ideally completing workouts several hours before sleep.</li><li><strong>Address Underlying Issues:</strong> Screen for and treat any co-existing medical or psychological conditions that may be contributing to sleep disturbances.</li><li><strong>Consider CBT-I:</strong> For chronic insomnia, recommend Cognitive Behavioral Therapy for Insomnia (CBT-I) as a highly effective, first-line non-pharmacological treatment.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic &amp; Nursing Corner</h2><ul><li><strong>Patient Education Role:</strong> Nurses play a vital role in educating patients on the principles of good sleep hygiene and its impact on recovery and overall health.</li><li><strong>Sleep Assessment:</strong> Utilize validated tools (e.g., Pittsburgh Sleep Quality Index, Epworth Sleepiness Scale) to assess sleep patterns, quality, and identify potential disturbances.</li><li><strong>Environmental Modifications in Clinical Settings:</strong> Implement strategies to promote sleep in hospital environments, such as dimming lights, reducing noise, and scheduling care activities to minimize interruptions.</li><li><strong>Pharmacological vs. Non-Pharmacological Interventions:</strong> Understand the indications and contraindications for sleep medications and prioritize non-pharmacological approaches like sleep hygiene.</li><li><strong>Impact on Chronic Disease Management:</strong> Recognize how poor sleep hygiene can exacerbate chronic conditions (e.g., diabetes, hypertension, cardiovascular disease) and integrate sleep education into disease management plans.</li><li><strong>Geriatric Considerations:</strong> Be aware of age-related changes in sleep architecture and common sleep disturbances in older adults, tailoring sleep hygiene advice accordingly.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Circadian Rhythm:</strong> The body's internal 24-hour clock that regulates sleep-wake cycles, influenced by light and other external cues (zeitgebers).</li><li><strong>Sleep Homeostasis:</strong> The drive to sleep that increases with prolonged wakefulness and decreases with sleep, often referred to as 'sleep debt'.</li><li><strong>Sleep Architecture:</strong> The cyclical pattern of sleep stages, including Non-Rapid Eye Movement (NREM) stages (N1, N2, N3/slow-wave sleep) and Rapid Eye Movement (REM) sleep.</li><li><strong>Zeitgebers:</strong> Environmental cues, primarily light, that help synchronize the circadian rhythm to the 24-hour day.</li><li><strong>Insomnia Disorder:</strong> A persistent difficulty with sleep initiation, duration, consolidation, or quality that occurs despite adequate opportunity for sleep and results in daytime impairment.</li><li><strong>Sleep-Disordered Breathing:</strong> Conditions like obstructive sleep apnea (OSA) that cause repeated interruptions in breathing during sleep, significantly impacting sleep quality.</li><li><strong>Restless Legs Syndrome (RLS):</strong> A neurological disorder characterized by an irresistible urge to move the legs, often accompanied by uncomfortable sensations, typically worse in the evening.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

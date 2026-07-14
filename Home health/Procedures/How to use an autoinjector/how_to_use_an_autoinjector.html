@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a person, possibly a patient or caregiver, demonstrating the correct use of an autoinjector. The scene should clearly show the steps: holding the device, placing it against the thigh, and the injection process. Include visual cues for safety and proper technique, such as a visible click or indicator. The background is a clean, home health setting with minimal distractions. Soft, friendly color palette. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./how_to_use_an_autoinjector.jpg" class="card-banner" alt="How to use an autoinjector Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-home-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Home health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-home-health-procedures" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Procedures</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>How to use an autoinjector</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Home health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Procedures</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose of Autoinjectors:</strong> Pre-filled, spring-loaded syringes designed for rapid, self-administration of medication in emergencies or for chronic conditions.</li><li><strong>Ease of Use:</strong> Simplifies the injection process, making it accessible for patients and caregivers with minimal training.</li><li><strong>Common Medications:</strong> Frequently used for epinephrine (anaphylaxis), insulin (diabetes), sumatriptan (migraine), and certain biologics for autoimmune conditions.</li><li><strong>Critical Skill:</strong> Proper technique is vital for effective medication delivery and patient safety.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Anaphylaxis:</strong> Rapid onset of severe allergic reactions including hives, swelling, difficulty breathing, dizziness, or rapid pulse, prompting epinephrine use.</li><li><strong>Acute Migraine:</strong> Severe, throbbing headache often accompanied by nausea, vomiting, and sensitivity to light/sound, requiring rapid pain relief.</li><li><strong>Diabetic Emergencies:</strong> Hypoglycemia (low blood sugar) requiring glucagon, or specific insulin regimens for blood glucose management.</li><li><strong>Multiple Sclerosis Flares:</strong> Acute exacerbations of neurological symptoms requiring rapid immunomodulatory treatment.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Storage Conditions:</strong> Keep autoinjector at room temperature, away from extreme heat or cold, and out of direct sunlight as per manufacturer guidelines.</li><li><strong>Expiration Date Check:</strong> Always verify the medication's expiration date before use; expired medication may be ineffective or harmful.</li><li><strong>Visual Inspection:</strong> Before administration, check the solution for clarity, discoloration, or particulate matter; do not use if compromised.</li><li><strong>Needle Safety:</strong> Never remove the safety cap until immediately prior to injection; avoid touching the needle after cap removal.</li><li><strong>Proper Disposal:</strong> Dispose of used autoinjectors immediately in a designated sharps container to prevent accidental needle sticks.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Allergen Avoidance:</strong> For individuals prescribed epinephrine autoinjectors, strict avoidance of known food allergens is paramount to prevent anaphylaxis.</li><li><strong>Blood Glucose Management:</strong> For diabetic patients using insulin autoinjectors, consistent carbohydrate counting and meal timing are crucial for effective blood sugar control.</li><li><strong>Hydration Status:</strong> Adequate hydration can influence medication absorption and overall patient well-being, especially in conditions like migraine.</li><li><strong>Post-Reaction Fluid Intake:</strong> Following an anaphylactic reaction and epinephrine administration, ensure the patient is offered fluids if conscious and able to swallow safely.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Services:</strong> Always call emergency medical services (e.g., 911) immediately after administering an autoinjector for anaphylaxis, even if symptoms improve.</li><li><strong>Second Dose Readiness:</strong> Be prepared to administer a second dose if symptoms persist or worsen after 5-15 minutes, as instructed by a healthcare provider.</li><li><strong>Patient Positioning:</strong> For anaphylaxis, lay the patient flat with legs elevated; if experiencing breathing difficulties, allow them to sit up.</li><li><strong>Training & Demonstration:</strong> Caregivers and family members should receive hands-on training and practice with a trainer device to ensure proficiency in an emergency.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Prescription Adherence:</strong> Use the autoinjector only as prescribed by your physician, understanding the specific indications and dosage.</li><li><strong>Technique Review:</strong> Regularly review injection technique with your healthcare provider or pharmacist to ensure correct administration.</li><li><strong>Post-Injection Monitoring:</strong> Report any adverse reactions or lack of symptom improvement to your doctor promptly after using the device.</li><li><strong>Carry Two Devices:</strong> For life-threatening conditions like anaphylaxis, always carry two autoinjectors in case a second dose is needed or the first malfunctions.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Provide clear, step-by-step instructions using visual aids and a trainer device, emphasizing the 'hold, push, count' method.</li><li><strong>Return Demonstration:</strong> Require patients or caregivers to perform a return demonstration to assess understanding and correct technique.</li><li><strong>Documentation:</strong> Document patient education, demonstration of technique, and any questions or concerns raised regarding autoinjector use.</li><li><strong>Site Rotation:</strong> Educate patients on rotating injection sites (e.g., outer thigh for epinephrine, abdomen/thigh for insulin) to prevent lipodystrophy.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Mechanism of Action:</strong> Autoinjectors deliver a pre-measured dose of medication via a spring-loaded needle, ensuring rapid and consistent intramuscular or subcutaneous injection.</li><li><strong>Injection Sites:</strong> Common sites include the mid-outer thigh (epinephrine) for intramuscular delivery, or abdomen/thigh (insulin, biologics) for subcutaneous delivery.</li><li><strong>Needle Gauge & Length:</strong> Designed with appropriate needle gauge and length to ensure medication reaches the intended tissue layer effectively.</li><li><strong>Safety Features:</strong> Incorporate safety caps, needle shields, and activation mechanisms to prevent accidental sticks and ensure proper use.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of an adult patient, looking slightly concerned or experiencing mild discomfort (e.g., holding stomach, rubbing head), while holding a medication bottle. A healthcare professional (doctor or nurse) is calmly explaining information to them, pointing to a clear, easy-to-understand infographic about medication side effects. The background features subtle medical icons like a pill, a cross, and a question mark, all in a clean, public awareness design style with soft, reassuring colors. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./side_effects_from_medicines_in_adults___ed_discharge_instructions.jpg" class="card-banner" alt="Side effects from medicines in adults – ED discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-emergency-medicine" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency medicine</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-emergency-medicine-emergency-department-discharge-instructions" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency department discharge instructions</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Side effects from medicines in adults – ED discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Emergency medicine</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Emergency department discharge instructions</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding Side Effects:</strong> Medications can cause unintended effects, known as side effects, which are different from allergic reactions.</li><li><strong>Common vs. Serious:</strong> Many side effects are mild and temporary (e.g., mild nausea, drowsiness), but some can be serious and require immediate medical attention.</li><li><strong>Individual Variability:</strong> Not everyone experiences side effects, and their severity can vary greatly among individuals taking the same medication.</li><li><strong>New Medications:</strong> Be especially vigilant when starting a new medication or when a dose has been changed, as side effects are often more noticeable initially.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Mild Side Effects:</strong> Symptoms like mild stomach upset, headache, dizziness, fatigue, or dry mouth are often manageable but should be monitored.</li><li><strong>Moderate Side Effects:</strong> Persistent nausea, vomiting, diarrhea, constipation, increased drowsiness, or skin sensitivity to sun may require contacting your doctor.</li><li><strong>Serious Allergic Reactions:</strong> Watch for hives, rash, itching, swelling of the face, lips, tongue, or throat, and difficulty breathing or swallowing. These are medical emergencies.</li><li><strong>Organ-Specific Concerns:</strong> Be alert for changes in urine output, yellowing of skin/eyes (jaundice), unusual bruising/bleeding, or severe muscle pain, which could indicate more serious organ involvement.</li><li><strong>Neurological Changes:</strong> New onset confusion, severe dizziness, vision changes, or unsteadiness should be reported promptly.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Do Not Stop Abruptly:</strong> Never discontinue a prescribed medication without first consulting your physician, even if you experience side effects, unless instructed to do so for a severe allergic reaction.</li><li><strong>Avoid Driving/Operating Machinery:</strong> If your medication causes drowsiness, dizziness, or impaired judgment, refrain from driving or operating heavy machinery.</li><li><strong>Alcohol Interaction:</strong> Avoid alcohol consumption while taking medications that cause drowsiness or have known interactions with alcohol, as this can intensify side effects.</li><li><strong>Drug Interactions:</strong> Inform your doctor and pharmacist about all other medications, supplements, and herbal remedies you are taking to prevent harmful drug interactions.</li><li><strong>Follow Dosing Instructions:</strong> Adhere strictly to the prescribed dosage and schedule. Taking more than recommended will not make the medication work faster and can increase side effect risk.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Take with Food:</strong> If a medication causes stomach upset or nausea, try taking it with a meal or a small snack, unless specifically instructed to take it on an empty stomach.</li><li><strong>Avoid Specific Foods:</strong> Be aware of specific food-drug interactions, such as grapefruit juice with certain statins or calcium-rich foods/dairy with some antibiotics (e.g., tetracyclines, fluoroquinolones).</li><li><strong>Hydration:</strong> Maintain adequate hydration, especially if experiencing diarrhea or vomiting as a side effect, to prevent dehydration.</li><li><strong>Caffeine Intake:</strong> Limit caffeine if your medication already causes nervousness, insomnia, or increased heart rate.</li><li><strong>Sodium/Potassium Balance:</strong> If on diuretics or medications affecting electrolyte balance, discuss dietary sodium and potassium intake with your doctor.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Contact:</strong> If you experience severe difficulty breathing, swelling of the face/throat, severe rash, or sudden collapse, call 911 or go to the nearest emergency department immediately.</li><li><strong>Contact Your Doctor:</strong> For concerning but non-life-threatening side effects, contact your prescribing physician or their on-call service for advice.</li><li><strong>Medication List:</strong> Keep an updated list of all medications, dosages, and the reason for taking them. Share this list with all healthcare providers.</li><li><strong>Report All Symptoms:</strong> Document any new or worsening symptoms, noting when they started and their severity, to help your healthcare provider assess the situation.</li><li><strong>Caregiver Awareness:</strong> If you are a caregiver, ensure you understand the patient's medication regimen and potential side effects to monitor for changes.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Open Communication:</strong> Always communicate any concerns or new symptoms you experience after starting or changing a medication. Your input is crucial for safe and effective treatment.</li><li><strong>Medication Reconciliation:</strong> Ensure all your healthcare providers are aware of every medication you are taking, including over-the-counter drugs and supplements, to prevent adverse interactions.</li><li><strong>Benefit vs. Risk:</strong> Understand that all medications carry potential risks, but they are prescribed because the anticipated benefits outweigh these risks for your specific condition.</li><li><strong>Follow-Up Care:</strong> Adhere to all recommended follow-up appointments to allow for monitoring of medication effectiveness and side effects.</li><li><strong>Pharmacist as Resource:</strong> Utilize your pharmacist as a valuable resource for questions about medication use, potential side effects, and interactions.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Emphasize clear, concise discharge instructions on medication purpose, dosage, administration, common side effects, and signs of serious adverse reactions requiring immediate attention.</li><li><strong>Medication Reconciliation:</strong> Perform thorough medication reconciliation upon admission and discharge to identify discrepancies and potential drug interactions.</li><li><strong>ADR Recognition:</strong> Educate patients on differentiating between expected side effects, allergic reactions, and adverse drug reactions (ADRs), and when to seek help.</li><li><strong>Cultural Competence:</strong> Assess patient's health literacy and cultural beliefs regarding medication to tailor education effectively.</li><li><strong>Documentation:</strong> Document all patient education provided, patient understanding, and any reported side effects or concerns.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Adverse Drug Reaction (ADR):</strong> An unwanted or harmful reaction experienced following the administration of a drug or combination of drugs under normal conditions of use.</li><li><strong>Pharmacovigilance:</strong> The science and activities relating to the detection, assessment, understanding, and prevention of adverse effects or any other drug-related problem.</li><li><strong>Polypharmacy:</strong> The concurrent use of multiple medications by a patient, often increasing the risk of drug interactions and adverse effects, especially in older adults.</li><li><strong>Idiosyncratic Reaction:</strong> An unpredictable, uncharacteristic drug reaction that is not dose-dependent and is thought to be genetically predisposed.</li><li><strong>Therapeutic Index:</strong> A measure of drug safety, representing the ratio of the dose that produces toxicity to the dose that produces a desired therapeutic effect.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

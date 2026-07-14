@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a stylized human kidney with visible inflamed tubules and interstitial tissue. Surrounding the kidney are various medication pills and capsules, subtly indicating drug-induced causes. The overall design should be clean, with clear lines and a public awareness aesthetic, suitable for medical information cards. Avoid any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./acute_interstitial_nephritis.jpg" class="card-banner" alt="Acute interstitial nephritis Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-kidneys-and-urinary-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Kidneys and urinary system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-kidneys-and-urinary-system-interstitial-nephritis" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Interstitial nephritis</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Acute interstitial nephritis</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Kidneys and urinary system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Interstitial nephritis</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Acute interstitial nephritis (AIN) is a sudden inflammation of the kidney's tubules and the surrounding interstitial tissue.</li><li><strong>Primary Causes:</strong> Most commonly triggered by medications (e.g., certain antibiotics, NSAIDs, proton pump inhibitors), but can also result from infections or systemic autoimmune diseases.</li><li><strong>Impact on Kidneys:</strong> This inflammation can impair the kidneys' ability to filter waste and regulate fluid and electrolytes, potentially leading to acute kidney injury (AKI).</li><li><strong>Reversibility:</strong> Often reversible if the causative agent is identified and removed promptly, though some cases may lead to chronic kidney disease.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Fever and Rash:</strong> A classic, though not universally present, triad includes fever, skin rash, and eosinophilia.</li><li><strong>Flank Pain:</strong> Discomfort or pain in the side or back, often localized to the kidney area.</li><li><strong>Malaise and Fatigue:</strong> General feeling of unwellness, tiredness, and lack of energy.</li><li><strong>Gastrointestinal Symptoms:</strong> Nausea, vomiting, and loss of appetite may occur.</li><li><strong>Urinary Changes:</strong> Altered urine output, which can be decreased (oliguria) or, less commonly, increased (polyuria).</li><li><strong>Edema:</strong> Swelling, particularly in the legs and ankles, due to fluid retention.</li><li><strong>Hypertension:</strong> Elevated blood pressure, which can be a consequence of impaired kidney function.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Medication Review:</strong> Thoroughly review all current medications, including over-the-counter drugs and herbal supplements, for potential nephrotoxic agents.</li><li><strong>Hydration Status:</strong> Monitor and maintain appropriate hydration levels, avoiding both dehydration and fluid overload, especially in the context of acute kidney injury.</li><li><strong>Electrolyte Monitoring:</strong> Closely watch for and manage electrolyte imbalances such as hyperkalemia, hyperphosphatemia, and metabolic acidosis.</li><li><strong>Blood Pressure Management:</strong> Regularly monitor blood pressure and manage hypertension to prevent further renal damage.</li><li><strong>Avoidance of Nephrotoxins:</strong> Immediately discontinue any suspected offending drugs or substances once AIN is suspected or diagnosed.</li><li><strong>Biopsy Preparation:</strong> Be prepared for a potential kidney biopsy, which is often necessary for definitive diagnosis, especially if the cause is unclear or response to initial therapy is poor.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Sodium Restriction:</strong> Implement a low-sodium diet to help manage fluid retention and control hypertension.</li><li><strong>Potassium Restriction:</strong> If hyperkalemia is present, restrict high-potassium foods (e.g., bananas, oranges, potatoes, tomatoes).</li><li><strong>Phosphate Restriction:</strong> If hyperphosphatemia is present, limit foods high in phosphate (e.g., dairy products, nuts, processed foods).</li><li><strong>Protein Intake Adjustment:</strong> Protein intake may need to be restricted or carefully managed based on the degree of kidney dysfunction and serum urea levels.</li><li><strong>Fluid Management:</strong> Strict monitoring and potential restriction of fluid intake, particularly if the patient is oliguric or anuric, to prevent fluid overload.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Prompt Recognition:</strong> Emphasize the critical importance of early recognition of AIN symptoms and signs to prevent irreversible kidney damage.</li><li><strong>Comprehensive Medication History:</strong> Obtain and meticulously document a complete medication history, including recent changes, new prescriptions, and over-the-counter drugs.</li><li><strong>Close Monitoring:</strong> Implement rigorous monitoring of renal function markers (serum creatinine, BUN, GFR), electrolytes, and urine output.</li><li><strong>Allergy and Adverse Reaction Awareness:</strong> Document and be vigilant for any known drug allergies or previous adverse drug reactions that might predispose to AIN.</li><li><strong>Patient Education:</strong> Educate patients about the potential for drug-induced kidney injury, the importance of reporting new or worsening symptoms, and adherence to prescribed treatments.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early Intervention:</strong> Timely diagnosis and removal of the causative agent are paramount for preserving renal function and preventing progression to chronic kidney disease.</li><li><strong>Corticosteroid Therapy:</strong> Consider a trial of corticosteroids in cases where the offending agent cannot be identified, or if there is no improvement after its withdrawal, though evidence for their efficacy is variable.</li><li><strong>Supportive Care:</strong> Focus on managing complications such as fluid and electrolyte imbalances, hypertension, and acid-base disturbances.</li><li><strong>Renal Biopsy:</strong> A kidney biopsy is often the gold standard for definitive diagnosis, especially in atypical presentations or when the etiology is unclear.</li><li><strong>Long-term Follow-up:</strong> Ensure regular follow-up to monitor renal function and assess for any residual kidney damage or progression.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pathophysiology Understanding:</strong> Grasp the immune-mediated inflammatory process occurring in the renal interstitium and its impact on tubular function.</li><li><strong>Common Drug Culprits:</strong> Familiarize yourself with common drug classes implicated in AIN, such as beta-lactam antibiotics, NSAIDs, sulfonamides, and proton pump inhibitors.</li><li><strong>Key Nursing Assessments:</strong> Prioritize assessments of fluid balance, vital signs, skin integrity (for rash), and characteristics of urine output.</li><li><strong>Medication Reconciliation:</strong> Play a crucial role in medication reconciliation to identify potential drug-induced causes and ensure safe medication practices.</li><li><strong>Patient Education Reinforcement:</strong> Educate patients on dietary restrictions, fluid management, the importance of medication adherence, and signs/symptoms requiring immediate medical attention.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Diagnostic Criteria:</strong> Clinical suspicion based on symptoms, elevated serum creatinine, sterile pyuria, eosinophilia (peripheral blood or urine), and definitive diagnosis via renal biopsy.</li><li><strong>Histopathology:</strong> Characterized by an interstitial infiltrate of lymphocytes, plasma cells, and often eosinophils, with associated tubular damage.</li><li><strong>Common Etiologies:</strong> Drug-induced (70-75%), infections (e.g., pyelonephritis, leptospirosis, viral infections), systemic diseases (e.g., SLE, sarcoidosis, Sjögren's syndrome), and idiopathic cases.</li><li><strong>Prognosis:</strong> Generally favorable with prompt withdrawal of the offending agent; however, a significant percentage may develop chronic kidney disease or require dialysis.</li><li><strong>ICD-10 Codes:</strong> N15.9 (Renal tubulo-interstitial disease, unspecified), N10 (Acute pyelonephritis, often used for acute tubulointerstitial nephritis when infection is present).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a patient at home, comfortably seated, with a gastrostomy tube visible. A caregiver is gently assisting with a tube feeding, showing proper technique. The scene includes elements like a feeding pump, formula bags, and a clean, organized environment. The patient looks calm and well-cared for. Emphasize hygiene, care, and support. Soft, reassuring colors. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./surgical_gastrostomy___discharge_instructions.jpg" class="card-banner" alt="Surgical gastrostomy – Discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-digestive-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Digestive system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-digestive-system-nutrition" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Nutrition</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Surgical gastrostomy – Discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Digestive system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Nutrition</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Purpose of Gastrostomy:</strong> Your gastrostomy tube provides a safe and effective way to receive nutrition, fluids, and medications directly into your stomach.</li>
+        <li><strong>Discharge Readiness:</strong> You and your caregivers have received comprehensive training on tube care, feeding techniques, and complication recognition.</li>
+        <li><strong>Importance of Adherence:</strong> Strict adherence to the prescribed feeding schedule, formula type, and stoma care regimen is crucial for preventing complications and ensuring adequate nutrition.</li>
+        <li><strong>Follow-up Appointments:</strong> Ensure you attend all scheduled follow-up appointments with your surgeon, dietitian, and home health nurse to monitor progress and address any concerns.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Signs of Infection:</strong> Report any redness, swelling, warmth, pus-like drainage, or increasing pain around the stoma site immediately.</li>
+        <li><strong>Fever or Chills:</strong> Unexplained fever (above 100.4°F or 38°C) or chills can indicate an infection and require prompt medical evaluation.</li>
+        <li><strong>Tube Dislodgement or Breakage:</strong> If the tube comes out or breaks, cover the stoma with a clean dressing and seek immediate medical attention. Do NOT attempt to reinsert it yourself unless specifically instructed and trained.</li>
+        <li><strong>Leakage Around Stoma:</strong> Persistent leakage of stomach contents or formula around the tube site can lead to skin irritation and infection.</li>
+        <li><strong>Abdominal Pain or Distension:</strong> New or worsening abdominal pain, bloating, nausea, vomiting, or diarrhea after feeding should be reported.</li>
+        <li><strong>Difficulty Flushing or Administering Feeds:</strong> Resistance when flushing the tube or inability to administer formula may indicate a blockage.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Stoma Site Care:</strong> Clean the stoma site daily with mild soap and water, ensuring it is dry before applying a clean dressing or securing device. Inspect for signs of irritation or infection.</li>
+        <li><strong>Tube Securement:</strong> Always ensure the gastrostomy tube is securely fastened to prevent accidental dislodgement. Avoid pulling or tugging on the tube.</li>
+        <li><strong>Hand Hygiene:</strong> Wash hands thoroughly with soap and water before and after handling the gastrostomy tube, feeding supplies, or stoma site.</li>
+        <li><strong>Medication Administration:</strong> Crush medications finely (if appropriate and prescribed) and dissolve them in water before administering through the tube, flushing before and after each medication.</li>
+        <li><strong>Emergency Preparedness:</strong> Keep emergency contact numbers readily available, including your healthcare provider, home health agency, and local emergency services.</li>
+        <li><strong>Avoid Submerging Stoma:</strong> Do not submerge the stoma site in bathwater or swimming pools until cleared by your healthcare provider, typically after complete healing.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Formula Preparation:</strong> Prepare formula according to manufacturer instructions, ensuring proper dilution and storage. Discard any unused formula after the recommended time (typically 4-8 hours for open cans/bottles, 24 hours for prepared formula).</li>
+        <li><strong>Feeding Schedule and Rate:</strong> Administer formula as prescribed by your dietitian or physician, whether by bolus or continuous infusion. Adhere strictly to the prescribed volume and rate to prevent gastrointestinal upset.</li>
+        <li><strong>Flushing the Tube:</strong> Flush the gastrostomy tube with 30-60 mL of water before and after each feeding and medication administration, and every 4-6 hours for continuous feeds, to prevent clogging.</li>
+        <li><strong>Positioning During Feeds:</strong> Keep the head of the bed elevated to at least 30-45 degrees during feeding and for 30-60 minutes afterward to reduce the risk of aspiration.</li>
+        <li><strong>Monitoring Tolerance:</strong> Observe for signs of formula intolerance such as nausea, vomiting, diarrhea, abdominal cramping, or distension. Report these to your healthcare provider.</li>
+        <li><strong>Oral Intake:</strong> Follow specific instructions regarding any allowed oral intake. If oral intake is permitted, ensure it does not interfere with tube feeding requirements or cause aspiration.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Caregiver Training:</strong> All primary caregivers must be fully trained and competent in gastrostomy tube care, feeding administration, and emergency procedures.</li>
+        <li><strong>Observation and Reporting:</strong> Caregivers should diligently observe the patient for any signs of complications (e.g., infection, tube dislodgement, feeding intolerance) and report them promptly to the healthcare team.</li>
+        <li><strong>Maintaining Supplies:</strong> Ensure a sufficient supply of feeding formula, syringes, dressings, and other necessary equipment is always on hand.</li>
+        <li><strong>Emotional Support:</strong> Provide emotional support and encouragement to the patient, as adapting to a gastrostomy tube can be challenging.</li>
+        <li><strong>Emergency Protocol:</strong> Understand and be prepared to execute the emergency protocol for tube dislodgement or other acute issues.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Adherence to Care Plan:</strong> Strict adherence to the prescribed gastrostomy care plan is paramount for optimal patient outcomes and minimizing complications.</li>
+        <li><strong>Early Recognition of Complications:</strong> Patients and caregivers must be vigilant in monitoring for signs of infection, tube malfunction, or feeding intolerance and seek medical attention without delay.</li>
+        <li><strong>Regular Follow-up:</strong> Scheduled follow-up appointments are essential for assessing stoma healing, nutritional status, and making necessary adjustments to the feeding regimen.</li>
+        <li><strong>Medication Review:</strong> All medications should be reviewed by a pharmacist or physician to ensure they are suitable for gastrostomy tube administration.</li>
+        <li><strong>Hydration Status:</strong> Monitor hydration status closely, especially if oral intake is restricted. Ensure adequate water flushes are administered.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Stoma Assessment:</strong> Regularly assess the peristomal skin for redness, breakdown, leakage, or granulation tissue. Document findings accurately.</li>
+        <li><strong>Tube Patency:</strong> Ensure tube patency by flushing with water before and after feeds/medications. Troubleshoot blockages using appropriate techniques (e.g., warm water flush, gentle aspiration).</li>
+        <li><strong>Patient Education Reinforcement:</strong> Continuously reinforce patient and caregiver education on proper hygiene, feeding techniques, and complication recognition.</li>
+        <li><strong>Nutritional Monitoring:</strong> Collaborate with dietitians to monitor patient weight, hydration, and laboratory values (e.g., electrolytes, albumin) to ensure nutritional adequacy.</li>
+        <li><strong>Psychosocial Support:</strong> Recognize the psychosocial impact of a gastrostomy tube on patients and families, providing empathetic support and resources.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Gastrostomy Tube Types:</strong> Familiarity with various tube types (e.g., Foley, mushroom, balloon-retained, low-profile buttons) and their specific care requirements.</li>
+        <li><strong>Securement Devices:</strong> Understanding the proper application and maintenance of external securement devices to prevent tube migration or dislodgement.</li>
+        <li><strong>Peristomal Skin Protectants:</strong> Knowledge of barrier creams, films, and powders used to protect peristomal skin from irritation and breakdown.</li>
+        <li><strong>Enteral Feeding Pumps:</strong> Proficiency in setting up, programming, and troubleshooting enteral feeding pumps for continuous or intermittent infusions.</li>
+        <li><strong>Aspiration Precautions:</strong> Implementing and reinforcing evidence-based practices to minimize the risk of aspiration, such as head elevation and monitoring gastric residuals (if applicable per protocol).</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

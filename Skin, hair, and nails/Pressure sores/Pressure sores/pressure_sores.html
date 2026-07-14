@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a diverse group of healthcare professionals (nurse, doctor, caregiver) surrounding a patient in bed. The patient's skin is being gently examined, with subtle highlights on common pressure sore areas like the sacrum and heels. Various pressure-redistributing devices (specialized mattress, cushions) are visible. The overall scene conveys care, prevention, and awareness, with a clean, modern aesthetic and no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./pressure_sores.jpg" class="card-banner" alt="Pressure sores Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-skin-hair-and-nails" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Skin, hair, and nails</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-skin-hair-and-nails-pressure-sores" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Pressure sores</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Pressure sores</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Skin, hair, and nails</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Pressure sores</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Pressure sores, also known as decubitus ulcers or bedsores, are localized injuries to the skin and/or underlying tissue, usually over a bony prominence, as a result of pressure, or pressure in combination with shear.</li><li><strong>Common Locations:</strong> Frequently develop on the sacrum, heels, ankles, hips, and elbows, but can occur anywhere sustained pressure is applied.</li><li><strong>Risk Factors:</strong> Immobility, advanced age, poor nutrition, incontinence, impaired sensation, chronic illnesses (e.g., diabetes, peripheral vascular disease), and altered mental status.</li><li><strong>Staging:</strong> Classified into stages (1-4, unstageable, deep tissue injury) based on the extent of tissue damage, guiding treatment and prognosis.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Stage 1:</strong> Non-blanchable erythema of intact skin; may be painful, firm, soft, warmer, or cooler compared to adjacent tissue.</li><li><strong>Stage 2:</strong> Partial-thickness skin loss involving epidermis and/or dermis; presents as a shallow open ulcer with a red-pink wound bed, or an intact or ruptured serum-filled blister.</li><li><strong>Stage 3:</strong> Full-thickness skin loss; subcutaneous fat may be visible, but bone, tendon, or muscle are not exposed. Slough may be present.</li><li><strong>Stage 4:</strong> Full-thickness tissue loss with exposed bone, tendon, or muscle. Slough or eschar may be present. Often includes undermining and tunneling.</li><li><strong>Deep Tissue Injury (DTI):</strong> Persistent non-blanchable deep red, maroon, or purple discoloration, or blood-filled blister due to damage of underlying soft tissue from pressure and/or shear.</li><li><strong>Unstageable:</strong> Full-thickness skin and tissue loss in which the extent of tissue damage within the ulcer cannot be confirmed because it is obscured by slough or eschar.</li><li><strong>Infection Signs:</strong> Increased pain, redness, warmth, swelling, purulent drainage, foul odor, and fever.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Regular Repositioning:</strong> Turn and reposition bed-bound individuals at least every two hours, and chair-bound individuals every hour, or as per individualized care plan.</li><li><strong>Skin Assessment:</strong> Conduct daily, thorough skin inspections, paying close attention to bony prominences and areas under medical devices. Document findings meticulously.</li><li><strong>Moisture Management:</strong> Keep skin clean and dry, especially in cases of incontinence. Use moisture barriers and absorbent pads as needed.</li><li><strong>Pressure Redistribution Surfaces:</strong> Utilize specialized mattresses, overlays, and cushions (e.g., air-fluidized, low-air-loss, foam) to reduce pressure on vulnerable areas.</li><li><strong>Nutrition and Hydration:</strong> Ensure adequate intake of protein, calories, vitamins (especially C), and minerals (especially zinc) to support skin integrity and wound healing. Maintain optimal hydration.</li><li><strong>Minimize Shear and Friction:</strong> Use proper lifting techniques (e.g., lift sheets) to avoid dragging patients across surfaces. Elevate the head of the bed no more than 30 degrees to reduce shear.</li><li><strong>Patient Education:</strong> Educate patients and caregivers on risk factors, early signs, and preventive measures for pressure sore development.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>High Protein Intake:</strong> Essential for tissue repair and collagen synthesis. Encourage lean meats, poultry, fish, eggs, dairy products, legumes, and protein supplements if oral intake is insufficient.</li><li><strong>Vitamin C Supplementation:</strong> Crucial for collagen formation and immune function. Found in citrus fruits, berries, bell peppers, and leafy greens.</li><li><strong>Zinc Supplementation:</strong> Important for cell proliferation, immune function, and wound healing. Sources include red meat, poultry, beans, nuts, and whole grains.</li><li><strong>Adequate Hydration:</strong> Maintain optimal fluid intake to support skin turgor and overall physiological function. Encourage water, clear broths, and other non-caffeinated, non-sugary fluids.</li><li><strong>Caloric Sufficiency:</strong> Ensure sufficient caloric intake to prevent catabolism and provide energy for healing. May require nutrient-dense foods or oral nutritional supplements.</li><li><strong>Avoid Malnutrition:</strong> Screen for and address any signs of malnutrition promptly, as it significantly impairs wound healing.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Strict Repositioning Schedule:</strong> Adhere rigorously to the prescribed turning schedule, documenting each turn.</li><li><strong>Thorough Skin Checks:</strong> Perform daily head-to-toe skin assessments, noting any redness, warmth, tenderness, or breaks in skin integrity, especially over bony prominences.</li><li><strong>Incontinence Care:</strong> Provide immediate and thorough perineal care after each incontinent episode, using mild cleansers and applying moisture barrier creams.</li><li><strong>Proper Positioning Devices:</strong> Ensure correct use and placement of pillows, wedges, and pressure-redistributing devices to offload pressure effectively.</li><li><strong>Foot Care:</strong> Pay special attention to heels; use heel protectors or elevate heels off the bed surface.</li><li><strong>Reporting Changes:</strong> Immediately report any new skin breakdown, worsening of existing sores, or signs of infection (e.g., fever, increased pain, purulent drainage) to the nursing staff or physician.</li><li><strong>Assist with Mobility:</strong> Encourage and assist with ambulation or active range of motion exercises as tolerated to improve circulation.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Accurate Staging:</strong> Crucial for guiding treatment and prognosis. Re-evaluate staging regularly as the wound evolves.</li><li><strong>Debridement:</strong> Remove necrotic tissue (slough, eschar) through surgical, mechanical, enzymatic, autolytic, or biological methods to promote healing.</li><li><strong>Wound Dressings:</strong> Select appropriate dressings based on wound characteristics (e.g., exudate level, presence of infection, depth) to maintain a moist wound environment and protect from contamination.</li><li><strong>Infection Management:</strong> Obtain wound cultures for suspected infection and initiate systemic or topical antibiotics as indicated. Address underlying osteomyelitis if present.</li><li><strong>Pain Management:</strong> Assess and manage pain effectively, as pressure sores can be highly painful, impacting patient comfort and cooperation.</li><li><strong>Nutritional Support:</strong> Collaborate with dietitians to optimize nutritional status, potentially including enteral or parenteral nutrition for severe cases.</li><li><strong>Surgical Intervention:</strong> Consider surgical repair (e.g., skin grafts, flaps) for deep, non-healing pressure sores, especially Stage 3 and 4, after infection control and nutritional optimization.</li><li><strong>Multidisciplinary Approach:</strong> Emphasize a team-based approach involving nursing, physical therapy, occupational therapy, nutrition, and wound care specialists.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Braden Scale:</strong> Utilize the Braden Scale for Predicting Pressure Sore Risk to systematically assess patient risk factors (sensory perception, moisture, activity, mobility, nutrition, friction & shear).</li><li><strong>Wound Assessment Documentation:</strong> Document wound location, size (length, width, depth), stage, presence of tunneling/undermining, exudate type and amount, odor, periwound skin condition, and pain level.</li><li><strong>Aseptic Technique:</strong> Adhere strictly to aseptic technique during wound care to prevent infection.</li><li><strong>Patient and Family Education:</strong> Educate on the importance of repositioning, skin care, nutrition, and early signs of complications. Empower them to participate in care.</li><li><strong>Pressure Mapping:</strong> Understand the principles of pressure mapping to identify high-pressure areas and guide the selection of appropriate support surfaces.</li><li><strong>Interprofessional Collaboration:</strong> Actively participate in interdisciplinary rounds to discuss patient progress, challenges, and care plan adjustments.</li><li><strong>Evidence-Based Practice:</strong> Stay updated on current evidence-based guidelines for pressure injury prevention and management (e.g., NPUAP/EPUAP/PPPIA guidelines).</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>NPUAP/EPUAP/PPPIA:</strong> National Pressure Ulcer Advisory Panel / European Pressure Ulcer Advisory Panel / Pan Pacific Pressure Injury Alliance – leading organizations for pressure injury classification and guidelines.</li><li><strong>Braden Scale:</strong> A widely used risk assessment tool for predicting pressure injury risk, scoring six subscales.</li><li><strong>Deep Tissue Injury (DTI):</strong> A pressure injury characterized by persistent non-blanchable deep red, maroon, or purple discoloration, or a blood-filled blister.</li><li><strong>Undermining:</strong> Tissue destruction underlying intact skin at the wound margin, creating a 'lip' or 'shelf'.</li><li><strong>Tunneling:</strong> A channel or pathway extending from the wound into the surrounding tissue.</li><li><strong>Eschar:</strong> A thick, leathery, often black or brown devitalized tissue that adheres to the wound bed.</li><li><strong>Slough:</strong> Yellow, tan, gray, green, or brown non-viable tissue, often stringy or mucinous, that adheres to the wound bed.</li><li><strong>Offloading:</strong> The practice of relieving pressure from a specific area of the body to prevent or treat pressure injuries.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

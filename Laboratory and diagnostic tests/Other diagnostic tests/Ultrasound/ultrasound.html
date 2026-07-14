@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of an ultrasound examination in a clean, modern medical setting. A patient lies comfortably on an examination table, while a healthcare professional (sonographer) gently glides a transducer probe over their abdomen. Transparent, stylized sound waves emanate from the probe, penetrating the body and revealing internal organs and structures in a glowing, simplified manner on a nearby monitor screen. The illustration uses a soft blue, green, and white color palette, emphasizing non-invasiveness and diagnostic clarity. No text or complex details, focusing on the core concept of internal imaging.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./ultrasound.jpg" class="card-banner" alt="Ultrasound Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-laboratory-and-diagnostic-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Laboratory and diagnostic tests</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-laboratory-and-diagnostic-tests-other-diagnostic-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Other diagnostic tests</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Ultrasound</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Laboratory and diagnostic tests</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Other diagnostic tests</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Non-Invasive Imaging:</strong> Ultrasound uses high-frequency sound waves to create real-time images of internal body structures, organs, and blood flow.</li><li><strong>Radiation-Free:</strong> Unlike X-rays or CT scans, ultrasound does not use ionizing radiation, making it safe for repeated use and during pregnancy.</li><li><strong>Versatile Diagnostic Tool:</strong> Commonly used to examine abdominal organs (liver, gallbladder, kidneys), pelvic organs (uterus, ovaries, prostate), blood vessels, thyroid, breasts, and musculoskeletal structures.</li><li><strong>Real-Time Visualization:</strong> Allows for dynamic assessment of organ movement, blood flow, and fetal activity.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Abdominal Pain or Swelling:</strong> Often prompts investigation for gallstones, appendicitis, liver disease, kidney stones, or fluid accumulation.</li><li><strong>Pelvic Pain or Irregular Bleeding:</strong> Indication for evaluating uterine fibroids, ovarian cysts, ectopic pregnancy, or other gynecological conditions.</li><li><strong>Lumps or Masses:</strong> Used to characterize palpable masses in the breast, thyroid, or soft tissues, determining if they are solid or fluid-filled.</li><li><strong>Vascular Symptoms:</strong> Such as leg swelling, pain, or numbness, leading to assessment for deep vein thrombosis (DVT), arterial stenosis, or aneurysms.</li><li><strong>Pregnancy Monitoring:</strong> Routine screening for fetal development, growth, position, and detection of potential complications.</li><li><strong>Joint Pain or Swelling:</strong> To assess tendons, ligaments, muscles, and joint effusions for injuries or inflammatory conditions.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Specific Preparation:</strong> Adhere strictly to pre-procedure instructions, which may include fasting for abdominal ultrasounds or having a full bladder for pelvic ultrasounds.</li><li><strong>Gel Application:</strong> A water-based gel is applied to the skin to ensure proper transmission of sound waves; inform staff of any known skin sensitivities or allergies.</li><li><strong>Transducer Pressure:</strong> Expect mild pressure from the transducer probe as it is moved over the skin; communicate any discomfort to the sonographer.</li><li><strong>Remain Still:</strong> Maintaining stillness during the examination is crucial for obtaining clear and accurate images.</li><li><strong>Limitations:</strong> Ultrasound waves do not travel well through bone or air, limiting its effectiveness for imaging structures like the brain (in adults) or gas-filled bowel.</li><li><strong>Clothing:</strong> Wear loose, comfortable clothing that can be easily adjusted to expose the area being examined.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Abdominal Ultrasound (e.g., Gallbladder, Liver, Pancreas):</strong> Typically requires fasting for 6-8 hours prior to the exam to ensure the gallbladder is distended and to minimize bowel gas.</li><li><strong>Pelvic Ultrasound:</strong> Often requires a full bladder, meaning you will be instructed to drink several glasses of water an hour before the exam and refrain from urinating.</li><li><strong>Kidney Ultrasound:</strong> May require a full bladder to visualize the bladder adequately, but fasting is generally not required.</li><li><strong>Other Ultrasounds (e.g., Thyroid, Breast, Vascular, Musculoskeletal):</strong> Generally, no specific dietary restrictions or fasting are needed for these types of examinations.</li><li><strong>Post-Procedure:</strong> Unless sedation was used (rare for standard ultrasound), there are no specific dietary restrictions post-procedure; you can resume normal eating and drinking immediately.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Inform Staff of Conditions:</strong> Always notify the sonographer or medical staff of any medical conditions, allergies, or medications you are currently taking.</li><li><strong>Pregnancy Status:</strong> For female patients of childbearing age, it is important to inform staff if there is any possibility of pregnancy, even though ultrasound is considered safe.</li><li><strong>Comfort and Privacy:</strong> The examination room will be private, and efforts will be made to ensure your comfort throughout the procedure.</li><li><strong>Children and Support Persons:</strong> If a child is undergoing an ultrasound or if an adult patient requires support, inquire about the possibility of a family member or attendant being present.</li><li><strong>Post-Procedure Care:</strong> The ultrasound gel will be wiped off your skin after the examination; no special post-procedure care is typically required.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>First-Line Imaging:</strong> Ultrasound is often a preferred initial imaging modality due to its safety, real-time capabilities, and cost-effectiveness, especially for soft tissue and fluid-filled structures.</li><li><strong>Dynamic Assessment:</strong> Its ability to visualize structures in motion (e.g., heart valves, blood flow) provides unique diagnostic information not available with static imaging.</li><li><strong>Guidance for Procedures:</strong> Frequently used to guide biopsies, fluid aspirations, and injections, enhancing precision and reducing complications.</li><li><strong>Complementary to Other Modalities:</strong> While powerful, ultrasound findings are often correlated with clinical symptoms and may necessitate further investigation with other imaging techniques like CT or MRI for a comprehensive diagnosis.</li><li><strong>Operator Dependence:</strong> The quality and interpretation of an ultrasound examination are highly dependent on the skill and experience of the sonographer and interpreting physician.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Nurses play a vital role in explaining the ultrasound procedure, addressing patient anxieties, and ensuring understanding of pre-exam preparations.</li><li><strong>Preparation Verification:</strong> Confirm that patients have followed specific instructions such as fasting or bladder filling, as non-compliance can lead to rescheduling or suboptimal imaging.</li><li><strong>Patient Positioning and Comfort:</strong> Assist patients into appropriate positions for the scan and ensure their comfort and privacy throughout the examination.</li><li><strong>Documentation:</strong> Accurately document patient tolerance of the procedure, any adverse reactions, and completion of pre-exam protocols.</li><li><strong>Post-Procedure Guidance:</strong> Provide instructions for post-procedure care, which typically involves simply wiping off the gel and resuming normal activities.</li><li><strong>Communication:</strong> Facilitate communication between the patient, sonographer, and physician regarding any concerns or findings.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Principle of Operation:</strong> Utilizes the piezoelectric effect, where electrical energy is converted into high-frequency sound waves by a transducer, which then reflect off tissues and are converted back into electrical signals to form an image.</li><li><strong>Transducer Types:</strong> Various transducers (e.g., linear, curvilinear, phased array, endocavitary) are selected based on the depth and resolution required for specific anatomical regions.</li><li><strong>Imaging Modes:</strong> Includes B-mode (Brightness mode for 2D anatomical images), M-mode (Motion mode for visualizing moving structures over time), and Doppler modes (Color Doppler for blood flow direction, Power Doppler for flow presence, Spectral Doppler for flow velocity).</li><li><strong>Frequency Range:</strong> Typically operates in the 2-18 MHz range; higher frequencies provide better resolution for superficial structures, while lower frequencies penetrate deeper.</li><li><strong>Artifacts:</strong> Common artifacts include shadowing (behind dense structures), enhancement (behind fluid-filled structures), reverberation (multiple reflections), and acoustic impedance mismatch.</li><li><strong>Elastography:</strong> An advanced ultrasound technique that measures tissue stiffness, useful in assessing liver fibrosis or characterizing masses.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

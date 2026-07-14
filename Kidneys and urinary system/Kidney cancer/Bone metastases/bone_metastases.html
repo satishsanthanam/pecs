@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for public awareness of bone metastases from kidney cancer. A stylized human figure, transparent to show the skeleton. Highlighted areas on the spine, pelvis, and long bones glow subtly to represent metastatic lesions. A small, stylized kidney icon with a faint tumor is visible near the lumbar spine. The overall aesthetic is clean, modern, and informative, conveying a sense of fragility and pain without being overly graphic. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./bone_metastases.jpg" class="card-banner" alt="Bone metastases Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-kidneys-and-urinary-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Kidneys and urinary system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-kidneys-and-urinary-system-kidney-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Kidney cancer</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Bone metastases</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Kidneys and urinary system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Kidney cancer</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Bone metastases occur when kidney cancer cells spread from the primary tumor in the kidney to the bones, forming secondary tumors.</li><li><strong>Prevalence:</strong> They are a common complication in advanced stages of renal cell carcinoma (RCC), significantly impacting patient quality of life.</li><li><strong>Common Sites:</strong> Frequently affect the spine, pelvis, ribs, skull, and long bones (e.g., femur), leading to structural weakening.</li><li><strong>Complications:</strong> Can cause severe pain, increase the risk of pathological fractures (fractures from minimal trauma), and lead to spinal cord compression or hypercalcemia.</li><li><strong>Prognosis Impact:</strong> The presence of bone metastases generally indicates a more advanced stage of kidney cancer and can influence treatment strategies and prognosis.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Localized Bone Pain:</strong> Often the first and most common symptom, typically deep, aching, and persistent, worsening at night or with movement.</li><li><strong>Pathological Fractures:</strong> Bones become weakened and can break with little or no trauma, such as a minor fall or even normal daily activities.</li><li><strong>Spinal Cord Compression:</strong> Metastases in the spine can press on the spinal cord, causing new or worsening back pain, numbness, tingling, weakness in the limbs, or bowel/bladder dysfunction.</li><li><strong>Hypercalcemia of Malignancy:</strong> Release of calcium from bone destruction can lead to symptoms like excessive thirst, frequent urination, fatigue, nausea, constipation, confusion, and muscle weakness.</li><li><strong>Fatigue and Anemia:</strong> Chronic pain, cancer progression, and bone marrow involvement can contribute to profound fatigue and anemia.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Fall Prevention:</strong> Implement measures to minimize fall risk, such as removing tripping hazards, using assistive devices, and ensuring adequate lighting, especially for patients with weakened bones.</li><li><strong>Careful Movement:</strong> Advise patients to avoid sudden twisting motions, heavy lifting, or high-impact activities that could stress weakened bones and precipitate fractures.</li><li><strong>Neurological Monitoring:</strong> Educate patients and caregivers to promptly report any new or worsening back pain, numbness, tingling, or weakness in the extremities, which could indicate spinal cord compression.</li><li><strong>Hydration Status:</strong> Maintain adequate fluid intake to help prevent complications of hypercalcemia and support kidney function, especially when receiving bone-modifying agents.</li><li><strong>Pain Management Adherence:</strong> Strictly follow prescribed pain management regimens to ensure comfort and maintain functional ability, reporting any uncontrolled pain to the medical team.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Adequate Hydration:</strong> Encourage consistent fluid intake (water, clear broths) to help manage hypercalcemia symptoms and support kidney function, unless fluid restriction is medically indicated.</li><li><strong>Fiber-Rich Foods:</strong> Incorporate fruits, vegetables, and whole grains to combat constipation, a common side effect of opioid pain medications and hypercalcemia.</li><li><strong>Small, Frequent Meals:</strong> Advise smaller, more frequent meals to manage nausea and maintain caloric intake, especially if appetite is reduced.</li><li><strong>Calcium and Vitamin D (with caution):</strong> Discuss with the physician regarding calcium and vitamin D supplementation, as these may be contraindicated in patients with hypercalcemia but important for overall bone health in others.</li><li><strong>Nutrient-Dense Foods:</strong> Focus on protein-rich foods and nutrient-dense options to support overall strength and combat cancer-related cachexia.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Immediate Symptom Reporting:</strong> Instruct patients and caregivers to immediately report any new or sudden severe bone pain, new weakness, numbness, or difficulty with bowel/bladder function to the medical team.</li><li><strong>Safe Patient Handling:</strong> Train caregivers on proper techniques for assisting with mobility and transfers to prevent injury to the patient and themselves, minimizing stress on fragile bones.</li><li><strong>Medication Adherence:</strong> Emphasize the importance of taking all prescribed medications, including pain relievers and bone-modifying agents, exactly as directed to manage symptoms and prevent complications.</li><li><strong>Hypercalcemia Watch:</strong> Monitor for signs of hypercalcemia such as increased thirst, frequent urination, lethargy, confusion, or constipation, and report these promptly.</li><li><strong>Emotional Support:</strong> Provide emotional support and encourage open communication about fears and concerns related to pain, mobility, and prognosis.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Multidisciplinary Management:</strong> Bone metastases require a comprehensive approach involving oncologists, radiation oncologists, orthopedic surgeons, pain specialists, and palliative care teams.</li><li><strong>Pain Control:</strong> Aggressive pain management is paramount, utilizing a combination of analgesics, nerve blocks, and non-pharmacological interventions.</li><li><strong>Skeletal-Related Event (SRE) Prevention:</strong> Bone-modifying agents (e.g., bisphosphonates like zoledronic acid, or RANK ligand inhibitors like denosumab) are crucial to reduce the risk of fractures, spinal cord compression, and hypercalcemia.</li><li><strong>Targeted Therapies & Immunotherapy:</strong> Systemic treatments for renal cell carcinoma, including targeted therapies and immunotherapies, can also help control the underlying cancer and its spread to bone.</li><li><strong>Local Therapies:</strong> Radiation therapy is highly effective for localized pain relief and preventing fractures or spinal cord compression. Surgical intervention may be necessary for stabilization of impending or actual fractures.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Pain Assessment:</strong> Regularly assess pain intensity, character, location, and aggravating/alleviating factors using appropriate pain scales, and evaluate the effectiveness of interventions.</li><li><strong>Neurological Monitoring:</strong> Perform frequent neurological assessments, especially for patients with spinal metastases, to detect early signs of spinal cord compression.</li><li><strong>Patient Education:</strong> Educate patients and families on the signs and symptoms of complications (e.g., hypercalcemia, spinal cord compression), medication administration, and safety precautions.</li><li><strong>Mobility Assistance:</strong> Provide safe mobility assistance, utilizing proper body mechanics and assistive devices, while assessing for limitations and risk of falls.</li><li><strong>Psychosocial Support:</strong> Address the psychological impact of advanced cancer and bone metastases, offering emotional support, counseling referrals, and resources for coping strategies.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Renal Cell Carcinoma (RCC):</strong> The primary kidney cancer type most commonly associated with bone metastases.</li><li><strong>Skeletal-Related Events (SREs):</strong> A composite endpoint including pathological fractures, spinal cord compression, hypercalcemia of malignancy, and the need for bone radiation or surgery.</li><li><strong>Bone-Modifying Agents (BMAs):</strong> Medications like bisphosphonates (e.g., zoledronic acid) and RANK ligand inhibitors (e.g., denosumab) used to strengthen bone and reduce SREs.</li><li><strong>Imaging Modalities:</strong> Bone scintigraphy (bone scan), MRI, CT scans, and PET scans are used for diagnosis, staging, and monitoring of bone metastases.</li><li><strong>Hypercalcemia of Malignancy (HCM):</strong> A paraneoplastic syndrome caused by increased bone resorption or tumor production of parathyroid hormone-related protein (PTHrP).</li><li><strong>Palliative Radiation Therapy:</strong> Localized radiation used to alleviate pain, prevent fractures, and treat spinal cord compression.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

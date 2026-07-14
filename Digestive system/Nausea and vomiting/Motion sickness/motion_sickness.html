@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a person feeling nauseous in a moving vehicle, possibly a car or boat, with subtle swirling lines or a wavy background to indicate motion. The person has a slightly green tint to their face and is holding their stomach. Icons representing nausea (e.g., a queasy face, a swirl) and dizziness (e.g., stars around the head) are subtly incorporated. The overall design is clean, modern, and uses a calming color palette with hints of discomfort, suitable for a public awareness health card.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./motion_sickness.jpg" class="card-banner" alt="Motion sickness Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-digestive-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Digestive system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-digestive-system-nausea-and-vomiting" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Nausea and vomiting</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Motion sickness</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Digestive system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Nausea and vomiting</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Sensory Mismatch:</strong> Motion sickness arises from a conflict between the sensory information received by the eyes and the inner ear's vestibular system, which detects motion.</li><li><strong>Common Triggers:</strong> Frequently experienced during travel in cars, boats, airplanes, or even from virtual reality simulations and amusement rides.</li><li><strong>Physiological Response:</strong> The brain interprets the conflicting signals as a potential toxin, triggering a protective response that includes nausea and vomiting.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Nausea and Vomiting:</strong> The primary and most distressing symptoms, ranging from mild queasiness to severe emesis.</li><li><strong>Dizziness and Vertigo:</strong> A sensation of spinning or unsteadiness, often accompanied by lightheadedness.</li><li><strong>Cold Sweats and Pallor:</strong> Skin may become clammy and pale due to autonomic nervous system activation.</li><li><strong>Increased Salivation:</strong> Often a precursor to nausea and vomiting.</li><li><strong>Fatigue and Yawning:</strong> General malaise and a feeling of exhaustion can accompany the discomfort.</li><li><strong>Headache:</strong> Some individuals may experience a dull headache or pressure.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Proactive Medication:</strong> Take antiemetic medications (e.g., dimenhydrinate, meclizine, scopolamine) at least 30-60 minutes before anticipated travel to allow for absorption and efficacy.</li><li><strong>Visual Focus:</strong> Maintain a steady gaze on the horizon or a distant, fixed point to help synchronize visual and vestibular input.</li><li><strong>Optimal Seating:</strong> Choose seats where motion is minimized, such as the front seat of a car, mid-ship on a boat, or over the wing on an airplane.</li><li><strong>Fresh Air:</strong> Ensure good ventilation and open windows if possible to reduce stuffiness and strong odors.</li><li><strong>Avoid Reading/Screens:</strong> Refrain from activities that require focusing on close-up objects, as this can exacerbate sensory conflict.</li><li><strong>Limit Head Movement:</strong> Try to keep your head as still as possible, perhaps by resting it against a headrest.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-Travel Meals:</strong> Consume light, bland meals before travel; avoid heavy, greasy, spicy, or strong-smelling foods.</li><li><strong>Hydration:</strong> Sip on clear fluids like water, ginger ale, or diluted fruit juice to stay hydrated, especially if vomiting occurs.</li><li><strong>Ginger Intake:</strong> Consider ginger-containing products (e.g., ginger snaps, ginger tea, ginger chews) which may help alleviate nausea for some individuals.</li><li><strong>Avoid Alcohol and Caffeine:</strong> These can contribute to dehydration and stomach upset, worsening symptoms.</li><li><strong>Small, Frequent Snacks:</strong> If hunger arises during travel, opt for small, bland snacks like crackers or dry toast.</li><li><strong>Post-Sickness Reintroduction:</strong> After an episode of vomiting, gradually reintroduce bland foods following the BRAT diet (bananas, rice, applesauce, toast) to settle the stomach.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Children and Elderly:</strong> These populations are often more susceptible to motion sickness and require closer monitoring for symptoms and dehydration.</li><li><strong>Sedation Risk:</strong> Be aware that many antiemetics can cause drowsiness; advise against driving or operating heavy machinery while under their influence.</li><li><strong>Medication Interactions:</strong> Counsel patients on potential interactions with other medications, especially those with sedative effects or anticholinergic properties.</li><li><strong>Dehydration Management:</strong> In cases of severe or prolonged vomiting, monitor for signs of dehydration (e.g., dry mouth, reduced urination, lethargy) and seek medical attention if severe.</li><li><strong>Scopolamine Patch Application:</strong> Instruct on proper application and removal of transdermal scopolamine patches, emphasizing hand washing after handling.</li><li><strong>Underlying Conditions:</strong> Rule out other causes of nausea and vomiting, especially if symptoms are atypical or persistent without motion exposure.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Clinical Diagnosis:</strong> Motion sickness is typically diagnosed clinically based on a history of symptoms occurring during motion exposure.</li><li><strong>Pharmacological Options:</strong> First-line treatments include antihistamines (e.g., dimenhydrinate, meclizine) and anticholinergics (e.g., scopolamine).</li><li><strong>Prescription Considerations:</strong> Scopolamine patches are effective but require a prescription and careful patient education regarding side effects (e.g., dry mouth, blurred vision).</li><li><strong>Non-Pharmacological Strategies:</strong> Advise patients on behavioral modifications such as focusing on the horizon, ensuring good ventilation, and avoiding reading.</li><li><strong>Referral for Atypical Symptoms:</strong> If symptoms are severe, persistent, or occur without motion, consider referral to a neurologist or otolaryngologist to rule out other vestibular or neurological disorders.</li><li><strong>Pediatric Dosing:</strong> Emphasize careful dosing of antiemetics in children, as some medications are not recommended for very young ages.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Assessment:</strong> Evaluate the patient's history of motion sickness, common triggers, and current symptom severity using a standardized scale if available.</li><li><strong>Education on Prevention:</strong> Provide comprehensive education on non-pharmacological preventive measures, including seating choices, visual focus, and dietary modifications.</li><li><strong>Medication Administration:</strong> Understand the correct timing, dosage, and potential side effects of prescribed and over-the-counter antiemetics.</li><li><strong>Hydration Monitoring:</strong> Closely monitor fluid intake and output, especially in patients experiencing vomiting, to prevent dehydration.</li><li><strong>Comfort Measures:</strong> Offer practical comfort measures such as cool compresses, emesis bags, and assistance with positioning.</li><li><strong>Documentation:</strong> Accurately document patient symptoms, interventions, and their effectiveness, including any adverse reactions to medications.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Vestibular System:</strong> The primary sensory system involved, comprising the semicircular canals (angular acceleration) and otolith organs (linear acceleration and gravity).</li><li><strong>Sensory Conflict Theory:</strong> The prevailing hypothesis stating that motion sickness results from a mismatch between expected and actual sensory inputs from the vestibular, visual, and proprioceptive systems.</li><li><strong>Neurotransmitter Pathways:</strong> Key neurotransmitters involved in the emetic pathway include acetylcholine (M1 receptors), histamine (H1 receptors), dopamine (D2 receptors), and serotonin (5-HT3 receptors).</li><li><strong>Area Postrema (CTZ):</strong> While not directly activated by vestibular input, the chemoreceptor trigger zone can be indirectly stimulated by afferent pathways from the vestibular nuclei, contributing to nausea and vomiting.</li><li><strong>Anticholinergics:</strong> Medications like scopolamine block muscarinic acetylcholine receptors in the vestibular nuclei and reticular formation.</li><li><strong>Antihistamines:</strong> H1 receptor antagonists (e.g., dimenhydrinate, meclizine) act on vestibular and central nervous system histamine receptors.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

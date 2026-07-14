@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration for public awareness about diet for adults with cirrhosis. The image features a stylized human liver icon at the center, surrounded by various healthy food items like fruits, vegetables, lean protein sources (fish, chicken breast), and whole grains. A subtle 'no' symbol or crossed-out items like alcohol, processed snacks, and a salt shaker are also present. The overall design is clean, informative, and uses a palette of calming, health-related colors. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./diet_for_adults_with_cirrhosis.jpg" class="card-banner" alt="Diet for adults with cirrhosis Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-liver-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Liver disease</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-liver-disease-cirrhosis" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Cirrhosis</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Diet for adults with cirrhosis</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Liver disease</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Cirrhosis</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Nutritional Cornerstone:</strong> Diet is a critical component in managing cirrhosis, aiming to prevent malnutrition, reduce complications like ascites and hepatic encephalopathy, and support remaining liver function.</li>
+        <li><strong>Protein Paradox:</strong> Adequate protein intake is essential to prevent muscle wasting (sarcopenia), but the type and amount may need careful adjustment, especially in advanced hepatic encephalopathy.</li>
+        <li><strong>Sodium Sensitivity:</strong> Strict sodium restriction is often necessary to manage fluid retention, such as ascites and peripheral edema, which are common complications of cirrhosis.</li>
+        <li><strong>Energy Requirements:</strong> Patients with cirrhosis often have increased energy needs due to hypermetabolism; frequent small meals and late-evening snacks are crucial to prevent catabolism.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Ascites and Edema:</strong> Fluid accumulation in the abdomen and swelling in the extremities, often managed with sodium and sometimes fluid restriction.</li>
+        <li><strong>Hepatic Encephalopathy (HE):</strong> Neurological symptoms ranging from confusion to coma, which can be exacerbated by protein imbalance or gastrointestinal bleeding, requiring careful protein management.</li>
+        <li><strong>Malnutrition and Sarcopenia:</strong> Significant weight loss, muscle wasting, and overall poor nutritional status are prevalent, necessitating adequate caloric and protein intake.</li>
+        <li><strong>Fatigue and Weakness:</strong> Common complaints often linked to poor nutritional status, anemia, and the metabolic burden of liver disease.</li>
+        <li><strong>Jaundice:</strong> Yellowing of the skin and eyes, indicating impaired bilirubin processing, which can influence fat-soluble vitamin absorption.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Alcohol Abstinence:</strong> Complete and lifelong avoidance of alcohol is paramount to prevent further liver damage and disease progression.</li>
+        <li><strong>Raw Seafood Avoidance:</strong> Patients with cirrhosis are highly susceptible to infections, particularly from <em>Vibrio vulnificus</em> found in raw or undercooked seafood, which can be life-threatening.</li>
+        <li><strong>Fluid Restriction (If Indicated):</strong> While not universal, fluid restriction may be necessary for severe hyponatremia or refractory ascites, requiring careful monitoring.</li>
+        <li><strong>Medication Interactions:</strong> Be aware of potential interactions between dietary supplements, herbal remedies, and prescribed medications, always consulting a physician.</li>
+        <li><strong>Iron Overload:</strong> If hemochromatosis is an underlying cause, dietary iron restriction and avoidance of iron-fortified foods may be necessary.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Adequate Protein Intake:</strong> Aim for 1.2-1.5 g/kg body weight/day, often distributed throughout the day with a late-evening snack to prevent nocturnal catabolism. Plant-based proteins and branched-chain amino acids (BCAAs) may be beneficial for some.</li>
+        <li><strong>Sodium Restriction:</strong> Limit sodium intake to 2000 mg/day or less to manage ascites and edema. Avoid processed foods, canned goods, cured meats, and excessive table salt.</li>
+        <li><strong>Frequent Small Meals:</strong> Consume 4-6 small meals and 1-2 snacks daily to maintain energy levels and prevent prolonged fasting, which can worsen catabolism.</li>
+        <li><strong>Complex Carbohydrates:</strong> Prioritize whole grains, fruits, and vegetables for sustained energy and fiber.</li>
+        <li><strong>Healthy Fats:</strong> Include sources of monounsaturated and polyunsaturated fats (e.g., olive oil, avocados, nuts) in moderation, as fat malabsorption can occur.</li>
+        <li><strong>Vitamin and Mineral Supplementation:</strong> Often required due to malabsorption or increased needs, especially fat-soluble vitamins (A, D, E, K), B vitamins, zinc, and magnesium.</li>
+        <li><strong>Avoidance of Alcohol:</strong> Strict abstinence from all alcoholic beverages.</li>
+        <li><strong>Limit Processed Foods:</strong> High in sodium, unhealthy fats, and additives that can burden the liver.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Registered Dietitian Consultation:</strong> Essential for developing an individualized dietary plan tailored to the patient's specific stage of cirrhosis, complications, and nutritional status.</li>
+        <li><strong>Regular Monitoring:</strong> Closely monitor weight, fluid balance (intake/output), electrolyte levels (especially sodium), and signs of hepatic encephalopathy.</li>
+        <li><strong>Patient Education:</strong> Educate patients and caregivers on reading food labels, identifying hidden sodium, and preparing nutrient-dense meals.</li>
+        <li><strong>Recognize Decompensation: :</strong> Be vigilant for worsening ascites, new or worsening confusion (HE), or significant weight changes, which may indicate a need for dietary adjustment or medical intervention.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Individualized Approach:</strong> Dietary recommendations for cirrhosis must be highly individualized, considering the patient's specific etiology of liver disease, stage of cirrhosis, presence of complications (e.g., ascites, HE), and comorbidities.</li>
+        <li><strong>Preventing Malnutrition:</strong> Aggressive nutritional support is crucial to combat the high prevalence of malnutrition and sarcopenia, which significantly impact prognosis and quality of life.</li>
+        <li><strong>Multidisciplinary Care:</strong> Optimal management involves a multidisciplinary team including hepatologists, gastroenterologists, registered dietitians, and nurses to ensure comprehensive care.</li>
+        <li><strong>Dynamic Adjustments:</strong> Dietary plans require dynamic adjustments based on clinical status, laboratory findings, and patient tolerance, especially during periods of decompensation.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Nutritional Assessment:</strong> Nurses play a vital role in initial and ongoing nutritional assessment, including dietary history, weight changes, and signs of muscle wasting or fluid overload.</li>
+        <li><strong>Patient Education:</strong> Educate patients on the rationale behind dietary restrictions (e.g., sodium for ascites) and the importance of frequent, small meals to prevent catabolism.</li>
+        <li><strong>Monitoring and Documentation:</strong> Accurately monitor fluid intake and output, daily weights, and observe for signs of hepatic encephalopathy or electrolyte imbalances. Document dietary adherence and tolerance.</li>
+        <li><strong>Collaboration:</strong> Facilitate communication between the patient, family, dietitian, and physician to ensure the dietary plan is understood, feasible, and adjusted as needed.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Hepatic Encephalopathy (HE):</strong> A decline in brain function that occurs as a result of severe liver disease, often managed with protein modifications and medications like lactulose.</li>
+        <li><strong>Ascites:</strong> Accumulation of fluid in the peritoneal cavity, a common complication of cirrhosis, managed primarily with sodium restriction and diuretics.</li>
+        <li><strong>Sarcopenia:</strong> Progressive and generalized skeletal muscle disorder that is associated with increased likelihood of adverse outcomes including falls, functional decline, frailty, and mortality. Highly prevalent in cirrhosis.</li>
+        <li><strong>Hyponatremia:</strong> Low sodium concentration in the blood, often dilutional in cirrhosis due to impaired free water excretion, sometimes requiring fluid restriction.</li>
+        <li><strong>Portal Hypertension:</strong> Increased pressure in the portal vein system, a major complication of cirrhosis, leading to ascites and varices.</li>
+        <li><strong>Branched-Chain Amino Acids (BCAAs):</strong> Leucine, isoleucine, and valine; sometimes supplemented in cirrhosis to improve nutritional status and manage HE.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

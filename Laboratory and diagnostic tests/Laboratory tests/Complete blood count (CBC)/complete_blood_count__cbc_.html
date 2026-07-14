@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a stylized laboratory setting. A clear blood sample tube with distinct, colorful representations of red blood cells, white blood cells, and platelets floating within. A magnifying glass hovers over the tube, emphasizing the cellular components. In the background, a friendly, professional lab technician in scrubs is operating a modern hematology analyzer. The overall design is clean, informative, and uses a palette of blues, reds, and whites, suitable for a public health awareness campaign.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./complete_blood_count__cbc_.jpg" class="card-banner" alt="Complete blood count (CBC) Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-laboratory-and-diagnostic-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Laboratory and diagnostic tests</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-laboratory-and-diagnostic-tests-laboratory-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Laboratory tests</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Complete blood count (CBC)</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Laboratory and diagnostic tests</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Laboratory tests</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Comprehensive Overview:</strong> A Complete Blood Count (CBC) is a common blood test providing a detailed snapshot of the cells in your blood, including red blood cells (RBCs), white blood cells (WBCs), and platelets.</li><li><strong>Key Measurements:</strong> It measures the number of these cells, their size, shape, and other characteristics, along with hemoglobin and hematocrit levels.</li><li><strong>Diagnostic Utility:</strong> Used to screen for, diagnose, and monitor a wide range of conditions such as anemia, infection, inflammation, and bleeding disorders.</li><li><strong>Routine Screening:</strong> Often part of a routine physical examination to assess overall health and detect potential issues early.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Persistent Fatigue & Weakness:</strong> May indicate anemia (low RBCs or hemoglobin).</li><li><strong>Frequent Infections & Fever:</strong> Could suggest issues with white blood cell counts, either too high or too low.</li><li><strong>Easy Bruising & Prolonged Bleeding:</strong> Potentially points to platelet abnormalities, affecting blood clotting.</li><li><strong>Dizziness & Shortness of Breath:</strong> Can be symptoms of reduced oxygen-carrying capacity due due to low red blood cell counts.</li><li><strong>Unexplained Weight Loss or Swollen Lymph Nodes:</strong> May prompt a CBC to investigate underlying systemic conditions.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Medication Disclosure:</strong> Inform your healthcare provider about all medications, supplements, and herbal remedies you are taking, as some can affect blood cell counts.</li><li><strong>Anticoagulant Awareness:</strong> If you are on blood thinners (e.g., warfarin, aspirin), notify the phlebotomist prior to the blood draw to ensure appropriate post-procedure care to prevent excessive bruising.</li><li><strong>Hydration Status:</strong> Ensure adequate hydration before the test to facilitate easier vein access and a smoother blood draw.</li><li><strong>Post-Procedure Care:</strong> Apply pressure to the venipuncture site for several minutes after the draw to minimize bruising and hematoma formation. Avoid heavy lifting with the arm for a few hours.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Fasting Generally Not Required:</strong> For a standalone CBC, fasting is typically not necessary, allowing you to eat and drink normally before the test.</li><li><strong>Concurrent Test Requirements:</strong> If your CBC is ordered alongside other blood tests (e.g., glucose, lipid panel) that require fasting, you will need to follow those specific fasting instructions (usually 8-12 hours without food or caloric beverages).</li><li><strong>Hydration Encouragement:</strong> Drinking water is encouraged before the test to help keep veins plump and make the blood draw easier.</li><li><strong>Alcohol Avoidance:</strong> Refrain from alcohol consumption for at least 24 hours prior to the test, as it can potentially influence certain blood parameters, though not typically the primary CBC components.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Patient Identification:</strong> Always confirm patient identity using at least two identifiers (e.g., name and date of birth) before specimen collection.</li><li><strong>Specimen Labeling:</strong> Ensure all blood tubes are correctly labeled immediately after collection with the patient's full name, date of birth, and collection date/time.</li><li><strong>Venipuncture Site Monitoring:</strong> Observe the venipuncture site for any signs of excessive bleeding, hematoma, or patient discomfort during and immediately after the procedure.</li><li><strong>Patient Education:</strong> Instruct the patient on post-procedure care, including keeping the bandage on for a specified time and reporting any unusual pain, swelling, or redness.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Holistic Interpretation:</strong> CBC results are always interpreted in the context of the patient's clinical history, physical examination findings, and other diagnostic tests.</li><li><strong>Trend Analysis:</strong> Serial CBCs are invaluable for monitoring disease progression, response to treatment (e.g., chemotherapy, iron supplementation), and detecting potential complications.</li><li><strong>Differential Diagnosis:</strong> Abnormalities in specific cell lines (e.g., elevated neutrophils, decreased platelets) guide the physician towards a differential diagnosis, prompting further targeted investigations.</li><li><strong>Risk Stratification:</strong> Certain CBC parameters, such as very low platelet counts or severe anemia, can indicate a need for urgent intervention or transfusion.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Preparation & Education:</strong> Nurses are crucial in explaining the CBC procedure, addressing patient anxieties, and ensuring adherence to any pre-test instructions.</li><li><strong>Proficient Venipuncture:</strong> Mastering sterile venipuncture technique is essential for accurate sample collection and minimizing patient discomfort and complications.</li><li><strong>Specimen Handling & Transport:</strong> Correct tube selection (e.g., lavender-top EDTA tube), proper mixing, and timely transport to the lab are critical for maintaining specimen integrity.</li><li><strong>Recognizing Critical Values:</strong> Nurses must be aware of critical CBC values (e.g., extremely low hemoglobin, very high or low WBCs) and understand the protocol for immediate notification of the physician.</li><li><strong>Post-Procedure Monitoring:</strong> Assessing the venipuncture site for hematoma, infection, or nerve injury and providing appropriate patient education on self-care.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Red Blood Cell (RBC) Count:</strong> Measures the number of oxygen-carrying cells. Reference range: ~4.5-5.5 million/µL.</li><li><strong>Hemoglobin (Hgb):</strong> Protein in RBCs that carries oxygen. Reference range: ~13-17 g/dL (men), ~12-15 g/dL (women).</li><li><strong>Hematocrit (Hct):</strong> Percentage of blood volume occupied by RBCs. Reference range: ~40-50% (men), ~36-45% (women).</li><li><strong>White Blood Cell (WBC) Count:</strong> Measures immune system cells. Reference range: ~4,500-11,000/µL.</li><li><strong>WBC Differential:</strong> Breakdown of specific WBC types (Neutrophils, Lymphocytes, Monocytes, Eosinophils, Basophils) indicating specific immune responses.</li><li><strong>Platelet Count:</strong> Cells involved in blood clotting. Reference range: ~150,000-450,000/µL.</li><li><strong>Mean Corpuscular Volume (MCV):</strong> Average size of RBCs, used to classify anemia (microcytic, normocytic, macrocytic).</li><li><strong>Red Cell Distribution Width (RDW):</strong> Measures variation in RBC size, useful in differentiating types of anemia.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

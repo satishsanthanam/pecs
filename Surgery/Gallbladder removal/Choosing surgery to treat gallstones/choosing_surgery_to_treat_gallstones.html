@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a patient discussing gallstone surgery with a doctor. The patient points to their upper right abdomen where a transparent outline of a gallbladder with small stones is visible. The doctor holds a tablet displaying a laparoscopic surgical instrument. Include elements like a medical chart, a stethoscope, and a subtle operating room background. The style should be clean, modern, and suitable for public health awareness, avoiding text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./choosing_surgery_to_treat_gallstones.jpg" class="card-banner" alt="Choosing surgery to treat gallstones Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Surgery</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-surgery-gallbladder-removal" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Gallbladder removal</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Choosing surgery to treat gallstones</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Surgery</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Gallbladder removal</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Gallstone Disease (Cholelithiasis):</strong> Gallstones are hardened deposits of digestive fluid that can form in your gallbladder, a small organ under your liver.</li><li><strong>Surgical Indication:</strong> Surgery, specifically cholecystectomy (gallbladder removal), is the primary treatment for symptomatic gallstones or complications like acute cholecystitis, pancreatitis, or choledocholithiasis.</li><li><strong>Laparoscopic Cholecystectomy:</strong> This minimally invasive procedure is the most common approach, involving small incisions, faster recovery, and less pain compared to open surgery.</li><li><strong>Open Cholecystectomy:</strong> May be necessary in complex cases, severe inflammation, or if laparoscopic surgery is not feasible, requiring a larger incision.</li><li><strong>Non-Surgical Alternatives:</strong> While some gallstones can be managed with medication or watchful waiting, surgery is often recommended for recurrent or severe symptoms due to its definitive nature.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Biliary Colic:</strong> Sudden and rapidly intensifying pain in the upper right abdomen, often after eating fatty meals, radiating to the right shoulder or back.</li><li><strong>Acute Cholecystitis:</strong> Persistent, severe upper abdominal pain, fever, nausea, vomiting, and tenderness in the upper right quadrant, indicating gallbladder inflammation.</li><li><strong>Pancreatitis:</strong> Severe, persistent abdominal pain radiating to the back, often accompanied by nausea and vomiting, if a gallstone blocks the pancreatic duct.</li><li><strong>Jaundice:</strong> Yellowing of the skin and eyes, dark urine, and pale stools, indicating a gallstone obstructing the common bile duct.</li><li><strong>Indigestion and Bloating:</strong> Chronic, non-specific digestive discomfort that may be attributed to gallstones, especially after fatty food intake.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Pre-operative Assessment:</strong> Undergo thorough medical evaluation, including blood tests, imaging, and cardiac assessment, to ensure fitness for surgery and anesthesia.</li><li><strong>Medication Review:</strong> Inform your surgeon and anesthesiologist about all medications, supplements, and herbal remedies, especially blood thinners (anticoagulants), which may need to be stopped prior to surgery.</li><li><strong>Fasting Instructions:</strong> Adhere strictly to NPO (nil per os) guidelines, typically no food or drink for 6-8 hours before surgery, to prevent aspiration during anesthesia.</li><li><strong>Allergy Disclosure:</strong> Clearly communicate any known allergies to medications, latex, or anesthesia agents to the medical team.</li><li><strong>Post-operative Complication Monitoring:</strong> Watch for signs of infection (fever, redness, pus at incision site), severe abdominal pain, persistent nausea/vomiting, jaundice, or changes in bowel habits.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-operative Fasting:</strong> Strictly follow the NPO protocol provided by your surgical team, typically no food or drink after midnight the day before surgery.</li><li><strong>Immediate Post-operative Diet:</strong> Begin with clear liquids, progressing to a light, low-fat diet as tolerated, usually within hours of surgery.</li><li><strong>Gradual Reintroduction of Foods:</strong> Slowly reintroduce solid foods, starting with bland, easily digestible options. Avoid large, heavy meals initially.</li><li><strong>Fat Restriction (Initial Post-op):</strong> Limit high-fat foods (fried foods, greasy meats, rich sauces, full-fat dairy) for several weeks post-surgery to prevent discomfort, diarrhea, or bloating as your body adjusts to bile flow changes.</li><li><strong>Hydration:</strong> Maintain adequate fluid intake to prevent constipation and support recovery.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Pain Management:</strong> Take prescribed pain medication as directed. Do not wait for pain to become severe before taking medication.</li><li><strong>Incision Care:</strong> Keep incision sites clean and dry. Follow specific instructions for dressing changes and showering. Report any signs of infection immediately.</li><li><strong>Activity Restrictions:</strong> Avoid heavy lifting, strenuous exercise, and abdominal straining for several weeks post-surgery as advised by your surgeon. Gradual increase in activity is encouraged.</li><li><strong>Driving:</strong> Do not drive while taking opioid pain medication or if you are still experiencing significant pain or discomfort that could impair your ability to operate a vehicle safely.</li><li><strong>Emergency Signs:</strong> Seek immediate medical attention for persistent high fever, severe or worsening abdominal pain, yellowing of skin/eyes, persistent nausea/vomiting, or significant bleeding/discharge from incision sites.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Shared Decision-Making:</strong> Discuss all treatment options, including the risks and benefits of surgery, with your physician to make an informed decision tailored to your specific condition and health status.</li><li><strong>Surgical Success Rate:</strong> Cholecystectomy is a highly effective treatment for symptomatic gallstones, providing definitive relief from pain and preventing future complications.</li><li><strong>Potential Post-Cholecystectomy Syndrome:</strong> Be aware that a small percentage of patients may experience persistent digestive symptoms after surgery, which should be discussed during follow-up.</li><li><strong>Long-Term Outlook:</strong> Most patients experience excellent long-term outcomes after gallbladder removal, with no significant impact on digestion once the body adapts.</li><li><strong>Follow-up Care:</strong> Adhere to all post-operative follow-up appointments to monitor recovery, address any concerns, and ensure optimal healing.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pre-operative Teaching:</strong> Educate patients on the surgical procedure, expected recovery, pain management, and signs of complications. Verify NPO status and complete pre-op checklists.</li><li><strong>Post-operative Monitoring:</strong> Closely monitor vital signs, pain levels, incision sites for signs of infection or bleeding, and assess for nausea, vomiting, or abdominal distension.</li><li><strong>Fluid and Electrolyte Balance:</strong> Monitor IV fluid administration and oral intake, assessing for signs of dehydration or electrolyte imbalance, especially if nausea/vomiting is present.</li><li><strong>Early Ambulation:</strong> Encourage early and progressive ambulation to prevent complications such as deep vein thrombosis (DVT) and promote bowel motility.</li><li><strong>Discharge Planning:</strong> Provide comprehensive discharge instructions covering wound care, medication management, activity restrictions, dietary guidelines, and when to seek medical attention.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Cholelithiasis:</strong> Presence of gallstones in the gallbladder.</li><li><strong>Cholecystectomy:</strong> Surgical removal of the gallbladder.</li><li><strong>Laparoscopic Cholecystectomy:</strong> Minimally invasive surgical technique for gallbladder removal using small incisions and a camera.</li><li><strong>Choledocholithiasis:</strong> Presence of gallstones in the common bile duct.</li><li><strong>Endoscopic Retrograde Cholangiopancreatography (ERCP):</strong> A procedure used to diagnose and treat conditions of the bile ducts and pancreatic duct, often used to remove common bile duct stones.</li><li><strong>Magnetic Resonance Cholangiopancreatography (MRCP):</strong> A non-invasive MRI technique used to visualize the biliary and pancreatic ducts.</li><li><strong>Hepatobiliary Iminodiacetic Acid (HIDA) Scan:</strong> A nuclear medicine imaging test used to diagnose problems of the liver, gallbladder, and bile ducts.</li><li><strong>Biliary Colic:</strong> Episodic abdominal pain caused by temporary obstruction of the cystic duct by a gallstone.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

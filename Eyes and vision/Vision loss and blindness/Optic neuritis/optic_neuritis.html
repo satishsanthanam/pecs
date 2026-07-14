@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for public awareness. A stylized human head in profile, with a prominent, slightly inflamed optic nerve connecting the eye to the brain. The eye shows a subtle blur effect or a red desaturation overlay. The optic nerve itself could have small, abstract inflammatory elements around it. Clean lines, medical aesthetic, informative, no text.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./optic_neuritis.jpg" class="card-banner" alt="Optic neuritis Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-eyes-and-vision" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Eyes and vision</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-eyes-and-vision-vision-loss-and-blindness" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Vision loss and blindness</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Optic neuritis</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Eyes and vision</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Vision loss and blindness</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Optic neuritis is an inflammation of the optic nerve, the bundle of nerve fibers that transmits visual information from your eye to your brain.</li><li><strong>Primary Impact:</strong> It typically causes sudden, temporary vision loss in one eye, often accompanied by pain with eye movement.</li><li><strong>Common Association:</strong> Optic neuritis is frequently the first symptom of multiple sclerosis (MS) or can occur as an isolated event.</li><li><strong>Vision Recovery:</strong> While most individuals experience some degree of vision recovery, residual visual deficits, such as reduced color vision or brightness, are common.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Acute Vision Loss:</strong> Rapid onset of blurred vision, dimness, or complete loss of vision, usually in one eye.</li><li><strong>Ocular Pain:</strong> Pain in or around the eye, which often worsens with eye movement.</li><li><strong>Dyschromatopsia:</strong> Significant reduction in color vision, particularly red desaturation, making colors appear faded.</li><li><strong>Uhthoff's Phenomenon:</strong> Temporary worsening of visual symptoms with an increase in body temperature, such as during exercise, fever, or a hot bath.</li><li><strong>Phosphenes:</strong> Flashes of light that may be triggered by eye movement.</li><li><strong>Relative Afferent Pupillary Defect (RAPD):</strong> A clinical sign where the affected pupil shows a diminished response to light compared to the unaffected eye.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Prompt Medical Evaluation:</strong> Seek immediate consultation with an ophthalmologist or neurologist upon experiencing sudden vision changes or eye pain to ensure timely diagnosis and management.</li><li><strong>Underlying Condition Screening:</strong> Be prepared for investigations, such as an MRI of the brain and orbits, to rule out or diagnose associated demyelinating diseases like multiple sclerosis.</li><li><strong>Medication Adherence:</strong> If corticosteroids are prescribed, strictly follow the dosage and tapering schedule to minimize side effects and optimize treatment efficacy.</li><li><strong>Symptom Monitoring:</strong> Regularly monitor for any changes in vision, color perception, or pain, and report these to your healthcare provider.</li><li><strong>Avoid Self-Medication:</strong> Do not attempt to treat vision loss or eye pain with over-the-counter remedies without professional medical advice.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Anti-inflammatory Diet:</strong> Focus on a diet rich in fruits, vegetables, whole grains, and lean proteins to support overall neurological health and potentially reduce systemic inflammation.</li><li><strong>Omega-3 Fatty Acids:</strong> Incorporate sources like fatty fish (salmon, mackerel), flaxseeds, and walnuts, which are known for their neuroprotective and anti-inflammatory properties.</li><li><strong>Vitamin D Intake:</strong> Ensure adequate vitamin D levels through sun exposure, fortified foods, or supplements, as vitamin D deficiency has been linked to demyelinating conditions.</li><li><strong>Antioxidant-Rich Foods:</strong> Consume foods high in antioxidants (e.g., berries, leafy greens) to combat oxidative stress that can contribute to nerve damage.</li><li><strong>Limit Processed Foods:</strong> Reduce intake of highly processed foods, excessive sugars, and unhealthy fats, which can promote inflammation and negatively impact overall health.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Support Visual Impairment:</strong> Assist the patient with daily activities that may be challenging due to temporary vision loss, such as reading, navigating, or preparing meals.</li><li><strong>Medication Management:</strong> Help ensure the patient adheres to prescribed medication schedules, especially during corticosteroid therapy, and understands potential side effects.</li><li><strong>Appointment Coordination:</strong> Facilitate attendance at follow-up appointments with ophthalmologists, neurologists, and other specialists.</li><li><strong>Emotional Support:</strong> Provide reassurance and emotional support, as sudden vision loss can be distressing and anxiety-provoking.</li><li><strong>Safety Measures:</strong> Ensure a safe home environment by removing tripping hazards and improving lighting to prevent accidents due to impaired vision.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive Diagnosis:</strong> A thorough neurological and ophthalmological examination is essential, including visual acuity, color vision testing, fundoscopy, and pupillary light reflex assessment.</li><li><strong>Imaging Studies:</strong> Magnetic Resonance Imaging (MRI) of the brain and orbits with contrast is crucial to confirm inflammation of the optic nerve and evaluate for demyelinating lesions suggestive of MS.</li><li><strong>Treatment Protocol:</strong> High-dose intravenous corticosteroids (e.g., methylprednisolone) are typically administered for 3-5 days to accelerate visual recovery, followed by an oral taper.</li><li><strong>MS Risk Stratification:</strong> Patients with optic neuritis, especially those with demyelinating lesions on MRI, require ongoing monitoring for the development of multiple sclerosis.</li><li><strong>Prognosis and Counseling:</strong> Counsel patients on the variable prognosis for visual recovery and the potential for residual deficits, emphasizing the importance of long-term follow-up.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pathophysiology:</strong> Optic neuritis involves inflammation and demyelination of the optic nerve, leading to impaired conduction of visual signals to the brain.</li><li><strong>Nursing Assessment Focus:</strong> Detailed assessment includes visual acuity (Snellen chart), color vision (Ishihara plates), pupillary responses (checking for RAPD), and pain characteristics.</li><li><strong>Patient Education:</strong> Educate patients on the disease process, the link to MS, medication adherence (especially corticosteroid side effects), and strategies for managing visual deficits.</li><li><strong>Interdisciplinary Collaboration:</strong> Emphasize the importance of working closely with neurologists, ophthalmologists, and rehabilitation specialists to provide holistic patient care.</li><li><strong>Rehabilitation Strategies:</strong> Discuss low vision aids, adaptive techniques, and occupational therapy referrals to help patients cope with persistent visual impairment.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Optic Nerve (Cranial Nerve II):</strong> The sensory nerve responsible for transmitting visual information from the retina to the brain.</li><li><strong>Demyelination:</strong> The process of damage to the myelin sheath, the protective covering around nerve fibers, which impairs nerve signal transmission.</li><li><strong>Multiple Sclerosis (MS):</strong> A chronic autoimmune disease affecting the central nervous system, characterized by demyelination and neurodegeneration.</li><li><strong>Visual Evoked Potentials (VEP):</strong> An electrophysiological test that measures the electrical activity in the brain in response to visual stimuli, often showing delayed conduction in optic neuritis.</li><li><strong>Relative Afferent Pupillary Defect (RAPD) / Marcus Gunn Pupil:</strong> A clinical sign indicating unilateral optic nerve dysfunction, where the affected pupil paradoxically dilates when light is swung from the unaffected to the affected eye.</li><li><strong>Corticosteroids:</strong> A class of steroid hormones used for their potent anti-inflammatory and immunosuppressive effects in conditions like optic neuritis.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

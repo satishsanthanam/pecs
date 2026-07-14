@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a person, possibly with subtle signs of skin thickening on their hands, surrounded by abstract, interconnected symbols representing various internal organs like the lungs, heart, kidneys, and digestive system. The overall design should convey a sense of medical awareness and support, using a clean, soft color palette with a focus on interconnectedness and the systemic nature of the condition. Avoid any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./systemic_sclerosis__scleroderma_.jpg" class="card-banner" alt="Systemic sclerosis (scleroderma) Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-skin-hair-and-nails" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Skin, hair, and nails</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-skin-hair-and-nails-scleroderma" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Scleroderma</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Systemic sclerosis (scleroderma)</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Skin, hair, and nails</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Scleroderma</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Chronic Autoimmune Condition:</strong> Systemic sclerosis, commonly known as scleroderma, is a chronic autoimmune disease characterized by excessive collagen production and deposition, leading to fibrosis in the skin and internal organs.</li><li><strong>Widespread Organ Involvement:</strong> It can affect the skin, blood vessels, and various internal organs including the lungs, heart, kidneys, and gastrointestinal tract.</li><li><strong>Two Primary Forms:</strong> Classified into limited cutaneous systemic sclerosis (lcSSc) and diffuse cutaneous systemic sclerosis (dcSSc), differing in the extent of skin involvement and risk of internal organ complications.</li><li><strong>Progressive Nature:</strong> The disease is progressive, with no definitive cure, and management focuses on symptom control, preventing organ damage, and improving quality of life.</li><li><strong>CREST Syndrome:</strong> A common manifestation of lcSSc, characterized by Calcinosis, Raynaud's phenomenon, Esophageal dysmotility, Sclerodactyly, and Telangiectasias.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Skin Thickening and Tightening:</strong> Progressive hardening and tightening of the skin, often starting in the fingers and hands, potentially extending to other body parts.</li><li><strong>Raynaud's Phenomenon:</strong> Episodes of digital pallor, cyanosis, and rubor in response to cold or stress, often accompanied by pain or numbness.</li><li><strong>Joint Pain and Stiffness:</strong> Arthralgia, arthritis, and contractures, particularly in the hands and wrists, due to skin tightening and inflammation.</li><li><strong>Gastrointestinal Dysmotility:</strong> Dysphagia (difficulty swallowing), heartburn, acid reflux, bloating, constipation, or diarrhea due to esophageal and intestinal involvement.</li><li><strong>Pulmonary Symptoms:</strong> Shortness of breath, dry cough, and reduced exercise tolerance, indicating potential interstitial lung disease (ILD) or pulmonary hypertension (PH).</li><li><strong>Cardiac Manifestations:</strong> Chest pain, palpitations, or signs of heart failure due to myocardial fibrosis, pericarditis, or arrhythmias.</li><li><strong>Renal Crisis:</strong> A severe and sudden increase in blood pressure accompanied by acute kidney injury, requiring urgent medical intervention.</li><li><strong>Fatigue and Weakness:</strong> Persistent tiredness and generalized muscle weakness are common systemic complaints.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Early Diagnosis and Monitoring:</strong> Regular clinical assessments and screenings for organ involvement (e.g., lung function tests, echocardiograms, renal function) are vital for early detection and intervention.</li><li><strong>Temperature Protection:</strong> Protect extremities from cold exposure to prevent Raynaud's attacks; wear warm clothing, gloves, and socks.</li><li><strong>Skin Care and Protection:</strong> Maintain skin hydration with emollients, avoid trauma to the skin, and promptly manage any digital ulcers or skin breakdown to prevent infection.</li><li><strong>Medication Adherence:</strong> Strictly follow prescribed treatment regimens, including immunosuppressants, vasodilators, and anti-fibrotic agents, to manage symptoms and slow disease progression.</li><li><strong>Dental and Oral Hygiene:</strong> Regular dental check-ups and meticulous oral hygiene are crucial due to potential dry mouth and limited mouth opening.</li><li><strong>Avoidance of Triggers:</strong> Smoking cessation is imperative as it exacerbates vascular and lung complications; manage stress effectively.</li><li><strong>Vaccinations:</strong> Ensure up-to-date vaccinations, including annual influenza and pneumococcal vaccines, especially for patients on immunosuppressive therapy.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Small, Frequent Meals:</strong> Consume smaller, more frequent meals to manage dysphagia, reduce reflux symptoms, and improve nutrient absorption.</li><li><strong>Soft, Moist Foods:</strong> Opt for foods that are easy to chew and swallow, such as pureed soups, mashed vegetables, and tender meats, to alleviate dysphagia.</li><li><strong>Adequate Hydration:</strong> Maintain good fluid intake throughout the day to aid digestion, prevent constipation, and alleviate dry mouth symptoms.</li><li><strong>Avoid Reflux-Triggering Foods:</strong> Limit or avoid spicy foods, caffeine, alcohol, chocolate, peppermint, and high-fat meals, especially before bedtime, to minimize acid reflux.</li><li><strong>Nutrient-Dense Choices:</strong> Focus on a balanced diet rich in fruits, vegetables, lean proteins, and whole grains to combat potential malabsorption and maintain overall nutritional status.</li><li><strong>Calcium and Vitamin D Intake:</strong> Ensure sufficient intake of calcium and vitamin D, particularly if corticosteroids are part of the treatment plan, to support bone health.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Monitor for Scleroderma Renal Crisis (SRC):</strong> Educate patients and caregivers on the signs of SRC, including sudden onset of severe hypertension, headache, and visual changes, and emphasize immediate medical attention.</li><li><strong>Assess Respiratory Status:</strong> Closely monitor for new or worsening shortness of breath, persistent cough, or chest discomfort, which may indicate progressive lung involvement.</li><li><strong>Manage Digital Ulcers:</strong> Provide meticulous wound care for digital ulcers, including pain management, infection prevention, and promoting healing to prevent tissue loss.</li><li><strong>Fall Risk Assessment:</strong> Evaluate for fall risk due to joint stiffness, muscle weakness, and potential orthostatic hypotension, implementing appropriate preventative measures.</li><li><strong>Psychosocial Support:</strong> Recognize and address the significant psychological impact of chronic illness, offering resources for anxiety, depression, and body image concerns.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Multidisciplinary Care:</strong> A collaborative approach involving rheumatologists, pulmonologists, cardiologists, gastroenterologists, nephrologists, and dermatologists is crucial for comprehensive management.</li><li><strong>Individualized Treatment Plans:</strong> Therapy must be tailored to the specific organ involvement, disease subtype (lcSSc vs. dcSSc), and disease activity for each patient.</li><li><strong>Regular Organ Screening:</strong> Proactive and routine screening for internal organ involvement (e.g., pulmonary function tests, echocardiograms, renal function panels) is paramount for early detection and intervention.</li><li><strong>Patient Education and Empowerment:</strong> Educating patients about their condition, potential complications, and self-management strategies empowers them to actively participate in their care.</li><li><strong>Consideration of Emerging Therapies:</strong> Stay abreast of new therapeutic agents and clinical trials, discussing their potential benefits and risks with patients as part of shared decision-making.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Holistic Assessment:</strong> Conduct thorough assessments focusing on skin integrity, range of motion, respiratory and cardiac status, gastrointestinal function, and pain levels.</li><li><strong>Patient Education on Raynaud's:</strong> Instruct patients on protective measures against cold, proper hand and foot warming techniques, and the importance of medication adherence for vasodilation.</li><li><strong>Medication Management:</strong> Understand the indications, dosages, side effects, and monitoring parameters for immunosuppressants, vasodilators, and other prescribed medications.</li><li><strong>Wound Care Expertise:</strong> Develop proficiency in managing digital ulcers and other skin lesions, including sterile dressing changes, infection surveillance, and pain control.</li><li><strong>Emotional Support and Counseling:</strong> Provide empathetic listening and emotional support, recognizing the chronic and often debilitating nature of scleroderma, and facilitate referrals to support groups or mental health professionals.</li><li><strong>Facilitate Referrals:</strong> Assist patients in navigating the healthcare system by facilitating referrals to specialists, physical therapy, occupational therapy, and nutritional counseling.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathophysiology:</strong> Characterized by immune system dysregulation, endothelial cell injury, and fibroblast activation leading to excessive extracellular matrix deposition, primarily collagen.</li><li><strong>Classification Criteria:</strong> 2013 ACR/EULAR classification criteria for systemic sclerosis, incorporating skin thickening, Raynaud's phenomenon, and autoantibodies.</li><li><strong>Autoantibody Markers:</strong> Key autoantibodies include anti-centromere antibodies (ACA) associated with lcSSc, and anti-topoisomerase I (anti-Scl-70) and anti-RNA polymerase III antibodies associated with dcSSc.</li><li><strong>Organ-Specific Complications:</strong> Significant complications include interstitial lung disease (ILD), pulmonary arterial hypertension (PAH), scleroderma renal crisis (SRC), and severe gastrointestinal dysmotility.</li><li><strong>Pharmacological Management:</strong> Treatment strategies involve immunosuppressants (e.g., mycophenolate mofetil, cyclophosphamide), vasodilators (e.g., calcium channel blockers, PDE5 inhibitors, endothelin receptor antagonists), and anti-fibrotic agents (e.g., nintedanib).</li><li><strong>Prognostic Factors:</strong> Diffuse skin involvement, presence of anti-Scl-70 or anti-RNA polymerase III antibodies, and early onset of significant internal organ involvement (especially lung or kidney) are associated with a poorer prognosis.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a person (gender-neutral) looking a bit tired but hopeful, with a stylized thyroid gland in the neck area. Surrounding elements include a pill bottle representing medication, a calendar icon for regular check-ups, and subtle leaf motifs suggesting natural balance. The color palette should be soft and calming, with shades of teal, light blue, and muted greens, conveying health awareness and medical care.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./hypothyroidism__underactive_thyroid_.jpg" class="card-banner" alt="Hypothyroidism (underactive thyroid) Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-hormones" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Hormones</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-hormones-thyroid-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Thyroid disorders</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Hypothyroidism (underactive thyroid)</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Hormones</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Thyroid disorders</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Condition Overview:</strong> Hypothyroidism, or an underactive thyroid, occurs when the thyroid gland does not produce enough thyroid hormones (primarily thyroxine, T4), leading to a slowdown of the body's metabolic processes.</li><li><strong>Primary Cause:</strong> The most common cause is Hashimoto's thyroiditis, an autoimmune disease where the body's immune system attacks the thyroid gland.</li><li><strong>Impact on Body:</strong> Thyroid hormones are crucial for regulating metabolism, energy production, body temperature, heart rate, and brain function. Insufficient levels affect nearly every system in the body.</li><li><strong>Diagnosis & Treatment:</strong> Diagnosed through blood tests measuring TSH (Thyroid-Stimulating Hormone) and T4 levels. Treatment involves lifelong daily hormone replacement therapy, typically with levothyroxine.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Persistent Fatigue:</strong> Profound tiredness and lack of energy, even after adequate rest, is a hallmark symptom.</li><li><strong>Unexplained Weight Gain:</strong> Difficulty losing weight or gradual weight gain despite no significant changes in diet or activity levels.</li><li><strong>Cold Intolerance:</strong> Feeling unusually cold, even in warm environments, due to a slowed metabolism.</li><li><strong>Dry Skin & Hair Changes:</strong> Dry, coarse skin, brittle nails, and thinning hair, including loss of the outer third of the eyebrows.</li><li><strong>Constipation:</strong> Reduced bowel motility leading to infrequent or difficult bowel movements.</li><li><strong>Muscle Aches & Weakness:</strong> Generalized muscle pain, stiffness, and weakness, often accompanied by joint pain.</li><li><strong>Cognitive Impairment:</strong> Difficulty concentrating, memory problems, and a general feeling of mental fogginess.</li><li><strong>Depression & Mood Changes:</strong> Feelings of sadness, irritability, and a lack of interest in activities once enjoyed.</li><li><strong>Bradycardia:</strong> A slower-than-normal heart rate.</li><li><strong>Menstrual Irregularities:</strong> Heavier or irregular menstrual periods in women.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Medication Adherence:</strong> Take levothyroxine exactly as prescribed, typically once daily on an empty stomach, 30-60 minutes before breakfast or other medications.</li><li><strong>Avoid Drug Interactions:</strong> Separate levothyroxine intake from iron supplements, calcium supplements, antacids, and certain other medications by at least 4 hours, as they can impair absorption.</li><li><strong>Regular Monitoring:</strong> Adhere to scheduled blood tests (TSH, T4) to ensure optimal hormone levels and allow for dose adjustments.</li><li><strong>Pregnancy Considerations:</strong> Thyroid hormone requirements often increase during pregnancy; close monitoring and dose adjustments are crucial for maternal and fetal health.</li><li><strong>Myxedema Coma Awareness:</strong> Be vigilant for signs of severe, untreated hypothyroidism (e.g., extreme lethargy, hypothermia, confusion), which can lead to a life-threatening myxedema coma.</li><li><strong>Inform Healthcare Providers:</strong> Always inform all healthcare professionals, including dentists and pharmacists, about your hypothyroidism and current medications.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Levothyroxine Timing:</strong> Take levothyroxine with water only, on an empty stomach, and wait at least 30-60 minutes before consuming food, coffee, or other beverages.</li><li><strong>Iodine Intake:</strong> Ensure adequate, but not excessive, iodine intake. Most table salt is iodized, and excessive iodine can sometimes worsen or trigger thyroid dysfunction in susceptible individuals.</li><li><strong>Goitrogenic Foods:</strong> Cruciferous vegetables (e.g., broccoli, cabbage, kale) contain goitrogens that can interfere with thyroid hormone production, especially when consumed raw in large quantities. Cooking can reduce their effect; moderation is key.</li><li><strong>Soy Products:</strong> Soy can interfere with the absorption of thyroid hormone. If consuming soy, ensure it is not taken at the same time as levothyroxine.</li><li><strong>Fiber & Supplements:</strong> High-fiber diets and certain supplements (e.g., iron, calcium) can reduce levothyroxine absorption. Maintain consistent timing and separate intake.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Do Not Self-Adjust Dose:</strong> Never alter your levothyroxine dosage or stop taking the medication without explicit instruction from your physician.</li><li><strong>Report New Symptoms:</strong> Promptly report any new or worsening symptoms, or signs of hyperthyroidism (e.g., palpitations, anxiety, weight loss) which could indicate over-treatment.</li><li><strong>Consistent Medication Brand:</strong> Try to stick to the same brand of levothyroxine, as different formulations may have slight variations in bioavailability.</li><li><strong>Medication Storage:</strong> Store levothyroxine at room temperature, away from moisture and light, as per manufacturer instructions.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Lifelong Management:</strong> Hypothyroidism is typically a lifelong condition requiring continuous hormone replacement therapy and regular medical supervision.</li><li><strong>Individualized Treatment:</strong> The optimal dose of levothyroxine is highly individualized and may change over time due to factors like age, weight, pregnancy, or other medications.</li><li><strong>Symptom Resolution:</strong> While medication effectively normalizes thyroid hormone levels, it may take several weeks or months for all symptoms to fully resolve. Patience and adherence are key.</li><li><strong>Holistic Approach:</strong> Encourage patients to discuss all symptoms, even those seemingly unrelated, to ensure comprehensive care and rule out other contributing factors.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Educate patients on the importance of medication adherence, proper administration techniques, and potential drug-food interactions.</li><li><strong>Symptom Assessment:</strong> Systematically assess patients for classic signs and symptoms of hypothyroidism and hyperthyroidism (due to over-treatment).</li><li><strong>Lab Value Interpretation:</strong> Understand the significance of TSH and free T4 levels in monitoring treatment effectiveness and identifying dose adjustments.</li><li><strong>Myxedema Crisis Recognition:</strong> Be prepared to recognize and respond to the signs and symptoms of myxedema crisis, a medical emergency.</li><li><strong>Support & Resources:</strong> Provide patients with resources for support groups and reliable health information regarding thyroid disorders.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Primary Hypothyroidism:</strong> Thyroid gland dysfunction (e.g., Hashimoto's thyroiditis, iodine deficiency, post-surgical). Elevated TSH, low T4.</li><li><strong>Secondary/Tertiary Hypothyroidism:</strong> Pituitary or hypothalamic dysfunction. Low TSH, low T4.</li><li><strong>Hashimoto's Thyroiditis:</strong> Autoimmune destruction of the thyroid gland, characterized by anti-TPO (thyroid peroxidase) and anti-Tg (thyroglobulin) antibodies.</li><li><strong>Levothyroxine Sodium:</strong> Synthetic L-thyroxine (T4), the standard treatment for hypothyroidism.</li><li><strong>TSH (Thyroid-Stimulating Hormone):</strong> Produced by the pituitary gland; the most sensitive marker for thyroid function. High TSH indicates an underactive thyroid.</li><li><strong>Myxedema Coma:</strong> A severe, life-threatening complication of long-standing, untreated hypothyroidism, often triggered by infection, cold exposure, or certain medications.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

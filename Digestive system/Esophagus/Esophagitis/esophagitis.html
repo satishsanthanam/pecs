@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human torso, focusing on the esophagus. The esophagus shows subtle red inflammation and irritation. Elements like a small stomach with acid refluxing upwards, a pill capsule, and a few irritating food items (e.g., a chili pepper, a lemon slice) are depicted near the esophagus. The overall style is clean, modern, and suitable for a public health awareness campaign, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./esophagitis.jpg" class="card-banner" alt="Esophagitis Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-digestive-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Digestive system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-digestive-system-esophagus" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Esophagus</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Esophagitis</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Digestive system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Esophagus</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Esophagitis is the inflammation of the lining of the esophagus, the muscular tube that connects the throat to the stomach.</li><li><strong>Common Causes:</strong> Frequently caused by acid reflux (GERD), but can also result from infections (fungal, viral), certain medications, allergies (eosinophilic esophagitis), or radiation therapy.</li><li><strong>Types:</strong> Classified based on its cause, including reflux esophagitis, eosinophilic esophagitis, infectious esophagitis, pill-induced esophagitis, and radiation esophagitis.</li><li><strong>Potential Complications:</strong> Untreated or chronic esophagitis can lead to esophageal strictures, ulcers, Barrett's esophagus, and in rare cases, perforation.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Dysphagia:</strong> Difficulty or discomfort when swallowing food or liquids.</li><li><strong>Odynophagia:</strong> Painful swallowing, often described as a burning or sharp sensation.</li><li><strong>Heartburn (Pyrosis):</strong> A burning sensation in the chest, typically behind the breastbone, often worse after eating or at night.</li><li><strong>Chest Pain:</strong> Non-cardiac chest pain, which can be sharp, burning, or pressure-like.</li><li><strong>Regurgitation:</strong> The backward flow of undigested food or sour liquid from the stomach into the esophagus or mouth.</li><li><strong>Nausea and Vomiting:</strong> May occur, especially with severe inflammation or food impaction.</li><li><strong>Sore Throat or Hoarseness:</strong> Chronic irritation can affect the throat and vocal cords.</li><li><strong>Food Impaction:</strong> In severe cases, particularly with strictures or eosinophilic esophagitis, food can get stuck in the esophagus.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Trigger Foods:</strong> Limit or eliminate acidic, spicy, fatty, fried foods, caffeine, chocolate, and alcohol, which can irritate the esophageal lining.</li><li><strong>Elevate Head of Bed:</strong> For reflux-related esophagitis, raising the head of the bed by 6-8 inches can help reduce nighttime acid reflux.</li><li><strong>Proper Medication Intake:</strong> Take pills with plenty of water and remain upright for at least 30 minutes after ingestion to prevent pill-induced esophagitis.</li><li><strong>Smoking Cessation:</strong> Smoking weakens the lower esophageal sphincter (LES) and irritates the esophagus, worsening symptoms.</li><li><strong>Weight Management:</strong> Maintaining a healthy weight can reduce pressure on the abdomen and lessen reflux.</li><li><strong>Avoid Lying Down After Meals:</strong> Wait at least 2-3 hours after eating before lying down or going to bed.</li><li><strong>Monitor for Worsening Symptoms:</strong> Be vigilant for signs of complications such as severe chest pain, persistent vomiting, or inability to swallow.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Soft, Bland Diet:</strong> Focus on easily digestible foods like cooked vegetables, lean proteins, oatmeal, and non-citrus fruits.</li><li><strong>Avoid Acidic Foods:</strong> Strictly limit citrus fruits and juices, tomatoes, vinegar, and highly acidic beverages.</li><li><strong>Limit Spicy and Fatty Foods:</strong> Reduce intake of chili, hot sauces, fried foods, and high-fat dairy products to minimize irritation.</li><li><strong>Exclude Caffeine and Alcohol:</strong> These substances can relax the LES and directly irritate the esophageal mucosa.</li><li><strong>Small, Frequent Meals:</strong> Eating smaller portions more often can reduce pressure on the esophagus and stomach.</li><li><strong>Stay Hydrated:</strong> Drink water between meals rather than large quantities during meals to avoid overfilling the stomach.</li><li><strong>Thorough Chewing:</strong> Chew food completely to aid digestion and reduce the burden on the inflamed esophagus.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Seek Urgent Care:</strong> Immediate medical attention is required for severe chest pain, sudden inability to swallow, or signs of food impaction.</li><li><strong>Adhere to Medication Regimen:</strong> Strictly follow prescribed medications, such as proton pump inhibitors (PPIs), H2 blockers, antifungals, antivirals, or corticosteroids, as directed by your physician.</li><li><strong>Report New Symptoms:</strong> Promptly inform your healthcare provider of any new or worsening symptoms, including persistent pain, weight loss, or bleeding.</li><li><strong>Understand Diagnostic Procedures:</strong> Be prepared for potential diagnostic tests like endoscopy with biopsy, barium swallow, or pH monitoring, which are crucial for accurate diagnosis and management.</li><li><strong>Follow-up Appointments:</strong> Attend all scheduled follow-up appointments to monitor treatment effectiveness and screen for complications.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Accurate Diagnosis is Paramount:</strong> Differentiating the specific type of esophagitis (e.g., reflux, eosinophilic, infectious) is critical for guiding targeted and effective treatment strategies.</li><li><strong>Holistic Management:</strong> Treatment often involves a combination of pharmacological interventions (e.g., PPIs, steroids, antimicrobials) and significant lifestyle and dietary modifications.</li><li><strong>Long-Term Surveillance:</strong> Patients with chronic esophagitis, especially reflux or eosinophilic types, require ongoing monitoring, often including periodic endoscopic evaluations, to prevent complications like strictures or Barrett's esophagus.</li><li><strong>Patient Education:</strong> Empowering patients with knowledge about their condition, triggers, and the importance of adherence to treatment plans is fundamental for successful outcomes.</li><li><strong>Interdisciplinary Approach:</strong> Collaboration with gastroenterologists, allergists, and dietitians may be necessary for complex or refractory cases.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education on Lifestyle:</strong> Instruct patients on dietary modifications, proper medication administration (e.g., taking pills with ample water), and elevating the head of the bed for reflux.</li><li><strong>Symptom Assessment and Monitoring:</strong> Regularly assess for dysphagia, odynophagia, chest pain, signs of dehydration, and nutritional status. Document changes and report to the physician.</li><li><strong>Pre- and Post-Procedure Care:</strong> For endoscopy, ensure NPO status, monitor vital signs, assess for sedation recovery, and check for return of gag reflex post-procedure.</li><li><strong>Medication Adherence Support:</strong> Educate on the purpose, dosage, and potential side effects of prescribed medications, emphasizing the importance of consistent use.</li><li><strong>Nutritional Support Collaboration:</strong> Work with dietitians to develop individualized meal plans for patients experiencing significant dysphagia or weight loss due to esophagitis.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathophysiology:</strong> Inflammation of the esophageal squamous epithelium, often due to chemical injury (e.g., gastric acid, bile), infectious agents (e.g., Candida, HSV, CMV), or immune-mediated processes (e.g., EoE).</li><li><strong>Diagnostic Modalities:</strong> Upper endoscopy with biopsy is the gold standard for diagnosis and differentiation of esophagitis types. Barium swallow, esophageal pH monitoring, and manometry may also be utilized.</li><li><strong>Common Etiologies:</strong> Gastroesophageal Reflux Disease (GERD), Eosinophilic Esophagitis (EoE), Candida albicans, Herpes Simplex Virus (HSV), Cytomegalovirus (CMV), pill-induced (e.g., NSAIDs, doxycycline, bisphosphonates), radiation therapy.</li><li><strong>Histopathological Findings:</strong> Biopsy reveals inflammatory infiltrates (e.g., neutrophils in reflux/infectious, eosinophils in EoE), basal cell hyperplasia, and elongation of lamina propria papillae.</li><li><strong>Pharmacological Management:</strong> Proton Pump Inhibitors (PPIs) for reflux, oral/topical corticosteroids for EoE, antifungals (e.g., fluconazole) for candidal esophagitis, antivirals (e.g., acyclovir) for viral esophagitis.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

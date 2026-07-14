@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a medical professional in scrubs and a patient. The professional is holding a swab near a subtle, stylized lesion on the patient's arm (representing a test site), while another hand holds a blood collection tube. In the background, abstract representations of the Herpes Simplex Virus (HSV) are visible under a stylized microscope, alongside a lab technician analyzing samples. The overall scene conveys diagnostic testing for infections, with a focus on clarity and public awareness, using clean lines and a modern color palette. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./herpes_tests.jpg" class="card-banner" alt="Herpes tests Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-infections-and-vaccines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Infections and vaccines</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-infections-and-vaccines-tests-and-procedures" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Tests and procedures</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Herpes tests</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Infections and vaccines</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Tests and procedures</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose of Herpes Tests:</strong> These tests are crucial for diagnosing Herpes Simplex Virus (HSV) infections, specifically HSV-1 (often oral herpes) and HSV-2 (often genital herpes), which cause cold sores, genital lesions, and other symptoms.</li><li><strong>Types of Tests:</strong> Common methods include viral culture (from active lesions), Polymerase Chain Reaction (PCR) testing (highly sensitive for detecting viral DNA), and blood tests for antibodies (serology) to detect past exposure.</li><li><strong>Importance of Diagnosis:</strong> Accurate diagnosis helps in managing symptoms, preventing transmission, and guiding appropriate antiviral treatment.</li><li><strong>Asymptomatic Shedding:</strong> Individuals can shed the virus and transmit it even without active lesions, making awareness and testing important for sexual health.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Genital Lesions:</strong> Presence of painful blisters, sores, or ulcers on the genitals, buttocks, or inner thighs, often accompanied by itching or tingling.</li><li><strong>Oral Lesions (Cold Sores):</strong> Blisters or sores around the mouth, lips, or inside the mouth, frequently preceded by a tingling or burning sensation.</li><li><strong>Systemic Symptoms:</strong> During a primary outbreak, individuals may experience flu-like symptoms such as fever, body aches, headache, and swollen lymph nodes.</li><li><strong>Recurrent Symptoms:</strong> Episodes of localized pain, itching, or burning in areas where previous outbreaks occurred, even without visible lesions.</li><li><strong>Atypical Presentations:</strong> Unexplained rashes, irritation, or discomfort in genital or oral areas that do not resolve with standard treatments.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Timing of Lesion Swabs:</strong> For viral culture or PCR, samples must be collected from active, fresh lesions (preferably vesicles or early ulcers) for the highest diagnostic yield. Crusted or healing lesions may yield false negatives.</li><li><strong>Avoid Topical Medications:</strong> Patients should avoid applying topical antiviral creams or other ointments to lesions for at least 24-48 hours prior to sample collection, as these can interfere with viral detection.</li><li><strong>Serology Window Period:</strong> Antibody tests (IgG) require a window period of several weeks to months after initial exposure for antibodies to develop and become detectable. Testing too early may result in a false negative.</li><li><strong>Risk of False Negatives/Positives:</strong> Understand that no test is 100% accurate; discuss potential limitations with the healthcare provider, especially in cases of low viral load or early infection.</li><li><strong>Counseling on Transmission:</strong> Patients should be advised on safe sexual practices and disclosure to partners, regardless of test results, to prevent further transmission.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>No Pre-Test Dietary Restrictions:</strong> There are no specific dietary restrictions or fasting requirements for herpes tests themselves, whether it's a blood draw or a lesion swab.</li><li><strong>Oral Lesion Comfort:</strong> If active oral herpes lesions (cold sores) are present, individuals may find it more comfortable to consume soft, bland, non-acidic foods and avoid spicy, salty, or highly acidic items that can irritate the sores.</li><li><strong>Hydration:</strong> Maintaining adequate hydration is generally beneficial for overall health and healing, but not a specific requirement for the test procedure.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Sample Collection Procedure:</strong> Patients undergoing lesion swabbing should be prepared for a brief, potentially uncomfortable procedure where a sterile swab is rubbed firmly over the base of a lesion.</li><li><strong>Blood Draw Preparation:</strong> For serology tests, a standard venipuncture (blood draw) will be performed, requiring no special patient preparation beyond ensuring adequate hydration to facilitate vein access.</li><li><strong>Post-Procedure Care:</strong> After a lesion swab, keep the area clean and dry. After a blood draw, apply pressure to the site to prevent bruising.</li><li><strong>Follow-up for Results:</strong> Ensure you understand when and how to obtain your test results and schedule a follow-up appointment to discuss the findings and any necessary treatment or counseling.</li><li><strong>Confidentiality:</strong> Be assured that all test results and discussions regarding sexually transmitted infections are handled with strict confidentiality.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Test Selection:</strong> The choice of herpes test depends on the clinical presentation; active lesions warrant viral culture or PCR, while suspected past exposure or asymptomatic screening often utilizes type-specific serology (IgG).</li><li><strong>Interpreting Results:</strong> A positive viral culture or PCR confirms active infection. Positive IgG serology indicates past exposure, but does not pinpoint the timing or location of infection. IgM tests are generally not recommended due to poor specificity.</li><li><strong>Counseling and Management:</strong> Physicians must provide comprehensive counseling on the chronic nature of HSV, treatment options (e.g., acyclovir, valacyclovir), recurrence prevention, and strategies to minimize transmission risk to partners.</li><li><strong>Differentiating HSV-1 and HSV-2:</strong> Type-specific serology is crucial for distinguishing between HSV-1 and HSV-2, as management and counseling differ for each type, especially concerning genital infections.</li><li><strong>Partner Notification:</strong> Encourage patients to inform sexual partners about their diagnosis to facilitate testing and prevent further spread.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Nurses play a vital role in educating patients about herpes testing procedures, the meaning of results, and the importance of adherence to treatment and prevention strategies.</li><li><strong>Accurate Sample Collection:</strong> Proficiency in collecting lesion swabs (e.g., unroofing vesicles, swabbing the base of ulcers) is critical for obtaining viable samples for viral culture and PCR.</li><li><strong>Emotional Support:</strong> Provide empathetic support to patients, addressing concerns about stigma, relationships, and the emotional impact of an HSV diagnosis.</li><li><strong>Understanding Test Limitations:</strong> Be aware of the sensitivity and specificity of different herpes tests, particularly the limitations of IgM testing and the window period for IgG serology.</li><li><strong>Antiviral Medication Administration:</strong> Educate patients on proper dosing, potential side effects, and the importance of completing antiviral regimens as prescribed.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Viral Culture:</strong> Gold standard for diagnosing active lesions, but sensitivity decreases as lesions heal. Detects live virus.</li><li><strong>PCR (Polymerase Chain Reaction):</strong> Highly sensitive and specific test for detecting HSV DNA, particularly useful for atypical lesions, CNS infections, and when viral load is low.</li><li><strong>Type-Specific Serology (IgG):</strong> Detects antibodies to HSV-1 and HSV-2 glycoproteins (gG-1 and gG-2), indicating past exposure. Results are typically reported as positive, negative, or indeterminate.</li><li><strong>IgM Testing:</strong> Generally not recommended for routine HSV diagnosis due to poor specificity and inability to differentiate between primary and recurrent infections.</li><li><strong>Indications for Testing:</strong> Includes presence of active lesions, recurrent genital symptoms, partner with HSV, and sometimes as part of a comprehensive STI panel.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a person experiencing deep vein thrombosis in their arm. The illustration shows a subtle swelling and redness in one arm, with a faint, stylized blood clot visible within the vein. A healthcare professional, possibly a doctor or nurse, is gently examining the arm. The background is clean and medical-themed, with subtle elements like a stethoscope or a medical chart. The overall style is modern, clean, and informative, suitable for public health awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./deep_vein_thrombosis__blood_clot_in_the_arm_.jpg" class="card-banner" alt="Deep vein thrombosis (blood clot in the arm) Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-blood-clots-in-the-legs-or-lungs" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Blood clots in the legs or lungs</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Deep vein thrombosis (blood clot in the arm)</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Blood clots in the legs or lungs</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding Upper Extremity DVT:</strong> Deep vein thrombosis (DVT) in the arm involves a blood clot forming in a major vein, typically in the arm, shoulder, or neck.</li><li><strong>Common Causes:</strong> Often associated with central venous catheters (PICC lines, port-a-caths), repetitive arm movements (effort thrombosis or Paget-Schroetter syndrome), trauma, surgery, or underlying hypercoagulable states.</li><li><strong>Potential Complications:</strong> While less common than leg DVT, an arm DVT can lead to pulmonary embolism (PE) if the clot travels to the lungs, or post-thrombotic syndrome (PTS) in the affected arm.</li><li><strong>Early Recognition is Key:</strong> Prompt identification and treatment are crucial to prevent serious complications and manage symptoms effectively.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Arm Swelling:</strong> Noticeable swelling of the affected arm, hand, and fingers, often appearing suddenly.</li><li><strong>Pain or Tenderness:</strong> Aching, throbbing, or cramping pain in the arm, shoulder, or neck, which may worsen with movement.</li><li><strong>Skin Changes:</strong> Redness, warmth, or a bluish discoloration (cyanosis) of the skin over the affected area.</li><li><strong>Visible Veins:</strong> Prominent superficial veins in the arm or chest wall due to increased blood flow through collateral vessels.</li><li><strong>Heaviness or Weakness:</strong> A sensation of heaviness, fatigue, or weakness in the affected arm.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Central Line Care:</strong> Meticulous care and regular assessment of central venous catheters to minimize infection and irritation, which can predispose to clot formation.</li><li><strong>Activity Modification:</strong> For individuals at risk or with a history of effort thrombosis, modifying repetitive overhead arm activities may be necessary.</li><li><strong>Hydration:</strong> Maintaining adequate hydration, especially during prolonged periods of immobility or travel, helps prevent blood stasis.</li><li><strong>Anticoagulant Adherence:</strong> If prescribed anticoagulant medication, strict adherence to the dosage and schedule is vital to prevent clot growth and new clot formation.</li><li><strong>Avoidance of Constriction:</strong> Refrain from wearing tight clothing, jewelry, or blood pressure cuffs on the affected arm, which could impede blood flow.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Consistent Vitamin K Intake (Warfarin):</strong> If on Warfarin, maintain a consistent intake of Vitamin K-rich foods (e.g., leafy green vegetables) rather than drastically increasing or decreasing them, to ensure stable INR levels.</li><li><strong>Hydration Status:</strong> Ensure adequate fluid intake throughout the day to prevent dehydration, which can contribute to increased blood viscosity and clot risk.</li><li><strong>Alcohol Consumption:</strong> Moderate alcohol intake is advised, as excessive alcohol can interact with anticoagulant medications and affect liver function.</li><li><strong>Avoidance of Supplements:</strong> Consult a physician before taking any new supplements, especially those that may affect blood clotting (e.g., high-dose Vitamin E, fish oil, ginkgo biloba).</li><li><strong>Balanced Nutrition:</strong> Focus on a generally healthy and balanced diet to support overall cardiovascular health and recovery.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Seek Immediate Medical Attention:</strong> If new or worsening symptoms of arm DVT occur, or if you experience sudden shortness of breath, chest pain, or coughing up blood, seek emergency medical care immediately as these may indicate a pulmonary embolism.</li><li><strong>Medication Management:</strong> Do not stop or alter anticoagulant medication without consulting your prescribing physician, even if symptoms improve.</li><li><strong>Activity Restrictions:</strong> Avoid heavy lifting or strenuous activities with the affected arm as advised by your healthcare provider during the initial treatment phase to prevent clot dislodgement.</li><li><strong>Monitor for Bleeding:</strong> Be vigilant for signs of bleeding while on anticoagulants, such as unusual bruising, nosebleeds, blood in urine or stool, or prolonged bleeding from cuts. Report these to your doctor.</li><li><strong>Follow-up Appointments:</strong> Adhere to all scheduled follow-up appointments for monitoring and adjustment of your treatment plan.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Prompt Diagnosis:</strong> Early diagnosis, typically via duplex ultrasound, is critical for effective management and prevention of complications.</li><li><strong>Anticoagulation Therapy:</strong> The cornerstone of treatment involves anticoagulation, usually for a duration of 3 to 6 months, to prevent clot extension and recurrence.</li><li><strong>Risk Factor Assessment:</strong> A thorough evaluation for underlying risk factors, such as malignancy, inherited thrombophilias, or central venous catheter presence, guides long-term management.</li><li><strong>Consideration for Thrombolysis:</strong> In select cases, particularly for extensive clots or those causing significant symptoms, catheter-directed thrombolysis or thrombectomy may be considered.</li><li><strong>Patient Education:</strong> Comprehensive patient education on medication adherence, symptom recognition, and lifestyle modifications is paramount for successful outcomes.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Clinical Assessment:</strong> Perform thorough assessments for unilateral arm swelling, pain, warmth, and visible collateral veins, especially in patients with central lines or recent trauma.</li><li><strong>Patient Education on Anticoagulants:</strong> Educate patients on the purpose, administration, potential side effects, and monitoring requirements for their prescribed anticoagulant therapy.</li><li><strong>Central Line Care Protocol:</strong> Adhere strictly to sterile techniques for central line insertion and maintenance to minimize the risk of catheter-related DVT.</li><li><strong>Compression Therapy:</strong> Instruct patients on the proper application and care of compression sleeves or garments if prescribed for symptom management or post-thrombotic syndrome prevention.</li><li><strong>Monitoring for Complications:</strong> Continuously monitor patients for signs of pulmonary embolism (dyspnea, chest pain, hypoxemia) and bleeding complications related to anticoagulation.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathophysiology:</strong> Upper extremity DVT often involves Virchow's Triad (venous stasis, endothelial injury, hypercoagulability), with central venous catheters being a significant contributor to endothelial injury and stasis.</li><li><strong>Diagnostic Modalities:</strong> Duplex ultrasonography is the primary diagnostic tool. Venography may be used in complex cases or when ultrasound is inconclusive. D-dimer has lower specificity for upper extremity DVT.</li><li><strong>Treatment Guidelines:</strong> Current guidelines recommend anticoagulation with direct oral anticoagulants (DOACs), low molecular weight heparin (LMWH), or warfarin. Catheter-directed thrombolysis or surgical thrombectomy may be considered for severe cases.</li><li><strong>Etiology:</strong> Primary upper extremity DVT (Paget-Schroetter syndrome) is typically due to thoracic outlet compression. Secondary DVT is more common, often related to central venous catheters, malignancy, or thrombophilia.</li><li><strong>Complications:</strong> Potential complications include pulmonary embolism (PE), post-thrombotic syndrome (PTS) of the arm, and superior vena cava syndrome in cases of extensive central vein thrombosis.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

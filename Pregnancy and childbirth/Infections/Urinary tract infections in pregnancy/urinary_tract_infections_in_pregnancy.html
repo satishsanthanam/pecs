@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A pregnant woman, gently holding her belly, looking concerned but hopeful. She is surrounded by subtle, illustrative elements related to urinary health: a stylized bladder, water droplets, and small, abstract bacteria shapes. The color palette is soft and reassuring, with a focus on blues, purples, and greens. Flat vector illustration, public awareness campaign style, no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./urinary_tract_infections_in_pregnancy.jpg" class="card-banner" alt="Urinary tract infections in pregnancy Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-pregnancy-and-childbirth" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Pregnancy and childbirth</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-pregnancy-and-childbirth-infections" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Infections</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Urinary tract infections in pregnancy</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Pregnancy and childbirth</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Infections</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Increased Susceptibility</strong>: Hormonal changes and anatomical alterations during pregnancy (e.g., ureteral dilation, bladder hypotonia) significantly increase a woman's risk of developing urinary tract infections.</li><li><strong>Asymptomatic Bacteriuria (ASB)</strong>: A common condition in pregnancy (affecting 10-15%) where bacteria are present in the urine without causing symptoms. Untreated ASB can progress to symptomatic UTI or pyelonephritis.</li><li><strong>Routine Screening</strong>: Universal screening for ASB via urine culture is recommended at the first prenatal visit or between 12-16 weeks gestation to detect and treat infections early.</li><li><strong>Potential Complications</strong>: Untreated UTIs in pregnancy are associated with adverse outcomes including preterm labor, low birth weight, and maternal pyelonephritis, which can be severe.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Cystitis Symptoms</strong>: Common signs include dysuria (painful urination), increased urinary frequency and urgency, suprapubic discomfort or pain, and sometimes hematuria (blood in urine).</li><li><strong>Pyelonephritis Symptoms</strong>: More severe symptoms indicating kidney involvement include high fever, chills, unilateral flank pain (often in the lower back or side), nausea, vomiting, and general malaise.</li><li><strong>Atypical Presentation</strong>: Pregnant women may experience subtle or non-specific symptoms, or their symptoms might be mistaken for normal pregnancy discomforts, making vigilance crucial.</li><li><strong>Asymptomatic Bacteriuria</strong>: By definition, ASB presents without any noticeable urinary symptoms, highlighting the importance of routine screening.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Adequate Hydration</strong>: Maintain a high fluid intake, especially water, to promote frequent urination and help flush bacteria from the urinary tract.</li><li><strong>Proper Hygiene</strong>: Always wipe from front to back after using the toilet to prevent bacteria from the anal region from entering the urethra.</li><li><strong>Urination Habits</strong>: Urinate frequently and completely empty the bladder. Avoid holding urine for extended periods. Urinate before and after sexual intercourse.</li><li><strong>Avoid Irritants</strong>: Limit the use of perfumed feminine hygiene products, douches, and harsh soaps that can irritate the urethra and disrupt natural flora.</li><li><strong>Prompt Medical Attention</strong>: Seek immediate medical advice for any suspected UTI symptoms to ensure timely diagnosis and appropriate treatment, preventing progression.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Increased Water Intake</strong>: Drink at least 8-10 glasses of water daily to help dilute urine and encourage frequent voiding, which aids in flushing bacteria.</li><li><strong>Cranberry Products</strong>: While not a treatment, some studies suggest cranberry products (juice or supplements) may help prevent recurrent UTIs by inhibiting bacterial adherence to the bladder wall. Consult your doctor before use, and avoid highly sweetened versions.</li><li><strong>Avoid Bladder Irritants</strong>: If experiencing symptoms, consider limiting intake of caffeine, artificial sweeteners, spicy foods, and highly acidic foods (e.g., citrus fruits, tomatoes) as they can sometimes exacerbate bladder irritation.</li><li><strong>Probiotic-Rich Foods</strong>: Incorporate foods rich in probiotics, such as plain yogurt with live cultures, to support a healthy vaginal and gut microbiome, which may indirectly help prevent UTIs.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Symptom Monitoring</strong>: Be highly vigilant for any new or worsening urinary symptoms, fever, chills, or back pain, and report them to your healthcare provider without delay.</li><li><strong>Medication Adherence</strong>: If antibiotics are prescribed, complete the entire course as directed, even if symptoms improve, to ensure complete eradication of the infection and prevent recurrence or antibiotic resistance.</li><li><strong>Follow-up Testing</strong>: Ensure that follow-up urine cultures are performed after treatment, as recommended by your physician, to confirm the infection has cleared.</li><li><strong>Emergency Signs</strong>: Seek immediate emergency medical care for high fever, severe flank pain, persistent vomiting, or any signs of preterm labor (e.g., regular contractions, fluid leakage).</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Universal Screening Importance</strong>: Emphasize the critical role of routine urine culture screening for ASB in all pregnant women to prevent progression to symptomatic infection and adverse pregnancy outcomes.</li><li><strong>Safe Antibiotic Selection</strong>: Carefully select antibiotics that are effective against common uropathogens and are considered safe for use during pregnancy, considering gestational age and potential fetal effects.</li><li><strong>Aggressive Management</strong>: Treat all diagnosed UTIs, including ASB, promptly and effectively. Pyelonephritis in pregnancy often requires hospitalization and intravenous antibiotics.</li><li><strong>Patient Education & Compliance</strong>: Provide thorough education to patients regarding symptoms, prevention strategies, and the absolute necessity of adhering to prescribed treatment regimens and follow-up.</li><li><strong>Recurrent UTI Protocol</strong>: For recurrent UTIs, consider further investigation for underlying causes and discuss prophylactic antibiotic strategies with the patient.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education</strong>: Educate pregnant patients on proper perineal hygiene, adequate fluid intake, and the importance of reporting any urinary symptoms promptly.</li><li><strong>Clean-Catch Urine Collection</strong>: Instruct patients on the correct technique for obtaining a clean-catch midstream urine sample to ensure accurate culture results and minimize contamination.</li><li><strong>Symptom Assessment</strong>: Conduct comprehensive assessments for signs and symptoms of UTI and pyelonephritis, including vital signs, pain assessment, and fetal well-being monitoring if indicated.</li><li><strong>Medication Counseling</strong>: Provide clear instructions on antibiotic administration, potential side effects, and stress the importance of completing the full course of treatment.</li><li><strong>Monitoring for Complications</strong>: Monitor patients, especially those with pyelonephritis, for signs of worsening infection, sepsis, or obstetric complications such as preterm labor.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Etiology</strong>: The most common causative agent is *Escherichia coli* (80-90%), followed by *Klebsiella pneumoniae*, *Proteus mirabilis*, and Group B Streptococcus.</li><li><strong>Diagnosis</strong>: Diagnosis of ASB is based on a positive urine culture with ≥10^5 colony-forming units/mL of a single uropathogen. Symptomatic UTI may be diagnosed with lower bacterial counts (e.g., ≥10^3 CFU/mL). Urinalysis may show pyuria, bacteriuria, and positive leukocyte esterase or nitrites.</li><li><strong>Treatment Regimens</strong>: First-line antibiotics safe in pregnancy include nitrofurantoin (avoid near term), cephalexin, amoxicillin-clavulanate, and fosfomycin. Trimethoprim-sulfamethoxazole is generally avoided in the first and third trimesters.</li><li><strong>Pyelonephritis Management</strong>: Typically requires hospitalization, intravenous antibiotics (e.g., ceftriaxone, gentamicin), antipyretics, and close maternal-fetal monitoring.</li><li><strong>Risk Factors</strong>: History of previous UTIs, diabetes mellitus, sickle cell trait, multiparity, and lower socioeconomic status are associated with an increased risk.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

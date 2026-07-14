@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a patient recovering at home after bone surgery. The patient is seated comfortably, perhaps with a cast or bandage on their arm or leg, using crutches or a walker nearby. A supportive family member or caregiver is offering a glass of water or a healthy meal. Elements of a cozy home environment, like a sofa and a window, are visible. The scene emphasizes healing, support, and adherence to discharge instructions. Soft, warm color palette. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./surgery_to_fix_a_broken_bone___discharge_instructions.jpg" class="card-banner" alt="Surgery to fix a broken bone – Discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Surgery</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-surgery-bone-and-joint-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Bone and joint surgery</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Surgery to fix a broken bone – Discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Surgery</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Bone and joint surgery</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Recovery Timeline:</strong> Bone healing is a gradual process, often taking several weeks to months. Adhere strictly to your surgeon's timeline for activity progression.</li><li><strong>Pain Management:</strong> Expect some pain and discomfort. Take prescribed pain medication as directed to manage symptoms effectively. Do not wait for pain to become severe.</li><li><strong>Weight-Bearing Status:</strong> Your surgeon will provide specific instructions regarding weight-bearing on the affected limb. This is crucial for proper healing and preventing re-injury.</li><li><strong>Follow-Up Appointments:</strong> Essential appointments are scheduled to monitor your healing progress, assess the surgical site, and potentially remove sutures or adjust casts/braces.</li><li><strong>Assistive Devices:</strong> You may require crutches, a walker, or a wheelchair temporarily. Ensure you know how to use them safely before discharge.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Uncontrolled Pain:</strong> Pain that is severe, worsening, or not relieved by prescribed medication.</li><li><strong>Signs of Infection:</strong> Fever (temperature over 100.4°F or 38°C), chills, increased redness, warmth, swelling, or pus-like drainage from the incision site.</li><li><strong>Numbness or Tingling:</strong> New or worsening numbness, tingling, or a 'pins and needles' sensation in the limb distal to the surgical site.</li><li><strong>Loss of Sensation or Movement:</strong> Inability to move fingers or toes, or a significant decrease in sensation in the affected limb.</li><li><strong>Calf Pain/Swelling:</strong> Sudden onset of pain, tenderness, redness, or swelling in the calf, which could indicate a deep vein thrombosis (DVT).</li><li><strong>Excessive Swelling:</strong> Swelling that increases significantly, especially if accompanied by tightness or throbbing pain.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Wound Care:</strong> Keep the incision site clean and dry. Follow specific instructions for dressing changes. Do not submerge the wound in water (e.g., baths, swimming pools) until cleared by your surgeon.</li><li><strong>Activity Restrictions:</strong> Avoid lifting heavy objects, strenuous activities, or movements that put stress on the surgical site, as instructed by your medical team.</li><li><strong>Cast/Splint Care:</strong> If you have a cast or splint, keep it dry and clean. Do not insert objects inside the cast, and report any cracks, soft spots, or persistent itching/irritation.</li><li><strong>Medication Adherence:</strong> Take all prescribed medications, including pain relievers, antibiotics, and blood thinners, exactly as directed. Do not stop taking medications without consulting your doctor.</li><li><strong>Fall Prevention:</strong> Use assistive devices as recommended. Ensure your home environment is free of tripping hazards (e.g., loose rugs, clutter) and well-lit.</li><li><strong>Driving Restrictions:</strong> Do not drive while taking narcotic pain medication or if your ability to operate a vehicle safely is impaired by your injury or surgical recovery.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration:</strong> Drink plenty of fluids (water, clear broths) to stay hydrated, especially important for healing and preventing constipation from pain medications.</li><li><strong>Balanced Nutrition:</strong> Focus on a diet rich in protein (lean meats, fish, beans), calcium (dairy, fortified plant milks), and Vitamin D (fatty fish, fortified foods) to support bone healing.</li><li><strong>Fiber Intake:</strong> Increase dietary fiber (fruits, vegetables, whole grains) to prevent constipation, a common side effect of opioid pain medications.</li><li><strong>Avoid Alcohol:</strong> Refrain from consuming alcohol as it can interfere with medication effectiveness, impair judgment, and potentially hinder the healing process.</li><li><strong>Limit Processed Foods:</strong> Opt for whole, unprocessed foods to provide optimal nutrients for recovery.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Assistance with Daily Activities:</strong> Be prepared to assist the patient with activities of daily living such as dressing, bathing, and mobility, especially in the initial post-operative period.</li><li><strong>Medication Management:</strong> Help ensure the patient takes medications as prescribed and on schedule. Be aware of potential side effects and when to report them.</li><li><strong>Monitoring for Complications:</strong> Closely observe the patient for any signs of infection, increased pain, changes in sensation, or symptoms of DVT (e.g., calf pain, swelling).</li><li><strong>Safe Environment:</strong> Help maintain a safe home environment by removing tripping hazards, ensuring adequate lighting, and assisting with transfers.</li><li><strong>Emergency Contacts:</strong> Have the surgeon's office number and emergency services contact information readily available. Know when to call for urgent medical attention.</li><li><strong>Emotional Support:</strong> Provide emotional support and encouragement, as recovery from bone surgery can be challenging and frustrating.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Adherence is Key:</strong> Strict adherence to all post-operative instructions, including weight-bearing restrictions and physical therapy, is paramount for optimal healing and preventing complications.</li><li><strong>Rehabilitation is Vital:</strong> Physical or occupational therapy will be a critical component of your recovery to regain strength, flexibility, and function in the affected limb.</li><li><strong>Patience and Persistence:</strong> Bone healing is a biological process that takes time. Be patient with your body and persistent with your rehabilitation exercises.</li><li><strong>Report Concerns Promptly:</strong> Do not hesitate to contact our office if you experience any concerning symptoms or have questions about your recovery. Early intervention can prevent minor issues from becoming major problems.</li><li><strong>Long-Term Outlook:</strong> While recovery requires effort, most patients achieve excellent outcomes and return to their previous activity levels with proper care and rehabilitation.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Neurovascular Assessment:</strong> Regularly assess the affected limb for the '5 Ps' – Pain, Pallor, Pulselessness, Paresthesia, and Paralysis – to detect potential neurovascular compromise.</li><li><strong>Pain Assessment & Management:</strong> Utilize a pain scale (e.g., 0-10) to assess pain levels and evaluate the effectiveness of analgesia. Educate patients on non-pharmacological pain relief methods.</li><li><strong>Wound Care Education:</strong> Provide clear, step-by-step instructions for wound care, dressing changes, and recognition of infection signs. Demonstrate proper technique if applicable.</li><li><strong>Mobility & Assistive Device Training:</strong> Ensure the patient and caregivers are proficient in safe transfers, ambulation with assistive devices, and understanding weight-bearing restrictions.</li><li><strong>DVT Prophylaxis Education:</strong> Reinforce the importance of prescribed anticoagulants, early ambulation (if allowed), and leg exercises to prevent deep vein thrombosis.</li><li><strong>Patient Education Reinforcement:</strong> Systematically review all discharge instructions, medication schedules, and follow-up appointments, using teach-back methods to confirm understanding.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Open Reduction Internal Fixation (ORIF):</strong> A surgical procedure involving the reduction (repositioning) of a bone fracture and stabilization with internal hardware (plates, screws, rods).</li><li><strong>External Fixation:</strong> A method of stabilizing bone fractures using pins or wires inserted into the bone and connected to an external frame.</li><li><strong>Deep Vein Thrombosis (DVT):</strong> A blood clot that forms in a deep vein, often in the leg, a significant post-operative risk.</li><li><strong>Compartment Syndrome:</strong> A serious condition where increased pressure within a muscle compartment compromises circulation and nerve function, requiring urgent medical attention.</li><li><strong>Non-Union/Malunion:</strong> Complications of bone healing where the fracture fails to heal (non-union) or heals in an incorrect position (malunion).</li><li><strong>Osteomyelitis:</strong> An infection of the bone or bone marrow, a potential complication of open fractures or surgical procedures.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

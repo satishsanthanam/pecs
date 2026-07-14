@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a diverse family in a cozy home setting. A child, looking slightly tired but recovering, is resting on a sofa with a blanket. A parent or guardian is gently checking their forehead or offering a glass of water. Another family member is seen in the background practicing hand hygiene or cleaning a surface. Soft, warm colors. Elements like a thermometer, a tissue box, and a small plant are visible. The overall mood is one of care, recovery, and safety. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./covid_19_in_children___discharge_instructions.jpg" class="card-banner" alt="COVID-19 in children – Discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-lung-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Lung disease</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-lung-disease-respiratory-tract-infections" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Respiratory tract infections</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>COVID-19 in children – Discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Lung disease</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Respiratory tract infections</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Understanding COVID-19 Recovery:</strong> Your child is being discharged after a COVID-19 diagnosis. While symptoms may improve, continued monitoring at home is crucial for full recovery and to prevent transmission.</li>
+        <li><strong>Isolation Period:</strong> Strict isolation protocols are essential. Your child must remain isolated from others in the household, especially high-risk individuals, for the duration recommended by public health authorities or your physician.</li>
+        <li><strong>Symptom Fluctuation:</strong> It is common for symptoms to wax and wane during recovery. Be vigilant for any signs of worsening condition, particularly respiratory distress or new symptoms.</li>
+        <li><strong>Family Education:</strong> All household members should be aware of infection control practices, including hand hygiene and surface disinfection, to minimize the risk of spread within the home.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Persistent Fever:</strong> Monitor for a fever (temperature &#8805; 100.4°F or 38°C) that does not respond to fever-reducing medication or recurs frequently.</li>
+        <li><strong>Worsening Cough:</strong> Observe for a cough that becomes more frequent, severe, or productive, especially if accompanied by difficulty breathing.</li>
+        <li><strong>Respiratory Distress:</strong> Watch for signs such as rapid breathing, nasal flaring, retractions (sinking in of skin around ribs/neck with each breath), grunting, or bluish lips/face.</li>
+        <li><strong>Fatigue and Lethargy:</strong> Note any unusual or severe tiredness, lack of energy, or difficulty waking your child.</li>
+        <li><strong>Poor Feeding/Hydration:</strong> Be alert to decreased appetite, refusal to drink fluids, or signs of dehydration (e.g., dry mouth, decreased urination, no tears).</li>
+        <li><strong>New or Worsening Pain:</strong> Report any new or severe chest pain, abdominal pain, or headache.</li>
+        <li><strong>Signs of MIS-C:</strong> Be aware of potential post-viral complications like Multisystem Inflammatory Syndrome in Children (MIS-C), which can present with persistent fever, rash, red eyes, swollen hands/feet, and gastrointestinal symptoms weeks after initial infection.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Home Isolation:</strong> Ensure the child stays in a separate room and uses a separate bathroom if possible. Limit contact with other household members.</li>
+        <li><strong>Masking:</strong> If the child is old enough and able to tolerate it, they should wear a well-fitting mask when around others in the home, especially if sharing common spaces. Caregivers should also wear masks.</li>
+        <li><strong>Hand Hygiene:</strong> Frequent hand washing with soap and water for at least 20 seconds, or using an alcohol-based hand sanitizer (at least 60% alcohol), is critical for both the child and caregivers.</li>
+        <li><strong>Surface Disinfection:</strong> Regularly clean and disinfect high-touch surfaces in the child's room and common areas (e.g., doorknobs, light switches, remote controls).</li>
+        <li><strong>Avoid Visitors:</strong> Do not allow visitors into the home during the isolation period to prevent further spread.</li>
+        <li><strong>Return to Activities:</strong> Follow specific guidance from your healthcare provider or local public health department regarding when your child can safely return to school, daycare, or other activities. This typically involves symptom improvement and a specified isolation period.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Hydration is Key:</strong> Encourage frequent intake of fluids such as water, clear broths, oral rehydration solutions, or diluted juices to prevent dehydration, especially if fever or vomiting is present.</li>
+        <li><strong>Small, Frequent Meals:</strong> Offer small, easily digestible meals throughout the day, even if appetite is reduced. Foods like toast, rice, applesauce, bananas, and plain crackers are often well-tolerated.</li>
+        <li><strong>Nutrient-Rich Foods:</strong> Once appetite improves, gradually reintroduce a variety of nutrient-rich foods to support recovery and immune function.</li>
+        <li><strong>Avoid Irritants:</strong> Limit highly processed foods, sugary drinks, and overly spicy or greasy foods that may upset a sensitive stomach during recovery.</li>
+        <li><strong>Monitor for Feeding Difficulties:</strong> If the child is an infant, monitor for signs of poor feeding, decreased wet diapers, or lethargy, and report concerns to your pediatrician.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Emergency Signs:</strong> Seek immediate medical attention (call 911 or go to the nearest emergency department) if your child exhibits severe difficulty breathing, persistent pain or pressure in the chest, new confusion, inability to wake or stay awake, pale/gray/blue-colored skin/lips/nail beds, or any other life-threatening symptoms.</li>
+        <li><strong>Medication Adherence:</strong> Administer all prescribed medications as directed, including fever reducers or other symptom management drugs. Do not give aspirin to children due to the risk of Reye's syndrome.</li>
+        <li><strong>Follow-Up Appointments:</strong> Ensure you attend all scheduled follow-up appointments with your pediatrician or specialist to monitor your child's recovery and address any lingering concerns.</li>
+        <li><strong>Caregiver Well-being:</strong> Caregivers should also monitor their own health for symptoms of COVID-19 and practice strict infection control measures.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Prioritize Rest:</strong> Adequate rest is paramount for your child's immune system to fight the virus and for a full recovery. Limit strenuous activities.</li>
+        <li><strong>Symptom Management:</strong> Focus on managing symptoms effectively at home. Use over-the-counter medications for fever and pain as advised, and ensure comfort.</li>
+        <li><strong>Emotional Support:</strong> Acknowledge that illness can be distressing for children. Provide comfort, reassurance, and maintain a calm environment.</li>
+        <li><strong>Long-Term Monitoring:</strong> Be aware that some children may experience prolonged symptoms or develop post-COVID conditions. Maintain open communication with your healthcare provider about any ongoing concerns.</li>
+        <li><strong>Vaccination:</strong> Discuss age-appropriate COVID-19 vaccination for your child and other eligible family members with your pediatrician to prevent future infections and severe disease.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Comprehensive Discharge Teaching:</strong> Nurses must provide clear, concise, and culturally sensitive discharge instructions, ensuring parents/guardians understand isolation protocols, symptom monitoring, and when to seek emergency care.</li>
+        <li><strong>Assess Health Literacy:</strong> Evaluate the family's understanding of the disease process, medication administration, and follow-up care. Utilize teach-back methods to confirm comprehension.</li>
+        <li><strong>Resource Provision:</strong> Provide written discharge instructions, contact numbers for the healthcare team, and information on local public health resources or support groups.</li>
+        <li><strong>Infection Control Reinforcement:</strong> Emphasize the critical role of hand hygiene, masking, and environmental cleaning in preventing household transmission.</li>
+        <li><strong>Psychosocial Support:</strong> Recognize the potential for anxiety and stress in both the child and caregivers. Offer resources for mental health support if indicated.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Viral Shedding Duration:</strong> Children can shed SARS-CoV-2 virus for an extended period, even after symptoms resolve, necessitating continued isolation as per CDC/WHO guidelines.</li>
+        <li><strong>Post-Acute Sequelae of SARS-CoV-2 (PASC):</strong> Be aware of the potential for "Long COVID" in children, which can manifest as persistent fatigue, brain fog, dyspnea, or other symptoms weeks to months after acute infection.</li>
+        <li><strong>Multisystem Inflammatory Syndrome in Children (MIS-C):</strong> A rare but serious post-infectious complication requiring prompt recognition and management. Typically presents 2-6 weeks post-infection.</li>
+        <li><strong>Vaccination Efficacy and Safety:</strong> Refer to current national and international guidelines (e.g., CDC, WHO, AAP) for age-specific COVID-19 vaccination recommendations and safety profiles in pediatric populations.</li>
+        <li><strong>Public Health Reporting:</strong> Confirm local public health reporting requirements for pediatric COVID-19 cases and ensure appropriate documentation.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

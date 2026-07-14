@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting malaria awareness. A stylized Anopheles mosquito is shown in flight, with a subtle representation of the Plasmodium parasite within its body or near a human arm. Elements of prevention are prominently featured: a person applying insect repellent, a rolled-up insecticide-treated bed net, and a blister pack of antimalarial pills. The design uses a clean, modern aesthetic with a limited, vibrant color palette, suitable for public health campaign materials. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./malaria.jpg" class="card-banner" alt="Malaria Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-infections-and-vaccines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Infections and vaccines</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-infections-and-vaccines-insect-borne-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Insect borne disease</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Malaria</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Infections and vaccines</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Insect borne disease</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Disease Overview</strong>: Malaria is a life-threatening disease caused by Plasmodium parasites transmitted to humans through the bites of infected female Anopheles mosquitoes.</li><li><strong>Global Impact</strong>: Predominantly found in tropical and subtropical regions, particularly sub-Saharan Africa, Southeast Asia, and parts of South America.</li><li><strong>Parasite Species</strong>: Five species cause malaria in humans, with Plasmodium falciparum being the most severe and responsible for the majority of malaria-related deaths.</li><li><strong>Preventable & Treatable</strong>: Despite its severity, malaria is both preventable and curable with appropriate interventions.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Classic Symptoms</strong>: Cyclical fever, chills, and profuse sweating, often occurring every 2-3 days depending on the parasite species.</li><li><strong>General Malaise</strong>: Headache, muscle aches, fatigue, nausea, vomiting, and diarrhea are common initial symptoms.</li><li><strong>Severe Malaria Indicators</strong>: Impaired consciousness, seizures, severe anemia, respiratory distress, acute kidney injury, jaundice, and circulatory collapse.</li><li><strong>Incubation Period</strong>: Symptoms typically appear 10 days to 4 weeks after infection, but can range from 7 days to several months.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Mosquito Bite Prevention</strong>: Use insect repellents containing DEET, picaridin, or IR3535 on exposed skin, especially from dusk till dawn.</li><li><strong>Protective Clothing</strong>: Wear long-sleeved shirts and long pants when outdoors, particularly in endemic areas.</li><li><strong>Insecticide-Treated Bed Nets (ITNs)</strong>: Sleep under ITNs to prevent mosquito bites during the night.</li><li><strong>Antimalarial Chemoprophylaxis</strong>: Take prescribed antimalarial medications as directed before, during, and after travel to malaria-endemic regions.</li><li><strong>Indoor Residual Spraying (IRS)</strong>: Support and participate in community-level vector control programs.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration</strong>: Maintain adequate fluid intake, especially during fever episodes, to prevent dehydration and support recovery.</li><li><strong>Nutrient-Rich Foods</strong>: Consume easily digestible, energy-dense foods to combat weakness and support the immune system during illness.</li><li><strong>Avoid Irritants</strong>: Limit spicy, fatty, or highly processed foods that may exacerbate gastrointestinal symptoms like nausea or diarrhea.</li><li><strong>Medication Interactions</strong>: Be aware of potential food interactions with prescribed antimalarial drugs; follow specific advice from your healthcare provider or pharmacist.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Prompt Medical Attention</strong>: Seek immediate medical evaluation if malaria symptoms develop, especially after travel to a malaria-endemic area.</li><li><strong>Complete Treatment Course</strong>: Adhere strictly to the full course of prescribed antimalarial medication, even if symptoms improve, to ensure complete parasite clearance and prevent drug resistance.</li><li><strong>Monitor for Worsening Signs</strong>: Watch for any signs of severe malaria (e.g., altered mental status, severe weakness, difficulty breathing) and seek emergency care immediately.</li><li><strong>Travel History Disclosure</strong>: Always inform healthcare providers about recent travel history to malaria-endemic regions when presenting with fever.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early Diagnosis is Critical</strong>: Rapid and accurate diagnosis using microscopy or rapid diagnostic tests (RDTs) is paramount for effective treatment and preventing severe outcomes.</li><li><strong>Tailored Treatment Regimens</strong>: Treatment protocols vary based on the infecting Plasmodium species, disease severity, patient age, and local drug resistance patterns. Artemisinin-based Combination Therapies (ACTs) are the first-line treatment for uncomplicated P. falciparum malaria.</li><li><strong>Preventative Strategies</strong>: Emphasize a comprehensive approach including chemoprophylaxis, vector control, and prompt diagnosis and treatment for individuals at risk.</li><li><strong>Post-Treatment Follow-up</strong>: Monitor patients for treatment efficacy, potential drug side effects, and signs of relapse, particularly for P. vivax and P. ovale which can cause dormant liver stages.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education</strong>: Educate patients and their families on malaria transmission, symptoms, prevention strategies (e.g., ITN use, repellent application), and the importance of medication adherence.</li><li><strong>Symptom Monitoring & Assessment</strong>: Closely monitor vital signs, neurological status, fluid balance, and signs of complications (e.g., anemia, jaundice, respiratory distress) in hospitalized patients.</li><li><strong>Drug Administration & Side Effects</strong>: Understand the correct administration, dosage, and potential side effects of various antimalarial drugs, and educate patients accordingly.</li><li><strong>Community Health Role</strong>: Participate in public health initiatives for malaria control, including bed net distribution, community awareness campaigns, and surveillance activities.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathophysiology</strong>: Involves the asexual erythrocytic cycle of Plasmodium parasites, leading to red blood cell lysis, inflammation, and systemic symptoms. P. falciparum can cause sequestration of infected red blood cells in capillaries, leading to organ dysfunction.</li><li><strong>Diagnostic Methods</strong>: Gold standard is microscopic examination of Giemsa-stained thick and thin blood smears. Rapid Diagnostic Tests (RDTs) detect parasite antigens. PCR is used for species identification, quantification, and drug resistance marker detection.</li><li><strong>Antimalarial Agents</strong>: Key drug classes include Artemisinin-based Combination Therapies (ACTs), Chloroquine, Mefloquine, Doxycycline, Atovaquone-proguanil, and Primaquine (for hypnozoites of P. vivax and P. ovale).</li><li><strong>WHO Guidelines</strong>: Refer to World Health Organization (WHO) guidelines for current recommendations on malaria prevention, diagnosis, and treatment, which are regularly updated based on emerging evidence and drug resistance patterns.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

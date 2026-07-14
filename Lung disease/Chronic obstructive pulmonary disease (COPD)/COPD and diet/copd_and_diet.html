@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a person with COPD making healthy food choices. The person is gently holding their chest, indicating breathing, while surrounded by various nutritious foods like fruits, vegetables, lean protein, and whole grains. A subtle visual representation of healthy lungs is integrated into the background or near the person. The overall design is clean, optimistic, and emphasizes the connection between diet and respiratory health. Soft, inviting color palette. No text.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./copd_and_diet.jpg" class="card-banner" alt="COPD and diet Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-lung-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Lung disease</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-lung-disease-chronic-obstructive-pulmonary-disease-copd" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Chronic obstructive pulmonary disease (COPD)</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>COPD and diet</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Lung disease</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Chronic obstructive pulmonary disease (COPD)</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Nutritional Impact:</strong> Malnutrition is prevalent in COPD due to increased energy expenditure, dyspnea affecting food intake, and systemic inflammation.</li><li><strong>Muscle Preservation:</strong> Adequate nutrition is crucial for maintaining respiratory muscle strength and overall body mass, which can significantly impact lung function and quality of life.</li><li><strong>Energy Demands:</strong> The effort of breathing in COPD patients can burn up to ten times more calories than in healthy individuals, necessitating a higher caloric intake.</li><li><strong>Immune Support:</strong> A well-balanced diet supports the immune system, helping to reduce the frequency and severity of respiratory infections common in COPD.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Dyspnea During Meals:</strong> Shortness of breath while eating, leading to reduced food intake and potential weight loss.</li><li><strong>Early Satiety and Bloating:</strong> Often caused by a flattened diaphragm pushing on the stomach, leading to discomfort and decreased appetite.</li><li><strong>Unintended Weight Loss:</strong> A common symptom due to increased metabolic demands and difficulty eating, indicating a need for nutritional intervention.</li><li><strong>Fatigue and Muscle Weakness:</strong> Directly linked to poor nutritional status and reduced muscle mass, impacting daily activities and breathing effort.</li><li><strong>Frequent Respiratory Infections:</strong> Can be exacerbated by a weakened immune system due to inadequate nutrient intake.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Overeating:</strong> Large meals can cause stomach distension, pushing against the diaphragm and worsening dyspnea.</li><li><strong>Limit Gas-Producing Foods:</strong> Foods like beans, broccoli, cabbage, and carbonated beverages can cause bloating and further restrict lung expansion.</li><li><strong>Monitor Sodium Intake:</strong> High sodium can lead to fluid retention, potentially exacerbating symptoms, especially if comorbid heart conditions are present.</li><li><strong>Beware of Aspiration Risk:</strong> Eating too quickly or while significantly breathless increases the risk of food entering the airways.</li><li><strong>Avoid Excessive Simple Sugars:</strong> While providing quick energy, they can contribute to higher CO2 production, which may be detrimental for some COPD patients.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Small, Frequent Meals:</strong> Consume 5-6 small, nutrient-dense meals throughout the day instead of 2-3 large ones to reduce stomach fullness and ease breathing.</li><li><strong>High-Calorie, Nutrient-Dense Foods:</strong> Focus on foods rich in healthy fats (avocado, nuts, olive oil) and lean proteins (chicken, fish, eggs) to meet increased energy demands.</li><li><strong>Adequate Protein Intake:</strong> Ensure sufficient protein to maintain and rebuild muscle mass, particularly respiratory muscles.</li><li><strong>Complex Carbohydrates:</strong> Choose whole grains, fruits, and vegetables for sustained energy; limit refined sugars.</li><li><strong>Hydration:</strong> Drink plenty of fluids (unless medically restricted) between meals to thin mucus and aid expectoration. Avoid drinking large amounts with meals if it causes fullness.</li><li><strong>Antioxidant-Rich Foods:</strong> Incorporate fruits and vegetables high in antioxidants (e.g., berries, leafy greens) to combat oxidative stress.</li><li><strong>Vitamin D and Calcium:</strong> Ensure adequate intake for bone health, as COPD patients are at higher risk for osteoporosis.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Rest Before Meals:</strong> Conserve energy by resting for 30 minutes before eating to minimize dyspnea during the meal.</li><li><strong>Eat Slowly and Chew Thoroughly:</strong> This helps prevent air swallowing and aids digestion, reducing the risk of bloating.</li><li><strong>Use Supplemental Oxygen:</strong> If prescribed, use oxygen during meals as eating can increase oxygen demand.</li><li><strong>Keep Snacks Handy:</strong> Have nutrient-dense snacks readily available to graze throughout the day and prevent long periods without food.</li><li><strong>Consider Liquid Supplements:</strong> If solid food intake is consistently low, discuss oral nutritional supplements with a healthcare provider.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Individualized Nutritional Assessment:</strong> Every COPD patient requires a personalized dietary plan based on their specific energy needs, weight status, and comorbidities.</li><li><strong>Referral to Registered Dietitian:</strong> Collaboration with a dietitian specializing in respiratory conditions is highly recommended for comprehensive nutritional management.</li><li><strong>Monitor Weight and Body Composition:</strong> Regular assessment of weight, BMI, and muscle mass is crucial to identify and address malnutrition or sarcopenia early.</li><li><strong>Address Comorbidities:</strong> Dietary recommendations must integrate management of co-existing conditions such as diabetes, heart failure, or gastroesophageal reflux disease (GERD).</li><li><strong>Medication Interaction Awareness:</strong> Be mindful of how certain medications (e.g., corticosteroids) can affect appetite, metabolism, and nutrient absorption.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education on Meal Preparation:</strong> Instruct patients on preparing easy-to-eat, nutrient-dense meals and snacks that require minimal effort.</li><li><strong>Assessment of Eating Difficulties:</strong> Observe patients for signs of dyspnea, fatigue, or coughing during meals and intervene as needed.</li><li><strong>Optimal Positioning for Meals:</strong> Encourage an upright position (e.g., sitting in a chair) to facilitate breathing and reduce aspiration risk.</li><li><strong>Timing of Medications:</strong> Coordinate bronchodilator administration before meals to optimize airway opening and reduce meal-related dyspnea.</li><li><strong>Oral Hygiene Promotion:</strong> Good oral hygiene can improve appetite and reduce the risk of aspiration pneumonia.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Respiratory Quotient (RQ) Considerations:</strong> A diet higher in fat and lower in carbohydrates may produce less CO2, potentially beneficial for patients with CO2 retention.</li><li><strong>Systemic Inflammation Modulation:</strong> Dietary interventions focusing on anti-inflammatory foods (e.g., omega-3 fatty acids, antioxidants) can help mitigate chronic systemic inflammation in COPD.</li><li><strong>Anabolic Resistance:</strong> COPD patients may exhibit anabolic resistance, requiring higher protein intake to stimulate muscle protein synthesis and combat muscle wasting.</li><li><strong>Bone Mineral Density (BMD):</strong> Nutritional strategies including adequate calcium and vitamin D are vital to counteract the increased risk of osteoporosis in COPD, often exacerbated by corticosteroid use.</li><li><strong>Micronutrient Deficiencies:</strong> Common deficiencies in COPD include vitamins D, C, E, and selenium, which play roles in immune function and antioxidant defense.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

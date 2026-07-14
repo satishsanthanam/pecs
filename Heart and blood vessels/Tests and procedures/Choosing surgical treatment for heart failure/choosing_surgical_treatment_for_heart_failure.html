@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a stylized human heart at the center, surrounded by various medical instruments like a scalpel, clamps, and a subtle representation of a bypass machine or VAD. In the foreground, a doctor and a patient are engaged in a discussion, possibly pointing to a decision tree or flowchart in the background, symbolizing the choice of surgical treatment for heart failure. The overall aesthetic is clean, modern, and optimized for public awareness, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./choosing_surgical_treatment_for_heart_failure.jpg" class="card-banner" alt="Choosing surgical treatment for heart failure Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-tests-and-procedures" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Tests and procedures</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Choosing surgical treatment for heart failure</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Tests and procedures</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Surgical Options for Advanced Heart Failure:</strong> Surgical interventions are considered for patients with advanced heart failure refractory to optimal medical therapy, including coronary artery bypass grafting (CABG), valve repair/replacement, ventricular assist devices (VADs), and heart transplantation.</li><li><strong>Patient Selection Criteria:</strong> Candidacy for surgery is determined by a comprehensive evaluation of the patient's overall health, cardiac function (e.g., ejection fraction), severity of symptoms (NYHA class), comorbidities, and potential for improved quality of life and survival.</li><li><strong>Goals of Surgical Treatment:</strong> The primary aims are to improve cardiac output, alleviate debilitating symptoms, prevent disease progression, enhance functional capacity, and extend life expectancy.</li><li><strong>Multidisciplinary Team Approach:</strong> Decisions are made collaboratively by a team of cardiologists, cardiac surgeons, anesthesiologists, and other specialists to ensure the most appropriate and safest treatment path.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Progressive Dyspnea:</strong> Worsening shortness of breath, initially with exertion and later at rest, indicating severe cardiac dysfunction.</li><li><strong>Persistent Fatigue and Weakness:</strong> Profound tiredness and reduced exercise tolerance, significantly impacting daily activities.</li><li><strong>Peripheral Edema:</strong> Swelling in the lower extremities, abdomen, or other areas due to fluid retention.</li><li><strong>Orthopnea and Paroxysmal Nocturnal Dyspnea (PND):</strong> Difficulty breathing when lying flat and sudden awakenings at night due to breathlessness.</li><li><strong>Recurrent Hospitalizations:</strong> Frequent admissions for acute heart failure exacerbations despite maximal medical management.</li><li><strong>Chest Pain or Angina:</strong> Especially relevant if ischemic heart disease is the underlying cause of heart failure.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Thorough Pre-operative Assessment:</strong> Extensive evaluation including cardiac imaging, functional testing, and assessment of renal, hepatic, and pulmonary function to identify surgical risks.</li><li><strong>Management of Comorbidities:</strong> Optimization of co-existing conditions such as diabetes, hypertension, and chronic kidney disease prior to surgery to minimize complications.</li><li><strong>Anticoagulation Protocol:</strong> Strict adherence to guidelines for discontinuing and re-initiating anticoagulant medications to prevent bleeding or thrombotic events.</li><li><strong>Informed Consent and Risk-Benefit Discussion:</strong> Detailed discussion with the patient and family regarding potential surgical risks (e.g., stroke, infection, bleeding) and expected outcomes.</li><li><strong>Infection Prevention:</strong> Pre-operative screening and management of any active infections, along with prophylactic antibiotics.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-operative Fasting:</strong> Strict adherence to NPO (nil per os) guidelines for a specified period before surgery to prevent aspiration during anesthesia.</li><li><strong>Post-operative Nutritional Support:</strong> Gradual reintroduction of fluids and solids, typically starting with clear liquids and advancing as tolerated, under medical supervision.</li><li><strong>Sodium Restriction:</strong> Continued strict low-sodium diet post-surgery to manage fluid balance and prevent fluid overload, crucial for heart failure patients.</li><li><strong>Fluid Management:</strong> Careful monitoring and often restriction of fluid intake, as prescribed by the physician, to prevent exacerbation of heart failure.</li><li><strong>Potassium and Electrolyte Balance:</strong> Monitoring and dietary adjustments to maintain electrolyte balance, especially with diuretic use.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Reinforce Patient Education:</strong> Assist the patient in understanding post-operative care instructions, medication schedules, and signs of potential complications.</li><li><strong>Emotional and Psychological Support:</strong> Provide consistent encouragement and support during the recovery period, which can be physically and emotionally demanding.</li><li><strong>Monitor Activity Levels:</strong> Help ensure the patient adheres to prescribed activity restrictions and participates in physical therapy as directed.</li><li><strong>Emergency Preparedness:</strong> Be aware of warning signs such as sudden severe pain, fever, excessive bleeding, or acute shortness of breath, and know when to seek immediate medical attention.</li><li><strong>Medication Adherence:</strong> Assist in organizing and administering medications as prescribed, ensuring no doses are missed.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Individualized Treatment Strategy:</strong> Surgical decisions for heart failure are highly personalized, weighing the patient's specific cardiac pathology, overall health, and life goals.</li><li><strong>Comprehensive Pre-surgical Workup:</strong> A thorough diagnostic evaluation is paramount to accurately assess surgical risk and potential benefit.</li><li><strong>Long-term Management Commitment:</strong> Surgical intervention is often part of a lifelong management plan for heart failure, requiring ongoing medical follow-up, medication adherence, and lifestyle modifications.</li><li><strong>Realistic Expectations:</strong> Patients and families must have a clear understanding of the potential outcomes, recovery timeline, and the possibility of ongoing symptoms or complications.</li><li><strong>Importance of Cardiac Rehabilitation:</strong> Post-surgical cardiac rehabilitation is crucial for optimizing recovery, improving functional capacity, and reducing future cardiac events.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pre-operative Patient Assessment:</strong> Conduct comprehensive assessments including vital signs, cardiac rhythm, lung sounds, peripheral pulses, and skin integrity.</li><li><strong>Post-operative Monitoring:</strong> Meticulous monitoring for complications such as arrhythmias, bleeding, infection, renal dysfunction, and respiratory compromise.</li><li><strong>Pain Management:</strong> Administer prescribed analgesics and assess pain levels regularly to ensure patient comfort and facilitate early mobilization.</li><li><strong>Wound Care:</strong> Strict adherence to sterile technique for incision care, monitoring for signs of infection or dehiscence.</li><li><strong>Patient and Family Education:</strong> Educate on medication regimen, activity restrictions, incision care, signs/symptoms to report, and the importance of follow-up appointments.</li><li><strong>Fluid and Electrolyte Balance:</strong> Monitor intake and output, daily weights, and laboratory values to manage fluid status and prevent electrolyte imbalances.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Ejection Fraction (EF):</strong> A key measure of the heart's pumping efficiency, often a critical factor in determining surgical candidacy.</li><li><strong>NYHA Functional Classification:</strong> New York Heart Association classification system used to grade the severity of heart failure symptoms.</li><li><strong>Ventricular Assist Device (VAD):</strong> Mechanical pump implanted to support heart function, often used as a bridge to transplantation or as destination therapy.</li><li><strong>Coronary Artery Bypass Graft (CABG):</strong> Surgical procedure to improve blood flow to the heart muscle by bypassing blocked coronary arteries.</li><li><strong>Heart Transplantation:</strong> Surgical replacement of a diseased heart with a healthy donor heart, considered for end-stage heart failure.</li><li><strong>Cardiomyopathy:</strong> Disease of the heart muscle that makes it harder for the heart to pump blood to the rest of the body.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

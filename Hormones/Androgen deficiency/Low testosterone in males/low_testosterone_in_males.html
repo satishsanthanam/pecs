@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a male figure in his 40s or 50s. One side of the figure shows signs of fatigue, low energy, and increased body fat, represented by muted colors and drooping posture. The other side, after treatment, shows more vitality, lean muscle, and a brighter demeanor, with symbols of energy and hormonal balance (e.g., a balanced scale or a healthy hormone molecule). Include subtle medical symbols like a doctor's consultation icon or a blood test tube. The overall design should be clean, modern, and suitable for a public health awareness campaign, avoiding any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./low_testosterone_in_males.jpg" class="card-banner" alt="Low testosterone in males Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-hormones" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Hormones</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-hormones-androgen-deficiency" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Androgen deficiency</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Low testosterone in males</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Hormones</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Androgen deficiency</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Low testosterone, clinically known as hypogonadism or androgen deficiency, occurs when the testes produce an insufficient amount of testosterone.</li><li><strong>Prevalence:</strong> Testosterone levels naturally decline with age, affecting a significant percentage of men over 40.</li><li><strong>Impact:</strong> This hormonal imbalance can profoundly affect physical, sexual, and psychological well-being.</li><li><strong>Causes:</strong> Can be primary (testicular failure) or secondary (pituitary/hypothalamic dysfunction), or a combination.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Decreased Libido:</strong> A noticeable reduction in sex drive.</li><li><strong>Erectile Dysfunction:</strong> Difficulty achieving or maintaining an erection.</li><li><strong>Fatigue:</strong> Persistent tiredness and lack of energy, even with adequate rest.</li><li><strong>Mood Changes:</strong> Irritability, depression, or a general lack of motivation.</li><li><strong>Muscle Loss:</strong> Reduction in muscle mass and strength, despite regular exercise.</li><li><strong>Increased Body Fat:</strong> Accumulation of adipose tissue, particularly around the abdomen.</li><li><strong>Bone Density Loss:</strong> Increased risk of osteoporosis and fractures over time.</li><li><strong>Hair Loss:</strong> Thinning of body hair and sometimes scalp hair.</li><li><strong>Sleep Disturbances:</strong> Insomnia or other sleep pattern disruptions.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Accurate Diagnosis:</strong> Ensure diagnosis is based on multiple morning blood tests (typically before 10 AM) confirming low total and free testosterone levels, alongside clinical symptoms.</li><li><strong>Contraindications for TRT:</strong> Testosterone Replacement Therapy (TRT) is generally contraindicated in men with prostate cancer, breast cancer, severe untreated sleep apnea, uncontrolled heart failure, or a hematocrit >50%.</li><li><strong>Monitoring During Therapy:</strong> Regular monitoring of testosterone levels, hematocrit, PSA (Prostate-Specific Antigen), and lipid profiles is essential during TRT to manage potential side effects.</li><li><strong>Fertility Impact:</strong> TRT can suppress spermatogenesis and impair fertility; discuss fertility preservation options if future fatherhood is desired.</li><li><strong>Cardiovascular Risk:</strong> Discuss potential cardiovascular risks with your physician, especially if you have pre-existing heart conditions.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Zinc-Rich Foods:</strong> Incorporate foods high in zinc (e.g., oysters, red meat, pumpkin seeds) which is crucial for testosterone production.</li><li><strong>Vitamin D Intake:</strong> Ensure adequate Vitamin D levels through sun exposure or supplements, as Vitamin D deficiency is linked to lower testosterone.</li><li><strong>Healthy Fats:</strong> Include sources of healthy fats (e.g., avocados, nuts, olive oil) which are important for hormone synthesis.</li><li><strong>Limit Processed Foods:</strong> Reduce intake of highly processed foods, sugary drinks, and unhealthy trans fats that can negatively impact metabolic and hormonal health.</li><li><strong>Moderate Alcohol:</strong> Excessive alcohol consumption can impair testosterone production; moderation is advised.</li><li><strong>Maintain Healthy Weight:</strong> Obesity can increase aromatization of testosterone into estrogen; dietary strategies to achieve and maintain a healthy weight are beneficial.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Consult a Specialist:</strong> Always seek evaluation and treatment from an endocrinologist or urologist experienced in male hormonal health.</li><li><strong>Avoid Self-Medication:</strong> Never attempt to self-diagnose or self-treat with over-the-counter supplements or unprescribed testosterone, as this can lead to serious health risks.</li><li><strong>Adherence to Treatment:</strong> If prescribed TRT, adhere strictly to the dosage and administration schedule provided by your healthcare provider.</li><li><strong>Report Side Effects:</strong> Promptly report any new or worsening symptoms, such as breast tenderness, swelling, mood swings, or skin reactions, to your doctor.</li><li><strong>Lifestyle Integration:</strong> Understand that TRT is often most effective when combined with healthy lifestyle choices, including diet and exercise.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive Evaluation:</strong> Diagnosis requires a thorough clinical assessment, symptom review, and confirmation with appropriate laboratory tests.</li><li><strong>Individualized Treatment:</strong> Treatment plans are highly individualized, considering the patient's age, symptoms, underlying causes, and overall health status.</li><li><strong>Therapy Options:</strong> Testosterone Replacement Therapy (TRT) is available in various forms (injections, gels, patches, pellets) and the choice depends on patient preference and clinical suitability.</li><li><strong>Risk-Benefit Analysis:</strong> A careful discussion of the potential benefits and risks of TRT is crucial before initiating treatment.</li><li><strong>Long-term Monitoring:</strong> Patients on TRT require ongoing monitoring to ensure efficacy, manage side effects, and adjust dosages as needed.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Nurses play a vital role in educating patients about the symptoms of low testosterone, the importance of adherence to TRT, and proper administration techniques for various formulations.</li><li><strong>Monitoring & Assessment:</strong> Nurses assist in monitoring patients for side effects of TRT, such as erythrocytosis (high red blood cell count), fluid retention, and skin reactions at injection/application sites.</li><li><strong>Psychosocial Support:</strong> Provide emotional support and resources for men coping with the psychological impact of low testosterone, including mood disturbances and sexual dysfunction.</li><li><strong>Lab Value Interpretation:</strong> Understand the significance of key lab values (total testosterone, free testosterone, SHBG, PSA, hematocrit) in the diagnosis and management of hypogonadism.</li><li><strong>Referral Pathways:</strong> Be aware of appropriate referral pathways to endocrinologists, urologists, or mental health professionals as needed.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Hypogonadism:</strong> Clinical syndrome resulting from failure of the testis to produce physiological concentrations of testosterone and/or a normal number of spermatozoa.</li><li><strong>Androgen Deficiency:</strong> A state of insufficient male sex hormones, primarily testosterone.</li><li><strong>Testosterone Replacement Therapy (TRT):</strong> Medical treatment to restore testosterone levels to a normal range.</li><li><strong>SHBG (Sex Hormone Binding Globulin):</strong> A protein that binds to testosterone, making it unavailable for use by the body's tissues.</li><li><strong>LH (Luteinizing Hormone) & FSH (Follicle-Stimulating Hormone):</strong> Pituitary hormones that stimulate testosterone production and spermatogenesis in the testes.</li><li><strong>Aromatase:</strong> An enzyme that converts testosterone into estrogen, particularly active in adipose tissue.</li><li><strong>Primary Hypogonadism:</strong> Testicular failure (e.g., Klinefelter syndrome, mumps orchitis).</li><li><strong>Secondary Hypogonadism:</strong> Pituitary or hypothalamic dysfunction (e.g., pituitary tumors, Kallmann syndrome).</li><li><strong>Erythrocytosis:</strong> An increase in the red blood cell mass, a potential side effect of TRT.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>
