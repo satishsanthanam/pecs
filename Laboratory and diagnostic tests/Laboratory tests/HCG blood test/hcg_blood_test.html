@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a medical laboratory setting with a focus on an HCG blood test. Elements include a phlebotomist drawing blood from a patient's arm, a test tube with a blood sample, a lab technician analyzing the sample under a microscope or with an automated analyzer, and a calendar highlighting early pregnancy days. Subtle visual cues for pregnancy like a small baby bump or a positive pregnancy test strip in the background. Use a clean, modern design with soft, professional colors. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./hcg_blood_test.jpg" class="card-banner" alt="HCG blood test Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-laboratory-and-diagnostic-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Laboratory and diagnostic tests</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-laboratory-and-diagnostic-tests-laboratory-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Laboratory tests</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>HCG blood test</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Laboratory and diagnostic tests</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Laboratory tests</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose of Test:</strong> The Human Chorionic Gonadotropin (HCG) blood test primarily detects and monitors pregnancy. It can also be used as a tumor marker for certain germ cell tumors and gestational trophoblastic disease.</li><li><strong>Qualitative vs. Quantitative:</strong> A qualitative HCG test indicates the presence or absence of HCG (yes/no for pregnancy), while a quantitative HCG test (beta-HCG) measures the exact amount of HCG in the blood, providing more detailed information about gestational age or disease progression.</li><li><strong>Early Detection:</strong> Blood HCG tests can detect pregnancy earlier than urine tests, typically around 8-11 days after conception.</li><li><strong>HCG Production:</strong> HCG is produced by the placenta after implantation of a fertilized egg. In non-pregnant individuals, HCG can be produced by certain cancers.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Missed Menstrual Period:</strong> The most common symptom prompting a pregnancy test.</li><li><strong>Nausea and Vomiting:</strong> Often referred to as 'morning sickness,' a common early sign of pregnancy.</li><li><strong>Breast Tenderness or Swelling:</strong> Hormonal changes can lead to sensitive or enlarged breasts.</li><li><strong>Fatigue:</strong> Increased progesterone levels in early pregnancy can cause significant tiredness.</li><li><strong>Frequent Urination:</strong> Due to increased blood volume and kidney activity.</li><li><strong>Abnormal Vaginal Bleeding or Pelvic Pain:</strong> May prompt HCG testing to rule out ectopic pregnancy or miscarriage, or in non-pregnant individuals, to investigate potential HCG-producing tumors.</li><li><strong>Unexplained Weight Changes or Abdominal Swelling:</strong> In cases where HCG is used as a tumor marker, these symptoms may be present.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Biotin Interference:</strong> High doses of biotin (Vitamin B7) supplements can interfere with certain HCG immunoassay tests, potentially leading to falsely low or high results. Patients should inform their healthcare provider about all supplements.</li><li><strong>Timing of Test:</strong> Testing too early in pregnancy may result in a false negative if HCG levels have not yet risen sufficiently. Repeat testing may be necessary.</li><li><strong>Medication Disclosure:</strong> Inform the healthcare provider about all medications, including over-the-counter drugs and herbal remedies, as some may affect test results or interpretation.</li><li><strong>Recent Pregnancy/Miscarriage:</strong> HCG levels can remain elevated for several weeks after a pregnancy, miscarriage, or abortion, which can affect interpretation of subsequent tests.</li><li><strong>Hook Effect:</strong> Extremely high HCG levels (e.g., in advanced pregnancy or certain tumors) can sometimes saturate the assay, leading to a falsely low reading. Dilution of the sample can resolve this.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>No Fasting Required:</strong> An HCG blood test typically does not require any specific dietary restrictions or fasting prior to the blood draw.</li><li><strong>Normal Hydration:</strong> Maintain normal fluid intake unless otherwise instructed by your healthcare provider, as adequate hydration can facilitate easier venipuncture.</li><li><strong>Avoid Excessive Biotin:</strong> If taking biotin supplements, discuss with your physician whether to temporarily discontinue them before the test, especially if high doses are used.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Serial Testing:</strong> For monitoring early pregnancy viability, ectopic pregnancy, or response to tumor treatment, serial HCG measurements (typically 48-72 hours apart) are often crucial to assess the trend of HCG levels.</li><li><strong>Ectopic Pregnancy Alert:</strong> Abnormally slow rising or plateauing HCG levels, especially when combined with pelvic pain or vaginal bleeding, warrant immediate investigation for ectopic pregnancy.</li><li><strong>Miscarriage Indication:</strong> Declining HCG levels in early pregnancy can indicate a miscarriage or non-viable pregnancy.</li><li><strong>Clinical Correlation:</strong> HCG results must always be interpreted in the context of the patient's clinical history, physical examination, and other diagnostic findings.</li><li><strong>Post-Procedure Monitoring:</strong> After treatment for gestational trophoblastic disease, HCG levels are closely monitored to ensure complete remission and detect recurrence.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive Assessment:</strong> An HCG test is a valuable diagnostic tool, but its results are just one piece of the puzzle. Always integrate HCG levels with ultrasound findings, patient symptoms, and other laboratory data for accurate diagnosis and management.</li><li><strong>Patient Counseling:</strong> Provide clear and empathetic counseling regarding HCG results, especially in sensitive situations like suspected miscarriage, ectopic pregnancy, or cancer diagnosis.</li><li><strong>Differential Diagnosis:</strong> Utilize HCG testing to differentiate between various causes of amenorrhea, pelvic pain, or abnormal uterine bleeding in reproductive-aged individuals.</li><li><strong>Monitoring Treatment Efficacy:</strong> For HCG-producing tumors, serial HCG levels are essential for assessing treatment response and detecting residual or recurrent disease.</li><li><strong>Risk Stratification:</strong> In early pregnancy, HCG trends help stratify risk for complications like ectopic pregnancy or spontaneous abortion, guiding timely intervention.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Specimen Collection Protocol:</strong> Ensure proper venipuncture technique, correct tube selection (usually serum separator tube), accurate labeling with patient identifiers, and timely transport to the laboratory.</li><li><strong>Patient Education on Results:</strong> Explain to patients when and how they will receive their results, and what the general implications of positive, negative, or quantitative HCG levels might be, without providing definitive diagnoses.</li><li><strong>Monitoring Trends:</strong> Understand the expected doubling time of HCG in early viable pregnancies (approximately every 48-72 hours) and recognize abnormal trends that may indicate complications.</li><li><strong>Documentation:</strong> Meticulously document all HCG test orders, results, and patient education provided.</li><li><strong>Safety Considerations:</strong> Be aware of the emotional impact of HCG results on patients, particularly in cases of infertility, suspected miscarriage, or unexpected pregnancy.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Analyte:</strong> Human Chorionic Gonadotropin (HCG), specifically the beta subunit (β-HCG) for quantitative assays.</li><li><strong>Methodology:</strong> Immunoassay (e.g., chemiluminescent immunoassay, ELISA).</li><li><strong>Reference Ranges:</strong> Non-pregnant: &lt;5 mIU/mL. Pregnant: Levels vary significantly with gestational age (e.g., 3 weeks LMP: 5-50 mIU/mL; 4 weeks LMP: 5-426 mIU/mL). Specific lab ranges should always be consulted.</li><li><strong>Units:</strong> Milli-international units per milliliter (mIU/mL) or International Units per liter (IU/L).</li><li><strong>Detection Window:</strong> Typically detectable in blood 8-11 days post-fertilization.</li><li><strong>Half-Life:</strong> The half-life of HCG is approximately 24-36 hours, meaning levels should roughly double every 2-3 days in early viable pregnancy.</li><li><strong>Interfering Substances:</strong> Biotin, heterophile antibodies, rheumatoid factor, certain medications.</li><li><strong>Clinical Significance:</strong> Diagnosis of pregnancy, monitoring of pregnancy viability, diagnosis and monitoring of ectopic pregnancy, miscarriage, gestational trophoblastic disease, and certain germ cell tumors.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

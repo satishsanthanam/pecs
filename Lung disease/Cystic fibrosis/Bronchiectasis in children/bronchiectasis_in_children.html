@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a young child, approximately 6-8 years old, with a gentle, hopeful expression. The child is surrounded by subtle, stylized representations of healthy lungs and clear airways, contrasted with faint, abstract elements suggesting inflammation or mucus. A caring parent or medical professional is gently guiding the child in a breathing exercise or airway clearance technique. The color palette is soft and reassuring, with blues, greens, and warm yellows. The overall design should convey support, medical care, and the importance of breathing freely, optimized for public health awareness materials.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./bronchiectasis_in_children.jpg" class="card-banner" alt="Bronchiectasis in children Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-lung-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Lung disease</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-lung-disease-cystic-fibrosis" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Cystic fibrosis</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Bronchiectasis in children</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Lung disease</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Cystic fibrosis</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Chronic Lung Condition:</strong> Bronchiectasis in children is a chronic, progressive lung disease characterized by permanent, abnormal widening (dilation) of the bronchi, leading to mucus buildup and recurrent infections.</li><li><strong>Underlying Causes:</strong> It often results from an underlying condition that impairs the lung's ability to clear mucus, with Cystic Fibrosis (CF) being the most common cause in developed countries.</li><li><strong>Vicious Cycle:</strong> The dilated airways become breeding grounds for bacteria, leading to chronic inflammation, further damage, and a cycle of infection and inflammation.</li><li><strong>Irreversible Damage:</strong> The structural changes in the airways are irreversible, emphasizing the importance of early diagnosis and aggressive management to prevent further deterioration.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Persistent Productive Cough:</strong> A chronic cough that produces large amounts of thick, often purulent (pus-filled) sputum, worsening with exacerbations.</li><li><strong>Recurrent Respiratory Infections:</strong> Frequent bouts of pneumonia, bronchitis, or other lung infections requiring antibiotic treatment.</li><li><strong>Wheezing and Shortness of Breath:</strong> Audible whistling sounds during breathing and difficulty breathing, especially during physical activity or exacerbations.</li><li><strong>Failure to Thrive:</strong> Poor weight gain and growth due to increased energy expenditure from chronic infection and inflammation, and potential malabsorption if associated with CF.</li><li><strong>Digital Clubbing:</strong> Enlargement of the fingertips and toes, often seen in long-standing, severe cases due to chronic hypoxemia.</li><li><strong>Hemoptysis:</strong> Coughing up blood, which can range from streaks in sputum to significant bleeding, indicating severe airway damage.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Strict Airway Clearance:</strong> Adherence to daily airway clearance techniques (ACTs) such as chest physiotherapy, oscillatory positive expiratory pressure (PEP) devices, or high-frequency chest wall oscillation to mobilize secretions.</li><li><strong>Prompt Infection Treatment:</strong> Immediate and appropriate antibiotic therapy for respiratory exacerbations, guided by sputum cultures to target specific pathogens.</li><li><strong>Vaccination Schedule:</strong> Ensure up-to-date immunizations, including annual influenza vaccine and pneumococcal vaccines, to prevent common respiratory infections.</li><li><strong>Environmental Avoidance:</strong> Protect the child from exposure to tobacco smoke, air pollution, and other respiratory irritants that can worsen lung inflammation.</li><li><strong>Regular Pulmonology Follow-ups:</strong> Consistent monitoring by a pediatric pulmonologist to assess lung function, adjust treatment plans, and manage complications.</li><li><strong>Early Exacerbation Recognition:</strong> Educate caregivers on recognizing early signs of worsening symptoms (increased cough, sputum, fever, breathlessness) to initiate timely intervention.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>High-Calorie, High-Protein Diet:</strong> Encourage a nutrient-dense diet to meet the increased energy demands from chronic infection and inflammation, supporting growth and preventing malnutrition.</li><li><strong>Adequate Hydration:</strong> Ensure sufficient fluid intake to help thin respiratory secretions, making them easier to clear from the airways.</li><li><strong>Pancreatic Enzyme Replacement:</strong> If bronchiectasis is secondary to Cystic Fibrosis, strict adherence to prescribed pancreatic enzyme replacement therapy (PERT) with meals and snacks is vital for nutrient absorption.</li><li><strong>Vitamin Supplementation:</strong> Administer fat-soluble vitamin supplements (A, D, E, K) as prescribed, especially in CF patients, due to impaired absorption.</li><li><strong>Nutritional Monitoring:</strong> Regular assessment of growth parameters (weight, height, BMI) and nutritional status by a dietitian specializing in pediatric lung disease.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Medication Adherence:</strong> Ensure consistent administration of all prescribed medications, including inhaled bronchodilators, mucolytics, and maintenance antibiotics, as directed by the physician.</li><li><strong>Proper Technique:</strong> Verify correct technique for nebulizer use, inhalers, and airway clearance devices to maximize therapeutic effectiveness.</li><li><strong>Infection Control:</strong> Implement strict hand hygiene and minimize exposure to sick individuals to reduce the risk of respiratory infections.</li><li><strong>Emergency Plan:</strong> Have a clear action plan for respiratory exacerbations, including contact information for the medical team and instructions for when to seek urgent care.</li><li><strong>Psychosocial Support:</strong> Recognize the emotional and social impact of chronic illness on the child and family, and seek appropriate support services.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early Diagnosis is Key:</strong> Prompt identification of bronchiectasis and its underlying cause is critical to initiate aggressive management and slow disease progression, preserving lung function.</li><li><strong>Multidisciplinary Care:</strong> Optimal management requires a coordinated team approach involving pediatric pulmonologists, physiotherapists, dietitians, social workers, and nurses.</li><li><strong>Individualized Treatment:</strong> Therapy must be tailored to the child's specific etiology, severity of disease, and identified pathogens, often involving a combination of airway clearance, antibiotics, and anti-inflammatory agents.</li><li><strong>Regular Monitoring:</strong> Consistent assessment of lung function (spirometry), sputum microbiology, and imaging (HRCT scans) is essential to guide treatment adjustments and monitor disease activity.</li><li><strong>Genetic Counseling:</strong> For cases linked to Cystic Fibrosis or primary ciliary dyskinesia, genetic counseling should be offered to families.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient and Family Education:</strong> Provide comprehensive teaching on disease pathophysiology, medication administration, airway clearance techniques, and signs of exacerbation.</li><li><strong>Airway Clearance Support:</strong> Demonstrate and supervise ACTs, ensuring proper technique and adherence, and adapting methods as the child grows.</li><li><strong>Respiratory Assessment:</strong> Monitor vital signs, oxygen saturation, respiratory rate, effort, and auscultate lung sounds regularly to detect changes and assess treatment effectiveness.</li><li><strong>Nutritional Support:</strong> Assist with feeding strategies, monitor growth charts, and collaborate with dietitians to ensure adequate caloric and nutrient intake.</li><li><strong>Infection Prevention:</strong> Educate on infection control practices, administer vaccinations, and monitor for adverse effects of antibiotic therapy.</li><li><strong>Psychosocial Care:</strong> Offer emotional support to children and families, addressing concerns related to chronic illness management and quality of life.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathophysiology:</strong> Chronic inflammation and infection lead to destruction of elastic and muscular components of bronchial walls, resulting in irreversible dilation and impaired mucociliary clearance.</li><li><strong>Etiology:</strong> Primary causes include Cystic Fibrosis, primary ciliary dyskinesia, immunodeficiencies (e.g., common variable immunodeficiency), post-infectious (e.g., severe adenovirus, pertussis, measles), foreign body aspiration, and allergic bronchopulmonary aspergillosis.</li><li><strong>Diagnosis:</strong> High-resolution computed tomography (HRCT) of the chest is the gold standard, showing bronchial dilation, lack of bronchial tapering, and bronchial wall thickening. Further workup includes sweat chloride test, genetic testing, sputum culture, immune workup, and ciliary biopsy.</li><li><strong>Management:</strong> Core components include daily airway clearance, targeted antibiotic therapy (oral, inhaled, intravenous) based on sputum cultures, bronchodilators, anti-inflammatory agents (e.g., macrolides), and nutritional support.</li><li><strong>Complications:</strong> Recurrent pneumonia, respiratory failure, hemoptysis, cor pulmonale, empyema, and amyloidosis (rare).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

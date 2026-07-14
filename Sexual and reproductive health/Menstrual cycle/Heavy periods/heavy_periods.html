@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a woman in her late 20s to early 30s, with a calm and informed expression, standing next to a large calendar. The calendar highlights a period of heavy menstrual flow with stylized, non-graphic blood drops and icons representing menstrual products like a pad and a cup. The background is clean and uses a soft, reassuring color palette of blues, pinks, and purples, emphasizing health awareness and support. No text or complex patterns.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./heavy_periods.jpg" class="card-banner" alt="Heavy periods Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-sexual-and-reproductive-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Sexual and reproductive health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-sexual-and-reproductive-health-menstrual-cycle" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Menstrual cycle</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Heavy periods</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Sexual and reproductive health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Menstrual cycle</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Heavy periods, clinically known as menorrhagia, involve unusually heavy or prolonged menstrual bleeding that can significantly impact daily life.</li><li><strong>Common Causes:</strong> Underlying conditions such as uterine fibroids, endometrial polyps, hormonal imbalances (e.g., thyroid dysfunction, PCOS), adenomyosis, bleeding disorders, or certain intrauterine devices (IUDs) can contribute.</li><li><strong>Impact:</strong> Chronic heavy bleeding often leads to iron-deficiency anemia, causing fatigue, weakness, and reduced quality of life.</li><li><strong>When to Seek Help:</strong> It is crucial to consult a healthcare provider if you experience consistently heavy periods, especially if accompanied by symptoms of anemia or severe pain.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Excessive Bleeding:</strong> Soaking through one or more sanitary pads or tampons every hour for several consecutive hours.</li><li><strong>Prolonged Bleeding:</strong> Menstrual periods lasting longer than seven days.</li><li><strong>Large Blood Clots:</strong> Passing blood clots larger than a quarter.</li><li><strong>Anemia Symptoms:</strong> Persistent fatigue, weakness, shortness of breath, dizziness, pallor, and cold hands or feet due to iron loss.</li><li><strong>Pelvic Discomfort:</strong> Severe menstrual cramps or pelvic pain that interferes with daily activities.</li><li><strong>Nocturnal Bleeding:</strong> Needing to change sanitary protection during the night.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Monitor Blood Loss:</strong> Keep a detailed record of your menstrual flow, including the number of pads/tampons used and the presence of clots, to provide accurate information to your clinician.</li><li><strong>Watch for Anemia Signs:</strong> Be vigilant for symptoms of severe anemia or hypovolemia such as extreme dizziness, fainting spells, or rapid heart rate, and seek immediate medical attention if these occur.</li><li><strong>Medication Review:</strong> Discuss all current medications, including over-the-counter drugs and herbal supplements, with your doctor, as some can exacerbate bleeding.</li><li><strong>Iron Supplementation:</strong> If diagnosed with anemia, adhere strictly to prescribed iron supplements and follow dietary recommendations to enhance absorption, avoiding self-medication.</li><li><strong>Avoid Strenuous Activity:</strong> During periods of heavy flow, especially if experiencing dizziness or weakness, limit strenuous physical activity to prevent falls or exacerbation of symptoms.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Iron-Rich Foods:</strong> Prioritize intake of heme iron sources like lean red meat, poultry, and fish, and non-heme iron from leafy green vegetables, fortified cereals, beans, and lentils to combat anemia.</li><li><strong>Vitamin C Enhancement:</strong> Consume foods rich in Vitamin C (e.g., citrus fruits, bell peppers, broccoli) alongside iron-rich meals to significantly improve iron absorption.</li><li><strong>Adequate Hydration:</strong> Maintain good fluid intake, especially during heavy bleeding, to help compensate for fluid loss and prevent dehydration.</li><li><strong>Limit Caffeine & Alcohol:</strong> Moderate or reduce consumption of caffeine and alcohol, as they can sometimes affect hormonal balance or iron absorption in some individuals.</li><li><strong>Balanced Nutrition:</strong> Focus on a well-balanced diet to support overall health and energy levels, which are often depleted with heavy menstrual bleeding.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Immediate Medical Consultation:</strong> Seek prompt medical evaluation for any sudden, unusually heavy bleeding, severe pelvic pain, or signs of significant blood loss like fainting or extreme dizziness.</li><li><strong>Avoid Self-Diagnosis:</strong> Do not attempt to self-diagnose or self-treat heavy periods, as underlying serious conditions may require specific medical intervention.</li><li><strong>Comprehensive History:</strong> Be prepared to provide a detailed menstrual history, including onset, duration, flow characteristics, and associated symptoms, to your healthcare provider.</li><li><strong>Diagnostic Preparedness:</strong> Understand that diagnostic tests such as blood work (CBC, ferritin), pelvic ultrasound, or hysteroscopy may be necessary to determine the cause.</li><li><strong>Medication Adherence:</strong> If prescribed medications (e.g., hormonal therapy, tranexamic acid), follow dosage instructions precisely and report any side effects.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Accurate Diagnosis is Key:</strong> A thorough diagnostic workup is essential to identify the specific cause of menorrhagia, guiding the most effective treatment strategy.</li><li><strong>Personalized Treatment Plans:</strong> Management options range from medical therapies (e.g., hormonal contraceptives, tranexamic acid, NSAIDs) to minimally invasive procedures (e.g., endometrial ablation) or surgical interventions (e.g., myomectomy, hysterectomy), tailored to the patient's age, desire for fertility, and overall health.</li><li><strong>Anemia Management:</strong> Addressing iron-deficiency anemia is a critical component of care, often requiring iron supplementation and dietary adjustments.</li><li><strong>Quality of Life Focus:</strong> The primary goal of treatment is to reduce bleeding, alleviate symptoms, prevent complications, and significantly improve the patient's quality of life.</li><li><strong>Ongoing Monitoring:</strong> Regular follow-up appointments are crucial to assess treatment efficacy, monitor for recurrence, and manage any long-term effects.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Instruct patients on tracking menstrual flow, recognizing signs of anemia, proper use of prescribed medications (e.g., iron supplements, hormonal therapy), and when to seek urgent care.</li><li><strong>Comprehensive Assessment:</strong> Conduct thorough menstrual history taking, including cycle regularity, duration, flow volume, presence of clots, and associated pain. Assess for signs of anemia (pallor, fatigue, tachycardia) and hypovolemia.</li><li><strong>Medication Administration & Monitoring:</strong> Safely administer prescribed medications, monitor for therapeutic effects and adverse reactions, and educate patients on potential side effects.</li><li><strong>Pre- and Post-Procedure Care:</strong> Prepare patients for diagnostic procedures (e.g., ultrasound, hysteroscopy) or surgical interventions (e.g., endometrial ablation), providing emotional support and post-procedure instructions.</li><li><strong>Psychosocial Support:</strong> Address patient concerns regarding the impact of heavy periods on daily activities, body image, sexual health, and potential fertility issues, offering empathetic support and resources.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Menorrhagia:</strong> Defined as menstrual blood loss exceeding 80 mL per cycle or bleeding lasting longer than 7 days, significantly impacting physical, social, emotional, and material quality of life.</li><li><strong>PALM-COEIN Classification:</strong> A system used to categorize causes of abnormal uterine bleeding (AUB): Structural (Polyp, Adenomyosis, Leiomyoma, Malignancy and hyperplasia) and Non-structural (Coagulopathy, Ovulatory dysfunction, Endometrial, Iatrogenic, Not yet classified).</li><li><strong>Diagnostic Modalities:</strong> Include Complete Blood Count (CBC) with ferritin, Thyroid Stimulating Hormone (TSH), Coagulation panel, Pelvic Ultrasound, Saline Infusion Sonohysterography (SIS), Hysteroscopy, and Endometrial Biopsy.</li><li><strong>Pharmacological Interventions:</strong> Combined oral contraceptives (COCs), progestin-only therapy (oral or IUD), tranexamic acid, non-steroidal anti-inflammatory drugs (NSAIDs), and GnRH agonists.</li><li><strong>Surgical Interventions:</strong> Endometrial ablation, myomectomy (for fibroids), uterine artery embolization (UAE), and hysterectomy.</li><li><strong>Iron-Deficiency Anemia:</strong> A common complication requiring diagnosis via CBC and ferritin levels, managed with oral or intravenous iron supplementation.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

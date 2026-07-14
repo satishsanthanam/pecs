@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting an older adult, looking somewhat frail but with a gentle, hopeful expression, seated comfortably. Surrounding them are supportive elements: a caring healthcare professional (nurse or doctor) offering a glass of water or a small meal, a family member gently holding their hand, and subtle symbols of well-being like a balanced plate of food, a light blanket, and a window showing a calm, bright outdoor scene. The overall design emphasizes comprehensive care, support, and dignity in senior health. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./failure_to_thrive_in_adults.jpg" class="card-banner" alt="Failure to thrive in adults Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-senior-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Senior health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-senior-health-managing-multiple-health-conditions" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Managing multiple health conditions</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Failure to thrive in adults</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Senior health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Managing multiple health conditions</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Failure to thrive (FTT) in adults, particularly older adults, is a syndrome characterized by weight loss, decreased appetite, poor nutrition, physical inactivity, and often dehydration.</li><li><strong>Multifactorial Nature:</strong> It is not a single disease but a complex geriatric syndrome resulting from the interaction of multiple physical, psychological, and social factors.</li><li><strong>Common Presentation:</strong> Often manifests as a progressive decline in physical and cognitive function, leading to increased frailty and vulnerability.</li><li><strong>Clinical Significance:</strong> FTT is a significant predictor of morbidity, mortality, and increased healthcare utilization in the elderly population.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Unintentional Weight Loss:</strong> Significant loss of body weight, often more than 5% within 6-12 months, without a clear medical explanation.</li><li><strong>Decreased Appetite (Anorexia):</strong> Persistent lack of desire to eat or early satiety, leading to reduced food intake.</li><li><strong>Fatigue and Weakness:</strong> Profound tiredness, lack of energy, and generalized muscle weakness impacting daily activities.</li><li><strong>Cognitive Impairment:</strong> New onset or worsening memory problems, confusion, or difficulty concentrating.</li><li><strong>Depression or Apathy:</strong> Persistent low mood, loss of interest in previously enjoyed activities, or emotional detachment.</li><li><strong>Social Withdrawal:</strong> Reduced engagement with family, friends, and community activities.</li><li><strong>Recurrent Infections:</strong> Increased susceptibility to infections due to compromised immune function.</li><li><strong>Dehydration:</strong> Signs such as dry mouth, decreased skin turgor, and reduced urine output.</li><li><strong>Functional Decline:</strong> Deterioration in ability to perform Activities of Daily Living (ADLs) and Instrumental Activities of Daily Living (IADLs).</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Thorough Medical Evaluation:</strong> Conduct a comprehensive assessment to identify and address all underlying reversible causes, including chronic diseases, infections, and medication side effects.</li><li><strong>Nutritional Assessment & Intervention:</strong> Implement a detailed nutritional plan, potentially involving dietary supplements or fortified foods, to combat malnutrition.</li><li><strong>Medication Review:</strong> Scrutinize all current medications for polypharmacy, adverse drug reactions, and drug-nutrient interactions that may contribute to FTT.</li><li><strong>Mental Health Screening:</strong> Routinely screen for depression, anxiety, and cognitive impairment, as these are common contributors to FTT.</li><li><strong>Fall Risk Assessment:</strong> Evaluate and mitigate fall risks, as weakness and functional decline increase vulnerability to injuries.</li><li><strong>Hydration Management:</strong> Ensure consistent and adequate fluid intake to prevent dehydration, a common complication.</li><li><strong>Social Engagement:</strong> Address social isolation by encouraging participation in social activities and ensuring regular contact with caregivers or support networks.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>High-Calorie, Nutrient-Dense Foods:</strong> Encourage small, frequent meals and snacks rich in calories and essential nutrients to maximize intake.</li><li><strong>Protein Supplementation:</strong> Incorporate protein-rich foods (e.g., lean meats, dairy, eggs, legumes) and consider oral protein supplements to preserve muscle mass.</li><li><strong>Hydration Strategy:</strong> Offer fluids regularly throughout the day, especially between meals, to prevent early satiety and ensure adequate hydration.</li><li><strong>Food Fortification:</strong> Enhance the caloric and nutritional content of meals by adding butter, cream, cheese, gravies, or protein powder to existing dishes.</li><li><strong>Texture Modification:</strong> For individuals with dysphagia or chewing difficulties, provide soft, pureed, or minced food textures to facilitate easier consumption.</li><li><strong>Avoid Empty Calories:</strong> Limit foods and beverages that provide minimal nutritional value but fill the stomach, such as sugary drinks or highly processed snacks.</li><li><strong>Appetite Stimulants:</strong> Discuss with a physician about potential appetite stimulants if appropriate and necessary.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Consistent Monitoring:</strong> Regularly track weight, food and fluid intake, and functional status to identify trends and evaluate intervention effectiveness.</li><li><strong>Observe for Acute Changes:</strong> Be vigilant for sudden declines in appetite, mood, cognitive function, or physical ability, and report these promptly to the healthcare team.</li><li><strong>Medication Adherence Support:</strong> Assist with medication management to ensure proper dosing and timing, and observe for any new side effects.</li><li><strong>Safe Environment Provision:</strong> Ensure the living environment is safe, accessible, and conducive to eating, resting, and gentle activity to prevent accidents and promote well-being.</li><li><strong>Emotional & Social Support:</strong> Provide consistent emotional support, companionship, and opportunities for social interaction to combat loneliness and apathy.</li><li><strong>Oral Hygiene:</strong> Maintain excellent oral hygiene to prevent discomfort or infection that could hinder eating.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Holistic Assessment:</strong> A comprehensive geriatric assessment is paramount to uncover the multifactorial causes of FTT, including medical, psychological, and socioeconomic factors.</li><li><strong>Reversible Causes First:</strong> Prioritize identifying and treating any reversible conditions such as infections, endocrine disorders, medication side effects, or depression.</li><li><strong>Multidisciplinary Team Approach:</strong> Collaborate with dietitians, social workers, physical therapists, and mental health professionals to develop an individualized, integrated care plan.</li><li><strong>Realistic Goals of Care:</strong> Engage in shared decision-making with the patient and family to establish realistic goals, which may range from improving quality of life to aggressive nutritional support.</li><li><strong>Prognosis & Palliative Care:</strong> Discuss the prognosis openly and consider the role of palliative care to manage symptoms and support comfort, especially in advanced stages.</li><li><strong>Regular Reassessment:</strong> Continuously monitor the patient's response to interventions and adjust the care plan as needed, recognizing the dynamic nature of FTT.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Geriatric Assessment (CGA):</strong> Master the skills for conducting a thorough CGA, including functional status (e.g., Katz ADL, Lawton IADL), nutritional screening (e.g., MNA-SF), cognitive assessment (e.g., MMSE, MoCA), and mood assessment (e.g., GDS).</li><li><strong>Nutritional Intervention Strategies:</strong> Learn to implement and evaluate various nutritional interventions, such as small, frequent meals, food fortification, oral nutritional supplements, and assisting with feeding.</li><li><strong>Medication Reconciliation & Management:</strong> Develop expertise in reviewing medication lists for polypharmacy, potential adverse effects, and drug-nutrient interactions, advocating for deprescribing when appropriate.</li><li><strong>Communication & Advocacy:</strong> Practice effective communication with older adults and their families, providing education, emotional support, and advocating for their needs within the healthcare system.</li><li><strong>Ethical Considerations:</strong> Understand the ethical dilemmas surrounding FTT, including patient autonomy, surrogate decision-making, and end-of-life care discussions.</li><li><strong>Interdisciplinary Collaboration:</strong> Recognize the importance of working collaboratively with the entire healthcare team to provide holistic and patient-centered care.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Diagnostic Criteria:</strong> While no single diagnostic test exists, FTT is often characterized by a constellation of symptoms including unintentional weight loss (&gt;5% in 6-12 months), decreased appetite, poor nutrition, physical inactivity, and dehydration.</li><li><strong>Underlying Etiologies (The 'D's):</strong> Commonly categorized into Disease (chronic illnesses, infections, organ failure), Dementia (cognitive impairment), Depression (mood disorders), Dysfunction (functional decline), and Drugs (polypharmacy, adverse effects).</li><li><strong>Geriatric Syndrome Classification:</strong> FTT is recognized as a prominent geriatric syndrome, often co-occurring with other syndromes like frailty, falls, and delirium.</li><li><strong>Biomarkers:</strong> While not diagnostic, certain biomarkers like albumin, prealbumin, C-reactive protein, and hemoglobin may indicate nutritional status, inflammation, or underlying disease processes.</li><li><strong>Prognostic Implications:</strong> FTT is a strong independent predictor of adverse outcomes, including increased hospitalizations, nursing home placement, and mortality in older adults.</li><li><strong>Management Principles:</strong> Focus on identifying and treating reversible causes, optimizing nutrition, managing comorbidities, promoting physical activity, and providing psychosocial support.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

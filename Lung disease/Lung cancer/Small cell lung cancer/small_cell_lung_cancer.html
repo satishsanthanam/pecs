@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a human lung with small, aggressive cancer cells spreading within its structure. Show a stylized representation of smoke or tobacco products in the background, subtly hinting at the primary cause. Include elements of medical treatment such as a chemotherapy drip, a radiation symbol, and a supportive, caring hand. The overall design should be clean, modern, and informative, suitable for public health awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./small_cell_lung_cancer.jpg" class="card-banner" alt="Small cell lung cancer Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-lung-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Lung disease</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-lung-disease-lung-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Lung cancer</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Small cell lung cancer</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Lung disease</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Lung cancer</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Aggressive Nature</strong>: Small cell lung cancer (SCLC) is a highly aggressive type of lung cancer, accounting for about 10-15% of all lung cancers.</li><li><strong>Rapid Growth &amp; Spread</strong>: Characterized by rapid growth and early metastasis, often spreading to distant sites before diagnosis.</li><li><strong>Strong Link to Smoking</strong>: Nearly all cases are strongly associated with a history of smoking, making smoking cessation the primary prevention.</li><li><strong>Neuroendocrine Origin</strong>: Arises from neuroendocrine cells in the lungs, which influences its biological behavior and treatment response.</li><li><strong>Limited vs. Extensive Stage</strong>: Staged as either limited (confined to one side of the chest, potentially treatable with radiation) or extensive (spread beyond one side, often requiring systemic therapy).</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Persistent Cough</strong>: A new cough or a change in a chronic cough, sometimes with blood (hemoptysis).</li><li><strong>Shortness of Breath (Dyspnea)</strong>: Due to tumor growth, airway obstruction, or pleural effusion.</li><li><strong>Chest Pain</strong>: Persistent pain, often worsening with deep breaths or coughing.</li><li><strong>Hoarseness</strong>: If the tumor affects the recurrent laryngeal nerve, leading to vocal cord paralysis.</li><li><strong>Weight Loss &amp; Fatigue</strong>: Unexplained significant weight loss and profound fatigue (cachexia) are common systemic symptoms.</li><li><strong>Superior Vena Cava (SVC) Syndrome</strong>: Swelling in the face, neck, and upper extremities due to compression of the SVC by the tumor.</li><li><strong>Paraneoplastic Syndromes</strong>: Can present with syndromes like SIADH (syndrome of inappropriate antidiuretic hormone secretion) or Cushing's syndrome due to hormone production by the tumor.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Smoking Cessation</strong>: The most critical preventative measure; avoiding all tobacco products significantly reduces the risk of developing SCLC and improves prognosis.</li><li><strong>Early Detection Vigilance</strong>: Be vigilant for persistent respiratory symptoms and seek prompt medical evaluation, especially if you have a smoking history.</li><li><strong>Occupational Exposure Avoidance</strong>: Minimize exposure to known carcinogens like asbestos, radon, and certain industrial chemicals.</li><li><strong>Adherence to Treatment Plan</strong>: Strict adherence to chemotherapy, radiation, and immunotherapy schedules is vital for managing this aggressive cancer and optimizing outcomes.</li><li><strong>Symptom Management &amp; Reporting</strong>: Proactive management of treatment side effects and cancer-related symptoms, reporting any new or worsening issues immediately to the healthcare team.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions &amp; Restrictions</h2><ul><li><strong>Managing Nausea &amp; Vomiting</strong>: Eat small, frequent meals; avoid strong-smelling, greasy, or very spicy foods; opt for bland, easy-to-digest options like toast, crackers, or clear broths.</li><li><strong>Maintaining Hydration</strong>: Drink plenty of fluids, especially water, clear broths, and electrolyte-rich beverages, to combat dehydration from treatment and maintain overall well-being.</li><li><strong>Addressing Weight Loss/Cachexia</strong>: Focus on nutrient-dense, high-calorie, high-protein foods; consider nutritional supplements or meal replacements as advised by a dietitian to prevent muscle wasting.</li><li><strong>Soft &amp; Moist Foods</strong>: If experiencing mucositis, dysphagia, or dry mouth from radiation/chemotherapy, choose soft, moist, pureed, or liquid foods that are easier to swallow.</li><li><strong>Avoiding Irritants</strong>: Limit acidic, very hot/cold, or spicy foods if mouth sores, esophageal irritation, or diarrhea are present to prevent further discomfort.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Recognize Rapid Progression</strong>: SCLC can progress quickly; report any new or worsening symptoms, such as increased shortness of breath, severe pain, or neurological changes, immediately.</li><li><strong>Monitor for Treatment Side Effects</strong>: Be aware of potential severe side effects from chemotherapy and radiation, including neutropenia (risk of infection), severe fatigue, neuropathy, and gastrointestinal issues.</li><li><strong>Psychosocial Support</strong>: Patients and caregivers should actively seek psychological and social support services, as coping with SCLC can be emotionally and physically challenging.</li><li><strong>Emergency Symptoms</strong>: Seek immediate medical attention for severe shortness of breath, uncontrolled bleeding, high fever (especially with chills), severe pain unresponsive to medication, or sudden neurological deficits.</li><li><strong>Medication Adherence</strong>: Ensure all prescribed medications, including antiemetics, pain relievers, and supportive care drugs, are taken as directed to manage symptoms and side effects effectively.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Aggressive Multimodal Therapy</strong>: SCLC typically requires aggressive multimodal treatment, often involving concurrent chemotherapy and radiation therapy, even in limited stages, due to its rapid growth and metastatic potential.</li><li><strong>Prophylactic Cranial Irradiation (PCI)</strong>: Often recommended for patients with limited-stage SCLC who achieve a good response to initial treatment to prevent brain metastases, a common site of recurrence.</li><li><strong>Immunotherapy Integration</strong>: Immunotherapy agents (e.g., PD-L1 inhibitors) are increasingly being integrated into first-line treatment for extensive-stage SCLC, showing improved overall survival.</li><li><strong>Palliative Care Integration</strong>: Early integration of palliative care is crucial to manage symptoms, improve quality of life, and provide comprehensive support to patients and families throughout the disease trajectory.</li><li><strong>Smoking Cessation Counseling</strong>: Emphasize and support smoking cessation at every patient encounter, as it significantly impacts prognosis, treatment efficacy, and overall health.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic &amp; Nursing Corner</h2><ul><li><strong>Patient Education on Treatment</strong>: Educate patients thoroughly on their specific treatment plan, potential side effects, and the importance of adherence and timely reporting of concerns.</li><li><strong>Oncologic Emergencies Vigilance</strong>: Be vigilant for and prepared to manage oncologic emergencies such as SVC syndrome, spinal cord compression, hypercalcemia, and tumor lysis syndrome.</li><li><strong>Psychosocial Assessment &amp; Support</strong>: Conduct regular psychosocial assessments and provide appropriate referrals for counseling, support groups, and spiritual care to address emotional distress.</li><li><strong>Comprehensive Symptom Management</strong>: Implement comprehensive pain management strategies, antiemetic regimens, and fatigue management techniques to optimize patient comfort and quality of life.</li><li><strong>Nutritional Support &amp; Monitoring</strong>: Monitor nutritional status closely, collaborate with dietitians, and provide interventions to ensure adequate caloric and protein intake, especially during active treatment.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Histology</strong>: Characterized by small, round to oval cells with scant cytoplasm, finely granular chromatin, and absent or inconspicuous nucleoli, often forming sheets or clusters.</li><li><strong>Biomarkers</strong>: Often positive for neuroendocrine markers such as chromogranin A, synaptophysin, and CD56; TTF-1 is also frequently expressed.</li><li><strong>Staging Systems</strong>: Primarily uses the Veterans Administration Lung Study Group (VALSG) staging system (limited vs. extensive disease) for treatment planning, though TNM staging is also used for prognostic purposes.</li><li><strong>Common Treatment Regimens</strong>: Standard chemotherapy regimens typically involve etoposide plus a platinum agent (cisplatin or carboplatin), often combined with radiation for limited-stage disease.</li><li><strong>Prognosis</strong>: Generally poor due to its aggressive nature and early metastasis, though treatment advances, including immunotherapy, are improving outcomes and survival rates.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

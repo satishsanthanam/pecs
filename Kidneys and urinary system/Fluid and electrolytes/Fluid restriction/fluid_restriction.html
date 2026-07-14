@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a person holding a small, measured glass of water, with a clear visual representation of a limited fluid line. In the background, subtle icons of kidneys, a heart, and a measuring cup are visible, emphasizing the medical context of fluid restriction for health management. The overall design is clean, informative, and uses a calming color palette suitable for public health awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./fluid_restriction.jpg" class="card-banner" alt="Fluid restriction Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-kidneys-and-urinary-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Kidneys and urinary system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-kidneys-and-urinary-system-fluid-and-electrolytes" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Fluid and electrolytes</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Fluid restriction</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Kidneys and urinary system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Fluid and electrolytes</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose of Fluid Restriction:</strong> A medical directive to limit the total amount of fluid consumed over a 24-hour period, typically prescribed to manage conditions involving fluid overload or electrolyte imbalances.</li><li><strong>Key Conditions:</strong> Commonly implemented for patients with heart failure, kidney disease, liver cirrhosis, syndrome of inappropriate antidiuretic hormone (SIADH), or severe hyponatremia.</li><li><strong>Goal of Therapy:</strong> Aims to reduce symptoms such as edema (swelling), shortness of breath due to pulmonary congestion, and to prevent further dilution of blood electrolytes, particularly sodium.</li><li><strong>Individualized Plan:</strong> The specific fluid allowance is tailored to each patient's clinical status, underlying condition, and response to treatment, requiring careful monitoring.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Peripheral Edema:</strong> Swelling in the ankles, legs, or hands, indicating excess fluid accumulation in tissues.</li><li><strong>Pulmonary Congestion:</strong> Shortness of breath, especially when lying flat (orthopnea), or waking up breathless at night (paroxysmal nocturnal dyspnea), due to fluid in the lungs.</li><li><strong>Rapid Weight Gain:</strong> An unexplained increase in body weight over a short period, often a direct indicator of fluid retention.</li><li><strong>Hyponatremia Symptoms:</strong> Confusion, lethargy, headache, nausea, muscle cramps, or in severe cases, seizures, resulting from low blood sodium levels often exacerbated by excess fluid.</li><li><strong>Elevated Blood Pressure:</strong> Fluid overload can contribute to increased systemic vascular resistance and hypertension.</li><li><strong>Jugular Venous Distension (JVD):</strong> Visible bulging of neck veins, a sign of increased central venous pressure.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Strict Intake and Output (I&O) Monitoring:</strong> Meticulously track all fluid intake (oral, intravenous, tube feeds) and output (urine, emesis, drains) to ensure adherence to the prescribed limit.</li><li><strong>Daily Weight Measurement:</strong> Monitor daily body weight at the same time each day, using the same scale and clothing, as a primary indicator of fluid status changes.</li><li><strong>Electrolyte Balance:</strong> Regularly assess serum electrolyte levels, especially sodium, potassium, and chloride, to prevent complications from imbalances.</li><li><strong>Risk of Dehydration:</strong> While restricting fluids, carefully monitor for signs of dehydration (e.g., dry mucous membranes, decreased skin turgor, concentrated urine) if the restriction is too aggressive or prolonged.</li><li><strong>Oral Hygiene:</strong> Provide frequent oral care, including mouth rinses and lip moisturizers, to alleviate dry mouth and discomfort associated with reduced fluid intake.</li><li><strong>Patient and Family Education:</strong> Educate patients and their caregivers on the importance of fluid restriction, how to measure fluids, and identifying hidden fluid sources.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Measure All Fluids:</strong> Accurately measure all liquids, including water, juice, coffee, tea, milk, soda, and any liquid medications.</li><li><strong>Hidden Fluid Sources:</strong> Account for fluids in foods such as soups, broths, gelatin, ice cream, popsicles, and certain fruits (e.g., watermelon, oranges) and vegetables.</li><li><strong>Thirst Management Strategies:</strong> Utilize ice chips (half the volume of water), hard candies, sugar-free gum, or lemon wedges to stimulate saliva and alleviate thirst without consuming large fluid volumes.</li><li><strong>Avoid High-Sodium Foods:</strong> Limit intake of salty foods, as sodium increases thirst and can lead to further fluid retention.</li><li><strong>Medication Administration:</strong> Administer oral medications with the smallest amount of fluid possible, ensuring it is accounted for in the daily allowance.</li><li><strong>Meal Planning:</strong> Plan meals to distribute fluid allowance throughout the day, often reserving a portion for medication times and social drinking.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Adherence to Prescribed Limit:</strong> Strictly adhere to the physician-ordered fluid restriction, understanding that exceeding it can worsen the underlying condition.</li><li><strong>Report Worsening Symptoms:</strong> Immediately report any signs of increased swelling, shortness of breath, significant weight gain, or changes in mental status to the healthcare team.</li><li><strong>Accurate Measurement:</strong> Use calibrated measuring cups for all fluid intake to ensure precision and avoid accidental overconsumption.</li><li><strong>Medication Fluid:</strong> Ensure all fluid used for medication administration is included in the total daily fluid allowance.</li><li><strong>Avoid Sharing Fluids:</strong> Do not share drinks or accept fluids from visitors without accounting for them within the prescribed limit.</li><li><strong>Emergency Thirst:</strong> If experiencing severe, unmanageable thirst, inform the nursing staff or physician for potential adjustments or alternative strategies.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Individualized Prescription:</strong> Fluid restriction is a highly individualized therapy, requiring careful assessment of the patient's clinical status, electrolyte levels, and cardiac/renal function.</li><li><strong>Regular Reassessment:</strong> The fluid allowance must be regularly reassessed and adjusted based on daily weights, I&O, serum sodium, and clinical response to prevent complications like dehydration or persistent fluid overload.</li><li><strong>Multidisciplinary Approach:</strong> Collaboration with nursing staff, dietitians, and pharmacists is crucial for effective implementation, patient education, and medication management within fluid limits.</li><li><strong>Patient Education is Key:</strong> Thoroughly educate patients and their families on the rationale, practical aspects, and potential complications of fluid restriction to enhance compliance and safety.</li><li><strong>Monitor for Complications:</strong> Vigilantly monitor for signs of hyponatremia, hypernatremia (if over-restricted), acute kidney injury, and worsening heart failure symptoms.</li><li><strong>Consider Underlying Etiology:</strong> Always address the root cause of fluid overload or electrolyte imbalance in conjunction with fluid restriction for optimal long-term management.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Nursing Assessment:</strong> Perform thorough assessments for signs of fluid overload (edema, crackles, JVD) and dehydration (dry mucous membranes, poor skin turgor, orthostatic hypotension).</li><li><strong>Accurate I&O Charting:</strong> Emphasize the critical importance of precise intake and output documentation, including all oral, IV, and tube feed fluids, as well as urine, emesis, and drain output.</li><li><strong>Patient Education Techniques:</strong> Teach patients and families practical strategies for managing thirst, identifying hidden fluids, and measuring fluid intake accurately.</li><li><strong>Oral Care Protocol:</strong> Implement a regular oral hygiene protocol to maintain comfort and prevent mucosal breakdown in patients on fluid restriction.</li><li><strong>Electrolyte Monitoring:</strong> Understand the significance of serum electrolyte trends, particularly sodium, and report critical values promptly.</li><li><strong>Calculating Fluid Allowances:</strong> Practice calculating and distributing prescribed fluid allowances throughout a 24-hour period, considering medication administration and patient preferences.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Hyponatremia:</strong> A condition characterized by abnormally low levels of sodium in the blood, often exacerbated by excess body water.</li><li><strong>Hypervolemia:</strong> An excess of fluid in the blood, leading to increased blood volume and often manifesting as edema.</li><li><strong>Congestive Heart Failure (CHF):</strong> A chronic progressive condition affecting the pumping power of the heart muscles, often leading to fluid retention.</li><li><strong>Chronic Kidney Disease (CKD):</strong> Progressive loss of kidney function, impairing the body's ability to excrete excess fluid and waste products.</li><li><strong>Syndrome of Inappropriate Antidiuretic Hormone (SIADH):</strong> A condition where the body produces too much antidiuretic hormone (ADH), leading to water retention and hyponatremia.</li><li><strong>Osmolality:</strong> A measure of the concentration of solutes in a solution, relevant for assessing fluid balance and electrolyte status in blood and urine.</li><li><strong>Diuretics:</strong> Medications that promote increased production of urine, used to help the body excrete excess fluid.</li><li><strong>Fluid Balance Chart:</strong> A clinical tool used to record and monitor a patient's fluid intake and output over a specified period.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

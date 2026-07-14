@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human brain with a prominent red blood vessel showing a distinct bulge, representing an aneurysm. The style should be clean, modern, and suitable for public health awareness. Use a palette of blues, reds, and whites, with a focus on clarity and anatomical accuracy. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./brain_aneurysm.jpg" class="card-banner" alt="Brain aneurysm Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-stroke" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Stroke</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Brain aneurysm</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Stroke</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> A brain aneurysm is a weak, bulging spot on a blood vessel in the brain, often resembling a berry hanging on a stem.</li><li><strong>Risk of Rupture:</strong> If an aneurysm ruptures, it causes a subarachnoid hemorrhage, a type of hemorrhagic stroke, which is a life-threatening medical emergency.</li><li><strong>Silent Threat:</strong> Many brain aneurysms are asymptomatic until they rupture, making early detection challenging without specific screening.</li><li><strong>Location:</strong> Most brain aneurysms develop in the arteries at the base of the brain, particularly within the Circle of Willis.</li><li><strong>Prevalence:</strong> Affects an estimated 3-5% of the general population, with a small percentage ever rupturing.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Unruptured Aneurysm (Large):</strong> May cause localized pain above or behind the eye, dilated pupil, changes in vision (double vision or loss of vision), numbness or weakness on one side of the face, or drooping eyelid.</li><li><strong>Ruptured Aneurysm (Sudden Onset):</strong> Characterized by an extremely sudden, severe headache often described as the "worst headache of my life."</li><li><strong>Additional Rupture Symptoms:</strong> Nausea and vomiting, stiff neck, sensitivity to light (photophobia), blurred or double vision, loss of consciousness, seizures, or confusion.</li><li><strong>Sentinel Headache:</strong> A sudden, severe headache that may occur days or weeks before a major rupture, caused by a small leak from the aneurysm.</li><li><strong>Neurological Deficits:</strong> Depending on the location and severity of bleeding, patients may experience speech difficulties, weakness, or paralysis.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Blood Pressure Control:</strong> Strict management of hypertension is paramount, as high blood pressure significantly increases the risk of aneurysm formation and rupture.</li><li><strong>Smoking Cessation:</strong> Quitting smoking is critical; smoking is a major modifiable risk factor for aneurysm development and rupture.</li><li><strong>Avoid Illicit Drugs:</strong> Abstain from stimulant drugs like cocaine and methamphetamine, which can cause sudden, severe spikes in blood pressure and increase rupture risk.</li><li><strong>Family History Awareness:</strong> Individuals with a family history of brain aneurysms (especially two or more first-degree relatives) should discuss screening options with their physician.</li><li><strong>Immediate Medical Attention:</strong> Seek emergency medical care immediately for any sudden, severe headache, especially if accompanied by other neurological symptoms.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Sodium Restriction:</strong> Adhere to a low-sodium diet to help manage blood pressure, a key risk factor for aneurysm development and rupture.</li><li><strong>Heart-Healthy Diet:</strong> Focus on a diet rich in fruits, vegetables, whole grains, and lean proteins to support overall cardiovascular health and manage cholesterol levels.</li><li><strong>Caffeine Intake:</strong> Moderate caffeine intake; excessive amounts can temporarily elevate blood pressure, which may be a concern for some individuals with aneurysms.</li><li><strong>Alcohol Consumption:</strong> Limit or avoid excessive alcohol intake, as it can contribute to hypertension and may interact with medications.</li><li><strong>Post-Procedure Diet:</strong> Following surgical or endovascular treatment, diet will typically progress from clear liquids to soft foods, then a regular diet, as tolerated and advised by the medical team.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Protocol:</strong> In case of suspected aneurysm rupture (sudden severe headache, loss of consciousness), call emergency services immediately. Do not attempt to transport the patient yourself.</li><li><strong>Neurological Monitoring:</strong> Closely monitor for any changes in the patient's level of consciousness, pupil size/reactivity, speech, or motor function. Report any changes immediately to medical staff.</li><li><strong>Blood Pressure Management:</strong> Assist in maintaining prescribed blood pressure parameters, which are crucial for preventing re-bleeding or vasospasm post-rupture.</li><li><strong>Activity Restrictions:</strong> Ensure the patient adheres to strict bed rest and activity restrictions, especially before treatment or during the acute recovery phase, to minimize intracranial pressure.</li><li><strong>Medication Adherence:</strong> Administer all prescribed medications diligently, including pain relievers, anti-hypertensives, and medications to prevent vasospasm (e.g., Nimodipine).</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Individualized Risk Assessment:</strong> Each patient's risk of aneurysm rupture is unique and depends on factors like size, location, shape, and growth rate, alongside patient comorbidities.</li><li><strong>Screening Considerations:</strong> Screening for unruptured aneurysms is generally reserved for high-risk individuals, such as those with a strong family history or certain genetic conditions.</li><li><strong>Treatment Modalities:</strong> Treatment options include surgical clipping (open brain surgery) or endovascular coiling/stenting (minimally invasive via catheter), chosen based on aneurysm characteristics and patient health.</li><li><strong>Watchful Waiting:</strong> For small, asymptomatic aneurysms, a strategy of watchful waiting with regular imaging surveillance may be recommended over immediate intervention.</li><li><strong>Post-Treatment Follow-up:</strong> Long-term follow-up with imaging is essential after treatment to monitor for recurrence or the development of new aneurysms.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Neurological Assessment:</strong> Master frequent and thorough neurological assessments, including Glasgow Coma Scale (GCS), cranial nerve assessment, and motor/sensory function.</li><li><strong>ICP Management:</strong> Understand the principles of intracranial pressure (ICP) monitoring and interventions to prevent or manage elevated ICP, a common complication of subarachnoid hemorrhage.</li><li><strong>Vasospasm Recognition:</strong> Be vigilant for signs of cerebral vasospasm (e.g., new neurological deficits, worsening headache), a critical complication post-rupture, and understand Nimodipine administration.</li><li><strong>Patient Education:</strong> Educate patients and families on the signs of re-bleeding, vasospasm, hydrocephalus, and the importance of medication adherence and follow-up care.</li><li><strong>Fluid and Electrolyte Balance:</strong> Monitor fluid intake and output closely, as hyponatremia (low sodium) is a common electrolyte imbalance post-subarachnoid hemorrhage.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Diagnostic Imaging:</strong> Cerebral angiography (DSA) is the gold standard for aneurysm diagnosis; CT angiography (CTA) and MR angiography (MRA) are commonly used for screening and initial evaluation.</li><li><strong>Grading Scales:</strong> Hunt-Hess scale and Fisher scale are used to grade the severity of subarachnoid hemorrhage, guiding prognosis and treatment decisions.</li><li><strong>Complications:</strong> Key complications include re-bleeding, cerebral vasospasm (leading to delayed cerebral ischemia), hydrocephalus, and seizures.</li><li><strong>Pharmacological Management:</strong> Nimodipine (calcium channel blocker) is crucial for preventing and treating cerebral vasospasm; anti-hypertensives, analgesics, and anti-epileptics may also be used.</li><li><strong>Surgical Techniques:</strong> Microvascular clipping involves placing a metal clip at the neck of the aneurysm; endovascular coiling involves filling the aneurysm with platinum coils to block blood flow.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a person experiencing medical shock. The person appears pale and weak, possibly with a faint sweat, lying down with a concerned expression. Overlayed elements include a subtle, struggling heart icon and a downward arrow indicating low blood pressure. Surrounding elements suggest urgency and medical attention, such as a faint ambulance siren or a medical cross symbol. The overall color palette uses muted blues and grays with a contrasting urgent red or orange highlight. Clean lines, no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./shock.jpg" class="card-banner" alt="Shock Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-shock" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Shock</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Shock</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Shock</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Shock is a life-threatening medical condition characterized by inadequate tissue perfusion, meaning the body's organs and tissues are not receiving sufficient blood flow and oxygen.</li><li><strong>Criticality:</strong> It is a medical emergency requiring immediate recognition and intervention to prevent irreversible organ damage and death.</li><li><strong>Types of Shock:</strong> There are several main categories, each with distinct underlying causes:<ul><li><strong>Hypovolemic Shock:</strong> Caused by severe fluid loss (e.g., hemorrhage, severe dehydration, burns).</li><li><strong>Cardiogenic Shock:</strong> Results from the heart's inability to pump enough blood (e.g., myocardial infarction, severe heart failure).</li><li><strong>Obstructive Shock:</strong> Physical obstruction to blood flow (e.g., pulmonary embolism, cardiac tamponade, tension pneumothorax).</li><li><strong>Distributive Shock:</strong> Widespread vasodilation leading to maldistribution of blood volume (e.g., Septic Shock from severe infection, Anaphylactic Shock from severe allergic reaction, Neurogenic Shock from spinal cord injury).</li></ul></li><li><strong>Progression:</strong> If untreated, shock can lead to multi-organ dysfunction syndrome (MODS) and death.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Hypotension:</strong> Significantly low blood pressure (systolic typically <90 mmHg or a drop of >40 mmHg from baseline).</li><li><strong>Tachycardia:</strong> Rapid heart rate, often a compensatory mechanism.</li><li><strong>Tachypnea:</strong> Rapid, shallow breathing.</li><li><strong>Altered Mental Status:</strong> Confusion, disorientation, lethargy, or unresponsiveness due to decreased cerebral perfusion.</li><li><strong>Cool, Clammy Skin:</strong> Often pale or mottled, indicating peripheral vasoconstriction (except in early distributive shock, which may present with warm, flushed skin).</li><li><strong>Oliguria:</strong> Decreased urine output (<0.5 mL/kg/hr) due to reduced renal perfusion.</li><li><strong>Weak or Absent Peripheral Pulses:</strong> Difficult to palpate radial or pedal pulses.</li><li><strong>Delayed Capillary Refill:</strong> Capillary refill time greater than 2 seconds.</li><li><strong>Metabolic Acidosis:</strong> Indicated by elevated serum lactate levels, reflecting anaerobic metabolism.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Rapid Assessment and Diagnosis:</strong> Immediately identify the signs and symptoms of shock and determine the likely underlying cause.</li><li><strong>Airway, Breathing, Circulation (ABC) Management:</strong> Prioritize securing the airway, ensuring adequate ventilation, and supporting circulation.</li><li><strong>Fluid Resuscitation:</strong> Administer intravenous fluids (crystalloids) judiciously, especially in hypovolemic and distributive shock, while carefully monitoring for signs of fluid overload.</li><li><strong>Vasopressor Support:</strong> Initiate vasopressors (e.g., norepinephrine) if fluid resuscitation alone is insufficient to maintain adequate mean arterial pressure (MAP).</li><li><strong>Oxygen Therapy:</strong> Provide supplemental oxygen to improve tissue oxygenation.</li><li><strong>Temperature Regulation:</strong> Prevent hypothermia or hyperthermia, as extreme temperatures can worsen outcomes.</li><li><strong>Infection Control:</strong> Implement strict aseptic techniques for all invasive procedures, particularly in suspected septic shock.</li><li><strong>Allergen Identification and Removal:</strong> For anaphylactic shock, promptly identify and remove the offending allergen if possible.</li><li><strong>Continuous Monitoring:</strong> Closely monitor vital signs, urine output, mental status, and hemodynamic parameters.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>NPO Status:</strong> Patients in acute shock are typically kept NPO (nil per os) due to altered consciousness, risk of aspiration, and the need for immediate medical interventions.</li><li><strong>Early Enteral Nutrition:</strong> Once hemodynamically stable and gut function is assessed as adequate, early initiation of enteral nutrition is preferred over parenteral nutrition to support gut integrity and immune function.</li><li><strong>Parenteral Nutrition:</strong> If the enteral route is contraindicated or not tolerated for an extended period (e.g., >7 days), parenteral nutrition may be considered to meet caloric and protein needs.</li><li><strong>Fluid Management:</strong> While initial resuscitation involves aggressive fluid administration, subsequent fluid management must be carefully balanced to avoid fluid overload, especially in cardiogenic shock or acute respiratory distress syndrome (ARDS).</li><li><strong>Electrolyte Balance:</strong> Close monitoring and correction of electrolyte imbalances are crucial, as they can impact cardiac function and overall recovery.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Call for Emergency Help:</strong> Immediately contact emergency medical services (e.g., 911 or local emergency number) upon suspecting shock.</li><li><strong>Positioning:</strong> If the person is conscious and has no suspected head, neck, or spinal injury, lay them flat on their back and elevate their legs about 12 inches to improve blood flow to vital organs. Do not use the Trendelenburg position.</li><li><strong>Keep Warm:</strong> Cover the person with a blanket or coat to prevent heat loss, as hypothermia can worsen shock.</li><li><strong>Do Not Give Food or Drink:</strong> Never give anything by mouth to a person in shock, especially if they are unconscious or semi-conscious, due to the risk of aspiration.</li><li><strong>Monitor Vitals:</strong> Continuously observe their breathing, pulse, and level of consciousness until medical help arrives.</li><li><strong>Stay with the Person:</strong> Provide reassurance and monitor for any changes in their condition.</li><li><strong>Control Bleeding:</strong> If there is visible external bleeding, apply direct pressure to the wound with a clean cloth.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Timely Diagnosis is Paramount:</strong> Early recognition of shock and its specific type is critical for guiding appropriate, life-saving interventions.</li><li><strong>Goal-Directed Resuscitation:</strong> Therapy should be guided by hemodynamic targets (e.g., MAP >65 mmHg, lactate clearance, urine output) tailored to the individual patient and type of shock.</li><li><strong>Address the Underlying Cause:</strong> Definitive treatment requires identifying and correcting the root cause of shock (e.g., stopping hemorrhage, treating infection, revascularization for MI, relieving obstruction).</li><li><strong>Multidisciplinary Approach:</strong> Effective management often requires collaboration with critical care specialists, surgeons, cardiologists, and infectious disease physicians.</li><li><strong>Continuous Reassessment:</strong> Patients in shock are dynamic; frequent reassessment of clinical status and response to therapy is essential to adjust treatment plans.</li><li><strong>Prognosis and Family Communication:</strong> Be transparent with families about the severity of the condition, potential complications, and expected outcomes.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Prioritization of Care:</strong> Master the ABCs (Airway, Breathing, Circulation) and the systematic approach to patient assessment in critical situations.</li><li><strong>Fluid Management Skills:</strong> Develop proficiency in administering IV fluids, monitoring for signs of fluid overload (e.g., crackles, edema), and assessing fluid responsiveness.</li><li><strong>Medication Administration:</strong> Understand the indications, dosages, and titration protocols for vasopressors, inotropes, and other critical medications used in shock, along with their potential side effects.</li><li><strong>Hemodynamic Monitoring:</strong> Learn to interpret vital signs, central venous pressure (CVP), arterial line readings, and other advanced hemodynamic parameters to guide interventions.</li><li><strong>Documentation:</strong> Maintain meticulous and timely documentation of assessments, interventions, and patient responses.</li><li><strong>Patient and Family Support:</strong> Provide empathetic care and clear communication to patients and their families during a highly stressful period.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Mean Arterial Pressure (MAP):</strong> Calculated as (Systolic BP + 2x Diastolic BP) / 3; target typically >65 mmHg.</li><li><strong>Serum Lactate:</strong> A key biomarker for tissue hypoperfusion and anaerobic metabolism; levels >2 mmol/L often indicate shock.</li><li><strong>Central Venous Pressure (CVP):</strong> Reflects right atrial pressure and preload; used to guide fluid resuscitation, though its utility is debated.</li><li><strong>ScvO2 (Central Venous Oxygen Saturation):</strong> Measures oxygen saturation in the superior vena cava; reflects the balance between oxygen delivery and consumption.</li><li><strong>Fluid Challenge:</strong> Rapid administration of a bolus of IV fluids (e.g., 250-500 mL crystalloid) to assess hemodynamic response.</li><li><strong>Norepinephrine (Levophed):</strong> First-line vasopressor for most types of shock due to its potent vasoconstrictive effects.</li><li><strong>Epinephrine:</strong> Used in anaphylactic shock and as a second-line vasopressor in other shock states.</li><li><strong>Dobutamine:</strong> An inotropic agent used in cardiogenic shock to improve cardiac contractility.</li><li><strong>Sequential Organ Failure Assessment (SOFA) Score:</strong> Used to quantify organ dysfunction and predict mortality, particularly in sepsis.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

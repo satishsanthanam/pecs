@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a patient wearing a portable 24-hour pH monitoring device. A thin catheter is visible extending from the patient's nose towards the throat, connected to a small, wearable recorder on their waist or shoulder. The patient is depicted engaged in normal daily activities, perhaps eating a meal or sitting at a desk, while simultaneously jotting notes in a symptom diary. The background is clean and clinical, with subtle icons representing food, a clock, and a notepad, emphasizing the monitoring and recording aspects. Colors are soft and professional, suitable for a medical information card.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./24_hour_ph_monitoring.jpg" class="card-banner" alt="24-hour pH monitoring Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-laboratory-and-diagnostic-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Laboratory and diagnostic tests</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-laboratory-and-diagnostic-tests-other-diagnostic-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Other diagnostic tests</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>24-hour pH monitoring</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Laboratory and diagnostic tests</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Other diagnostic tests</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose:</strong> 24-hour pH monitoring measures the amount of acid refluxing into the esophagus, primarily to diagnose Gastroesophageal Reflux Disease (GERD).</li><li><strong>Procedure:</strong> A thin, flexible catheter with a pH sensor is gently inserted through the nostril and positioned in the esophagus, typically above the lower esophageal sphincter.</li><li><strong>Recording:</strong> The catheter is connected to a small, portable recorder worn by the patient, which continuously logs pH levels over a 24-hour period.</li><li><strong>Patient Activity:</strong> Patients are encouraged to maintain their usual daily activities, including eating and sleeping, while meticulously recording symptoms, meals, and body positions in a diary.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Chronic Heartburn:</strong> Persistent burning sensation in the chest, often worse after eating or lying down.</li><li><strong>Regurgitation:</strong> The sensation of stomach contents, often acidic, coming back up into the throat or mouth.</li><li><strong>Atypical Chest Pain:</strong> Non-cardiac chest pain that may be related to esophageal irritation.</li><li><strong>Dysphagia:</strong> Difficulty or discomfort when swallowing.</li><li><strong>Chronic Cough/Hoarseness:</strong> Persistent cough or voice changes not explained by other respiratory conditions.</li><li><strong>Asthma-like Symptoms:</strong> Worsening asthma or new onset of wheezing potentially triggered by reflux.</li><li><strong>Dental Erosion:</strong> Unexplained erosion of tooth enamel due to chronic acid exposure.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Medication Hold:</strong> Patients are typically instructed to stop proton pump inhibitors (PPIs) for 7 days and H2 blockers for 24-48 hours prior to the test, unless specifically testing on medication.</li><li><strong>Nasal/Throat Conditions:</strong> Inform the healthcare provider of any recent nasal surgery, severe nosebleeds, or known esophageal strictures before the procedure.</li><li><strong>Device Protection:</strong> Keep the recording device dry at all times; avoid showering, bathing, or swimming during the monitoring period.</li><li><strong>Catheter Integrity:</strong> Avoid strenuous activities that could dislodge the catheter, such as heavy lifting or vigorous exercise.</li><li><strong>Discomfort Management:</strong> Expect mild throat irritation or nasal discomfort during the monitoring period; report any severe pain or difficulty breathing immediately.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Normal Intake:</strong> Patients should eat and drink their usual diet during the 24-hour monitoring period to accurately reflect typical reflux patterns.</li><li><strong>Meal Recording:</strong> Meticulously record the start and end times of all meals and snacks in the symptom diary.</li><li><strong>Fluid Intake:</strong> Maintain normal hydration; record all fluid intake in the diary.</li><li><strong>Avoidance (if applicable):</strong> If the test aims to assess baseline reflux without exacerbation, patients may be advised to temporarily avoid known personal trigger foods (e.g., spicy foods, caffeine, alcohol, fatty foods) if they typically avoid them.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Symptom Diary:</strong> Diligently record the exact start and end times of all symptoms (e.g., heartburn, regurgitation, chest pain), meals, and periods of lying down or sleeping.</li><li><strong>Catheter Handling:</strong> Do not pull on, adjust, or attempt to remove the esophageal catheter once it has been placed.</li><li><strong>Emergency Contact:</strong> Immediately contact the clinic if the catheter becomes dislodged, if you experience severe pain, difficulty breathing, or persistent coughing.</li><li><strong>Device Return:</strong> Ensure the recording device and the completed symptom diary are returned to the clinic at the scheduled time for data analysis.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Diagnostic Confirmation:</strong> This test is crucial for objectively confirming GERD, especially in patients with atypical symptoms or those unresponsive to empirical therapy.</li><li><strong>Treatment Guidance:</strong> Results help differentiate between acid-related and non-acid-related symptoms, guiding decisions for medical management or surgical intervention.</li><li><strong>PPI Efficacy Assessment:</strong> Can be performed while the patient is on proton pump inhibitors to evaluate the effectiveness of current acid-suppressing therapy.</li><li><strong>Pre-surgical Evaluation:</strong> Essential for patients considering anti-reflux surgery to confirm the presence of pathological acid reflux as the cause of their symptoms.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Provide comprehensive patient education regarding the procedure, the importance of accurate diary keeping, and proper care of the monitoring device.</li><li><strong>Insertion Assistance:</strong> Assist the physician during catheter insertion, ensuring patient comfort, proper positioning, and securing the catheter.</li><li><strong>Troubleshooting:</strong> Be prepared to troubleshoot common issues with the recording device (e.g., battery life, connection) and address patient concerns or discomfort.</li><li><strong>Data Integrity:</strong> Emphasize the critical role of the patient's symptom diary in correlating symptoms with pH events for accurate diagnosis.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>DeMeester Score:</strong> A composite score derived from 24-hour pH monitoring data, quantifying overall esophageal acid exposure and used to define pathological reflux.</li><li><strong>Symptom Index (SI) & Symptom Association Probability (SAP):</strong> Statistical measures used to correlate patient-reported symptoms with reflux episodes detected by the pH probe.</li><li><strong>Impedance-pH Monitoring:</strong> An advanced technique that detects both acid and non-acid reflux episodes (liquid and gas), often used when standard pH monitoring is inconclusive.</li><li><strong>Catheter Placement:</strong> The pH sensor is typically positioned 5 cm above the manometrically determined upper border of the lower esophageal sphincter (LES).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A vibrant flat vector illustration for a public awareness campaign about sun protection. The scene features diverse individuals of various ages and skin tones enjoying outdoor activities safely. Key elements include people applying sunscreen, wearing wide-brimmed hats, sunglasses, and light, long-sleeved clothing. Some individuals are relaxing under large umbrellas or natural shade from trees. The sun is depicted gently in the background, with a focus on protective behaviors rather than harshness. The overall aesthetic is clean, modern, and uses bright, inviting colors, emphasizing health and prevention. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./sunburn.jpg" class="card-banner" alt="Sunburn Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-skin-hair-and-nails" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Skin, hair, and nails</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-skin-hair-and-nails-sunburn" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Sunburn</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Sunburn</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Skin, hair, and nails</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Sunburn</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Sunburn is an inflammatory reaction of the skin caused by overexposure to ultraviolet (UV) radiation, primarily from the sun.</li><li><strong>Primary Cause:</strong> Excessive exposure to UVA and UVB rays, leading to DNA damage in skin cells.</li><li><strong>Severity Spectrum:</strong> Ranges from mild redness (first-degree burn) to painful blistering (second-degree burn), affecting the epidermis and sometimes the superficial dermis.</li><li><strong>Long-term Risks:</strong> Repeated sunburns significantly increase the risk of premature skin aging (photoaging), actinic keratoses, and various skin cancers, including melanoma, basal cell carcinoma, and squamous cell carcinoma.</li><li><strong>Immune System Impact:</strong> Severe sunburn can temporarily suppress the immune system, potentially increasing susceptibility to infections.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Erythema:</strong> Redness of the skin, often appearing within hours of sun exposure.</li><li><strong>Pain and Tenderness:</strong> The affected skin feels sore and sensitive to touch.</li><li><strong>Warmth:</strong> The sunburned area feels hot to the touch.</li><li><strong>Swelling:</strong> Mild to moderate edema may occur in the affected skin.</li><li><strong>Blistering:</strong> Formation of fluid-filled blisters indicates a more severe, second-degree burn.</li><li><strong>Peeling:</strong> Skin peeling typically occurs a few days after the initial burn as the damaged skin sheds.</li><li><strong>Systemic Symptoms:</strong> In severe cases or with extensive burns, symptoms like fever, chills, headache, nausea, and fatigue (signs of sun poisoning or heatstroke) may develop.</li><li><strong>Itching:</strong> As the skin heals, itching can be a common symptom.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Sunscreen Application:</strong> Apply broad-spectrum sunscreen with an SPF of 30 or higher generously to all exposed skin 15-30 minutes before sun exposure, and reapply every two hours, or more frequently after swimming or sweating.</li><li><strong>Protective Clothing:</strong> Wear wide-brimmed hats, sunglasses, and tightly woven, loose-fitting clothing that covers arms and legs when outdoors.</li><li><strong>Seek Shade:</strong> Limit direct sun exposure, especially during peak UV hours, typically between 10 AM and 4 PM.</li><li><strong>Hydration:</strong> Maintain adequate fluid intake, particularly water, to prevent dehydration, which can be exacerbated by sun exposure.</li><li><strong>Infants and Children:</strong> Keep infants under six months out of direct sunlight entirely. For older children, ensure rigorous sun protection measures are followed.</li><li><strong>Medication Awareness:</strong> Be aware of medications that can cause photosensitivity (e.g., certain antibiotics, diuretics, NSAIDs), increasing susceptibility to sunburn. Consult a healthcare provider regarding sun exposure while on these medications.</li><li><strong>Avoid Tanning Beds:</strong> Refrain from using tanning beds, as they emit harmful UV radiation that contributes to skin damage and cancer risk.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Increased Hydration:</strong> Consume ample amounts of water and electrolyte-rich fluids (e.g., oral rehydration solutions, diluted fruit juices) to combat dehydration, especially if systemic symptoms like fever are present or if the burn is extensive.</li><li><strong>Antioxidant-Rich Foods:</strong> Incorporate foods high in antioxidants, such as Vitamin C (citrus fruits, berries, bell peppers) and Vitamin E (nuts, seeds, leafy greens), which may support skin repair and reduce inflammation.</li><li><strong>Avoid Alcohol:</strong> Limit or avoid alcohol consumption, as it can contribute to dehydration and may impair the body's healing processes.</li><li><strong>Cooling Foods:</strong> While not a direct treatment, consuming cool, hydrating foods like cucumbers, watermelon, and leafy greens can contribute to overall comfort and hydration.</li><li><strong>Nutrient Support:</strong> Ensure a balanced intake of essential nutrients to support overall skin health and immune function during the healing process.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Medical Consultation:</strong> Seek immediate medical attention for severe sunburns covering a large area, extensive blistering, signs of infection (pus, increasing pain, red streaks), or systemic symptoms such as high fever, chills, severe pain, headache, confusion, or fainting.</li><li><strong>Blister Management:</strong> Do not pop blisters, as this can increase the risk of infection and delay healing. If blisters break naturally, gently clean the area and apply a sterile dressing.</li><li><strong>Pain Relief:</strong> Administer over-the-counter pain relievers such as ibuprofen or acetaminophen to manage pain and reduce inflammation.</li><li><strong>Cool Compresses:</strong> Apply cool, damp cloths or take cool baths/showers to soothe the skin and reduce discomfort. Avoid ice directly on the skin.</li><li><strong>Moisturize:</strong> Apply a gentle, fragrance-free moisturizer or aloe vera gel to the affected skin after cooling to help retain moisture and promote healing. Avoid petroleum-based products on fresh burns.</li><li><strong>Avoid Further Exposure:</strong> Protect the sunburned skin from any further sun exposure until it has fully healed.</li><li><strong>Topical Steroids:</strong> Mild topical corticosteroid creams may be used for a few days to reduce inflammation and discomfort, under medical guidance.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Prevention is Paramount:</strong> Emphasize that preventing sunburn is crucial for long-term skin health and significantly reduces the risk of skin cancer.</li><li><strong>Skin Cancer Risk:</strong> Educate patients on the direct link between sunburn history, especially blistering sunburns in childhood, and an increased lifetime risk of melanoma and non-melanoma skin cancers.</li><li><strong>Regular Skin Checks:</strong> Advise patients to perform regular self-skin exams and to schedule annual professional skin checks, particularly if they have a history of multiple sunburns, atypical moles, or a family history of skin cancer.</li><li><strong>Photosensitizing Medications:</strong> Counsel patients on the importance of discussing all medications with their physician, especially regarding potential photosensitivity and the need for enhanced sun protection.</li><li><strong>Hydration and Systemic Symptoms:</strong> Stress the importance of adequate hydration during recovery and to seek medical evaluation for any systemic symptoms indicating severe sun poisoning or heat-related illness.</li><li><strong>Proper Topical Care:</strong> Guide patients on appropriate topical treatments for pain and inflammation, cautioning against home remedies that may irritate or infect the skin.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Develop and deliver comprehensive patient education on sun protection strategies, including proper sunscreen application, protective clothing, and peak UV hour avoidance.</li><li><strong>Burn Assessment:</strong> Accurately assess the depth and extent of sunburns, differentiating between first- and second-degree burns, and identifying signs of systemic involvement.</li><li><strong>Pain Management:</strong> Implement effective pain management strategies, including pharmacological (e.g., NSAIDs) and non-pharmacological (e.g., cool compresses, soothing lotions) interventions.</li><li><strong>Fluid Balance Monitoring:</strong> Monitor patients for signs of dehydration, especially in extensive burns or those with systemic symptoms, and ensure adequate fluid intake.</li><li><strong>Wound Care:</strong> Provide appropriate wound care for blistering sunburns, focusing on infection prevention, gentle cleansing, and sterile dressing application.</li><li><strong>Risk Factor Identification:</strong> Identify patients at higher risk for severe sunburns or complications, such as those with fair skin, immunosuppression, or on photosensitizing medications.</li><li><strong>Referral Guidelines:</strong> Understand when to refer patients to a physician or dermatologist for severe burns, suspected infection, or concerns about skin cancer.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Ultraviolet Radiation (UVR):</strong> Electromagnetic radiation from the sun, primarily UVA (longer wavelength, penetrates deeper, contributes to aging and cancer) and UVB (shorter wavelength, primary cause of sunburn and skin cancer).</li><li><strong>Melanin:</strong> Pigment produced by melanocytes that provides natural photoprotection by absorbing UVR.</li><li><strong>Fitzpatrick Skin Types:</strong> Classification system (I-VI) based on skin's response to sun exposure, indicating susceptibility to sunburn and tanning ability.</li><li><strong>Erythema Pathophysiology:</strong> UVR induces DNA damage, leading to release of inflammatory mediators (e.g., prostaglandins, histamine, cytokines) causing vasodilation and increased blood flow, resulting in redness and warmth.</li><li><strong>Photoaging:</strong> Premature skin aging caused by chronic sun exposure, characterized by wrinkles, fine lines, hyperpigmentation, and loss of elasticity.</li><li><strong>Actinic Keratosis (AK):</strong> Precancerous lesions caused by chronic sun exposure, which can progress to squamous cell carcinoma.</li><li><strong>Immunosuppression:</strong> UVR can suppress local and systemic immune responses, potentially increasing susceptibility to infections and impairing tumor surveillance.</li><li><strong>DNA Damage:</strong> UVR causes direct and indirect damage to cellular DNA, leading to mutations that can initiate carcinogenesis.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

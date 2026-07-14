@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a person experiencing a panic attack, characterized by a feeling of overwhelming anxiety, shortness of breath, and a racing heart. The person is sitting or standing, perhaps clutching their chest or head, with a distressed expression. Surrounding them are subtle visual cues of support and calm, like gentle hands reaching out or a soft, reassuring light. The background is a muted, calming color, suggesting a path towards tranquility and recovery. The overall design should be clean, empathetic, and suitable for public health awareness, avoiding any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./panic_disorder.jpg" class="card-banner" alt="Panic disorder Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-mental-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Mental health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-mental-health-anxiety-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Anxiety disorders</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Panic disorder</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Mental health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Anxiety disorders</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Panic disorder is an anxiety disorder characterized by recurrent, unexpected panic attacks and persistent worry about having more attacks or their consequences.</li><li><strong>Panic Attacks:</strong> These are sudden episodes of intense fear that trigger severe physical reactions when there is no real danger or apparent cause. They can be terrifying and often lead to a fear of losing control, having a heart attack, or even dying.</li><li><strong>Impact on Life:</strong> The fear of future panic attacks can lead to significant changes in behavior, such as avoiding places or situations where attacks have occurred, which can severely impact daily functioning and quality of life.</li><li><strong>Prevalence:</strong> It affects a significant portion of the population, with onset often occurring in late adolescence or early adulthood, though it can manifest at any age.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Palpitations or Pounding Heart:</strong> A sudden, intense awareness of one's heartbeat, often feeling rapid or irregular.</li><li><strong>Sweating:</strong> Profuse perspiration unrelated to physical exertion or environmental temperature.</li><li><strong>Trembling or Shaking:</strong> Involuntary muscle tremors or a generalized feeling of shakiness.</li><li><strong>Sensations of Shortness of Breath:</strong> Feeling smothered, gasping for air, or hyperventilating.</li><li><strong>Chest Pain or Discomfort:</strong> A tight, aching, or sharp pain in the chest, often mistaken for a heart attack.</li><li><strong>Nausea or Abdominal Distress:</strong> Upset stomach, queasiness, or digestive discomfort.</li><li><strong>Dizziness, Unsteadiness, Lightheadedness, or Faintness:</strong> A feeling of being off-balance or on the verge of passing out.</li><li><strong>Chills or Hot Flashes:</strong> Sudden changes in body temperature sensation.</li><li><strong>Paresthesias:</strong> Numbness or tingling sensations, often in the extremities.</li><li><strong>Derealization or Depersonalization:</strong> Feelings of unreality (derealization) or being detached from oneself (depersonalization).</li><li><strong>Fear of Losing Control or Going Crazy:</strong> An intense apprehension about mental incapacitation.</li><li><strong>Fear of Dying:</strong> A profound and immediate sense of impending doom.</li><li><strong>Anticipatory Anxiety:</strong> Persistent worry about having another panic attack, often leading to avoidance behaviors.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Stimulants:</strong> Limit or eliminate caffeine, nicotine, and other stimulants that can exacerbate anxiety and trigger panic attacks.</li><li><strong>Identify Triggers:</strong> Work with a mental health professional to identify and understand personal triggers for panic attacks to develop coping strategies.</li><li><strong>Safety Planning:</strong> Develop a personalized safety plan for managing acute panic attacks, including breathing techniques, grounding exercises, and identifying trusted contacts.</li><li><strong>Medication Adherence:</strong> If prescribed medication, strictly follow the dosage and schedule provided by the physician to maintain therapeutic levels and prevent symptom recurrence.</li><li><strong>Avoid Self-Medication:</strong> Do not use alcohol or illicit substances as a coping mechanism, as they can worsen anxiety and lead to dependency.</li><li><strong>Regular Professional Consultations:</strong> Maintain regular follow-up appointments with mental health providers to monitor progress, adjust treatment plans, and address any emerging concerns.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Caffeine Restriction:</strong> Strictly limit or avoid coffee, tea, energy drinks, and certain sodas, as caffeine is a known stimulant that can trigger or intensify panic symptoms.</li><li><strong>Sugar and Refined Carbohydrate Moderation:</strong> Minimize intake of high-sugar foods and refined carbohydrates, which can lead to blood sugar fluctuations that may mimic or worsen anxiety symptoms.</li><li><strong>Regular Meal Schedule:</strong> Maintain consistent meal times to prevent significant drops in blood sugar, which can contribute to feelings of anxiety and lightheadedness.</li><li><strong>Adequate Hydration:</strong> Ensure sufficient daily water intake, as dehydration can sometimes exacerbate physical symptoms of anxiety.</li><li><strong>Balanced Nutrition:</strong> Focus on a diet rich in whole foods, lean proteins, fruits, and vegetables to support overall brain health and stable energy levels.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Remain Calm and Reassuring:</strong> During an acute panic attack, maintain a calm demeanor and offer simple, reassuring statements. Avoid dismissive language.</li><li><strong>Encourage Breathing Techniques:</strong> Guide the individual through slow, deep breathing exercises, such as counting breaths, to help regulate their physiological response.</li><li><strong>Provide a Safe Space:</strong> If possible, move the individual to a quiet, less stimulating environment to reduce sensory overload.</li><li><strong>Do Not Force Interaction:</strong> Respect the individual's need for space or silence during an attack; avoid overwhelming them with questions or demands.</li><li><strong>Validate Their Experience:</strong> Acknowledge that their fear is real to them, even if the perceived threat is not objectively present. Avoid telling them to 'just calm down.'</li><li><strong>Encourage Professional Help:</strong> Gently encourage and support the individual in seeking and adhering to professional mental health treatment.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Diagnostic Criteria:</strong> Diagnosis of panic disorder is based on DSM-5 criteria, requiring recurrent unexpected panic attacks and at least one month of persistent concern about additional attacks or significant maladaptive change in behavior related to the attacks.</li><li><strong>Differential Diagnosis:</strong> It is crucial to rule out medical conditions that can mimic panic attack symptoms, such as cardiac arrhythmias, thyroid dysfunction, asthma, or pheochromocytoma, through thorough physical examination and appropriate investigations.</li><li><strong>First-Line Treatment:</strong> Cognitive Behavioral Therapy (CBT), particularly panic-focused CBT, and pharmacotherapy (SSRIs, SNRIs) are considered first-line treatments, often used in combination for optimal outcomes.</li><li><strong>Medication Management:</strong> SSRIs and SNRIs are typically initiated at low doses and titrated slowly to minimize side effects. Benzodiazepines may be used for acute symptom relief but require careful monitoring due to dependence risk.</li><li><strong>Long-Term Management:</strong> Emphasize the importance of adherence to treatment plans, lifestyle modifications, and relapse prevention strategies to maintain remission and improve quality of life.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Acute Panic Attack Intervention:</strong> Nurses should prioritize patient safety, establish a calm environment, use therapeutic communication, and guide patients through relaxation techniques (e.g., diaphragmatic breathing) during an acute attack.</li><li><strong>Patient Education:</strong> Educate patients on the nature of panic disorder, common triggers, the importance of medication adherence, and non-pharmacological coping strategies such as mindfulness and progressive muscle relaxation.</li><li><strong>Assessment Tools:</strong> Utilize standardized assessment tools like the Panic Disorder Severity Scale (PDSS) or Generalized Anxiety Disorder 7-item (GAD-7) scale to monitor symptom severity and treatment effectiveness.</li><li><strong>Referral Pathways:</strong> Facilitate referrals to mental health specialists, support groups, and community resources for ongoing therapy and support.</li><li><strong>Pharmacological Monitoring:</strong> Monitor patients for medication side effects, therapeutic response, and potential for withdrawal symptoms, especially with anxiolytics.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>DSM-5 Criteria:</strong> Diagnostic and Statistical Manual of Mental Disorders, Fifth Edition, criteria for Panic Disorder (code 300.01).</li><li><strong>Pharmacotherapy:</strong> Selective Serotonin Reuptake Inhibitors (SSRIs) such as sertraline, paroxetine, fluoxetine; Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs) like venlafaxine; Benzodiazepines (e.g., alprazolam, lorazepam) for short-term acute management.</li><li><strong>Psychotherapy:</strong> Cognitive Behavioral Therapy (CBT), specifically Panic-Focused CBT (PF-CBT), Exposure Therapy, and Relaxation Training.</li><li><strong>Neurobiology:</strong> Involves dysregulation in brain regions such as the amygdala, prefrontal cortex, and hippocampus, and neurotransmitter systems including serotonin, norepinephrine, and GABA.</li><li><strong>Comorbidity:</strong> Frequently co-occurs with other anxiety disorders, major depressive disorder, substance use disorders, and certain medical conditions.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

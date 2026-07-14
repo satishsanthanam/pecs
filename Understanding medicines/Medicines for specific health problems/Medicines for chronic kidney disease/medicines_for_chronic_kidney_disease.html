@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a diverse group of people, including a doctor and a patient, interacting with various medications (pills, capsules) and medical symbols related to kidney health. The scene should depict elements of monitoring, treatment, and patient education. Include stylized representations of kidneys, a stethoscope, and a blood pressure cuff. Use a clean, modern design with a palette of blues, greens, and soft neutrals, emphasizing health and care. Avoid any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./medicines_for_chronic_kidney_disease.jpg" class="card-banner" alt="Medicines for chronic kidney disease Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-understanding-medicines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Understanding medicines</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-understanding-medicines-medicines-for-specific-health-problems" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Medicines for specific health problems</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Medicines for chronic kidney disease</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Understanding medicines</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Medicines for specific health problems</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose of Medications:</strong> Medicines for chronic kidney disease (CKD) aim to slow disease progression, manage symptoms, prevent complications, and improve quality of life.</li><li><strong>Key Drug Classes:</strong> Common medications include ACE inhibitors/ARBs, SGLT2 inhibitors, diuretics, phosphate binders, erythropoiesis-stimulating agents (ESAs), and vitamin D analogs.</li><li><strong>Individualized Treatment:</strong> Treatment plans are highly individualized, based on the stage of CKD, underlying cause, and presence of comorbidities like hypertension or diabetes.</li><li><strong>Lifelong Management:</strong> CKD medication regimens are typically long-term and require consistent adherence for optimal outcomes.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Hypertension:</strong> Often managed with ACE inhibitors or ARBs to control blood pressure and reduce proteinuria, a key indicator of kidney damage.</li><li><strong>Edema and Fluid Overload:</strong> Diuretics are prescribed to reduce swelling in legs, ankles, and lungs, which can be a symptom of fluid retention due to impaired kidney function.</li><li><strong>Anemia:</strong> Erythropoiesis-stimulating agents (ESAs) are used to treat anemia, a common complication of CKD, reducing fatigue and improving energy levels.</li><li><strong>Bone and Mineral Disorders:</strong> Phosphate binders and active vitamin D analogs address hyperphosphatemia and secondary hyperparathyroidism, which contribute to bone disease.</li><li><strong>Hyperglycemia (in Diabetic CKD):</strong> SGLT2 inhibitors are increasingly used to manage blood sugar in diabetic patients with CKD, offering significant renoprotective benefits.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Dosage Adjustments:</strong> Many medications require dosage adjustments based on the patient's glomerular filtration rate (GFR) to prevent accumulation and toxicity.</li><li><strong>Electrolyte Monitoring:</strong> Close monitoring of potassium, sodium, and calcium levels is essential, especially with ACE inhibitors/ARBs and diuretics, to prevent imbalances.</li><li><strong>Nephrotoxic Agents:</strong> Avoid over-the-counter NSAIDs (non-steroidal anti-inflammatory drugs) and certain contrast dyes, which can further damage kidneys.</li><li><strong>Drug Interactions:</strong> Be vigilant for potential interactions between CKD medications and other prescribed or over-the-counter drugs. Always inform your doctor and pharmacist about all medications.</li><li><strong>Blood Pressure Monitoring:</strong> Regular home blood pressure monitoring is crucial, especially when initiating or adjusting antihypertensive medications.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Potassium Restriction:</strong> Patients on ACE inhibitors/ARBs or with advanced CKD may need to limit high-potassium foods to prevent hyperkalemia.</li><li><strong>Phosphate Restriction:</strong> Dietary phosphate restriction is vital, alongside phosphate binders, to manage hyperphosphatemia and protect bone health.</li><li><strong>Sodium Restriction:</strong> Limiting sodium intake helps control blood pressure and reduce fluid retention, enhancing the effectiveness of diuretics.</li><li><strong>Fluid Management:</strong> Fluid intake may need to be restricted in advanced CKD stages, especially if edema or fluid overload is present, to prevent complications.</li><li><strong>Protein Intake:</strong> Moderate protein restriction may be advised in some CKD stages to reduce kidney workload, but this must be individualized and monitored by a dietitian.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Adherence is Key:</strong> Take all medications exactly as prescribed, without skipping doses or altering quantities, even if you feel better.</li><li><strong>Report Side Effects:</strong> Promptly report any new or worsening symptoms, such as dizziness, muscle weakness, changes in urination, or unusual swelling, to your healthcare provider.</li><li><strong>Regular Lab Tests:</strong> Adhere to the schedule for blood and urine tests; these are critical for monitoring kidney function, electrolyte balance, and medication effectiveness.</li><li><strong>Do Not Self-Medicate:</strong> Avoid starting any new medications, supplements, or herbal remedies without consulting your doctor or pharmacist, as they may interact with CKD drugs or harm your kidneys.</li><li><strong>Medication List:</strong> Always carry an updated list of all your medications, including dosages, for all healthcare appointments and in case of emergency.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Holistic Management:</strong> Managing CKD involves a comprehensive approach, integrating medication, diet, lifestyle modifications, and management of comorbidities.</li><li><strong>Early Intervention:</strong> Early and consistent use of renoprotective medications, such as ACE inhibitors/ARBs and SGLT2 inhibitors, can significantly slow CKD progression.</li><li><strong>Regular Follow-ups:</strong> Consistent follow-up with a nephrologist is crucial for monitoring disease progression, adjusting medications, and addressing complications.</li><li><strong>Patient Education:</strong> Empowering patients with knowledge about their condition and medication regimen is vital for adherence and successful long-term management.</li><li><strong>Goal-Oriented Therapy:</strong> Treatment goals include preserving kidney function, preventing cardiovascular events, managing symptoms, and delaying the need for kidney replacement therapy.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Medication Administration:</strong> Nurses must ensure correct administration, dosage, and timing of CKD medications, considering GFR-based adjustments.</li><li><strong>Patient Education:</strong> Educate patients on medication purpose, potential side effects, importance of adherence, and dietary restrictions related to their medications.</li><li><strong>Monitoring & Assessment:</strong> Closely monitor vital signs, fluid balance (intake/output, daily weights), electrolyte levels, kidney function tests (creatinine, BUN, GFR), and hemoglobin.</li><li><strong>Recognizing Adverse Effects:</strong> Be vigilant for signs of hyperkalemia (e.g., muscle weakness, arrhythmias), hypotension, fluid overload, or anemia, and report promptly.</li><li><strong>Interdisciplinary Collaboration:</strong> Collaborate with physicians, dietitians, and pharmacists to optimize patient care and medication management plans.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>ACE Inhibitors/ARBs (e.g., Lisinopril, Valsartan):</strong> Block the renin-angiotensin-aldosterone system (RAAS), reducing proteinuria and slowing CKD progression, particularly in diabetic nephropathy.</li><li><strong>SGLT2 Inhibitors (e.g., Dapagliflozin, Empagliflozin):</strong> Promote glucose excretion in urine, offering significant renoprotective and cardiovascular benefits beyond glycemic control in CKD patients with or without diabetes.</li><li><strong>Diuretics (e.g., Furosemide, Hydrochlorothiazide):</strong> Reduce fluid retention and manage hypertension by increasing urine output, primarily loop diuretics in advanced CKD.</li><li><strong>Phosphate Binders (e.g., Sevelamer, Calcium Acetate):</strong> Taken with meals to bind dietary phosphate in the gut, preventing its absorption and managing hyperphosphatemia.</li><li><strong>Erythropoiesis-Stimulating Agents (ESAs) (e.g., Epoetin Alfa, Darbepoetin Alfa):</strong> Stimulate red blood cell production in the bone marrow to treat anemia associated with CKD.</li><li><strong>Vitamin D Analogs (e.g., Calcitriol, Paricalcitol):</strong> Used to suppress parathyroid hormone (PTH) levels and manage secondary hyperparathyroidism and bone mineral disorders.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

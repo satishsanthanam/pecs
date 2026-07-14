@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human skeleton with visible signs of bone weakness and fragility, specifically in the spine, hips, and long bones. The bones appear porous or fractured. A stylized kidney icon is subtly integrated, emitting a faint, disrupted energy flow towards the bones, symbolizing the connection between kidney disease and bone problems. The overall color palette is muted blues, grays, and subtle bone tones, with a touch of red for emphasis on affected areas. Clean lines, no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./bone_problems_caused_by_kidney_disease.jpg" class="card-banner" alt="Bone problems caused by kidney disease Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-kidneys-and-urinary-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Kidneys and urinary system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-kidneys-and-urinary-system-kidney-failure-and-dialysis" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Kidney failure and dialysis</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Bone problems caused by kidney disease</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Kidneys and urinary system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Kidney failure and dialysis</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding Renal Osteodystrophy:</strong> This refers to a group of bone disorders that develop in individuals with chronic kidney disease (CKD) due to the kidneys' inability to maintain proper balance of minerals and hormones.</li><li><strong>Key Imbalances:</strong> The condition is primarily driven by disruptions in calcium, phosphate, vitamin D, and parathyroid hormone (PTH) metabolism.</li><li><strong>Impact on Bone Health:</strong> These imbalances lead to weakened bones, increased risk of fractures, bone pain, and sometimes bone deformities.</li><li><strong>Progressive Nature:</strong> Bone problems often worsen as kidney disease progresses, becoming more prevalent in later stages of CKD and in patients on dialysis.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Persistent Bone Pain:</strong> Often described as deep, aching pain, commonly affecting the hips, spine, ribs, and legs.</li><li><strong>Muscle Weakness:</strong> Generalized muscle weakness, particularly in the proximal muscles, making activities like standing or climbing stairs difficult.</li><li><strong>Joint Pain and Stiffness:</strong> Discomfort and reduced range of motion in various joints.</li><li><strong>Increased Fracture Risk:</strong> Bones become brittle and prone to fractures from minor trauma or even spontaneously.</li><li><strong>Skeletal Deformities:</strong> In severe, long-standing cases, deformities such as bowed legs (genu valgum), kyphosis (hunchback), or skull enlargement may occur.</li><li><strong>Pruritus (Itching):</strong> Often associated with high phosphate levels, which contribute to bone disease.</li><li><strong>Calciphylaxis:</strong> A rare but severe complication involving painful skin lesions and calcification of small blood vessels, particularly in adipose tissue and dermis.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Regular Mineral Monitoring:</strong> Consistent monitoring of serum calcium, phosphate, parathyroid hormone (PTH), and vitamin D levels is essential to guide treatment.</li><li><strong>Medication Adherence:</strong> Strict adherence to prescribed phosphate binders, active vitamin D analogs (e.g., calcitriol, paricalcitol), and calcimimetics (e.g., cinacalcet) is vital.</li><li><strong>Fall Prevention:</strong> Implement strategies to prevent falls, such as removing tripping hazards, using assistive devices, and ensuring adequate lighting, due to increased fracture risk.</li><li><strong>Avoid Aluminum-Containing Antacids:</strong> These can worsen bone disease by contributing to aluminum toxicity, which inhibits bone mineralization.</li><li><strong>Close Nephrology Follow-up:</strong> Regular consultations with a nephrologist are crucial for ongoing management and adjustment of treatment plans.</li><li><strong>Dental Health:</strong> Maintain good oral hygiene and regular dental check-ups, as jaw bone issues can be part of renal osteodystrophy.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Phosphate Restriction:</strong> Limit foods high in phosphorus, such as dairy products, nuts, seeds, legumes, whole grains, processed foods, and dark colas, to help control serum phosphate levels.</li><li><strong>Phosphate Binder Timing:</strong> Take prescribed phosphate binders precisely with meals and snacks to maximize their effectiveness in preventing phosphate absorption.</li><li><strong>Calcium Intake Management:</strong> Dietary calcium intake should be carefully managed; excessive intake can lead to hypercalcemia, while insufficient intake can worsen bone health. Often, calcium supplements are prescribed under strict medical supervision.</li><li><strong>Vitamin D Supplementation:</strong> Dietary sources of vitamin D are generally insufficient; patients typically require activated vitamin D analogs prescribed by a physician to help regulate calcium and phosphate.</li><li><strong>Protein Intake:</strong> While protein restriction is often part of CKD management, ensure adequate protein intake to prevent malnutrition, balancing with phosphate content.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Prompt Symptom Reporting:</strong> Report any new or worsening bone pain, muscle weakness, or unexplained fractures to your healthcare provider immediately.</li><li><strong>Medication Compliance:</strong> Understand the importance of taking all prescribed medications, especially phosphate binders, exactly as directed and consistently with meals.</li><li><strong>Awareness of Hypercalcemia/Hypocalcemia:</strong> Be vigilant for symptoms of high calcium (nausea, constipation, confusion) or low calcium (muscle cramps, numbness/tingling) and report them.</li><li><strong>Regular Lab Work:</strong> Adhere to the schedule for blood tests to monitor mineral and hormone levels, as these guide treatment adjustments.</li><li><strong>Avoid Self-Medication:</strong> Do not take over-the-counter supplements or antacids without consulting your nephrologist, as they may interfere with your treatment or worsen your condition.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early Intervention is Key:</strong> Proactive management of mineral and bone disorders in CKD is crucial to prevent severe skeletal complications and improve patient quality of life.</li><li><strong>Individualized Treatment:</strong> Treatment plans must be tailored to each patient's specific laboratory values, symptoms, and bone biopsy findings (if performed).</li><li><strong>Multidisciplinary Approach:</strong> Optimal care involves collaboration between nephrologists, endocrinologists, dietitians, and sometimes orthopedic surgeons.</li><li><strong>Targeting PTH Levels:</strong> Management often focuses on maintaining parathyroid hormone (PTH) levels within a target range to prevent both high-turnover (secondary hyperparathyroidism) and low-turnover (adynamic bone disease) bone disorders.</li><li><strong>Surgical Considerations:</strong> In cases of severe, refractory secondary hyperparathyroidism, parathyroidectomy may be considered to control PTH levels and improve bone health.</li><li><strong>Long-term Monitoring:</strong> Renal osteodystrophy is a chronic condition requiring continuous monitoring and adjustment of therapy throughout the patient's life.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education on Medications:</strong> Educate patients on the purpose, dosage, and correct timing of phosphate binders (with meals), vitamin D analogs, and calcimimetics.</li><li><strong>Dietary Counseling Reinforcement:</strong> Reinforce dietary restrictions, particularly regarding high-phosphate foods, and provide practical tips for meal planning.</li><li><strong>Symptom Assessment:</strong> Regularly assess patients for bone pain, muscle weakness, gait instability, and signs of fractures or deformities.</li><li><strong>Lab Value Interpretation:</strong> Understand the significance of calcium, phosphate, PTH, and alkaline phosphatase levels in guiding patient care and identifying treatment efficacy or complications.</li><li><strong>Fall Risk Assessment and Prevention:</strong> Conduct thorough fall risk assessments and implement appropriate prevention strategies, including environmental modifications and patient education.</li><li><strong>Monitoring for Complications:</strong> Be vigilant for signs of hypercalcemia, hypocalcemia, and the rare but serious complication of calciphylaxis.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Renal Osteodystrophy:</strong> A broad term encompassing all bone abnormalities associated with chronic kidney disease, including secondary hyperparathyroidism, adynamic bone disease, and osteomalacia.</li><li><strong>Secondary Hyperparathyroidism:</strong> Excessive secretion of parathyroid hormone (PTH) in response to hypocalcemia and hyperphosphatemia, leading to high bone turnover.</li><li><strong>Adynamic Bone Disease:</strong> A form of renal osteodystrophy characterized by very low bone turnover, often associated with over-suppression of PTH or aluminum toxicity.</li><li><strong>Osteomalacia:</strong> Defective mineralization of bone matrix, leading to soft, weak bones, often due to severe vitamin D deficiency or aluminum accumulation.</li><li><strong>Fibroblast Growth Factor 23 (FGF23):</strong> A hormone that regulates phosphate and vitamin D metabolism; its levels are elevated early in CKD and contribute to phosphate retention and reduced active vitamin D.</li><li><strong>Calcimimetics:</strong> Medications (e.g., cinacalcet) that increase the sensitivity of the calcium-sensing receptor on the parathyroid gland, thereby reducing PTH secretion.</li><li><strong>Phosphate Binders:</strong> Medications (e.g., calcium acetate, sevelamer, lanthanum carbonate) that bind dietary phosphate in the gastrointestinal tract, preventing its absorption.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

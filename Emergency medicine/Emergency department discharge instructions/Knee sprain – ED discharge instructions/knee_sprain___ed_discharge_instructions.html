@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a person with a bandaged knee, using crutches, surrounded by icons representing ice pack, compression bandage, and an elevated leg. The background features subtle medical cross symbols and a calendar icon indicating follow-up. The style is clean, modern, and suitable for public health awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./knee_sprain___ed_discharge_instructions.jpg" class="card-banner" alt="Knee sprain – ED discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-emergency-medicine" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency medicine</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-emergency-medicine-emergency-department-discharge-instructions" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency department discharge instructions</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Knee sprain – ED discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Emergency medicine</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Emergency department discharge instructions</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding Your Injury:</strong> You have sustained a knee sprain, which means the ligaments supporting your knee joint have been stretched or partially torn.</li><li><strong>Recovery Expectation:</strong> Most knee sprains heal with conservative management, but recovery time varies depending on the severity, typically ranging from a few weeks to several months.</li><li><strong>Importance of RICE:</strong> Rest, Ice, Compression, and Elevation (RICE) are crucial for reducing swelling and pain, and promoting healing.</li><li><strong>Activity Modification:</strong> Avoid activities that put stress on your knee, especially twisting or pivoting motions, during the initial healing phase.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Pain and Swelling:</strong> Expect localized pain and swelling around the injured knee, which should gradually improve over time.</li><li><strong>Bruising:</strong> Discoloration or bruising may develop around the knee joint, indicating internal bleeding from the injury.</li><li><strong>Stiffness:</strong> You might experience stiffness, especially after periods of rest, which often improves with gentle movement.</li><li><strong>Tenderness to Touch:</strong> The area of the injured ligament will likely be tender when pressed.</li><li><strong>Limited Range of Motion:</strong> Difficulty fully straightening or bending your knee is common initially.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Rest Your Knee:</strong> Limit weight-bearing activities and avoid strenuous exercise. Use crutches as instructed to protect the joint.</li><li><strong>Apply Ice Regularly:</strong> Apply ice packs to the injured area for 15-20 minutes every 2-3 hours during the first 48-72 hours to reduce swelling and pain. Wrap ice in a cloth to prevent skin damage.</li><li><strong>Use Compression:</strong> Apply an elastic bandage (e.g., Ace wrap) around your knee to help reduce swelling. Ensure it is snug but not too tight to cut off circulation.</li><li><strong>Elevate Your Leg:</strong> Keep your leg elevated above the level of your heart whenever possible, especially when resting, to minimize swelling.</li><li><strong>Pain Management:</strong> Take prescribed pain medication or over-the-counter anti-inflammatory drugs (e.g., ibuprofen) as directed. Be aware of potential side effects.</li><li><strong>Crutch Use:</strong> Use crutches as instructed by the ED staff to avoid putting full weight on the injured knee. Ensure proper fitting and gait.</li><li><strong>Follow-up Appointment:</strong> Schedule a follow-up with your primary care physician or an orthopedic specialist within 3-5 days to assess healing and discuss further management.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration:</strong> Maintain adequate fluid intake to support overall healing and tissue repair.</li><li><strong>Medication Interactions:</strong> Avoid alcohol consumption, especially if you are taking pain medications, as it can interact and increase side effects or liver strain.</li><li><strong>Nutrient Support:</strong> Focus on a balanced intake of protein, vitamins (especially Vitamin C for collagen synthesis), and minerals to aid in tissue repair and recovery.</li><li><strong>Anti-inflammatory Foods:</strong> Consider incorporating foods with natural anti-inflammatory properties, such as omega-3 fatty acids, to support the healing process.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Return to ED for Worsening Symptoms:</strong> Seek immediate medical attention if you experience sudden, severe increase in pain, inability to bear any weight, or new numbness/tingling in your foot.</li><li><strong>Signs of Infection:</strong> Watch for signs of infection such as increasing redness, warmth, pus drainage, or fever.</li><li><strong>Deep Vein Thrombosis (DVT) Symptoms:</strong> Be alert for new or worsening calf pain, swelling, warmth, or tenderness, which could indicate a blood clot.</li><li><strong>Nerve or Vessel Damage:</strong> Report any persistent numbness, tingling, coolness, or pallor in your foot or toes immediately.</li><li><strong>Persistent Instability:</strong> If your knee feels like it is giving way or buckling consistently, despite following instructions, contact your doctor.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Adherence to RICE:</strong> Consistent application of the RICE protocol is paramount for optimal initial recovery and pain control.</li><li><strong>Gradual Rehabilitation:</strong> Emphasize the importance of a structured rehabilitation program, often involving physical therapy, to regain strength, flexibility, and stability.</li><li><strong>Avoid Premature Return to Activity:</strong> Patients must understand that returning to sports or strenuous activities too soon can lead to re-injury or chronic instability.</li><li><strong>Long-term Management:</strong> Discuss potential long-term implications, such as increased risk of osteoarthritis, and strategies for prevention.</li><li><strong>Patient Education:</strong> Ensure the patient understands the specific ligament involved (if identified) and the expected recovery timeline to manage expectations.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Reinforcement:</strong> Nurses play a critical role in reinforcing ED discharge instructions, especially regarding RICE, pain management, and crutch use.</li><li><strong>Pain Assessment:</strong> Regularly assess the patient's pain level and effectiveness of analgesia, educating on medication schedules and potential side effects.</li><li><strong>Neurovascular Checks:</strong> Instruct patients on how to monitor for signs of neurovascular compromise (e.g., color, temperature, sensation, movement) distal to the injury.</li><li><strong>Crutch Training:</strong> Provide thorough instruction and demonstration on proper crutch fitting and safe ambulation techniques, including stairs if applicable.</li><li><strong>Follow-up Coordination:</strong> Assist patients in scheduling follow-up appointments and provide resources for physical therapy if recommended.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Ligament Anatomy:</strong> Review the major knee ligaments: Medial Collateral Ligament (MCL), Lateral Collateral Ligament (LCL), Anterior Cruciate Ligament (ACL), Posterior Cruciate Ligament (PCL). Sprains most commonly affect the MCL.</li><li><strong>Sprain Grading:</strong> Grade I (mild stretch), Grade II (partial tear), Grade III (complete tear). ED diagnosis typically focuses on ruling out fracture and severe instability.</li><li><strong>Differential Diagnoses:</strong> Consider patellar dislocation, meniscal tear, fracture (tibial plateau, fibular head, patella), or tendon injury.</li><li><strong>Imaging Considerations:</strong> X-rays are often performed in the ED to rule out fracture (Ottawa Knee Rules). MRI may be indicated for persistent symptoms, suspicion of higher-grade sprains, or meniscal/ACL injury.</li><li><strong>RICE Protocol:</strong> Rest, Ice, Compression, Elevation – the cornerstone of acute soft tissue injury management.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

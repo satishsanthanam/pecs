@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a pregnant person with a visible Rh-negative blood type label, surrounded by subtle medical icons representing a blood test tube, a RhoGAM syringe, and a healthy baby. The color palette should be soft and reassuring, emphasizing awareness and care. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./pregnancy_in_rh_negative_people.jpg" class="card-banner" alt="Pregnancy in Rh-negative people Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-pregnancy-and-childbirth" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Pregnancy and childbirth</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-pregnancy-and-childbirth-prenatal-care" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Prenatal care</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Pregnancy in Rh-negative people</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Pregnancy and childbirth</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Prenatal care</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Rh Factor Basics:</strong> The Rh factor is a protein on red blood cells. Being Rh-negative means you lack this protein.</li><li><strong>Rh Incompatibility Risk:</strong> If an Rh-negative pregnant person carries an Rh-positive fetus, their immune system can produce antibodies against the fetal red blood cells, especially during subsequent pregnancies.</li><li><strong>Fetal Implications:</strong> These antibodies can cross the placenta and attack the fetal red blood cells, leading to hemolytic disease of the fetus and newborn (HDFN), which can cause anemia, jaundice, and in severe cases, hydrops fetalis or fetal death.</li><li><strong>Preventative Treatment:</strong> Rh immune globulin (RhoGAM) is administered to prevent sensitization, protecting future pregnancies.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Maternal Asymptomatic:</strong> Rh incompatibility itself does not cause symptoms in the Rh-negative pregnant individual.</li><li><strong>Fetal Anemia:</strong> In severe cases, the fetus may develop anemia, which can be detected via ultrasound (e.g., increased middle cerebral artery peak systolic velocity).</li><li><strong>Neonatal Jaundice:</strong> After birth, the Rh-positive newborn may exhibit severe jaundice due to the breakdown of red blood cells.</li><li><strong>Hydrops Fetalis:</strong> Extreme fetal anemia can lead to heart failure, fluid accumulation in fetal tissues (hydrops), and organ enlargement, detectable by ultrasound.</li><li><strong>Clinical Indication:</strong> The primary 'symptom' prompting intervention is the Rh-negative status of the pregnant individual, necessitating proactive management.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Early Rh Typing:</strong> Ensure your Rh blood type is determined early in pregnancy during your first prenatal visit.</li><li><strong>RhoGAM Administration:</strong> Receive Rh immune globulin (RhoGAM) as prescribed, typically around 28 weeks of gestation and again within 72 hours after delivery if the baby is Rh-positive.</li><li><strong>Post-Event Prophylaxis:</strong> RhoGAM is also crucial after any event that could cause fetal-maternal blood mixing, such as miscarriage, abortion, ectopic pregnancy, amniocentesis, chorionic villus sampling (CVS), abdominal trauma, or external cephalic version.</li><li><strong>Antibody Screening:</strong> Regular antibody screens (indirect Coombs test) will be performed throughout pregnancy to detect if sensitization has occurred.</li><li><strong>Avoidance of Sensitization:</strong> Strict adherence to RhoGAM schedules is the primary precaution to prevent the formation of Rh antibodies.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Iron-Rich Foods:</strong> Focus on a diet rich in iron (e.g., lean meats, fortified cereals, leafy greens) to support maternal red blood cell production and fetal development, especially given the potential for fetal anemia in Rh incompatibility.</li><li><strong>Folic Acid Intake:</strong> Maintain adequate folic acid intake as part of general prenatal nutrition to support healthy red blood cell formation and prevent neural tube defects.</li><li><strong>Hydration:</strong> Ensure consistent hydration throughout pregnancy, which is vital for overall maternal health and supports optimal blood volume.</li><li><strong>Balanced Nutrition:</strong> Adhere to a generally balanced and nutrient-dense diet to support a healthy pregnancy, which is crucial when managing a condition requiring close monitoring.</li><li><strong>No Specific Restrictions:</strong> There are no specific dietary restrictions directly related to Rh-negative status; focus on general healthy pregnancy nutrition.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Awareness of Rh Status:</strong> Ensure all healthcare providers involved in the pregnant person's care are aware of their Rh-negative blood type.</li><li><strong>Support RhoGAM Adherence:</strong> Encourage and support the pregnant person in adhering to all scheduled RhoGAM injections and blood tests.</li><li><strong>Monitor for Neonatal Jaundice:</strong> Be vigilant for signs of jaundice in the newborn (yellowing of skin or eyes) and report them immediately to the pediatrician.</li><li><strong>Understand Emergency Procedures:</strong> Be informed about potential emergency situations (e.g., trauma, bleeding) that may require immediate medical attention and RhoGAM administration.</li><li><strong>Emotional Support:</strong> Provide emotional support and help manage any anxieties related to the condition, ensuring the pregnant person feels informed and cared for.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early Identification:</strong> Universal Rh typing at the first prenatal visit is paramount for all pregnant individuals.</li><li><strong>Prophylactic RhoGAM:</strong> Prophylactic administration of Rh immune globulin at 28 weeks gestation and post-delivery (if the infant is Rh-positive) is the cornerstone of preventing Rh alloimmunization.</li><li><strong>Serial Antibody Titers:</strong> For sensitized pregnancies, serial antibody titers and close fetal surveillance (e.g., MCA Doppler for anemia) are essential.</li><li><strong>Management of HDFN:</strong> In cases of severe HDFN, interventions such as intrauterine transfusions may be necessary to prevent fetal hydrops and demise.</li><li><strong>Postpartum Follow-up:</strong> Confirming the newborn's Rh status and administering postpartum RhoGAM within 72 hours is critical for future pregnancy protection.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pathophysiology:</strong> Understand the immune response triggered when Rh-positive fetal red blood cells enter the circulation of an Rh-negative mother, leading to antibody production.</li><li><strong>RhoGAM Mechanism:</strong> Learn how Rh immune globulin works by binding to and clearing fetal Rh-positive red blood cells in the maternal circulation before the mother's immune system can be sensitized.</li><li><strong>Nursing Assessment:</strong> Key assessments include accurate Rh typing, antibody screening (indirect Coombs), and post-delivery direct Coombs test on cord blood.</li><li><strong>Patient Education:</strong> Provide clear, concise education to Rh-negative pregnant individuals about the importance of RhoGAM, potential risks, and the schedule for administration.</li><li><strong>Administration Protocol:</strong> Master the correct administration techniques and documentation for Rh immune globulin, including dosage and route.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Rh Factor:</strong> An inherited protein found on the surface of red blood cells.</li><li><strong>Rh Incompatibility:</strong> A condition where an Rh-negative mother carries an Rh-positive fetus, potentially leading to maternal antibody production.</li><li><strong>Rh Immune Globulin (RhoGAM):</strong> A medication given to Rh-negative individuals to prevent sensitization to Rh-positive blood.</li><li><strong>Hemolytic Disease of the Fetus and Newborn (HDFN):</strong> A condition where maternal antibodies destroy fetal/neonatal red blood cells.</li><li><strong>Indirect Coombs Test:</strong> A blood test to detect Rh antibodies in the mother's blood.</li><li><strong>Direct Coombs Test:</strong> A blood test performed on the newborn's cord blood to detect antibodies attached to their red blood cells.</li><li><strong>Kleihauer-Betke Test:</strong> A blood test to quantify the amount of fetal blood that has entered the maternal circulation.</li><li><strong>Middle Cerebral Artery (MCA) Doppler:</strong> An ultrasound technique used to assess fetal anemia.</li><li><strong>Hydrops Fetalis:</strong> Severe fetal edema and fluid accumulation in multiple body compartments due to severe anemia.</li><li><strong>Alloimmunization:</strong> The production of antibodies by an individual in response to antigens from another individual of the same species.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

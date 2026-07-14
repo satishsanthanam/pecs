@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting the concept of poliomyelitis. Show a stylized poliovirus particle with spiky proteins, surrounded by nerve cells. One nerve cell is visibly damaged, leading to a child's leg showing signs of flaccid paralysis or weakness. In the background, a syringe or a vaccine vial symbolizes prevention and global health efforts. The overall design should be clean, modern, and use a limited, health-focused color palette. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./poliomyelitis.jpg" class="card-banner" alt="Poliomyelitis Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-infections-and-vaccines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Infections and vaccines</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-infections-and-vaccines-viral-infections" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Viral infections</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Poliomyelitis</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Infections and vaccines</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Viral infections</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Highly Infectious Viral Disease:</strong> Poliomyelitis is caused by the poliovirus, which primarily affects the nervous system.</li><li><strong>Transmission Route:</strong> The virus spreads mainly through the fecal-oral route, often via contaminated water or food.</li><li><strong>Risk Group:</strong> Children under the age of five are most susceptible to infection and severe outcomes.</li><li><strong>Potential for Paralysis:</strong> While most infections are asymptomatic, poliovirus can lead to irreversible paralysis and, in severe cases, death.</li><li><strong>Prevention is Key:</strong> Vaccination is the most effective method to prevent poliomyelitis and is crucial for global eradication efforts.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Asymptomatic Infection:</strong> Approximately 70-95% of infected individuals show no symptoms.</li><li><strong>Abortive Poliomyelitis (Minor Illness):</strong> Presents with fever, fatigue, headache, vomiting, stiffness in the neck and back, and muscle pain, typically resolving within a few days.</li><li><strong>Non-Paralytic Poliomyelitis:</strong> Similar to abortive polio but with more pronounced neurological symptoms, including aseptic meningitis (stiff neck, back, and legs).</li><li><strong>Paralytic Poliomyelitis:</strong> Characterized by initial minor illness followed by loss of reflexes, severe muscle aches, and sudden onset of flaccid paralysis (weakness or paralysis in limbs, often asymmetrical). Respiratory muscles can also be affected.</li><li><strong>Post-Polio Syndrome (PPS):</strong> New or worsening muscle weakness, fatigue, and pain that can emerge decades after initial recovery from paralytic polio.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Universal Vaccination:</strong> Ensure all children receive the complete series of polio vaccines (IPV or OPV) according to national immunization schedules.</li><li><strong>Booster Doses:</strong> Adults traveling to polio-endemic or outbreak areas should ensure their vaccination status is up-to-date and consider a booster dose.</li><li><strong>Strict Hand Hygiene:</strong> Practice frequent and thorough handwashing with soap and water, especially after using the toilet and before preparing or eating food.</li><li><strong>Safe Water and Sanitation:</strong> Access to clean drinking water and proper disposal of human waste are critical to prevent fecal-oral transmission.</li><li><strong>Travel Awareness:</strong> Be informed about polio outbreaks or endemic regions when planning international travel and follow public health recommendations.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Adequate Hydration:</strong> Maintain sufficient fluid intake, especially during acute illness, to prevent dehydration and support overall recovery.</li><li><strong>Soft, Easily Digestible Foods:</strong> Offer bland, soft foods if the patient experiences difficulty swallowing or gastrointestinal discomfort during the acute phase.</li><li><strong>Nutrient-Rich Diet:</strong> Encourage a balanced diet rich in vitamins and minerals to support immune function and aid in recovery.</li><li><strong>Avoid Contaminated Sources:</strong> Emphasize consuming only safe, clean water and properly prepared food to prevent further viral transmission.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Respiratory Monitoring:</strong> Closely observe for signs of respiratory distress, especially in paralytic cases, and be prepared for ventilatory support.</li><li><strong>Physical Therapy Initiation:</strong> Begin early and consistent physical therapy to prevent muscle contractures and maximize functional recovery in patients with paralysis.</li><li><strong>Pain Management:</strong> Administer prescribed analgesics to manage muscle pain and spasms effectively.</li><li><strong>Bladder and Bowel Care:</strong> Monitor and manage potential urinary retention or constipation, which can occur due to neurological involvement.</li><li><strong>Skin Integrity:</strong> Implement measures to prevent pressure sores in immobilized patients, including regular repositioning and skin assessment.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Prompt Diagnosis:</strong> Suspect poliomyelitis in patients presenting with acute flaccid paralysis, especially in unvaccinated individuals or those with travel history to endemic areas.</li><li><strong>No Specific Cure:</strong> There is no antiviral treatment for polio; management is entirely supportive, focusing on symptom relief and rehabilitation.</li><li><strong>Public Health Imperative:</strong> Emphasize the critical role of universal vaccination in achieving and maintaining global polio eradication.</li><li><strong>Differential Diagnosis:</strong> Differentiate polio from other causes of acute flaccid paralysis, such as Guillain-Barré syndrome, transverse myelitis, and other enterovirus infections.</li><li><strong>Mandatory Reporting:</strong> All suspected cases of poliomyelitis must be immediately reported to public health authorities for investigation and containment.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Vaccine Education:</strong> Educate patients and families on the importance of polio vaccination, the schedule, and potential side effects of IPV and OPV.</li><li><strong>Infection Control:</strong> Implement strict hand hygiene and contact precautions for suspected or confirmed polio cases to prevent nosocomial spread.</li><li><strong>Neurological Assessment:</strong> Perform regular neurological assessments, including muscle strength and reflex checks, to monitor disease progression or recovery.</li><li><strong>Rehabilitation Support:</strong> Assist with mobility, range-of-motion exercises, and activities of daily living for patients experiencing paralysis, collaborating with physical therapists.</li><li><strong>Respiratory Care:</strong> Monitor respiratory status closely and provide respiratory support as needed, including suctioning and ventilator management.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Etiology:</strong> Poliovirus, a member of the Enterovirus C species within the Picornaviridae family; a single-stranded RNA virus.</li><li><strong>Transmission:</strong> Primarily fecal-oral route; less commonly via oral-oral (respiratory droplets).</li><li><strong>Incubation Period:</strong> Typically 7-10 days, with a range of 3 to 35 days.</li><li><strong>Pathogenesis:</strong> Virus replicates in the oropharynx and gastrointestinal tract, then spreads to regional lymph nodes, and in a small percentage of cases, invades the central nervous system, destroying motor neurons.</li><li><strong>Diagnosis:</strong> Laboratory confirmation by isolation of poliovirus from stool or cerebrospinal fluid (CSF), detection of poliovirus RNA by RT-PCR, or serology for antibody response.</li><li><strong>Vaccine Types:</strong> Inactivated Polio Vaccine (IPV) administered by injection, and Oral Polio Vaccine (OPV) administered orally.</li><li><strong>Global Eradication Initiative:</strong> A worldwide public health effort led by the World Health Organization (WHO) to eradicate poliovirus.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

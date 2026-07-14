@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for public awareness. A child with Type 1 diabetes, looking alert and engaged, is gently guided by a caring parent or guardian. In the background, a friendly medical professional (nurse or doctor) is observing. Elements include a blood glucose monitor, an insulin pen, and a water bottle, subtly indicating hydration. The scene emphasizes proactive diabetes management, monitoring, and family support to prevent complications like DKA. Clean lines, bright and reassuring color palette, no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./diabetic_ketoacidosis.jpg" class="card-banner" alt="Diabetic ketoacidosis Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-diabetes" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Diabetes</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-diabetes-diabetes-in-children" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Diabetes in children</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Diabetic ketoacidosis</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Diabetes</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Diabetes in children</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Diabetic ketoacidosis (DKA) is a serious, life-threatening complication of diabetes, primarily Type 1, resulting from severe insulin deficiency.</li><li><strong>Mechanism:</strong> Without enough insulin, the body cannot use glucose for energy and starts breaking down fat, producing acidic byproducts called ketones.</li><li><strong>Triggers in Children:</strong> Often the first presentation of Type 1 diabetes, missed insulin doses, acute illness (e.g., infections, gastroenteritis), or insulin pump malfunction.</li><li><strong>Urgency:</strong> DKA is a medical emergency requiring immediate hospitalization and intensive treatment to prevent severe complications or death.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Increased Thirst & Urination:</strong> Polyuria and polydipsia due to high blood glucose.</li><li><strong>Nausea & Vomiting:</strong> Common gastrointestinal symptoms, often leading to dehydration.</li><li><strong>Abdominal Pain:</strong> Can be severe and mimic surgical emergencies.</li><li><strong>Fatigue & Weakness:</strong> General malaise and lack of energy.</li><li><strong>Rapid, Deep Breathing (Kussmaul Respirations):</strong> The body's attempt to expel excess carbon dioxide and reduce acidosis.</li><li><strong>Fruity-Smelling Breath:</strong> Caused by the presence of acetone, a type of ketone.</li><li><strong>Confusion & Lethargy:</strong> Signs of worsening metabolic derangement and dehydration, potentially progressing to coma.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Strict Insulin Adherence:</strong> Never skip insulin doses, even during illness, unless specifically advised by a healthcare provider.</li><li><strong>Sick Day Management:</strong> Follow specific sick day rules for children with diabetes, including frequent blood glucose and ketone monitoring.</li><li><strong>Hydration:</strong> Ensure adequate fluid intake, especially during illness, to prevent dehydration.</li><li><strong>Early Symptom Recognition:</strong> Parents and caregivers must be educated to recognize early signs of DKA and seek immediate medical attention.</li><li><strong>Insulin Pump Care:</strong> Regularly check pump sites and insulin delivery for children using insulin pumps to prevent interruptions.</li><li><strong>Emergency Plan:</strong> Have a clear, written emergency plan for DKA, including contact numbers and hospital protocols.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>During Acute DKA:</strong> Typically NPO (nothing by mouth) initially to prevent aspiration, especially if vomiting or altered mental status is present.</li><li><strong>Fluid Replacement:</strong> Intravenous fluids are the primary method of rehydration during DKA treatment.</li><li><strong>Gradual Reintroduction Post-Stabilization:</strong> Once stable and acidosis resolves, clear liquids may be introduced, followed by a gradual return to a regular diabetes-appropriate diet as tolerated.</li><li><strong>Preventative Hydration:</strong> Encourage consistent oral fluid intake for children with diabetes to prevent dehydration, a risk factor for DKA.</li><li><strong>Carbohydrate Management:</strong> Consistent carbohydrate counting and meal planning are essential to match insulin doses and prevent hyperglycemia.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Parental Education:</strong> Provide comprehensive education to parents/guardians on DKA prevention, symptom recognition, and sick day management protocols.</li><li><strong>Ketone Monitoring:</strong> Instruct on when and how to test for ketones (urine or blood) and what actions to take based on results.</li><li><strong>Emergency Contact Information:</strong> Ensure parents have immediate access to emergency medical services and their child's endocrinology team.</li><li><strong>Insulin Administration Training:</strong> Reinforce proper insulin injection technique, storage, and dose adjustment during illness.</li><li><strong>Neurological Monitoring:</strong> Closely observe for changes in mental status, which could indicate cerebral edema, a severe DKA complication.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Prompt Diagnosis:</strong> DKA diagnosis relies on hyperglycemia (&gt;250 mg/dL), ketonemia/ketonuria, and metabolic acidosis (pH &lt;7.3, bicarbonate &lt;18 mEq/L).</li><li><strong>Treatment Pillars:</strong> Management involves aggressive intravenous fluid resuscitation, continuous intravenous insulin infusion, and careful electrolyte replacement (especially potassium).</li><li><strong>Cerebral Edema Risk:</strong> Children are particularly susceptible to cerebral edema during DKA treatment; careful fluid and electrolyte management is critical.</li><li><strong>Underlying Cause Identification:</strong> Always investigate and address the precipitating factor for DKA (e.g., infection, non-adherence, new diagnosis).</li><li><strong>Prevention Focus:</strong> Emphasize patient and family education on sick day management and insulin adherence as the cornerstone of DKA prevention.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Initial Assessment:</strong> Prioritize ABCs, vital signs, hydration status, neurological assessment (Glasgow Coma Scale), and obtain initial blood glucose, electrolytes, and blood gas.</li><li><strong>Fluid Management:</strong> Administer isotonic intravenous fluids (e.g., 0.9% NaCl) as prescribed, carefully monitoring input/output and signs of fluid overload.</li><li><strong>Insulin Infusion Management:</strong> Prepare and titrate continuous IV regular insulin infusion, ensuring separate IV access from fluids, and monitor blood glucose hourly.</li><li><strong>Electrolyte Monitoring:</strong> Closely monitor serum potassium and other electrolytes, anticipating and correcting imbalances as per protocol.</li><li><strong>Patient & Family Education:</strong> Provide ongoing education regarding diabetes management, DKA symptoms, and sick day rules to prevent recurrence.</li><li><strong>Complication Vigilance:</strong> Watch for signs of cerebral edema (headache, vomiting, bradycardia, hypertension, altered consciousness) and hypoglycemia.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Diagnostic Criteria (Pediatric):</strong> Blood glucose &gt;200 mg/dL, venous pH &lt;7.3 or plasma bicarbonate &lt;15 mEq/L, and ketonemia/ketonuria.</li><li><strong>Fluid Resuscitation Protocol:</strong> Initial bolus of 10-20 mL/kg isotonic saline over 30-60 minutes, followed by maintenance fluids adjusted based on hydration status and electrolyte levels.</li><li><strong>Insulin Infusion Rate:</strong> Typically 0.05-0.1 units/kg/hour of regular insulin via continuous IV infusion.</li><li><strong>Potassium Replacement:</strong> Initiate potassium replacement once serum potassium is &lt;5.5 mEq/L and urine output is established, typically 20-40 mEq/L in IV fluids.</li><li><strong>Bicarbonate Therapy:</strong> Generally not recommended in pediatric DKA unless severe acidosis (pH &lt;6.9) with cardiac instability, due to risk of cerebral edema.</li><li><strong>Monitoring Parameters:</strong> Hourly blood glucose, frequent electrolytes (Na, K, Cl, HCO3), blood gases, urine output, and neurological status.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a patient in a comfortable home setting recovering from hemorrhoid removal. The scene includes elements like a person gently taking a sitz bath, a plate of healthy high-fiber foods (fruits, vegetables), a glass of water, and a calendar marking recovery days. A small icon of a doctor's advice or a medical chart is subtly integrated. The overall mood is calm and reassuring, emphasizing post-operative care and well-being. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./hemorrhoid_removal___discharge_instructions.jpg" class="card-banner" alt="Hemorrhoid removal – Discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-digestive-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Digestive system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-digestive-system-anus-and-rectum" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Anus and rectum</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Hemorrhoid removal – Discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Digestive system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Anus and rectum</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Post-Operative Discomfort:</strong> Expect pain, swelling, and some bleeding, especially with bowel movements, for several days to weeks. This is normal and manageable with prescribed medications.</li><li><strong>Stool Management:</strong> Preventing constipation and straining is crucial for healing. You will be advised to use stool softeners and maintain a high-fiber diet.</li><li><strong>Activity Restrictions:</strong> Avoid heavy lifting, strenuous activities, and prolonged sitting or standing for the initial recovery period to prevent increased pressure on the surgical site.</li><li><strong>Hygiene is Key:</strong> Regular sitz baths are highly recommended to promote healing, reduce discomfort, and maintain cleanliness in the perianal area.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Expected Post-Op Pain:</strong> Mild to moderate pain, particularly during and after bowel movements, is common. This should improve steadily over time.</li><li><strong>Rectal Bleeding:</strong> Small amounts of bright red blood on toilet paper or in the stool are expected, especially during the first few days. Report any heavy or continuous bleeding.</li><li><strong>Swelling and Discharge:</strong> Mild perianal swelling and a small amount of serosanguinous (pinkish) discharge are normal as the wound heals.</li><li><strong>Urinary Difficulty:</strong> Some patients may experience temporary difficulty urinating due to pain or anesthesia effects. Report inability to urinate within 6-8 hours post-procedure.</li><li><strong>Signs of Infection:</strong> Fever (above 101°F or 38.3°C), increasing redness, warmth, severe pain, or pus-like discharge from the surgical site are signs of potential infection and require immediate medical attention.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Pain Medication Adherence:</strong> Take prescribed pain relievers as directed, especially before anticipated bowel movements, to manage discomfort effectively. Do not exceed the recommended dosage.</li><li><strong>Avoid Straining:</strong> Absolutely avoid straining during bowel movements. Use stool softeners and dietary measures to ensure soft, easy-to-pass stools.</li><li><strong>Sitz Bath Protocol:</strong> Perform sitz baths 2-3 times daily and after each bowel movement for 15-20 minutes using warm water. This aids in pain relief and wound hygiene.</li><li><strong>Perianal Hygiene:</strong> Gently clean the anal area with warm water after each bowel movement. Avoid harsh wiping or scented wipes. Pat dry or use a soft cloth.</li><li><strong>Activity Limitations:</strong> Refrain from heavy lifting (over 10-15 lbs), vigorous exercise, and prolonged sitting or standing for at least 1-2 weeks, or as advised by your surgeon.</li><li><strong>When to Call the Doctor:</strong> Contact your healthcare provider immediately for severe, uncontrolled pain, heavy rectal bleeding (soaking through dressings), fever, chills, pus discharge, or inability to urinate.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>High-Fiber Diet:</strong> Gradually increase your intake of fiber-rich foods such as fruits, vegetables, whole grains, and legumes to promote soft stools and prevent constipation.</li><li><strong>Adequate Hydration:</strong> Drink plenty of fluids, especially water (8-10 glasses daily), to help keep stools soft and prevent dehydration.</li><li><strong>Stool Softeners:</strong> Continue taking prescribed or recommended stool softeners (e.g., docusate sodium) as directed to ensure easy bowel movements without straining.</li><li><strong>Avoid Constipating Foods:</strong> Limit foods that can contribute to constipation, such as highly processed foods, low-fiber items, and excessive dairy products.</li><li><strong>Gradual Reintroduction:</strong> If you experienced nausea or vomiting post-anesthesia, start with bland foods and gradually reintroduce your regular diet.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Medication Assistance:</strong> Help the patient adhere to their pain medication schedule and stool softener regimen, ensuring timely administration.</li><li><strong>Monitoring for Complications:</strong> Be vigilant for signs of complications such as excessive bleeding (more than a few tablespoons), fever, increasing pain, or foul-smelling discharge, and report these to the medical team.</li><li><strong>Sitz Bath Support:</strong> Assist the patient with sitz bath setup and ensure they are comfortable and safe during the process.</li><li><strong>Mobility and Comfort:</strong> Help the patient with gentle ambulation as tolerated and ensure they have comfortable seating that minimizes pressure on the surgical site.</li><li><strong>Hydration and Nutrition:</strong> Encourage fluid intake and preparation of high-fiber, easily digestible meals to support bowel regularity.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Follow-Up is Essential:</strong> Adhere strictly to your scheduled post-operative follow-up appointments. These visits are crucial to monitor healing, address concerns, and prevent long-term complications.</li><li><strong>Long-Term Prevention:</strong> While surgery addresses existing hemorrhoids, maintaining a high-fiber diet, adequate hydration, and avoiding straining are vital for preventing recurrence.</li><li><strong>Realistic Recovery:</strong> Full recovery can take several weeks. Be patient with your body's healing process and do not rush back into strenuous activities.</li><li><strong>Open Communication:</strong> Do not hesitate to contact your surgical team with any questions or concerns, no matter how minor they may seem. Early intervention can prevent complications.</li><li><strong>Lifestyle Modifications:</strong> Incorporate regular, moderate exercise into your routine once cleared by your surgeon to promote overall bowel health and circulation.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pain Assessment & Management:</strong> Systematically assess post-operative pain using a validated scale. Administer analgesics as prescribed and evaluate their effectiveness. Educate patients on non-pharmacological pain relief methods like sitz baths.</li><li><strong>Bowel Regimen Education:</strong> Provide comprehensive education on the importance of stool softeners, high-fiber diet, and adequate fluid intake to prevent constipation and straining. Monitor for first post-operative bowel movement.</li><li><strong>Wound Care & Hygiene:</strong> Instruct patients on proper perianal hygiene, including gentle cleaning after bowel movements and the correct technique for sitz baths. Assess the surgical site for signs of infection or excessive bleeding.</li><li><strong>Urinary Retention Monitoring:</strong> Closely monitor for signs of urinary retention, especially in the immediate post-operative period, which can be a common complication. Encourage ambulation and provide privacy for voiding.</li><li><strong>Discharge Planning:</strong> Ensure the patient and caregiver understand all discharge instructions, including medication schedules, activity restrictions, warning signs, and follow-up appointments. Confirm access to necessary supplies (e.g., sitz bath).</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Hemorrhoidectomy:</strong> Surgical excision of hemorrhoidal tissue, typically performed for symptomatic Grade III or IV internal hemorrhoids or mixed internal/external hemorrhoids.</li><li><strong>Sitz Bath:</strong> A therapeutic bath where the patient sits in warm water, covering the hips and buttocks, to promote healing, reduce pain, and relax the anal sphincter.</li><li><strong>Stool Softeners (e.g., Docusate Sodium):</strong> Medications that increase water and fat penetration into the stool, making it softer and easier to pass, thereby preventing straining.</li><li><strong>Analgesics:</strong> Medications used to relieve pain, including opioids for severe pain and non-steroidal anti-inflammatory drugs (NSAIDs) for moderate pain and inflammation.</li><li><strong>Post-Operative Complications:</strong> Potential complications include pain, bleeding, urinary retention, infection, fecal impaction, anal stricture (rare), and temporary fecal incontinence (rare).</li><li><strong>Fiber Supplementation:</strong> Use of dietary fiber supplements (e.g., psyllium, methylcellulose) to increase bulk and soften stool consistency, aiding in bowel regularity.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a dermatologist performing a skin biopsy on a patient's arm. The dermatologist is wearing gloves and holding a small biopsy tool, while the patient looks calm. A magnified view of a skin lesion is visible, with a microscope icon nearby, symbolizing diagnosis. The background features subtle medical elements like a band-aid and a sun icon with a 'no' symbol, representing skin cancer awareness and prevention. Clean, modern design with a focus on clarity and public health.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./skin_biopsy.jpg" class="card-banner" alt="Skin biopsy Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-skin-hair-and-nails" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Skin, hair, and nails</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-skin-hair-and-nails-skin-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Skin cancer</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Skin biopsy</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Skin, hair, and nails</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Skin cancer</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Procedure Overview:</strong> A skin biopsy involves removing a small sample of skin for microscopic examination by a pathologist.</li><li><strong>Primary Purpose:</strong> To diagnose skin conditions, particularly to confirm or rule out skin cancer (melanoma, basal cell carcinoma, squamous cell carcinoma).</li><li><strong>Types of Biopsy:</strong> Includes shave biopsy (removes superficial layers), punch biopsy (removes a cylindrical core), and excisional biopsy (removes the entire lesion and a margin of surrounding skin).</li><li><strong>Local Anesthesia:</strong> The procedure is typically performed under local anesthesia to numb the area, minimizing discomfort.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Changing Moles:</strong> Any mole exhibiting asymmetry, irregular borders, varied color, a diameter greater than 6mm, or evolving size/shape/symptoms (ABCDEs of melanoma).</li><li><strong>Non-Healing Sores:</strong> A persistent skin lesion or ulcer that does not heal within several weeks, especially if it bleeds easily.</li><li><strong>New Skin Growths:</strong> The appearance of any new, unusual, or rapidly growing skin lesion.</li><li><strong>Persistent Itching or Bleeding:</strong> A mole or skin lesion that consistently itches, bleeds, or is painful without obvious cause.</li><li><strong>Scaly Patches:</strong> Rough, scaly patches or red lesions that may be tender or bleed, potentially indicative of actinic keratosis or squamous cell carcinoma.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Anticoagulant Disclosure:</strong> Inform your physician about all medications, especially blood thinners (e.g., aspirin, warfarin, clopidogrel), as they may increase bleeding risk.</li><li><strong>Allergy Information:</strong> Disclose any known allergies to local anesthetics (e.g., lidocaine), latex, or adhesive materials.</li><li><strong>Infection Prevention:</strong> Keep the biopsy site clean and dry as instructed post-procedure to prevent infection.</li><li><strong>Avoid Strenuous Activity:</strong> Limit physical exertion and activities that could stretch the skin around the biopsy site for 24-48 hours, especially for excisional biopsies.</li><li><strong>Sun Protection:</strong> Protect the healing biopsy site from direct sun exposure to minimize scarring and hyperpigmentation.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>No Fasting Required:</strong> Generally, no specific dietary restrictions or fasting are necessary for a skin biopsy performed under local anesthesia.</li><li><strong>Normal Hydration:</strong> Maintain your usual hydration levels unless otherwise instructed by your healthcare provider.</li><li><strong>Avoid Alcohol/Caffeine (Optional):</strong> If you experience anxiety regarding medical procedures, consider avoiding excessive caffeine or alcohol intake prior to your appointment.</li><li><strong>Post-Procedure Diet:</strong> You may resume your normal diet immediately after the procedure.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Wound Care Instructions:</strong> Carefully follow all post-biopsy wound care instructions provided by the clinic, including dressing changes and cleaning protocols.</li><li><strong>Monitor for Infection:</strong> Watch for signs of infection at the biopsy site, such as increased redness, swelling, warmth, pus discharge, or fever. Contact your doctor if these occur.</li><li><strong>Bleeding Management:</strong> If the biopsy site bleeds, apply firm, direct pressure with a clean gauze for 10-15 minutes. Elevate the area if possible.</li><li><strong>Pain Management:</strong> Mild pain or discomfort is common; over-the-counter pain relievers like acetaminophen can be used as advised by your physician.</li><li><strong>Follow-up Appointment:</strong> Ensure you attend your scheduled follow-up appointment to discuss biopsy results and any further treatment plans.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Diagnostic Gold Standard:</strong> Skin biopsy remains the definitive method for diagnosing skin cancers and other dermatological conditions.</li><li><strong>Early Detection is Key:</strong> Prompt evaluation of suspicious lesions through biopsy significantly improves prognosis for skin cancers, especially melanoma.</li><li><strong>Pathology Report Interpretation:</strong> The pathologist's report provides crucial information about the nature of the lesion, guiding subsequent management and treatment decisions.</li><li><strong>Comprehensive Skin Exam:</strong> Regular self-skin exams and annual professional skin checks are vital for early identification of suspicious lesions.</li><li><strong>Prevention Strategies:</strong> Emphasize consistent sun protection, including sunscreen, protective clothing, and seeking shade, to reduce skin cancer risk.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Provide clear, concise pre-procedure and post-procedure instructions, including wound care, signs of complications, and activity restrictions.</li><li><strong>Aseptic Technique:</strong> Maintain strict aseptic technique during the biopsy procedure to minimize the risk of infection.</li><li><strong>Specimen Handling:</strong> Ensure proper labeling, fixation (e.g., in formalin), and timely transport of the biopsy specimen to the pathology laboratory.</li><li><strong>Anesthetic Administration:</strong> Understand the appropriate dosage and administration techniques for local anesthetics, and monitor for adverse reactions.</li><li><strong>Documentation:</strong> Accurately document the biopsy site, type of biopsy, anesthetic used, patient tolerance, and post-procedure instructions given.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>ICD-10 Codes:</strong> Relevant codes for suspicious lesions (e.g., D48.5 for neoplasm of uncertain behavior of skin, C43.x for melanoma, C44.x for other malignant neoplasms of skin).</li><li><strong>CPT Codes:</strong> Biopsy procedures (e.g., 11102 for tangential biopsy, 11104 for punch biopsy, 11106 for incisional biopsy).</li><li><strong>Pathology Terminology:</strong> Key terms include 'dysplasia,' 'atypical melanocytic proliferation,' 'in situ,' 'invasive,' 'margins clear/involved.'</li><li><strong>Dermatoscopy:</strong> A non-invasive diagnostic tool often used prior to biopsy to enhance visualization of skin lesions.</li><li><strong>Excisional Biopsy for Melanoma:</strong> Often performed with a narrow margin to ensure complete removal for initial diagnosis, followed by wider excision if melanoma is confirmed.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

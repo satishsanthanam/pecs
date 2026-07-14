@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A vibrant flat vector illustration depicting a balanced array of healthy foods associated with the DASH diet. The central focus is a stylized heart or a blood pressure monitor, surrounded by colorful representations of fruits (e.g., berries, apples), vegetables (e.g., broccoli, leafy greens), whole grains (e.g., oats, whole wheat bread), lean protein (e.g., fish, chicken breast), and low-fat dairy products (e.g., milk carton, yogurt cup). The background is clean and bright, with a modern, inviting aesthetic. No text or complex patterns.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./dash_diet.jpg" class="card-banner" alt="DASH diet Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-nutrition-diet-and-weight" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Nutrition, diet, and weight</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-nutrition-diet-and-weight-healthy-diet" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Healthy diet</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>DASH diet</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Nutrition, diet, and weight</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Healthy diet</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose of DASH</strong>: The Dietary Approaches to Stop Hypertension (DASH) eating plan is specifically designed to prevent and control high blood pressure.</li><li><strong>Core Principles</strong>: It emphasizes consuming fruits, vegetables, whole grains, lean protein, and low-fat dairy products.</li><li><strong>Key Reductions</strong>: The diet significantly limits saturated and trans fats, cholesterol, sodium, red meat, sweets, and sugary beverages.</li><li><strong>Broader Benefits</strong>: Beyond blood pressure management, the DASH diet can help reduce the risk of heart disease, stroke, and certain types of cancer.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Elevated Blood Pressure</strong>: Clinical readings consistently indicating hypertension (e.g., systolic &#8805; 130 mmHg or diastolic &#8805; 80 mmHg).</li><li><strong>Prehypertension Diagnosis</strong>: Identification of blood pressure levels that are higher than normal but not yet classified as hypertension.</li><li><strong>Cardiovascular Risk Factors</strong>: Presence of conditions such as high cholesterol, obesity, or a family history of heart disease.</li><li><strong>Metabolic Syndrome Indicators</strong>: A cluster of conditions including abdominal obesity, high blood sugar, and abnormal lipid profiles, often associated with increased cardiovascular risk.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Sodium Adjustment</strong>: Implement sodium reduction gradually to allow the body to adapt and prevent potential electrolyte imbalances, especially for individuals on diuretic medications.</li><li><strong>Potassium Monitoring</strong>: Exercise caution with increased potassium intake, particularly for patients with kidney disease or those taking medications (e.g., ACE inhibitors, ARBs) that affect potassium levels.</li><li><strong>Medication Interactions</strong>: Always consult with a physician regarding potential interactions between dietary changes and current blood pressure medications or other prescribed drugs.</li><li><strong>Hydration Status</strong>: Ensure adequate fluid intake, especially when increasing fiber-rich foods, to prevent constipation and support overall digestive health.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Fruits & Vegetables</strong>: Aim for 4-5 servings of each per day, prioritizing a variety of colors and types.</li><li><strong>Whole Grains</strong>: Incorporate 6-8 servings daily, choosing options like whole wheat bread, brown rice, oats, and quinoa.</li><li><strong>Lean Protein Sources</strong>: Limit to 6 or fewer servings per day, focusing on poultry without skin, fish, and lean cuts of meat.</li><li><strong>Low-Fat Dairy</strong>: Consume 2-3 servings of low-fat or fat-free milk, yogurt, or cheese daily.</li><li><strong>Nuts, Seeds, & Legumes</strong>: Include 4-5 servings per week, providing healthy fats, fiber, and plant-based protein.</li><li><strong>Healthy Fats & Oils</strong>: Restrict to 2-3 servings per day, emphasizing monounsaturated and polyunsaturated fats from sources like olive oil, avocado, and nuts.</li><li><strong>Sweets & Added Sugars</strong>: Limit to 5 or fewer servings per week, choosing natural sugars in moderation.</li><li><strong>Sodium Intake Target</strong>: Strive for a daily sodium intake of 2300 mg, with an optional lower target of 1500 mg for certain individuals based on clinical guidance.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Gradual Implementation</strong>: Encourage a slow transition to the DASH diet to enhance adherence and allow the body to adjust to new eating patterns.</li><li><strong>Food Label Scrutiny</strong>: Educate patients on the importance of reading food labels to identify and limit sodium, saturated fat, and added sugars.</li><li><strong>Proactive Meal Planning</strong>: Advise on planning meals and snacks in advance to ensure consistent adherence to DASH principles and avoid impulsive unhealthy choices.</li><li><strong>Healthy Cooking Methods</strong>: Promote cooking techniques such as baking, grilling, steaming, and roasting over frying to reduce unhealthy fat intake.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Primary Intervention</strong>: The DASH diet is frequently recommended as a first-line, non-pharmacological approach for managing and preventing hypertension.</li><li><strong>Personalized Approach</strong>: Emphasize the necessity of tailoring the diet to individual patient preferences, cultural backgrounds, and co-existing medical conditions.</li><li><strong>Regular Monitoring</strong>: Stress the importance of consistent blood pressure monitoring and follow-up appointments to evaluate the diet's effectiveness and make necessary adjustments.</li><li><strong>Integrated Lifestyle</strong>: Highlight that the DASH diet yields optimal results when combined with other healthy lifestyle modifications, including regular physical activity, weight management, and stress reduction.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Role</strong>: Nurses are pivotal in educating patients about the core principles of the DASH diet, practical food choices, and effective food label interpretation.</li><li><strong>Adherence Support Strategies</strong>: Provide actionable tips for meal preparation, grocery shopping, and identifying and overcoming common barriers to dietary adherence.</li><li><strong>Clinical Parameter Monitoring</strong>: Understand how the DASH diet impacts key clinical parameters such as blood pressure, body weight, and lipid profiles.</li><li><strong>Interdisciplinary Collaboration</strong>: Facilitate collaboration with registered dietitians and physicians to ensure a holistic and comprehensive care plan for patients adopting the DASH diet.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Key Nutrient Focus</strong>: The diet is characterized by increased intake of potassium, magnesium, calcium, and fiber, alongside a significant reduction in sodium and saturated fat.</li><li><strong>Macronutrient Profile</strong>: Typically features a higher proportion of complex carbohydrates, moderate protein, and lower overall fat content compared to standard Western diets.</li><li><strong>Evidence-Based Efficacy</strong>: Supported by extensive clinical research and trials demonstrating its effectiveness in lowering both systolic and diastolic blood pressure.</li><li><strong>Flexible Dietary Pattern</strong>: Functions as a flexible eating pattern rather than a rigid diet, allowing for adaptation to individual cultural preferences and dietary needs within its established framework.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

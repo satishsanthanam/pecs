@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of diverse adults, some with subtle indicators of health conditions, receiving vaccinations from healthcare professionals. The scene should convey protection and community health. Include elements like syringes, vaccine vials, and a subtle HIV awareness ribbon or symbol integrated into the background. Bright, clean, and inclusive design, public awareness campaign style, no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./vaccines_for_adults_with_hiv.jpg" class="card-banner" alt="Vaccines for adults with HIV Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-infections-and-vaccines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Infections and vaccines</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-infections-and-vaccines-hiv-and-aids" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">HIV and AIDS</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Vaccines for adults with HIV</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Infections and vaccines</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">HIV and AIDS</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Increased Vulnerability:</strong> Adults living with HIV are at a significantly higher risk for vaccine-preventable diseases due to their compromised immune systems.</li><li><strong>Crucial Protection:</strong> Vaccination is a cornerstone of preventative care for HIV-positive individuals, helping to prevent severe illness, hospitalizations, and opportunistic infections.</li><li><strong>Individualized Approach:</strong> Vaccination schedules and specific vaccine recommendations are tailored based on the individual's CD4 cell count, viral load, age, and previous vaccination history.</li><li><strong>Regular Review:</strong> Vaccination status should be reviewed annually by a healthcare provider to ensure up-to-date protection.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Recurrent Infections:</strong> Frequent or severe infections (e.g., pneumonia, shingles, influenza) may indicate a need for vaccination or a review of immune status.</li><li><strong>Unexplained Fever or Fatigue:</strong> Persistent low-grade fever, night sweats, or profound fatigue can be signs of underlying immune compromise or active infection.</li><li><strong>Respiratory Distress:</strong> Symptoms like persistent cough, shortness of breath, or chest pain may prompt consideration for pneumococcal or influenza vaccination.</li><li><strong>Skin Lesions:</strong> New or unusual skin lesions, especially vesicular rashes, could indicate conditions like varicella-zoster virus (shingles), for which vaccination is available.</li><li><strong>General Immune Decline:</strong> Any signs of worsening immune function or progression of HIV disease should trigger a comprehensive review of vaccination needs.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Live Attenuated Vaccines:</strong> Avoid live attenuated vaccines (e.g., MMR, Varicella, live Zoster vaccine) in individuals with severe immunosuppression (typically CD4 count &lt;200 cells/µL) due to the risk of vaccine-induced disease.</li><li><strong>Immunosuppressant Medications:</strong> Inform the healthcare provider about all current medications, especially any immunosuppressants, as these can affect vaccine efficacy and safety.</li><li><strong>Allergic Reactions:</strong> Always screen for previous severe allergic reactions to vaccine components (e.g., eggs for some flu vaccines, gelatin, neomycin).</li><li><strong>Acute Illness:</strong> Defer vaccination during acute moderate or severe illness until symptoms improve. Minor illnesses with or without fever are generally not contraindications.</li><li><strong>Pregnancy Status:</strong> Assess pregnancy status for women of childbearing age, as some vaccines are contraindicated during pregnancy.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration Support:</strong> Maintain adequate fluid intake before and after vaccination to support overall well-being and immune function.</li><li><strong>Nutrient-Rich Diet:</strong> A balanced, nutrient-rich diet supports a robust immune response to vaccines. Focus on whole foods, fruits, and vegetables.</li><li><strong>Avoid Alcohol Post-Vaccination:</strong> While not a direct restriction, excessive alcohol consumption immediately after vaccination may exacerbate mild side effects or potentially impact immune response.</li><li><strong>No Specific Food Restrictions:</strong> There are generally no specific food or fluid restrictions directly related to the efficacy or safety of adult vaccines for HIV-positive individuals.</li><li><strong>Manage Side Effects:</strong> If experiencing mild post-vaccination side effects like fever or muscle aches, ensure good hydration and easily digestible foods.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Report Adverse Events:</strong> Immediately report any severe or unexpected reactions following vaccination to a healthcare professional.</li><li><strong>Vaccine Type Awareness:</strong> Understand which vaccines are inactivated (safe for most HIV patients) versus live attenuated (contraindicated in severe immunosuppression).</li><li><strong>Adherence to Schedule:</strong> Strictly adhere to the recommended vaccination schedule and complete all required doses for multi-dose vaccines.</li><li><strong>Inform All Providers:</strong> Ensure all healthcare providers (PCP, specialists, dentists) are aware of your HIV status and complete vaccination history.</li><li><strong>Post-Vaccination Monitoring:</strong> Be aware of common, mild side effects (soreness, low-grade fever) and when to seek medical attention for more serious concerns.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Personalized Regimen:</strong> Each HIV-positive patient requires a personalized vaccination regimen, carefully considering their immune status (CD4 count), viral load, and risk factors.</li><li><strong>Prioritize Key Vaccines:</strong> Annual influenza, pneumococcal (PCV13 and PPSV23), tetanus-diphtheria-acellular pertussis (Tdap), and hepatitis B vaccines are universally recommended.</li><li><strong>HPV Vaccination:</strong> Human Papillomavirus (HPV) vaccine is strongly recommended for eligible HIV-positive individuals up to age 26, and potentially up to age 45 based on shared clinical decision-making.</li><li><strong>Meningococcal Vaccine:</strong> Consider meningococcal vaccination, especially for those at increased risk or traveling to endemic areas.</li><li><strong>Shared Decision-Making:</strong> Engage in open discussions with patients about the benefits, risks, and specific recommendations for each vaccine.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Provide clear, concise education on the importance of vaccination, potential side effects, and when to seek medical attention.</li><li><strong>Accurate Documentation:</strong> Meticulously document all administered vaccines, including lot number, expiration date, site, route, and patient's reaction.</li><li><strong>Immunization Schedule Adherence:</strong> Assist in tracking and reminding patients about their individualized immunization schedules.</li><li><strong>Safe Administration:</strong> Ensure proper vaccine storage, handling, and administration techniques according to manufacturer guidelines and institutional policy.</li><li><strong>Screening for Contraindications:</strong> Thoroughly screen patients for contraindications and precautions before administering any vaccine.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>CDC/ACIP Guidelines:</strong> Refer to the latest Centers for Disease Control and Prevention (CDC) and Advisory Committee on Immunization Practices (ACIP) guidelines for immunization of HIV-infected adults.</li><li><strong>CD4 Thresholds:</strong> Understand specific CD4 cell count thresholds for administering live attenuated vaccines (e.g., typically &gt;200 cells/µL for MMR, Varicella).</li><li><strong>Vaccine Efficacy in HIV:</strong> Acknowledge that vaccine responses may be blunted in immunocompromised individuals, necessitating higher doses or additional boosters for some vaccines.</li><li><strong>Immune Reconstitution Inflammatory Syndrome (IRIS):</strong> Be aware of the potential for IRIS following vaccination in some HIV patients, particularly those initiating antiretroviral therapy.</li><li><strong>Antiretroviral Therapy (ART):</strong> Emphasize that optimal ART adherence and viral suppression improve immune function and vaccine responsiveness.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

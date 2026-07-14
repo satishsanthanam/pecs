@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A clean, flat vector illustration depicting blood ethanol concentration. A stylized, gender-neutral human figure with subtle visual cues of disorientation or altered perception, such as slightly blurred vision lines or a thoughtful expression. A prominent blood sample vial or a single drop of blood with a numerical percentage (e.g., 0.08%) displayed next to it. Abstract elements like a subtle brain outline or liver icon in the background, hinting at the organ systems affected. The overall design should be professional, using a limited palette of muted blues, greens, and grays, suitable for a public awareness medical template. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./blood_ethanol_concentration.jpg" class="card-banner" alt="Blood ethanol concentration Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-mental-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Mental health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-mental-health-substance-use-and-misuse" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Substance use and misuse</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Blood ethanol concentration</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Mental health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Substance use and misuse</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Blood ethanol concentration (BEC), also known as Blood Alcohol Content (BAC), measures the amount of alcohol present in a person's blood.</li><li><strong>Units of Measurement:</strong> Typically expressed as a percentage (e.g., 0.08% BAC), representing grams of alcohol per 100 milliliters of blood.</li><li><strong>Legal Implications:</strong> BEC is a critical metric for legal purposes, particularly in determining impairment for activities like driving.</li><li><strong>Clinical Applications:</strong> Used to assess acute alcohol intoxication, monitor alcohol withdrawal syndrome, and evaluate chronic alcohol use disorder.</li><li><strong>Metabolism:</strong> Alcohol is primarily metabolized in the liver by enzymes such as alcohol dehydrogenase (ADH) and aldehyde dehydrogenase (ALDH).</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Acute Intoxication:</strong> Slurred speech, impaired coordination, altered judgment, nystagmus, decreased reaction time, flushed skin, nausea, and vomiting.</li><li><strong>Severe Intoxication:</strong> Stupor, coma, respiratory depression, hypothermia, and seizures, indicating a medical emergency.</li><li><strong>Alcohol Withdrawal Syndrome:</strong> Tremors, anxiety, sweating, palpitations, hallucinations, and potentially life-threatening seizures (delirium tremens).</li><li><strong>Chronic Alcohol Use:</strong> Manifestations include liver damage (e.g., jaundice, ascites), pancreatitis, neurological deficits (e.g., peripheral neuropathy, Wernicke-Korsakoff syndrome), and gastrointestinal bleeding.</li><li><strong>Indications for Testing:</strong> Suspected impairment, unexplained altered mental status, trauma, overdose, or monitoring during alcohol detoxification protocols.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Patient Safety (Acute Intoxication):</strong> Prioritize airway management, prevent aspiration, monitor vital signs closely, and protect the patient from injury due to falls or impaired judgment.</li><li><strong>Withdrawal Management:</strong> Anticipate and proactively manage alcohol withdrawal symptoms; administer prescribed benzodiazepines as per protocol; monitor for seizure activity.</li><li><strong>Specimen Collection:</strong> Ensure proper aseptic technique during blood draw; use non-alcohol-based skin preparation solutions to prevent contamination and inaccurate results.</li><li><strong>Legal Chain of Custody:</strong> If the blood sample is for legal purposes, strictly adhere to chain of custody protocols to maintain sample integrity and admissibility.</li><li><strong>Driving and Machinery:</strong> Strongly advise against driving or operating heavy machinery if alcohol has been consumed, regardless of perceived level of impairment.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-Test Considerations:</strong> No specific fasting is typically required for a blood ethanol test, but avoid alcohol consumption immediately prior to the test if assessing baseline levels or sobriety.</li><li><strong>Hydration:</strong> Encourage adequate fluid intake, especially during alcohol withdrawal, to prevent dehydration and support physiological recovery.</li><li><strong>Nutritional Support:</strong> For individuals with chronic alcohol use disorder, address potential nutritional deficiencies (e.g., thiamine, folate) through dietary interventions and supplementation.</li><li><strong>Alcohol Avoidance:</strong> Strict abstinence from alcohol is paramount for individuals undergoing treatment for alcohol use disorder or those with alcohol-related organ damage.</li><li><strong>Post-Intoxication Recovery:</strong> Gradually reintroduce bland foods and clear fluids after acute intoxication subsides to minimize gastrointestinal upset and aid recovery.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Constant Supervision:</strong> Patients with significant alcohol intoxication or active withdrawal symptoms must never be left unattended due to high risks of aspiration, falls, or seizures.</li><li><strong>Respiratory Monitoring:</strong> Closely observe and monitor the patient's respiratory status for signs of depression, particularly with high BECs or co-ingestion of other central nervous system depressants.</li><li><strong>Seizure Precautions:</strong> Implement appropriate seizure precautions for all patients at risk of alcohol withdrawal seizures, including padded side rails and easy access to suction.</li><li><strong>Environmental Safety:</strong> Ensure a safe and calm environment, removing potential hazards for disoriented, agitated, or ataxic patients.</li><li><strong>Thorough Documentation:</strong> Meticulously document all observations, interventions, patient responses, and communication regarding alcohol intoxication or withdrawal.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Holistic Assessment:</strong> Always conduct a comprehensive clinical assessment that extends beyond the BEC, incorporating patient history, co-morbidities, and potential polysubstance use.</li><li><strong>Differential Diagnosis:</strong> Maintain a broad differential diagnosis for altered mental status, even with elevated BEC, considering conditions like hypoglycemia, head injury, or stroke.</li><li><strong>Treatment Continuum:</strong> Focus on immediate stabilization, effective management of withdrawal symptoms, and facilitating long-term recovery from alcohol use disorder through appropriate referrals.</li><li><strong>Pharmacological Management:</strong> Utilize evidence-based pharmacological interventions for withdrawal (e.g., benzodiazepines) and relapse prevention (e.g., naltrexone, acamprosate) as indicated.</li><li><strong>Referral for Support:</strong> Strongly recommend and facilitate referrals to addiction specialists, counseling services, and community-based support groups for sustained recovery.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>BAC Influencers:</strong> Understand the physiological factors influencing BAC, including amount and rate of consumption, body weight, gender, and individual metabolic rates.</li><li><strong>Clinical Recognition:</strong> Develop proficiency in recognizing the full spectrum of alcohol intoxication and withdrawal symptoms across various patient populations.</li><li><strong>Nursing Interventions:</strong> Master essential nursing skills for managing intoxicated patients (e.g., airway protection, fall prevention) and those in withdrawal (e.g., CIWA-Ar scale application, medication administration).</li><li><strong>Patient Education:</strong> Provide clear and empathetic education to patients and families regarding the risks of alcohol misuse, safe consumption guidelines (if applicable), and available support resources.</li><li><strong>Ethical Considerations:</strong> Be aware of ethical dilemmas related to patient autonomy, confidentiality, and mandatory reporting requirements in cases of impairment or harm.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Ethanol Metabolism Pathways:</strong> Alcohol dehydrogenase (ADH) and aldehyde dehydrogenase (ALDH) are key enzymes in the breakdown of ethanol.</li><li><strong>Pharmacokinetics of Ethanol:</strong> Understanding the absorption, distribution, metabolism, and excretion of alcohol is crucial for predicting its effects.</li><li><strong>Legal Intoxication Limits:</strong> Varies by jurisdiction, commonly 0.08% BAC for driving in many regions, but zero tolerance for certain populations (e.g., commercial drivers, minors).</li><li><strong>CIWA-Ar Scale:</strong> The Clinical Institute Withdrawal Assessment for Alcohol, Revised, is a validated, objective tool for assessing and guiding treatment for alcohol withdrawal severity.</li><li><strong>Toxicology Screening:</strong> Blood ethanol concentration is frequently included as part of broader toxicology panels in emergency and critical care settings.</li><li><strong>Alcohol Use Disorder (AUD):</strong> Refer to the Diagnostic and Statistical Manual of Mental Disorders (DSM-5) for diagnostic criteria and severity specifiers.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

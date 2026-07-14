@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a person with noticeable swelling around their lips, eyes, and face, indicating angioedema. The person's expression is one of discomfort or concern. In the background, a subtle graphic element of an ACE inhibitor pill bottle or a medicine symbol is present, linking the condition to its cause. The style is clean, modern, and suitable for public health awareness, with a focus on clear visual communication of the swelling and its medical context. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./angioedema_caused_by_ace_inhibitor_medicines.jpg" class="card-banner" alt="Angioedema caused by ACE inhibitor medicines Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-skin-hair-and-nails" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Skin, hair, and nails</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-skin-hair-and-nails-hives-and-angioedema" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Hives and angioedema</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Angioedema caused by ACE inhibitor medicines</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Skin, hair, and nails</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Hives and angioedema</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Condition Overview:</strong> Angioedema is a sudden, localized swelling of deeper layers of skin and tissues, commonly affecting the face, lips, tongue, throat, and sometimes the gastrointestinal tract.</li><li><strong>Causative Agents:</strong> Angiotensin-Converting Enzyme (ACE) inhibitors, a class of medications for high blood pressure and heart failure, are a known cause of this adverse reaction.</li><li><strong>Mechanism of Action:</strong> ACE inhibitors can lead to an accumulation of bradykinin, a potent vasodilator, which increases vascular permeability and results in fluid leakage into tissues.</li><li><strong>Onset Variability:</strong> The reaction can occur at any point during treatment, from hours after the first dose to several years into therapy.</li><li><strong>Severity Spectrum:</strong> Manifestations range from mild, self-limiting swelling to severe, life-threatening airway obstruction requiring immediate medical intervention.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Facial Swelling:</strong> Rapid onset of swelling around the eyes, lips, and cheeks, often asymmetrical.</li><li><strong>Oral and Pharyngeal Edema:</strong> Swelling of the tongue, soft palate, uvula, and throat, leading to difficulty speaking (dysphonia), swallowing (dysphagia), or breathing (dyspnea).</li><li><strong>Laryngeal Involvement:</strong> Swelling of the larynx can cause hoarseness, stridor (a high-pitched breathing sound), and acute respiratory distress.</li><li><strong>Gastrointestinal Manifestations:</strong> Abdominal pain, nausea, vomiting, and diarrhea can occur due to swelling of the intestinal wall.</li><li><strong>Skin Sensation:</strong> Affected areas may feel tight, warm, or painful, but typically do not present with itching or hives (urticaria).</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Immediate Drug Discontinuation:</strong> Upon suspicion of ACE inhibitor-induced angioedema, the medication must be stopped immediately and permanently.</li><li><strong>Airway Management:</strong> Prioritize assessment and management of the patient's airway; be prepared for intubation or tracheostomy in cases of laryngeal edema.</li><li><strong>Avoidance of Re-exposure:</strong> Patients with a history of ACE inhibitor-induced angioedema must avoid all ACE inhibitors and exercise caution with Angiotensin Receptor Blockers (ARBs) due to potential cross-reactivity.</li><li><strong>Patient Education:</strong> Educate patients on recognizing symptoms and the critical importance of seeking emergency medical care without delay.</li><li><strong>Concomitant Medications:</strong> Be mindful of co-administration with other drugs that can elevate bradykinin levels, such as NSAIDs or m-TOR inhibitors, which may exacerbate risk.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Swallowing Impairment:</strong> For patients with oral or pharyngeal swelling, a soft or liquid diet may be necessary to prevent aspiration and ease consumption.</li><li><strong>Hydration Status:</strong> Ensure adequate fluid intake, especially if oral intake is compromised or if intravenous fluids are being administered.</li><li><strong>Avoid Irritants:</strong> During an acute episode, advise against foods that could further irritate swollen tissues, such as spicy, highly acidic, or extreme-temperature foods.</li><li><strong>Post-Resolution Diet:</strong> Once swelling has subsided and normal swallowing function is restored, patients can typically resume their regular diet.</li><li><strong>No Specific Food Triggers:</strong> ACE inhibitor-induced angioedema is a drug-related reaction and is not typically triggered by specific dietary components, but acute management may necessitate temporary dietary adjustments.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Comprehensive Patient Counseling:</strong> Provide thorough education to patients regarding the signs and symptoms of angioedema and the necessity of immediate medical attention.</li><li><strong>Medication Reconciliation:</strong> Conduct a meticulous review of all current medications, including over-the-counter drugs and herbal supplements, to identify potential interactions or contributing factors.</li><li><strong>Emergency Response Protocol:</strong> Establish and adhere to clear emergency protocols for managing acute angioedema in all clinical settings, ensuring ready access to airway management equipment and appropriate medications.</li><li><strong>Caregiver Awareness:</strong> Inform family members or caregivers about the condition, its potential severity, and the steps to take in an emergency.</li><li><strong>Medical Alert Identification:</strong> Advise patients to carry a medical alert card or wear a bracelet indicating their history of ACE inhibitor-induced angioedema to inform healthcare providers in emergencies.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Diagnostic Vigilance:</strong> Maintain a high index of suspicion for angioedema in any patient receiving an ACE inhibitor who presents with sudden, unexplained swelling, particularly of the head and neck.</li><li><strong>Differential Diagnosis:</strong> Carefully differentiate ACE inhibitor-induced angioedema from other causes, including allergic reactions (with urticaria), hereditary angioedema, and acquired C1 inhibitor deficiency.</li><li><strong>Therapeutic Approach:</strong> Acute management primarily focuses on airway protection. While antihistamines and corticosteroids are generally ineffective, specific agents like bradykinin receptor antagonists (e.g., icatibant) or kallikrein inhibitors (e.g., ecallantide) may be considered, though their efficacy in ACEi-induced angioedema is debated.</li><li><strong>Thorough Documentation:</strong> Meticulously document the event, including the specific ACE inhibitor, onset, symptoms, and management, to prevent future re-exposure.</li><li><strong>Alternative Antihypertensives:</strong> For patients requiring ongoing blood pressure management, consider alternative classes of antihypertensive agents (e.g., calcium channel blockers, diuretics) that do not interfere with the bradykinin pathway.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Rapid Assessment Skills:</strong> Develop proficiency in quickly assessing airway patency, respiratory status, and the extent and progression of swelling.</li><li><strong>Continuous Monitoring:</strong> Implement continuous monitoring of vital signs, oxygen saturation, and observe for any changes in swelling or signs of respiratory distress.</li><li><strong>Patient Education Reinforcement:</strong> Reinforce patient teaching regarding medication adherence, recognition of adverse effects, and the critical importance of seeking emergency care.</li><li><strong>Accurate Documentation:</strong> Ensure precise and timely documentation of all assessments, nursing interventions, and the patient's response to treatment.</li><li><strong>Interprofessional Collaboration:</strong> Actively collaborate with physicians, pharmacists, respiratory therapists, and other healthcare team members to ensure comprehensive and optimal patient management.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>ICD-10 Code:</strong> T46.4X5A (Adverse effect of ACE inhibitors, initial encounter).</li><li><strong>Pharmacological Basis:</strong> ACE inhibitors block the enzyme responsible for converting angiotensin I to angiotensin II, leading to vasodilation and blood pressure reduction. Concurrently, they inhibit the degradation of bradykinin.</li><li><strong>Pathophysiological Mechanism:</strong> The accumulation of bradykinin results in increased vascular permeability, allowing fluid to extravasate from capillaries into interstitial tissues, causing localized edema.</li><li><strong>Identified Risk Factors:</strong> Higher incidence observed in individuals of African American descent, those with a history of allergic reactions, older age, and concurrent use of certain medications like NSAIDs or m-TOR inhibitors.</li><li><strong>Clinical Management Guidelines:</strong> Refer to established institutional protocols and national guidelines for the management of ACE inhibitor-induced angioedema, which typically emphasize immediate drug cessation and aggressive airway management.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a person with subtle, involuntary facial movements like lip smacking or slight grimacing, set against a calm, supportive mental health clinic background. The person's expression should convey a mix of awareness and slight discomfort, without being overly dramatic. Soft, muted colors. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./tardive_dyskinesia.jpg" class="card-banner" alt="Tardive dyskinesia Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-mental-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Mental health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-mental-health-schizophrenia" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Schizophrenia</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Tardive dyskinesia</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Mental health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Schizophrenia</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Tardive dyskinesia (TD) is a neurological disorder characterized by involuntary, repetitive body movements.</li><li><strong>Primary Cause:</strong> It typically develops as a side effect of long-term use of dopamine receptor blocking agents (DRBAs), most commonly antipsychotic medications.</li><li><strong>Clinical Presentation:</strong> Movements often affect the face, mouth, tongue, and limbs, and can be distressing and socially stigmatizing.</li><li><strong>Persistence:</strong> TD can be persistent and, in some cases, irreversible, even after discontinuation of the causative medication.</li><li><strong>Risk Factors:</strong> Duration of antipsychotic treatment, higher dosages, older age, female sex, and underlying mood disorders can increase risk.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Oral-Buccal-Lingual Movements:</strong> Involuntary movements such as lip smacking, puckering, grimacing, tongue protrusion, chewing motions, and rapid blinking.</li><li><strong>Trunkal Dyskinesia:</strong> Rocking, swaying, pelvic thrusting, or irregular diaphragmatic breathing movements.</li><li><strong>Limb Dyskinesia:</strong> Choreoathetoid (writhing and jerky) movements of the fingers, toes, hands, and feet; restless or fidgeting movements.</li><li><strong>Respiratory Dyskinesia:</strong> Irregular, grunting, or gasping respirations, which can sometimes be severe.</li><li><strong>Ocular Movements:</strong> Involuntary eye movements, including sustained blinking or oculogyric crises (rarely).</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Regular Monitoring:</strong> Implement routine screening for involuntary movements using standardized scales like the Abnormal Involuntary Movement Scale (AIMS) for all patients on DRBAs.</li><li><strong>Medication Review:</strong> Periodically reassess the necessity and dosage of antipsychotic medications, aiming for the lowest effective dose for the shortest duration.</li><li><strong>Early Detection:</strong> Promptly identify and report any new or worsening involuntary movements to allow for timely intervention.</li><li><strong>Consideration of Alternatives:</strong> Explore switching to atypical antipsychotics with a lower risk profile for TD or initiating VMAT2 inhibitors (e.g., valbenazine, deutetrabenazine) if TD develops.</li><li><strong>Avoid Abrupt Discontinuation:</strong> Do not abruptly stop antipsychotic medications, as this can sometimes unmask or worsen TD symptoms.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Nutritional Assessment:</strong> Assess for potential difficulties with chewing or swallowing due to oral-buccal-lingual dyskinesia, which may impact nutritional intake.</li><li><strong>Soft Food Consistency:</strong> Consider recommending softer food textures or pureed diets if severe oral dyskinesia compromises safe and adequate oral intake.</li><li><strong>Hydration Status:</strong> Ensure adequate fluid intake, especially if movements interfere with the ability to drink or if medications cause dry mouth.</li><li><strong>Avoidance of Stimulants:</strong> Advise caution with excessive caffeine or other central nervous system stimulants, as they may potentially exacerbate involuntary movements in some individuals.</li><li><strong>Supportive Eating Environment:</strong> Provide a calm and supportive environment during meals to minimize stress, which can sometimes worsen dyskinetic movements.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Immediate Reporting:</strong> Any new onset or significant worsening of involuntary movements must be reported to the prescribing physician without delay.</li><li><strong>Patient Observation:</strong> Closely observe patients for signs of distress, social withdrawal, or functional impairment related to their movements.</li><li><strong>Medication Adherence:</strong> Ensure patients continue their prescribed medications as directed until a physician evaluates the symptoms and provides new instructions.</li><li><strong>Safety Measures:</strong> Implement safety measures if movements pose a risk of injury (e.g., falls, self-harm due to severe dyskinesia).</li><li><strong>Emotional Support:</strong> Provide empathetic support, as TD can significantly impact a patient's self-esteem and quality of life.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Risk-Benefit Analysis:</strong> Always conduct a thorough risk-benefit analysis when prescribing dopamine receptor blocking agents, especially for long-term use.</li><li><strong>Proactive Monitoring:</strong> Emphasize the importance of proactive and regular screening for TD, even in asymptomatic patients on antipsychotics.</li><li><strong>Differential Diagnosis:</strong> Rule out other movement disorders (e.g., drug-induced parkinsonism, akathisia, chorea) that may mimic or coexist with TD.</li><li><strong>Treatment Strategies:</strong> Consider dose reduction, switching to an atypical antipsychotic with a lower TD risk, or initiating VMAT2 inhibitors as first-line treatment for established TD.</li><li><strong>Patient Education:</strong> Educate patients and their families about the risks, symptoms, and management options for TD to foster informed decision-making and adherence.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pathophysiology Understanding:</strong> Grasp the underlying mechanism of dopamine receptor hypersensitivity in the basal ganglia contributing to TD.</li><li><strong>AIMS Administration:</strong> Learn the correct technique for administering and scoring the Abnormal Involuntary Movement Scale (AIMS) to ensure accurate assessment.</li><li><strong>Patient Education Role:</strong> Be prepared to educate patients and caregivers about TD, including its symptoms, potential causes, and the importance of reporting changes.</li><li><strong>Advocacy for Patients:</strong> Understand the significant impact of TD on a patient's quality of life, social interactions, and mental well-being, and advocate for appropriate interventions.</li><li><strong>Interdisciplinary Collaboration:</strong> Recognize the importance of collaborating with physicians, pharmacists, and other healthcare professionals in managing TD.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathophysiology:</strong> Post-synaptic dopamine receptor hypersensitivity in the nigrostriatal pathway.</li><li><strong>Pharmacology:</strong> Dopamine receptor blocking agents (DRBAs), VMAT2 inhibitors (valbenazine, deutetrabenazine), benzodiazepines, anticholinergics (caution advised).</li><li><strong>Diagnostic Criteria:</strong> DSM-5 criteria for medication-induced movement disorders, specifically tardive dyskinesia.</li><li><strong>Assessment Tools:</strong> Abnormal Involuntary Movement Scale (AIMS), Dyskinesia Identification System: Condensed User Scale (DISCUS).</li><li><strong>Associated Conditions:</strong> Schizophrenia, bipolar disorder, major depressive disorder (when treated with DRBAs), intellectual disability.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

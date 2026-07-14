@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a child, appearing calm and supported, sitting on a bed or sofa. A caring adult figure (parent or guardian) is gently comforting the child. The background is a clean, safe home environment with subtle elements suggesting medical care or recovery, such as a water bottle or a small first-aid kit icon. The overall mood is hopeful and supportive, emphasizing recovery and family care. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./opioid_withdrawal___ed_discharge_instructions.jpg" class="card-banner" alt="Opioid withdrawal – ED discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-children-s-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Children's health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-children-s-health-substance-use-and-misuse" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Substance use and misuse</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Opioid withdrawal – ED discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Children's health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Substance use and misuse</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding Opioid Withdrawal:</strong> Opioid withdrawal occurs when a child who has been physically dependent on opioids suddenly stops or significantly reduces their use. It is not life-threatening but can be extremely uncomfortable and distressing.</li><li><strong>Importance of Medical Supervision:</strong> While discharged, continued monitoring and follow-up with a healthcare provider are crucial to manage symptoms safely and prevent complications.</li><li><strong>Risk of Relapse and Overdose:</strong> Children experiencing withdrawal are at a very high risk of relapse. If they use opioids again after a period of abstinence, their tolerance will be lower, significantly increasing the risk of accidental overdose.</li><li><strong>Not a Moral Failing:</strong> Opioid dependence is a medical condition, and withdrawal is a physiological response. Support and understanding are vital for the child's recovery journey.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Gastrointestinal Distress:</strong> Nausea, vomiting, diarrhea, and abdominal cramping are common and can lead to dehydration.</li><li><strong>Flu-like Symptoms:</strong> Muscle aches, joint pain, sweating, chills, runny nose, and excessive yawning may be present.</li><li><strong>Autonomic Hyperactivity:</strong> Dilated pupils, goosebumps (piloerection), increased heart rate, and elevated blood pressure can occur.</li><li><strong>Psychological and Behavioral Changes:</strong> Irritability, agitation, anxiety, restlessness, difficulty sleeping (insomnia), and dysphoria are frequently observed.</li><li><strong>Cravings:</strong> Intense cravings for opioids can be a significant challenge, increasing the risk of relapse.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Secure All Medications:</strong> Ensure all prescribed medications are stored securely, out of reach of the child and other household members, to prevent misuse or accidental ingestion.</li><li><strong>Remove Access to Illicit Substances:</strong> Thoroughly search the home and remove any illicit opioids or other substances to eliminate temptation and prevent relapse.</li><li><strong>Monitor for Worsening Symptoms:</strong> Closely observe the child for any signs of severe dehydration, respiratory distress, or significant changes in mental status, which warrant immediate medical attention.</li><li><strong>Avoid Self-Medication:</strong> Do not give the child any over-the-counter medications or herbal remedies without consulting a healthcare provider, as some may interact with prescribed treatments or worsen symptoms.</li><li><strong>Overdose Prevention Education:</strong> Educate all caregivers and household members on recognizing the signs of opioid overdose (e.g., pinpoint pupils, slow/shallow breathing, unresponsiveness) and the proper use of naloxone, if prescribed.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Maintain Hydration:</strong> Encourage frequent sips of clear fluids such as water, oral rehydration solutions (e.g., Pedialyte), diluted fruit juices, or clear broths to prevent dehydration from vomiting and diarrhea.</li><li><strong>Bland, Easily Digestible Foods:</strong> Offer small, frequent meals of bland foods like toast, crackers, rice, bananas, applesauce, and plain pasta. Avoid spicy, fatty, or heavily seasoned foods.</li><li><strong>Avoid Caffeine and Sugary Drinks:</strong> Limit or avoid caffeinated beverages and highly sugary drinks, which can exacerbate gastrointestinal upset or anxiety.</li><li><strong>Nutritional Support:</strong> If the child is unable to tolerate solid foods, focus on liquid nutrition and consult with a healthcare provider or dietitian for guidance on maintaining adequate caloric intake.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Administer Prescribed Medications:</strong> Follow the healthcare provider's instructions precisely for all prescribed medications (e.g., clonidine, buprenorphine, antiemetics) to manage withdrawal symptoms.</li><li><strong>Create a Safe and Supportive Environment:</strong> Ensure the child is in a calm, quiet, and safe environment free from stressors and triggers that might prompt opioid use.</li><li><strong>Monitor for Respiratory Depression:</strong> If buprenorphine or other sedating medications are prescribed, monitor for signs of respiratory depression (slow, shallow breathing, excessive drowsiness) and seek immediate medical help if observed.</li><li><strong>Emergency Contact Plan:</strong> Have a clear plan for who to call and where to go in case of an emergency, including the healthcare provider's contact information and the nearest emergency department.</li><li><strong>Encourage Open Communication:</strong> Foster an environment where the child feels comfortable discussing their feelings and challenges without judgment.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive Follow-up is Paramount:</strong> Discharge instructions are only the first step. Immediate and consistent follow-up with a pediatrician, addiction specialist, or mental health professional is critical for long-term recovery.</li><li><strong>Address Underlying Issues:</strong> Opioid use in children often stems from underlying mental health conditions (e.g., anxiety, depression, trauma) or social determinants. A holistic approach addressing these factors is essential.</li><li><strong>Consider Medication-Assisted Treatment (MAT):</strong> For some adolescents, medication-assisted treatment with buprenorphine/naloxone may be an appropriate and effective strategy to reduce cravings and prevent relapse.</li><li><strong>Family Involvement:</strong> Engaging the family in therapy and support groups is crucial, as substance use impacts the entire family system.</li><li><strong>Harm Reduction Strategies:</strong> Educate families on harm reduction, including the availability and proper use of naloxone, to prevent fatal overdose.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pediatric COWS Scale Adaptation:</strong> Utilize an age-appropriate adaptation of the Clinical Opiate Withdrawal Scale (COWS) to objectively assess withdrawal severity and guide symptom management.</li><li><strong>Comfort Measures:</strong> Implement non-pharmacological comfort measures such as warm baths, gentle massage, quiet environment, and distraction techniques to alleviate distress.</li><li><strong>Patient and Family Education:</strong> Provide clear, concise education on medication administration, expected withdrawal symptoms, warning signs requiring immediate medical attention, and the importance of follow-up appointments.</li><li><strong>Referral Pathways:</strong> Facilitate seamless referrals to outpatient addiction treatment programs, mental health services, and social support agencies tailored for adolescents.</li><li><strong>Fluid and Electrolyte Monitoring:</strong> Closely monitor for signs of dehydration and electrolyte imbalances, especially in younger children experiencing significant vomiting or diarrhea.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pharmacological Management:</strong> Common medications used include alpha-2 adrenergic agonists (e.g., clonidine) to reduce autonomic symptoms, antiemetics for nausea/vomiting, and NSAIDs for muscle aches. Buprenorphine may be initiated in appropriate cases.</li><li><strong>Differential Diagnosis:</strong> Differentiate opioid withdrawal from other conditions presenting with similar symptoms, such as gastroenteritis, anxiety disorders, or other substance withdrawals.</li><li><strong>Risk Factors for Severe Withdrawal:</strong> Higher doses, longer duration of opioid use, co-occurring mental health conditions, and polysubstance use can increase the severity of withdrawal.</li><li><strong>Toxicology Screening:</strong> Urine drug screens are essential at presentation to confirm opioid use and identify co-ingestions, guiding appropriate management.</li><li><strong>Naloxone Prescription:</strong> Consider prescribing naloxone to the family upon discharge, along with comprehensive education on its use, especially if there is a risk of relapse.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

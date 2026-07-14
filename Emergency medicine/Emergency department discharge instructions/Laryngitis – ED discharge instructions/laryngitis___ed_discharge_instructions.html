@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a person with a sore throat and hoarse voice, perhaps holding their neck or a cup of warm tea. The background includes elements like a humidifier, a 'no talking' sign, and a calm, resting environment. Emphasize hydration and voice rest. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./laryngitis___ed_discharge_instructions.jpg" class="card-banner" alt="Laryngitis – ED discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-emergency-medicine" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency medicine</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-emergency-medicine-emergency-department-discharge-instructions" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency department discharge instructions</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Laryngitis – ED discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Emergency medicine</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Emergency department discharge instructions</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding Laryngitis:</strong> Laryngitis is an inflammation of the voice box (larynx), most commonly caused by a viral infection, but can also result from vocal strain, bacterial infection, or irritants.</li><li><strong>Primary Symptom:</strong> The hallmark symptom is hoarseness or complete loss of voice, often accompanied by a sore throat and dry cough.</li><li><strong>Self-Limiting Condition:</strong> Most cases of acute laryngitis are viral and resolve on their own within 1-2 weeks with appropriate self-care measures.</li><li><strong>Importance of Voice Rest:</strong> Resting your voice is the most crucial step for recovery, allowing the inflamed vocal cords to heal.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Hoarseness or Voice Loss:</strong> Difficulty speaking, a raspy voice, or complete inability to produce sound.</li><li><strong>Sore Throat:</strong> Discomfort or pain in the throat, especially when swallowing.</li><li><strong>Dry Cough:</strong> A persistent, non-productive cough that can further irritate the vocal cords.</li><li><strong>Tickling Sensation:</strong> A feeling of irritation or a constant need to clear the throat.</li><li><strong>Mild Fever:</strong> Low-grade fever may be present, particularly with viral causes.</li><li><strong>When to Return to ED:</strong> Seek immediate medical attention if you experience severe difficulty breathing, stridor (a high-pitched, noisy breath sound), drooling, severe throat pain, difficulty swallowing, or a high fever (above 102°F or 39°C).</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Strict Voice Rest:</strong> Avoid talking, whispering, yelling, or singing as much as possible. Whispering can strain vocal cords more than soft speaking.</li><li><strong>Avoid Irritants:</strong> Refrain from smoking, exposure to secondhand smoke, and inhaling chemical fumes, which can further irritate the larynx.</li><li><strong>Humidify Air:</strong> Use a cool-mist humidifier in your room, especially at night, to keep the air moist and soothe your throat.</li><li><strong>Avoid Decongestants:</strong> Over-the-counter decongestants can dry out the vocal cords, potentially worsening symptoms.</li><li><strong>Limit Throat Clearing:</strong> While tempting, frequent throat clearing can further irritate inflamed vocal cords. Try sipping water instead.</li><li><strong>Monitor for Worsening:</strong> Be vigilant for any signs of worsening symptoms, particularly breathing difficulties or increasing pain.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration is Key:</strong> Drink plenty of fluids, such as water, herbal teas, and clear broths, to keep your throat moist and prevent dehydration.</li><li><strong>Warm Fluids:</strong> Warm beverages can be particularly soothing for a sore throat.</li><li><strong>Avoid Caffeine and Alcohol:</strong> These substances can dehydrate you and irritate the vocal cords, hindering recovery.</li><li><strong>Soft, Bland Foods:</strong> Opt for soft, easy-to-swallow foods like soups, mashed potatoes, yogurt, and smoothies if swallowing is painful.</li><li><strong>Honey and Lozenges:</strong> Sucking on lozenges or consuming honey (for adults and children over 1 year) can help soothe a sore throat and cough.</li><li><strong>Avoid Acidic Foods:</strong> Highly acidic foods and drinks (e.g., citrus juices, spicy foods) may irritate the throat further.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>No Whispering:</strong> Educate patients that whispering can cause more strain on the vocal cords than speaking softly. Encourage complete voice rest or minimal, soft speaking.</li><li><strong>Watch for Respiratory Distress:</strong> Instruct caregivers and patients to immediately seek emergency care if there are any signs of difficulty breathing, such as rapid breathing, retractions, or stridor.</li><li><strong>Fever Management:</strong> Advise on appropriate use of antipyretics (e.g., acetaminophen, ibuprofen) for fever and pain relief, adhering to dosage guidelines.</li><li><strong>Duration of Symptoms:</strong> Inform patients that while most viral laryngitis resolves within 1-2 weeks, persistent hoarseness beyond this period warrants follow-up with a primary care physician to rule out other causes.</li><li><strong>Hand Hygiene:</strong> Reinforce good hand hygiene to prevent the spread of viral infections.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Viral Etiology Dominant:</strong> Most cases are viral, meaning antibiotics are ineffective and should not be prescribed unless a bacterial infection is strongly suspected.</li><li><strong>Symptomatic Management:</strong> Treatment focuses on alleviating symptoms and promoting vocal cord healing through rest and hydration.</li><li><strong>Referral for Persistent Symptoms:</strong> If hoarseness persists for more than 2-3 weeks, especially in smokers or those with reflux, referral to an otolaryngologist (ENT specialist) is recommended for further evaluation.</li><li><strong>Rule Out Serious Conditions:</strong> While rare, persistent laryngitis can sometimes mask more serious conditions like vocal cord polyps, nodules, or even malignancy, necessitating specialist assessment.</li><li><strong>GERD Link:</strong> Advise patients with chronic laryngitis to consider evaluation for gastroesophageal reflux disease (GERD) as a contributing factor.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pathophysiology:</strong> Laryngitis involves inflammation and swelling of the vocal cords within the larynx, impairing their ability to vibrate normally, leading to voice changes.</li><li><strong>Patient Education Priority:</strong> Nurses play a critical role in educating patients on the importance of voice rest, hydration, and avoidance of irritants for effective recovery.</li><li><strong>Assessment for Red Flags:</strong> Nursing assessment should prioritize identifying signs of airway compromise (e.g., stridor, dyspnea) which necessitate immediate intervention.</li><li><strong>Differential Diagnoses:</strong> Consider other causes of hoarseness, such as acute epiglottitis (especially in unvaccinated children), croup, vocal cord paralysis, or vocal cord lesions.</li><li><strong>Pharmacological Interventions:</strong> Focus on symptomatic relief with analgesics/antipyretics; corticosteroids are rarely indicated for acute viral laryngitis but may be considered in severe cases with significant airway edema.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Etiology:</strong> Predominantly viral (e.g., rhinovirus, influenza, parainfluenza), but can also be bacterial (less common), fungal, due to vocal abuse, gastroesophageal reflux, or environmental irritants.</li><li><strong>Diagnosis:</strong> Primarily clinical, based on patient history and physical examination. Laryngoscopy is generally not required for acute viral laryngitis but may be performed for persistent symptoms or to rule out other pathologies.</li><li><strong>Management Principles:</strong> Voice rest, humidification, hydration, analgesics (NSAIDs, acetaminophen), and avoidance of laryngeal irritants.</li><li><strong>Complications:</strong> Rarely, severe airway obstruction (especially in children), chronic hoarseness, or secondary bacterial infection.</li><li><strong>ICD-10 Codes:</strong> J04.0 (Acute laryngitis), J37.0 (Chronic laryngitis).</li><li><strong>Prognosis:</strong> Excellent for acute viral laryngitis, with resolution typically within 7-14 days.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration for public health awareness about Ebola and travel precautions. The scene features a stylized globe with a red 'X' over a region in Africa, indicating travel restriction. Around the globe, elements include a person wearing a medical mask, hands washing with soap, a syringe representing vaccination, and a 'no entry' sign. A subtle, abstract representation of the Ebola virus particle is visible in the background. The overall design is clean, informative, and uses a limited color palette with emphasis on safety and prevention.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./ebola.jpg" class="card-banner" alt="Ebola Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-infections-and-vaccines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Infections and vaccines</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-infections-and-vaccines-travel-precautions" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Travel precautions</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Ebola</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Infections and vaccines</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Travel precautions</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Ebola Virus Disease (EVD):</strong> A severe, often fatal illness in humans caused by the Ebola virus.</li><li><strong>Transmission:</strong> Spreads through direct contact with blood, bodily fluids (urine, feces, vomit, semen, breast milk) of an infected person or contaminated objects.</li><li><strong>Incubation Period:</strong> Ranges from 2 to 21 days, with an average of 8 to 10 days. Individuals are not contagious until symptoms appear.</li><li><strong>Geographic Risk:</strong> Primarily affects regions in sub-Saharan Africa, with outbreaks occurring sporadically.</li><li><strong>Prevention:</strong> Vaccination is available for individuals at high risk of exposure, and strict infection control measures are paramount.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Early Symptoms:</strong> Sudden onset of fever, intense weakness, muscle pain, headache, and sore throat.</li><li><strong>Gastrointestinal Manifestations:</strong> Vomiting, diarrhea, and abdominal pain often follow the initial symptoms.</li><li><strong>Rash and Organ Dysfunction:</strong> A maculopapular rash may appear, followed by impaired kidney and liver function.</li><li><strong>Hemorrhagic Signs:</strong> In some cases, internal and external bleeding can occur, manifesting as bruising, petechiae, or bleeding from orifices.</li><li><strong>Progression:</strong> Symptoms typically worsen rapidly, leading to severe dehydration, shock, and multi-organ failure if not managed.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Travel Advisories:</strong> Avoid non-essential travel to areas experiencing active Ebola outbreaks. Consult official health organizations (e.g., WHO, CDC) for current advisories.</li><li><strong>Avoid Contact with Bodily Fluids:</strong> Do not touch blood, urine, feces, vomit, or other bodily fluids of sick individuals or deceased persons.</li><li><strong>Hand Hygiene:</strong> Practice rigorous handwashing with soap and water or use an alcohol-based hand sanitizer, especially after potential contact with public surfaces or sick individuals.</li><li><strong>Safe Food Practices:</strong> Avoid contact with wild animals (bushmeat) and ensure all food is thoroughly cooked.</li><li><strong>Healthcare Worker Safety:</strong> Healthcare professionals must adhere to stringent infection control protocols, including proper use of personal protective equipment (PPE), when caring for suspected or confirmed EVD patients.</li><li><strong>Vaccination:</strong> Consider pre-exposure vaccination (e.g., Ervebo) if traveling to high-risk areas or if involved in healthcare/public health response efforts.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Avoid Bushmeat:</strong> Strictly refrain from consuming or handling bushmeat (wild animals hunted for food), as it is a potential source of zoonotic transmission.</li><li><strong>Cook Food Thoroughly:</strong> Ensure all meat and poultry are cooked to safe internal temperatures to eliminate potential pathogens.</li><li><strong>Safe Water Consumption:</strong> Drink only bottled, boiled, or chemically treated water to prevent waterborne illnesses that could complicate an EVD diagnosis or recovery.</li><li><strong>Fluid and Electrolyte Management:</strong> For individuals with EVD, aggressive oral or intravenous rehydration and electrolyte replacement are critical components of supportive care.</li><li><strong>Food Preparation Hygiene:</strong> Practice meticulous hygiene when preparing food, including washing hands thoroughly and cleaning surfaces and utensils.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Immediate Medical Attention:</strong> If you develop fever, severe headache, muscle pain, vomiting, diarrhea, or unexplained bleeding after returning from an Ebola-affected area, seek immediate medical care.</li><li><strong>Inform Healthcare Providers:</strong> Clearly communicate your recent travel history to healthcare personnel upon arrival at a medical facility.</li><li><strong>Isolation Protocols:</strong> Be prepared for isolation measures to prevent potential spread while diagnosis is being confirmed.</li><li><strong>Contact Tracing:</strong> Cooperate fully with public health officials for contact tracing if you are identified as a potential exposure risk.</li><li><strong>Do Not Self-Medicate:</strong> Avoid taking unprescribed medications, as this can mask symptoms or complicate diagnosis.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early Recognition is Key:</strong> Clinicians must maintain a high index of suspicion for EVD in patients presenting with compatible symptoms and relevant travel or exposure history.</li><li><strong>Strict Infection Control:</strong> Emphasize the critical importance of barrier nursing, appropriate PPE, and environmental decontamination to prevent nosocomial transmission.</li><li><strong>Supportive Care:</strong> Focus on aggressive fluid and electrolyte management, maintenance of blood pressure, oxygenation, and treatment of co-infections.</li><li><strong>Therapeutics:</strong> Utilize approved monoclonal antibody treatments (e.g., Inmazeb, Ebanga) for confirmed EVD cases as per guidelines.</li><li><strong>Public Health Collaboration:</strong> Work closely with public health authorities for surveillance, contact tracing, and community engagement to control outbreaks effectively.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>PPE Proficiency:</strong> Master the correct donning and doffing procedures for full personal protective equipment to ensure self-protection and prevent contamination.</li><li><strong>Isolation Techniques:</strong> Understand and implement strict isolation protocols, including designated patient care areas and waste management.</li><li><strong>Fluid and Electrolyte Balance:</strong> Monitor patients closely for signs of dehydration and electrolyte imbalance, administering IV fluids and oral rehydration solutions as prescribed.</li><li><strong>Psychological Support:</strong> Provide empathetic care and psychological support to patients and their families, who may be experiencing extreme fear and anxiety.</li><li><strong>Community Education:</strong> Participate in educating communities on EVD transmission, prevention, and the importance of seeking early medical care.</li><li><strong>Specimen Handling:</strong> Learn safe procedures for collecting, packaging, and transporting laboratory specimens from suspected EVD patients.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Etiology:</strong> Caused by viruses of the Ebolavirus genus, part of the Filoviridae family. Species include Zaire ebolavirus, Sudan ebolavirus, Bundibugyo ebolavirus, Taï Forest ebolavirus, and Reston ebolavirus.</li><li><strong>Reservoir:</strong> Fruit bats are considered the natural host of Ebola viruses.</li><li><strong>Diagnosis:</strong> Confirmed by laboratory tests such as Reverse Transcription Polymerase Chain Reaction (RT-PCR), ELISA, and virus isolation from blood or body fluids.</li><li><strong>Treatment:</strong> Supportive care (fluid and electrolyte balance, oxygen, blood pressure support) and specific treatments like monoclonal antibodies (e.g., atoltivimab/maftivimab/odesivimab-ebanga, ansuvimab-inmazeb).</li><li><strong>Vaccine:</strong> Ervebo (rVSV-ZEBOV) is an FDA-approved vaccine for the prevention of EVD caused by Zaire ebolavirus.</li><li><strong>Case Fatality Rate:</strong> Highly variable, ranging from 25% to 90% in past outbreaks, depending on the virus species and access to care.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

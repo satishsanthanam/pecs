@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a diverse patient, looking slightly uncomfortable but determined, holding a pillow against their chest while taking a deep breath. A friendly medical professional (nurse or doctor) is nearby, offering guidance with a gentle smile. The background features subtle medical icons like a lung diagram and a pain scale. Elements of home recovery, such as a comfortable chair or a glass of water, are present. The overall scene conveys care, recovery, and clear discharge instructions. Clean lines, soft colors, public awareness design.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./rib_fracture_or_bruised_rib___ed_discharge_instructions.jpg" class="card-banner" alt="Rib fracture or bruised rib – ED discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-emergency-medicine" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency medicine</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-emergency-medicine-emergency-department-discharge-instructions" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency department discharge instructions</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Rib fracture or bruised rib – ED discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Emergency medicine</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Emergency department discharge instructions</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+  <h2>&#128161; What You Need to Know</h2>
+  <ul>
+    <li><strong>Nature of Injury:</strong> Rib fractures and bruised ribs are common injuries resulting from trauma. While a fracture involves a break in the bone, a bruise is damage to the soft tissues around the rib. Both cause significant pain.</li>
+    <li><strong>Healing Process:</strong> Most rib injuries heal naturally over 4-6 weeks, sometimes longer. The primary goal of treatment is pain management to allow for normal breathing and prevent complications.</li>
+    <li><strong>Pain Management is Key:</strong> Effective pain control is crucial to enable deep breathing and coughing, which prevents serious lung complications like pneumonia and atelectasis.</li>
+    <li><strong>No Rib Binding:</strong> Avoid wrapping or binding the chest tightly, as this restricts lung expansion and can worsen respiratory complications.</li>
+  </ul>
+</div>
+<div class='symptoms-section'>
+  <h2>&#129298; Associated Symptoms</h2>
+  <ul>
+    <li><strong>Localized Pain:</strong> Sharp, intense pain at the site of injury, often worsening with deep breaths, coughing, sneezing, laughing, or movement.</li>
+    <li><strong>Tenderness and Bruising:</strong> The injured area may be tender to touch, and bruising or swelling might be visible on the skin.</li>
+    <li><strong>Shallow Breathing:</strong> Patients often take shallow breaths to avoid pain, which can lead to inadequate lung expansion.</li>
+    <li><strong>Worsening Pain:</strong> Increasing pain that is not controlled by medication, especially if accompanied by new or worsening shortness of breath.</li>
+    <li><strong>Signs of Complication:</strong> Fever, chills, productive cough (especially with colored sputum), increasing shortness of breath, or rapid heart rate could indicate pneumonia or other lung complications.</li>
+  </ul>
+</div>
+<div class='precautions-section'>
+  <h2>&#128737; Crucial Precautions</h2>
+  <ul>
+    <li><strong>Pain Medication Adherence:</strong> Take prescribed pain relievers as directed to manage discomfort and facilitate deep breathing. Over-the-counter options like ibuprofen or acetaminophen can also be used.</li>
+    <li><strong>Deep Breathing Exercises:</strong> Perform deep breathing and coughing exercises every 1-2 hours while awake. Hold a pillow firmly against your chest to splint the area when coughing or deep breathing to reduce pain.</li>
+    <li><strong>Activity Restrictions:</strong> Avoid strenuous activities, heavy lifting, pushing, pulling, and contact sports until cleared by your physician. Gradually increase activity as pain allows.</li>
+    <li><strong>Sleeping Position:</strong> Try sleeping in a semi-upright position or on the uninjured side to reduce pressure on the ribs and improve comfort.</li>
+    <li><strong>Monitor for Complications:</strong> Watch for signs of worsening condition such as increasing shortness of breath, fever, chills, persistent cough, or severe chest pain that radiates to the shoulder or jaw. Seek immediate medical attention if these occur.</li>
+  </ul>
+</div>
+<div class='dietary-section'>
+  <h2>&#127869; Dietary Directions & Restrictions</h2>
+  <ul>
+    <li><strong>Hydration:</strong> Maintain good hydration by drinking plenty of fluids (water, clear broths) to help thin respiratory secretions and prevent constipation, especially if taking opioid pain medications.</li>
+    <li><strong>Nutrient-Rich Diet:</strong> Consume a balanced diet rich in protein, vitamins (especially Vitamin C for tissue repair), and minerals to support the healing process.</li>
+    <li><strong>Fiber Intake:</strong> Increase dietary fiber (fruits, vegetables, whole grains) to prevent constipation, which can be a common side effect of opioid pain medications and can exacerbate pain during straining.</li>
+    <li><strong>Avoid Irritants:</strong> Limit intake of foods or beverages that may cause excessive coughing or gastrointestinal upset.</li>
+  </ul>
+</div>
+<div class='warning-box'>
+  <h2>&#9888;&#65039; Attendant Guidelines</h2>
+  <ul>
+    <li><strong>Symptom Monitoring:</strong> Closely observe the patient for any signs of worsening respiratory distress, increasing pain, fever, or changes in mental status.</li>
+    <li><strong>Medication Assistance:</strong> Ensure the patient takes pain medications as prescribed and assist with scheduling doses if needed.</li>
+    <li><strong>Activity Support:</strong> Help the patient with daily activities that may be painful or difficult, such as dressing, bathing, or reaching for objects.</li>
+    <li><strong>Encourage Deep Breathing:</strong> Remind and encourage the patient to perform deep breathing and coughing exercises regularly.</li>
+    <li><strong>Emergency Preparedness:</strong> Know when to seek immediate medical attention for the patient, especially for signs of respiratory compromise or severe, uncontrolled pain.</li>
+  </ul>
+</div>
+<div class='doctor-advice'>
+  <h2>&#129658; Physician's Perspective</h2>
+  <ul>
+    <li><strong>Pain Control Priority:</strong> Aggressive pain management is paramount to ensure adequate ventilation and prevent pulmonary complications. Do not hesitate to take prescribed pain medication.</li>
+    <li><strong>Respiratory Hygiene:</strong> Emphasize the critical role of deep breathing and coughing to prevent atelectasis and pneumonia. Incentive spirometry may be beneficial.</li>
+    <li><strong>Follow-up Care:</strong> Schedule a follow-up appointment with your primary care physician or an orthopedic specialist within 1-2 weeks to monitor healing and assess for complications.</li>
+    <li><strong>Gradual Return to Activity:</strong> Advise patients to gradually increase activity levels, avoiding any movements that exacerbate pain, and to refrain from high-impact activities until fully healed.</li>
+    <li><strong>Complication Awareness:</strong> Educate patients on the signs and symptoms of potential complications suchs as pneumothorax, hemothorax, or pneumonia, and when to seek urgent care.</li>
+  </ul>
+</div>
+<div class='student-nurse-index'>
+  <h2>&#127891; Academic & Nursing Corner</h2>
+  <ul>
+    <li><strong>Pain Assessment:</strong> Regularly assess pain levels using a validated scale and evaluate the effectiveness of analgesia.</li>
+    <li><strong>Respiratory Assessment:</strong> Monitor respiratory rate, effort, oxygen saturation, lung sounds, and cough effectiveness. Assess for signs of respiratory distress or impending failure.</li>
+    <li><strong>Patient Education:</strong> Provide thorough education on pain management strategies, the importance of deep breathing and coughing (splinting technique), activity restrictions, and signs of complications.</li>
+    <li><strong>Medication Administration:</strong> Administer prescribed analgesics, ensuring appropriate dosing and monitoring for side effects (e.g., constipation with opioids).</li>
+    <li><strong>Mobility and Positioning:</strong> Assist with safe mobilization and positioning to optimize comfort and lung expansion.</li>
+  </ul>
+</div>
+<div class='technical-index'>
+  <h2>&#128300; Clinical Reference Index</h2>
+  <ul>
+    <li><strong>Analgesia:</strong> Pain management, often involving NSAIDs, acetaminophen, and sometimes opioids for severe pain.</li>
+    <li><strong>Atelectasis:</strong> Collapse of a lung or part of a lung, a common complication of shallow breathing due to pain.</li>
+    <li><strong>Pneumonia:</strong> Lung infection, a risk due to impaired clearance of secretions from shallow breathing.</li>
+    <li><strong>Pneumothorax:</strong> Air in the pleural space, potentially caused by a sharp rib fracture puncturing the lung.</li>
+    <li><strong>Hemothorax:</strong> Blood in the pleural space, also a potential complication of severe rib trauma.</li>
+    <li><strong>Flail Chest:</strong> A life-threatening condition involving multiple rib fractures in two or more places, leading to paradoxical chest wall movement.</li>
+    <li><strong>Incentive Spirometry:</strong> A device used to encourage deep breathing and improve lung function.</li>
+  </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

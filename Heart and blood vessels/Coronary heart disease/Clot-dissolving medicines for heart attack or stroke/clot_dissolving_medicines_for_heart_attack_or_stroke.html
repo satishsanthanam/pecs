@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of an urgent medical scene. A diverse medical team (doctor and nurse) is attending to a patient on a gurney. Overlayed elements include a stylized heart with a dissolving clot, a brain with restored blood flow, a clock indicating urgency, and subtle red and blue color accents. The design should convey speed, precision, and hope, with clean lines and a public awareness aesthetic. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./clot_dissolving_medicines_for_heart_attack_or_stroke.jpg" class="card-banner" alt="Clot-dissolving medicines for heart attack or stroke Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-coronary-heart-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Coronary heart disease</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Clot-dissolving medicines for heart attack or stroke</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Coronary heart disease</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Emergency Treatment:</strong> Clot-dissolving medicines, also known as thrombolytics or fibrinolytics, are emergency treatments for acute heart attack (STEMI) and ischemic stroke.</li><li><strong>Time-Sensitive:</strong> Their effectiveness is highly dependent on rapid administration, often within a critical time window (e.g., 3-4.5 hours for stroke, up to 12 hours for MI depending on specific criteria).</li><li><strong>Mechanism of Action:</strong> These medications work by activating plasminogen, which then forms plasmin, an enzyme that breaks down fibrin clots, restoring blood flow to the affected heart muscle or brain tissue.</li><li><strong>Significant Risks:</strong> While life-saving, these drugs carry a significant risk of bleeding, including intracranial hemorrhage, which necessitates careful patient selection and intensive monitoring.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Heart Attack (MI):</strong> Severe chest pain, often described as pressure, tightness, or squeezing, radiating to the arm, jaw, back, or neck, accompanied by shortness of breath, sweating, nausea, or lightheadedness.</li><li><strong>Ischemic Stroke:</strong> Sudden onset of weakness or numbness on one side of the body (face, arm, leg), difficulty speaking or understanding speech (aphasia), sudden vision changes, severe headache with no known cause, or loss of balance/coordination.</li><li><strong>Prompt Recognition:</strong> These symptoms are critical indicators for immediate medical attention, as early diagnosis and treatment with thrombolytics can significantly reduce morbidity and mortality.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Absolute Contraindications:</strong> Active internal bleeding, recent intracranial hemorrhage, known arteriovenous malformation or aneurysm, recent major surgery or trauma, severe uncontrolled hypertension, or suspicion of aortic dissection.</li><li><strong>Careful Patient Selection:</strong> Thorough assessment is crucial to rule out hemorrhagic stroke before administration for suspected ischemic stroke, typically via urgent CT scan.</li><li><strong>Bleeding Risk Management:</strong> Close monitoring for signs of bleeding (e.g., petechiae, ecchymoses, hematuria, melena, epistaxis, gum bleeding) is paramount during and after infusion.</li><li><strong>Neurological Monitoring:</strong> Frequent neurological assessments are vital for stroke patients to detect any worsening or signs of intracranial hemorrhage.</li><li><strong>Blood Pressure Control:</strong> Strict blood pressure management is essential before, during, and after thrombolytic therapy to minimize the risk of hemorrhagic complications.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Initial NPO Status:</strong> Patients are typically kept NPO (nothing by mouth) during the acute phase of treatment and immediate post-treatment period due to the risk of aspiration, especially in stroke patients, and potential need for further interventions.</li><li><strong>Gradual Reintroduction:</strong> Once stable and assessed for swallowing safety (e.g., swallow screen for stroke patients), fluids and a light diet may be gradually reintroduced.</li><li><strong>Avoidance of Bleeding-Enhancing Foods:</strong> While not a direct contraindication, patients should generally avoid excessive intake of foods or supplements known to thin blood (e.g., high doses of Vitamin E, Ginkgo Biloba) without medical consultation, especially if also on antiplatelet or anticoagulant therapy.</li><li><strong>Heart-Healthy Diet Post-Recovery:</strong> Long-term, a heart-healthy diet low in saturated fats, trans fats, cholesterol, and sodium, rich in fruits, vegetables, and whole grains, is crucial for secondary prevention of cardiovascular events.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Recognize & Act FAST:</strong> Learn the signs of heart attack and stroke (e.g., FAST for stroke: Face drooping, Arm weakness, Speech difficulty, Time to call 911) and call emergency services immediately. Do not delay.</li><li><strong>Communicate Medical History:</strong> Provide emergency personnel with a complete medical history, including all current medications, allergies, and recent surgeries or bleeding events.</li><li><strong>Understand Time is Critical:</strong> Be aware that the effectiveness of clot-dissolving medicines is highly time-dependent; every minute counts in preserving heart muscle or brain function.</li><li><strong>Monitor for Bleeding:</strong> After treatment, carefully observe the patient for any signs of unusual bleeding, such as new bruises, blood in urine or stool, or changes in mental status, and report them immediately to medical staff.</li><li><strong>Follow Post-Treatment Instructions:</strong> Adhere strictly to all post-treatment medication regimens, follow-up appointments, and lifestyle modification recommendations to prevent future events.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Rapid Assessment is Key:</strong> For suspected STEMI or acute ischemic stroke, immediate clinical assessment, ECG, and imaging (CT head) are paramount to determine eligibility for thrombolytic therapy.</li><li><strong>Risk-Benefit Discussion:</strong> A thorough discussion of the risks (primarily bleeding) versus the potential benefits (restoration of blood flow, reduction of disability/mortality) must occur with the patient or their surrogate, if time permits.</li><li><strong>Strict Inclusion/Exclusion Criteria:</strong> Adherence to established guidelines for thrombolytic administration is critical to optimize outcomes and minimize adverse events.</li><li><strong>Post-Thrombolysis Management:</strong> Following successful thrombolysis, patients require ongoing monitoring, often in an intensive care setting, and initiation of secondary prevention strategies including antiplatelet agents, anticoagulants, statins, and blood pressure control.</li><li><strong>Multidisciplinary Approach:</strong> Effective care involves a multidisciplinary team, including emergency physicians, cardiologists, neurologists, nurses, and rehabilitation specialists.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Rapid Response & Triage:</strong> Nurses play a crucial role in rapid patient assessment, triage, and initiation of emergency protocols for suspected heart attack or stroke.</li><li><strong>Medication Administration & Monitoring:</strong> Accurate calculation and administration of thrombolytics, along with continuous monitoring of vital signs, cardiac rhythm, and neurological status, are essential.</li><li><strong>Bleeding Assessment:</strong> Meticulous assessment for signs of bleeding from all potential sites (IV sites, surgical wounds, GI, GU, intracranial) is a primary nursing responsibility.</li><li><strong>Patient & Family Education:</strong> Educating patients and families about the treatment, potential side effects, and the importance of adhering to post-treatment care plans is vital for recovery and secondary prevention.</li><li><strong>Documentation:</strong> Comprehensive and timely documentation of all assessments, interventions, and patient responses is critical for legal and clinical continuity of care.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Common Thrombolytic Agents:</strong> Alteplase (tPA), Tenecteplase (TNK-tPA), Reteplase (rPA).</li><li><strong>Mechanism:</strong> Recombinant tissue plasminogen activators that convert plasminogen to plasmin, leading to fibrinolysis.</li><li><strong>Indications:</strong> Acute ST-elevation myocardial infarction (STEMI) and acute ischemic stroke within specific time windows and strict criteria.</li><li><strong>Key Contraindications:</strong> History of intracranial hemorrhage, active internal bleeding, recent major surgery/trauma, severe uncontrolled hypertension, known intracranial neoplasm/AVM/aneurysm.</li><li><strong>Monitoring Parameters:</strong> Activated partial thromboplastin time (aPTT), international normalized ratio (INR), fibrinogen levels, D-dimer, complete blood count (CBC), neurological assessments (NIHSS for stroke), vital signs.</li><li><strong>Antidote:</strong> Aminocaproic acid or tranexamic acid can be used to reverse fibrinolysis in cases of severe bleeding, along with fresh frozen plasma and cryoprecipitate.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

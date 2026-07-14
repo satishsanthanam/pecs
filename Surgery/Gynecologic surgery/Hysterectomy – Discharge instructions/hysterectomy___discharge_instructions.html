@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a woman in her late 30s to early 40s, resting comfortably on a sofa at home, covered by a soft blanket. She is holding a cup of herbal tea. A gentle, supportive figure (could be a partner or friend) is sitting nearby, offering a reassuring smile. The room is bright and airy, with a small plant on a table, conveying a sense of calm and healing. The focus is on gentle recovery and home care, with no visible surgical scars or medical equipment. Soft, warm color palette.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./hysterectomy___discharge_instructions.jpg" class="card-banner" alt="Hysterectomy – Discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Surgery</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-surgery-gynecologic-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Gynecologic surgery</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Hysterectomy – Discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Surgery</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Gynecologic surgery</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding Your Surgery:</strong> A hysterectomy is the surgical removal of the uterus. Depending on the type, it may also involve the removal of the cervix, ovaries, and fallopian tubes.</li><li><strong>Recovery Timeline:</strong> Full recovery typically takes 4 to 6 weeks, but individual healing times vary. Listen to your body and avoid rushing the process.</li><li><strong>Post-Operative Expectations:</strong> You may experience vaginal bleeding or discharge for several weeks, abdominal discomfort, and fatigue. These are normal parts of the healing process.</li><li><strong>Pain Management:</strong> Adhere strictly to your prescribed pain medication schedule to manage discomfort effectively and prevent it from becoming severe.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Fever:</strong> Report any temperature above 100.4°F (38°C) immediately, as this could indicate an infection.</li><li><strong>Severe or Worsening Pain:</strong> If your pain is not controlled by prescribed medication or suddenly intensifies, contact your healthcare provider.</li><li><strong>Heavy Vaginal Bleeding:</strong> Soaking more than one sanitary pad per hour for two consecutive hours, or passing large blood clots (larger than a quarter), requires immediate medical attention.</li><li><strong>Redness, Swelling, or Pus at Incision Site:</strong> These are signs of potential wound infection and should be reported promptly.</li><li><strong>Leg Pain or Swelling:</strong> Unilateral leg pain, swelling, warmth, or tenderness could indicate a deep vein thrombosis (DVT).</li><li><strong>Difficulty Urinating or Bowel Movements:</strong> Persistent inability to urinate, painful urination, or severe constipation/diarrhea should be discussed with your doctor.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Activity Restrictions:</strong> Avoid lifting anything heavier than 10 pounds (e.g., a gallon of milk) for at least 6 weeks. Refrain from strenuous exercise, prolonged standing, or heavy housework.</li><li><strong>Pelvic Rest:</strong> Do not insert anything into the vagina, including tampons, douches, or engage in sexual intercourse, for 6 to 8 weeks, or until cleared by your surgeon.</li><li><strong>Incision Care:</strong> Keep your incision site clean and dry. Follow specific instructions for showering and dressing changes. Avoid baths until cleared by your surgeon.</li><li><strong>Driving:</strong> Do not drive while taking narcotic pain medication. Ensure you can comfortably operate the vehicle and react quickly before resuming driving.</li><li><strong>Follow-Up Appointments:</strong> Attend all scheduled post-operative appointments to monitor your recovery and address any concerns.</li><li><strong>Avoid Strain:</strong> Prevent constipation by increasing fiber and fluid intake. Avoid straining during bowel movements.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration:</strong> Drink plenty of fluids, especially water, to aid recovery and prevent constipation.</li><li><strong>Fiber-Rich Foods:</strong> Incorporate high-fiber foods such as fruits, vegetables, and whole grains to promote regular bowel movements and prevent straining.</li><li><strong>Avoid Gas-Producing Foods:</strong> Initially, you may want to avoid foods known to cause gas and bloating, such as beans, broccoli, and carbonated beverages, to minimize abdominal discomfort.</li><li><strong>Gradual Reintroduction:</strong> Start with light, easily digestible meals and gradually return to your normal diet as tolerated.</li><li><strong>Limit Processed Foods:</strong> Focus on nutrient-dense foods to support healing and energy levels.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Contact Information:</strong> Ensure the patient and any primary caregivers have immediate access to the surgeon's office number and emergency services contact.</li><li><strong>Medication Adherence:</strong> Assist the patient in adhering strictly to the prescribed medication schedule, especially for pain management and any prophylactic antibiotics.</li><li><strong>Monitor for Complications:</strong> Be vigilant for any signs of infection (fever, redness, discharge), excessive bleeding, or symptoms of DVT (leg pain/swelling).</li><li><strong>Support Rest and Mobility:</strong> Encourage frequent rest periods but also assist with short, gentle walks to prevent complications like DVT and promote circulation.</li><li><strong>Emotional Support:</strong> Provide emotional support and encourage open communication about any discomfort or emotional changes the patient may experience.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Prioritize Rest:</strong> Your body needs significant rest to heal. Do not push yourself too hard, too soon.</li><li><strong>Gradual Activity Increase:</strong> Slowly increase your activity level each day, but stop and rest if you feel pain or excessive fatigue.</li><li><strong>Emotional Well-being:</strong> It's common to experience a range of emotions post-surgery. Seek support from loved ones or a professional if you feel overwhelmed or persistently sad.</li><li><strong>Hormone Replacement Therapy (HRT):</strong> If your ovaries were removed, discuss the benefits and risks of HRT with your physician to manage menopausal symptoms.</li><li><strong>Long-Term Follow-Up:</strong> Continue with regular gynecological check-ups as recommended by your doctor.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pain Assessment:</strong> Regularly assess the patient's pain using a validated pain scale and evaluate the effectiveness of analgesia.</li><li><strong>Wound Care Education:</strong> Provide clear, step-by-step instructions and demonstrations for incision care, emphasizing signs of infection.</li><li><strong>DVT Prophylaxis:</strong> Reinforce the importance of early ambulation, leg exercises, and proper use of compression stockings or sequential compression devices if prescribed.</li><li><strong>Bowel and Bladder Function Monitoring:</strong> Assess for return of normal bowel sounds, flatus, and urinary output. Educate on strategies to prevent constipation.</li><li><strong>Psychosocial Support:</strong> Address potential body image concerns, emotional lability, and provide resources for psychological support if needed.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Types of Hysterectomy:</strong> Total hysterectomy (uterus and cervix), subtotal/supracervical hysterectomy (uterus only), radical hysterectomy (uterus, cervix, parametrium, upper vagina). May include salpingo-oophorectomy (removal of fallopian tubes and ovaries).</li><li><strong>Surgical Approaches:</strong> Abdominal (laparotomy), vaginal, laparoscopic (including robotic-assisted).</li><li><strong>Potential Complications:</strong> Hemorrhage, infection (wound, urinary tract, pelvic), deep vein thrombosis (DVT), pulmonary embolism (PE), bladder or bowel injury, nerve damage, vaginal cuff dehiscence.</li><li><strong>Post-Operative Pathology:</strong> Surgical specimens are sent for histological examination to confirm diagnosis and rule out malignancy.</li><li><strong>Anesthesia Considerations:</strong> General anesthesia is typically used. Post-operative nausea and vomiting (PONV) and pain management are key considerations.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

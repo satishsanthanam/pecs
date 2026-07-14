@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human torso highlighting the digestive system, with a focus on the gallbladder. The gallbladder is subtly depicted with a glowing, abstract cancerous growth. Surrounding elements include medical icons representing symptoms like jaundice (yellow eyes), abdominal pain (hand on stomach), and weight loss. A healthcare professional, possibly a doctor or nurse, is shown in the background reviewing a medical chart or scan. The overall design is clean, informative, and suitable for a public health awareness campaign, avoiding text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./gallbladder_cancer.jpg" class="card-banner" alt="Gallbladder cancer Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-digestive-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Digestive system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-digestive-system-gallbladder-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Gallbladder cancer</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Gallbladder cancer</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Digestive system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Gallbladder cancer</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Rare but Aggressive:</strong> Gallbladder cancer is an uncommon malignancy, often diagnosed at advanced stages due to its non-specific early symptoms and the gallbladder's deep anatomical location.</li><li><strong>Primary Type:</strong> The vast majority of gallbladder cancers are adenocarcinomas, originating from the glandular cells lining the gallbladder.</li><li><strong>Risk Factors:</strong> Chronic inflammation, gallstones (cholelithiasis), porcelain gallbladder, and certain genetic syndromes are significant risk factors.</li><li><strong>Prognosis Challenge:</strong> Early detection is crucial for improved prognosis, but this is often difficult, leading to a generally poor outlook for advanced disease.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Abdominal Pain:</strong> Persistent or worsening pain in the upper right quadrant of the abdomen, often radiating to the back.</li><li><strong>Jaundice:</strong> Yellowing of the skin and eyes, dark urine, and pale stools, indicating bile duct obstruction.</li><li><strong>Unexplained Weight Loss:</strong> Significant and unintentional decrease in body weight.</li><li><strong>Nausea and Vomiting:</strong> Persistent feelings of sickness and episodes of emesis.</li><li><strong>Loss of Appetite:</strong> A noticeable decrease in desire to eat.</li><li><strong>Abdominal Mass:</strong> In some advanced cases, a palpable mass may be felt in the upper right abdomen.</li><li><strong>Fever and Chills:</strong> May indicate associated infection or inflammation.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Symptom Vigilance:</strong> Prompt medical evaluation for persistent or worsening upper abdominal pain, jaundice, or unexplained weight loss.</li><li><strong>Gallstone Management:</strong> Regular monitoring and appropriate management of symptomatic gallstones to prevent chronic inflammation.</li><li><strong>Porcelain Gallbladder:</strong> Patients diagnosed with a porcelain gallbladder (calcification of the gallbladder wall) should discuss prophylactic cholecystectomy with their physician due to increased cancer risk.</li><li><strong>Post-Cholecystectomy Awareness:</strong> While cholecystectomy removes the primary risk factor of gallstones, vigilance for new or persistent symptoms is still important, especially in high-risk individuals.</li><li><strong>Lifestyle Modifications:</strong> Maintaining a healthy weight and avoiding smoking may contribute to overall cancer prevention.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-Diagnosis/Symptom Management:</strong> A low-fat diet may help manage symptoms related to gallstones or chronic cholecystitis, reducing gallbladder contractions.</li><li><strong>Post-Surgical Diet:</strong> Following cholecystectomy, a gradual reintroduction of foods, starting with clear liquids and progressing to a low-fat, easily digestible diet, is typically recommended to prevent digestive upset.</li><li><strong>Small, Frequent Meals:</strong> Eating smaller portions more often can aid digestion and nutrient absorption, especially after surgery or during treatment.</li><li><strong>Hydration:</strong> Adequate fluid intake is essential to prevent dehydration, particularly if experiencing nausea or vomiting.</li><li><strong>Avoid Irritants:</strong> Limit highly fatty, greasy, spicy, or gas-producing foods that can exacerbate digestive discomfort.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Early Consultation:</strong> Any new onset of jaundice, persistent abdominal pain, or unexplained weight loss warrants immediate medical attention and investigation.</li><li><strong>Diagnostic Workup:</strong> Be prepared for a series of diagnostic tests, including imaging (ultrasound, CT, MRI) and potentially endoscopic procedures (ERCP, EUS) with biopsy, to confirm diagnosis and stage.</li><li><strong>Treatment Decisions:</strong> Engage actively with your multidisciplinary care team to understand all treatment options, including surgery, chemotherapy, radiation, and palliative care, and their potential side effects.</li><li><strong>Support Systems:</strong> Seek emotional and practical support from family, friends, and patient support groups to cope with the challenges of a cancer diagnosis.</li><li><strong>Clinical Trials:</strong> Discuss the possibility of participating in clinical trials, which may offer access to novel therapies.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Diagnostic Challenge:</strong> Gallbladder cancer is notoriously difficult to diagnose early due to its vague symptoms and anatomical location, often leading to presentation at advanced stages.</li><li><strong>Multidisciplinary Approach:</strong> Optimal management requires a collaborative effort from surgical oncologists, medical oncologists, radiation oncologists, gastroenterologists, and palliative care specialists.</li><li><strong>Surgical Resection:</strong> For localized disease, radical surgical resection, often involving cholecystectomy with liver bed resection and lymphadenectomy, offers the only chance for cure.</li><li><strong>Adjuvant Therapy:</strong> Post-operative chemotherapy or chemoradiation may be considered to reduce recurrence risk, especially for higher-stage disease.</li><li><strong>Palliative Care:</strong> For advanced or unresectable disease, palliative measures focusing on symptom control (e.g., stenting for jaundice, pain management) are paramount to improve quality of life.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Assessment:</strong> Thorough assessment for signs of jaundice, abdominal tenderness, ascites, and nutritional status.</li><li><strong>Pain Management:</strong> Administering analgesics as prescribed and utilizing non-pharmacological pain relief strategies.</li><li><strong>Nutritional Support:</strong> Monitoring dietary intake, managing nausea/vomiting, and potentially administering enteral or parenteral nutrition as needed.</li><li><strong>Jaundice Management:</strong> Monitoring bilirubin levels, assessing skin integrity, and providing comfort measures for pruritus.</li><li><strong>Post-Operative Care:</strong> Managing drains, wound care, monitoring for complications (e.g., bile leak, infection), and early ambulation.</li><li><strong>Patient Education:</strong> Educating patients and families on disease progression, treatment side effects, dietary modifications, and symptom management at home.</li><li><strong>Emotional Support:</strong> Providing empathetic care and connecting patients with psychological and social support services.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>ICD-10 Codes:</strong> C23 (Malignant neoplasm of gallbladder).</li><li><strong>Pathology:</strong> Predominantly adenocarcinoma; other rare types include squamous cell carcinoma, adenosquamous carcinoma, and small cell carcinoma.</li><li><strong>Staging:</strong> TNM (Tumor, Node, Metastasis) staging system is used to classify the extent of the disease, guiding treatment and prognosis.</li><li><strong>Imaging Modalities:</strong> Ultrasound (initial screening), CT scan (staging, resectability), MRI/MRCP (bile duct involvement), PET scan (metastatic workup).</li><li><strong>Tumor Markers:</strong> CA 19-9 may be elevated but is not specific for diagnosis; useful for monitoring treatment response.</li><li><strong>Treatment Modalities:</strong> Surgical resection (radical cholecystectomy), chemotherapy (e.g., gemcitabine, cisplatin), radiation therapy, targeted therapy, immunotherapy (emerging).</li><li><strong>Risk Factors:</strong> Cholelithiasis, chronic cholecystitis, porcelain gallbladder, primary sclerosing cholangitis, anomalous pancreaticobiliary junction, obesity, female gender, certain ethnic groups (e.g., Native Americans, Hispanic populations).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

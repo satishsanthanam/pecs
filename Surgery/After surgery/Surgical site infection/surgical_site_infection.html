@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a surgical incision on skin, showing signs of infection like redness, swelling, and a small amount of pus. A magnifying glass hovers over the wound, highlighting the details. A caring nurse or doctor's hand, wearing a glove, gently points to the affected area. The background is clean and medical, with subtle elements like a band-aid or a medical cross. The overall design is clear, informative, and suitable for public health awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./surgical_site_infection.jpg" class="card-banner" alt="Surgical site infection Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Surgery</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-surgery-after-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">After surgery</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Surgical site infection</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Surgery</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">After surgery</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> A surgical site infection (SSI) is an infection that occurs in the part of the body where surgery was performed.</li><li><strong>Timing:</strong> SSIs can manifest within 30 days of surgery, or up to a year if an implant was placed.</li><li><strong>Severity:</strong> Infections can range from superficial skin infections to more serious infections involving tissues under the skin, organs, or implanted material.</li><li><strong>Risk Factors:</strong> Factors increasing risk include diabetes, obesity, smoking, prolonged surgery, poor nutritional status, and compromised immune systems.</li><li><strong>Prevention Focus:</strong> Adherence to pre-operative, intra-operative, and post-operative protocols is crucial for prevention.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Redness (Erythema):</strong> Increased redness or a spreading red area around the surgical incision.</li><li><strong>Warmth:</strong> The skin around the incision feels unusually warm to the touch.</li><li><strong>Swelling (Edema):</strong> Increased swelling or hardness at the surgical site.</li><li><strong>Pain:</strong> New or worsening pain, tenderness, or throbbing at the incision that is not relieved by pain medication.</li><li><strong>Drainage:</strong> Pus, cloudy fluid, or foul-smelling discharge from the wound.</li><li><strong>Fever and Chills:</strong> Systemic signs of infection, such as an elevated body temperature or shivering.</li><li><strong>Delayed Healing:</strong> The wound does not appear to be healing properly or the edges are separating.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Hand Hygiene:</strong> Always wash hands thoroughly with soap and water or use an alcohol-based hand sanitizer before and after touching the surgical wound or dressing.</li><li><strong>Wound Care:</strong> Follow all specific instructions for dressing changes, keeping the wound clean and dry, and protecting it from injury.</li><li><strong>Avoid Touching:</strong> Refrain from touching the incision unnecessarily to prevent introducing bacteria.</li><li><strong>Monitor for Signs:</strong> Regularly inspect the wound for any signs of infection and report concerns immediately to your healthcare provider.</li><li><strong>Antibiotic Adherence:</strong> If prescribed prophylactic antibiotics, ensure they are taken exactly as directed, and complete the full course if prescribed for an active infection.</li><li><strong>Hygiene Practices:</strong> Shower or bathe as instructed by your surgeon, avoiding direct water pressure on the incision until advised.</li><li><strong>Smoking Cessation:</strong> Avoid smoking, as it significantly impairs wound healing and increases infection risk.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Protein Intake:</strong> Ensure adequate protein consumption (e.g., lean meats, fish, eggs, legumes) to support tissue repair and immune function essential for wound healing.</li><li><strong>Vitamin C:</strong> Increase intake of Vitamin C-rich foods (e.g., citrus fruits, berries, bell peppers) to aid collagen synthesis and immune response.</li><li><strong>Zinc:</strong> Consume zinc-rich foods (e.g., nuts, seeds, whole grains, meat) which are vital for immune function and wound repair.</li><li><strong>Hydration:</strong> Maintain excellent hydration by drinking plenty of water to support overall physiological function and nutrient transport to the wound site.</li><li><strong>Fiber:</strong> Include fiber-rich foods to prevent constipation, as straining can put pressure on the surgical incision.</li><li><strong>Avoidance:</strong> Limit highly processed foods, excessive sugars, and unhealthy fats that can contribute to inflammation and hinder healing.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Immediate Contact:</strong> Contact your surgeon or healthcare provider immediately if you notice any signs of infection, such as increasing redness, warmth, swelling, pain, or discharge from the wound, or if you develop a fever.</li><li><strong>Do Not Self-Treat:</strong> Never attempt to treat a suspected SSI with home remedies or unprescribed antibiotics, as this can worsen the condition or mask symptoms.</li><li><strong>Complete Antibiotics:</strong> If antibiotics are prescribed, complete the entire course, even if symptoms improve, to ensure the infection is fully eradicated and prevent antibiotic resistance.</li><li><strong>Follow-Up Appointments:</strong> Attend all scheduled post-operative follow-up appointments to allow for professional wound assessment and care.</li><li><strong>Avoid Submerging:</strong> Do not submerge the incision in baths, hot tubs, or swimming pools until cleared by your surgeon.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early Recognition:</strong> Emphasize to patients the critical importance of early recognition and reporting of SSI symptoms to prevent complications and ensure timely intervention.</li><li><strong>Aseptic Technique:</strong> Reinforce the paramount role of strict aseptic technique throughout the surgical process and during all post-operative wound care.</li><li><strong>Risk Stratification:</strong> Utilize pre-operative risk assessment tools to identify high-risk patients and implement targeted preventative strategies.</li><li><strong>Antibiotic Stewardship:</strong> Advocate for judicious use of prophylactic antibiotics, adhering to guidelines for appropriate agent, dose, and duration.</li><li><strong>Patient Education:</strong> Provide clear, concise, and repeated education to patients and caregivers on proper wound care, hygiene, and warning signs of infection.</li><li><strong>Multidisciplinary Approach:</strong> Collaborate with nursing, infectious disease specialists, and wound care teams for comprehensive management of established SSIs.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Wound Assessment:</strong> Develop proficiency in systematic wound assessment, including observation for erythema, edema, warmth, pain, drainage characteristics (COCA: Color, Odor, Consistency, Amount), and wound edge approximation.</li><li><strong>Sterile Technique:</strong> Master sterile dressing change procedures, ensuring adherence to aseptic principles to prevent contamination.</li><li><strong>Patient Education:</strong> Educate patients and families on post-operative wound care, signs and symptoms of SSI, and when to seek medical attention.</li><li><strong>Documentation:</strong> Accurately document all wound assessments, interventions, patient teaching, and communication with the healthcare team.</li><li><strong>Antibiotic Administration:</strong> Administer prescribed antibiotics, monitor for therapeutic effects and adverse reactions, and educate patients on adherence.</li><li><strong>Infection Control:</strong> Implement hospital infection control policies, including hand hygiene and environmental cleaning, to minimize SSI risk.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>CDC SSI Criteria:</strong> Refer to the Centers for Disease Control and Prevention (CDC) definitions for classifying surgical site infections (superficial incisional, deep incisional, organ/space).</li><li><strong>Common Pathogens:</strong> Recognize common causative organisms such as Staphylococcus aureus (including MRSA), Coagulase-negative Staphylococci, Enterococcus species, and Gram-negative bacilli (e.g., E. coli, Pseudomonas aeruginosa).</li><li><strong>Risk Factors:</strong> Understand intrinsic (e.g., diabetes, obesity, malnutrition, immunosuppression) and extrinsic (e.g., prolonged surgery, poor surgical technique, inadequate sterilization) risk factors.</li><li><strong>SCIP Measures:</strong> Familiarize with Surgical Care Improvement Project (SCIP) measures related to SSI prevention, including appropriate antibiotic selection, timing, and discontinuation.</li><li><strong>Wound Classification:</strong> Apply the Altemeier classification of surgical wounds (Class I: Clean, Class II: Clean-Contaminated, Class III: Contaminated, Class IV: Dirty/Infected) to assess infection risk.</li><li><strong>Antimicrobial Stewardship:</strong> Adhere to principles of antimicrobial stewardship to optimize antibiotic use and minimize resistance.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

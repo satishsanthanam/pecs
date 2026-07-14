@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A vibrant flat vector illustration depicting blood glucose testing and diabetes management. The scene features a diverse person calmly using a glucometer on their finger, with a small blood drop and test strip visible. Surrounding elements include a healthy plate of food (fruits, vegetables, whole grains), a water glass, a clock indicating regular monitoring times, and a subtle, caring hand of a healthcare professional in the background. The overall style is clean, modern, and reassuring, with a focus on health and proactive management. Avoid any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./blood_glucose_tests.jpg" class="card-banner" alt="Blood glucose tests Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-diabetes" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Diabetes</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-diabetes-blood-sugar-monitoring" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Blood sugar monitoring</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Blood glucose tests</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Diabetes</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Blood sugar monitoring</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose of Testing:</strong> Blood glucose tests are crucial for diagnosing, monitoring, and managing diabetes and prediabetes.</li><li><strong>Types of Tests:</strong> Common tests include Fasting Plasma Glucose (FPG), Oral Glucose Tolerance Test (OGTT), Random Plasma Glucose (RPG), and Glycated Hemoglobin (HbA1c).</li><li><strong>Monitoring Frequency:</strong> The frequency of testing varies based on the type of diabetes, treatment regimen, and individual health goals, as determined by a healthcare provider.</li><li><strong>Preventing Complications:</strong> Regular monitoring helps maintain blood glucose within target ranges, significantly reducing the risk of long-term diabetes complications.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Hyperglycemia (High Blood Sugar):</strong> Symptoms include increased thirst (polydipsia), frequent urination (polyuria), unexplained weight loss, blurred vision, and persistent fatigue.</li><li><strong>Hypoglycemia (Low Blood Sugar):</strong> Symptoms can manifest as shakiness, sweating, confusion, dizziness, intense hunger, rapid heartbeat, and irritability.</li><li><strong>Clinical Indications:</strong> Testing is often prompted by risk factors such as obesity, family history of diabetes, gestational diabetes history, or certain medication use.</li><li><strong>Unexplained Symptoms:</strong> Any new or worsening symptoms suggestive of blood sugar dysregulation warrant immediate medical evaluation and testing.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Hand Hygiene:</strong> Always wash hands thoroughly with soap and water and dry completely before performing a finger-prick test to ensure accurate readings.</li><li><strong>Glucometer Calibration:</strong> Regularly check and calibrate your glucometer according to the manufacturer's instructions to maintain accuracy.</li><li><strong>Test Strip Integrity:</strong> Store test strips in their original container, away from extreme temperatures and moisture, and always check the expiration date.</li><li><strong>Medication Awareness:</strong> Be aware that certain medications (e.g., corticosteroids, diuretics) can impact blood glucose levels and may require adjusted monitoring.</li><li><strong>Sharps Disposal:</strong> Dispose of used lancets and needles safely in a designated sharps container to prevent accidental injury.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Fasting Tests (FPG, OGTT):</strong> Strict fasting (no food or caloric beverages) for 8-12 hours prior to the test is essential. Water is generally permitted.</li><li><strong>Oral Glucose Tolerance Test (OGTT):</strong> For 3 days prior to the test, maintain a normal, unrestricted diet with adequate carbohydrate intake (at least 150 grams per day).</li><li><strong>Post-Procedure Diet:</strong> After fasting tests or procedures involving sedation, reintroduce fluids and food gradually as advised by your healthcare provider.</li><li><strong>Meal Timing for Monitoring:</strong> Understand how different foods and meal timings affect post-prandial (after-meal) glucose levels for effective self-management.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Hypoglycemia Protocol:</strong> Always carry a rapid-acting carbohydrate source (e.g., glucose tablets, fruit juice) to treat low blood sugar episodes promptly.</li><li><strong>Hyperglycemia Action Plan:</strong> Follow your physician's specific instructions for managing high blood sugar, which may include insulin adjustments or seeking urgent medical care.</li><li><strong>Sick Day Management:</strong> Monitor blood glucose more frequently during illness, as stress and infection can significantly impact glucose levels.</li><li><strong>Travel Preparedness:</strong> Keep all testing supplies and medications readily accessible when traveling, and consider time zone changes for medication and testing schedules.</li><li><strong>Emergency Contacts:</strong> Ensure family members or close contacts are aware of your diabetes and know how to assist in an emergency.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Individualized Targets:</strong> Collaborate with your healthcare team to establish personalized blood glucose targets based on your age, comorbidities, and treatment goals.</li><li><strong>Holistic Management:</strong> Emphasize that blood glucose monitoring is one component of a comprehensive diabetes management plan, alongside diet, exercise, and medication adherence.</li><li><strong>Trend Analysis:</strong> Focus on patterns and trends in blood glucose readings over time rather than isolated values to make informed treatment adjustments.</li><li><strong>Regular Follow-ups:</strong> Schedule regular appointments to review monitoring data, assess overall health, and adjust treatment as needed.</li><li><strong>Education is Key:</strong> Encourage patients to actively participate in their care by understanding their condition and the implications of their blood glucose readings.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Provide thorough education on proper glucometer use, interpretation of results, and recognition/management of hypoglycemia and hyperglycemia.</li><li><strong>Accurate Documentation:</strong> Meticulously document all blood glucose readings, insulin doses, and patient responses to interventions in the electronic health record.</li><li><strong>Insulin Administration:</strong> Understand the different types of insulin, their onset, peak, and duration, and proper administration techniques (e.g., site rotation, angle).</li><li><strong>Acute Complications:</strong> Be vigilant for signs and symptoms of diabetic ketoacidosis (DKA) and hyperglycemic hyperosmolar state (HHS), and initiate appropriate nursing interventions.</li><li><strong>Nutritional Counseling:</strong> Reinforce dietary guidelines and carbohydrate counting principles to help patients manage their blood glucose effectively.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Diagnostic Criteria (ADA):</strong> Fasting Plasma Glucose &#8805; 126 mg/dL, 2-hour OGTT &#8805; 200 mg/dL, HbA1c &#8805; 6.5%, or Random Plasma Glucose &#8805; 200 mg/dL with classic symptoms.</li><li><strong>HbA1c (Glycated Hemoglobin):</strong> Provides an average blood glucose level over the preceding 2-3 months, reflecting long-term glycemic control.</li><li><strong>Continuous Glucose Monitoring (CGM):</strong> Advanced technology offering real-time glucose data, trend arrows, and alerts, improving glycemic management.</li><li><strong>Insulin Resistance:</strong> A physiological condition where cells fail to respond normally to insulin, leading to elevated blood glucose levels.</li><li><strong>Glycemic Variability:</strong> Refers to fluctuations in blood glucose levels, which can contribute to diabetes complications independently of average glucose.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

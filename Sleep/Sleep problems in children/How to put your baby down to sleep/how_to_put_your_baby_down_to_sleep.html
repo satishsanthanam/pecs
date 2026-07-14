@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration for public awareness. A calm, sleeping baby is lying on their back in a simple, modern crib. The crib is empty except for the baby and a fitted sheet. No blankets, pillows, or toys are visible. The background is soft and serene, with gentle, muted colors. The overall design conveys safety, peace, and simplicity, emphasizing safe sleep practices.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./how_to_put_your_baby_down_to_sleep.jpg" class="card-banner" alt="How to put your baby down to sleep Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-sleep" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Sleep</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-sleep-sleep-problems-in-children" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Sleep problems in children</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>How to put your baby down to sleep</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Sleep</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Sleep problems in children</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Back to Sleep Every Time:</strong> Always place your baby on their back for all sleep times, including naps and overnight sleep. This significantly reduces the risk of Sudden Infant Death Syndrome (SIDS).</li>
+        <li><strong>Firm Sleep Surface:</strong> Ensure your baby sleeps on a firm, flat surface, such as a crib mattress covered by a fitted sheet. Avoid soft surfaces like couches, armchairs, or adult beds.</li>
+        <li><strong>Separate Sleep Space:</strong> Your baby should sleep in their own sleep space, such as a crib or bassinet, in the same room as you for at least the first six months, ideally up to one year.</li>
+        <li><strong>Clear Sleep Environment:</strong> Keep the sleep area free from loose blankets, pillows, bumper pads, stuffed animals, and any other soft objects.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Frequent Night Wakings:</strong> Infants who are not settled properly or are in an unsafe sleep environment may wake more frequently, indicating discomfort or a need for intervention.</li>
+        <li><strong>Difficulty Settling:</strong> Prolonged crying or resistance to sleep when placed down can be a sign of overtiredness or a need for a more consistent bedtime routine.</li>
+        <li><strong>Daytime Irritability:</strong> Poor nighttime sleep can lead to increased fussiness, irritability, or excessive sleepiness during the day.</li>
+        <li><strong>Signs of Discomfort:</strong> Restlessness, arching, or grunting during sleep attempts may indicate reflux or other underlying issues requiring medical evaluation.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Avoid Co-Sleeping:</strong> Never share a bed with your baby, as this increases the risk of suffocation, strangulation, or entrapment.</li>
+        <li><strong>No Soft Bedding:</strong> Do not use blankets, quilts, comforters, or pillows in the baby's sleep area. Use a sleep sack or wearable blanket instead.</li>
+        <li><strong>Prevent Overheating:</strong> Dress your baby in light sleepwear and keep the room at a comfortable temperature (around 68-72°F or 20-22°C). Check for signs of overheating like sweating or a hot chest.</li>
+        <li><strong>Smoke-Free Environment:</strong> Ensure your baby's environment is free from smoke exposure, both prenatal and postnatal, as it is a significant risk factor for SIDS.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Adequate Daytime Feeds:</strong> Ensure your baby receives sufficient nutrition during the day to minimize hunger-related night wakings.</li>
+        <li><strong>Timing of Last Feed:</strong> Offer the last feeding as part of the bedtime routine, but avoid letting the baby fall asleep while feeding at the breast or bottle, if possible, to encourage independent sleep.</li>
+        <li><strong>Avoid Overfeeding Before Sleep:</strong> While a full stomach can aid sleep, overfeeding can lead to discomfort or reflux, potentially disrupting sleep.</li>
+        <li><strong>No Solid Foods Before 4-6 Months:</strong> Do not introduce solid foods or rice cereal in bottles to promote sleep, as this is not recommended and can pose choking hazards or lead to overfeeding.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Always Supervise:</strong> While babies should sleep independently, ensure they are in a safe, supervised environment, especially during naps.</li>
+        <li><strong>Recognize Sleep Cues:</strong> Learn to identify your baby's sleep cues (e.g., rubbing eyes, yawning, fussiness) and put them down to sleep when drowsy but awake.</li>
+        <li><strong>Maintain Consistency:</strong> Establish a consistent bedtime routine (e.g., bath, feeding, story, lullaby) to signal to your baby that it's time for sleep.</li>
+        <li><strong>Check for Safe Positioning:</strong> Regularly check that your baby remains on their back and that their face is not covered during sleep.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Adhere to AAP Guidelines:</strong> Physicians strongly endorse the American Academy of Pediatrics (AAP) safe sleep recommendations to reduce the risk of SIDS and other sleep-related infant deaths.</li>
+        <li><strong>Discuss Sleep Challenges:</strong> Parents should openly discuss any sleep concerns, such as excessive crying, feeding difficulties, or unusual sleep patterns, with their pediatrician.</li>
+        <li><strong>Promote Independent Sleep:</strong> Encourage parents to teach babies to self-soothe and fall asleep independently to foster healthy sleep habits.</li>
+        <li><strong>Educate on Risk Factors:</strong> Physicians counsel parents on modifiable risk factors for SIDS, including prone sleeping, soft bedding, and exposure to smoke.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Patient Education Priority:</strong> Nurses play a critical role in educating new parents on safe sleep practices before hospital discharge and during well-child visits.</li>
+        <li><strong>Demonstrate Safe Crib Setup:</strong> Provide practical demonstrations of a safe sleep environment, emphasizing the "Back to Sleep, Alone, in a Crib" message.</li>
+        <li><strong>Assess Sleep Environment:</strong> During home visits or clinic appointments, inquire about the baby's sleep environment and offer corrective guidance as needed.</li>
+        <li><strong>Support Breastfeeding:</strong> Educate parents that breastfeeding is associated with a reduced risk of SIDS, and support mothers in establishing successful breastfeeding.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>SIDS (Sudden Infant Death Syndrome):</strong> The unexplained death, usually during sleep, of a seemingly healthy baby less than a year old.</li>
+        <li><strong>AAP (American Academy of Pediatrics):</strong> Leading professional organization providing evidence-based guidelines for pediatric care, including safe sleep.</li>
+        <li><strong>Safe Sleep Environment:</strong> A sleep space free from hazards, characterized by a firm surface, no loose bedding, and the baby sleeping on their back.</li>
+        <li><strong>Wearable Blanket/Sleep Sack:</strong> A garment designed to keep a baby warm without the need for loose blankets, promoting safe sleep.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

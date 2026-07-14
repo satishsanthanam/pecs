@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a person with a head injury, surrounded by medical professionals in an emergency setting. Focus on clear, simple shapes and a calm, reassuring color palette. Include subtle visual cues like a brain icon or a monitor displaying vital signs. The design should convey urgency and care without being overly graphic, suitable for public health awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./moderate_to_severe_traumatic_brain_injury.jpg" class="card-banner" alt="Moderate to severe traumatic brain injury Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-emergency-medicine" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency medicine</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-emergency-medicine-head-injury" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Head injury</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Moderate to severe traumatic brain injury</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Emergency medicine</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Head injury</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Moderate to severe traumatic brain injury (TBI) involves significant brain damage, often resulting in prolonged unconsciousness, altered mental status, and potential long-term neurological deficits.</li><li><strong>Causes:</strong> Commonly caused by high-impact events such as motor vehicle accidents, falls from significant heights, assaults, and sports-related injuries.</li><li><strong>Urgency:</strong> Requires immediate emergency medical attention and often critical care management due to the risk of secondary brain injury and life-threatening complications.</li><li><strong>Prognosis:</strong> Outcomes vary widely, ranging from full recovery to permanent disability or death, depending on the severity and location of the injury.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Loss of Consciousness:</strong> Prolonged period of unconsciousness, typically lasting more than 30 minutes.</li><li><strong>Altered Mental Status:</strong> Profound confusion, disorientation, agitation, or inability to follow commands.</li><li><strong>Persistent Headache:</strong> Severe headache that worsens over time and is not relieved by standard pain medication.</li><li><strong>Nausea and Vomiting:</strong> Recurrent or projectile vomiting, often indicative of increased intracranial pressure.</li><li><strong>Seizures:</strong> New-onset seizures occurring after the injury.</li><li><strong>Pupil Changes:</strong> Unequal pupil size (anisocoria), pupils unresponsive to light, or dilated pupils.</li><li><strong>Neurological Deficits:</strong> Weakness or numbness on one side of the body, difficulty with balance, slurred speech, or vision changes.</li><li><strong>Cerebrospinal Fluid Leak:</strong> Clear fluid draining from the nose or ears, potentially indicating a skull base fracture.</li><li><strong>Coma:</strong> A state of profound unconsciousness from which the patient cannot be aroused.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Spinal Immobilization:</strong> Assume concomitant cervical spine injury until cleared; maintain strict C-spine precautions.</li><li><strong>Airway Management:</strong> Ensure a patent airway; intubation may be necessary to protect the airway and facilitate ventilation.</li><li><strong>Circulatory Support:</strong> Maintain adequate cerebral perfusion pressure by preventing hypotension and optimizing fluid status.</li><li><strong>Oxygenation:</strong> Prevent hypoxia; administer supplemental oxygen to maintain SpO2 > 90%.</li><li><strong>Neurological Monitoring:</strong> Frequent and meticulous neurological assessments, including Glasgow Coma Scale (GCS) scoring.</li><li><strong>Intracranial Pressure (ICP) Management:</strong> Implement strategies to prevent and manage elevated ICP, such as head elevation and osmotic agents.</li><li><strong>Avoid Sedatives:</strong> Limit or avoid sedating medications that can mask neurological changes, unless medically necessary for ICP control.</li><li><strong>Temperature Control:</strong> Prevent hyperthermia, which can worsen secondary brain injury.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Initial NPO Status:</strong> Patients with moderate to severe TBI are typically kept Nil Per Os (NPO) initially due to altered consciousness, risk of aspiration, and potential for surgical intervention.</li><li><strong>Early Enteral Nutrition:</strong> Initiate enteral nutrition (tube feeding) as soon as feasible (within 24-72 hours) to meet high metabolic demands, prevent catabolism, and support recovery.</li><li><strong>Fluid Management:</strong> Careful fluid balance is critical to prevent cerebral edema while maintaining adequate systemic perfusion; avoid hypotonic fluids.</li><li><strong>Dysphagia Assessment:</strong> Prior to any oral intake, a comprehensive swallowing assessment by a speech-language pathologist is mandatory once the patient is more alert and stable.</li><li><strong>Diet Progression:</strong> If oral intake is deemed safe, progress diet slowly from thickened liquids to pureed, then soft foods, monitoring closely for aspiration.</li><li><strong>Nutritional Requirements:</strong> TBI patients have increased caloric and protein needs; ensure adequate macro and micronutrient delivery via enteral or parenteral routes.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Call Emergency Services:</strong> Immediately dial emergency services (e.g., 911) and clearly state the nature of the injury.</li><li><strong>Do Not Move Patient:</strong> Unless absolutely necessary for safety (e.g., immediate danger), do not move the injured person to prevent further spinal or brain damage.</li><li><strong>Stabilize Head and Neck:</strong> Gently hold the head and neck in a neutral position to minimize movement until paramedics arrive.</li><li><strong>Monitor Breathing:</strong> Check for breathing and pulse; if absent and trained, begin CPR.</li><li><strong>Control Bleeding:</strong> Apply direct pressure to any bleeding wounds on the head, avoiding direct pressure if a skull fracture is suspected.</li><li><strong>Observe for Changes:</strong> Note any changes in consciousness, pupil size, or seizure activity to report to medical personnel.</li><li><strong>Do Not Offer Food/Drink:</strong> Do not give the injured person anything to eat or drink.</li><li><strong>Stay with Patient:</strong> Remain with the patient until emergency medical personnel take over.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Rapid Assessment:</strong> Prioritize a rapid and systematic assessment of airway, breathing, circulation, and neurological status (ABCDE approach).</li><li><strong>Imaging:</strong> Urgent CT scan of the head is the cornerstone for diagnosing intracranial lesions and guiding immediate management.</li><li><strong>ICP Management:</strong> Aggressive management of intracranial pressure (ICP) is paramount to prevent secondary brain injury.</li><li><strong>Neurosurgical Consultation:</strong> Early consultation with neurosurgery is essential for patients with mass lesions requiring surgical evacuation or depressed skull fractures.</li><li><strong>Prognosis Discussion:</strong> Engage in sensitive and realistic discussions with families regarding the severity of injury and potential long-term outcomes.</li><li><strong>Rehabilitation Planning:</strong> Initiate early rehabilitation planning, as multidisciplinary rehabilitation is crucial for optimizing functional recovery.</li><li><strong>Prevent Secondary Insults:</strong> Vigilantly monitor and manage factors like hypoxia, hypotension, hyperthermia, and hyperglycemia, which can worsen brain injury.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>GCS Assessment:</strong> Master accurate and consistent Glasgow Coma Scale (GCS) scoring and trending to monitor neurological status.</li><li><strong>Neurological Checks:</strong> Perform frequent and thorough neurological assessments, including pupil reactivity, motor response, and level of consciousness.</li><li><strong>ICP Monitoring:</strong> Understand the principles of intracranial pressure (ICP) monitoring, waveform interpretation, and nursing interventions to manage elevated ICP.</li><li><strong>Ventilator Management:</strong> Collaborate with respiratory therapy on ventilator settings to optimize oxygenation and CO2 levels, impacting cerebral blood flow.</li><li><strong>Aspiration Precautions:</strong> Implement strict aspiration precautions, especially during feeding or medication administration, for patients with impaired swallow reflexes.</li><li><strong>Family Support:</strong> Provide empathetic support and clear communication to families, explaining complex medical information and involving them in care decisions.</li><li><strong>Medication Administration:</strong> Administer neuroprotective medications, osmotic agents, and seizure prophylaxis as prescribed, understanding their mechanisms and side effects.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathophysiology:</strong> Primary injury (contusions, lacerations, diffuse axonal injury, hematomas) vs. secondary injury (ischemia, edema, inflammation, excitotoxicity).</li><li><strong>Diagnostic Criteria:</strong> GCS score of 3-12 (moderate: 9-12, severe: 3-8) within 48 hours of injury, coupled with imaging findings.</li><li><strong>Imaging Modalities:</strong> Initial non-contrast CT head; MRI for detecting subtle lesions, diffuse axonal injury, and for prognostic assessment.</li><li><strong>Management Guidelines:</strong> Adherence to Brain Trauma Foundation (BTF) guidelines for severe TBI management, including ICP targets and CPP goals.</li><li><strong>Pharmacological Interventions:</strong> Osmotic agents (mannitol, hypertonic saline), sedatives/analgesics, neuromuscular blockers, antiepileptics.</li><li><strong>Surgical Interventions:</strong> Craniotomy for evacuation of epidural/subdural hematomas, decompressive craniectomy for refractory ICP.</li><li><strong>Complications:</strong> Post-traumatic epilepsy, hydrocephalus, neuroendocrine dysfunction, cognitive and behavioral deficits, spasticity.</li><li><strong>Rehabilitation Phases:</strong> Acute rehabilitation, post-acute rehabilitation, and long-term community reintegration.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

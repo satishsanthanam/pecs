@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A clean, flat vector illustration depicting a human head in profile, with a transparent view of the nasal passages. One side of the nasal cavity clearly shows a deviated septum obstructing airflow, represented by a red, jagged line. The other side shows a straightened septum, allowing for clear, unobstructed airflow, indicated by smooth blue lines. Subtle, abstract representations of surgical tools or a healing process are in the background. The overall aesthetic is modern, informative, and suitable for a public health awareness campaign, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./septoplasty.jpg" class="card-banner" alt="Septoplasty Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-ear-nose-and-throat" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Ear, nose, and throat</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-ear-nose-and-throat-tests-and-procedures" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Tests and procedures</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Septoplasty</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Ear, nose, and throat</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Tests and procedures</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Procedure Overview:</strong> Septoplasty is a surgical procedure performed to correct a deviated nasal septum, which is the wall between the nostrils.</li><li><strong>Primary Goal:</strong> The main objective is to straighten the septum, thereby improving airflow through the nose and alleviating symptoms caused by the deviation.</li><li><strong>Common Indications:</strong> This surgery is typically recommended for individuals experiencing chronic nasal obstruction, recurrent nosebleeds (epistaxis), frequent sinus infections, or sleep disturbances due to a deviated septum.</li><li><strong>Recovery Expectation:</strong> While the surgery itself is relatively quick, full recovery and optimal breathing improvement can take several weeks to months.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Chronic Nasal Obstruction:</strong> Persistent difficulty breathing through one or both nostrils, often worse on one side.</li><li><strong>Recurrent Epistaxis:</strong> Frequent or severe nosebleeds, especially if originating from the deviated side of the septum.</li><li><strong>Frequent Sinus Infections:</strong> Impaired sinus drainage due to septal deviation can lead to recurrent sinusitis.</li><li><strong>Facial Pain or Pressure:</strong> Sometimes associated with chronic nasal obstruction or sinus issues related to the deviation.</li><li><strong>Snoring and Sleep Disturbances:</strong> Difficulty breathing through the nose at night can contribute to snoring, mouth breathing, and disturbed sleep patterns.</li><li><strong>Reduced Sense of Smell:</strong> In some cases, severe obstruction can impact olfactory function.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Medication Review:</strong> Discontinue blood-thinning medications (e.g., aspirin, NSAIDs, warfarin) at least 7-10 days prior to surgery, or as specifically instructed by your surgeon.</li><li><strong>Smoking Cessation:</strong> Avoid smoking for several weeks before and after surgery to promote healing and reduce complication risks.</li><li><strong>Pre-operative Instructions:</strong> Strictly follow all fasting guidelines and other preparatory instructions provided by your surgical team.</li><li><strong>Post-operative Activity:</strong> Avoid strenuous activities, heavy lifting, bending over, and forceful nose blowing for several weeks post-surgery.</li><li><strong>Nasal Protection:</strong> Protect your nose from trauma; avoid wearing glasses that rest heavily on the bridge of the nose if splints are in place.</li><li><strong>Avoid Irritants:</strong> Steer clear of dusty environments, smoke, and strong fumes that could irritate nasal passages during recovery.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-operative Fasting:</strong> Adhere strictly to NPO (nothing by mouth) guidelines, typically 6-8 hours before surgery, to prevent aspiration during anesthesia.</li><li><strong>Initial Post-operative Diet:</strong> Begin with clear liquids, then progress to soft, bland foods that require minimal chewing for the first 24-48 hours.</li><li><strong>Avoid Hot Liquids:</strong> Refrain from consuming very hot beverages or foods immediately after surgery, as they can increase the risk of bleeding.</li><li><strong>Hydration:</strong> Maintain adequate hydration with cool, non-acidic fluids to prevent dryness and aid in recovery.</li><li><strong>Avoid Irritating Foods:</strong> Steer clear of spicy, acidic, or crunchy foods that could irritate the nasal passages or require vigorous chewing.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Expected Discharge:</strong> Most septoplasty procedures are outpatient, meaning discharge occurs on the same day. Arrange for a responsible adult to drive you home.</li><li><strong>Post-operative Bleeding:</strong> A small amount of bloody discharge from the nose is normal. Report any excessive, bright red bleeding that does not subside with gentle pressure.</li><li><strong>Pain Management:</strong> Take prescribed pain medication as directed. Avoid over-the-counter pain relievers that contain aspirin or NSAIDs unless specifically approved by your surgeon.</li><li><strong>Nasal Packing/Splints:</strong> If nasal packing or splints are placed, do not attempt to remove them yourself. Follow your surgeon's instructions for their care and removal.</li><li><strong>Signs of Infection:</strong> Monitor for signs of infection such as fever (above 101°F or 38.3°C), increased pain, foul-smelling discharge, or worsening redness/swelling. Contact your surgeon immediately if these occur.</li><li><strong>Follow-up Appointments:</strong> Adhere to all scheduled post-operative appointments for wound check and removal of any internal splints or sutures.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Realistic Expectations:</strong> While septoplasty significantly improves nasal breathing for most patients, complete resolution of all symptoms may not always be achieved, especially if other conditions (e.g., allergies, turbinate hypertrophy) are present.</li><li><strong>Combined Procedures:</strong> Septoplasty is often combined with other procedures, such as turbinate reduction or sinus surgery, to optimize outcomes for complex cases.</li><li><strong>Long-term Benefits:</strong> Successful septoplasty can lead to long-term improvements in quality of life, including better sleep, reduced sinus infections, and enhanced physical activity tolerance.</li><li><strong>Potential Complications:</strong> While rare, potential complications include bleeding, infection, septal hematoma, septal perforation, or recurrence of deviation. Discuss these risks thoroughly with your surgeon.</li><li><strong>Adherence to Care:</strong> Strict adherence to pre- and post-operative instructions is crucial for optimal healing and minimizing complications.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pre-operative Assessment:</strong> Conduct a thorough nursing assessment including patient history, current medications (especially anticoagulants), allergies, and baseline vital signs. Assess nasal patency and patient's understanding of the procedure.</li><li><strong>Patient Education:</strong> Provide clear, concise education on pre-operative fasting, what to expect during and after surgery, pain management, and signs of complications. Reinforce discharge instructions.</li><li><strong>Post-operative Monitoring:</strong> Closely monitor vital signs, assess for signs of bleeding (e.g., frequent swallowing, excessive drainage), pain level, and airway patency.</li><li><strong>Wound Care:</strong> Educate patient on proper care of external dressings (if any) and management of nasal drip pads. Advise against forceful nose blowing.</li><li><strong>Discharge Planning:</strong> Ensure patient has a responsible adult for transport, understands medication regimen, activity restrictions, and knows when to seek emergency care.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>CPT Code:</strong> Common CPT code for septoplasty is 30520 (Septoplasty or submucous resection, with or without turbinate, with or without ethmoidectomy).</li><li><strong>Anesthesia:</strong> Typically performed under general anesthesia, though local anesthesia with sedation may be used in select cases.</li><li><strong>Surgical Approach:</strong> Usually performed endonasally (through the nostrils) with an incision made inside the nose, avoiding external scars.</li><li><strong>Instrumentation:</strong> Key instruments include nasal speculum, septal elevator, osteotomes, various forceps (e.g., Takahashi, Blakesley), and suction.</li><li><strong>Pathophysiology:</strong> A deviated septum can result from congenital factors, developmental abnormalities, or trauma, leading to structural obstruction of nasal airflow.</li><li><strong>Post-operative Management:</strong> May involve nasal packing (absorbable or non-absorbable) or silicone splints to support the septum during initial healing.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

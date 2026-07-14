@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a family in a clean, bright home environment. A child is subtly scratching their bottom, while other family members are actively engaged in good hygiene practices: one person washing hands thoroughly at a sink, another cleaning surfaces, and a third putting laundry into a washing machine. Microscopic pinworm eggs are subtly integrated into the background as small, translucent oval shapes. The overall scene conveys public awareness, cleanliness, and prevention, with a focus on health and family well-being. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./pinworms.jpg" class="card-banner" alt="Pinworms Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-infections-and-vaccines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Infections and vaccines</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-infections-and-vaccines-parasites" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Parasites</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Pinworms</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Infections and vaccines</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Parasites</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Common Parasitic Infection:</strong> Pinworms, caused by the nematode <em>Enterobius vermicularis</em>, are a highly common intestinal worm infection, particularly prevalent in school-aged children.</li><li><strong>Transmission Route:</strong> Infection occurs through the fecal-oral route, primarily by ingesting microscopic pinworm eggs.</li><li><strong>Lifecycle Overview:</strong> Eggs hatch in the small intestine, mature in the large intestine, and female worms migrate to the perianal region at night to lay new eggs, causing intense itching.</li><li><strong>High Contagiousness:</strong> Pinworm eggs are easily spread from person to person, within households, and in group settings like schools or daycares, often leading to re-infection or spread to close contacts.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Perianal Pruritus:</strong> Intense itching around the anus, especially noticeable at night, which is the most common and characteristic symptom.</li><li><strong>Sleep Disturbances:</strong> Itching can disrupt sleep, leading to irritability, restlessness, and fatigue in affected individuals.</li><li><strong>Irritability and Restlessness:</strong> Often a secondary symptom resulting from chronic sleep disruption and discomfort caused by the itching.</li><li><strong>Vaginitis or Urethritis:</strong> In females, worms can migrate from the anus to the vagina or urethra, causing irritation, discharge, or symptoms mimicking a urinary tract infection.</li><li><strong>Abdominal Discomfort:</strong> Less common, but some individuals, particularly with heavy infestations, may experience mild abdominal pain or nausea.</li><li><strong>Secondary Skin Infections:</strong> Persistent scratching can break the skin, leading to bacterial infections in the perianal area.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Rigorous Hand Hygiene:</strong> Emphasize frequent and thorough hand washing with soap and water, especially after using the toilet, changing diapers, and before eating or preparing food.</li><li><strong>Short Fingernails:</strong> Keep fingernails trimmed short and clean to reduce the likelihood of eggs accumulating under them and being transferred to the mouth.</li><li><strong>Daily Morning Shower/Bath:</strong> Encourage daily showering or bathing in the morning to wash away eggs laid around the anus overnight.</li><li><strong>Frequent Laundry:</strong> Wash all bedding, pajamas, underwear, and towels in hot water daily during treatment and for several days afterward to kill eggs.</li><li><strong>Household Cleaning:</strong> Regularly vacuum carpets and clean surfaces, especially in bedrooms and bathrooms, to remove shed eggs.</li><li><strong>Avoid Scratching:</strong> Discourage scratching the anal area to prevent the spread of eggs and reduce the risk of secondary skin infections.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Strict Hand Washing Before Meals:</strong> Ensure hands are thoroughly washed with soap and water before handling or consuming any food or drink to prevent re-ingestion of eggs.</li><li><strong>Clean Eating Utensils:</strong> Use clean dishes and cutlery for every meal, ensuring they are washed in hot, soapy water or a dishwasher.</li><li><strong>Thorough Washing of Produce:</strong> Meticulously wash all fruits and vegetables before consumption to remove any potential surface contaminants.</li><li><strong>Avoid Finger Foods Temporarily:</strong> During active infection and treatment, minimize consumption of finger foods to reduce direct hand-to-mouth transmission of eggs.</li><li><strong>Maintain Hydration:</strong> Encourage adequate fluid intake to support overall health and bowel regularity.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Treat All Household Members:</strong> Due to the high contagiousness, it is often recommended to treat all members of the household simultaneously, even if asymptomatic, to prevent re-infection.</li><li><strong>Adhere to Medication Schedule:</strong> Strictly follow the prescribed dosage and schedule for antiparasitic medications, which typically involves a single dose followed by a repeat dose in two weeks.</li><li><strong>Implement Concurrent Hygiene:</strong> Emphasize that medication alone is insufficient; strict hygiene practices must be maintained concurrently to prevent re-infection.</li><li><strong>Monitor for Recurrence:</strong> Be vigilant for the return of symptoms, especially itching, as re-infection is common if hygiene measures are not consistently followed.</li><li><strong>Consult Healthcare Provider:</strong> Seek medical advice if symptoms persist or worsen after completing the prescribed course of treatment.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Diagnostic Confirmation:</strong> Diagnosis is typically confirmed by the 'tape test,' where a piece of cellophane tape is pressed against the perianal skin in the morning before bathing to collect eggs for microscopic examination.</li><li><strong>First-Line Treatment:</strong> Oral antiparasitic medications such as mebendazole, albendazole, or pyrantel pamoate are the standard treatment, usually given in two doses two weeks apart.</li><li><strong>Importance of Family Treatment:</strong> Physicians often advise treating the entire family or close contacts to break the cycle of transmission and prevent re-infection.</li><li><strong>Patient and Parental Education:</strong> Comprehensive education on hygiene practices is crucial for successful eradication and prevention of future infections.</li><li><strong>Differential Diagnosis:</strong> Consider other causes of perianal itching, such as fungal infections, hemorrhoids, or dermatitis, if pinworm tests are negative.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Priority:</strong> Nurses play a critical role in educating patients and caregivers on the lifecycle of pinworms, transmission, and the importance of strict hygiene measures.</li><li><strong>Medication Administration Guidance:</strong> Provide clear instructions on how and when to administer antiparasitic medications, including the necessity of the second dose.</li><li><strong>Assessment for Symptoms:</strong> Instruct parents on how to observe for classic symptoms like nocturnal perianal itching and how to perform the 'tape test' if required.</li><li><strong>Infection Control Principles:</strong> Reinforce the importance of contact precautions in healthcare settings for patients with active pinworm infections to prevent nosocomial spread.</li><li><strong>Community Health Impact:</strong> Understand the public health implications of pinworm infections in schools and daycares, advocating for widespread hygiene education.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Etiologic Agent:</strong> <em>Enterobius vermicularis</em>, a small, white nematode (roundworm).</li><li><strong>Diagnostic Method:</strong> Microscopic identification of eggs collected via perianal cellophane tape swab (Graham sticky tape method). Adult worms may occasionally be seen.</li><li><strong>Pharmacotherapy:</strong> Benzimidazoles (Mebendazole, Albendazole) or Pyrantel Pamoate. Dosage typically involves a single dose, repeated after 2 weeks.</li><li><strong>Incubation Period:</strong> Approximately 1 to 2 months from egg ingestion to the maturation of adult worms and subsequent egg-laying.</li><li><strong>Potential Complications:</strong> Secondary bacterial skin infections from scratching, vulvovaginitis in females, rare ectopic infections (e.g., peritoneal granulomas, appendicitis).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

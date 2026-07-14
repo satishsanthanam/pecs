@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a person with a subtle aura of fatigue and brain fog, represented by soft, swirling lines around their head. The person is sitting or reclining, looking contemplative or slightly overwhelmed, with a muted color palette. Elements like a dimming light bulb or a clock with slow-moving hands could subtly convey energy depletion and time distortion. The overall design should be clean, empathetic, and suitable for a public health awareness campaign, avoiding any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./myalgic_encephalomyelitis_chronic_fatigue_syndrome.jpg" class="card-banner" alt="Myalgic encephalomyelitis/chronic fatigue syndrome Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-infections-and-vaccines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Infections and vaccines</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-infections-and-vaccines-myalgic-encephalomyelitis-chronic-fatigue-syndrome" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Myalgic encephalomyelitis/chronic fatigue syndrome</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Myalgic encephalomyelitis/chronic fatigue syndrome</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Infections and vaccines</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Myalgic encephalomyelitis/chronic fatigue syndrome</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Complex Chronic Illness:</strong> Myalgic encephalomyelitis/chronic fatigue syndrome (ME/CFS) is a severe, long-term, and debilitating neuroimmune disease affecting multiple body systems.</li><li><strong>Defining Symptom: Post-Exertional Malaise (PEM):</strong> A hallmark feature where physical or mental exertion triggers a significant worsening of symptoms, often delayed by hours or days, and disproportionate to the activity.</li><li><strong>Significant Functional Impairment:</strong> ME/CFS can severely limit a person's ability to perform daily activities, work, attend school, and engage in social life, often leading to a reduced quality of life.</li><li><strong>Diagnosis of Exclusion:</strong> Diagnosis is clinical, based on a specific set of symptoms persisting for at least six months, after ruling out other medical conditions that could explain the symptoms.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Profound Fatigue:</strong> Persistent and severe fatigue that is not substantially alleviated by rest and is not the result of ongoing exertion.</li><li><strong>Unrefreshing Sleep:</strong> Despite adequate sleep duration, individuals often wake feeling unrefreshed, indicating a disturbance in sleep quality.</li><li><strong>Cognitive Dysfunction ('Brain Fog'):</strong> Impairments in memory, concentration, information processing, and executive function.</li><li><strong>Orthostatic Intolerance:</strong> Symptoms like dizziness, lightheadedness, palpitations, or fainting upon standing, often indicative of autonomic nervous system dysfunction (e.g., POTS).</li><li><strong>Chronic Pain:</strong> Widespread muscle pain (myalgia) and/or joint pain without swelling or redness.</li><li><strong>Immune-Related Symptoms:</strong> Frequent sore throats, tender lymph nodes, and new sensitivities to foods, medications, or chemicals.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Pacing and Energy Management:</strong> Strictly adhering to individual energy limits to avoid overexertion and prevent the onset or worsening of post-exertional malaise (PEM).</li><li><strong>Avoiding Triggers:</strong> Identifying and minimizing exposure to factors that exacerbate symptoms, such as stress, infections, or environmental sensitivities.</li><li><strong>Medication Management:</strong> Carefully managing any prescribed medications for symptom relief, being vigilant for side effects, and discussing all treatments with a healthcare provider.</li><li><strong>Monitoring for Worsening Symptoms:</strong> Regularly tracking symptom severity and duration to identify patterns and communicate changes to the medical team promptly.</li><li><strong>Preventing Deconditioning:</strong> While avoiding PEM, engaging in gentle, non-exertional movements or stretches as tolerated to maintain some physical function without triggering crashes.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Adequate Hydration:</strong> Maintaining consistent fluid intake, especially water, to support overall physiological function and manage orthostatic symptoms.</li><li><strong>Nutrient-Dense Foods:</strong> Prioritizing a diet rich in whole, unprocessed foods to provide essential vitamins, minerals, and antioxidants, supporting cellular health.</li><li><strong>Addressing Food Sensitivities:</strong> If specific food sensitivities or allergies are identified, eliminating or reducing intake of those items to potentially alleviate gastrointestinal or inflammatory symptoms.</li><li><strong>Small, Frequent Meals:</strong> Consuming smaller meals more often throughout the day to help stabilize blood sugar levels and potentially reduce post-meal fatigue.</li><li><strong>Avoiding Processed Foods and Sugars:</strong> Limiting intake of highly processed foods, refined sugars, and artificial additives that may contribute to inflammation or energy fluctuations in some individuals.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Understanding PEM:</strong> Caregivers and family members must understand post-exertional malaise (PEM) to support pacing and avoid inadvertently pushing the patient beyond their limits.</li><li><strong>Creating a Supportive Environment:</strong> Ensuring a quiet, low-stimulus environment when needed, and assisting with daily tasks to conserve the patient's limited energy.</li><li><strong>Advocacy and Communication:</strong> Acting as an advocate for the patient in healthcare settings and facilitating clear communication with medical professionals regarding symptom fluctuations and needs.</li><li><strong>Emotional Support:</strong> Providing empathetic emotional support, acknowledging the invisible nature of the illness, and validating the patient's experience of chronic suffering and loss.</li><li><strong>Emergency Preparedness:</strong> Knowing the patient's medical history, current medications, and emergency contacts, especially during severe symptom flares or crises.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Multidisciplinary Approach:</strong> Management of ME/CFS often requires a team approach involving physicians, physical therapists (specializing in ME/CFS), occupational therapists, and mental health professionals.</li><li><strong>Symptom-Based Management:</strong> Treatment is primarily focused on managing individual symptoms (e.g., pain, sleep disturbances, orthostatic intolerance) as there is no specific cure.</li><li><strong>Careful Differential Diagnosis:</strong> Thoroughly rule out other conditions that can mimic ME/CFS symptoms to ensure an accurate diagnosis and appropriate management.</li><li><strong>Patient Education and Empowerment:</strong> Educating patients about pacing, energy conservation, and symptom tracking is crucial for self-management and improving quality of life.</li><li><strong>Avoidance of Harmful Interventions:</strong> Graded Exercise Therapy (GET) and unadapted Cognitive Behavioral Therapy (CBT) are often contraindicated or require significant modification due to the risk of exacerbating PEM.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Assessment:</strong> Conduct detailed patient histories focusing on fatigue characteristics, PEM triggers, sleep patterns, cognitive function, and pain levels.</li><li><strong>Patient Education on Pacing:</strong> Educate patients and their families on the principles of pacing, energy envelope management, and activity modification to prevent PEM.</li><li><strong>Symptom Management Support:</strong> Assist patients in tracking symptoms, identifying patterns, and implementing strategies for sleep hygiene, pain management, and orthostatic intolerance.</li><li><strong>Advocacy for Rest and Accommodation:</strong> Advocate for appropriate rest periods and environmental accommodations in clinical settings and during daily activities.</li><li><strong>Psychosocial Support:</strong> Recognize the significant psychological impact of ME/CFS and provide empathetic support, referring to mental health professionals as needed.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Diagnostic Criteria:</strong> Key criteria include the Fukuda criteria (1994), Canadian Consensus Criteria (CCC, 2003), and International Consensus Criteria (ICC, 2011), each with slightly different emphasis on symptom clusters.</li><li><strong>Pathophysiology:</strong> Research suggests immune dysfunction (e.g., chronic inflammation, cytokine dysregulation), neuroinflammation, mitochondrial dysfunction, autonomic nervous system dysregulation (e.g., POTS), and genetic predispositions.</li><li><strong>Differential Diagnosis:</strong> Conditions to exclude include hypothyroidism, sleep apnea, autoimmune diseases (e.g., lupus, rheumatoid arthritis), multiple sclerosis, major depressive disorder, and certain infectious diseases.</li><li><strong>Pharmacological Interventions:</strong> Off-label use of medications for symptom management may include low-dose naltrexone, antivirals (e.g., valganciclovir in select cases), immunomodulators, and medications for sleep, pain, or orthostatic intolerance.</li><li><strong>Non-Pharmacological Interventions:</strong> Core strategies include strict pacing, energy conservation techniques, dietary modifications, and gentle, non-exertional movement as tolerated. Graded Exercise Therapy (GET) is largely discredited for ME/CFS due to the risk of exacerbating PEM.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

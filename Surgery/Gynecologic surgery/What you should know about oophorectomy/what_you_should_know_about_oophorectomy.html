@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a simplified female reproductive system. The uterus, fallopian tubes, and ovaries are clearly visible. One or both ovaries are shown being gently and cleanly removed by abstract, sterile surgical instruments. The overall aesthetic is clean, modern, and medically informative, using soft, professional colors like blues, greens, and muted pinks. The focus is on the surgical procedure itself, with no text or complex background elements, suitable for public health awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./what_you_should_know_about_oophorectomy.jpg" class="card-banner" alt="What you should know about oophorectomy Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Surgery</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-surgery-gynecologic-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Gynecologic surgery</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>What you should know about oophorectomy</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Surgery</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Gynecologic surgery</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Procedure Overview:</strong> Oophorectomy is the surgical removal of one or both ovaries. It can be unilateral (one ovary) or bilateral (both ovaries).</li><li><strong>Salpingo-Oophorectomy:</strong> Often, the fallopian tube on the affected side is also removed, a procedure known as salpingo-oophorectomy.</li><li><strong>Primary Indications:</strong> Common reasons include ovarian cancer, large benign ovarian cysts, endometriosis, ectopic pregnancy, or as a prophylactic measure for individuals with a high genetic risk (e.g., BRCA mutations).</li><li><strong>Surgical Menopause:</strong> If both ovaries are removed in a premenopausal woman, it will induce immediate surgical menopause due to the abrupt cessation of hormone production.</li><li><strong>Surgical Approaches:</strong> The procedure can be performed via open laparotomy, laparoscopy (minimally invasive), or robotic-assisted laparoscopy.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Pelvic Pain:</strong> Chronic or acute pelvic pain, often severe and unresponsive to conservative management, may indicate ovarian pathology.</li><li><strong>Abdominal Mass or Swelling:</strong> A palpable mass in the abdomen or pelvis, or unexplained abdominal distension, can be a sign of an ovarian cyst or tumor.</li><li><strong>Abnormal Vaginal Bleeding:</strong> Irregular, heavy, or postmenopausal bleeding, especially when associated with other ovarian symptoms.</li><li><strong>Urinary or Bowel Symptoms:</strong> Pressure, frequency, or changes in bowel habits due to an ovarian mass pressing on adjacent organs.</li><li><strong>Elevated Tumor Markers:</strong> Abnormal blood test results, such as elevated CA-125, may prompt further investigation and potential surgical intervention.</li><li><strong>Genetic Predisposition:</strong> A strong family history of ovarian or breast cancer, particularly with known BRCA1/2 mutations, may lead to prophylactic oophorectomy.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Pre-operative Evaluation:</strong> Undergo a thorough medical history, physical examination, blood tests, and imaging studies (ultrasound, CT, MRI) to assess overall health and surgical suitability.</li><li><strong>Medication Review:</strong> Inform your surgeon about all medications, supplements, and herbal remedies you are taking. You may need to stop blood thinners (e.g., aspirin, warfarin, NSAIDs) several days to a week before surgery.</li><li><strong>Allergy Disclosure:</strong> Clearly communicate any known allergies to medications, latex, or anesthesia to the medical team.</li><li><strong>Smoking Cessation:</strong> If you smoke, cessation is strongly advised prior to surgery to reduce the risk of respiratory complications and improve wound healing.</li><li><strong>Informed Consent:</strong> Ensure you fully understand the procedure, potential risks (e.g., bleeding, infection, injury to adjacent organs, DVT), benefits, and alternatives before signing consent forms.</li><li><strong>Post-operative Monitoring:</strong> Be vigilant for signs of complications such as fever, severe pain, excessive bleeding, foul-smelling discharge, or redness/swelling at the incision site.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-operative Fasting:</strong> You will be instructed to fast (NPO – nil per os) for a specific period, typically 6-8 hours, before surgery. This usually means no food or drink after midnight the night before a morning procedure.</li><li><strong>Clear Liquid Intake:</strong> In some cases, clear liquids may be permitted up to 2 hours before surgery; always follow your anesthesiologist's specific instructions.</li><li><strong>Post-operative Diet Progression:</strong> After surgery, your diet will gradually progress from clear liquids to full liquids, then soft foods, and finally a regular diet as tolerated.</li><li><strong>Hydration:</strong> Maintain adequate hydration post-surgery, especially with clear fluids, to aid recovery and prevent constipation.</li><li><strong>Fiber-Rich Foods:</strong> Once tolerated, incorporate fiber-rich foods to prevent constipation, which can be a common side effect of pain medications and reduced activity.</li><li><strong>Avoid Irritants:</strong> Initially, avoid foods that may cause gas or bloating, such as carbonated beverages, beans, and certain raw vegetables, to minimize abdominal discomfort.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Pain Management:</strong> Expect some post-operative pain. Adhere strictly to your prescribed pain medication regimen and report uncontrolled pain to your healthcare provider.</li><li><strong>Activity Restrictions:</strong> Avoid heavy lifting, strenuous exercise, and sexual intercourse for several weeks post-surgery, as advised by your surgeon, to allow for proper healing.</li><li><strong>Incision Care:</strong> Keep the surgical incision clean and dry. Follow specific instructions for dressing changes and showering. Report any signs of infection (redness, warmth, swelling, pus) immediately.</li><li><strong>Monitor for Complications:</strong> Watch for symptoms such as persistent fever (over 100.4°F or 38°C), increasing abdominal pain, heavy vaginal bleeding, foul-smelling discharge, or leg swelling/pain, and seek immediate medical attention if they occur.</li><li><strong>Hormone Replacement Therapy (HRT):</strong> If you undergo bilateral oophorectomy, discuss hormone replacement therapy options with your doctor to manage menopausal symptoms and long-term health risks.</li><li><strong>Follow-up Appointments:</strong> Attend all scheduled post-operative follow-up appointments to monitor your recovery and address any concerns.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Patient Education is Key:</strong> Thoroughly educate patients on the rationale for oophorectomy, the specific surgical approach, potential outcomes, and the implications of ovarian removal, especially regarding fertility and hormonal changes.</li><li><strong>Individualized Treatment Plan:</strong> Tailor the surgical decision and post-operative management based on the patient's age, underlying pathology, desire for future fertility, and overall health status.</li><li><strong>Menopausal Symptom Management:</strong> For premenopausal women undergoing bilateral oophorectomy, proactively discuss and manage symptoms of surgical menopause, including bone health, cardiovascular risk, and quality of life.</li><li><strong>Oncological Considerations:</strong> In cases of suspected or confirmed malignancy, ensure appropriate surgical staging, complete tumor removal, and coordination with oncology specialists for adjuvant therapy.</li><li><strong>Psychological Support:</strong> Acknowledge and address the potential emotional and psychological impact of ovarian removal, offering resources for support as needed.</li><li><strong>Risk-Benefit Analysis:</strong> Always conduct a comprehensive risk-benefit analysis, particularly for prophylactic oophorectomy, weighing the reduction in cancer risk against the potential side effects and long-term health implications.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pre-operative Teaching:</strong> Provide clear, concise patient education regarding pre-surgical preparations, what to expect during the hospital stay, and post-operative care instructions.</li><li><strong>Post-operative Assessment:</strong> Conduct regular assessments of vital signs, pain level, incision site integrity, bowel sounds, urinary output, and signs of DVT (e.g., calf tenderness, swelling).</li><li><strong>Pain Management:</strong> Administer prescribed analgesics effectively and assess their efficacy. Educate patients on pain scales and the importance of reporting pain.</li><li><strong>Early Ambulation:</strong> Encourage and assist with early ambulation post-surgery to prevent complications such as DVT, pulmonary embolism, and ileus.</li><li><strong>Wound Care:</strong> Educate patients and caregivers on proper incision care, signs of infection, and when to contact the healthcare provider.</li><li><strong>Emotional Support:</strong> Offer empathetic listening and support, recognizing the potential emotional impact of oophorectomy, especially concerning body image, fertility, and hormonal changes.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>ICD-10 Codes:</strong> Relevant codes include C56.9 (Malignant neoplasm of unspecified ovary), N83.2 (Other and unspecified ovarian cysts), and Z40.01 (Encounter for prophylactic removal of ovary).</li><li><strong>CPT Codes:</strong> Common CPT codes for oophorectomy include 58262 (Vaginal hysterectomy with removal of tube(s) and/or ovary(s)), 58550 (Laparoscopy, surgical, with vaginal hysterectomy with removal of tube(s) and/or ovary(s)), and 58661 (Laparoscopy, surgical; with removal of adnexal structures (partial or total oophorectomy and/or salpingectomy)).</li><li><strong>Anatomical Considerations:</strong> Ovaries are paired female gonads located in the pelvic cavity, responsible for oogenesis and hormone production (estrogen, progesterone).</li><li><strong>Physiological Impact:</strong> Bilateral oophorectomy leads to an abrupt decline in estrogen and progesterone, resulting in menopausal symptoms and increased long-term risks for osteoporosis and cardiovascular disease.</li><li><strong>Surgical Risks:</strong> Specific risks include hemorrhage, infection, injury to the bowel, bladder, or ureters, deep vein thrombosis (DVT), pulmonary embolism, and adhesion formation.</li><li><strong>Pathology:</strong> Excised ovarian tissue is sent for histopathological examination to confirm diagnosis (e.g., benign cyst, endometriosis, specific type of ovarian cancer).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

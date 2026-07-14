@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a healthy gut microbiome. The image features a stylized human digestive tract with various friendly bacteria (represented as small, colorful, smiling microbes) populating it. Surrounding the gut are illustrations of probiotic-rich foods like yogurt, kefir, kimchi, and a supplement bottle. The overall aesthetic is clean, vibrant, and conveys digestive wellness and balance, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./probiotics.jpg" class="card-banner" alt="Probiotics Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-nutrition-diet-and-weight" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Nutrition, diet, and weight</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-nutrition-diet-and-weight-vitamins-and-supplements" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Vitamins and supplements</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Probiotics</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Nutrition, diet, and weight</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Vitamins and supplements</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Beneficial Microorganisms:</strong> Probiotics are live microorganisms, primarily bacteria and yeasts, that, when administered in adequate amounts, confer a health benefit on the host.</li><li><strong>Gut Microbiome Balance:</strong> Their primary role is to help maintain or restore the balance of the gut microbiota, which is crucial for digestion, nutrient absorption, and immune function.</li><li><strong>Diverse Strains:</strong> Different strains of probiotics (e.g., Lactobacillus, Bifidobacterium, Saccharomyces boulardii) offer varying health benefits and are used for specific conditions.</li><li><strong>Sources:</strong> They can be found naturally in fermented foods or taken as dietary supplements.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Antibiotic-Associated Diarrhea:</strong> Used to prevent or reduce the severity of diarrhea caused by antibiotic use.</li><li><strong>Irritable Bowel Syndrome (IBS):</strong> May help alleviate symptoms such as bloating, gas, abdominal pain, and altered bowel habits.</li><li><strong>Inflammatory Bowel Disease (IBD) Management:</strong> As an adjunctive therapy for certain forms of IBD (e.g., ulcerative colitis) to support remission.</li><li><strong>Digestive Discomfort:</strong> May improve general digestive issues like constipation, occasional diarrhea, and indigestion.</li><li><strong>Immune Support:</strong> Considered for individuals seeking to bolster their immune system, especially in the gut, which houses a significant portion of immune cells.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Immunocompromised Individuals:</strong> Use with extreme caution or avoid in patients with severely compromised immune systems (e.g., those undergoing chemotherapy, organ transplant recipients, critical illness) due to a rare risk of infection.</li><li><strong>Central Venous Catheters:</strong> Avoid in patients with central venous catheters due to the risk of bacteremia or fungemia.</li><li><strong>Allergies:</strong> Check product labels for common allergens suchates dairy, soy, gluten, or yeast, as these can be present in some probiotic formulations.</li><li><strong>Drug Interactions:</strong> Probiotics should ideally be taken a few hours apart from antibiotics to maximize their efficacy, as antibiotics can kill beneficial bacteria.</li><li><strong>Pre-existing Conditions:</strong> Patients with short bowel syndrome, pancreatitis, or other serious underlying medical conditions should consult a healthcare provider before use.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Fermented Food Sources:</strong> Incorporate natural sources like yogurt, kefir, sauerkraut, kimchi, tempeh, miso, and kombucha into the diet.</li><li><strong>Prebiotic-Rich Foods:</strong> Consume foods rich in prebiotics (dietary fiber that feeds beneficial gut bacteria) such as garlic, onions, leeks, asparagus, bananas, and whole grains.</li><li><strong>Timing of Supplementation:</strong> Follow product-specific instructions; some probiotics are best taken with food, while others are more effective on an empty stomach.</li><li><strong>Avoid Excessive Sugar:</strong> High intake of refined sugars and processed foods can negatively impact the balance of gut microbiota, potentially counteracting probiotic benefits.</li><li><strong>Hydration:</strong> Maintain adequate fluid intake to support overall digestive health and nutrient transport.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Consult Healthcare Provider:</strong> Always discuss probiotic use with a doctor or registered dietitian, especially for specific health conditions, pregnancy, or in children.</li><li><strong>Strain Specificity:</strong> Understand that different probiotic strains have different effects; choose products with strains clinically studied for your specific health concern.</li><li><strong>Dosage and CFU:</strong> Pay attention to the Colony-Forming Units (CFU) count and recommended dosage, as efficacy is often dose-dependent.</li><li><strong>Storage Instructions:</strong> Many probiotics require refrigeration to maintain viability; always check the product label for proper storage.</li><li><strong>Monitor for Side Effects:</strong> Initially, some individuals may experience mild gas, bloating, or digestive upset; these symptoms usually subside as the body adjusts.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Evidence-Based Recommendations:</strong> Probiotics have strong evidence for specific indications, such as preventing antibiotic-associated diarrhea and managing certain IBS symptoms.</li><li><strong>Individualized Approach:</strong> Efficacy varies significantly among individuals and conditions; a personalized approach based on patient history and specific strains is often necessary.</li><li><strong>Adjunctive Therapy:</strong> Probiotics are generally considered an adjunctive therapy, complementing conventional medical treatments rather than replacing them.</li><li><strong>Safety Profile:</strong> For most healthy individuals, probiotics are safe, but careful consideration is required for vulnerable populations due to potential risks.</li><li><strong>Quality Control:</strong> Advise patients to select reputable brands that provide third-party testing and clear labeling of strains and CFU counts.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education on Use:</strong> Educate patients on the proper administration, storage, and expected benefits/side effects of prescribed or recommended probiotics.</li><li><strong>Assessment of GI Symptoms:</strong> Monitor and document changes in patient's gastrointestinal symptoms (e.g., bowel frequency, consistency, bloating, pain) before and during probiotic therapy.</li><li><strong>Identification of Contraindications:</strong> Screen patients for conditions that contraindicate probiotic use, such as severe immunosuppression or presence of central lines.</li><li><strong>Drug-Probiotic Interactions:</strong> Be aware of potential interactions, especially with antibiotics, and advise patients on appropriate timing of administration.</li><li><strong>Nutritional Counseling:</strong> Provide guidance on incorporating probiotic-rich foods and prebiotics into the diet to support gut health.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Microbiome:</strong> The collective genetic material of all microorganisms (bacteria, fungi, viruses, protozoa) residing in a particular environment, such as the human gut.</li><li><strong>Dysbiosis:</strong> An imbalance or alteration in the composition of the gut microbiota, often associated with various health conditions.</li><li><strong>CFU (Colony-Forming Units):</strong> A measure of viable bacterial or fungal cells in a probiotic product, indicating the number of active microorganisms.</li><li><strong>Prebiotics:</strong> Non-digestible food ingredients that selectively stimulate the growth and/or activity of beneficial bacteria in the colon.</li><li><strong>Synbiotics:</strong> Products that contain both probiotics and prebiotics, designed to enhance the survival and activity of the beneficial microorganisms.</li><li><strong>Lactobacillus:</strong> A genus of gram-positive, facultative anaerobic or microaerophilic rod-shaped bacteria, commonly found in the human gut and fermented foods.</li><li><strong>Bifidobacterium:</strong> A genus of gram-positive, anaerobic bacteria, also a major component of the gut microbiota, particularly in infants.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

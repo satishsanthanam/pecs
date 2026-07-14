@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a diverse elderly patient, recently discharged from a stroke, sitting comfortably at home with a supportive family member or caregiver. The patient is holding a medication bottle, and a healthy meal is on a nearby table. Subtle elements like a brain icon with a recovery arrow, a heart symbol, and a blood pressure cuff are integrated into the background. The scene conveys warmth, recovery, and ongoing care. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./stroke___discharge_instructions.jpg" class="card-banner" alt="Stroke – Discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-stroke" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Stroke</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Stroke – Discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Stroke</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding Your Stroke:</strong> You have experienced a stroke, which is a medical emergency where blood flow to part of the brain is interrupted or reduced, depriving brain tissue of oxygen and nutrients.</li><li><strong>Importance of Follow-Up:</strong> Regular follow-up appointments with your neurologist, primary care physician, and rehabilitation therapists are crucial for monitoring your recovery and preventing future strokes.</li><li><strong>Medication Adherence:</strong> Taking all prescribed medications exactly as directed is vital for managing risk factors and preventing another stroke. Do not stop or change medications without consulting your doctor.</li><li><strong>Recognizing New Symptoms:</strong> Be vigilant for any new or worsening neurological symptoms. Early recognition and action can significantly improve outcomes.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>New Stroke Signs (FAST):</strong> Immediately seek emergency care if you experience sudden <strong>F</strong>ace drooping, <strong>A</strong>rm weakness, <strong>S</strong>peech difficulty, or it's <strong>T</strong>ime to call 911.</li><li><strong>Sudden Severe Headache:</strong> An abrupt, intense headache, often described as the 'worst headache of your life,' especially if accompanied by other neurological symptoms.</li><li><strong>Sudden Vision Changes:</strong> Acute loss of vision in one or both eyes, double vision, or blurred vision.</li><li><strong>Sudden Dizziness or Loss of Balance:</strong> Abrupt onset of dizziness, vertigo, or difficulty walking, especially if combined with other symptoms like slurred speech or weakness.</li><li><strong>Numbness or Weakness:</strong> New or worsening numbness, tingling, or weakness on one side of the body (face, arm, or leg).</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Medication Management:</strong> Take all antiplatelet, anticoagulant, blood pressure, cholesterol-lowering, and diabetes medications as prescribed. Use a pill organizer if helpful.</li><li><strong>Fall Prevention:</strong> Remove tripping hazards at home, use assistive devices as recommended, ensure adequate lighting, and consider grab bars in bathrooms.</li><li><strong>Driving Restrictions:</strong> Do not drive until cleared by your physician and, if required, after passing a driving assessment. Stroke can impair reaction time, vision, and judgment.</li><li><strong>Smoking Cessation:</strong> Absolutely avoid smoking and exposure to secondhand smoke, as it significantly increases the risk of recurrent stroke.</li><li><strong>Alcohol Moderation:</strong> Limit alcohol intake to recommended guidelines, as excessive consumption can interfere with medications and increase stroke risk.</li><li><strong>Blood Pressure & Glucose Monitoring:</strong> Regularly monitor your blood pressure and blood glucose levels as instructed by your healthcare provider and report any concerning readings.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Heart-Healthy Diet:</strong> Focus on a diet rich in fruits, vegetables, whole grains, lean proteins (fish, poultry, beans), and healthy fats (avocado, nuts, olive oil).</li><li><strong>Sodium Restriction:</strong> Limit intake of high-sodium foods (processed foods, canned soups, cured meats) to help manage blood pressure. Aim for less than 2300 mg per day, or as advised by your doctor.</li><li><strong>Saturated & Trans Fat Reduction:</strong> Avoid foods high in saturated fats (red meat, full-fat dairy) and trans fats (fried foods, many baked goods) to help manage cholesterol levels.</li><li><strong>Adequate Hydration:</strong> Drink plenty of water throughout the day unless otherwise instructed by your physician, especially if you have difficulty swallowing.</li><li><strong>Fiber-Rich Foods:</strong> Incorporate high-fiber foods (oats, legumes, vegetables) to support digestive health and overall well-being.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Preparedness:</strong> Know the signs of a new stroke (FAST) and be prepared to call emergency services immediately. Keep a list of emergency contacts readily available.</li><li><strong>Medication Assistance:</strong> Help the patient organize and take medications as prescribed. Monitor for any adverse reactions or missed doses.</li><li><strong>Support with Activities of Daily Living:</strong> Assist with personal care, mobility, and meal preparation as needed, encouraging independence where possible.</li><li><strong>Emotional Support:</strong> Provide emotional encouragement and understanding. Stroke recovery can be challenging, and support is crucial for mental well-being.</li><li><strong>Appointment Management:</strong> Help schedule and attend follow-up medical and therapy appointments. Keep a record of all appointments and instructions.</li><li><strong>Home Safety:</strong> Ensure the home environment is safe and accessible, removing obstacles and implementing fall prevention strategies.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Commitment to Rehabilitation:</strong> Active participation in physical, occupational, and speech therapy is paramount for regaining function and improving quality of life post-stroke.</li><li><strong>Aggressive Risk Factor Management:</strong> Diligent control of blood pressure, cholesterol, blood sugar, and lifestyle choices is critical for preventing secondary stroke events.</li><li><strong>Open Communication:</strong> Maintain an open dialogue with your healthcare team. Report any new symptoms, concerns, or difficulties you are experiencing promptly.</li><li><strong>Long-Term Wellness:</strong> Stroke recovery is a journey. Focus on sustainable lifestyle changes and consistent medical follow-up for long-term health and prevention.</li><li><strong>Mental Health Awareness:</strong> Be aware that depression and anxiety are common after a stroke. Discuss any mood changes or emotional difficulties with your doctor.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Medication Reconciliation & Education:</strong> Ensure patient and caregiver understand all discharge medications, dosages, schedules, and potential side effects.</li><li><strong>Neurological Assessment:</strong> Educate on ongoing self-monitoring for neurological changes and the importance of prompt reporting of new deficits.</li><li><strong>Dysphagia Screening & Management:</strong> Reinforce safe swallowing techniques and dietary modifications if dysphagia is present, to prevent aspiration pneumonia.</li><li><strong>Skin Integrity & Mobility:</strong> Instruct on repositioning, skin care, and assistive device use to prevent pressure injuries and promote safe mobility.</li><li><strong>Caregiver Training:</strong> Provide comprehensive training for caregivers on patient transfers, ADL assistance, medication administration, and emergency response.</li><li><strong>Rehabilitation Continuum:</strong> Facilitate smooth transition to outpatient rehabilitation services, emphasizing adherence to therapy plans.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Antiplatelet Therapy:</strong> Medications (e.g., aspirin, clopidogrel) used to prevent blood clots by inhibiting platelet aggregation.</li><li><strong>Anticoagulation:</strong> Medications (e.g., warfarin, DOACs) used to prevent blood clot formation, particularly in patients with atrial fibrillation.</li><li><strong>Statins:</strong> Cholesterol-lowering drugs (e.g., atorvastatin, simvastatin) prescribed to reduce atherosclerotic plaque formation and stroke risk.</li><li><strong>Antihypertensives:</strong> Medications (e.g., ACE inhibitors, ARBs, diuretics) used to control high blood pressure, a major stroke risk factor.</li><li><strong>Dysphagia:</strong> Difficulty swallowing, a common post-stroke complication requiring specialized assessment and management.</li><li><strong>Secondary Stroke Prevention:</strong> Strategies and interventions aimed at reducing the risk of a recurrent stroke, including medication, lifestyle changes, and risk factor management.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a patient lying on an angiography table, with a medical professional operating an X-ray machine. A transparent overlay of the patient's chest shows the pulmonary arteries, with a small, distinct blood clot highlighted within one of the vessels. The scene should convey a sense of clinical precision and patient care, using a clean, modern design with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./angiography.jpg" class="card-banner" alt="Angiography Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-lung-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Lung disease</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-lung-disease-blood-clots-in-the-legs-or-lungs" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Blood clots in the legs or lungs</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Angiography</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Lung disease</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Blood clots in the legs or lungs</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Procedure Overview:</strong> Angiography is an invasive imaging technique that uses X-rays and a special contrast dye to visualize blood vessels, particularly in the lungs for suspected pulmonary embolism (PE).</li><li><strong>Purpose:</strong> It is considered the gold standard for definitively diagnosing pulmonary embolism by identifying blockages or abnormalities within the pulmonary arteries.</li><li><strong>Method:</strong> A thin, flexible catheter is inserted, typically into a vein in the groin (femoral vein), and carefully guided through the circulatory system to the pulmonary arteries.</li><li><strong>Contrast Injection:</strong> Once positioned, contrast dye is injected, and a series of X-ray images are taken to highlight the blood flow and detect any obstructions.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Sudden Dyspnea:</strong> Acute onset of shortness of breath, often without exertion.</li><li><strong>Pleuritic Chest Pain:</strong> Sharp, stabbing chest pain that worsens with deep breaths or coughing.</li><li><strong>Tachycardia:</strong> An abnormally rapid heart rate, often a compensatory mechanism.</li><li><strong>Hemoptysis:</strong> Coughing up blood or blood-streaked sputum.</li><li><strong>Syncope or Presyncope:</strong> Fainting or feeling lightheaded and on the verge of fainting.</li><li><strong>Unilateral Leg Swelling/Pain:</strong> Symptoms indicative of Deep Vein Thrombosis (DVT), which is a common source of pulmonary emboli.</li><li><strong>Hypoxia:</strong> Low blood oxygen saturation levels, often detected by pulse oximetry.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Contrast Allergy History:</strong> Thoroughly assess for any prior allergic reactions to iodine-based contrast dyes; pre-medication may be necessary.</li><li><strong>Renal Impairment:</strong> Evaluate kidney function (creatinine, GFR) as contrast dye can be nephrotoxic; adequate hydration is crucial.</li><li><strong>Anticoagulant Therapy:</strong> Patients on blood thinners may have an increased risk of bleeding at the catheter insertion site; medication management plans must be established.</li><li><strong>Pregnancy Status:</strong> Angiography involves radiation exposure; alternative imaging modalities or strict shielding protocols are necessary for pregnant patients.</li><li><strong>Cardiac Arrhythmias:</strong> Monitor for and manage potential cardiac rhythm disturbances that can occur during catheter manipulation.</li><li><strong>Diabetes Mellitus:</strong> Special consideration for patients on metformin, as it may need to be held before and after the procedure to prevent lactic acidosis in the context of renal impairment.</li><li><strong>Hydration Status:</strong> Ensure the patient is well-hydrated before the procedure to help protect kidney function.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-Procedure Fasting:</strong> Patients are typically required to be NPO (nil per os) for 4-6 hours prior to the procedure to minimize the risk of aspiration, especially if sedation is administered.</li><li><strong>Post-Procedure Hydration:</strong> Encourage ample oral fluid intake after the procedure, unless medically contraindicated, to aid in flushing the contrast dye from the kidneys.</li><li><strong>Medication Adjustments:</strong> Discuss with the physician regarding the timing of insulin or oral hypoglycemic medications if fasting is required.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Informed Consent:</strong> Ensure the patient and/or their legal guardian fully understands the procedure, potential risks, benefits, and alternative options before obtaining signed consent.</li><li><strong>Continuous Monitoring:</strong> Maintain vigilant monitoring of vital signs, cardiac rhythm, and oxygen saturation throughout the procedure and during the recovery period.</li><li><strong>Access Site Care:</strong> Apply firm pressure to the catheter insertion site immediately post-procedure and meticulously observe for signs of bleeding, hematoma formation, or pseudoaneurysm.</li><li><strong>Allergic Reaction Preparedness:</strong> Have emergency medications and equipment readily available to manage potential anaphylactic reactions to contrast dye.</li><li><strong>Post-Procedure Mobility Restrictions:</strong> Instruct the patient to keep the limb used for vascular access straight and immobile for several hours to prevent complications at the insertion site.</li><li><strong>Pain Assessment:</strong> Regularly assess the patient for any discomfort or pain and administer analgesia as prescribed.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Definitive Diagnosis:</strong> Pulmonary angiography provides the most definitive diagnosis of pulmonary embolism, particularly in cases where CT pulmonary angiography (CTPA) is inconclusive or contraindicated.</li><li><strong>Risk-Benefit Analysis:</strong> Carefully weigh the diagnostic accuracy against the inherent risks of an invasive procedure, radiation exposure, and potential contrast-induced nephropathy.</li><li><strong>Alternative Modalities:</strong> Consider CTPA or Ventilation-Perfusion (V/Q) scans as less invasive first-line diagnostic tools in appropriate clinical settings.</li><li><strong>Treatment Guidance:</strong> The precise localization and extent of emboli identified by angiography directly inform critical treatment decisions, including anticoagulation, thrombolysis, or embolectomy.</li><li><strong>Patient Selection:</strong> Meticulous patient selection is paramount, considering clinical probability, comorbidities, renal function, and overall patient stability.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pre-Procedure Assessment:</strong> Conduct a comprehensive assessment including allergy history, NPO status, baseline vital signs, renal function tests (BUN, creatinine), and coagulation studies (PT/INR, PTT).</li><li><strong>Patient Education:</strong> Provide clear explanations of the procedure, including expected sensations (e.g., warm flush from contrast), and detailed post-procedure care instructions.</li><li><strong>Post-Procedure Monitoring:</strong> Closely monitor the access site for bleeding, hematoma, and distal pulses. Assess for neurological changes and signs of delayed allergic reactions.</li><li><strong>Fluid Management:</strong> Administer intravenous fluids as ordered and encourage oral fluid intake post-procedure to support renal clearance of contrast.</li><li><strong>Medication Reconciliation:</strong> Ensure accurate restart of all home medications, especially anticoagulants, following physician orders.</li><li><strong>Documentation:</strong> Maintain meticulous and accurate documentation of all assessments, interventions, patient responses, and any complications.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Seldinger Technique:</strong> The standard method used for percutaneous vascular access during angiography.</li><li><strong>Contrast-Induced Nephropathy (CIN):</strong> A potential complication characterized by acute kidney injury following exposure to iodinated contrast media.</li><li><strong>Radiation Dose:</strong> The amount of ionizing radiation absorbed by the patient during the procedure, a factor in cumulative lifetime exposure.</li><li><strong>Catheterization Risks:</strong> Potential complications include cardiac arrhythmias, vessel dissection, perforation, and air embolism.</li><li><strong>Pulmonary Embolism (PE):</strong> A blockage in one of the pulmonary arteries in the lungs, most often caused by blood clots that travel from the legs (DVT).</li><li><strong>Deep Vein Thrombosis (DVT):</strong> A blood clot that forms in a deep vein, typically in the leg or pelvis, which can dislodge and travel to the lungs.</li><li><strong>D-dimer:</strong> A blood test that measures a protein fragment produced when a blood clot dissolves; elevated levels can indicate the presence of a clot but are not specific to PE.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

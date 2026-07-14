@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a person with diabetes performing foot care. The image shows hands gently washing and inspecting a foot, with a magnifying glass highlighting a small area. Elements like a soft towel, specialized diabetic socks, and comfortable, protective shoes are visible. Subtle background elements include a glucose meter and a blood drop icon, symbolizing diabetes management. The overall design is clean, informative, and emphasizes prevention and care, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./foot_care_for_people_with_diabetes.jpg" class="card-banner" alt="Foot care for people with diabetes Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-diabetes" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Diabetes</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-diabetes-foot-care" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Foot care</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Foot care for people with diabetes</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Diabetes</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Foot care</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>High Risk of Complications:</strong> Individuals with diabetes are at increased risk for foot complications due to nerve damage (neuropathy) and poor circulation (peripheral artery disease), leading to reduced sensation and impaired healing.</li><li><strong>Silent Damage:</strong> Neuropathy can mask pain from injuries, infections, or ulcers, allowing them to worsen unnoticed.</li><li><strong>Amputation Prevention:</strong> Diligent daily foot care and regular professional examinations are crucial for preventing serious infections, ulcers, and potential amputations.</li><li><strong>Blood Sugar Control:</strong> Maintaining optimal blood glucose levels is fundamental to preventing and slowing the progression of diabetic foot complications.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Numbness or Tingling:</strong> A common sign of diabetic neuropathy, often described as 'pins and needles' or a loss of sensation in the feet.</li><li><strong>Burning or Shooting Pain:</strong> Neuropathic pain that can be worse at night.</li><li><strong>Changes in Skin Temperature:</strong> Feet that feel unusually cold or warm, indicating circulation issues or inflammation.</li><li><strong>Skin Discoloration:</strong> Redness, blueness, or pallor in the feet, particularly when elevated or dependent.</li><li><strong>Absent or Diminished Pulses:</strong> Difficulty palpating pulses in the feet, suggesting peripheral artery disease.</li><li><strong>Slow-Healing Sores:</strong> Any cut, blister, or sore on the foot that takes an unusually long time to heal or shows no signs of improvement.</li><li><strong>Foot Deformities:</strong> Changes in foot shape, such as bunions, hammertoes, or the development of Charcot foot, which can create pressure points.</li><li><strong>Hair Loss on Feet/Legs:</strong> A sign of poor circulation.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Daily Foot Inspection:</strong> Thoroughly check both feet daily for cuts, blisters, redness, swelling, sores, or any changes, using a mirror if necessary or asking for assistance.</li><li><strong>Proper Footwear:</strong> Always wear well-fitting, protective shoes that are comfortable and provide adequate support. Avoid open-toed shoes, high heels, or shoes that rub.</li><li><strong>Never Walk Barefoot:</strong> Protect your feet from injury, even indoors.</li><li><strong>Careful Nail Trimming:</strong> Trim toenails straight across to prevent ingrown nails. If vision is poor or nails are thick, seek professional podiatric care.</li><li><strong>Moisturize Daily:</strong> Apply lotion to the tops and bottoms of your feet to prevent dry, cracked skin, but avoid applying between the toes to prevent fungal infections.</li><li><strong>Test Water Temperature:</strong> Always check bath or shower water temperature with your elbow or a thermometer before immersing your feet to prevent burns due to reduced sensation.</li><li><strong>Avoid Self-Treatment:</strong> Do not attempt to remove corns, calluses, or warts yourself with sharp objects or chemical agents; consult a podiatrist.</li><li><strong>Regular Professional Exams:</strong> Schedule comprehensive foot examinations with your healthcare provider or podiatrist at least annually, or more frequently if at high risk.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Glycemic Control Focus:</strong> Prioritize a diet that supports stable blood glucose levels to prevent and manage neuropathy and poor circulation.</li><li><strong>Consistent Carbohydrate Intake:</strong> Distribute carbohydrate intake evenly throughout the day to avoid blood sugar spikes and drops.</li><li><strong>Limit Refined Sugars:</strong> Minimize intake of sugary drinks, desserts, and processed foods that can rapidly elevate blood glucose.</li><li><strong>Increase Fiber:</strong> Incorporate plenty of fruits, vegetables, and whole grains to help regulate blood sugar and promote satiety.</li><li><strong>Healthy Fats:</strong> Choose monounsaturated and polyunsaturated fats (e.g., avocados, nuts, olive oil) over saturated and trans fats to support cardiovascular health.</li><li><strong>Adequate Protein:</strong> Include lean protein sources to support tissue repair and overall health.</li><li><strong>Hydration:</strong> Maintain good hydration with water to support overall health and skin integrity.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Immediate Medical Attention:</strong> Seek urgent medical care for any new foot sore, blister, cut, or sign of infection (redness, swelling, warmth, pus, fever).</li><li><strong>Do Not Ignore Minor Issues:</strong> Even seemingly small foot problems can rapidly escalate into serious complications for individuals with diabetes.</li><li><strong>Avoid Home Remedies:</strong> Refrain from using unproven home remedies or over-the-counter medications for foot problems without consulting a healthcare professional.</li><li><strong>Caregiver Involvement:</strong> If a patient has impaired vision, mobility, or cognitive function, caregivers should be educated on daily foot inspection and proper care techniques.</li><li><strong>Footwear Selection:</strong> Ensure all footwear is inspected for foreign objects or rough seams before wearing.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive Foot Exams:</strong> Emphasize the critical importance of regular, thorough foot examinations by a healthcare professional, including sensory testing (monofilament), vascular assessment (pulses, ABI), and skin integrity checks.</li><li><strong>Glycemic Management:</strong> Reinforce that optimal glycemic control is the cornerstone of preventing and managing diabetic foot complications.</li><li><strong>Early Intervention:</strong> Stress the need for prompt evaluation and aggressive management of any foot lesion or infection to prevent progression to limb-threatening conditions.</li><li><strong>Multidisciplinary Approach:</strong> Advocate for a collaborative care model involving primary care, endocrinology, podiatry, vascular surgery, and wound care specialists as needed.</li><li><strong>Patient Education:</strong> Empower patients with detailed knowledge about daily foot care practices, risk factors, and signs/symptoms requiring immediate medical attention.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Assessment Skills:</strong> Develop proficiency in performing comprehensive diabetic foot assessments, including visual inspection, palpation of pulses, monofilament testing for protective sensation, and assessment of skin integrity and temperature.</li><li><strong>Patient Education:</strong> Educate patients on proper daily foot care techniques, footwear selection, the importance of blood glucose control, and when to seek professional help.</li><li><strong>Wound Care Principles:</strong> Understand the principles of diabetic foot ulcer management, including offloading, debridement, infection control, and moist wound healing.</li><li><strong>Risk Stratification:</strong> Learn to stratify patients based on their risk for developing foot complications to guide screening frequency and interventions.</li><li><strong>Interdisciplinary Collaboration:</strong> Recognize the importance of referring patients to podiatrists, vascular specialists, and other healthcare team members for specialized care.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Diabetic Neuropathy:</strong> Nerve damage caused by prolonged high blood glucose, leading to loss of sensation, pain, and motor weakness.</li><li><strong>Peripheral Artery Disease (PAD):</strong> Narrowing of arteries reducing blood flow to the limbs, impairing healing and increasing infection risk.</li><li><strong>Diabetic Foot Ulcer (DFU):</strong> An open sore or wound on the foot that occurs in approximately 15% of people with diabetes.</li><li><strong>Charcot Foot:</strong> A progressive degenerative arthropathy affecting the foot joints, often triggered by trauma in the presence of severe neuropathy.</li><li><strong>Monofilament Test:</strong> A diagnostic tool using a 10-g monofilament to assess protective sensation in the feet.</li><li><strong>Ankle-Brachial Index (ABI):</strong> A non-invasive test comparing blood pressure in the ankle to the arm to screen for PAD.</li><li><strong>Offloading:</strong> Techniques (e.g., total contact casts, specialized footwear) used to reduce pressure on a diabetic foot ulcer to promote healing.</li><li><strong>Glycemic Control:</strong> The management of blood glucose levels to within a target range, crucial for preventing microvascular and macrovascular complications.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

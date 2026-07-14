@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a patient's arm with an IV catheter inserted. The area around the IV site shows visible swelling and slight discoloration, indicating infiltration. A healthcare professional, possibly a nurse, is gently touching or examining the swollen area with a concerned but professional expression. The background is clean and simple, with subtle medical elements like a fluid bag or hospital room outline. The overall style is modern, clean, and optimized for public health awareness, avoiding text or complex details.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./iv_infiltration.jpg" class="card-banner" alt="IV infiltration Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-vascular-access" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Vascular access</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>IV infiltration</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Vascular access</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Definition:</strong> IV infiltration occurs when non-vesicant intravenous fluid or medication leaks from the vein into the surrounding subcutaneous tissue.</li>
+        <li><strong>Mechanism:</strong> This leakage typically happens due to the catheter puncturing through the vein wall or dislodging from the vein lumen.</li>
+        <li><strong>Distinction:</strong> It is crucial to differentiate infiltration from extravasation (leakage of vesicant solutions) and phlebitis (inflammation of the vein).</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Swelling:</strong> Visible puffiness or edema around the IV insertion site.</li>
+        <li><strong>Coolness:</strong> The skin around the infiltrated area may feel cool to the touch compared to the surrounding tissue.</li>
+        <li><strong>Pain or Tenderness:</strong> Patient may report discomfort, aching, or tenderness at the site.</li>
+        <li><strong>Blanching:</strong> The skin may appear pale or blanched due to fluid accumulation.</li>
+        <li><strong>Decreased Flow Rate:</strong> The IV infusion rate may slow down or stop, even with the roller clamp fully open.</li>
+        <li><strong>Absence of Blood Return:</strong> Inability to obtain a blood return from the catheter lumen.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Site Selection:</strong> Choose appropriate vein size and location, avoiding areas of flexion or previous venipuncture sites.</li>
+        <li><strong>Catheter Securement:</strong> Ensure the IV catheter is securely taped or dressed to prevent dislodgement.</li>
+        <li><strong>Regular Assessment:</strong> Routinely inspect the IV site for signs of infiltration, at least every 1-2 hours or as per facility policy.</li>
+        <li><strong>Appropriate Catheter Size:</strong> Use the smallest gauge catheter suitable for the prescribed therapy and vein size.</li>
+        <li><strong>Patient Education:</strong> Instruct patients to report any pain, swelling, or discomfort at the IV site immediately.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Impact on Fluid Administration:</strong> IV infiltration necessitates the cessation of fluid delivery via the affected site, requiring alternative routes or temporary discontinuation of IV fluids.</li>
+        <li><strong>Oral Hydration Assessment:</strong> If IV access is compromised, assess the patient's ability to maintain adequate hydration orally and encourage appropriate fluid intake if clinically permissible.</li>
+        <li><strong>Electrolyte Balance:</strong> Consider the potential impact of interrupted IV fluid administration on the patient's electrolyte balance, especially if they were receiving electrolyte-containing solutions.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Stop Infusion Immediately:</strong> Clamp the IV tubing and discontinue the infusion at the first sign of infiltration.</li>
+        <li><strong>Remove Catheter:</strong> Gently remove the IV catheter from the affected site.</li>
+        <li><strong>Elevate Limb:</strong> Elevate the affected extremity to promote fluid reabsorption and reduce swelling.</li>
+        <li><strong>Apply Compress:</strong> Apply a warm or cold compress as indicated by the type of solution infiltrated and facility protocol (warm for most non-vesicants, cold for some specific solutions like vasopressors).</li>
+        <li><strong>Documentation:</strong> Document the date, time, site, estimated amount of infiltrated solution, patient's symptoms, and interventions performed.</li>
+        <li><strong>New IV Site:</strong> Establish a new IV access site, preferably in the contralateral limb or proximal to the previous site.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Severity Assessment:</strong> Evaluate the extent and severity of infiltration, especially for large volumes or specific medications, to rule out compartment syndrome.</li>
+        <li><strong>Pharmacological Interventions:</strong> Consider specific antidotes (e.g., hyaluronidase for certain extravasations, though less common for simple infiltration) if a vesicant or irritant was involved.</li>
+        <li><strong>Monitoring for Complications:</strong> Closely monitor for signs of infection, tissue necrosis, or nerve damage, particularly with severe or prolonged infiltration.</li>
+        <li><strong>Fluid Management Review:</strong> Reassess the patient's overall fluid and electrolyte balance, adjusting IV therapy as needed.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Assessment Skills:</strong> Develop proficiency in recognizing early signs and symptoms of IV infiltration through regular site assessment and patient communication.</li>
+        <li><strong>Insertion Technique:</strong> Master proper venipuncture technique to minimize vein trauma and reduce the risk of infiltration.</li>
+        <li><strong>Patient Education:</strong> Educate patients and their families on what to watch for and when to alert nursing staff.</li>
+        <li><strong>Documentation Standards:</strong> Adhere to institutional policies for accurate and timely documentation of IV site assessments and any infiltration events.</li>
+        <li><strong>Prevention Strategies:</strong> Implement evidence-based practices for IV insertion, maintenance, and removal to prevent complications.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>INS Standards:</strong> Refer to the Infusion Nurses Society (INS) standards of practice for comprehensive guidelines on IV therapy and infiltration management.</li>
+        <li><strong>Grading Scales:</strong> Utilize standardized infiltration grading scales (e.g., INS Infiltration Scale) to objectively assess and document the severity of infiltration.</li>
+        <li><strong>Solution Characteristics:</strong> Understand the osmolarity, pH, and vesicant/irritant properties of various IV solutions to anticipate potential tissue damage upon infiltration.</li>
+        <li><strong>Pathophysiology:</strong> Infiltration involves the displacement of IV fluid into the interstitial space, leading to localized edema and potential tissue compression.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

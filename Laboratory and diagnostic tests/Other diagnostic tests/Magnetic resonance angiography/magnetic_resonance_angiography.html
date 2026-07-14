@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a patient undergoing a Magnetic Resonance Angiography (MRA) scan. The patient is lying on a table sliding into a large, cylindrical MRI machine. Transparent overlays highlight the intricate network of blood vessels within the patient's body, particularly in the head, neck, and limbs. A medical professional, a radiologist or technologist, is observing from a control room console with monitors displaying detailed vascular images. The scene emphasizes advanced medical technology, precision diagnostics, and patient safety, with a clean, modern aesthetic and soft, professional color palette.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./magnetic_resonance_angiography.jpg" class="card-banner" alt="Magnetic resonance angiography Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-laboratory-and-diagnostic-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Laboratory and diagnostic tests</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-laboratory-and-diagnostic-tests-other-diagnostic-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Other diagnostic tests</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Magnetic resonance angiography</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Laboratory and diagnostic tests</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Other diagnostic tests</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Non-Invasive Imaging:</strong> Magnetic Resonance Angiography (MRA) is a non-invasive medical imaging technique that uses a powerful magnetic field and radio waves to create detailed images of blood vessels throughout the body.</li><li><strong>Vessel Visualization:</strong> It is specifically designed to visualize arteries and veins, helping to detect, diagnose, and monitor conditions affecting blood flow.</li><li><strong>No Ionizing Radiation:</strong> Unlike X-ray angiography or CT angiography, MRA does not use ionizing radiation, making it a safer option for repeated imaging.</li><li><strong>Contrast Material:</strong> Often, a gadolinium-based contrast agent is injected intravenously to enhance the visibility of blood vessels and provide clearer images.</li><li><strong>Diagnostic Applications:</strong> MRA is used to identify aneurysms, stenosis (narrowing), blockages, dissections, and other vascular abnormalities in various parts of the body, including the brain, neck, chest, abdomen, and limbs.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Persistent Headaches or Dizziness:</strong> May indicate cerebrovascular issues such as aneurysms or arterial narrowing.</li><li><strong>Sudden Weakness or Numbness:</strong> Suggestive of stroke or transient ischemic attack (TIA), prompting evaluation of cerebral or carotid arteries.</li><li><strong>Limb Pain or Cramping with Exertion:</strong> Classic symptoms of peripheral artery disease (PAD), requiring assessment of leg arteries.</li><li><strong>Unexplained Abdominal or Flank Pain:</strong> Could be related to renal artery stenosis or abdominal aortic aneurysm.</li><li><strong>High Blood Pressure Resistant to Treatment:</strong> May point to renal artery stenosis as a secondary cause of hypertension.</li><li><strong>Pulsatile Mass:</strong> A palpable, throbbing mass, especially in the abdomen or neck, often prompts MRA to rule out an aneurysm.</li><li><strong>Bruits:</strong> Abnormal whooshing sounds heard over arteries during auscultation, indicating turbulent blood flow.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Metal Implants and Devices:</strong> Patients with pacemakers, implantable cardioverter-defibrillators (ICDs), certain cerebral aneurysm clips, cochlear implants, or other metallic implants may be contraindicated due to the strong magnetic field.</li><li><strong>Kidney Function Impairment:</strong> Gadolinium contrast agents carry a risk of Nephrogenic Systemic Fibrosis (NSF) in patients with severe kidney disease; kidney function tests (e.g., GFR) are essential before contrast administration.</li><li><strong>Allergies to Contrast:</strong> Inform staff of any known allergies to gadolinium or other contrast agents, iodine, or any severe allergic reactions.</li><li><strong>Claustrophobia:</strong> The enclosed space of the MRI scanner can induce anxiety; sedation may be offered for severe claustrophobia.</li><li><strong>Pregnancy:</strong> MRA is generally avoided during the first trimester of pregnancy and used with caution throughout, especially with contrast, due to potential fetal risks.</li><li><strong>Tattoos and Permanent Makeup:</strong> Some inks contain metallic particles that can heat up during the scan, causing skin irritation or burns.</li><li><strong>Recent Surgeries:</strong> Discuss any recent surgeries, especially those involving metallic implants or clips, as their compatibility with MRI needs to be verified.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Fasting Requirements:</strong> Typically, a fast of 2-4 hours prior to the MRA is recommended, especially if intravenous contrast is to be administered, to minimize the risk of nausea or vomiting.</li><li><strong>Hydration:</strong> Maintain good hydration by drinking clear fluids before and after the procedure, particularly if contrast is used, to help flush the contrast agent from the body.</li><li><strong>Medication Intake:</strong> Unless specifically instructed otherwise by your physician, continue to take your regular medications with sips of water on the day of the exam.</li><li><strong>Avoid Caffeine/Stimulants:</strong> For some MRA studies, especially those involving cardiac imaging, you may be advised to avoid caffeine or other stimulants prior to the procedure.</li><li><strong>Diabetic Patients:</strong> If you are diabetic, discuss your medication schedule with your doctor, especially if fasting is required, to manage blood sugar levels safely.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Remove All Metal Objects:</strong> Before entering the MRI suite, remove all jewelry, watches, hairpins, eyeglasses, hearing aids, dentures, credit cards, and any clothing with metal zippers or buttons.</li><li><strong>Inform Staff of Medical History:</strong> Provide a complete and accurate medical history, including all implants, surgeries, allergies, kidney conditions, and pregnancy status, to the MRI technologist.</li><li><strong>Remain Still During Scan:</strong> It is crucial to lie very still throughout the entire MRA procedure to ensure clear, high-quality images. Movement can blur the images.</li><li><strong>Communicate Discomfort:</strong> You will have an intercom system to communicate with the technologist. Report any discomfort, pain, or unusual sensations immediately.</li><li><strong>Be Prepared for Noise:</strong> The MRI scanner produces loud knocking or banging noises during the imaging sequences; earplugs or headphones will be provided.</li><li><strong>Post-Contrast Monitoring:</strong> If contrast was administered, be aware of potential delayed allergic reactions and report any symptoms like rash, itching, or difficulty breathing to medical staff.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Optimal Vascular Assessment:</strong> MRA provides a highly detailed, non-invasive assessment of vascular anatomy and pathology, often serving as a primary diagnostic tool before more invasive procedures.</li><li><strong>Risk-Benefit Analysis for Contrast:</strong> Carefully weigh the benefits of gadolinium contrast enhancement against the risks, particularly in patients with impaired renal function or a history of allergic reactions.</li><li><strong>Patient Selection:</strong> Thoroughly screen patients for contraindications, especially metallic implants and severe claustrophobia, to ensure patient safety and optimize image quality.</li><li><strong>Complementary to Other Modalities:</strong> MRA often complements other imaging modalities like ultrasound or CT, providing unique physiological and anatomical information about blood flow.</li><li><strong>Pre-Procedural Planning:</strong> MRA is invaluable for surgical planning, stent placement, or other interventional procedures by precisely mapping vascular structures and identifying critical lesions.</li><li><strong>Long-Term Monitoring:</strong> It is an excellent tool for long-term surveillance of known vascular conditions, such as aneurysms, without cumulative radiation exposure.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Patient Screening:</strong> Nurses play a critical role in pre-screening patients for MRI safety, including assessing for metal implants, kidney function, and claustrophobia.</li><li><strong>Patient Education and Reassurance:</strong> Educate patients about the MRA procedure, the importance of stillness, the scanner noise, and what to expect, providing reassurance to alleviate anxiety.</li><li><strong>IV Access Management:</strong> Establish and maintain appropriate intravenous access for contrast administration, ensuring patency and monitoring for infiltration.</li><li><strong>Post-Procedure Monitoring:</strong> Monitor patients for any immediate or delayed reactions to gadolinium contrast, especially vital signs and allergic symptoms.</li><li><strong>Comfort and Safety:</strong> Ensure patient comfort by offering blankets, earplugs, and maintaining clear communication throughout the procedure. Assist with safe positioning on the scanner table.</li><li><strong>Documentation:</strong> Accurately document all patient assessments, education provided, contrast administration details, and any adverse events.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Principle of Operation:</strong> MRA leverages the magnetic properties of hydrogen protons in water molecules within blood, using radiofrequency pulses to generate signals that are then converted into detailed images of blood vessels.</li><li><strong>Gadolinium-Based Contrast Agents (GBCAs):</strong> Paramagnetic agents that shorten T1 relaxation times, enhancing signal intensity in blood vessels and improving visualization of vascular structures.</li><li><strong>MRA Sequences:</strong> Common techniques include Time-of-Flight (TOF) MRA (relies on flow-related enhancement), Phase Contrast (PC) MRA (measures phase shifts due to blood flow), and Contrast-Enhanced MRA (CE-MRA) (uses GBCAs).</li><li><strong>Applications:</strong> Widely used for cerebral MRA (aneurysms, AVMs), carotid MRA (stenosis), renal MRA (hypertension), peripheral MRA (PAD), and aortic MRA (aneurysms, dissection).</li><li><strong>Image Acquisition:</strong> Images are acquired in various planes (axial, sagittal, coronal) and can be reconstructed into 3D models for comprehensive vascular assessment.</li><li><strong>Artifacts:</strong> Susceptibility artifacts from metallic implants, motion artifacts from patient movement, and flow artifacts can degrade image quality.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

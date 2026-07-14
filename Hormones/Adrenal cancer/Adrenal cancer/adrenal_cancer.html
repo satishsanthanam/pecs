@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human torso with the adrenal glands highlighted, one showing a subtle tumor. Surrounding elements include medical symbols like a stethoscope, a pill bottle, and a magnifying glass, all in a clean, modern, and informative public awareness design. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./adrenal_cancer.jpg" class="card-banner" alt="Adrenal cancer Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-hormones" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Hormones</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-hormones-adrenal-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Adrenal cancer</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Adrenal cancer</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Hormones</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Adrenal cancer</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Rare Malignancy</strong>: Adrenocortical carcinoma (ACC) is a rare but aggressive cancer originating in the outer layer (cortex) of the adrenal glands.</li><li><strong>Hormonal Activity</strong>: ACC can be 'functional' (producing excess hormones like cortisol, aldosterone, androgens, or estrogens) or 'non-functional' (not producing hormones).</li><li><strong>Clinical Presentation</strong>: Often presents with symptoms related to hormone overproduction or due to the mass effect of a growing tumor.</li><li><strong>Prognosis Factors</strong>: Prognosis is highly dependent on the stage at diagnosis, tumor size, and completeness of surgical resection.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Cushing's Syndrome Features</strong>: Weight gain, central obesity, 'moon face', 'buffalo hump', purple striae, hypertension, diabetes, muscle weakness.</li><li><strong>Virilization/Feminization</strong>: In females, hirsutism, deepening voice, clitoromegaly; in males, gynecomastia, testicular atrophy.</li><li><strong>Conn's Syndrome Features</strong>: Hypertension, hypokalemia, muscle weakness, fatigue, polyuria.</li><li><strong>Mass Effect Symptoms</strong>: Abdominal pain or fullness, palpable abdominal mass, back pain, early satiety.</li><li><strong>Non-specific Symptoms</strong>: Unexplained weight loss, fatigue, fever, loss of appetite.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Prompt Evaluation of Adrenal Masses</strong>: Any newly discovered adrenal mass (incidentaloma) requires thorough biochemical and imaging evaluation to rule out malignancy and hormonal activity.</li><li><strong>Pre-operative Hormonal Control</strong>: For functional tumors, pre-operative management to normalize hormone levels (e.g., with alpha-blockers for pheochromocytoma, or steroid synthesis inhibitors for Cushing's) is crucial to prevent perioperative complications.</li><li><strong>Adrenal Insufficiency Risk</strong>: Patients undergoing unilateral adrenalectomy for a functional tumor may experience temporary adrenal insufficiency in the remaining gland, requiring perioperative and potentially long-term steroid replacement.</li><li><strong>Surgical Expertise</strong>: Adrenalectomy for ACC requires an experienced surgical team due to the potential for local invasion and the need for complete tumor removal.</li><li><strong>Genetic Screening</strong>: Consider genetic counseling and testing for patients with a family history of ACC or associated syndromes (e.g., Li-Fraumeni syndrome, Beckwith-Wiedemann syndrome, MEN1).</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-operative Fasting</strong>: Adhere strictly to NPO (nil per os) guidelines for several hours prior to planned surgery to prevent aspiration.</li><li><strong>Post-operative Fluid & Food Reintroduction</strong>: Gradual reintroduction of clear liquids, then soft foods, progressing to a regular diet as tolerated post-surgery, monitoring for nausea or vomiting.</li><li><strong>Hormone-Related Dietary Adjustments</strong>: If experiencing hypertension due to hormone excess, a low-sodium diet may be recommended; for diabetes, carbohydrate-controlled meals are important.</li><li><strong>Nutritional Support During Treatment</strong>: Maintain adequate caloric and protein intake, especially during chemotherapy or radiation, to support recovery and minimize treatment side effects.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Steroid Replacement Education</strong>: Thoroughly educate patients on the importance of strict adherence to steroid replacement therapy post-adrenalectomy, including stress-dosing protocols.</li><li><strong>Symptom Monitoring</strong>: Instruct patients and caregivers to monitor for signs of adrenal crisis (severe fatigue, weakness, dizziness, nausea, vomiting, abdominal pain) or recurrence.</li><li><strong>Medication Side Effects</strong>: Provide detailed information on potential side effects of adjuvant therapies like mitotane, including gastrointestinal upset, neurological symptoms, and adrenal insufficiency.</li><li><strong>Psychosocial Support</strong>: Offer resources for psychological support and counseling, as a cancer diagnosis and chronic hormone management can be emotionally challenging.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Multidisciplinary Management</strong>: Optimal care for ACC requires a collaborative approach involving endocrinologists, endocrine surgeons, medical oncologists, radiation oncologists, and pathologists.</li><li><strong>Diagnostic Challenges</strong>: Differentiating benign adrenal adenomas from ACC can be complex, often requiring a combination of imaging characteristics, hormonal workup, and sometimes biopsy (though fine-needle aspiration is generally discouraged due to seeding risk).</li><li><strong>Primary Treatment</strong>: Complete surgical resection is the cornerstone of treatment for localized ACC, aiming for R0 (no residual tumor) margins.</li><li><strong>Adjuvant Therapy</strong>: Adjuvant mitotane is often recommended post-surgery, especially for higher-risk or advanced disease, due to its adrenolytic and anti-tumor effects.</li><li><strong>Surveillance</strong>: Lifelong surveillance with regular imaging and biochemical monitoring is crucial due to the high risk of recurrence.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Post-operative Assessment</strong>: Closely monitor vital signs, fluid balance, pain levels, and surgical site for signs of hemorrhage or infection.</li><li><strong>Hormone Replacement Management</strong>: Understand the principles of corticosteroid replacement, including appropriate dosing and timing, and educate patients on self-administration.</li><li><strong>Mitotane Administration & Monitoring</strong>: Be aware of mitotane's narrow therapeutic index and significant side effects, requiring careful patient education and monitoring for toxicity.</li><li><strong>Patient Education on Adrenal Crisis</strong>: Teach patients and families how to recognize symptoms of adrenal crisis and the importance of carrying emergency hydrocortisone.</li><li><strong>Emotional Support</strong>: Provide empathetic care and connect patients with support groups or counseling services to help manage the psychological impact of cancer and chronic illness.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathology</strong>: Weiss score (histological criteria for malignancy), Ki-67 proliferative index.</li><li><strong>Staging</strong>: TNM (Tumor, Node, Metastasis) staging system for adrenocortical carcinoma.</li><li><strong>Biochemical Markers</strong>: Serum cortisol, DHEA-S, 17-hydroxyprogesterone, aldosterone, renin, urinary free cortisol, fractionated metanephrines (to rule out pheochromocytoma).</li><li><strong>Imaging Modalities</strong>: Contrast-enhanced CT or MRI of the abdomen/pelvis, PET-CT for staging and recurrence detection.</li><li><strong>Pharmacology</strong>: Mitotane (adrenolytic agent), chemotherapy regimens (e.g., EDP-M: etoposide, doxorubicin, cisplatin, mitotane), steroid replacement (hydrocortisone, fludrocortisone).</li><li><strong>Genetic Syndromes</strong>: Li-Fraumeni syndrome, Beckwith-Wiedemann syndrome, Multiple Endocrine Neoplasia type 1 (MEN1).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

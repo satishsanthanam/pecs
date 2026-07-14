@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting avian influenza awareness. A stylized, slightly distressed chicken or duck is central, with a subtle red warning sign or biohazard symbol overlaid. A gloved human hand is shown gently pushing the bird away or pointing to a thermometer. Virus particles are floating around. The background features simplified farm elements like a barn or fence, rendered with clean lines and a limited, muted color palette, emphasizing public health and caution.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./bird_flu__avian_influenza_.jpg" class="card-banner" alt="Bird flu (avian influenza) Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-infections-and-vaccines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Infections and vaccines</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-infections-and-vaccines-viral-infections" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Viral infections</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Bird flu (avian influenza)</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Infections and vaccines</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Viral infections</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Nature of the Virus:</strong> Avian influenza (bird flu) is caused by influenza A viruses primarily affecting wild birds and poultry. Highly pathogenic strains (e.g., H5N1, H7N9) can occasionally infect humans.</li><li><strong>Transmission to Humans:</strong> Primarily occurs through direct or close contact with infected live or dead birds, their droppings, or contaminated environments. Human-to-human transmission is rare but a significant public health concern.</li><li><strong>Risk Factors:</strong> Individuals with occupational exposure (poultry farmers, veterinarians), those visiting live bird markets, or people in close contact with sick or dead birds are at higher risk.</li><li><strong>Severity:</strong> Human infections can range from mild conjunctivitis to severe respiratory illness, pneumonia, acute respiratory distress syndrome (ARDS), and can be fatal.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Initial Manifestations:</strong> High fever (often >100.4°F or 38°C), cough, sore throat, muscle aches, headache, and fatigue.</li><li><strong>Gastrointestinal Symptoms:</strong> Nausea, vomiting, diarrhea, and abdominal pain can occur, particularly with H5N1 infections.</li><li><strong>Respiratory Distress:</strong> Rapid progression to severe pneumonia, shortness of breath, difficulty breathing, and hypoxemia are common in severe cases.</li><li><strong>Ocular Symptoms:</strong> Conjunctivitis (red, irritated eyes) has been reported in some human cases.</li><li><strong>Neurological Complications:</strong> In rare severe instances, altered mental status or seizures may develop.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Contact with Birds:</strong> Do not touch sick or dead wild birds, poultry, or their droppings. Report findings to local animal health authorities.</li><li><strong>Hand Hygiene:</strong> Wash hands thoroughly and frequently with soap and water, especially after any potential contact with birds or their environments.</li><li><strong>Food Safety:</strong> Cook all poultry and eggs thoroughly to an internal temperature of 165°F (74°C) to kill the virus. Avoid consuming raw or undercooked poultry products.</li><li><strong>Personal Protective Equipment (PPE):</strong> Individuals working with poultry or in affected areas should use appropriate PPE, including gloves, masks, and eye protection.</li><li><strong>Travel Awareness:</strong> Be informed about avian influenza outbreaks in travel destinations and avoid live bird markets or farms in affected regions.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Thorough Cooking:</strong> Ensure all poultry (chicken, duck, turkey) and eggs are cooked completely. The virus is heat-sensitive and destroyed by proper cooking temperatures.</li><li><strong>Prevent Cross-Contamination:</strong> Use separate cutting boards, utensils, and dishes for raw poultry. Wash hands and all surfaces thoroughly after handling raw meat.</li><li><strong>Avoid Raw Products:</strong> Strictly avoid consuming raw or undercooked poultry, eggs, or any dishes containing them, particularly in areas with known avian influenza activity.</li><li><strong>Hydration:</strong> Maintain adequate fluid intake, especially if experiencing fever or other symptoms, to support overall health and prevent dehydration.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Immediate Medical Attention:</strong> If flu-like symptoms develop after contact with birds or travel to an affected area, seek prompt medical care and inform your healthcare provider about potential exposure.</li><li><strong>Isolation Protocols:</strong> Individuals suspected or confirmed with avian influenza should be isolated to prevent further transmission to others.</li><li><strong>Antiviral Treatment:</strong> Antiviral medications (e.g., oseltamivir) may be prescribed, ideally within 48 hours of symptom onset, to reduce the severity and duration of illness.</li><li><strong>Public Health Reporting:</strong> Healthcare providers are mandated to report suspected or confirmed cases of avian influenza to local public health authorities for surveillance and outbreak control.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>High Clinical Suspicion:</strong> Maintain a high index of suspicion for avian influenza in patients presenting with severe acute respiratory illness and a relevant exposure history (e.g., bird contact, travel to endemic areas).</li><li><strong>Early Diagnostic Testing:</strong> Prompt collection of respiratory specimens for real-time RT-PCR testing is critical for early diagnosis and guiding treatment decisions.</li><li><strong>Aggressive Supportive Care:</strong> Patients with severe disease require aggressive supportive care, including oxygen therapy, mechanical ventilation if necessary, and management of complications like ARDS.</li><li><strong>Infection Control:</strong> Implement stringent infection control measures, including airborne, droplet, and contact precautions, in healthcare settings to protect staff and other patients.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Educate patients and their families on the importance of avoiding contact with sick birds, proper hand hygiene, and safe food preparation practices.</li><li><strong>PPE Competency:</strong> Ensure proficiency in the correct donning, doffing, and disposal of personal protective equipment (PPE) when caring for suspected or confirmed avian influenza patients.</li><li><strong>Specimen Collection:</strong> Understand the proper technique for collecting respiratory specimens (e.g., nasopharyngeal swabs, tracheal aspirates) while adhering to biosafety protocols.</li><li><strong>Monitoring for Deterioration:</strong> Closely monitor patients for signs of respiratory distress, hypoxemia, and multi-organ dysfunction, escalating care as needed.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Viral Etiology:</strong> Caused by influenza A viruses, primarily highly pathogenic avian influenza (HPAI) subtypes like H5N1, H7N9, and emerging H5N6, H5N8.</li><li><strong>Diagnostic Methodology:</strong> Real-time reverse transcription polymerase chain reaction (rRT-PCR) is the primary diagnostic tool for detecting viral RNA in respiratory samples.</li><li><strong>Antiviral Agents:</strong> Neuraminidase inhibitors (e.g., oseltamivir, zanamivir) are the recommended antiviral treatments. Resistance is rare but monitored.</li><li><strong>Public Health Surveillance:</strong> Global surveillance by WHO and national health agencies monitors avian influenza activity in both animal and human populations to assess pandemic potential.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

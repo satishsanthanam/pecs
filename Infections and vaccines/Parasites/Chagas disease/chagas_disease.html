@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a triatomine 'kissing bug' as the central focus, with its distinctive markings. In the background, subtly integrated elements represent a human heart and digestive tract (esophagus and colon), symbolizing the disease's impact. A stylized, non-alarming representation of the *Trypanosoma cruzi* parasite is visible near the bug. The scene is set in a simplified, rural Latin American context, using a clean, modern aesthetic with a limited, warm color palette suitable for public health awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./chagas_disease.jpg" class="card-banner" alt="Chagas disease Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-infections-and-vaccines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Infections and vaccines</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-infections-and-vaccines-parasites" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Parasites</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Chagas disease</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Infections and vaccines</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Parasites</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Causative Agent:</strong> Chagas disease is caused by the parasite <em>Trypanosoma cruzi</em>.</li><li><strong>Primary Transmission:</strong> Primarily transmitted to humans through the feces of infected triatomine bugs, often called 'kissing bugs', which bite exposed skin, typically at night.</li><li><strong>Other Transmission Routes:</strong> Can also be transmitted via blood transfusions, organ transplantation, from mother to child during pregnancy or birth, and through contaminated food or drink.</li><li><strong>Disease Phases:</strong> It has an acute phase (often mild or asymptomatic) and a chronic phase, which can develop years later and lead to severe cardiac or gastrointestinal complications.</li><li><strong>Geographic Distribution:</strong> Endemic mainly in Latin America, but cases are increasingly identified in non-endemic regions due to migration.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Acute Phase - Localized:</strong><br><ul><li><strong>Chagoma:</strong> A localized swelling and redness at the site where the parasite entered the body.</li><li><strong>Romaña's Sign:</strong> Unilateral swelling of the eyelids and surrounding tissue if the parasite enters through the conjunctiva of the eye.</li></ul></li><li><strong>Acute Phase - General:</strong><br><ul><li><strong>Systemic Manifestations:</strong> Fever, fatigue, body aches, headache, rash, loss of appetite, diarrhea, vomiting, swollen glands, and enlargement of the liver or spleen.</li></ul></li><li><strong>Chronic Phase - Cardiac:</strong><br><ul><li><strong>Cardiomyopathy:</strong> Enlargement of the heart, leading to heart failure, arrhythmias, and potentially sudden cardiac death.</li></ul></li><li><strong>Chronic Phase - Gastrointestinal:</strong><br><ul><li><strong>Megaesophagus:</strong> Enlargement of the esophagus, causing difficulty swallowing (dysphagia), regurgitation, and chest pain.</li><li><strong>Megacolon:</strong> Enlargement of the colon, leading to severe constipation, abdominal pain, and distension.</li></ul></li><li><strong>Chronic Phase - Neurological:</strong><br><ul><li><strong>Rare Complications:</strong> Less common, but can include peripheral neuropathy or stroke.</li></ul></li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Vector Control:</strong> Implement measures to control triatomine bug populations, such as spraying insecticides inside homes and using insecticide-treated bed nets.</li><li><strong>Housing Improvements:</strong> Seal cracks in walls, roofs, and foundations of homes to prevent bugs from entering and nesting.</li><li><strong>Blood and Organ Screening:</strong> Ensure rigorous screening of blood donors and organ donors in endemic areas to prevent transmission through transfusions and transplants.</li><li><strong>Food Safety Practices:</strong> Avoid consuming raw or uncooked foods and beverages that may be contaminated with triatomine bug feces, especially in endemic regions.</li><li><strong>Travel Awareness:</strong> When traveling to endemic areas, particularly rural settings, be aware of the risk of bug bites and take preventive measures like sleeping under nets.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Acute Phase Hydration:</strong> Maintain adequate fluid intake, especially if experiencing fever, vomiting, or diarrhea, to prevent dehydration.</li><li><strong>Nutrient Support:</strong> Consume easily digestible, nutrient-rich foods to support the immune system during the acute phase of infection.</li><li><strong>Megaesophagus Management:</strong> For chronic Chagas disease with megaesophagus, adopt a soft, pureed, or liquid diet; eat small, frequent meals; and remain upright during and after eating to facilitate swallowing.</li><li><strong>Megacolon Management:</strong> For chronic Chagas disease with megacolon, incorporate a high-fiber diet, ensure sufficient fluid intake, and use stool softeners or laxatives as prescribed to manage constipation.</li><li><strong>Food Contamination Prevention:</strong> Always ensure food and beverages are prepared hygienically and cooked thoroughly, especially in regions where oral transmission is a concern.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Early Diagnosis Importance:</strong> Emphasize the critical need for early diagnosis and treatment, particularly in the acute phase, to prevent the progression to severe chronic complications.</li><li><strong>Regular Monitoring:</strong> Individuals diagnosed with chronic Chagas disease require regular cardiac and gastrointestinal monitoring, even if asymptomatic, to detect and manage potential complications promptly.</li><li><strong>Medication Adherence:</strong> Stress the importance of strict adherence to prescribed antiparasitic medications (e.g., benznidazole or nifurtimox), understanding potential side effects, and completing the full course of treatment.</li><li><strong>Family Screening:</strong> Advise screening of family members, especially children and siblings, of infected individuals due to the possibility of congenital transmission or shared environmental exposure.</li><li><strong>Preventative Measures:</strong> Educate patients and their families on effective vector control strategies and personal protective measures to reduce the risk of re-infection or transmission to others.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Diagnostic Approach:</strong> Consider Chagas disease in patients presenting with unexplained cardiac or gastrointestinal symptoms, especially with a history of travel or residence in endemic areas. Utilize serological tests (ELISA, IFA) for chronic infection and PCR or direct microscopy for acute cases.</li><li><strong>Treatment Efficacy:</strong> Antiparasitic treatment is most effective in the acute phase and in children, aiming to eliminate the parasite. In the chronic phase, treatment can prevent or delay disease progression, though it may not reverse established organ damage.</li><li><strong>Multidisciplinary Management:</strong> Chronic Chagas cardiomyopathy and mega-syndromes necessitate a multidisciplinary approach involving infectious disease specialists, cardiologists, gastroenterologists, and potentially neurologists.</li><li><strong>Public Health Responsibility:</strong> Physicians have a vital role in reporting cases, educating patients on prevention and management, and advocating for public health initiatives such as vector control and screening programs.</li><li><strong>Risk Stratification:</strong> Assess patients for risk factors for severe disease progression, including age, parasite load, and presence of co-morbidities, to guide management strategies.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Provide comprehensive education to patients and their families regarding Chagas disease transmission, symptoms, treatment regimens, and crucial preventive measures.</li><li><strong>Symptom Monitoring:</strong> Closely monitor patients for signs and symptoms of acute infection, progression of chronic cardiac complications (e.g., arrhythmias, edema), or gastrointestinal issues (e.g., dysphagia, severe constipation).</li><li><strong>Medication Administration & Side Effects:</strong> Administer antiparasitic drugs as prescribed, monitor for adverse effects (e.g., gastrointestinal upset, skin reactions, peripheral neuropathy), and provide supportive care to manage these effects.</li><li><strong>Community Health Involvement:</strong> Participate in community health education and screening programs in at-risk populations to enhance early detection and prevention efforts.</li><li><strong>Psychosocial Support:</strong> Offer psychosocial support to patients coping with a chronic illness, addressing concerns related to long-term management, quality of life, and potential stigma.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Etiological Agent:</strong> <em>Trypanosoma cruzi</em>, a hemoflagellate protozoan.</li><li><strong>Primary Vector:</strong> Triatomine bugs (e.g., <em>Triatoma infestans</em>, <em>Rhodnius prolixus</em>, <em>Panstrongylus megistus</em>), also known as 'kissing bugs'.</li><li><strong>Pathophysiology:</strong> Parasite invades host cells, particularly cardiac and smooth muscle cells, leading to inflammation, cell destruction, and progressive fibrosis over years, resulting in organ damage.</li><li><strong>Diagnostic Methods:</strong><br><ul><li><strong>Acute Phase:</strong> Direct microscopy of blood smears, PCR, hemoculture.</li><li><strong>Chronic Phase:</strong> Serological tests (e.g., ELISA, indirect immunofluorescence assay [IFA], Western blot) to detect IgG antibodies against <em>T. cruzi</em>.</li></ul></li><li><strong>Pharmacotherapy:</strong> Benznidazole and Nifurtimox are the primary antiparasitic drugs.</li><li><strong>Major Complications:</strong> Chagas cardiomyopathy, megaesophagus, megacolon, and rarely, meningoencephalitis.</li><li><strong>ICD-10 Codes:</strong> B57.0 (Acute Chagas disease with heart involvement), B57.1 (Acute Chagas disease without heart involvement), B57.2 (Chagas disease (chronic) with heart involvement), B57.3 (Chagas disease (chronic) with digestive system involvement), B57.4 (Chagas disease (chronic) with nervous system involvement), B57.5 (Chagas disease (chronic) with other organ involvement).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

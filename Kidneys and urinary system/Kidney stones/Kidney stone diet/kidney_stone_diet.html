@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a person standing next to a large kidney, with various food items floating around. On one side, healthy foods like water bottles, lemons, fruits, and vegetables are brightly colored and encouraged. On the other side, foods to limit like salty snacks, red meat, and sugary drinks are depicted with a subtle 'X' or muted colors. A clear visual representation of hydration and balanced diet for kidney health. Clean lines, modern design, public awareness style, no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./kidney_stone_diet.jpg" class="card-banner" alt="Kidney stone diet Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-kidneys-and-urinary-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Kidneys and urinary system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-kidneys-and-urinary-system-kidney-stones" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Kidney stones</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Kidney stone diet</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Kidneys and urinary system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Kidney stones</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+  <h2>&#128161; What You Need to Know</h2>
+  <ul>
+    <li><strong>Purpose of Diet:</strong> A kidney stone diet is crucial for preventing the formation of new stones and reducing the recurrence of existing ones, tailored to the specific stone composition.</li>
+    <li><strong>Stone Composition Matters:</strong> Dietary recommendations vary significantly based on the type of kidney stone (e.g., calcium oxalate, uric acid, struvite, cystine). Stone analysis is essential for personalized advice.</li>
+    <li><strong>Hydration is Key:</strong> Adequate fluid intake is the most universal and critical recommendation for all types of kidney stones, aiming to dilute stone-forming substances in urine.</li>
+    <li><strong>Individualized Approach:</strong> Dietary changes should be discussed with a healthcare provider or registered dietitian, as a "one-size-fits-all" approach is ineffective and potentially harmful.</li>
+  </ul>
+</div>
+<div class='symptoms-section'>
+  <h2>&#129298; Associated Symptoms</h2>
+  <ul>
+    <li><strong>Severe Flank Pain:</strong> Intense, colicky pain typically in the side and back, below the ribs, often radiating to the lower abdomen and groin.</li>
+    <li><strong>Hematuria:</strong> Blood in the urine, which may be visible (gross hematuria) or microscopic.</li>
+    <li><strong>Dysuria:</strong> Pain or burning sensation during urination, often indicating the stone is in the lower urinary tract.</li>
+    <li><strong>Frequent Urination:</strong> An increased urge to urinate, sometimes accompanied by urgency.</li>
+    <li><strong>Nausea and Vomiting:</strong> Common due to the intensity of pain and nerve connections between the kidneys and gastrointestinal tract.</li>
+    <li><strong>Fever and Chills:</strong> May indicate an infection, which is a serious complication requiring immediate medical attention.</li>
+  </ul>
+</div>
+<div class='precautions-section'>
+  <h2>&#128737; Crucial Precautions</h2>
+  <ul>
+    <li><strong>Avoid Excessive Sodium:</strong> High sodium intake increases calcium excretion into the urine, raising the risk of calcium stones. Limit processed foods, canned goods, and salty snacks.</li>
+    <li><strong>Moderate Animal Protein:</strong> High intake of animal protein (red meat, poultry, fish, eggs) can increase uric acid and calcium excretion while decreasing citrate, especially for uric acid and calcium oxalate stone formers.</li>
+    <li><strong>Beware of Oxalate-Rich Foods (for Calcium Oxalate Stones):</strong> While not eliminating, moderating intake of high-oxalate foods like spinach, rhubarb, almonds, chocolate, and tea is often recommended.</li>
+    <li><strong>Limit Sugary Drinks:</strong> Fructose, found in high-fructose corn syrup and table sugar, can increase calcium, oxalate, and uric acid excretion.</li>
+    <li><strong>Avoid Vitamin C Megadoses:</strong> High doses of vitamin C supplements can be metabolized to oxalate, potentially increasing calcium oxalate stone risk.</li>
+    <li><strong>Grapefruit Juice Restriction:</strong> Some studies suggest grapefruit juice may increase the risk of kidney stones, though evidence is mixed.</li>
+  </ul>
+</div>
+<div class='dietary-section'>
+  <h2>&#127869; Dietary Directions & Restrictions</h2>
+  <ul>
+    <li><strong>Increase Fluid Intake:</strong> Drink at least 2.5-3 liters of fluid daily, primarily water. Lemonade (with real lemon juice) can be beneficial for citrate content.</li>
+    <li><strong>Adequate Calcium Intake:</strong> Do NOT restrict dietary calcium for calcium oxalate stones. Calcium from food binds oxalate in the gut, preventing its absorption. Aim for 1000-1200 mg/day from dairy or fortified alternatives.</li>
+    <li><strong>Reduce Oxalate (for Calcium Oxalate Stones):</strong> If you form calcium oxalate stones, moderate intake of high-oxalate foods (e.g., spinach, beets, chocolate, nuts, tea). Pair oxalate-rich foods with calcium sources to reduce absorption.</li>
+    <li><strong>Limit Sodium:</strong> Aim for less than 2300 mg of sodium per day to reduce urinary calcium excretion.</li>
+    <li><strong>Moderate Animal Protein:</strong> Limit red meat, poultry, and fish to 4-6 ounces per meal. Consider plant-based protein sources.</li>
+    <li><strong>Increase Fruits and Vegetables:</strong> These provide citrate, which inhibits stone formation, and are generally low in sodium and high in fiber.</li>
+    <li><strong>For Uric Acid Stones:</strong> Reduce purine-rich foods (organ meats, shellfish, red meat, alcohol). Increase fluid intake and consider alkalinizing foods (fruits, vegetables).</li>
+    <li><strong>For Cystine Stones:</strong> Focus on very high fluid intake (3-4 liters/day) and a low-sodium, moderate-protein diet.</li>
+  </ul>
+</div>
+<div class='warning-box'>
+  <h2>&#9888;&#65039; Attendant Guidelines</h2>
+  <ul>
+    <li><strong>Strict Adherence to Fluid Goals:</strong> Consistent high fluid intake throughout the day is paramount, not just when thirsty.</li>
+    <li><strong>Regular Monitoring:</strong> Follow up with your physician for urine tests (e.g., 24-hour urine collection) to assess the effectiveness of dietary changes and adjust as needed.</li>
+    <li><strong>Medication Compliance:</strong> If prescribed medications (e.g., thiazide diuretics, allopurinol, potassium citrate), ensure strict adherence as they work synergistically with diet.</li>
+    <li><strong>Avoid Crash Diets:</strong> Extreme dietary restrictions without medical guidance can lead to nutritional deficiencies and may not be effective for stone prevention.</li>
+  </ul>
+</div>
+<div class='doctor-advice'>
+  <h2>&#129658; Physician's Perspective</h2>
+  <ul>
+    <li><strong>Personalized Management:</strong> Kidney stone prevention is highly individualized. A thorough metabolic evaluation, including stone analysis and 24-hour urine collection, guides specific dietary and medical interventions.</li>
+    <li><strong>Holistic Approach:</strong> Dietary modifications are a cornerstone of prevention but must be integrated with lifestyle changes, appropriate hydration, and sometimes pharmacotherapy.</li>
+    <li><strong>Long-term Commitment:</strong> Dietary changes for kidney stone prevention are often lifelong. Regular follow-ups are essential to monitor progress and adjust strategies.</li>
+    <li><strong>Referral to Dietitian:</strong> Patients often benefit from a referral to a registered dietitian specializing in renal nutrition for detailed counseling and meal planning.</li>
+  </ul>
+</div>
+<div class='student-nurse-index'>
+  <h2>&#127891; Academic & Nursing Corner</h2>
+  <ul>
+    <li><strong>Patient Education:</strong> Nurses play a vital role in educating patients about the importance of diet, fluid intake, and medication adherence for kidney stone prevention.</li>
+    <li><strong>Fluid Intake Monitoring:</strong> Instruct patients on how to monitor their fluid intake and urine output, aiming for a target urine volume (e.g., 2-2.5 liters/day).</li>
+    <li><strong>Dietary Counseling Support:</strong> Reinforce dietary recommendations provided by the physician or dietitian, offering practical tips for meal planning and food choices.</li>
+    <li><strong>Symptom Recognition:</strong> Educate patients on recognizing symptoms of stone recurrence or complications (e.g., infection) and when to seek immediate medical attention.</li>
+    <li><strong>Medication Administration & Side Effects:</strong> Provide clear instructions on prescribed medications, including purpose, dosage, timing, and potential side effects.</li>
+  </ul>
+</div>
+<div class='technical-index'>
+  <h2>&#128300; Clinical Reference Index</h2>
+  <ul>
+    <li><strong>24-Hour Urine Collection:</strong> A critical diagnostic tool to measure urinary volume, pH, and excretion rates of calcium, oxalate, uric acid, citrate, sodium, and creatinine to identify metabolic abnormalities.</li>
+    <li><strong>Stone Analysis:</strong> Laboratory analysis of a passed or surgically removed stone to determine its chemical composition, guiding specific preventive strategies.</li>
+    <li><strong>Urinary Citrate:</strong> A natural inhibitor of calcium stone formation. Low levels often warrant potassium citrate supplementation or dietary adjustments.</li>
+    <li><strong>Hypercalciuria:</strong> Elevated urinary calcium excretion, a common risk factor for calcium stones, often managed with dietary sodium restriction and/or thiazide diuretics.</li>
+    <li><strong>Hyperoxaluria:</strong> Elevated urinary oxalate excretion, a risk factor for calcium oxalate stones, managed by dietary oxalate moderation and adequate calcium intake.</li>
+    <li><strong>Hyperuricosuria:</strong> Elevated urinary uric acid excretion, a risk factor for uric acid and calcium oxalate stones, managed by purine restriction and/or allopurinol.</li>
+  </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

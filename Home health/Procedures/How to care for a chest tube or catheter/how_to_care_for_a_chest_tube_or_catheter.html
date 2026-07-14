@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a patient in a home setting, comfortably seated or lying down, with a chest tube visible. A caring family member or home health nurse is gently monitoring the chest tube drainage system, which is placed on the floor beside the bed/chair. The scene emphasizes safety, comfort, and diligent care. Elements include a clear drainage collection unit, tubing, and a calm, reassuring atmosphere. Soft, warm color palette.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./how_to_care_for_a_chest_tube_or_catheter.jpg" class="card-banner" alt="How to care for a chest tube or catheter Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-home-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Home health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-home-health-procedures" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Procedures</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>How to care for a chest tube or catheter</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Home health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Procedures</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Purpose of the Chest Tube:</strong> A chest tube or catheter is placed to drain air, fluid, or blood from the pleural space, allowing the lung to re-expand and function properly.</li>
+        <li><strong>Home Care Importance:</strong> Proper home care is crucial to prevent infection, maintain the tube's patency, and ensure the drainage system functions correctly, supporting recovery.</li>
+        <li><strong>System Components:</strong> Understand the parts of your drainage system, including the collection chamber, water seal, and suction control, and how they work together.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Increased Shortness of Breath:</strong> Sudden or worsening difficulty breathing, chest tightness, or rapid breathing may indicate a problem with lung re-expansion or tube function.</li>
+        <li><strong>Fever or Chills:</strong> New onset of fever (above 100.4°F or 38°C) or chills can be a sign of infection at the insertion site or within the chest cavity.</li>
+        <li><strong>Significant Pain:</strong> Uncontrolled or worsening pain at the insertion site or in the chest, despite pain medication, requires immediate assessment.</li>
+        <li><strong>Redness, Swelling, or Pus:</strong> Any signs of infection around the insertion site, such as increased redness, warmth, swelling, or purulent drainage.</li>
+        <li><strong>Changes in Drainage:</strong> Sudden cessation of drainage, a significant increase in drainage, or a change in its color (e.g., bright red blood, cloudy pus) should be reported.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Maintain a Closed System:</strong> Always keep the drainage system below the level of the chest to prevent fluid or air from re-entering the pleural space. Avoid kinking or clamping the tubing unless specifically instructed by a healthcare professional.</li>
+        <li><strong>Secure the Tube:</strong> Ensure the chest tube is securely taped to the skin and that all connections are tight to prevent dislodgement or air leaks.</li>
+        <li><strong>Monitor Water Seal:</strong> Observe the water seal chamber for tidaling (fluctuations with breathing) and bubbling. Continuous bubbling may indicate an air leak and requires immediate attention.</li>
+        <li><strong>Dressing Changes:</strong> Follow strict sterile technique for dressing changes as instructed by your nurse to prevent infection. Observe the site for any signs of irritation or infection.</li>
+        <li><strong>Avoid Pulling:</strong> Be extremely careful not to pull on the chest tube. Secure the tubing to clothing or bedding to prevent accidental dislodgement during movement or sleep.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Adequate Hydration:</strong> Maintain good fluid intake unless otherwise restricted by your physician, as hydration supports overall healing and helps prevent constipation.</li>
+        <li><strong>Nutrient-Rich Diet:</strong> Consume a balanced diet rich in protein, vitamins, and minerals to support tissue repair and immune function during recovery.</li>
+        <li><strong>Prevent Constipation:</strong> Include fiber-rich foods (fruits, vegetables, whole grains) and ensure adequate fluid intake to prevent straining during bowel movements, which can increase intra-abdominal and intra-thoracic pressure.</li>
+        <li><strong>Avoid Excessive Sodium:</strong> Limit high-sodium foods if you have fluid retention issues, as advised by your doctor.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Emergency Contacts:</strong> Keep emergency numbers readily available, including your doctor, home health agency, and 911.</li>
+        <li><strong>Recognize Emergencies:</strong> Call 911 immediately for sudden severe shortness of breath, chest pain, dislodgement of the tube, or significant bleeding from the site.</li>
+        <li><strong>Drainage System Handling:</strong> Learn how to properly empty and measure drainage, if instructed, maintaining sterility and avoiding contamination.</li>
+        <li><strong>Hygiene:</strong> Assist the patient with personal hygiene while ensuring the chest tube and dressing remain dry and intact.</li>
+        <li><strong>Emotional Support:</strong> Provide reassurance and emotional support, as living with a chest tube can be anxiety-provoking for the patient.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Strict Adherence to Instructions:</strong> Follow all specific instructions regarding activity levels, pain management, and chest tube care precisely to ensure optimal healing and prevent complications.</li>
+        <li><strong>Regular Follow-up:</strong> Attend all scheduled follow-up appointments for assessment of lung re-expansion, drainage monitoring, and eventual tube removal.</li>
+        <li><strong>Early Recognition of Complications:</strong> Be vigilant for any signs of infection, air leak, or worsening respiratory status and report them promptly. Early intervention is key to preventing serious issues.</li>
+        <li><strong>Pain Management:</strong> Utilize prescribed pain medication as directed to ensure comfort and facilitate deep breathing and coughing exercises, which are vital for lung recovery.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Sterile Technique Mastery:</strong> Emphasize meticulous sterile technique during dressing changes and any manipulation of the drainage system to prevent nosocomial infections.</li>
+        <li><strong>Patient Education:</strong> Crucial role in educating patients and caregivers on the purpose, care, and potential complications of chest tubes, ensuring they can manage the device safely at home.</li>
+        <li><strong>Drainage System Principles:</strong> Understand the mechanics of water seal, suction control, and collection chambers, including how to troubleshoot common issues like continuous bubbling or loss of suction.</li>
+        <li><strong>Assessment Skills:</strong> Develop keen assessment skills for respiratory status, pain levels, insertion site integrity, and drainage characteristics to identify subtle changes.</li>
+        <li><strong>Documentation:</strong> Maintain accurate and thorough documentation of drainage amount and characteristics, insertion site condition, patient tolerance, and any interventions performed.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Pleural Effusion:</strong> Accumulation of fluid in the pleural space, often requiring chest tube drainage.</li>
+        <li><strong>Pneumothorax:</strong> Presence of air in the pleural space, leading to lung collapse, managed with a chest tube.</li>
+        <li><strong>Hemothorax:</strong> Collection of blood in the pleural space, typically requiring chest tube insertion.</li>
+        <li><strong>Water Seal Chamber:</strong> A critical component of the drainage system that allows air to exit the pleural space but prevents it from re-entering.</li>
+        <li><strong>Tidaling:</strong> The rise and fall of fluid in the water seal chamber with respiration, indicating patency of the tube and changes in intrathoracic pressure.</li>
+        <li><strong>Air Leak:</strong> Indicated by continuous bubbling in the water seal chamber, requiring systematic assessment to locate the source.</li>
+        <li><strong>Clamping Protocols:</strong> Specific, limited circumstances under which a chest tube may be clamped (e.g., brief tube changes, assessing for removal), always under medical direction.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

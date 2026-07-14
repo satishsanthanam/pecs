@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a healthy, smiling person with a transparent overlay of their urinary system (kidneys, ureters, bladder). Inside the bladder, small, stylized, non-threatening bacteria are visible, indicating their presence without causing distress or symptoms. The overall scene conveys health and the 'asymptomatic' nature of the condition, with no signs of pain or illness. Clean, modern design with a focus on public awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./asymptomatic_bacteriuria.jpg" class="card-banner" alt="Asymptomatic bacteriuria Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-kidneys-and-urinary-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Kidneys and urinary system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-kidneys-and-urinary-system-urinary-tract-infections" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Urinary tract infections</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Asymptomatic bacteriuria</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Kidneys and urinary system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Urinary tract infections</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Asymptomatic bacteriuria (ASB) is the presence of a significant number of bacteria in the urine without any signs or symptoms of a urinary tract infection (UTI).</li><li><strong>Prevalence:</strong> It is common, particularly in elderly individuals, diabetic patients, and those with indwelling catheters.</li><li><strong>Treatment Rationale:</strong> Generally, ASB does not require antibiotic treatment in most populations due to the risk of promoting antibiotic resistance and adverse drug effects.</li><li><strong>Key Distinction:</strong> It is crucial to differentiate ASB from a symptomatic UTI, which presents with specific urinary complaints.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Absence of Typical UTI Symptoms:</strong> Patients with ASB do not experience dysuria (painful urination), urinary frequency, urgency, suprapubic pain, or fever.</li><li><strong>Clinical Indication for Screening:</strong> ASB is often detected during routine screening in specific populations where it poses a risk, such as pregnant women or individuals undergoing invasive urological procedures.</li><li><strong>Risk Factors for ASB:</strong> Conditions that increase the likelihood of ASB include diabetes mellitus, advanced age, spinal cord injury, and the presence of urinary catheters.</li><li><strong>Differentiation from Symptomatic UTI:</strong> The presence of any of the aforementioned urinary symptoms would classify the condition as a symptomatic UTI, not ASB, and would warrant further evaluation and potential treatment.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Unnecessary Antibiotics:</strong> Do not treat ASB in healthy, non-pregnant adults, elderly individuals, or those with diabetes, as it does not improve outcomes and contributes to antibiotic resistance.</li><li><strong>Screening in Pregnancy:</strong> Screen all pregnant women for ASB early in pregnancy (first trimester) due to the increased risk of pyelonephritis and adverse pregnancy outcomes if left untreated.</li><li><strong>Pre-Procedure Prophylaxis:</strong> Treat ASB with appropriate antibiotics before invasive urological procedures where mucosal bleeding is anticipated, to prevent post-procedure sepsis.</li><li><strong>Proper Urine Collection:</strong> Ensure meticulous clean-catch midstream urine collection to minimize contamination and avoid misdiagnosis of ASB or unnecessary treatment.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration Status:</strong> Maintain adequate fluid intake to promote regular bladder emptying and urinary tract health, though this does not treat ASB itself.</li><li><strong>Bladder Irritants:</strong> While not directly related to ASB, avoiding known bladder irritants like caffeine, alcohol, and artificial sweeteners may help prevent symptoms in individuals prone to bladder sensitivity.</li><li><strong>Cranberry Products:</strong> The role of cranberry products in preventing UTIs is debated and not recommended for treating or preventing ASB.</li><li><strong>No Specific Dietary Restrictions:</strong> There are no specific dietary restrictions or recommendations directly linked to the management or prevention of asymptomatic bacteriuria.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Targeted Screening:</strong> Only screen for ASB in populations where treatment has proven benefit, primarily pregnant women and patients undergoing invasive urological procedures.</li><li><strong>Diagnostic Confirmation:</strong> Diagnosis requires two consecutive clean-catch urine samples with the same bacterial strain exceeding specific colony counts (e.g., >10<sup>5</sup> CFU/mL for women, >10<sup>4</sup> CFU/mL for men).</li><li><strong>Antibiotic Stewardship:</strong> Adhere strictly to guidelines regarding ASB treatment to combat the global challenge of antimicrobial resistance.</li><li><strong>Patient Education:</strong> Educate patients about ASB, explaining why treatment is often not necessary and the potential harms of unnecessary antibiotic use.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Clinical Judgment:</strong> Exercise careful clinical judgment to distinguish ASB from symptomatic UTIs, especially in patients with non-specific symptoms or altered mental status.</li><li><strong>Risk-Benefit Analysis:</strong> Always weigh the potential benefits of treating ASB against the risks of antibiotic exposure, including side effects and resistance development.</li><li><strong>Guideline Adherence:</strong> Follow established clinical guidelines (e.g., IDSA guidelines) for screening and management of ASB in specific patient populations.</li><li><strong>Preventive Strategies:</strong> Focus on strategies to prevent symptomatic UTIs rather than routinely treating ASB in low-risk individuals.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Urine Sample Collection:</strong> Master the technique for obtaining a sterile, midstream clean-catch urine sample to ensure accurate diagnostic results.</li><li><strong>Patient Education:</strong> Provide clear, concise patient education on ASB, explaining the condition and the rationale behind not treating it in most cases.</li><li><strong>Symptom Monitoring:</strong> Instruct patients with ASB to report any development of urinary symptoms promptly, indicating a potential progression to a symptomatic UTI.</li><li><strong>High-Risk Population Awareness:</strong> Recognize and identify high-risk groups (e.g., pregnant women, catheterized patients) who require specific screening and management protocols for ASB.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathogens:</strong> Common causative organisms include Escherichia coli, Klebsiella pneumoniae, Proteus mirabilis, and Enterococcus species.</li><li><strong>Diagnostic Criteria:</strong> Defined by quantitative urine culture results (e.g., ≥10<sup>5</sup> colony-forming units/mL in two consecutive voided urine samples in women, or one sample in men/catheterized patients) without symptoms.</li><li><strong>Complications (if treated unnecessarily):</strong> Increased risk of Clostridioides difficile infection, adverse drug reactions, and selection for multidrug-resistant organisms.</li><li><strong>Complications (if untreated in specific populations):</strong> Pyelonephritis, preterm labor, and low birth weight in pregnant women; sepsis post-invasive urological procedures.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

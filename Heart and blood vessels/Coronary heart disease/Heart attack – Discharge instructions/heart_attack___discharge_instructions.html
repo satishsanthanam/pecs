@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a person recovering from a heart attack, surrounded by elements symbolizing heart health, medication adherence, and a healthy lifestyle. The person is gently exercising or walking, with a visible healthy heart icon, a pill bottle, fruits, vegetables, and a calendar marking follow-up appointments. The color palette is calm and reassuring, with a focus on blues, greens, and soft reds. Clean lines, no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./heart_attack___discharge_instructions.jpg" class="card-banner" alt="Heart attack – Discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-coronary-heart-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Coronary heart disease</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Heart attack – Discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Coronary heart disease</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding Your Heart Attack</strong>: You have experienced a myocardial infarction (heart attack), which means blood flow to a part of your heart was blocked, causing damage.</li><li><strong>Medication Adherence is Crucial</strong>: Taking your prescribed medications exactly as directed is vital for preventing future events and managing your heart condition. Do not stop or change doses without consulting your doctor.</li><li><strong>Follow-Up Appointments</strong>: Schedule and attend all follow-up appointments with your cardiologist and primary care physician. These are essential for monitoring your recovery and adjusting your treatment plan.</li><li><strong>Cardiac Rehabilitation</strong>: Enroll in and actively participate in a cardiac rehabilitation program. This structured exercise and education program is a cornerstone for recovery and long-term heart health.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>New or Worsening Chest Pain</strong>: Report any new or worsening chest pain, pressure, tightness, or discomfort, especially if it radiates to your arm, back, neck, jaw, or stomach.</li><li><strong>Sudden Shortness of Breath</strong>: Seek immediate medical attention for sudden or increasing difficulty breathing, particularly at rest or with minimal exertion.</li><li><strong>Unexplained Fatigue or Weakness</strong>: Report severe, unexplained fatigue or weakness that is new or significantly worse than your usual state.</li><li><strong>Nausea, Dizziness, or Lightheadedness</strong>: Persistent nausea, vomiting, dizziness, or lightheadedness, especially if accompanied by other symptoms, warrants medical evaluation.</li><li><strong>Swelling in Extremities</strong>: New or increased swelling in your legs, ankles, or feet could indicate fluid retention and should be discussed with your doctor.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Activity Restrictions</strong>: Avoid heavy lifting (typically over 5-10 lbs), strenuous activities, and pushing/pulling for several weeks as advised by your doctor. Gradually increase activity levels.</li><li><strong>Driving Restrictions</strong>: Refrain from driving for a period, usually 1-4 weeks, or as instructed by your cardiologist, especially if you experienced significant symptoms or underwent certain procedures.</li><li><strong>Wound Care (if applicable)</strong>: If you had a catheterization (PCI) or surgery (CABG), keep the incision site clean and dry. Watch for signs of infection like redness, swelling, warmth, or discharge.</li><li><strong>Smoking Cessation</strong>: Absolutely stop smoking and avoid all tobacco products, including e-cigarettes. This is one of the most critical steps to prevent another heart attack.</li><li><strong>Blood Pressure and Glucose Monitoring</strong>: Monitor your blood pressure and blood glucose levels regularly as instructed, and report any significant deviations to your healthcare provider.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Sodium Restriction</strong>: Limit sodium intake to reduce fluid retention and blood pressure. Avoid processed foods, canned soups, cured meats, and excessive table salt.</li><li><strong>Healthy Fats Emphasis</strong>: Choose healthy fats found in olive oil, avocados, nuts, and fatty fish (like salmon). Avoid trans fats (partially hydrogenated oils) and limit saturated fats (red meat, full-fat dairy).</li><li><strong>Fiber-Rich Foods</strong>: Incorporate plenty of fruits, vegetables, whole grains, and legumes into your diet to support heart health and digestion.</li><li><strong>Portion Control</strong>: Practice mindful eating and portion control to maintain a healthy weight, which reduces strain on your heart.</li><li><strong>Hydration</strong>: Maintain adequate hydration by drinking water throughout the day, unless otherwise restricted by your physician due to conditions like heart failure.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Plan</strong>: Know when to call 911 (or local emergency services) immediately for symptoms like severe chest pain, sudden shortness of breath, or loss of consciousness.</li><li><strong>Medication Management Assistance</strong>: Assist the patient with organizing and administering medications, ensuring strict adherence to the prescribed schedule.</li><li><strong>Symptom Recognition</strong>: Be aware of the warning signs of a recurrent heart attack or complications and know how to respond quickly and appropriately.</li><li><strong>Emotional Support</strong>: Provide consistent emotional support and encourage active participation in cardiac rehabilitation and healthy lifestyle changes.</li><li><strong>Safe Environment</strong>: Ensure a safe home environment, removing trip hazards and supporting a calm, stress-reduced atmosphere conducive to recovery.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Prioritize Medications</strong>: Your prescribed medications are lifelines. Adherence is non-negotiable for preventing future cardiac events and managing your condition effectively.</li><li><strong>Embrace Cardiac Rehabilitation</strong>: Cardiac rehabilitation is not optional; it's a critical component of your recovery, offering supervised exercise, education, and psychological support.</li><li><strong>Lifestyle Transformation</strong>: Commit to significant lifestyle changes, including a heart-healthy diet, regular physical activity, stress management, and complete smoking cessation.</li><li><strong>Regular Monitoring</strong>: Consistently monitor your blood pressure, cholesterol, and blood sugar levels, and report any concerning trends during your follow-up visits.</li><li><strong>Open Communication</strong>: Maintain open and honest communication with your healthcare team about any symptoms, concerns, or challenges you face during your recovery.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Reinforcement</strong>: Reinforce education on medication adherence, symptom recognition, activity restrictions, and the importance of cardiac rehabilitation.</li><li><strong>Discharge Planning Coordination</strong>: Coordinate follow-up appointments, medication reconciliation, and referrals to cardiac rehabilitation and other necessary services.</li><li><strong>Vital Sign Monitoring Education</strong>: Educate patients and caregivers on home monitoring of blood pressure, heart rate, and weight, and when to report abnormal findings.</li><li><strong>Psychosocial Assessment and Support</strong>: Assess for signs of depression or anxiety post-MI and provide resources for psychological support and counseling.</li><li><strong>Wound/Site Assessment Instruction</strong>: Instruct on proper care for any access sites (e.g., radial or femoral artery post-PCI) or surgical incisions (post-CABG), emphasizing infection prevention.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Myocardial Infarction (MI)</strong>: Acute event caused by prolonged ischemia leading to myocardial cell death.</li><li><strong>Percutaneous Coronary Intervention (PCI)</strong>: Non-surgical procedure to open narrowed or blocked coronary arteries, often involving stent placement.</li><li><strong>Coronary Artery Bypass Graft (CABG)</strong>: Surgical procedure to improve blood flow to the heart by creating new pathways around blocked arteries.</li><li><strong>Antiplatelet Therapy</strong>: Medications (e.g., aspirin, clopidogrel) used to prevent blood clots, crucial post-MI and post-stent placement.</li><li><strong>Beta-Blockers</strong>: Medications that reduce heart rate and blood pressure, decreasing the heart's workload and improving outcomes post-MI.</li><li><strong>Statins</strong>: Cholesterol-lowering drugs essential for stabilizing plaques and preventing future atherosclerotic events.</li><li><strong>ACE Inhibitors/ARBs</strong>: Medications that help relax blood vessels, lower blood pressure, and protect the heart, especially after an MI.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

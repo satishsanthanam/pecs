@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a hand with nails affected by lichen planus. Show distinct features like longitudinal ridging, thinning, and a subtle pterygium formation on one nail. The style should be clean, medical, and suitable for public awareness, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./lichen_planus.jpg" class="card-banner" alt="Lichen planus Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-skin-hair-and-nails" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Skin, hair, and nails</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-skin-hair-and-nails-nails" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Nails</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Lichen planus</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Skin, hair, and nails</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Nails</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Inflammatory Condition:</strong> Lichen planus is a chronic inflammatory condition that can affect the skin, hair, mucous membranes, and nails.</li><li><strong>Nail Involvement:</strong> When it affects the nails, it can lead to significant and often irreversible damage to the nail plate and matrix.</li><li><strong>Autoimmune Basis:</strong> It is believed to be an autoimmune disorder where the body's immune system mistakenly attacks cells in the skin and nail matrix.</li><li><strong>Prevalence:</strong> Nail involvement occurs in approximately 1-10% of all lichen planus cases, and can sometimes be the sole manifestation.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Longitudinal Ridging:</strong> Development of fine or coarse lines running from the cuticle to the tip of the nail.</li><li><strong>Thinning and Brittleness:</strong> Nails may become progressively thinner, fragile, and prone to splitting.</li><li><strong>Onycholysis:</strong> Separation of the nail plate from the nail bed, often starting at the free edge.</li><li><strong>Pterygium Formation:</strong> A characteristic V-shaped scar where the proximal nail fold grows forward and fuses with the nail bed, leading to nail plate loss.</li><li><strong>Anonychia:</strong> Complete loss of the nail plate, which can be permanent in severe cases.</li><li><strong>Trachyonychia:</strong> Rough, sandpaper-like texture of the nail plate.</li><li><strong>Other Body Areas:</strong> Patients may also present with pruritic, purple, polygonal papules on the skin, white lacy patterns (Wickham's striae) in the mouth, or scarring alopecia on the scalp.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Nail Trauma:</strong> Protect nails from injury, as trauma can trigger or worsen lesions (Koebner phenomenon).</li><li><strong>Regular Dermatological Review:</strong> Maintain consistent follow-up appointments with a dermatologist to monitor disease progression and treatment efficacy.</li><li><strong>Infection Prevention:</strong> Keep nails and surrounding skin clean and dry to prevent secondary bacterial or fungal infections, especially with onycholysis.</li><li><strong>Gentle Nail Care:</strong> Avoid aggressive manicures, pedicures, or nail enhancements that could further damage fragile nails.</li><li><strong>Sun Protection:</strong> While not directly related to nail LP, general sun protection is advised for skin LP patients.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Nutrient-Rich Diet:</strong> Encourage a balanced diet rich in vitamins (especially biotin, Vitamin A, C, E) and minerals (zinc, iron) to support overall nail health and integrity.</li><li><strong>Adequate Hydration:</strong> Ensure sufficient fluid intake to maintain skin and nail hydration.</li><li><strong>Anti-inflammatory Foods:</strong> While not a direct treatment, incorporating foods with anti-inflammatory properties (e.g., omega-3 fatty acids, fruits, vegetables) may support overall health.</li><li><strong>Avoid Irritants (Oral LP):</strong> If oral lichen planus is also present, advise avoiding spicy, acidic, or abrasive foods that can irritate oral lesions.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Early Diagnosis is Key:</strong> Prompt identification of nail lichen planus is crucial to initiate treatment and potentially prevent irreversible nail destruction.</li><li><strong>Adherence to Treatment:</strong> Emphasize the importance of consistent application of topical medications or adherence to systemic therapies as prescribed.</li><li><strong>Psychological Support:</strong> Acknowledge the significant cosmetic impact of nail changes and offer resources for psychological support if needed.</li><li><strong>Biopsy Consideration:</strong> A nail matrix biopsy may be necessary for definitive diagnosis, especially when clinical presentation is atypical.</li><li><strong>Monitor for Malignancy:</strong> While rare in nail LP, chronic inflammatory conditions, particularly oral LP, carry a small risk of malignant transformation, warranting vigilance.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Treatment Challenges:</strong> Nail lichen planus can be challenging to treat, and complete resolution is often difficult, with a high potential for permanent nail dystrophy.</li><li><strong>Therapeutic Options:</strong> Treatment typically involves potent topical corticosteroids, intralesional corticosteroid injections into the nail matrix, or systemic agents like oral corticosteroids, methotrexate, cyclosporine, or retinoids for severe, widespread, or progressive cases.</li><li><strong>Differential Diagnosis:</strong> Always consider other conditions such as nail psoriasis, onychomycosis, trauma, eczema, or tumors when evaluating nail changes.</li><li><strong>Prognosis:</strong> While some cases may spontaneously remit, many progress to permanent nail damage, including anonychia or pterygium formation.</li><li><strong>Patient Education:</strong> Thoroughly educate patients on the chronic nature of the disease, realistic treatment expectations, and the importance of long-term management.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education on Nail Care:</strong> Instruct patients on gentle nail care practices, avoiding harsh chemicals, and protecting nails from physical trauma.</li><li><strong>Medication Administration:</strong> Educate on proper application techniques for topical treatments (e.g., occlusive dressings) and monitor for side effects of systemic medications.</li><li><strong>Assessment of Nail Changes:</strong> Regularly assess and document the extent and type of nail changes, noting any signs of infection or treatment response.</li><li><strong>Emotional Support:</strong> Provide empathetic support, recognizing the potential distress caused by visible nail disfigurement.</li><li><strong>Referral Pathways:</strong> Understand when to refer patients to a dermatologist for specialized care or to mental health professionals for psychological support.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathophysiology:</strong> T-cell mediated autoimmune response targeting basal keratinocytes of the nail matrix.</li><li><strong>Histopathology:</strong> Characteristic findings in nail matrix biopsy include a lichenoid inflammatory infiltrate at the dermo-epidermal junction, vacuolar degeneration of basal cells, and colloid bodies.</li><li><strong>Koebner Phenomenon:</strong> The development of new lesions at sites of trauma, common in lichen planus.</li><li><strong>Pterygium Unguis:</strong> A specific and often irreversible manifestation where the dorsal nail fold adheres to the nail bed, leading to nail plate atrophy.</li><li><strong>Anonychia:</strong> Complete absence of the nail plate, a severe outcome of extensive nail matrix damage.</li><li><strong>Immunohistochemistry:</strong> May show increased expression of MHC class I and II antigens and adhesion molecules.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

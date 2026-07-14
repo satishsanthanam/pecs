@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for ovarian cancer awareness. A stylized female figure, with a subtle focus on the pelvic area where the ovaries are located. The ovaries are depicted with a gentle, abstract representation of cellular changes or a subtle glow, symbolizing health or early detection. Use clean lines, soft pastel colors, and a modern, approachable design. The overall mood should be one of awareness and gentle concern, not fear. No text or complex medical instruments.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./ovarian_cancer.jpg" class="card-banner" alt="Ovarian cancer Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-sexual-and-reproductive-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Sexual and reproductive health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-sexual-and-reproductive-health-ovarian-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Ovarian cancer</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Ovarian cancer</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Sexual and reproductive health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Ovarian cancer</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Silent Progression:</strong> Ovarian cancer is often referred to as a 'silent killer' because its early symptoms are vague and easily mistaken for less serious conditions, leading to late-stage diagnosis.</li><li><strong>Primary Types:</strong> The most common type is epithelial ovarian cancer, originating from the cells on the surface of the ovary. Less common types include germ cell tumors and stromal tumors.</li><li><strong>Key Risk Factors:</strong> Include increasing age, a family history of ovarian or breast cancer, genetic mutations (e.g., BRCA1/BRCA2, Lynch syndrome), endometriosis, and never having been pregnant.</li><li><strong>Early Detection Challenges:</strong> There is currently no reliable screening test for ovarian cancer in the general population, making symptom awareness crucial.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Persistent Bloating:</strong> Feeling full or swollen in the abdomen that does not resolve and is not related to diet.</li><li><strong>Pelvic or Abdominal Pain:</strong> Discomfort or pressure in the lower abdomen or pelvis that is new, persistent, and unexplained.</li><li><strong>Difficulty Eating or Feeling Full Quickly:</strong> A noticeable change in appetite or feeling satiated after consuming only a small amount of food.</li><li><strong>Urinary Symptoms:</strong> Increased frequency or urgency of urination without a urinary tract infection.</li><li><strong>Other Vague Symptoms:</strong> Fatigue, indigestion, back pain, changes in bowel habits (constipation or diarrhea), and unexplained weight loss or gain can also occur.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Genetic Counseling:</strong> Individuals with a strong family history of ovarian or breast cancer should consider genetic counseling and testing for BRCA1/2 or other relevant mutations.</li><li><strong>Risk-Reducing Surgery:</strong> For high-risk individuals (e.g., confirmed BRCA mutation carriers), prophylactic bilateral salpingo-oophorectomy (removal of ovaries and fallopian tubes) can significantly reduce risk.</li><li><strong>Symptom Vigilance:</strong> Be aware of persistent, new, or worsening symptoms, especially the 'BEAT' symptoms (Bloating, Early satiety, Abdominal pain, Trouble with urination), and seek prompt medical evaluation.</li><li><strong>Oral Contraceptive Use:</strong> Long-term use of oral contraceptives has been shown to reduce the risk of ovarian cancer in some women, but this should be discussed with a healthcare provider.</li><li><strong>Regular Gynecological Check-ups:</strong> While not a screening tool for ovarian cancer, routine exams are important for overall reproductive health and discussing any concerns.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Nutrient-Dense Foods:</strong> Focus on a balanced diet rich in fruits, vegetables, lean proteins, and whole grains to support overall health and immune function, especially during treatment.</li><li><strong>Manage Gastrointestinal Symptoms:</strong> If experiencing bloating, nausea, or early satiety, consume smaller, more frequent meals and choose easily digestible foods.</li><li><strong>Adequate Hydration:</strong> Maintain good fluid intake, particularly water, to help manage treatment side effects like fatigue or constipation.</li><li><strong>Fiber Intake:</strong> Incorporate soluble and insoluble fiber to help regulate bowel movements, which can be affected by the disease or its treatments.</li><li><strong>Avoid Irritants:</strong> Limit highly processed foods, excessive fats, spicy foods, and caffeine if they exacerbate gastrointestinal discomfort.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Do Not Dismiss Persistent Symptoms:</strong> If you experience any of the 'BEAT' symptoms (Bloating, Early satiety, Abdominal pain, Trouble with urination) for more than a few weeks, consult a healthcare provider promptly.</li><li><strong>Seek Expert Opinion:</strong> If diagnosed, ensure care is managed by a gynecologic oncologist, as this specialization is associated with improved outcomes.</li><li><strong>Adherence to Treatment Plan:</strong> Strictly follow all prescribed treatments, including surgery, chemotherapy, and targeted therapies, and report any severe side effects immediately.</li><li><strong>Emotional and Psychological Support:</strong> Ovarian cancer diagnosis and treatment can be emotionally challenging; seek support from family, friends, support groups, or mental health professionals.</li><li><strong>Post-Treatment Surveillance:</strong> Regular follow-up appointments and monitoring are crucial for detecting recurrence early.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Diagnostic Approach:</strong> Diagnosis typically involves a combination of pelvic examination, transvaginal ultrasound, CA-125 blood test, CT scan, and ultimately, a biopsy or surgical exploration for definitive diagnosis.</li><li><strong>Staging and Treatment Planning:</strong> Once diagnosed, the cancer is surgically staged according to FIGO guidelines, which guides subsequent treatment decisions.</li><li><strong>Primary Treatment:</strong> Surgical debulking (cytoreduction) to remove as much visible tumor as possible is the cornerstone of treatment, often followed by platinum-based chemotherapy.</li><li><strong>Multidisciplinary Care:</strong> Optimal management requires a team approach involving gynecologic oncologists, medical oncologists, radiation oncologists, pathologists, and supportive care specialists.</li><li><strong>Emerging Therapies:</strong> Targeted therapies (e.g., PARP inhibitors for BRCA-mutated cancers) and immunotherapies are increasingly important in managing advanced or recurrent disease.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Symptom Assessment:</strong> Nurses play a vital role in recognizing and documenting subtle, persistent symptoms that may indicate ovarian cancer, prompting further investigation.</li><li><strong>Patient Education on Treatment:</strong> Educate patients about their specific treatment plan, potential side effects of chemotherapy or surgery, and strategies for managing these effects at home.</li><li><strong>Post-Operative Care:</strong> Provide meticulous post-surgical care, including pain management, wound care, monitoring for complications (e.g., infection, ileus), and early ambulation.</li><li><strong>Chemotherapy Administration & Monitoring:</strong> Administer chemotherapy agents safely, monitor for adverse reactions, and educate patients on managing side effects like nausea, fatigue, and neutropenia.</li><li><strong>Psychosocial Support:</strong> Offer emotional support, connect patients with support groups, and address concerns related to body image, fertility, and quality of life throughout their cancer journey.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>FIGO Staging System:</strong> The International Federation of Gynecology and Obstetrics (FIGO) system is used to classify the extent of ovarian cancer spread, crucial for prognosis and treatment.</li><li><strong>CA-125:</strong> A glycoprotein tumor marker often elevated in ovarian cancer, used primarily for monitoring treatment response and recurrence, not as a standalone screening tool.</li><li><strong>BRCA1/BRCA2 Mutations:</strong> Germline mutations in these genes significantly increase the lifetime risk of ovarian cancer and influence treatment decisions, particularly regarding PARP inhibitors.</li><li><strong>Cytoreductive Surgery (Debulking):</strong> A surgical procedure aimed at removing as much of the cancerous tumor as possible, ideally to no visible residual disease (R0 resection).</li><li><strong>PARP Inhibitors:</strong> A class of targeted drugs (e.g., olaparib, niraparib) that block poly (ADP-ribose) polymerase, effective in treating ovarian cancers with BRCA mutations or homologous recombination deficiency.</li><li><strong>High-Grade Serous Ovarian Carcinoma (HGSOC):</strong> The most common and aggressive subtype of epithelial ovarian cancer, often originating in the fallopian tube.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a diverse individual thoughtfully considering options, surrounded by subtle symbols of choice, support, and medical consultation. On one side, a gentle hand offers support, while on the other, a healthcare professional (doctor or nurse) is shown in a caring, non-judgmental posture. Elements like a calendar, a question mark, and a heart symbol could be subtly integrated. The overall mood is empathetic, calm, and empowering, using soft, muted colors suitable for a public awareness campaign. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./deciding_to_have_an_abortion.jpg" class="card-banner" alt="Deciding to have an abortion Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-pregnancy-and-childbirth" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Pregnancy and childbirth</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-pregnancy-and-childbirth-pregnancy-termination-abortion" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Pregnancy termination (abortion)</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Deciding to have an abortion</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Pregnancy and childbirth</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Pregnancy termination (abortion)</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Legal Rights & Access:</strong> Understand the current laws and regulations regarding abortion in your specific location, including gestational limits and waiting periods.</li><li><strong>Medical Options:</strong> Be aware of the two primary types: medication abortion (typically for early pregnancies) and procedural abortion (surgical methods). Each has different considerations, efficacy, and recovery profiles.</li><li><strong>Comprehensive Counseling:</strong> Seek out unbiased counseling to discuss all available options, including continuing the pregnancy, adoption, and abortion, to make an informed decision aligned with your personal values and circumstances.</li><li><strong>Time Sensitivity:</strong> The gestational age of the pregnancy significantly impacts the available abortion methods and legal access. Early decision-making can offer more options.</li><li><strong>Support Systems:</strong> Identify trusted individuals, partners, family, or professional counselors who can provide emotional and practical support throughout this process.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Unintended Pregnancy:</strong> The primary clinical indication prompting consideration of abortion, often confirmed by a positive pregnancy test and ultrasound.</li><li><strong>Maternal Health Risks:</strong> Situations where continuing the pregnancy poses significant physical or mental health risks to the pregnant individual, as assessed by a medical professional.</li><li><strong>Fetal Anomalies:</strong> Diagnosis of severe fetal conditions or anomalies incompatible with life or associated with profound disability, leading to difficult decisions regarding pregnancy continuation.</li><li><strong>Socioeconomic & Personal Factors:</strong> While not clinical symptoms, significant financial instability, lack of support, relationship challenges, or other personal circumstances often contribute to the decision-making process.</li><li><strong>Emotional Distress:</strong> Experiencing significant anxiety, stress, or ambivalence regarding the pregnancy and future implications, prompting the need for counseling and support.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Verify Provider Credentials:</strong> Ensure you are seeking care from a licensed, reputable healthcare provider or clinic to guarantee safety and adherence to medical standards.</li><li><strong>Thorough Medical Evaluation:</strong> Undergo a complete medical history, physical examination, and ultrasound to confirm gestational age, rule out ectopic pregnancy, and assess overall health.</li><li><strong>Informed Consent:</strong> Fully understand the procedure, potential risks, benefits, alternatives, and what to expect during and after the abortion before providing consent.</li><li><strong>Rh Factor Testing:</strong> If you have Rh-negative blood, discuss the need for Rh immunoglobulin (RhoGAM) to prevent sensitization, which can affect future pregnancies.</li><li><strong>Avoid Coercion:</strong> Ensure your decision is entirely your own, free from pressure or coercion from partners, family, or external sources. Seek support if you feel pressured.</li><li><strong>Post-Procedure Follow-up:</strong> Plan for and commit to attending all recommended follow-up appointments to monitor recovery and address any potential complications.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-Procedural Fasting:</strong> If a procedural abortion with sedation or anesthesia is planned, strict fasting from food and liquids (typically 6-8 hours for food, 2 hours for clear liquids) will be required to prevent aspiration.</li><li><strong>Hydration Prior to Medication Abortion:</strong> Maintain adequate hydration before and during a medication abortion, as nausea and vomiting can occur.</li><li><strong>Post-Procedure Reintroduction:</strong> After a procedural abortion with sedation, begin with clear liquids and light, easily digestible foods as tolerated to prevent nausea.</li><li><strong>General Nutritional Support:</strong> While no specific diet is mandated for the decision-making phase, maintaining a balanced diet can support overall well-being during a stressful period.</li><li><strong>Avoid Alcohol & Illicit Substances:</strong> Refrain from alcohol and illicit drug use, especially if considering or undergoing any medical procedure, as they can interfere with medications and recovery.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Beware of Unlicensed Facilities:</strong> Avoid any clinics or individuals offering abortion services without proper medical licensing, as this poses significant health risks.</li><li><strong>Recognize Misinformation:</strong> Be critical of information from sources that are not medically verified or that attempt to dissuade you from your chosen path through fear or guilt.</li><li><strong>Emergency Symptoms Post-Procedure:</strong> Seek immediate medical attention for severe abdominal pain, heavy bleeding (soaking more than two maxi pads per hour for two consecutive hours), fever over 100.4°F (38°C), or foul-smelling vaginal discharge.</li><li><strong>Mental Health Vigilance:</strong> Be aware that emotional responses can vary widely. If you experience persistent feelings of sadness, anxiety, or regret that interfere with daily life, seek professional mental health support.</li><li><strong>Drug Interactions:</strong> Inform your provider of all medications, supplements, and herbal remedies you are taking, as some can interact with abortion medications or anesthesia.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Patient Autonomy is Paramount:</strong> My role is to provide comprehensive, evidence-based information on all options (parenting, adoption, abortion) and support your autonomous decision without judgment.</li><li><strong>Thorough Medical Assessment:</strong> A detailed medical history, physical exam, and ultrasound are essential to ensure your safety and determine the most appropriate and safest abortion method for your specific gestational age and health status.</li><li><strong>Prioritize Emotional Well-being:</strong> This is a significant life decision. I encourage you to utilize counseling services and discuss any emotional concerns openly to ensure you have adequate support.</li><li><strong>Comprehensive Follow-up Care:</strong> Adherence to post-procedure follow-up is crucial for monitoring recovery, addressing any complications, and discussing future contraception.</li><li><strong>Confidentiality and Privacy:</strong> Your medical information and decisions are strictly confidential. We are committed to protecting your privacy throughout this process.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Non-Judgmental Care:</strong> Provide empathetic, non-judgmental care, recognizing the diverse reasons individuals consider abortion and the emotional complexity involved.</li><li><strong>Patient Education:</strong> Clearly explain all aspects of the chosen abortion method, including pre-procedure instructions, what to expect during the procedure, and post-procedure care and warning signs.</li><li><strong>Pain Management:</strong> Be prepared to administer and educate patients on effective pain management strategies for both medication and procedural abortions.</li><li><strong>Emotional Support & Resources:</strong> Assess for emotional distress and be ready to provide resources for counseling, mental health support, and social services.</li><li><strong>Confidentiality & Advocacy:</strong> Uphold strict patient confidentiality and act as a patient advocate, ensuring their rights and choices are respected within the healthcare system.</li><li><strong>Rh Status Management:</strong> Understand the protocol for Rh factor testing and the administration of Rh immunoglobulin to Rh-negative patients to prevent isoimmunization.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Gestational Age:</strong> The age of the pregnancy calculated from the first day of the last menstrual period (LMP) or by ultrasound measurement, critical for determining abortion method eligibility.</li><li><strong>Medication Abortion:</strong> A non-surgical method typically involving a combination of mifepristone (progesterone receptor blocker) and misoprostol (prostaglandin analog) to induce uterine contractions and expel pregnancy tissue.</li><li><strong>Procedural Abortion (D&C/D&E):</strong> Surgical methods including Dilation and Curettage (D&C) for early pregnancies or Dilation and Evacuation (D&E) for later gestations, involving cervical dilation and removal of pregnancy tissue.</li><li><strong>Informed Consent:</strong> A legal and ethical principle requiring a patient to be fully educated about a medical procedure, including risks, benefits, and alternatives, before agreeing to treatment.</li><li><strong>Rh Immunoglobulin (RhoGAM):</strong> An injection given to Rh-negative individuals after abortion (or other pregnancy events) to prevent the formation of antibodies that could affect future Rh-positive pregnancies.</li><li><strong>Post-Abortion Care:</strong> Comprehensive follow-up care including assessment for retained products of conception, infection, hemorrhage, and provision of contraception counseling.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

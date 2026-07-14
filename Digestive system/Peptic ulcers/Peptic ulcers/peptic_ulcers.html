@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human torso with a transparent overlay of the digestive system, specifically highlighting the stomach and duodenum. A visible, inflamed ulcer is depicted on the inner lining of the stomach or duodenum. Surrounding elements include a stylized H. pylori bacterium, a pill bottle representing NSAIDs, and subtle pain radiating lines from the ulcer. The overall style is clean, modern, and suitable for public health awareness, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./peptic_ulcers.jpg" class="card-banner" alt="Peptic ulcers Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-digestive-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Digestive system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-digestive-system-peptic-ulcers" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Peptic ulcers</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Peptic ulcers</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Digestive system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Peptic ulcers</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Peptic ulcers are open sores that develop on the inside lining of your stomach (gastric ulcers), the upper part of your small intestine (duodenal ulcers), or sometimes the esophagus.</li><li><strong>Primary Causes:</strong> The most common causes are infection with the bacterium <em>Helicobacter pylori</em> (H. pylori) and long-term use of nonsteroidal anti-inflammatory drugs (NSAIDs) like ibuprofen or naproxen.</li><li><strong>Risk Factors:</strong> Smoking, excessive alcohol consumption, and stress can exacerbate ulcer formation and hinder healing, though they are not direct causes.</li><li><strong>Potential Complications:</strong> Untreated ulcers can lead to serious complications such as bleeding, perforation (a hole through the stomach or intestinal wall), and obstruction (blockage of the digestive tract).</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Burning Abdominal Pain:</strong> A characteristic burning or gnawing pain in the upper abdomen, often between meals or at night, which may be relieved by eating or taking antacids.</li><li><strong>Bloating and Fullness:</strong> A sensation of discomfort, bloating, or fullness in the stomach after eating even small amounts of food.</li><li><strong>Nausea and Vomiting:</strong> Episodes of nausea, sometimes accompanied by vomiting, which may or may not relieve the pain.</li><li><strong>Dark or Tarry Stools:</strong> Indicates gastrointestinal bleeding (melena), requiring immediate medical attention.</li><li><strong>Coffee-Ground Vomit:</strong> Vomiting blood that appears dark and granular, resembling coffee grounds, also a sign of active bleeding.</li><li><strong>Unexplained Weight Loss:</strong> Chronic discomfort or fear of eating due to pain can lead to unintentional weight loss.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>NSAID Avoidance:</strong> Minimize or avoid the use of NSAIDs, especially if you have a history of ulcers. Discuss alternative pain relief options with your physician.</li><li><strong>H. pylori Eradication:</strong> If diagnosed with H. pylori, complete the full course of prescribed antibiotics and acid-reducing medications to prevent recurrence.</li><li><strong>Lifestyle Modifications:</strong> Limit alcohol intake, cease smoking, and manage stress effectively, as these factors can impair healing and increase risk.</li><li><strong>Symptom Monitoring:</strong> Be vigilant for signs of worsening symptoms or complications, such as severe, sudden abdominal pain, persistent vomiting, or signs of bleeding.</li><li><strong>Medication Adherence:</strong> Take all prescribed medications, including proton pump inhibitors (PPIs) or H2-receptor blockers, exactly as directed to promote healing and prevent relapse.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Identify Trigger Foods:</strong> Pay attention to foods that exacerbate your symptoms and avoid them. Common triggers include spicy foods, acidic foods (citrus, tomatoes), fatty foods, caffeine, and chocolate.</li><li><strong>Smaller, Frequent Meals:</strong> Eating smaller, more frequent meals can help neutralize stomach acid and reduce irritation compared to large, infrequent meals.</li><li><strong>Limit Alcohol:</strong> Alcohol can irritate the stomach lining and increase acid production, so moderation or avoidance is recommended.</li><li><strong>Increase Fiber:</strong> Incorporate fiber-rich foods like fruits, vegetables, and whole grains, which can aid digestion and potentially protect the stomach lining.</li><li><strong>Hydration:</strong> Maintain adequate hydration with water, avoiding carbonated beverages and excessive caffeine.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Care:</strong> Seek immediate medical attention for severe, sudden abdominal pain, persistent vomiting, bloody or tarry stools, or signs of shock (dizziness, rapid heart rate).</li><li><strong>Medication Compliance:</strong> Adhere strictly to the prescribed medication regimen, including antibiotics for H. pylori and acid suppressants, even if symptoms improve.</li><li><strong>Inform Healthcare Providers:</strong> Always inform your healthcare provider about all medications you are taking, including over-the-counter drugs, supplements, and herbal remedies, especially NSAIDs.</li><li><strong>Follow-up Endoscopy:</strong> For gastric ulcers, a follow-up endoscopy is often recommended to confirm healing and rule out malignancy.</li><li><strong>Avoid Self-Medication:</strong> Do not rely solely on antacids for long-term management; they only provide temporary relief and do not address the underlying cause.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Accurate Diagnosis is Key:</strong> A definitive diagnosis, often involving endoscopy and H. pylori testing, is crucial to guide appropriate treatment and rule out other conditions.</li><li><strong>Comprehensive Treatment:</strong> Effective management typically involves a combination of pharmacotherapy (e.g., PPIs, antibiotics) and significant lifestyle modifications.</li><li><strong>Preventing Recurrence:</strong> Eradicating H. pylori and avoiding NSAIDs are paramount in preventing ulcer recurrence and associated complications.</li><li><strong>Monitoring for Complications:</strong> Patients should be educated on the warning signs of bleeding or perforation and advised to seek prompt medical care if these occur.</li><li><strong>Long-term Management:</strong> For some patients, long-term acid suppression therapy may be necessary, particularly in cases of recurrent ulcers or specific risk factors.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Assessment:</strong> Conduct thorough pain assessments (PQRST), gather medication history (especially NSAID use), and inquire about dietary habits and lifestyle factors.</li><li><strong>Education on Medications:</strong> Educate patients on the purpose, dosage, administration, and potential side effects of all prescribed medications, emphasizing adherence.</li><li><strong>Dietary Counseling:</strong> Provide guidance on dietary modifications, including identifying trigger foods, promoting smaller, frequent meals, and limiting irritants.</li><li><strong>Monitoring for Complications:</strong> Closely monitor vital signs, assess for signs of GI bleeding (melena, hematemesis), and observe for changes in abdominal pain that may indicate perforation or obstruction.</li><li><strong>H. pylori Testing & Follow-up:</strong> Explain the importance of H. pylori testing and the need for follow-up to confirm eradication and ulcer healing.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathophysiology:</strong> Peptic ulcers result from an imbalance between aggressive factors (gastric acid, pepsin, H. pylori, NSAIDs) and defensive factors (mucus, bicarbonate, prostaglandins, mucosal blood flow).</li><li><strong>Diagnostic Modalities:</strong> Upper endoscopy with biopsy is the gold standard. Non-invasive H. pylori tests include urea breath test, stool antigen test, and serology.</li><li><strong>Pharmacological Management:</strong> Proton Pump Inhibitors (PPIs) are the most potent acid suppressants. H2-receptor antagonists, sucralfate, and bismuth subsalicylate are also used. Antibiotic regimens (e.g., triple or quadruple therapy) are prescribed for H. pylori eradication.</li><li><strong>Complications:</strong> Hemorrhage (most common), perforation (leading to peritonitis), gastric outlet obstruction, and malignant transformation (rare, primarily with gastric ulcers).</li><li><strong>Surgical Intervention:</strong> Reserved for complications such as intractable bleeding, perforation, or obstruction that do not respond to endoscopic or medical management.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration in a public awareness style. A patient, possibly in a hospital gown or comfortable clothes, is gently hugging a soft pillow to their chest with both hands. They are sitting upright on a bed or chair, with a calm, focused, and slightly relieved expression. The background is clean and minimalist, suggesting a recovery room or a serene home setting. Subtle elements like a stylized heart icon or gentle, supportive hands can be incorporated into the design. The overall mood is one of careful protection, gentle recovery, and patient well-being. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./how_to_protect_the_chest_after_heart_surgery.jpg" class="card-banner" alt="How to protect the chest after heart surgery Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-tests-and-procedures" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Tests and procedures</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>How to protect the chest after heart surgery</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Tests and procedures</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Sternal Precautions are Paramount:</strong> Strict adherence to sternal precautions is crucial for proper healing of the breastbone (sternum) after surgery, typically for 6-8 weeks.</li>
+        <li><strong>Healing Takes Time:</strong> The sternum needs adequate time to knit back together. Rushing recovery or ignoring precautions can lead to complications such as sternal dehiscence.</li>
+        <li><strong>Preventing Complications:</strong> Protecting your chest minimizes the risk of sternal dehiscence (separation of the breastbone) and infection, which can be severe and life-threatening.</li>
+        <li><strong>Pain Management:</strong> Effective pain control is essential to allow for deep breathing, coughing, and movement without excessive strain on the incision, supporting lung health.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Increased Incision Pain:</strong> Worsening pain at the sternal incision site, especially with movement or breathing, beyond expected post-operative discomfort.</li>
+        <li><strong>Clicking or Popping Sensation:</strong> Any feeling of movement, clicking, or popping in the breastbone area, which may indicate sternal instability or dehiscence.</li>
+        <li><strong>Signs of Infection:</strong> Redness, warmth, swelling, pus-like discharge from the incision, or a fever (oral temperature &gt;100.4°F or 38°C).</li>
+        <li><strong>Shortness of Breath or Chest Pain:</strong> New or worsening difficulty breathing, persistent cough, or chest pain not related to the incision, potentially indicating pulmonary or cardiac issues.</li>
+        <li><strong>Unusual Swelling:</strong> New or increased swelling in the legs, ankles, or abdomen, which could indicate fluid retention, heart failure, or other cardiac issues requiring evaluation.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Avoid Lifting, Pushing, or Pulling:</strong> Do not lift anything heavier than 5-10 pounds (e.g., a gallon of milk) for 6-8 weeks. Avoid pushing or pulling with your arms, including opening heavy doors.</li>
+        <li><strong>Hug a Pillow for Support:</strong> Always hug a pillow firmly against your chest when coughing, sneezing, laughing, or during bowel movements to provide sternal support and reduce strain.</li>
+        <li><strong>Maintain Good Posture:</strong> Sit and stand upright to prevent slouching, which can put undue strain on the sternum. Avoid twisting your torso at all times.</li>
+        <li><strong>Log Roll Out of Bed:</strong> To get out of bed, roll onto your side, then use your legs to push yourself up while keeping your arms close to your body and avoiding sternal strain.</li>
+        <li><strong>Showering and Incision Care:</strong> Follow specific instructions for showering and wound care. Avoid direct water pressure on the incision initially and pat dry gently.</li>
+        <li><strong>Driving Restrictions:</strong> Avoid driving for at least 4-6 weeks post-surgery, or as advised by your surgeon, due to sudden movements, steering, and the risk of airbag deployment.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>High-Fiber Diet:</strong> Consume foods rich in fiber (fruits, vegetables, whole grains) to prevent constipation, which can lead to straining and increased pressure on the healing sternum.</li>
+        <li><strong>Adequate Protein Intake:</strong> Ensure sufficient protein intake (lean meats, fish, beans, dairy) to support tissue repair, wound healing, and overall recovery post-surgery.</li>
+        <li><strong>Maintain Hydration:</strong> Drink plenty of fluids (water, clear broths) to aid recovery, prevent constipation, and support overall bodily functions and medication efficacy.</li>
+        <li><strong>Sodium Restriction:</strong> Limit high-sodium foods to help manage fluid balance, prevent swelling, and reduce strain on the cardiovascular system post-surgery.</li>
+        <li><strong>Avoid Excessive Caffeine:</strong> Moderate caffeine intake as it can sometimes contribute to heart rhythm disturbances or anxiety, which may impact recovery comfort.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Assist with Transfers:</strong> Help the patient get in and out of bed or chairs using the log-roll technique, ensuring they do not use their arms to push or pull themselves.</li>
+        <li><strong>Remind About Precautions:</strong> Gently remind the patient about sternal precautions, especially when they forget or attempt movements that could cause strain or injury.</li>
+        <li><strong>Monitor for Complications:</strong> Be vigilant for any signs of infection (fever, redness, discharge) or sternal instability (clicking, popping) and report them to the medical team immediately.</li>
+        <li><strong>Medication Adherence:</strong> Ensure the patient takes prescribed medications as directed, especially pain relievers, to facilitate comfortable movement and adherence to physical therapy.</li>
+        <li><strong>Emotional Support:</strong> Provide reassurance and support, as recovery can be challenging. Encourage adherence to the care plan and celebrate small victories in their healing journey.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Strict Adherence to Sternal Precautions:</strong> Your sternum needs time to heal. Any deviation from sternal precautions can compromise healing and lead to serious complications like sternal dehiscence or infection.</li>
+        <li><strong>Regular Follow-up Appointments:</strong> Attend all scheduled post-operative appointments to allow for proper monitoring of your recovery, incision healing, and overall cardiac health.</li>
+        <li><strong>Medication Compliance:</strong> Take all prescribed medications, including pain relievers, antiplatelets, and other cardiac medications, exactly as instructed to prevent complications and support recovery.</li>
+        <li><strong>Gradual Activity Increase:</strong> Follow your cardiac rehabilitation program and gradually increase your activity level as advised, avoiding strenuous activities until cleared by your surgeon.</li>
+        <li><strong>Know When to Call:</strong> Contact your medical team immediately if you experience new or worsening chest pain, fever, signs of infection at the incision site, or any sensation of sternal instability.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Patient Education Reinforcement:</strong> Continuously reinforce sternal precautions, wound care techniques, and medication adherence during every patient interaction and teach-back session.</li>
+        <li><strong>Pain Assessment and Management:</strong> Regularly assess pain levels using appropriate scales (e.g., numeric rating scale) and administer analgesics as prescribed, evaluating their effectiveness.</li>
+        <li><strong>Wound Site Monitoring:</strong> Perform thorough assessments of the sternal incision for signs of infection (erythema, warmth, purulent drainage), dehiscence, or hematoma formation.</li>
+        <li><strong>Early Mobilization:</strong> Facilitate early, safe ambulation within sternal precautions to prevent complications like pneumonia, deep vein thrombosis (DVT), and muscle deconditioning.</li>
+        <li><strong>Discharge Planning:</strong> Provide comprehensive discharge instructions, including activity restrictions, medication schedules, follow-up appointments, and clear emergency contact information.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Sternal Dehiscence:</strong> A serious complication characterized by the separation of the sternal incision, often requiring surgical intervention.</li>
+        <li><strong>Mediastinitis:</strong> A severe infection of the mediastinum (the space between the lungs), often a devastating complication of sternal wound infection post-cardiac surgery.</li>
+        <li><strong>Sternal Precautions:</strong> A set of guidelines designed to protect the sternum from undue stress and movement during the critical healing period following a sternotomy.</li>
+        <li><strong>Cardiac Rehabilitation:</strong> A medically supervised program of exercise, education, and counseling designed to help patients recover and improve heart health after a cardiac event or surgery.</li>
+        <li><strong>Antiplatelet Therapy:</strong> Medications (e.g., aspirin, clopidogrel) prescribed to prevent blood clot formation, crucial after many cardiac procedures to maintain graft patency.</li>
+        <li><strong>Log Roll Technique:</strong> A method of turning or moving a patient in bed while keeping the body in a straight, aligned position, minimizing twisting of the torso and sternal strain.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a patient recovering at home after cholecystectomy. The patient is a diverse adult, looking calm and comfortable, perhaps sitting on a sofa with a blanket. Elements include a small, clean bandage visible on the abdomen, a glass of water on a nearby table, and a plate with bland, healthy food. A caregiver or family member is gently assisting or offering support in the background. The overall scene conveys a sense of healing, adherence to medical instructions, and a supportive home environment. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./cholecystectomy___discharge_instructions.jpg" class="card-banner" alt="Cholecystectomy – Discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-liver-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Liver disease</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-liver-disease-gallstones-and-gallbladder-problems" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Gallstones and gallbladder problems</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Cholecystectomy – Discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Liver disease</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Gallstones and gallbladder problems</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Recovery Period:</strong> Expect a gradual recovery over several weeks. Most patients resume light activities within a few days, with full recovery taking 4-6 weeks.</li><li><strong>Pain Management:</strong> Mild to moderate pain at the incision sites and general abdominal discomfort are normal. Follow prescribed pain medication schedules.</li><li><strong>Activity Levels:</strong> Avoid heavy lifting (over 10-15 lbs) and strenuous activities for at least 2-4 weeks to prevent complications like hernia.</li><li><strong>Wound Care:</strong> Keep incision sites clean and dry. Showering is generally permitted after 24-48 hours, but avoid baths or swimming until cleared by your surgeon.</li><li><strong>Follow-up Appointment:</strong> A post-operative check-up is crucial, typically scheduled 1-2 weeks after discharge, to assess healing and address any concerns.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Mild Incision Pain:</strong> Localized discomfort, tenderness, or bruising around the surgical sites is common and should improve daily.</li><li><strong>Shoulder Pain:</strong> Referred pain in the right shoulder or upper back can occur due to residual gas from laparoscopic surgery irritating the diaphragm. This usually resolves within 24-48 hours.</li><li><strong>Bloating and Gas:</strong> Abdominal distension and increased flatulence are common as your digestive system adjusts.</li><li><strong>Changes in Bowel Habits:</strong> Diarrhea or softer stools may occur as your body adapts to direct bile flow into the small intestine. This often improves over time.</li><li><strong>Fatigue:</strong> Feeling tired or low energy is normal after surgery and anesthesia. Rest is important for healing.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Incision Site Monitoring:</strong> Watch for signs of infection, including increasing redness, warmth, swelling, pus-like discharge, or foul odor from the incision.</li><li><strong>Fever Alert:</strong> Report any fever above 101°F (38.3°C) immediately, as this could indicate infection.</li><li><strong>Severe Pain:</strong> Unrelenting or worsening abdominal pain not relieved by prescribed medication requires urgent medical evaluation.</li><li><strong>Jaundice:</strong> Yellowing of the skin or eyes (jaundice) or dark urine/pale stools could indicate a bile duct issue and needs immediate attention.</li><li><strong>Nausea and Vomiting:</strong> Persistent nausea or vomiting that prevents fluid intake can lead to dehydration and requires medical advice.</li><li><strong>Driving Restrictions:</strong> Do not drive while taking opioid pain medication or if you are still experiencing significant pain or discomfort that could impair your ability to react safely.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Gradual Reintroduction:</strong> Start with clear liquids, then progress to bland, low-fat foods (e.g., toast, rice, plain chicken, fruits, vegetables) as tolerated.</li><li><strong>Avoid High-Fat Foods:</strong> Initially, limit fatty, greasy, or spicy foods, as these can trigger digestive upset, bloating, or diarrhea due to the absence of the gallbladder's bile storage function.</li><li><strong>Small, Frequent Meals:</strong> Eating smaller meals more often can help your digestive system adjust and reduce symptoms.</li><li><strong>Adequate Hydration:</strong> Drink plenty of fluids (water, clear broths, diluted juices) to prevent dehydration and aid bowel function.</li><li><strong>Fiber Intake:</strong> Gradually increase fiber-rich foods to promote regular bowel movements, but avoid excessive amounts initially if experiencing diarrhea.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Medication Assistance:</strong> Help the patient adhere to their prescribed medication schedule, especially for pain relief, and monitor for side effects.</li><li><strong>Symptom Observation:</strong> Be vigilant for any concerning symptoms such as high fever, severe pain, persistent vomiting, jaundice, or signs of wound infection, and know when to contact the medical team.</li><li><strong>Activity Support:</strong> Assist the patient with light activities and ensure they avoid strenuous tasks or heavy lifting during the initial recovery phase.</li><li><strong>Emotional Support:</strong> Provide reassurance and a calm environment, as patients may experience post-operative fatigue and emotional fluctuations.</li><li><strong>Emergency Contacts:</strong> Keep the surgeon's office number, hospital emergency contact, and patient's primary care physician's number readily accessible.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Adherence to Instructions:</strong> Strict adherence to all discharge instructions is paramount for a smooth and uncomplicated recovery.</li><li><strong>Recognize Red Flags:</strong> Be acutely aware of warning signs such as escalating pain, fever, or jaundice, and do not hesitate to seek immediate medical attention.</li><li><strong>Long-Term Adaptation:</strong> While most patients adapt well, some may experience post-cholecystectomy syndrome (PCS) symptoms; these should be discussed during follow-up.</li><li><strong>Gradual Return to Activity:</strong> Listen to your body and gradually increase activity levels. Pushing too hard too soon can impede healing.</li><li><strong>Open Communication:</strong> Maintain open communication with your healthcare team regarding any concerns or unexpected symptoms during your recovery.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Post-Op Assessment:</strong> Focus on pain level, incision site integrity, bowel sounds, vital signs, and patient's ability to ambulate and tolerate oral intake.</li><li><strong>Patient Education Reinforcement:</strong> Systematically review all discharge instructions, ensuring patient and caregiver comprehension of medication, wound care, activity restrictions, and warning signs.</li><li><strong>Pain Management Strategies:</strong> Educate on the importance of scheduled pain medication, non-pharmacological pain relief (e.g., positioning, deep breathing), and avoiding driving while on opioids.</li><li><strong>Bowel Function Monitoring:</strong> Advise on expected changes in bowel habits and strategies for managing diarrhea or constipation post-cholecystectomy.</li><li><strong>Psychosocial Support:</strong> Assess for anxiety or depression related to surgery and recovery, providing appropriate resources and emotional support.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Laparoscopic Cholecystectomy:</strong> Minimally invasive surgical procedure for gallbladder removal, typically involving 3-4 small incisions.</li><li><strong>Post-cholecystectomy Syndrome (PCS):</strong> A constellation of symptoms (e.g., abdominal pain, dyspepsia, diarrhea) that can occur after gallbladder removal, affecting a small percentage of patients.</li><li><strong>Bile Duct Injury:</strong> A rare but serious complication of cholecystectomy, requiring prompt diagnosis and intervention.</li><li><strong>Choledocholithiasis:</strong> Presence of gallstones in the common bile duct, often a pre-existing condition or a reason for cholecystectomy.</li><li><strong>ERCP (Endoscopic Retrograde Cholangiopancreatography):</strong> A procedure used to diagnose and treat conditions of the bile ducts, often relevant if bile duct stones are suspected post-cholecystectomy.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

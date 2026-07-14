@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a diverse group of people with calm, hopeful expressions, surrounded by subtle brain imagery and gentle, swirling lines representing neurotransmitters. Soft, muted colors. Elements like a supportive hand, a small pill bottle, and a blooming flower symbolize mental health support and recovery. The overall design should convey understanding, balance, and the journey towards well-being, suitable for public awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./commonly_used_medicines_for_depression.jpg" class="card-banner" alt="Commonly used medicines for depression Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-mental-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Mental health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-mental-health-depression" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Depression</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Commonly used medicines for depression</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Mental health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Depression</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Antidepressant Classes:</strong> Commonly include Selective Serotonin Reuptake Inhibitors (SSRIs), Serotonin-Norepinephrine Reuptake Inhibitors (SNRIs), Tricyclic Antidepressants (TCAs), Monoamine Oxidase Inhibitors (MAOIs), and Atypical Antidepressants.</li><li><strong>Mechanism of Action:</strong> These medications primarily work by balancing neurotransmitters in the brain, such as serotonin, norepinephrine, and dopamine, which are linked to mood regulation.</li><li><strong>Not an Instant Cure:</strong> Antidepressants help manage symptoms of depression and typically require several weeks to reach full therapeutic effect. They are not a 'happy pill' but a tool for symptom relief.</li><li><strong>Professional Guidance Essential:</strong> All antidepressant medications require a thorough medical evaluation, diagnosis, and prescription from a qualified healthcare provider. Self-medication is strongly discouraged.</li><li><strong>Individualized Treatment:</strong> The choice of medication depends on the patient's specific symptoms, medical history, potential side effects, and response to previous treatments.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Persistent Sadness or Irritability:</strong> A profound and prolonged low mood or increased irritability that interferes with daily life.</li><li><strong>Loss of Interest or Pleasure (Anhedonia):</strong> A significant decrease in enjoyment from activities once found pleasurable.</li><li><strong>Fatigue and Low Energy:</strong> Persistent tiredness, lack of motivation, and reduced energy levels.</li><li><strong>Sleep Disturbances:</strong> Difficulty falling or staying asleep (insomnia) or sleeping excessively (hypersomnia).</li><li><strong>Changes in Appetite or Weight:</strong> Significant unintended weight loss or gain, or changes in eating patterns.</li><li><strong>Cognitive Impairment:</strong> Difficulty concentrating, remembering details, or making decisions.</li><li><strong>Feelings of Worthlessness or Guilt:</strong> Persistent negative self-perception, excessive guilt, or feelings of hopelessness.</li><li><strong>Psychomotor Agitation or Retardation:</strong> Noticeable restlessness or slowed movements and speech.</li><li><strong>Recurrent Thoughts of Death or Suicide:</strong> Any thoughts of self-harm or suicide require immediate medical attention.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Black Box Warning:</strong> Antidepressants carry a black box warning regarding an increased risk of suicidal thoughts and behaviors in children, adolescents, and young adults (up to age 24) during initial treatment or dose changes. Close monitoring is crucial.</li><li><strong>Serotonin Syndrome Risk:</strong> Be vigilant for symptoms of serotonin syndrome (agitation, hallucinations, rapid heart rate, fever, muscle rigidity, nausea, vomiting, diarrhea) when combining serotonergic agents (e.g., SSRIs with triptans, tramadol, or St. John's Wort).</li><li><strong>Abrupt Discontinuation:</strong> Do not stop antidepressant medication suddenly. Abrupt cessation can lead to withdrawal symptoms (e.g., dizziness, nausea, headache, flu-like symptoms, electric shock sensations, anxiety, insomnia). Tapering must be done under medical supervision.</li><li><strong>Drug-Drug Interactions:</strong> Be aware of significant interactions, especially with MAOIs (e.g., certain cold medications, other antidepressants, tyramine-rich foods) which can lead to hypertensive crisis. Always inform your doctor about all medications and supplements.</li><li><strong>Pregnancy and Lactation:</strong> Discuss potential risks and benefits with a physician if pregnant, planning pregnancy, or breastfeeding. Some antidepressants may pose risks to the fetus or infant.</li><li><strong>Underlying Medical Conditions:</strong> Use with caution in patients with seizure disorders, bipolar disorder (risk of inducing mania), narrow-angle glaucoma, or cardiac conditions.</li><li><strong>Alcohol and Substance Use:</strong> Avoid or limit alcohol and illicit substances, as they can worsen depression symptoms and interact dangerously with antidepressants.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>MAOI Dietary Restrictions:</strong> Patients prescribed Monoamine Oxidase Inhibitors (MAOIs) must strictly avoid tyramine-rich foods (e.g., aged cheeses, cured meats, fermented products like sauerkraut, tap beer, red wine, soy sauce) to prevent a potentially life-threatening hypertensive crisis.</li><li><strong>Caffeine and Alcohol:</strong> Limit or avoid excessive caffeine intake, as it can exacerbate anxiety and sleep disturbances, which are common in depression. Alcohol should be avoided as it can worsen depressive symptoms and interact with medications.</li><li><strong>Hydration:</strong> Maintain adequate hydration, as some medications can cause dry mouth or contribute to dehydration.</li><li><strong>Weight Management:</strong> Some antidepressants can cause weight gain or loss. Monitor dietary intake and consult with a healthcare provider or dietitian if significant changes occur.</li><li><strong>Grapefruit Juice:</strong> Be aware that grapefruit juice can interact with certain medications, including some antidepressants, by affecting their metabolism. Consult your pharmacist or physician regarding specific medication interactions.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Medication Adherence:</strong> Take medication exactly as prescribed, at the same time each day, and do not skip doses. Consistency is key for efficacy.</li><li><strong>Monitor for Side Effects:</strong> Be vigilant for any new or worsening side effects, especially during the initial weeks of treatment or after dose adjustments. Report these promptly to your healthcare provider.</li><li><strong>Patience with Treatment:</strong> Understand that it can take several weeks (typically 2-4, sometimes longer) for antidepressants to show their full therapeutic effect. Do not get discouraged if immediate improvement is not seen.</li><li><strong>Emergency Contact:</strong> Have a clear plan and contact information for your healthcare provider or emergency services in case of worsening symptoms, severe side effects, or suicidal thoughts.</li><li><strong>Support System:</strong> Engage with family, friends, or support groups. Inform trusted individuals about your treatment plan so they can offer support and help monitor for changes in mood or behavior.</li><li><strong>Regular Follow-ups:</strong> Attend all scheduled appointments with your prescribing physician to monitor progress, assess side effects, and make necessary adjustments to your treatment plan.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive Assessment:</strong> A thorough diagnostic evaluation is paramount to differentiate depression from other conditions and to tailor the most appropriate treatment plan.</li><li><strong>Individualized Pharmacotherapy:</strong> Medication selection is highly individualized, considering patient history, symptom profile, comorbidity, potential drug interactions, and patient preference.</li><li><strong>Combination Therapy:</strong> For many patients, a combination of pharmacotherapy and psychotherapy (e.g., CBT, interpersonal therapy) yields superior outcomes compared to either modality alone.</li><li><strong>Monitoring and Adjustment:</strong> Close monitoring for therapeutic response and adverse effects is essential, particularly during the initial weeks of treatment and with dose changes. Dosage adjustments or medication switches may be necessary.</li><li><strong>Long-term Management:</strong> Depression is often a chronic illness requiring long-term management. Educate patients on the importance of adherence, relapse prevention, and recognizing early warning signs.</li><li><strong>Risk-Benefit Discussion:</strong> Engage in open and honest discussions with patients about the potential benefits, risks, and side effects of antidepressant medications, including the black box warning for suicidality.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Nurses play a crucial role in educating patients about their antidepressant medications, including purpose, dosage, administration, expected onset of action, common side effects, and the importance of adherence.</li><li><strong>Side Effect Management:</strong> Be prepared to educate patients on strategies to manage common side effects (e.g., taking medication with food for GI upset, timing doses to mitigate sedation or insomnia).</li><li><strong>Monitoring for Suicidality:</strong> Systematically assess patients for suicidal ideation, intent, and plan, especially during the initiation of treatment or dose changes. Document findings and intervene appropriately.</li><li><strong>Withdrawal Syndrome Prevention:</strong> Emphasize the importance of not abruptly stopping medication and explain the symptoms of discontinuation syndrome to patients.</li><li><strong>Drug Interaction Awareness:</strong> Understand common drug-drug and drug-food interactions, particularly for MAOIs, and educate patients accordingly.</li><li><strong>Therapeutic Communication:</strong> Utilize active listening and empathetic communication to build trust, address patient concerns, and encourage open dialogue about their mental health journey.</li><li><strong>Documentation:</strong> Accurately document patient response to medication, side effects, patient education provided, and any changes in mental status or suicidal ideation.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>SSRIs (e.g., Fluoxetine, Sertraline, Escitalopram):</strong> First-line agents, selectively inhibit serotonin reuptake. Generally well-tolerated with fewer anticholinergic/cardiac side effects than TCAs.</li><li><strong>SNRIs (e.g., Venlafaxine, Duloxetine):</strong> Inhibit reuptake of both serotonin and norepinephrine. Useful for patients with significant fatigue or pain syndromes.</li><li><strong>TCAs (e.g., Amitriptyline, Nortriptyline):</strong> Older class, block reuptake of serotonin and norepinephrine. Higher side effect burden (anticholinergic, cardiac) and toxicity in overdose.</li><li><strong>MAOIs (e.g., Phenelzine, Tranylcypromine):</strong> Potent but reserved for refractory depression due to significant dietary and drug interaction risks (hypertensive crisis).</li><li><strong>Atypical Antidepressants (e.g., Bupropion, Mirtazapine, Trazodone):</strong> Diverse mechanisms; Bupropion affects dopamine and norepinephrine, Mirtazapine enhances serotonin and norepinephrine release, Trazodone is often used for insomnia.</li><li><strong>Pharmacokinetics:</strong> Consider half-life (e.g., Fluoxetine's long half-life allows for less severe withdrawal), metabolism (CYP450 interactions), and protein binding when selecting and dosing.</li><li><strong>Treatment-Resistant Depression (TRD):</strong> Defined as inadequate response to two adequate trials of different antidepressants. Management may involve augmentation strategies (e.g., lithium, atypical antipsychotics, thyroid hormone), ketamine, or Electroconvulsive Therapy (ECT).</li><li><strong>Neurotransmitter Systems:</strong> Key systems involved include serotonergic (mood, sleep, appetite), noradrenergic (alertness, energy), and dopaminergic (motivation, pleasure) pathways.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

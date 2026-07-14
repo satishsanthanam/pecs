@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration depicting a person with two distinct, interconnected elements. One element represents mental health, shown as a subtle brain icon or a thoughtful, slightly downcast facial expression. The other element represents physical health, depicted as a stylized organ (e.g., heart, stomach, or joint) or a body outline with a gentle ailment symbol. A subtle visual link, like an intertwined ribbon or a connecting line, emphasizes the comorbidity. Soft, muted color palette. Clean, modern design suitable for public health awareness. No text or complex backgrounds.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./when_you_have_depression_and_another_health_problem.jpg" class="card-banner" alt="When you have depression and another health problem Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-mental-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Mental health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-mental-health-depression" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Depression</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>When you have depression and another health problem</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Mental health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Depression</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Common Co-occurrence</strong>: Depression frequently co-occurs with chronic medical conditions such as heart disease, diabetes, cancer, and chronic pain, impacting millions globally.</li><li><strong>Bidirectional Impact</strong>: Physical illness can trigger or worsen depressive symptoms, and conversely, depression can exacerbate physical symptoms, impair treatment adherence, and worsen the prognosis of the physical condition.</li><li><strong>Underdiagnosis Risk</strong>: Depression in the context of physical illness is often under-recognized and undertreated, as symptoms may be mistakenly attributed solely to the physical ailment.</li><li><strong>Integrated Care Necessity</strong>: Effective management requires a holistic and integrated approach that simultaneously addresses both mental and physical health needs.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Persistent Low Mood</strong>: Feelings of sadness, emptiness, or irritability that last for most of the day, nearly every day, often beyond what the physical illness alone would explain.</li><li><strong>Loss of Interest/Pleasure (Anhedonia)</strong>: Markedly diminished interest or pleasure in nearly all activities, including those previously enjoyed or comforting during physical discomfort.</li><li><strong>Fatigue &amp; Low Energy</strong>: Profound tiredness and lack of energy, often disproportionate to the physical illness, making daily tasks and self-care challenging.</li><li><strong>Sleep Disturbances</strong>: Significant insomnia (difficulty falling or staying asleep) or hypersomnia (sleeping too much), which can be complicated by physical pain or discomfort.</li><li><strong>Changes in Appetite/Weight</strong>: Significant unintentional weight loss or gain, or notable changes in eating patterns, potentially impacting the management of the co-occurring physical condition.</li><li><strong>Cognitive Impairment</strong>: Difficulty concentrating, remembering, or making decisions, which can hinder adherence to complex medical regimens.</li><li><strong>Feelings of Worthlessness/Guilt</strong>: Excessive or inappropriate feelings of guilt or worthlessness, often related to the perceived burden of illness or inability to function as before.</li><li><strong>Suicidal Ideation</strong>: Recurrent thoughts of death or suicide, which are a serious concern and require immediate clinical assessment and intervention.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Medication Interactions</strong>: Carefully review all medications for potential drug-drug interactions between antidepressants and treatments for the co-occurring physical condition.</li><li><strong>Symptom Overlap Differentiation</strong>: Be vigilant in differentiating depressive symptoms from those directly caused by the physical illness or its treatments (e.g., fatigue, pain, sleep disturbance).</li><li><strong>Adherence Challenges Mitigation</strong>: Recognize that depression can significantly impair adherence to physical health treatments; implement strategies to support medication and lifestyle compliance.</li><li><strong>Increased Suicide Risk Assessment</strong>: Patients with chronic physical illness and comorbid depression have a higher risk of suicide; routine screening and safety planning are essential.</li><li><strong>Impact on Prognosis Awareness</strong>: Untreated depression can worsen the prognosis, increase morbidity, and potentially increase mortality rates for many chronic physical conditions.</li><li><strong>Avoid Self-Medication</strong>: Strongly discourage self-treatment with substances (e.g., alcohol, illicit drugs) as a coping mechanism, as this can exacerbate both mental and physical health problems.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions &amp; Restrictions</h2><ul><li><strong>Nutrient Deficiency Management</strong>: Address potential nutritional deficiencies (e.g., B vitamins, Omega-3 fatty acids, Vitamin D) that may impact mood and overall physical health.</li><li><strong>Medication-Related Dietary Needs</strong>: Consider specific dietary adjustments for medications (e.g., MAOIs and tyramine-rich foods, lithium and fluid/salt intake) used for depression or the co-occurring condition.</li><li><strong>Physical Condition-Specific Diet</strong>: Tailor dietary advice to support the management of the co-occurring physical illness (e.g., diabetic diet, heart-healthy diet) while considering its impact on mood and energy.</li><li><strong>Hydration Status Monitoring</strong>: Ensure adequate hydration, as dehydration can exacerbate fatigue, cognitive symptoms, and impact the efficacy of certain medications.</li><li><strong>Limit Stimulants/Sugars</strong>: Advise limiting excessive caffeine and refined sugar intake, which can disrupt sleep patterns, worsen anxiety, and potentially destabilize mood.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Observe for Subtle Changes</strong>: Attendants should closely monitor for subtle changes in mood, behavior, energy levels, sleep patterns, and adherence to treatment regimens for both conditions.</li><li><strong>Support Treatment Adherence</strong>: Provide practical support and encouragement to help the patient follow medication schedules, attend appointments, and engage in recommended therapies.</li><li><strong>Facilitate Open Communication</strong>: Encourage and facilitate open communication with all healthcare providers about symptoms, concerns, and any difficulties managing both conditions.</li><li><strong>Recognize Crisis Signs</strong>: Be aware of warning signs for worsening depression, suicidal ideation, or acute exacerbation of the physical condition, and know how to access emergency services.</li><li><strong>Advocate for Integrated Care</strong>: Advocate for the patient to receive coordinated and integrated care that addresses both their mental and physical health needs comprehensively.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Routine Screening Integration</strong>: Routinely screen for depression in all patients with chronic medical conditions, and conversely, screen for physical comorbidities in patients presenting with depression, using validated tools.</li><li><strong>Comprehensive Diagnostic Assessment</strong>: Conduct a thorough assessment to differentiate depressive symptoms from those of the physical illness, medication side effects, or other contributing factors.</li><li><strong>Collaborative Care Model</strong>: Implement a collaborative care model involving primary care, mental health specialists, and other relevant medical specialists to ensure coordinated treatment.</li><li><strong>Individualized Treatment Planning</strong>: Tailor treatment plans, considering potential drug interactions, side effect profiles, and the patient's overall health status and preferences.</li><li><strong>Patient and Family Psychoeducation</strong>: Educate patients and their families about the bidirectional relationship between depression and physical illness and the critical importance of integrated treatment.</li><li><strong>Monitor Treatment Response &amp; Safety</strong>: Closely monitor the efficacy and side effects of both psychiatric and medical treatments, adjusting as necessary to optimize outcomes and ensure patient safety.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic &amp; Nursing Corner</h2><ul><li><strong>Holistic Patient Assessment</strong>: Conduct comprehensive, holistic patient assessments, integrating mental health screening into routine physical health evaluations to identify comorbid conditions.</li><li><strong>Patient Education &amp; Empowerment</strong>: Educate patients on the interplay between their physical illness and mental health, emphasizing self-management strategies, coping skills, and the benefits of adherence.</li><li><strong>Medication Management &amp; Teaching</strong>: Provide clear, concise instructions on medication regimens for both conditions, including potential side effects, interactions, and administration techniques.</li><li><strong>Referral &amp; Resource Facilitation</strong>: Facilitate timely referrals to mental health specialists, support groups, and community resources that can provide additional support and care.</li><li><strong>Therapeutic Communication Skills</strong>: Employ therapeutic communication techniques to build rapport, encourage expression of feelings, address stigma, and validate the patient's experience.</li><li><strong>Advocacy for Integrated Care</strong>: Advocate for patients to receive comprehensive, integrated care that addresses all their health needs, promoting continuity and coordination across disciplines.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Comorbidity</strong>: The simultaneous presence of two or more diseases or medical conditions in a patient, often interacting with each other.</li><li><strong>DSM-5 Criteria</strong>: Diagnostic and Statistical Manual of Mental Disorders, 5th Edition, providing standardized criteria for the diagnosis of Major Depressive Disorder (MDD).</li><li><strong>PHQ-9 (Patient Health Questionnaire-9)</strong>: A widely used, brief self-report questionnaire for screening, diagnosing, and measuring the severity of depression.</li><li><strong>Integrated Behavioral Health</strong>: A model of healthcare delivery where mental health services are integrated into primary care settings to provide comprehensive, coordinated care.</li><li><strong>Psychoneuroimmunology</strong>: An interdisciplinary field studying the interactions between psychological processes, the nervous system, and the immune system, relevant to chronic illness and depression.</li><li><strong>Chronic Disease Self-Management Program (CDSMP)</strong>: Educational programs designed to help individuals with chronic conditions manage their health and improve their quality of life.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

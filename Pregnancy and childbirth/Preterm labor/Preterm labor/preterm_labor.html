@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a pregnant woman with a concerned yet hopeful expression, gently holding her belly, looking at a calendar with an early date circled. A caring doctor and nurse are nearby, offering support and reassurance. In the background, subtle elements of a hospital setting and a tiny baby in an incubator symbolize early delivery and specialized medical care. The overall design should convey awareness, support, and the importance of timely intervention for preterm labor, with clean lines and soft, reassuring colors.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./preterm_labor.jpg" class="card-banner" alt="Preterm labor Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-pregnancy-and-childbirth" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Pregnancy and childbirth</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-pregnancy-and-childbirth-preterm-labor" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Preterm labor</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Preterm labor</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Pregnancy and childbirth</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Preterm labor</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Definition:</strong> Preterm labor is defined as regular contractions causing cervical changes that occur before 37 completed weeks of pregnancy.</li>
+        <li><strong>Significance:</strong> It is the leading cause of neonatal morbidity and mortality worldwide, with significant long-term health implications for affected infants.</li>
+        <li><strong>Early Recognition:</strong> Prompt identification of symptoms and timely medical intervention are crucial for potentially delaying birth and improving neonatal outcomes.</li>
+        <li><strong>Risk Factors:</strong> Common risk factors include a history of preterm birth, multiple gestations, cervical insufficiency, uterine anomalies, certain infections, and chronic maternal health conditions.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Frequent Contractions:</strong> Feeling five or more uterine contractions in an hour, which may be painless or feel like tightening or hardening of the abdomen.</li>
+        <li><strong>Pelvic Pressure:</strong> A sensation of the baby pushing down, or a feeling of heaviness or fullness in the pelvis or vagina.</li>
+        <li><strong>Low Backache:</strong> A dull, persistent ache in the lower back that may come and go, or be constant, often not relieved by position changes.</li>
+        <li><strong>Vaginal Discharge Changes:</strong> An increase in vaginal discharge, or a change in its type (watery, bloody, or mucus-like, possibly with a 'show').</li>
+        <li><strong>Abdominal Cramping:</strong> Mild menstrual-like cramps, with or without diarrhea, often felt low in the abdomen.</li>
+        <li><strong>Rupture of Membranes:</strong> A sudden gush or slow leak of fluid from the vagina, indicating the amniotic sac has broken.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Immediate Medical Contact:</strong> Contact your healthcare provider or go to the emergency room immediately if you experience any signs or symptoms of preterm labor.</li>
+        <li><strong>Hydration:</strong> Maintain adequate fluid intake, as dehydration can sometimes trigger uterine contractions and contribute to preterm labor.</li>
+        <li><strong>Activity Modification:</strong> Follow medical advice regarding activity levels, which may include bed rest or avoidance of strenuous activities, especially if at high risk.</li>
+        <li><strong>Monitor for Symptoms:</strong> Be vigilant for any changes in your body, particularly if you have known risk factors for preterm labor, and report them promptly.</li>
+        <li><strong>Adherence to Treatment:</strong> If prescribed medications (e.g., tocolytics, corticosteroids), take them exactly as directed to maximize their effectiveness and fetal benefit.</li>
+        <li><strong>Avoidance of Irritants:</strong> Refrain from smoking, alcohol, and illicit drug use, as these are known risk factors for preterm labor and adverse fetal outcomes.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Optimal Hydration:</strong> Drink plenty of water and other non-caffeinated fluids throughout the day to prevent dehydration, which can sometimes lead to uterine irritability and contractions.</li>
+        <li><strong>Balanced Nutrition:</strong> Maintain a healthy, balanced diet rich in fruits, vegetables, lean proteins, and whole grains to support overall maternal health and fetal development.</li>
+        <li><strong>Avoidance of Stimulants:</strong> Limit or avoid caffeine and other stimulants, as they can potentially increase uterine activity in some individuals and contribute to anxiety.</li>
+        <li><strong>Iron-Rich Foods:</strong> Ensure adequate intake of iron-rich foods to prevent anemia, which can be a risk factor for preterm labor and other pregnancy complications.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Recognize Symptoms:</strong> Be aware of the signs and symptoms of preterm labor and encourage the pregnant individual to report any concerns immediately to their healthcare provider.</li>
+        <li><strong>Provide Support:</strong> Offer emotional support and reassurance, as this can be a very stressful and anxious time for the expectant parent and family.</li>
+        <li><strong>Facilitate Medical Care:</strong> Be prepared to transport the individual to the hospital promptly if symptoms arise or medical advice is given, ensuring quick access to care.</li>
+        <li><strong>Follow Instructions:</strong> Assist in adhering to any prescribed bed rest, activity restrictions, or medication schedules, understanding their critical role in management.</li>
+        <li><strong>Prepare for Early Arrival:</strong> Understand that an early delivery might be necessary and be prepared for the potential need for neonatal intensive care and its associated challenges.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Proactive Screening:</strong> Regular prenatal visits allow for early identification and management of risk factors for preterm labor, such as cervical length assessment and infection screening.</li>
+        <li><strong>Tocolytic Therapy:</strong> Medications like nifedipine or indomethacin may be used to temporarily suppress uterine contractions, allowing time for corticosteroid administration and transfer to a higher level of care.</li>
+        <li><strong>Antenatal Corticosteroids:</strong> A course of corticosteroids (e.g., betamethasone) is strongly recommended for fetal lung maturation if preterm birth is anticipated between 24 and 34 weeks of gestation.</li>
+        <li><strong>Magnesium Sulfate:</strong> Administered for neuroprotection in cases of anticipated preterm birth before 32 weeks, significantly reducing the risk of cerebral palsy.</li>
+        <li><strong>Cervical Cerclage:</strong> May be considered for women with a history of cervical insufficiency or a short cervix identified during pregnancy, to reinforce the cervix.</li>
+        <li><strong>Infection Management:</strong> Prompt diagnosis and treatment of genitourinary infections are critical, as they are a common and preventable cause of preterm labor.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Maternal Assessment:</strong> Conduct thorough assessments including vital signs, contraction monitoring (frequency, duration, intensity), and continuous fetal heart rate monitoring.</li>
+        <li><strong>Patient Education:</strong> Educate patients and their families on the signs and symptoms of preterm labor, the importance of adherence to treatment, and what to expect during hospitalization.</li>
+        <li><strong>Medication Administration:</strong> Safely administer tocolytics, corticosteroids, and magnesium sulfate, meticulously monitoring for maternal and fetal side effects and adverse reactions.</li>
+        <li><strong>Emotional Support:</strong> Provide empathetic care, addressing patient anxieties and fears related to preterm birth and potential neonatal complications, offering resources as needed.</li>
+        <li><strong>Documentation:</strong> Maintain accurate and timely documentation of assessments, interventions, patient responses, and communication with the interdisciplinary healthcare team.</li>
+        <li><strong>Discharge Planning:</strong> Collaborate with the interdisciplinary team for comprehensive discharge planning, including home care instructions, follow-up appointments, and signs to watch for.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Tocolysis:</strong> Pharmacological agents used to suppress uterine contractions and delay preterm birth, including beta-mimetics, calcium channel blockers, and NSAIDs.</li>
+        <li><strong>Antenatal Corticosteroids:</strong> Steroid medications (e.g., betamethasone, dexamethasone) given to the mother to accelerate fetal lung maturity and reduce the incidence and severity of respiratory distress syndrome.</li>
+        <li><strong>Magnesium Sulfate:</strong> Administered intravenously for fetal neuroprotection in anticipated preterm birth before 32 weeks, reducing the risk of cerebral palsy.</li>
+        <li><strong>Fetal Fibronectin (fFN) Test:</strong> A biochemical marker used to predict the risk of preterm birth in symptomatic women between 22 and 34 weeks of gestation.</li>
+        <li><strong>Cervical Length Measurement:</strong> Transvaginal ultrasound measurement of cervical length, a key predictor of preterm birth risk, especially in high-risk populations.</li>
+        <li><strong>Neonatal Intensive Care Unit (NICU):</strong> Specialized hospital unit providing comprehensive medical care for premature and critically ill newborns.</li>
+        <li><strong>PPROM (Preterm Premature Rupture of Membranes):</strong> Rupture of amniotic membranes before 37 weeks of gestation and before the onset of labor.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

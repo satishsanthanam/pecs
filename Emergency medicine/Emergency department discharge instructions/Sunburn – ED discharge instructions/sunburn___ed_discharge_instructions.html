@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a person with sunburned skin, showing red patches and peeling. The person is wearing a wide-brimmed hat and sunglasses, applying sunscreen, and drinking water. Background elements include a sun with UV rays, a beach umbrella, and a first-aid kit. The style is clean, modern, and suitable for public health awareness, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./sunburn___ed_discharge_instructions.jpg" class="card-banner" alt="Sunburn – ED discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-emergency-medicine" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency medicine</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-emergency-medicine-emergency-department-discharge-instructions" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency department discharge instructions</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Sunburn – ED discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Emergency medicine</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Emergency department discharge instructions</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding Sunburn Severity</strong>: Sunburn is skin damage caused by ultraviolet (UV) radiation, ranging from mild redness to severe blistering.</li><li><strong>Healing Process</strong>: Mild sunburn typically heals within a few days, while severe burns with blistering can take weeks and require careful management.</li><li><strong>Risk of Complications</strong>: Severe sunburn increases the risk of dehydration, heatstroke, and secondary skin infections.</li><li><strong>Long-Term Effects</strong>: Repeated severe sunburns significantly increase the risk of premature skin aging and skin cancer, including melanoma.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Primary Manifestations</strong>: Redness, warmth, tenderness, and pain in affected skin areas.</li><li><strong>Blister Formation</strong>: Development of fluid-filled blisters, indicating a second-degree burn, which should not be popped.</li><li><strong>Peeling Skin</strong>: Subsequent peeling of the damaged skin as it heals, typically occurring a few days after the initial burn.</li><li><strong>Systemic Symptoms</strong>: Fever, chills, headache, nausea, or dizziness may indicate severe sunburn or heat-related illness requiring medical attention.</li><li><strong>Signs of Infection</strong>: Increased pain, swelling, redness, pus, or red streaks spreading from a blister site.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Further Sun Exposure</strong>: Stay indoors or in shaded areas, especially during peak UV hours (10 AM to 4 PM), until the sunburn has healed.</li><li><strong>Protective Clothing</strong>: Wear loose-fitting, tightly woven clothing, wide-brimmed hats, and UV-protective sunglasses when outdoors.</li><li><strong>Sunscreen Application</strong>: Apply broad-spectrum sunscreen with an SPF of 30 or higher to all exposed skin, reapplying every two hours or after swimming/sweating.</li><li><strong>Avoid Irritants</strong>: Do not apply petroleum jelly, butter, or other greasy products to sunburned skin, as they can trap heat and worsen the burn.</li><li><strong>Do Not Pop Blisters</strong>: Leave blisters intact to protect the underlying skin and prevent infection. If a blister breaks, gently clean the area and apply a sterile dressing.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Maintain Hydration</strong>: Drink plenty of water, clear broths, and electrolyte-rich fluids (e.g., sports drinks, oral rehydration solutions) to prevent dehydration, especially with blistering.</li><li><strong>Avoid Dehydrating Beverages</strong>: Limit or avoid alcohol, excessive caffeine, and sugary drinks, which can contribute to fluid loss.</li><li><strong>Nutrient-Rich Foods</strong>: Consume a diet rich in fruits and vegetables to support skin healing and provide antioxidants.</li><li><strong>Small, Frequent Meals</strong>: If experiencing nausea or discomfort, opt for small, frequent, bland meals.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Monitor for Worsening Symptoms</strong>: Watch for signs of infection (pus, increasing redness, fever), severe pain unresponsive to medication, or spreading blisters.</li><li><strong>Signs of Dehydration</strong>: Decreased urination, dry mouth, lethargy, or dizziness warrant immediate medical re-evaluation.</li><li><strong>Fever Management</strong>: If fever develops (above 101°F or 38.3°C), seek medical advice, especially if accompanied by chills or confusion.</li><li><strong>Medication Adherence</strong>: Follow all instructions for pain relievers (e.g., ibuprofen, acetaminophen) and topical treatments as prescribed or recommended by the ED physician.</li><li><strong>When to Return to ED</strong>: Return immediately if you experience severe blistering over a large area, signs of infection, severe pain, high fever, confusion, or signs of heatstroke.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Pain Management</strong>: Use over-the-counter pain relievers like ibuprofen or acetaminophen as directed to manage discomfort.</li><li><strong>Cool Compresses</strong>: Apply cool, damp cloths to the affected areas for 10-15 minutes several times a day to soothe the skin.</li><li><strong>Moisturize Skin</strong>: Apply aloe vera gel or a fragrance-free moisturizer to damp skin after a cool shower or bath to help retain moisture and reduce peeling.</li><li><strong>Avoid Picking or Peeling</strong>: Allow the skin to shed naturally to prevent further damage and potential scarring.</li><li><strong>Future Prevention</strong>: Emphasize consistent sun protection practices to prevent recurrence and reduce long-term skin damage risks.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education</strong>: Educate patients on proper wound care for blisters, signs of infection, and the importance of hydration.</li><li><strong>Pain Assessment</strong>: Regularly assess pain levels and effectiveness of pain management strategies.</li><li><strong>Hydration Monitoring</strong>: Encourage fluid intake and monitor for signs of dehydration, especially in pediatric and elderly patients.</li><li><strong>Topical Application Guidance</strong>: Instruct on the correct application of topical agents (e.g., aloe vera, hydrocortisone cream) and avoidance of irritants.</li><li><strong>Discharge Planning</strong>: Ensure patients understand when to seek follow-up care and the importance of long-term sun protection.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathophysiology</strong>: UV radiation (primarily UVB) causes DNA damage in keratinocytes, leading to an inflammatory response and apoptosis.</li><li><strong>Classification</strong>: Typically classified as a first-degree burn (epidermis only) or superficial second-degree burn (epidermis and superficial dermis) if blistering occurs.</li><li><strong>Management Principles</strong>: Focus on pain control, hydration, prevention of infection, and promotion of skin healing.</li><li><strong>Pharmacology</strong>: NSAIDs for inflammation and pain, topical corticosteroids for severe inflammation (short-term), and emollients for skin barrier support.</li><li><strong>Complications</strong>: Increased risk of actinic keratoses, basal cell carcinoma, squamous cell carcinoma, and melanoma with cumulative exposure.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

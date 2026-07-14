@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a person with a thoughtful, slightly sad expression, surrounded by subtle visual metaphors for malnutrition and mental health. On one side, a silhouette of a brain with gears, representing cognitive impact and mental struggle. On the other, abstract representations of food items (fruits, vegetables, grains) that appear distant or out of reach. A gentle, supportive hand reaching out from the background. The color palette should be soft and empathetic, with clean lines and no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./malnutrition.jpg" class="card-banner" alt="Malnutrition Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-mental-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Mental health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-mental-health-eating-disorders" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Eating disorders</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Malnutrition</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Mental health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Eating disorders</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Malnutrition, in the context of eating disorders, is a state of nutrient deficiency or imbalance resulting from inadequate intake, poor absorption, or excessive loss of nutrients.</li><li><strong>Eating Disorder Link:</strong> It is a severe consequence of restrictive eating, purging behaviors, or distorted body image often seen in anorexia nervosa, bulimia nervosa, and ARFID.</li><li><strong>Impact:</strong> Leads to profound physical and psychological health deterioration, affecting nearly every organ system and significantly impairing daily functioning.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Physical Manifestations:</strong> Significant unintentional weight loss, muscle wasting, fatigue, dizziness, cold intolerance, and brittle hair/nails.</li><li><strong>Cardiovascular Signs:</strong> Bradycardia, hypotension, and peripheral edema due to fluid shifts and cardiac atrophy.</li><li><strong>Endocrine &amp; Reproductive:</strong> Amenorrhea in females, hormonal imbalances, and impaired growth in adolescents.</li><li><strong>Gastrointestinal Issues:</strong> Constipation, delayed gastric emptying, and abdominal discomfort.</li><li><strong>Cognitive &amp; Mood:</strong> Impaired concentration, irritability, depression, anxiety, and obsessive thoughts about food or body image.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Refeeding Syndrome:</strong> High risk during initial nutritional rehabilitation; characterized by electrolyte shifts (hypophosphatemia, hypokalemia, hypomagnesemia) and fluid retention, potentially leading to cardiac, respiratory, or neurological complications.</li><li><strong>Cardiac Monitoring:</strong> Close observation for arrhythmias, especially during refeeding, due to electrolyte imbalances and myocardial atrophy.</li><li><strong>Bone Health:</strong> Increased risk of osteoporosis and fractures; consider bone density screenings and appropriate supplementation.</li><li><strong>Electrolyte Imbalance:</strong> Regular monitoring of serum electrolytes is critical to prevent life-threatening complications and guide supplementation.</li><li><strong>Psychological Safety:</strong> Ensure a safe and supportive environment to address underlying psychological distress and prevent relapse or self-harm.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions &amp; Restrictions</h2><ul><li><strong>Gradual Refeeding:</strong> Initiate nutritional support slowly and cautiously, especially in severely malnourished individuals, to prevent refeeding syndrome.</li><li><strong>Nutrient-Dense Foods:</strong> Prioritize small, frequent meals and snacks rich in protein, healthy fats, and complex carbohydrates.</li><li><strong>Hydration:</strong> Maintain adequate fluid intake, but monitor for fluid overload during refeeding, especially in patients with cardiac compromise.</li><li><strong>Supplementation:</strong> Consider vitamin and mineral supplementation, particularly thiamine, phosphorus, potassium, and magnesium, under strict medical supervision.</li><li><strong>Structured Meal Plans:</strong> Implement individualized, structured meal plans developed by a registered dietitian to ensure adequate and balanced nutrient intake and reduce anxiety around food.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Recognize Warning Signs:</strong> Be vigilant for signs of restrictive eating, excessive exercise, purging behaviors, or preoccupation with body weight and shape.</li><li><strong>Seek Professional Help:</strong> Encourage immediate consultation with a healthcare provider specializing in eating disorders for diagnosis and treatment.</li><li><strong>Avoid Food Policing:</strong> Refrain from shaming, criticizing, or controlling food choices, which can exacerbate distress and resistance to treatment.</li><li><strong>Supportive Environment:</strong> Foster a non-judgmental and empathetic atmosphere to encourage open communication and adherence to treatment.</li><li><strong>Educate Yourself:</strong> Understand the complexities of eating disorders and malnutrition to provide informed and effective support.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Multidisciplinary Approach:</strong> Emphasize the necessity of a team including physicians, psychiatrists, dietitians, and therapists for comprehensive care.</li><li><strong>Medical Stabilization:</strong> Prioritize immediate medical stabilization of severe malnutrition and associated complications before addressing psychological aspects.</li><li><strong>Address Underlying Pathology:</strong> Treatment must target both the physical consequences of malnutrition and the psychological roots of the eating disorder.</li><li><strong>Long-Term Recovery:</strong> Stress that recovery is a marathon, not a sprint, requiring ongoing support, relapse prevention strategies, and psychological resilience.</li><li><strong>Regular Monitoring:</strong> Advocate for consistent follow-up appointments to monitor physical health, nutritional status, and mental well-being.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic &amp; Nursing Corner</h2><ul><li><strong>Nutritional Assessment:</strong> Learn to perform comprehensive nutritional assessments, including anthropometric measurements (BMI, weight history), dietary recall, and physical examination for signs of deficiency.</li><li><strong>Refeeding Protocol Implementation:</strong> Understand and meticulously follow refeeding protocols, including strict monitoring of vital signs, intake/output, and laboratory values (electrolytes, glucose).</li><li><strong>Patient Education:</strong> Educate patients and families on the importance of adherence to meal plans, medication regimens, and therapy appointments.</li><li><strong>Emotional Support:</strong> Provide empathetic and non-judgmental emotional support, recognizing the profound psychological distress associated with eating disorders.</li><li><strong>Collaboration:</strong> Actively collaborate with the interdisciplinary team to ensure coordinated and holistic patient care, advocating for patient needs.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Diagnostic Criteria:</strong> Refer to DSM-5 criteria for specific eating disorder diagnoses (e.g., Anorexia Nervosa, Bulimia Nervosa, ARFID) which often involve malnutrition or its risk.</li><li><strong>Laboratory Markers:</strong> Key lab values include serum electrolytes (Na, K, Cl, Mg, P), glucose, liver function tests, renal function tests, complete blood count, and thyroid function tests.</li><li><strong>Nutritional Support Modalities:</strong> Explore various methods such as oral refeeding, enteral nutrition (nasogastric tube feeding), and parenteral nutrition in severe cases.</li><li><strong>Bone Mineral Density:</strong> Utilize DEXA scans to assess bone mineral density, especially in chronic malnutrition, and monitor for osteopenia/osteoporosis.</li><li><strong>Cardiac Evaluation:</strong> Electrocardiograms (ECGs) are essential to detect arrhythmias, QT prolongation, and other cardiac abnormalities associated with malnutrition and electrolyte imbalances.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

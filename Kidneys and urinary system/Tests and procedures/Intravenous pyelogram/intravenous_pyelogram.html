@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a patient lying on an X-ray table, with a medical professional operating an X-ray machine. Transparent overlay showing the internal anatomy of kidneys, ureters, and bladder, with a glowing, flowing contrast dye highlighting these structures. Clean, modern hospital setting with minimal background elements. Focus on the diagnostic process and the visualization of the urinary system.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./intravenous_pyelogram.jpg" class="card-banner" alt="Intravenous pyelogram Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-kidneys-and-urinary-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Kidneys and urinary system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-kidneys-and-urinary-system-tests-and-procedures" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Tests and procedures</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Intravenous pyelogram</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Kidneys and urinary system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Tests and procedures</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Procedure Overview:</strong> An Intravenous Pyelogram (IVP) is an X-ray examination that uses a special contrast dye injected into a vein to visualize the kidneys, ureters, and bladder.</li><li><strong>Primary Purpose:</strong> It helps diagnose conditions affecting the urinary tract, such as kidney stones, tumors, blockages, and congenital abnormalities.</li><li><strong>Contrast Medium:</strong> The iodine-based contrast material travels through the bloodstream to the kidneys, making the urinary structures visible on X-ray images as it is filtered and excreted.</li><li><strong>Imaging Sequence:</strong> Multiple X-ray images are taken at timed intervals after contrast injection to track its passage through the urinary system.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Flank or Abdominal Pain:</strong> Often indicative of kidney stones, infection, or obstruction within the urinary tract.</li><li><strong>Hematuria:</strong> Presence of blood in the urine, which can be macroscopic (visible) or microscopic, prompting investigation for stones, tumors, or injury.</li><li><strong>Recurrent Urinary Tract Infections (UTIs):</strong> May suggest underlying structural abnormalities or incomplete bladder emptying.</li><li><strong>Difficulty Urinating or Changes in Urine Output:</strong> Symptoms like dysuria, frequency, urgency, or decreased urine volume can point to urinary system issues.</li><li><strong>Unexplained Fever or Chills:</strong> Especially when accompanied by flank pain, may indicate pyelonephritis or other urinary tract infections.</li><li><strong>Elevated Serum Creatinine or BUN:</strong> Suggests impaired kidney function, which may be due to obstruction or other renal pathology.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Allergy History:</strong> Crucially inform staff of any prior allergic reactions to iodine, shellfish, or any contrast media. Pre-medication may be necessary for mild allergies.</li><li><strong>Renal Function Assessment:</strong> Blood tests (creatinine, GFR) are mandatory prior to the procedure to assess kidney function, as the contrast dye is excreted by the kidneys and can be nephrotoxic in compromised renal states.</li><li><strong>Pregnancy Status:</strong> IVP is generally contraindicated during pregnancy due to radiation exposure to the fetus. Confirm pregnancy status before the procedure.</li><li><strong>Diabetes and Metformin:</strong> Patients taking metformin for diabetes must typically discontinue the medication for 48 hours before and after the IVP to prevent the risk of lactic acidosis, especially with impaired renal function.</li><li><strong>Hydration Status:</strong> Adequate hydration before and after the procedure is vital to help flush the contrast dye from the kidneys and minimize the risk of contrast-induced nephropathy.</li><li><strong>Thyroid Conditions:</strong> Patients with hyperthyroidism or those undergoing radioactive iodine therapy should inform their physician, as iodine contrast can interfere with thyroid function tests.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-Procedure Fasting:</strong> Patients are typically instructed to be NPO (nothing by mouth) for at least 4-8 hours prior to the IVP to minimize the risk of nausea, vomiting, and aspiration, and to ensure optimal bowel preparation for clearer imaging.</li><li><strong>Hydration Prior:</strong> Unless contraindicated by other medical conditions, patients may be encouraged to drink clear fluids the day before the procedure to ensure good hydration, which aids in contrast excretion.</li><li><strong>Bowel Preparation:</strong> A mild laxative or enema may be prescribed the evening before the procedure to clear the bowels, reducing gas and stool shadows that can obscure urinary tract visualization.</li><li><strong>Post-Procedure Fluid Intake:</strong> After the IVP, patients should resume their normal diet and are strongly encouraged to increase their fluid intake for 24-48 hours to help flush the contrast dye from their system.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Allergy Disclosure:</strong> Immediately inform the radiologist or technologist if you have any known allergies, particularly to iodine, contrast dyes, or shellfish, before the contrast injection.</li><li><strong>Sensations During Injection:</strong> Expect a warm, flushing sensation, a metallic taste in the mouth, or mild nausea as the contrast dye is injected. Report any severe discomfort, itching, hives, or difficulty breathing immediately.</li><li><strong>Remain Still:</strong> It is crucial to remain as still as possible during the X-ray exposures to ensure clear, diagnostic images.</li><li><strong>Post-Procedure Monitoring:</strong> Be aware that delayed allergic reactions can occur hours after the procedure. Seek immediate medical attention if you experience rash, itching, swelling, or breathing difficulties.</li><li><strong>Hydration Emphasis:</strong> Actively encourage the patient to drink plenty of fluids post-procedure to facilitate the excretion of the contrast medium and prevent potential kidney complications.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Risk-Benefit Assessment:</strong> Always weigh the diagnostic benefits of an IVP against the potential risks, especially in patients with pre-existing renal impairment, known contrast allergies, or pregnancy.</li><li><strong>Alternative Imaging:</strong> Consider alternative imaging modalities such as CT Urogram, MRI Urogram, or renal ultrasound when IVP is contraindicated or when more detailed anatomical information is required.</li><li><strong>Pre-Procedure Workup:</strong> Emphasize the necessity of a thorough pre-procedure workup, including a detailed allergy history, renal function tests (creatinine, GFR), and pregnancy screening.</li><li><strong>Patient Education:</strong> Provide comprehensive patient education regarding the procedure, potential sensations during contrast injection, and signs of allergic reactions to monitor for both immediately and post-procedure.</li><li><strong>Metformin Management:</strong> Provide clear instructions for diabetic patients on metformin regarding temporary discontinuation and reintroduction to mitigate the risk of lactic acidosis.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pre-Procedure Checklist:</strong> Verify physician's order, confirm informed consent, assess NPO status, obtain vital signs, confirm allergy history (especially iodine/contrast), and ensure IV access is established.</li><li><strong>Renal Function Review:</strong> Prioritize checking recent BUN and creatinine levels to identify patients at risk for contrast-induced nephropathy.</li><li><strong>Patient Monitoring During Procedure:</strong> Closely observe the patient for immediate adverse reactions to contrast media, including urticaria, dyspnea, hypotension, or anaphylaxis. Have emergency medications readily available.</li><li><strong>Post-Procedure Care:</strong> Monitor vital signs, assess urine output, encourage increased oral fluid intake, and educate the patient on signs of delayed allergic reactions to watch for at home.</li><li><strong>Documentation:</strong> Meticulously document the type and volume of contrast administered, patient tolerance, any reactions observed, and all patient education provided.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Modality:</strong> Radiography with intravenous iodinated contrast medium.</li><li><strong>Mechanism of Action:</strong> Contrast agent is filtered by the glomeruli and excreted by the renal tubules, opacifying the renal calyces, pelves, ureters, and bladder.</li><li><strong>Key Indications:</strong> Hematuria, suspected urinary tract obstruction (e.g., nephrolithiasis), recurrent UTIs, congenital anomalies of the urinary tract, and evaluation of renal trauma.</li><li><strong>Absolute Contraindications:</strong> Severe renal failure (eGFR < 30 mL/min/1.73m²), known severe allergic reaction to iodinated contrast, and pregnancy.</li><li><strong>Potential Complications:</strong> Contrast-induced nephropathy (CIN), allergic reactions (mild to severe anaphylaxis), extravasation of contrast, and lactic acidosis in metformin users with renal impairment.</li><li><strong>Alternative Imaging:</strong> CT Urogram (preferred for detailed anatomy and stone detection), MRI Urogram (for contrast allergy or radiation avoidance), Renal Ultrasound (initial screening for obstruction/hydronephrosis).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

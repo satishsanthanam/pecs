@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a male patient recovering at home after a prostatectomy. He is sitting comfortably on a sofa, perhaps with a blanket, holding a glass of water. A caregiver or family member is nearby, offering support. Elements like a small medication bottle, a calendar with a marked follow-up appointment, and a subtle representation of a catheter bag (if applicable) are visible. The overall scene conveys comfort, care, and a gradual return to health. Soft, warm colors, clean lines, and a focus on patient well-being and support.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./prostatectomy___discharge_instructions.jpg" class="card-banner" alt="Prostatectomy – Discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Surgery</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-surgery-general-surgery" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">General surgery</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Prostatectomy – Discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Surgery</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">General surgery</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding Your Recovery:</strong> Expect a gradual recovery period, typically several weeks to months, with specific milestones for activity and symptom improvement.</li><li><strong>Importance of Adherence:</strong> Strictly follow all discharge instructions regarding medications, activity restrictions, and wound/catheter care to prevent complications and promote healing.</li><li><strong>Recognizing Warning Signs:</strong> Be vigilant for signs of infection, excessive bleeding, or severe pain, and know when to contact your healthcare provider immediately.</li><li><strong>Follow-Up Appointments:</strong> Ensure you attend all scheduled post-operative appointments to monitor your progress and address any concerns.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Urinary Incontinence:</strong> Temporary leakage, especially with coughing, sneezing, or lifting, is common and often improves with pelvic floor exercises.</li><li><strong>Urinary Frequency/Urgency:</strong> Increased need to urinate and sudden urges are expected as the bladder heals and adapts.</li><li><strong>Blood in Urine:</strong> Small amounts of blood or pink-tinged urine can occur, especially after catheter removal or increased activity; report heavy bleeding or clots.</li><li><strong>Bowel Changes:</strong> Constipation is common due to pain medication and decreased activity; straining should be avoided.</li><li><strong>Mild Pain/Discomfort:</strong> Expect some discomfort at the surgical site, managed with prescribed pain relievers.</li><li><strong>Fatigue:</strong> Generalized tiredness is normal during the initial recovery phase.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Activity Restrictions:</strong> Avoid heavy lifting (over 10-15 lbs), strenuous activities, and prolonged standing for at least 4-6 weeks post-surgery.</li><li><strong>Driving Limitations:</strong> Do not drive while taking narcotic pain medication or if your reaction time is impaired; typically restricted for 2-4 weeks.</li><li><strong>Catheter Care:</strong> If discharged with a catheter, ensure proper hygiene, securement, and drainage bag management to prevent infection and dislodgement.</li><li><strong>Wound Care:</strong> Keep the incision site clean and dry; follow specific instructions for dressing changes and showering.</li><li><strong>Sexual Activity:</strong> Abstain from sexual activity for a period recommended by your surgeon, typically 4-6 weeks, to allow for proper healing.</li><li><strong>Avoid Straining:</strong> Prevent constipation by maintaining a high-fiber diet and adequate hydration; use stool softeners as prescribed.</li><li><strong>Pelvic Floor Exercises:</strong> Begin Kegel exercises as instructed to strengthen pelvic muscles and improve urinary control.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration:</strong> Drink plenty of fluids (water, clear broths) throughout the day to maintain hydration and promote urinary tract health.</li><li><strong>Fiber-Rich Diet:</strong> Incorporate high-fiber foods such as fruits, vegetables, and whole grains to prevent constipation and reduce straining.</li><li><strong>Avoid Bladder Irritants:</strong> Limit or avoid caffeine, alcohol, spicy foods, and acidic beverages initially, as they can irritate the bladder.</li><li><strong>Small, Frequent Meals:</strong> Opt for smaller, more frequent meals to aid digestion and prevent discomfort.</li><li><strong>Stool Softeners:</strong> Take prescribed stool softeners as directed to ensure soft bowel movements and prevent straining.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Medication Assistance:</strong> Help the patient adhere to their medication schedule, especially for pain management and stool softeners.</li><li><strong>Mobility Support:</strong> Assist with safe ambulation, especially during the first few days, to prevent falls while encouraging light activity.</li><li><strong>Catheter Management:</strong> If applicable, assist with emptying the drainage bag, monitoring urine output, and ensuring the catheter is secure and free from kinks.</li><li><strong>Monitoring for Complications:</strong> Be aware of and report any signs of infection (fever, redness, pus), excessive bleeding, or severe pain to the medical team.</li><li><strong>Emotional Support:</strong> Provide reassurance and support, as recovery can be emotionally challenging due to changes in body function and fatigue.</li><li><strong>Transportation:</strong> Arrange for transportation to follow-up appointments, as the patient may not be able to drive.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Gradual Return to Activity:</strong> Emphasize a slow, progressive return to normal activities, listening to your body's signals for rest.</li><li><strong>Long-Term Urinary Management:</strong> Discuss strategies for managing potential long-term urinary incontinence, including ongoing pelvic floor therapy and lifestyle adjustments.</li><li><strong>Erectile Dysfunction Counseling:</strong> Address concerns regarding erectile function post-prostatectomy and explore available treatment options.</li><li><strong>PSA Monitoring:</strong> Stress the importance of regular PSA blood tests as part of ongoing cancer surveillance.</li><li><strong>Open Communication:</strong> Encourage patients to openly discuss any physical or emotional challenges they face during recovery.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Priority:</strong> Focus on comprehensive discharge teaching covering wound care, catheter management, pain control, and activity restrictions.</li><li><strong>Assessment for Complications:</strong> Prioritize assessment for signs of infection (fever, wound erythema, purulent drainage), DVT, and urinary retention.</li><li><strong>Pain Management Strategies:</strong> Educate on the proper use of analgesics, non-pharmacological pain relief, and the importance of reporting uncontrolled pain.</li><li><strong>Pelvic Floor Exercise Instruction:</strong> Provide clear, step-by-step instructions and resources for initiating and continuing Kegel exercises.</li><li><strong>Psychosocial Support:</strong> Recognize and address patient anxiety, depression, or body image concerns related to surgery and its potential side effects.</li><li><strong>Resource Provision:</strong> Supply patients with contact information for their surgical team, emergency services, and support groups.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Foley Catheter Management:</strong> Protocols for sterile technique during emptying, securing the catheter, and identifying signs of obstruction or infection.</li><li><strong>Post-Operative Pain Management:</strong> Guidelines for multimodal analgesia, including opioid and non-opioid regimens, and patient-controlled analgesia (PCA) if applicable.</li><li><strong>Deep Vein Thrombosis (DVT) Prophylaxis:</strong> Instructions for continued ambulation, compression stockings, or anticoagulant therapy post-discharge.</li><li><strong>Urinary Incontinence Management:</strong> Clinical pathways for pelvic floor physical therapy, biofeedback, and pharmacological interventions.</li><li><strong>Wound Dehiscence:</strong> Recognition and management protocols for surgical wound separation.</li><li><strong>PSA Surveillance:</strong> Standardized schedules and interpretation guidelines for post-prostatectomy Prostate-Specific Antigen monitoring.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

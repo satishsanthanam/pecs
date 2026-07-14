@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human torso, focusing on the heart and surrounding pericardial sac. The pericardium is depicted with subtle red inflammation lines or a faint red glow, indicating pericarditis. A stylized heart is visible within, with a gentle, rhythmic pulse. Elements like a stethoscope listening to the chest or a hand indicating chest pain can be subtly integrated. The overall aesthetic is clean, modern, and medically informative, using a palette of blues, reds, and whites.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./pericarditis_in_adults.jpg" class="card-banner" alt="Pericarditis in adults Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-myopericardial-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Myopericardial disease</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Pericarditis in adults</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Myopericardial disease</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Pericarditis is an inflammation of the pericardium, the two-layered sac-like membrane that surrounds the heart.</li><li><strong>Common Causes:</strong> Often idiopathic (unknown cause), but frequently linked to viral infections (e.g., coxsackievirus), autoimmune diseases (e.g., lupus, rheumatoid arthritis), post-myocardial infarction (Dressler's syndrome), trauma, or kidney failure (uremic pericarditis).</li><li><strong>Types:</strong> Can be acute (sudden onset, short duration), incessant (symptoms lasting >4-6 weeks but <3 months without remission), recurrent (return of symptoms after a symptom-free interval of 4-6 weeks or longer), or chronic constrictive (thickening and scarring of the pericardium, impairing heart function).</li><li><strong>Impact:</strong> Inflammation can lead to fluid accumulation (pericardial effusion) or thickening of the pericardium, potentially restricting the heart's ability to pump blood effectively.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Chest Pain:</strong> Typically sharp, stabbing, or pleuritic (worsens with deep breath or cough), often localized to the retrosternal area and radiating to the neck, shoulders, or back.</li><li><strong>Positional Relief:</strong> Pain is frequently relieved by leaning forward and exacerbated by lying flat or deep inspiration.</li><li><strong>Pericardial Friction Rub:</strong> A characteristic scratching, grating, or squeaking sound heard on auscultation, often best heard at the left lower sternal border with the patient leaning forward.</li><li><strong>Dyspnea:</strong> Shortness of breath, which may be due to pain limiting deep breaths or, in severe cases, due to cardiac tamponade.</li><li><strong>Systemic Symptoms:</strong> May include low-grade fever, fatigue, malaise, and myalgia (muscle aches).</li><li><strong>Signs of Tamponade:</strong> In severe cases with significant effusion, symptoms like rapid heart rate, low blood pressure, muffled heart sounds, and jugular venous distension may indicate cardiac tamponade, a life-threatening complication.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Activity Restriction:</strong> Avoid strenuous physical activity and competitive sports during the acute inflammatory phase and until symptoms resolve and inflammatory markers normalize, typically for 3 months or longer, to prevent recurrence and myopericarditis.</li><li><strong>Medication Adherence:</strong> Strictly follow prescribed medication regimens, including NSAIDs, colchicine, and corticosteroids, as directed by your physician. Do not stop medications prematurely, even if symptoms improve.</li><li><strong>Symptom Monitoring:</strong> Be vigilant for worsening chest pain, increasing shortness of breath, dizziness, fainting, or swelling in the legs, which could indicate complications like cardiac tamponade or constrictive pericarditis.</li><li><strong>Regular Follow-up:</strong> Attend all scheduled follow-up appointments with your cardiologist to monitor disease progression, assess treatment effectiveness, and screen for potential complications.</li><li><strong>Avoid NSAID Overuse:</strong> If prescribed NSAIDs, be aware of potential gastrointestinal side effects and discuss any concerns with your doctor. Do not exceed prescribed dosages.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Anti-inflammatory Focus:</strong> While no specific diet cures pericarditis, adopting an anti-inflammatory eating pattern rich in fruits, vegetables, whole grains, lean proteins, and healthy fats (e.g., omega-3 fatty acids) may support overall health and reduce systemic inflammation.</li><li><strong>Hydration:</strong> Maintain adequate fluid intake unless otherwise advised by your physician, especially if experiencing fever or taking medications that can affect kidney function.</li><li><strong>Sodium Awareness:</strong> If there is any concern for fluid retention or if you have co-existing cardiovascular conditions, monitor sodium intake to help manage fluid balance.</li><li><strong>GI Protection with NSAIDs:</strong> If taking NSAIDs, consider consuming them with food to minimize gastrointestinal upset. Discuss any severe stomach pain or indigestion with your healthcare provider.</li><li><strong>Avoid Processed Foods:</strong> Limit intake of highly processed foods, excessive sugars, and unhealthy trans fats, which can contribute to systemic inflammation and may not support cardiovascular health.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Care:</strong> Seek immediate medical attention for sudden, severe, or crushing chest pain, difficulty breathing, fainting spells, or signs of shock (e.g., rapid heart rate, cold clammy skin).</li><li><strong>Recurrence Risk:</strong> Be aware that pericarditis can recur. Prompt recognition of symptoms and early medical consultation are crucial for managing recurrent episodes effectively.</li><li><strong>Complication Awareness:</strong> Understand the potential for serious complications such as cardiac tamponade (fluid compressing the heart) and constrictive pericarditis (scarring restricting heart function), and report any concerning symptoms without delay.</li><li><strong>Medication Interactions:</strong> Inform your healthcare provider about all medications, supplements, and herbal remedies you are taking to avoid potential drug interactions, especially with NSAIDs, colchicine, or corticosteroids.</li><li><strong>Vaccination Status:</strong> Discuss appropriate vaccinations (e.g., flu, pneumonia) with your doctor, as infections can sometimes trigger or exacerbate pericarditis.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Diagnostic Approach:</strong> Diagnosis typically involves a thorough clinical history, physical examination (auscultation for friction rub), electrocardiogram (ECG) showing diffuse ST-segment elevation, echocardiogram to assess for effusion, and blood tests for inflammatory markers (CRP, ESR) and cardiac enzymes.</li><li><strong>Etiology Identification:</strong> A key goal is to identify the underlying cause, as treatment strategies may vary. This may involve further investigations such as cardiac MRI, CT scan, or specific serological tests for autoimmune conditions.</li><li><strong>Treatment Principles:</strong> Management focuses on pain relief, reducing inflammation, and preventing complications. First-line therapy often includes high-dose NSAIDs (e.g., ibuprofen, aspirin) combined with colchicine.</li><li><strong>Corticosteroid Use:</strong> Corticosteroids are generally reserved for cases refractory to NSAIDs and colchicine, or when there is an autoimmune etiology, due to their potential side effects and risk of recurrence.</li><li><strong>Monitoring for Complications:</strong> Close monitoring for the development of pericardial effusion, cardiac tamponade, or progression to constrictive pericarditis is essential, often requiring serial echocardiograms.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Assessment Focus:</strong> Prioritize pain assessment, including character, location, radiation, and factors that alleviate or exacerbate it. Auscultate for a pericardial friction rub, which is a hallmark sign.</li><li><strong>Vital Sign Monitoring:</strong> Closely monitor vital signs for signs of cardiac compromise, such as hypotension, tachycardia, or pulsus paradoxus (a significant drop in systolic blood pressure during inspiration), which can indicate tamponade.</li><li><strong>Patient Education:</strong> Educate patients on the importance of activity restriction, adherence to medication regimens, and recognizing signs of worsening condition or complications.</li><li><strong>ECG Interpretation:</strong> Understand the classic ECG changes associated with acute pericarditis, including diffuse ST-segment elevation and PR-segment depression.</li><li><strong>Fluid Balance:</strong> Monitor for signs of fluid overload or dehydration, especially if diuretics are prescribed or if the patient has co-existing renal issues.</li><li><strong>Emotional Support:</strong> Provide emotional support and reassurance, as chest pain and the uncertainty of the condition can be anxiety-provoking for patients.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>ICD-10 Codes:</strong> I30.x (Acute pericarditis), I31.x (Other diseases of pericardium, including chronic constrictive pericarditis).</li><li><strong>Diagnostic Criteria:</strong> European Society of Cardiology (ESC) guidelines for the diagnosis and management of pericardial diseases. Key criteria include chest pain, pericardial friction rub, characteristic ECG changes, and new or worsening pericardial effusion.</li><li><strong>Inflammatory Markers:</strong> C-reactive protein (CRP), erythrocyte sedimentation rate (ESR), white blood cell count (WBC).</li><li><strong>Medication Protocols:</strong> NSAIDs (e.g., ibuprofen 600-800 mg TID, aspirin 500-1000 mg TID), Colchicine (e.g., 0.5 mg BID for 3 months or longer), Corticosteroids (e.g., prednisone, tapered dose).</li><li><strong>Etiologies:</strong> Viral (Coxsackievirus B, adenovirus, echovirus), bacterial, fungal, tuberculous, autoimmune (SLE, RA), uremic, neoplastic, post-MI (Dressler's syndrome), post-cardiac injury syndrome.</li><li><strong>Complications:</strong> Pericardial effusion, cardiac tamponade, recurrent pericarditis, constrictive pericarditis, myopericarditis.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

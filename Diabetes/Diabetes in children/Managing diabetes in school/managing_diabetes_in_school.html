@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a diverse group of children and adults in a bright, modern school setting. A smiling child with diabetes is checking their blood glucose with a monitor, while a supportive school nurse and teacher stand nearby. Elements like an insulin pen, healthy snack, and a 504 plan document are subtly integrated into the scene. The overall composition conveys care, education, and inclusion for managing diabetes in school. Clean lines, vibrant colors, no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./managing_diabetes_in_school.jpg" class="card-banner" alt="Managing diabetes in school Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-diabetes" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Diabetes</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-diabetes-diabetes-in-children" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Diabetes in children</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Managing diabetes in school</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Diabetes</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Diabetes in children</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Individualized Care Plan</strong>: Every student with diabetes requires a personalized Diabetes Medical Management Plan (DMMP) developed by their healthcare provider.</li><li><strong>Trained School Staff</strong>: Key school personnel, including nurses, teachers, and coaches, must be trained to recognize and respond to diabetes-related emergencies.</li><li><strong>Legal Protections</strong>: Students with diabetes are protected under Section 504 of the Rehabilitation Act and potentially the Individuals with Disabilities Education Act (IDEA), ensuring necessary accommodations.</li><li><strong>Open Communication</strong>: Consistent and clear communication between parents, healthcare providers, and school staff is crucial for safe and effective diabetes management.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Hypoglycemia (Low Blood Sugar)</strong>: Shakiness, dizziness, sweating, hunger, irritability, confusion, blurred vision, headache, weakness, rapid heart rate.</li><li><strong>Hyperglycemia (High Blood Sugar)</strong>: Increased thirst, frequent urination, fatigue, blurred vision, headache, nausea, dry mouth, fruity breath (in severe cases).</li><li><strong>Diabetic Ketoacidosis (DKA) Warning Signs</strong>: Deep, rapid breathing, dry skin and mouth, flushed face, fruity breath odor, nausea, vomiting, stomach pain, confusion, lethargy.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Emergency Glucagon Availability</strong>: Ensure emergency glucagon is readily accessible at school and that designated staff are trained in its administration for severe hypoglycemia.</li><li><strong>Proper Insulin Storage</strong>: Insulin must be stored correctly (refrigerated, protected from extreme temperatures) at school, with clear protocols for access.</li><li><strong>Blood Glucose Monitoring Access</strong>: Students or designated staff must have immediate access to blood glucose monitoring supplies as per the DMMP.</li><li><strong>Activity Adjustments</strong>: Plan for physical activity, including pre-activity blood glucose checks and carbohydrate snacks, to prevent exercise-induced hypoglycemia.</li><li><strong>Field Trip Protocols</strong>: Establish specific plans for diabetes management during off-campus activities, including medication, supplies, and emergency contacts.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Carbohydrate Counting</strong>: Students and staff should understand carbohydrate content of school meals and snacks to accurately dose insulin.</li><li><strong>Scheduled Meals and Snacks</strong>: Adherence to a consistent meal and snack schedule is vital to prevent significant blood sugar fluctuations.</li><li><strong>Emergency Carbohydrates</strong>: Readily available fast-acting carbohydrates (e.g., juice boxes, glucose tablets) must be on hand for treating hypoglycemia.</li><li><strong>Unrestricted Water Access</strong>: Students with diabetes require unrestricted access to water to prevent dehydration, especially during periods of hyperglycemia.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Prompt Treatment</strong>: Never delay treatment for suspected hypoglycemia or hyperglycemia; act immediately according to the student's DMMP.</li><li><strong>Supervision During Symptoms</strong>: A student experiencing symptoms of severe hypo- or hyperglycemia should never be left unattended.</li><li><strong>Strict DMMP Adherence</strong>: Follow the individualized Diabetes Medical Management Plan precisely without deviation.</li><li><strong>Immediate Communication</strong>: Report any significant changes in the student's health status or diabetes management to parents/guardians and the school nurse immediately.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive DMMP Essential</strong>: A detailed, up-to-date Diabetes Medical Management Plan is the foundation for safe and effective diabetes care in the school setting.</li><li><strong>Regular Endocrine Follow-ups</strong>: Consistent visits with a pediatric endocrinologist are crucial for ongoing management adjustments and monitoring.</li><li><strong>Empowerment Through Education</strong>: Encourage age-appropriate self-management skills and provide education to the child to foster independence and responsibility.</li><li><strong>Collaborative Team Approach</strong>: Emphasize the importance of a unified team involving parents, school staff, and healthcare providers for optimal outcomes.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>School Nurse as Coordinator</strong>: The school nurse typically serves as the central point of contact for diabetes management, staff training, and communication within the school.</li><li><strong>Staff Training Programs</strong>: Develop and deliver comprehensive training modules for non-medical school personnel on daily diabetes care and emergency protocols.</li><li><strong>Peer Awareness Education</strong>: Facilitate opportunities for students to learn about diabetes to foster understanding and support among classmates.</li><li><strong>Meticulous Documentation</strong>: Maintain accurate and detailed records of blood glucose readings, insulin administration, carbohydrate intake, and any diabetes-related incidents.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Diabetes Medical Management Plan (DMMP)</strong>: A written document from the student's healthcare provider detailing daily care, medication, and emergency procedures.</li><li><strong>Section 504 Plan</strong>: A legal document under the Rehabilitation Act of 1973 ensuring accommodations for students with disabilities, including diabetes, in public schools.</li><li><strong>Individualized Education Program (IEP)</strong>: A legal document for students with disabilities who require special education services, potentially applicable if diabetes impacts educational performance.</li><li><strong>Americans with Disabilities Act (ADA)</strong>: Federal law prohibiting discrimination against individuals with disabilities, ensuring equal access and opportunities.</li><li><strong>Glucagon</strong>: A hormone administered via injection to rapidly raise blood glucose levels during severe hypoglycemic episodes.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

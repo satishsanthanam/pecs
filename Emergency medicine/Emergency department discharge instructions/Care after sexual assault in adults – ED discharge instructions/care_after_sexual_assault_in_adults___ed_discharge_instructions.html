@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a healthcare professional, possibly a nurse, offering a comforting hand to an adult patient. The patient is seated, looking slightly down but with a subtle hint of hope or relief. The background features soft, muted colors and abstract shapes suggesting a safe, private clinical setting. Elements include a subtle symbol of support or advocacy, like a small, intertwined ribbon or a gentle light. The overall mood is empathetic, supportive, and reassuring, emphasizing care and recovery. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./care_after_sexual_assault_in_adults___ed_discharge_instructions.jpg" class="card-banner" alt="Care after sexual assault in adults – ED discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-emergency-medicine" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency medicine</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-emergency-medicine-emergency-department-discharge-instructions" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency department discharge instructions</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Care after sexual assault in adults – ED discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Emergency medicine</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Emergency department discharge instructions</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Immediate Safety:</strong> Ensure you are in a safe environment away from the assailant. Your safety is the top priority.</li><li><strong>Medical Evaluation:</strong> It is crucial to address any physical injuries, assess for potential sexually transmitted infections (STIs), and discuss emergency contraception options.</li><li><strong>Forensic Examination Option:</strong> You have the right to undergo a forensic medical examination (often performed by a Sexual Assault Nurse Examiner or SANE) to collect evidence, even if you are unsure about reporting to law enforcement. This can be done confidentially.</li><li><strong>Emotional Support:</strong> Experiencing sexual assault is traumatic. It is normal to feel a range of emotions. Support resources are available to help you process these feelings.</li><li><strong>Confidentiality:</strong> Your medical information is confidential. Discuss with your healthcare provider about reporting options and your privacy rights.</li><li><strong>Follow-up Care:</strong> Specific follow-up appointments will be scheduled for STI testing, pregnancy testing, and mental health support. Adherence to these appointments is vital.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Physical Injuries:</strong> Pain, bruising, lacerations, swelling, or bleeding in any part of the body, especially genital or anal areas.</li><li><strong>Genitourinary Symptoms:</strong> Painful urination, increased urinary frequency, vaginal or penile discharge, itching, or abdominal/pelvic pain.</li><li><strong>Gastrointestinal Distress:</strong> Nausea, vomiting, or changes in bowel habits due to stress or direct trauma.</li><li><strong>Emotional and Psychological Impact:</strong> Intense fear, anxiety, shock, numbness, difficulty sleeping, nightmares, flashbacks, irritability, or feelings of detachment.</li><li><strong>Headaches or Dizziness:</strong> Can be a result of physical trauma, stress, or dehydration.</li><li><strong>Fatigue:</strong> Profound tiredness or exhaustion, often related to emotional distress and the body's stress response.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Personal Safety Plan:</strong> Identify safe places and trusted individuals. Avoid contact with the assailant.</li><li><strong>Evidence Preservation (if considering forensic exam):</strong> If you are considering a forensic exam, try not to shower, bathe, douche, change clothes, brush teeth, eat, drink, or clean the area of assault before the examination. If you have changed clothes, place them in a paper bag (not plastic) to preserve evidence.</li><li><strong>Medication Adherence:</strong> Take all prescribed medications, such as HIV Post-Exposure Prophylaxis (PEP) or STI prophylaxis, exactly as directed. Do not miss doses.</li><li><strong>Avoid Self-Medication:</strong> Refrain from using alcohol or illicit drugs to cope, as these can interfere with healing and medication effectiveness.</li><li><strong>Monitor for Worsening Symptoms:</strong> Be vigilant for signs of severe emotional distress, suicidal thoughts, or worsening physical symptoms. Seek immediate medical attention if these occur.</li><li><strong>Follow-up Appointments:</strong> Attend all scheduled follow-up appointments for medical re-evaluation, STI testing, and mental health support.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration:</strong> Maintain adequate hydration by drinking water or clear fluids, especially if experiencing nausea or emotional distress.</li><li><strong>Gentle Nutrition:</strong> If appetite is poor or nausea is present, opt for bland, easily digestible foods such as toast, crackers, rice, or clear broths.</li><li><strong>Avoid Stimulants:</strong> Limit or avoid caffeine and sugary drinks, which can exacerbate anxiety or interfere with sleep.</li><li><strong>Alcohol Restriction:</strong> Strictly avoid alcohol, as it can impair judgment, interfere with medications, and worsen emotional distress.</li><li><strong>Regular Meals:</strong> Try to maintain regular, small meals to support energy levels and overall well-being, even if appetite is reduced.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Provide Unconditional Support:</strong> Offer a non-judgmental, empathetic presence. Listen actively without pressuring the survivor to talk or make decisions.</li><li><strong>Ensure Safety:</strong> Help the survivor return to a safe environment and assist with safety planning.</li><li><strong>Respect Autonomy:</strong> Support the survivor's choices regarding reporting, medical care, and next steps. Do not make decisions for them.</li><li><strong>Assist with Practical Needs:</strong> Help with transportation, medication reminders, or navigating resources as requested by the survivor.</li><li><strong>Observe for Distress:</strong> Be alert for signs of severe emotional distress, suicidal ideation, or self-harm. Seek immediate professional help if these signs are present.</li><li><strong>Maintain Confidentiality:</strong> Respect the survivor's privacy and do not share their experience without their explicit consent.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive Care:</strong> Our priority is your physical and emotional well-being. We are here to provide comprehensive, trauma-informed care without judgment.</li><li><strong>Empowerment Through Choice:</strong> You are in control of your decisions regarding medical care, evidence collection, and reporting. We will support your choices.</li><li><strong>Long-term Support:</strong> The impact of sexual assault can be long-lasting. We strongly recommend engaging with mental health professionals and advocacy services for ongoing support.</li><li><strong>Prophylactic Treatment:</strong> Adherence to prescribed prophylactic medications for STIs and HIV is critical to minimize health risks.</li><li><strong>Follow-up is Key:</strong> Scheduled follow-up appointments are essential for monitoring your health, completing necessary tests, and ensuring your continued recovery.</li><li><strong>Validation of Experience:</strong> Your feelings and reactions are valid. We acknowledge the profound trauma you have experienced and are committed to your healing journey.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Trauma-Informed Care Principles:</strong> Apply principles of safety, trustworthiness, peer support, collaboration, empowerment, and cultural sensitivity in all interactions.</li><li><strong>SANE/SAFE Role:</strong> Understand the specialized role of the Sexual Assault Nurse Examiner (SANE) or Sexual Assault Forensic Examiner (SAFE) in providing compassionate care and meticulous evidence collection.</li><li><strong>Documentation Accuracy:</strong> Ensure objective, non-judgmental, and detailed documentation of findings, patient statements, and interventions, adhering to legal and ethical guidelines.</li><li><strong>Resource Navigation:</strong> Be proficient in connecting survivors with local and national sexual assault crisis centers, advocacy groups, and mental health services.</li><li><strong>Medication Education:</strong> Provide clear, concise education on Post-Exposure Prophylaxis (PEP) for HIV, STI prophylaxis, and emergency contraception, including side effects and adherence.</li><li><strong>Psychological First Aid:</strong> Utilize techniques of psychological first aid to provide immediate support, stabilize emotional distress, and facilitate coping.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Forensic Medical Examination:</strong> Specialized examination for evidence collection, typically performed by a SANE/SAFE nurse, following strict chain of custody protocols.</li><li><strong>Post-Exposure Prophylaxis (PEP):</strong> Antiretroviral medications initiated within 72 hours of potential HIV exposure to prevent seroconversion.</li><li><strong>Emergency Contraception (EC):</strong> Medications (e.g., levonorgestrel, ulipristal acetate) or copper IUD used to prevent pregnancy after unprotected intercourse.</li><li><strong>Sexually Transmitted Infection (STI) Prophylaxis:</strong> Empiric antibiotic treatment given post-assault to prevent common STIs (e.g., chlamydia, gonorrhea, trichomoniasis).</li><li><strong>Trauma-Informed Care (TIC):</strong> An organizational framework that involves understanding, recognizing, and responding to the effects of all types of trauma.</li><li><strong>Mandatory Reporting Laws:</strong> State-specific legal requirements for healthcare professionals to report certain types of injuries or assaults to law enforcement, which may vary for adult sexual assault.</li><li><strong>Crisis Intervention:</strong> Immediate, short-term psychological care aimed at assisting individuals in a crisis situation to regain equilibrium.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a diverse group of happy children receiving vaccinations from healthcare workers. In the background, a stylized lung icon, a world map highlighting areas of TB prevalence, and a protective shield symbolizing immunity. The scene should convey public health awareness and protection against tuberculosis, with clean lines and a modern aesthetic. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./tuberculosis_vaccine__bcg_.jpg" class="card-banner" alt="Tuberculosis vaccine (BCG) Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-infections-and-vaccines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Infections and vaccines</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-infections-and-vaccines-tuberculosis" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Tuberculosis</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Tuberculosis vaccine (BCG)</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Infections and vaccines</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Tuberculosis</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose of BCG Vaccine</strong>: The Bacille Calmette-Guérin (BCG) vaccine is a live attenuated vaccine primarily used to protect infants and young children against severe forms of tuberculosis (TB), such as TB meningitis and miliary TB.</li><li><strong>Global Distribution</strong>: It is widely used in countries with a high burden of TB, often administered shortly after birth.</li><li><strong>Efficacy Limitations</strong>: While effective against severe childhood TB, its efficacy against pulmonary TB in adolescents and adults is variable and generally lower. It does not prevent latent TB infection.</li><li><strong>Not Routine in Low-Incidence Areas</strong>: In countries with low TB incidence, like the United States, BCG is not routinely recommended due to its variable efficacy against adult pulmonary TB and its interference with tuberculin skin test (TST) interpretation.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Risk Factors for Severe TB</strong>: The vaccine is indicated for infants and young children at high risk of exposure to active pulmonary TB, especially those living in areas with high TB prevalence or with household contacts who have active, untreatable TB.</li><li><strong>Prevention of Severe Forms</strong>: BCG aims to prevent the development of life-threatening forms of TB, such as disseminated miliary TB (characterized by widespread small lesions in multiple organs, leading to fever, weight loss, and organ dysfunction) and TB meningitis (presenting with fever, headache, altered mental status, and meningeal signs).</li><li><strong>Clinical Indications for Vaccination</strong>: Consideration for vaccination arises when a child is at significant risk of developing these severe, often fatal, forms of the disease.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Immunocompromised Individuals</strong>: BCG is a live vaccine and is contraindicated in individuals with compromised immune systems, including those with HIV/AIDS, severe combined immunodeficiency (SCID), or those receiving immunosuppressive therapy.</li><li><strong>Pregnancy and Lactation</strong>: While generally not recommended during pregnancy, the risk to the fetus is theoretical. It is not contraindicated for lactating mothers.</li><li><strong>Severe Skin Conditions</strong>: Avoid administration in individuals with extensive skin infections or severe dermatological conditions at the proposed injection site.</li><li><strong>Correct Administration</strong>: The vaccine must be administered strictly intradermally, typically into the deltoid region of the upper arm, to ensure proper immune response and minimize adverse reactions.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>No Specific Food Restrictions</strong>: There are no specific food or fluid restrictions required before or after BCG vaccination.</li><li><strong>Pre-Vaccination Hydration</strong>: Ensuring the child is adequately hydrated and fed before vaccination can help minimize discomfort and ensure general well-being during the procedure.</li><li><strong>Post-Vaccination Comfort</strong>: Continue with the child's regular feeding schedule post-vaccination to maintain comfort and routine.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Injection Site Care</strong>: Keep the injection site clean and dry. Do not rub, scratch, or apply bandages, creams, or antiseptics to the site.</li><li><strong>Expected Local Reaction</strong>: Inform caregivers that a small red papule will typically appear at the injection site within 2-4 weeks, which may develop into a superficial ulcer and eventually heal with a characteristic scar over several weeks to months. This is a normal and expected reaction.</li><li><strong>Monitoring for Adverse Events</strong>: Advise to monitor for signs of severe local reactions (e.g., extensive ulceration, abscess formation, regional lymphadenitis) or systemic reactions (e.g., persistent high fever, generalized rash) and to seek medical attention if these occur.</li><li><strong>Avoidance of Trauma</strong>: Protect the injection site from trauma or irritation during the healing process.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Selective Use</strong>: BCG vaccination should be considered selectively for high-risk infants and children in areas with high TB prevalence, or for those with unavoidable exposure to drug-resistant TB.</li><li><strong>Limitations and Alternatives</strong>: Physicians must counsel patients and families on the vaccine's limitations, particularly its variable efficacy against adult pulmonary TB, and emphasize that it does not replace other TB control measures like early diagnosis, treatment of active cases, and contact tracing.</li><li><strong>Impact on TST</strong>: Be aware that BCG vaccination can cause a false-positive tuberculin skin test (TST) result, complicating the diagnosis of latent TB infection. Interferon-gamma release assays (IGRAs) are preferred for TB screening in BCG-vaccinated individuals.</li><li><strong>Risk-Benefit Assessment</strong>: A thorough risk-benefit assessment is crucial, especially in immunocompromised individuals or those with other contraindications.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Intradermal Technique Mastery</strong>: Nurses must master the precise intradermal injection technique, ensuring the bevel of the needle is visible through the skin and a distinct wheal forms, indicating correct administration.</li><li><strong>Site Selection</strong>: The standard site for BCG administration is the outer aspect of the upper left arm (deltoid region) to allow for easy identification of the scar.</li><li><strong>Patient Education</strong>: Provide clear, concise education to parents/caregivers regarding the expected local reaction, proper site care, and when to seek medical advice for adverse events.</li><li><strong>Documentation</strong>: Meticulously document the vaccine batch number, administration site, date, and any observed immediate reactions.</li><li><strong>Differentiation from Infection</strong>: Understand that the local reaction to BCG is distinct from a TB infection, and educate caregivers on these differences.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Vaccine Type</strong>: Live attenuated vaccine derived from an attenuated strain of *Mycobacterium bovis*.</li><li><strong>Mechanism of Action</strong>: Induces cell-mediated immunity by stimulating T-lymphocytes and macrophages, leading to a protective immune response against *Mycobacterium tuberculosis*.</li><li><strong>Efficacy Variability</strong>: Efficacy against pulmonary TB ranges from 0% to 80% across different studies, influenced by geographical location, genetic factors, and environmental mycobacteria exposure.</li><li><strong>Impact on Tuberculin Skin Test (TST)</strong>: BCG vaccination can lead to a positive TST result, which typically wanes over time but can persist for years, making TST unreliable for diagnosing latent TB in vaccinated individuals.</li><li><strong>Adverse Reactions</strong>: Common reactions include local pain, swelling, ulceration, and scarring. Rare but serious adverse events include regional lymphadenitis, osteitis, and disseminated BCG infection in immunocompromised individuals.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

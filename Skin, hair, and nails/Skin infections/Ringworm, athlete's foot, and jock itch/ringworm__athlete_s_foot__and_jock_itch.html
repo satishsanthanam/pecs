@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting various common fungal skin infections. Show a stylized human body with distinct areas highlighting ringworm (a circular red rash on the torso), athlete's foot (cracked, peeling skin between toes), and jock itch (a red, itchy rash in the groin area). Include subtle background elements like a shower floor, a pair of sweaty socks, and a communal towel to suggest common transmission routes. The style should be clean, modern, and easily understandable for public health awareness, with a focus on skin health and hygiene. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./ringworm__athlete_s_foot__and_jock_itch.jpg" class="card-banner" alt="Ringworm, athlete's foot, and jock itch Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-skin-hair-and-nails" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Skin, hair, and nails</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-skin-hair-and-nails-skin-infections" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Skin infections</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Ringworm, athlete's foot, and jock itch</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Skin, hair, and nails</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Skin infections</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Fungal Nature</strong>: Ringworm, athlete's foot, and jock itch are all common fungal infections caused by dermatophytes, not actual worms.</li><li><strong>Contagious Spread</strong>: These infections are highly contagious and can spread through direct skin-to-skin contact or indirectly via contaminated surfaces, clothing, or shared items.</li><li><strong>Common Locations</strong>: Ringworm (tinea corporis) typically appears on the body, athlete's foot (tinea pedis) affects the feet, and jock itch (tinea cruris) occurs in the groin area.</li><li><strong>Risk Factors</strong>: Warm, moist environments, excessive sweating, tight clothing, communal showers, and weakened immune systems increase susceptibility.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Ringworm (Tinea Corporis)</strong>: Characterized by a red, itchy, scaly, circular rash with raised edges and a clearer center, often resembling a ring.</li><li><strong>Athlete's Foot (Tinea Pedis)</strong>: Presents with itching, burning, and stinging sensations between the toes or on the soles of the feet, accompanied by peeling, cracking skin, and sometimes blisters.</li><li><strong>Jock Itch (Tinea Cruris)</strong>: Manifests as a red, itchy, often ring-shaped rash in the groin, inner thighs, or buttocks, which may also involve skin peeling or flaking.</li><li><strong>General Discomfort</strong>: Persistent itching, skin irritation, and discomfort are common across all three conditions, potentially leading to secondary bacterial infections from scratching.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Maintain Dryness</strong>: Keep skin clean and thoroughly dry, especially in skin folds, between toes, and after showering or sweating.</li><li><strong>Appropriate Footwear</strong>: Wear breathable shoes and change socks daily. Opt for moisture-wicking socks and avoid sharing footwear.</li><li><strong>Public Hygiene</strong>: Always wear sandals or flip-flops in public showers, locker rooms, swimming pools, and other communal areas.</li><li><strong>Clothing Choices</strong>: Wear loose-fitting, breathable fabrics (e.g., cotton) and change out of sweaty clothes promptly after physical activity.</li><li><strong>Avoid Sharing Personal Items</strong>: Do not share towels, clothing, razors, or other personal hygiene items to prevent fungal transmission.</li><li><strong>Pet Monitoring</strong>: If pets show signs of hair loss or skin lesions, seek veterinary care, as they can be carriers of ringworm.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration Status</strong>: Ensure adequate daily fluid intake to support overall skin barrier function and systemic health, which aids in recovery.</li><li><strong>Immune-Supporting Nutrients</strong>: Incorporate foods rich in zinc (e.g., nuts, legumes, meat), vitamin C (e.g., citrus fruits, berries), and probiotics (e.g., yogurt, kefir) to bolster immune response.</li><li><strong>Blood Glucose Control</strong>: For individuals with diabetes, strict management of blood glucose levels is critical, as uncontrolled hyperglycemia can impair immune function and increase susceptibility to fungal infections.</li><li><strong>Anti-Inflammatory Foods</strong>: Consider a diet rich in anti-inflammatory foods (e.g., omega-3 fatty acids from fish, leafy greens) to support skin health, though direct impact on fungal eradication is not primary.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Complete Treatment Course</strong>: Adhere strictly to the full prescribed course of antifungal medication, even if symptoms appear to resolve quickly, to prevent recurrence and resistance.</li><li><strong>Prevent Recurrence Strategies</strong>: Continue implementing preventative measures such as meticulous hygiene, appropriate clothing, and footwear even after the infection clears.</li><li><strong>Monitor for Spread</strong>: Regularly inspect skin for new lesions or signs of the infection spreading to other body parts; seek medical advice if the condition worsens or fails to improve.</li><li><strong>Household Awareness</strong>: Advise household members to be vigilant for symptoms, especially if sharing living spaces, and to practice good hygiene to prevent cross-contamination.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Accurate Diagnosis</strong>: Clinical diagnosis is often sufficient, but potassium hydroxide (KOH) microscopy or fungal culture may be utilized for atypical presentations or treatment failures.</li><li><strong>Topical Antifungal Therapy</strong>: First-line treatment typically involves topical azoles (e.g., miconazole, clotrimazole) or allylamines (e.g., terbinafine) applied once or twice daily for 2-4 weeks.</li><li><strong>Oral Antifungal Therapy</strong>: Oral antifungals (e.g., griseofulvin, terbinafine, fluconazole) are reserved for severe, widespread, or recalcitrant infections, often requiring monitoring of liver function tests.</li><li><strong>Differential Diagnosis</strong>: It is crucial to differentiate these fungal infections from other dermatological conditions such as eczema, psoriasis, contact dermatitis, or bacterial infections.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Focus</strong>: Educate patients on the correct application technique for topical medications, the importance of consistent hygiene, and strategies for preventing future infections.</li><li><strong>Skin Assessment</strong>: Conduct thorough skin assessments to identify characteristic lesions, evaluate the severity of itching, and detect any signs of secondary bacterial infection.</li><li><strong>Medication Adherence Counseling</strong>: Emphasize the critical importance of completing the entire course of antifungal therapy to ensure complete eradication of the fungus and minimize the risk of relapse or antifungal resistance.</li><li><strong>Environmental Control Measures</strong>: Advise patients on effective methods for cleaning and disinfecting contaminated surfaces (e.g., shower floors, gym equipment) and proper laundering of infected clothing and bedding.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Etiological Agents</strong>: Primarily dermatophytes, including species from the genera *Trichophyton*, *Microsporum*, and *Epidermophyton*.</li><li><strong>Pathophysiology</strong>: Dermatophytes infect keratinized tissues (stratum corneum, hair, nails) by producing keratinolytic enzymes, leading to inflammation and characteristic skin lesions.</li><li><strong>Diagnostic Modalities</strong>: Clinical presentation, KOH wet mount microscopy (revealing hyphae and spores), fungal culture on Sabouraud's dextrose agar, and Wood's lamp examination (for certain *Microsporum* species).</li><li><strong>Pharmacological Mechanisms</strong>: Azoles inhibit ergosterol synthesis in the fungal cell membrane; allylamines inhibit squalene epoxidase; griseofulvin interferes with fungal mitosis.</li><li><strong>ICD-10 Codes</strong>: B35.4 (Tinea corporis), B35.3 (Tinea pedis), B35.6 (Tinea cruris). Other related codes include B35.0 (Tinea capitis) and B35.1 (Tinea unguium).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

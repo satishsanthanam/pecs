@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a person with diabetes experiencing low blood sugar. The person shows signs like sweating on the forehead, slight shakiness in hands, and a confused expression. Around them are visual cues of quick remedies: a glucose meter displaying a low reading, a small pack of glucose tablets, and a juice box. The background is clean and modern, with soft, supportive colors, emphasizing the importance of immediate action and awareness. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./low_blood_sugar_in_people_with_diabetes.jpg" class="card-banner" alt="Low blood sugar in people with diabetes Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-diabetes" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Diabetes</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-diabetes-type-1-diabetes" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Type 1 diabetes</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Low blood sugar in people with diabetes</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Diabetes</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Type 1 diabetes</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding Hypoglycemia:</strong> Low blood sugar, or hypoglycemia, occurs when blood glucose levels drop below 70 mg/dL (3.9 mmol/L), posing a significant risk for individuals with diabetes.</li><li><strong>Common Triggers:</strong> This condition often results from taking too much insulin or certain diabetes medications, skipping meals, delaying food intake, engaging in unusual or excessive physical activity, or consuming alcohol without adequate food.</li><li><strong>Rapid Intervention is Key:</strong> Prompt recognition and treatment are crucial to prevent severe complications such as seizures, loss of consciousness, or brain damage.</li><li><strong>Individualized Risk Factors:</strong> Factors like impaired renal function, older age, and long-standing diabetes can increase susceptibility to hypoglycemic episodes.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Early Warning Signs:</strong> Patients may experience shakiness, sweating, rapid heartbeat (palpitations), hunger, dizziness, lightheadedness, and pallor.</li><li><strong>Neuroglycopenic Symptoms:</strong> As blood sugar drops further, symptoms affecting brain function can appear, including confusion, difficulty concentrating, irritability, mood changes, blurred vision, slurred speech, and clumsiness.</li><li><strong>Nocturnal Hypoglycemia:</strong> Nighttime low blood sugar can manifest as nightmares, restless sleep, waking up drenched in sweat, or experiencing headaches upon waking.</li><li><strong>Severe Manifestations:</strong> Without intervention, severe hypoglycemia can lead to seizures, unconsciousness, and in rare cases, coma or death.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Consistent Blood Glucose Monitoring:</strong> Regularly check blood sugar levels, especially before and after meals, exercise, and at bedtime, to identify trends and prevent drops.</li><li><strong>Always Carry Fast-Acting Carbs:</strong> Keep glucose tablets, hard candies, fruit juice, or regular soda readily available for immediate treatment of low blood sugar.</li><li><strong>Educate Support Network:</strong> Inform family, friends, and colleagues about your diabetes and how to recognize and treat hypoglycemia, including the use of glucagon.</li><li><strong>Wear Medical Identification:</strong> A medical ID bracelet or necklace can alert emergency responders to your condition in case of severe hypoglycemia.</li><li><strong>Adjust Medication for Activity:</strong> Learn how to adjust insulin or medication doses in consultation with your healthcare provider when planning increased physical activity or changes in meal schedules.</li><li><strong>Avoid Alcohol on Empty Stomach:</strong> Alcohol can lower blood sugar, especially when consumed without food, and can mask hypoglycemia symptoms.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Immediate Treatment (Rule of 15):</strong> Consume 15-20 grams of fast-acting carbohydrates (e.g., 4 glucose tablets, 4 ounces of fruit juice or regular soda, 1 tablespoon of honey or sugar).</li><li><strong>Recheck Blood Sugar:</strong> After 15 minutes, recheck blood glucose. If it's still below 70 mg/dL, repeat the 15-gram carbohydrate intake.</li><li><strong>Follow-Up Snack:</strong> Once blood sugar is stable and the next meal is more than an hour away, eat a small snack containing complex carbohydrates and protein (e.g., half a sandwich, crackers with peanut butter) to prevent another drop.</li><li><strong>Avoid High-Fat Foods for Treatment:</strong> Do not use chocolate, candy bars, or ice cream to treat hypoglycemia, as their fat content slows sugar absorption.</li><li><strong>Consistent Meal Timing:</strong> Maintain regular meal and snack times to help stabilize blood glucose levels and reduce the risk of hypoglycemia.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>For Conscious Individuals:</strong> Assist the person in consuming fast-acting carbohydrates as per the 'Rule of 15'. Stay with them until symptoms improve and blood sugar is stable.</li><li><strong>For Unconscious Individuals:</strong> Do NOT attempt to give oral fluids or food, as this can lead to choking. Immediately administer a glucagon injection if available and you are trained to do so.</li><li><strong>Call Emergency Services:</strong> If glucagon is not available, the person does not respond to glucagon within 15 minutes, or if they remain unconscious, call emergency medical services immediately.</li><li><strong>Positioning for Safety:</strong> If unconscious, place the person on their side to prevent aspiration.</li><li><strong>Post-Glucagon Care:</strong> After glucagon administration, the person may experience nausea or vomiting. Monitor blood sugar closely and provide a carbohydrate-containing snack once they are awake and able to swallow.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Individualized Management Plans:</strong> Each patient requires a personalized hypoglycemia management plan, considering their specific diabetes type, medication regimen, lifestyle, and risk factors.</li><li><strong>Medication Review and Adjustment:</strong> Regular review of insulin doses, timing, and other diabetes medications is essential to minimize hypoglycemia risk, especially with changes in diet, exercise, or health status.</li><li><strong>Continuous Glucose Monitoring (CGM):</strong> For patients with frequent or severe hypoglycemia, CGM systems can provide real-time glucose data and alerts, significantly improving detection and prevention.</li><li><strong>Addressing Hypoglycemia Unawareness:</strong> For patients who lose the ability to recognize hypoglycemia symptoms, intensive education and CGM are critical interventions.</li><li><strong>Psychological Impact:</strong> Acknowledge and address the fear of hypoglycemia, which can lead to intentional hyperglycemia and poorer glycemic control.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Patient Assessment:</strong> Nurses must be proficient in assessing for signs and symptoms of hypoglycemia, understanding patient history, and identifying contributing factors.</li><li><strong>Patient Education on 'Rule of 15':</strong> Thoroughly educate patients and their families on the 'Rule of 15' for treating mild to moderate hypoglycemia and the proper use of glucagon.</li><li><strong>Monitoring and Documentation:</strong> Accurately monitor blood glucose levels, document all hypoglycemic episodes, their treatment, and patient response to inform care planning.</li><li><strong>Medication Administration Competency:</strong> Ensure proficiency in administering insulin and other diabetes medications, understanding their onset, peak, and duration of action to prevent medication-induced hypoglycemia.</li><li><strong>Collaboration with Dietitians:</strong> Work closely with registered dietitians to reinforce consistent carbohydrate intake and meal planning strategies that support stable blood glucose.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Definition of Hypoglycemia:</strong> Blood glucose concentration less than 70 mg/dL (3.9 mmol/L). Severe hypoglycemia is defined as an event requiring assistance from another person to administer carbohydrates, glucagon, or take other corrective actions.</li><li><strong>Counter-Regulatory Hormones:</strong> The body's natural response to hypoglycemia involves the release of glucagon, epinephrine (adrenaline), cortisol, and growth hormone, which work to raise blood glucose.</li><li><strong>Hypoglycemia Unawareness:</strong> A condition where individuals no longer experience the typical warning symptoms of low blood sugar, often due to recurrent episodes or long-standing diabetes.</li><li><strong>Glucagon Mechanism of Action:</strong> Glucagon is a hormone that stimulates the liver to release stored glucose (glycogenolysis) and produce new glucose (gluconeogenesis), rapidly raising blood sugar levels.</li><li><strong>Whipple's Triad (Contextual):</strong> While primarily for non-diabetic hypoglycemia, the principles apply: symptoms consistent with hypoglycemia, low plasma glucose measured at the time of symptoms, and resolution of symptoms after plasma glucose is raised.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

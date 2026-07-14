@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a calm and safe home environment. A senior person, possibly a woman, is comfortably seated in an armchair, reading a book. She has a nasal cannula discreetly placed, connected to a modern, compact oxygen concentrator placed beside her. The room is well-lit with natural light from a window, and there are no visible hazards. Elements like a small plant, a cozy blanket, and a warm color palette emphasize comfort and home health. The overall scene conveys independence and well-being while managing a medical condition.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./oxygen_therapy_at_home.jpg" class="card-banner" alt="Oxygen therapy at home Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-home-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Home health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-home-health-equipment" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Equipment</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Oxygen therapy at home</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Home health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Equipment</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose of Therapy:</strong> Home oxygen therapy provides supplemental oxygen to individuals with hypoxemia (low blood oxygen levels) to improve breathing, reduce strain on the heart and lungs, and enhance quality of life.</li><li><strong>Prescription Only:</strong> Oxygen is a medication and must be prescribed by a physician, specifying the flow rate (liters per minute, LPM) and duration of use.</li><li><strong>Delivery Methods:</strong> Common systems include oxygen concentrators (most common for continuous use), liquid oxygen (for portability and higher flow rates), and compressed gas cylinders (for backup or intermittent use).</li><li><strong>Understanding Your Device:</strong> Familiarize yourself with your specific oxygen delivery system, including how to turn it on/off, adjust flow, and recognize alarms.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Shortness of Breath (Dyspnea):</strong> Persistent difficulty breathing, especially with exertion or at rest, is a primary indicator for oxygen therapy.</li><li><strong>Chronic Fatigue:</strong> Unexplained and persistent tiredness, often due to the body working harder to compensate for low oxygen.</li><li><strong>Cyanosis:</strong> Bluish discoloration of the lips, fingertips, or nail beds, indicating severe oxygen deprivation.</li><li><strong>Confusion or Dizziness:</strong> Mental status changes, memory problems, or lightheadedness can be signs of insufficient oxygen reaching the brain.</li><li><strong>Rapid Heart Rate:</strong> The heart may beat faster to try and circulate more oxygenated blood throughout the body.</li><li><strong>Headaches:</strong> Especially morning headaches, which can be a symptom of nocturnal hypoxemia.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Fire Safety:</strong> Oxygen is highly flammable. Absolutely NO smoking, open flames, candles, or sparks near oxygen equipment. Keep oxygen at least 5 feet (1.5 meters) away from heat sources.</li><li><strong>Electrical Safety:</strong> Ensure all electrical cords are in good condition and not frayed. Do not use extension cords with oxygen concentrators. Avoid overloading electrical outlets.</li><li><strong>Equipment Maintenance:</strong> Regularly clean and maintain your oxygen equipment as instructed by your provider. Check for kinks or damage in tubing.</li><li><strong>Secure Tanks:</strong> Always keep oxygen cylinders upright and secured to prevent them from falling and causing injury or damage.</li><li><strong>Skin Care:</strong> Monitor skin around the nose, ears, and behind the head for irritation or pressure sores from nasal cannulas or masks. Use water-based lubricants only.</li><li><strong>Ventilation:</strong> Ensure adequate ventilation in the room where oxygen is being used, but do not block air vents on concentrators.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Maintain Hydration:</strong> Drink plenty of fluids (unless medically restricted) to keep mucous membranes moist and prevent dryness from oxygen flow, especially with nasal cannulas.</li><li><strong>Small, Frequent Meals:</strong> Eating smaller, more frequent meals can help conserve energy and reduce pressure on the diaphragm, making breathing easier during digestion.</li><li><strong>Nutrient-Dense Foods:</strong> Focus on a balanced diet rich in vitamins and minerals to support overall health and energy levels, which are crucial when managing a chronic respiratory condition.</li><li><strong>Avoid Gas-Producing Foods:</strong> Certain foods can cause bloating and gas, which may put additional pressure on the diaphragm and make breathing more difficult for some individuals.</li><li><strong>Limit Sodium Intake:</strong> For patients with co-existing heart conditions, managing sodium intake can help prevent fluid retention that may exacerbate breathing difficulties.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Emergency Preparedness:</strong> Know how to contact emergency services and your oxygen supplier. Have a backup plan for power outages (e.g., battery-powered oxygen or backup tanks).</li><li><strong>Monitor Patient Status:</strong> Observe for changes in the patient's breathing, skin color, mental alertness, or signs of distress. Report any concerns to the healthcare provider immediately.</li><li><strong>Assist with Equipment:</strong> Help the patient with proper placement of the cannula/mask, ensuring tubing is free of kinks and the flow rate is correctly set.</li><li><strong>Reinforce Safety:</strong> Consistently remind the patient and visitors about strict fire safety rules and other precautions related to oxygen use.</li><li><strong>Emotional Support:</strong> Provide reassurance and support, as living with oxygen therapy can be emotionally challenging. Encourage adherence to the prescribed regimen.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Strict Adherence to Prescription:</strong> It is paramount to use oxygen exactly as prescribed, including the flow rate and duration, to achieve therapeutic benefits and avoid complications.</li><li><strong>Regular Follow-up:</strong> Schedule regular appointments to assess the effectiveness of oxygen therapy, monitor your condition, and make any necessary adjustments to your prescription.</li><li><strong>Recognize Worsening Symptoms:</strong> Be vigilant for signs of worsening respiratory distress, increased shortness of breath, or changes in mental status, and seek medical attention promptly.</li><li><strong>Travel Planning:</strong> Discuss travel plans with your physician well in advance to ensure you have appropriate arrangements for oxygen supply during your journey.</li><li><strong>Pulmonary Rehabilitation:</strong> Consider participating in a pulmonary rehabilitation program to improve lung function, exercise tolerance, and overall quality of life in conjunction with oxygen therapy.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Reinforcement:</strong> Nurses play a critical role in educating patients and caregivers on the safe and effective use of home oxygen, including troubleshooting common issues.</li><li><strong>Respiratory Assessment:</strong> Regularly assess the patient's respiratory rate, effort, breath sounds, oxygen saturation (SpO2), and signs of hypoxemia or hypercapnia.</li><li><strong>Skin Integrity Monitoring:</strong> Assess skin around oxygen delivery sites for redness, breakdown, or pressure injuries, and implement preventative measures.</li><li><strong>Psychosocial Support:</strong> Address patient and family concerns regarding body image, social isolation, and anxiety associated with continuous oxygen use.</li><li><strong>Humidification Needs:</strong> Evaluate the need for humidification, especially with higher flow rates, to prevent drying of nasal passages and improve comfort.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Hypoxemia:</strong> A condition where arterial oxygen tension (PaO2) is below normal levels, typically requiring supplemental oxygen.</li><li><strong>Oxygen Saturation (SpO2):</strong> The percentage of hemoglobin binding sites in the blood occupied by oxygen, measured non-invasively by pulse oximetry. Target ranges are typically 88-92% for COPD patients and 92-96% for others.</li><li><strong>Long-Term Oxygen Therapy (LTOT):</strong> Prescribed for patients with chronic hypoxemia, often defined as PaO2 ≤ 55 mmHg or SpO2 ≤ 88% at rest, or with specific comorbidities.</li><li><strong>Oxygen Concentrator:</strong> An electrical device that separates oxygen from ambient air, providing a continuous supply of concentrated oxygen.</li><li><strong>Nasal Cannula:</strong> A common oxygen delivery device consisting of two prongs inserted into the nostrils, suitable for low to moderate flow rates (1-6 LPM).</li><li><strong>Oxygen Toxicity:</strong> A rare but serious complication of prolonged exposure to high concentrations of oxygen, leading to lung damage.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of an adult person, possibly a woman or man, demonstrating the correct use of a metered dose inhaler (MDI) with a spacer. The person should be holding the MDI and spacer correctly, inhaling slowly and deeply. The background should be clean and simple, with subtle medical or respiratory-themed elements like stylized lungs or airwaves. The overall style should be clear, instructional, and suitable for public health awareness materials, avoiding any text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./how_to_use_a_metered_dose_inhaler_in_adults___ed_discharge_instructions.jpg" class="card-banner" alt="How to use a metered dose inhaler in adults – ED discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-emergency-medicine" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency medicine</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-emergency-medicine-emergency-department-discharge-instructions" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency department discharge instructions</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>How to use a metered dose inhaler in adults – ED discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Emergency medicine</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Emergency department discharge instructions</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+  <h2>&#128161; What You Need to Know</h2>
+  <ul>
+    <li><strong>Purpose of MDI:</strong> A metered dose inhaler delivers medication directly into your lungs to open airways or reduce inflammation, providing relief for conditions like asthma or COPD.</li>
+    <li><strong>Critical for Relief:</strong> This device is crucial for managing acute respiratory symptoms and preventing future exacerbations, especially after an emergency department visit.</li>
+    <li><strong>Technique is Key:</strong> Proper technique ensures the medication reaches your lungs effectively. Incorrect use can lead to medication waste and inadequate symptom control.</li>
+    <li><strong>Rescue vs. Maintenance:</strong> Understand if your prescribed MDI is for quick relief (rescue) or daily control (maintenance).</li>
+  </ul>
+</div>
+<div class='symptoms-section'>
+  <h2>&#129298; Associated Symptoms</h2>
+  <ul>
+    <li><strong>Shortness of Breath:</strong> Difficulty breathing or feeling like you can't get enough air.</li>
+    <li><strong>Wheezing:</strong> A high-pitched whistling sound, especially when exhaling.</li>
+    <li><strong>Persistent Cough:</strong> A cough that doesn't go away or worsens, often accompanied by chest tightness.</li>
+    <li><strong>Chest Tightness:</strong> A feeling of pressure or constriction in the chest.</li>
+    <li><strong>Increased Work of Breathing:</strong> Visible effort to breathe, such as using neck or abdominal muscles.</li>
+  </ul>
+</div>
+<div class='precautions-section'>
+  <h2>&#128737; Crucial Precautions</h2>
+  <ul>
+    <li><strong>Check Expiration Date:</strong> Always verify the medication's expiration date on the canister before use.</li>
+    <li><strong>Prime the Inhaler:</strong> If new or not used for several days, prime the inhaler by spraying a few test doses into the air away from your face. Refer to specific product instructions.</li>
+    <li><strong>Clean Regularly:</strong> Clean the plastic mouthpiece and cap at least once a week with warm water, letting it air dry completely.</li>
+    <li><strong>Avoid Dropping:</strong> Protect the inhaler from damage; dropping it can affect its function.</li>
+    <li><strong>Do Not Exceed Doses:</strong> Only use the prescribed number of puffs. Overuse can lead to side effects or indicate worsening condition.</li>
+    <li><strong>Proper Storage:</strong> Store at room temperature, away from extreme heat or cold.</li>
+  </ul>
+</div>
+<div class='dietary-section'>
+  <h2>&#127869; Dietary Directions & Restrictions</h2>
+  <ul>
+    <li><strong>Rinse Mouth After Use:</strong> For steroid inhalers, rinse your mouth thoroughly with water and spit it out after each use to prevent oral thrush (a fungal infection).</li>
+    <li><strong>Hydration:</strong> Maintain adequate hydration to help thin respiratory secretions, which can aid in easier breathing and mucus clearance.</li>
+    <li><strong>Avoid Irritants:</strong> While not strictly dietary, avoid food or drink irritants that may trigger respiratory symptoms, such as very cold beverages or highly allergenic foods if known.</li>
+  </ul>
+</div>
+<div class='warning-box'>
+  <h2>&#9888;&#65039; Attendant Guidelines</h2>
+  <ul>
+    <li><strong>Seek Emergency Care:</strong> If your symptoms worsen rapidly, you experience severe shortness of breath, your lips or fingernails turn blue, or your inhaler provides no relief, call emergency services immediately.</li>
+    <li><strong>Use a Spacer:</strong> If prescribed, always use a spacer device. It helps deliver more medication to your lungs and reduces medication deposition in your mouth and throat.</li>
+    <li><strong>Monitor Doses Remaining:</strong> Keep track of the number of doses used and refill your prescription before the inhaler runs out. Some inhalers have dose counters.</li>
+    <li><strong>Proper Disposal:</strong> Dispose of empty inhalers according to local environmental guidelines, as they may contain propellants.</li>
+  </ul>
+</div>
+<div class='doctor-advice'>
+  <h2>&#129658; Physician's Perspective</h2>
+  <ul>
+    <li><strong>Adherence is Crucial:</strong> Follow your prescribed MDI regimen diligently, even when feeling well, to maintain symptom control and prevent future exacerbations.</li>
+    <li><strong>Follow-up Appointments:</strong> Schedule and attend all recommended follow-up appointments with your primary care physician or pulmonologist to review your treatment plan and MDI technique.</li>
+    <li><strong>Identify Triggers:</strong> Work with your doctor to identify and avoid environmental or allergic triggers that worsen your respiratory condition.</li>
+    <li><strong>Correct Technique:</strong> Ensure you are using your inhaler correctly. Ask for a demonstration if you are unsure, as proper technique significantly impacts medication effectiveness.</li>
+  </ul>
+</div>
+<div class='student-nurse-index'>
+  <h2>&#127891; Academic & Nursing Corner</h2>
+  <ul>
+    <li><strong>Patient Education:</strong> Provide clear, step-by-step instructions and demonstrate MDI use, including priming, shaking, breathing technique, and cleaning.</li>
+    <li><strong>Assess Technique:</strong> Observe the patient's MDI technique and provide constructive feedback to correct common errors (e.g., not shaking, inhaling too quickly, not holding breath).</li>
+    <li><strong>Spacer Advocacy:</strong> Educate on the benefits of spacer use, especially for patients with difficulty coordinating breath and actuation, or for steroid inhalers.</li>
+    <li><strong>Side Effect Monitoring:</strong> Monitor for potential side effects such as tremor, tachycardia (from bronchodilators), or oral candidiasis (from inhaled corticosteroids).</li>
+    <li><strong>Documentation:</strong> Document all patient education provided, including demonstration and return demonstration of MDI technique, and patient's understanding.</li>
+  </ul>
+</div>
+<div class='technical-index'>
+  <h2>&#128300; Clinical Reference Index</h2>
+  <ul>
+    <li><strong>Mechanism of Action:</strong> MDIs deliver bronchodilators (e.g., beta-agonists) to relax airway smooth muscles or corticosteroids to reduce airway inflammation, directly to the lungs.</li>
+    <li><strong>Coordination Challenge:</strong> The primary technical challenge is coordinating actuation (pressing down) with slow, deep inhalation. Spacers mitigate this.</li>
+    <li><strong>Aerosol Particle Size:</strong> Optimal particle size (1-5 micrometers) is crucial for deposition in the lower airways. Incorrect technique can lead to larger particles impacting the oropharynx.</li>
+    <li><strong>Propellant Systems:</strong> Modern MDIs use hydrofluoroalkane (HFA) propellants, replacing older chlorofluorocarbon (CFC) propellants.</li>
+    <li><strong>Dose Counter:</strong> Many newer MDIs include an integrated dose counter for accurate tracking of remaining medication.</li>
+  </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

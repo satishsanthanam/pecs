@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a happy, healthy child surrounded by nutritious foods like fruits, vegetables, milk, and lean protein. The child is smiling, possibly reaching for a piece of fruit. In the background, subtle elements of family care and medical support (e.g., a parent's hand, a friendly nurse figure) are present. The overall scene is vibrant, warm, and conveys growth, health, and well-being. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./malnutrition___discharge_instructions.jpg" class="card-banner" alt="Malnutrition – Discharge instructions Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-children-s-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Children's health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-children-s-health-nutrition" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Nutrition</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Malnutrition – Discharge instructions</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Children's health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Nutrition</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Understanding Malnutrition:</strong> Malnutrition in children is a serious condition where the body doesn't get enough nutrients for proper growth and development. It requires consistent, dedicated care at home.</li>
+        <li><strong>Importance of Adherence:</strong> Strictly follow the individualized feeding plan and medication schedule provided by the healthcare team to ensure your child's recovery and prevent relapse.</li>
+        <li><strong>Gradual Recovery:</strong> Recovery from malnutrition is a process. Expect gradual weight gain and improvement in energy levels. Celebrate small victories and maintain patience.</li>
+        <li><strong>Follow-Up Care:</strong> Regular follow-up appointments are crucial for monitoring your child's progress, adjusting the feeding plan, and addressing any emerging concerns.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Persistent Weight Loss or Stagnation:</strong> If your child continues to lose weight or shows no signs of weight gain despite following the feeding plan, seek medical advice immediately.</li>
+        <li><strong>Decreased Appetite or Refusal to Eat:</strong> A significant reduction in food intake or complete refusal to eat can indicate a worsening condition or an underlying issue.</li>
+        <li><strong>Increased Lethargy or Weakness:</strong> Unusual tiredness, lack of energy, or extreme weakness beyond typical fatigue warrants prompt medical evaluation.</li>
+        <li><strong>Frequent Infections:</strong> Children with malnutrition are more susceptible to infections. Watch for persistent fever, cough, diarrhea, or skin infections.</li>
+        <li><strong>Persistent Vomiting or Diarrhea:</strong> These symptoms can lead to dehydration and further nutrient loss, hindering recovery.</li>
+        <li><strong>Swelling (Edema):</strong> New or worsening swelling, particularly in the face, hands, or feet, can be a sign of severe malnutrition (Kwashiorkor) or other complications.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Infection Prevention:</strong> Maintain strict hand hygiene for caregivers and the child. Ensure all feeding utensils are thoroughly cleaned and sterilized. Avoid exposure to sick individuals.</li>
+        <li><strong>Safe Food Handling:</strong> Prepare all foods hygienically. Store food properly to prevent spoilage and bacterial contamination. Cook foods to appropriate temperatures.</li>
+        <li><strong>Avoid Overfeeding Initially:</strong> Follow the prescribed feeding schedule and amounts precisely. Rapid reintroduction of large quantities of food can lead to refeeding syndrome, a dangerous metabolic complication.</li>
+        <li><strong>Medication Adherence:</strong> Administer all prescribed medications, including vitamin and mineral supplements, exactly as directed by the physician. Do not skip doses.</li>
+        <li><strong>Safe Supplement Storage:</strong> Store nutritional supplements and formulas according to manufacturer instructions, typically in a cool, dry place, and out of reach of children.</li>
+        <li><strong>Hydration Monitoring:</strong> Ensure adequate fluid intake, especially if the child has diarrhea or fever, but avoid excessive plain water which can dilute electrolytes. Use oral rehydration solutions if advised.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>High-Calorie, High-Protein Diet:</strong> Focus on nutrient-dense foods such as fortified milk, eggs, lean meats, legumes, nuts (if age-appropriate and no allergies), and healthy fats (avocado, olive oil).</li>
+        <li><strong>Frequent Small Meals:</strong> Offer small, frequent meals and snacks throughout the day (e.g., every 2-3 hours) rather than three large meals, as this is often better tolerated and absorbed.</li>
+        <li><strong>Fortified Foods:</strong> Incorporate foods fortified with vitamins and minerals, or add prescribed nutritional supplements to meals as directed by the dietitian.</li>
+        <li><strong>Specific Formula Instructions:</strong> If a special therapeutic formula (e.g., F-75, F-100, or a specific infant formula) is prescribed, prepare it precisely according to instructions, ensuring correct dilution and hygiene.</li>
+        <li><strong>Limit Sugary Drinks and Empty Calories:</strong> Avoid sodas, fruit juices with added sugar, and highly processed snacks that offer little nutritional value and can displace more nutrient-dense foods.</li>
+        <li><strong>Gradual Introduction of New Foods:</strong> Introduce new foods slowly and one at a time to monitor for tolerance and allergic reactions, especially during the initial recovery phase.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>Monitor Intake and Weight:</strong> Keep a detailed record of your child's food and fluid intake. Weigh your child regularly (e.g., daily or weekly as advised) and record the weight to track progress.</li>
+        <li><strong>Recognize Signs of Distress:</strong> Be vigilant for any signs of respiratory distress, severe lethargy, persistent vomiting, diarrhea, or fever. These require immediate medical attention.</li>
+        <li><strong>Emergency Contacts:</strong> Keep emergency contact numbers readily available, including your pediatrician, the hospital, and local emergency services.</li>
+        <li><strong>Follow-Up Appointments:</strong> Ensure all scheduled follow-up appointments with the pediatrician, dietitian, and other specialists are attended. These are vital for ongoing management.</li>
+        <li><strong>Medication Administration:</strong> Understand the purpose, dosage, and administration method for all prescribed medications and supplements. Ask for clarification if unsure.</li>
+        <li><strong>Psychosocial Support:</strong> Malnutrition can be stressful for families. Seek support from family, friends, or support groups if available.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Consistency is Key:</strong> Adherence to the prescribed feeding plan and medication regimen is paramount for your child's successful recovery and long-term health.</li>
+        <li><strong>Potential for Catch-Up Growth:</strong> With appropriate nutritional support, many children can achieve significant catch-up growth, but this requires sustained effort and monitoring.</li>
+        <li><strong>Multidisciplinary Approach:</strong> Your child's care involves a team of professionals. Do not hesitate to contact any member of the team with questions or concerns.</li>
+        <li><strong>Early Intervention for Complications:</strong> Promptly report any signs of illness, feeding difficulties, or changes in your child's condition to prevent complications and ensure timely intervention.</li>
+        <li><strong>Long-Term Nutritional Education:</strong> This is an opportunity to establish healthy eating habits for your child and the entire family, promoting sustained well-being.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Accurate Anthropometric Measurements:</strong> Emphasize precise measurement of weight, height/length, and head circumference (for infants) to track growth and nutritional status.</li>
+        <li><strong>Nutritional Assessment Tools:</strong> Utilize and educate caregivers on the interpretation of growth charts (e.g., WHO growth standards) and Z-scores for assessing severity and progress of malnutrition.</li>
+        <li><strong>Refeeding Syndrome Monitoring:</strong> Educate on the signs and symptoms of refeeding syndrome (e.g., electrolyte imbalances, fluid shifts, cardiac arrhythmias) and the importance of gradual refeeding.</li>
+        <li><strong>Feeding Technique Education:</strong> Provide practical demonstrations and guidance on appropriate feeding techniques, portion sizes, and creating a positive feeding environment.</li>
+        <li><strong>Psychosocial Support:</strong> Recognize the emotional and financial burden on families. Provide resources for social work, financial assistance, and mental health support as needed.</li>
+        <li><strong>Medication Reconciliation:</strong> Ensure accurate reconciliation of all discharge medications, including nutritional supplements, and provide clear administration instructions.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Refeeding Syndrome:</strong> A potentially fatal shift in fluids and electrolytes that can occur in malnourished patients receiving artificial refeeding. Characterized by hypophosphatemia, hypokalemia, and hypomagnesemia.</li>
+        <li><strong>Anthropometric Measurements:</strong> Standardized measurements of the human body (weight, height/length, mid-upper arm circumference, skinfold thickness) used to assess nutritional status.</li>
+        <li><strong>Therapeutic Feeding Formulas:</strong> Specialized formulas like F-75 (initial phase, lower protein/fat) and F-100 (catch-up phase, higher protein/fat) used in the management of severe acute malnutrition.</li>
+        <li><strong>Micronutrient Deficiencies:</strong> Common in malnutrition, including deficiencies in Vitamin A, zinc, iron, and folate, requiring targeted supplementation.</li>
+        <li><strong>WHO Growth Standards:</strong> International standards used to assess the growth of children from birth to 5 years, providing a benchmark for healthy growth.</li>
+        <li><strong>Kwashiorkor vs. Marasmus:</strong> Two severe forms of protein-energy malnutrition; Kwashiorkor characterized by edema, Marasmus by severe wasting.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a stylized human torso with a transparent view of the heart. An implantable cardioverter-defibrillator (ICD) device is clearly visible under the skin in the upper chest. Thin, glowing electrical leads extend from the ICD into the heart chambers. Subtle electrical pulses or waves emanate from the leads within the heart, symbolizing its function in monitoring and correcting arrhythmias. The overall aesthetic is clean, modern, and informative, using a palette of blues, greens, and purples to convey health and advanced technology. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./implantable_cardioverter_defibrillators.jpg" class="card-banner" alt="Implantable cardioverter-defibrillators Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-pacemakers-and-defibrillators" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Pacemakers and defibrillators</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Implantable cardioverter-defibrillators</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Pacemakers and defibrillators</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Device Purpose:</strong> An Implantable Cardioverter-Defibrillator (ICD) is a small, battery-powered device placed in the chest to monitor heart rhythm and deliver electrical shocks or pacing to correct life-threatening fast heartbeats (tachyarrhythmias).</li><li><strong>Primary Function:</strong> It continuously monitors for dangerously fast heart rhythms like ventricular tachycardia (VT) and ventricular fibrillation (VF), which can lead to sudden cardiac arrest.</li><li><strong>Therapy Delivery:</strong> The ICD can deliver antitachycardia pacing (ATP) to painlessly stop some fast rhythms or provide a high-energy electrical shock (defibrillation) to restore a normal heart rhythm.</li><li><strong>Components:</strong> Consists of a pulse generator (containing the battery and computer circuitry) and thin wires (leads) that connect the generator to the heart muscle.</li><li><strong>Implantation Procedure:</strong> Typically implanted under the skin in the upper chest, with leads threaded through veins into the heart chambers, usually under local anesthesia and sedation.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Prior Syncope or Presyncope:</strong> Episodes of fainting or near-fainting due to underlying dangerous arrhythmias are common indications for an ICD.</li><li><strong>Palpitations:</strong> Sensations of a racing, pounding, or irregular heartbeat, especially if associated with dizziness or chest discomfort.</li><li><strong>Dizziness and Lightheadedness:</strong> Often a symptom of reduced blood flow to the brain caused by very fast or irregular heart rhythms.</li><li><strong>Chest Pain or Discomfort:</strong> Can occur with severe arrhythmias, prompting evaluation for an ICD.</li><li><strong>Shortness of Breath:</strong> May be experienced during episodes of rapid heart rate, particularly in individuals with underlying heart conditions.</li><li><strong>Survivors of Sudden Cardiac Arrest:</strong> Patients who have experienced and survived a sudden cardiac arrest are often candidates for an ICD for secondary prevention.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Electromagnetic Interference (EMI):</strong> Avoid strong magnetic fields and high-voltage electrical equipment (e.g., large industrial motors, arc welders, certain medical procedures like MRI without specific device compatibility).</li><li><strong>Medical Procedures:</strong> Always inform all healthcare providers (dentists, surgeons, radiologists) about your ICD before any procedure, as some may require temporary device reprogramming or special precautions.</li><li><strong>Driving Restrictions:</strong> Temporary driving restrictions are often advised post-implantation and after any appropriate ICD therapy (shock), as per local regulations and physician guidance.</li><li><strong>Physical Activity:</strong> Avoid contact sports or activities that could result in a direct blow to the ICD site or lead damage. Discuss appropriate exercise levels with your cardiologist.</li><li><strong>Device Checks:</strong> Adhere strictly to scheduled follow-up appointments for device interrogation and battery status checks, typically every 3-6 months.</li><li><strong>Cell Phones and Magnets:</strong> Keep cell phones at least six inches away from the ICD site and avoid placing magnets directly over the device.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-Procedure Fasting:</strong> Adhere strictly to NPO (nil per os) guidelines, typically 6-8 hours prior to the ICD implantation procedure, to prevent aspiration during sedation or anesthesia.</li><li><strong>Post-Procedure Hydration:</strong> Resume clear liquids gradually after the procedure once fully awake and alert, progressing to a regular diet as tolerated.</li><li><strong>No Direct ICD-Related Dietary Restrictions:</strong> The ICD itself does not impose specific long-term dietary restrictions; however, underlying cardiac conditions (e.g., heart failure) may require dietary modifications such as sodium or fluid restriction.</li><li><strong>Medication Adherence:</strong> Ensure consistent intake of prescribed cardiac medications, which may have specific timing or food interaction considerations, as directed by your physician.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>During a Shock:</strong> If the patient receives an ICD shock, do NOT touch them during the actual shock delivery. It is safe to touch them immediately afterward.</li><li><strong>Multiple Shocks:</strong> If the patient receives multiple shocks (typically 2-3 or more) within a short period, or if they lose consciousness after a shock, call emergency services (e.g., 911) immediately.</li><li><strong>Post-Shock Assessment:</strong> After a single shock, help the patient sit or lie down, assess their symptoms (dizziness, chest pain), and contact their cardiologist promptly.</li><li><strong>CPR Readiness:</strong> If the patient collapses, becomes unresponsive, and is not breathing normally, begin CPR immediately if you are trained, even if they have an ICD. The device will continue to function.</li><li><strong>Device Malfunction Signs:</strong> Be aware of signs such as persistent pain or swelling at the implant site, fever, or visible changes to the device, and report them to a healthcare professional.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Patient Education is Paramount:</strong> Ensure patients fully understand the purpose of their ICD, what to expect if it delivers therapy, and how to manage their device.</li><li><strong>Regular Follow-up:</strong> Emphasize the critical importance of adhering to scheduled device checks to monitor battery life, lead integrity, and appropriate programming.</li><li><strong>Symptom Reporting:</strong> Instruct patients to report any symptoms, especially those related to device therapy (shocks, ATP), or any changes in their health status promptly.</li><li><strong>Psychological Support:</strong> Acknowledge and address the potential anxiety and fear associated with living with an ICD, particularly the anticipation of shocks. Refer to support groups or counseling if needed.</li><li><strong>Medication Adherence:</strong> Reinforce the necessity of taking all prescribed cardiac medications as directed, as these work in conjunction with the ICD to manage the underlying heart condition.</li><li><strong>Lifestyle Modifications:</strong> Counsel on heart-healthy lifestyle choices, including managing comorbidities like hypertension, diabetes, and hyperlipidemia, to optimize overall cardiovascular health.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pre-Operative Assessment:</strong> Verify patient consent, NPO status, baseline vital signs, ECG, and review medication list (especially anticoagulants). Prepare the implant site according to sterile protocol.</li><li><strong>Post-Operative Monitoring:</strong> Closely monitor vital signs, cardiac rhythm, and incision site for bleeding, hematoma, or signs of infection. Assess for pneumothorax or hemothorax.</li><li><strong>Pain Management:</strong> Administer analgesia as prescribed and assess pain levels regularly. Educate on arm restrictions (e.g., avoiding raising the arm on the implant side above shoulder level for several weeks) to prevent lead dislodgement.</li><li><strong>Patient Education:</strong> Provide comprehensive discharge teaching on device function, signs of complications, activity restrictions, electromagnetic interference precautions, and follow-up schedule.</li><li><strong>Psychosocial Support:</strong> Address patient and family concerns regarding the device, potential shocks, and lifestyle adjustments. Provide resources for support groups.</li><li><strong>Device Interrogation:</strong> Understand the basics of device interrogation and programming, and be prepared to assist with scheduled and unscheduled device checks.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Indications:</strong> Primary prevention (e.g., EF &lt; 35% post-MI, non-ischemic cardiomyopathy) and secondary prevention (e.g., survivors of sudden cardiac arrest due to VT/VF).</li><li><strong>Device Types:</strong> Transvenous ICD (TV-ICD) with leads in the heart; Subcutaneous ICD (S-ICD) with leads under the skin, not in the heart.</li><li><strong>Therapies:</strong> Antitachycardia Pacing (ATP) for VT termination; Cardioversion for synchronized shock delivery; Defibrillation for unsynchronized high-energy shock delivery.</li><li><strong>Programming Parameters:</strong> Detection zones (e.g., VT zone, VF zone), detection criteria (e.g., rate, duration, morphology), ATP sequences, shock energy levels, post-shock pacing.</li><li><strong>Potential Complications:</strong> Lead fracture/dislodgement, infection (pocket or systemic), inappropriate shocks, device malfunction, pneumothorax/hemothorax during implantation, venous thrombosis.</li><li><strong>Electromagnetic Interference (EMI) Sources:</strong> High-power electrical generators, industrial magnets, therapeutic radiation, electrocautery, MRI (unless device is MRI-conditional).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

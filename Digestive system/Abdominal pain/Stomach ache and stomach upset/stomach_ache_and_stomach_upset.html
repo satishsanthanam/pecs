@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a person holding their stomach in discomfort, with a slightly worried expression. Surrounding the person are subtle, illustrative icons representing common causes and remedies: a small bottle of antacid, a steaming cup of herbal tea, a plate with bland food (like toast), a worried thought bubble, and a water droplet. The background is clean and light, using a soft, reassuring color palette suitable for public health awareness. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./stomach_ache_and_stomach_upset.jpg" class="card-banner" alt="Stomach ache and stomach upset Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-digestive-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Digestive system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-digestive-system-abdominal-pain" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Abdominal pain</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Stomach ache and stomach upset</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Digestive system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Abdominal pain</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Understanding Stomach Discomfort:</strong> Stomach ache and upset are common symptoms that can range from mild indigestion to indicators of more serious underlying conditions affecting the gastrointestinal tract or other abdominal organs.</li><li><strong>Common Triggers:</strong> Often caused by dietary indiscretions, stress, infections (viral or bacterial), medication side effects, or chronic conditions like Irritable Bowel Syndrome (IBS) or gastritis.</li><li><strong>When to Seek Medical Attention:</strong> Persistent, severe, or worsening pain, accompanied by fever, blood in stool or vomit, significant weight loss, or jaundice, warrants immediate medical evaluation.</li><li><strong>Acute vs. Chronic:</strong> Acute episodes are often self-limiting, while chronic or recurrent symptoms require thorough investigation to identify and manage the root cause.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Nausea and Vomiting:</strong> Frequently accompany stomach upset, especially with infections or food poisoning, leading to fluid and electrolyte imbalances.</li><li><strong>Diarrhea or Constipation:</strong> Changes in bowel habits are common, indicating a disturbance in intestinal function or motility.</li><li><strong>Bloating and Gas:</strong> Often experienced with indigestion, food intolerances, or conditions like IBS, causing abdominal distension and discomfort.</li><li><strong>Heartburn or Acid Reflux:</strong> A burning sensation in the chest, sometimes radiating to the throat, can be associated with stomach upset due to acid irritation.</li><li><strong>Fever and Chills:</strong> May indicate an underlying infection or inflammatory process, such as gastroenteritis or appendicitis.</li><li><strong>Changes in Stool Characteristics:</strong> Unusual color (e.g., black, tarry, pale), consistency, or presence of blood or mucus can be significant indicators.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Irritating Foods:</strong> Limit intake of spicy, fatty, acidic, or highly processed foods, caffeine, and alcohol, which can exacerbate stomach irritation.</li><li><strong>Hydration Management:</strong> Maintain adequate fluid intake, especially with vomiting or diarrhea, to prevent dehydration. Oral rehydration solutions may be necessary.</li><li><strong>Over-the-Counter Medication Caution:</strong> Use NSAIDs (e.g., ibuprofen) sparingly, as they can irritate the stomach lining and worsen conditions like gastritis or ulcers. Opt for acetaminophen if pain relief is needed and not contraindicated.</li><li><strong>Food Safety Practices:</strong> Ensure proper food handling, cooking, and storage to prevent foodborne illnesses, a common cause of stomach upset.</li><li><strong>Stress Reduction:</strong> Implement stress-management techniques, as psychological stress can significantly impact gastrointestinal function and exacerbate symptoms.</li><li><strong>Medication Review:</strong> Be aware of potential gastrointestinal side effects of prescribed medications and discuss alternatives with a healthcare provider if symptoms arise.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>BRAT Diet for Acute Upset:</strong> Focus on easily digestible foods like Bananas, Rice, Applesauce, and Toast to soothe the digestive system during acute episodes.</li><li><strong>Clear Liquid Diet:</strong> Initially, consume clear broths, diluted fruit juices, and electrolyte-rich fluids to rest the stomach and prevent dehydration.</li><li><strong>Avoid Dairy Products:</strong> Lactose can be difficult to digest for some individuals, especially during stomach upset, potentially worsening symptoms.</li><li><strong>Small, Frequent Meals:</strong> Instead of large meals, opt for smaller portions consumed more frequently to reduce the burden on the digestive system.</li><li><strong>Limit High-Fiber Foods:</strong> While generally healthy, high-fiber foods can sometimes exacerbate gas and bloating during acute stomach upset; reintroduce gradually.</li><li><strong>Ginger and Peppermint:</strong> Herbal remedies like ginger tea or peppermint tea may help alleviate nausea and soothe an upset stomach for some individuals.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Monitor Symptom Progression:</strong> Carefully observe the intensity, character, and duration of pain, as well as any new or worsening associated symptoms. Documenting these can be crucial for diagnosis.</li><li><strong>Avoid Self-Medication for Severe Pain:</strong> Do not attempt to self-diagnose or heavily medicate severe or persistent abdominal pain without professional medical advice, as it could mask serious conditions.</li><li><strong>Prevent Dehydration:</strong> Actively encourage and monitor fluid intake, especially in vulnerable populations like children and the elderly, when vomiting or diarrhea is present.</li><li><strong>Recognize Red Flag Symptoms:</strong> Educate patients and caregivers on critical warning signs such as rigid abdomen, severe tenderness, blood in emesis or stool, or signs of shock, which necessitate immediate emergency care.</li><li><strong>Follow Dietary Restrictions:</strong> Emphasize strict adherence to prescribed dietary modifications or restrictions to prevent exacerbation of symptoms and promote healing.</li><li><strong>Medication Adherence:</strong> If antiemetics, antacids, or other medications are prescribed, ensure they are taken as directed and monitor for effectiveness and side effects.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive History Taking:</strong> A detailed patient history, including pain characteristics, associated symptoms, dietary habits, and medication use, is paramount for accurate diagnosis.</li><li><strong>Thorough Physical Examination:</strong> Abdominal palpation, auscultation, and percussion are essential to identify areas of tenderness, organomegaly, bowel sounds, and signs of peritonitis.</li><li><strong>Differential Diagnosis:</strong> Consider a broad range of possibilities, from benign functional disorders (e.g., IBS) to acute surgical emergencies (e.g., appendicitis, cholecystitis, bowel obstruction).</li><li><strong>Targeted Diagnostic Workup:</strong> Utilize laboratory tests (e.g., CBC, LFTs, amylase/lipase, stool studies), imaging (e.g., ultrasound, CT scan), and endoscopic procedures as indicated to confirm or rule out specific conditions.</li><li><strong>Symptomatic Relief and Etiological Treatment:</strong> Focus on managing acute symptoms while simultaneously investigating and treating the underlying cause to prevent recurrence and complications.</li><li><strong>Patient Education on Warning Signs:</strong> Empower patients with knowledge about when to seek urgent medical care for worsening or new symptoms.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pain Assessment (PQRST):</strong> Systematically assess abdominal pain using the PQRST mnemonic (Provoke, Quality, Radiate, Severity, Time) to gather comprehensive data.</li><li><strong>Fluid and Electrolyte Monitoring:</strong> Closely monitor intake and output, skin turgor, mucous membranes, and electrolyte levels, especially in patients with vomiting or diarrhea.</li><li><strong>Nutritional Support:</strong> Implement and educate patients on appropriate dietary modifications, progressing from clear liquids to bland solids as tolerated.</li><li><strong>Medication Administration and Education:</strong> Administer prescribed antiemetics, antacids, H2 blockers, or PPIs, and educate patients on their purpose, dosage, and potential side effects.</li><li><strong>Bowel Function Assessment:</strong> Regularly assess bowel sounds, frequency, and characteristics of bowel movements to identify changes and potential complications.</li><li><strong>Patient Comfort Measures:</strong> Provide non-pharmacological interventions such as warm compresses, positioning, and distraction techniques to enhance patient comfort.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Gastritis:</strong> Inflammation of the stomach lining, often caused by H. pylori infection, NSAID use, or excessive alcohol consumption.</li><li><strong>Gastroenteritis:</strong> Acute inflammation of the stomach and intestines, typically viral or bacterial, leading to vomiting, diarrhea, and abdominal cramps.</li><li><strong>Peptic Ulcer Disease (PUD):</strong> Open sores that develop on the inside lining of the stomach (gastric ulcers) or the upper part of the small intestine (duodenal ulcers).</li><li><strong>Irritable Bowel Syndrome (IBS):</strong> A chronic functional gastrointestinal disorder characterized by abdominal pain, bloating, and altered bowel habits without structural abnormalities.</li><li><strong>Appendicitis:</strong> Acute inflammation of the appendix, a medical emergency requiring surgical intervention. Presents with periumbilical pain migrating to the right lower quadrant.</li><li><strong>Cholecystitis:</strong> Inflammation of the gallbladder, usually caused by gallstones obstructing the cystic duct, leading to right upper quadrant pain.</li><li><strong>Pancreatitis:</strong> Inflammation of the pancreas, often associated with gallstones or alcohol abuse, causing severe epigastric pain radiating to the back.</li><li><strong>Diverticulitis:</strong> Inflammation or infection of small pouches (diverticula) that can form in the digestive tract, particularly the colon.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting the human digestive system with a prominent focus on the stomach. Inside the stomach, food particles are visibly accumulated and appear to be moving slowly towards the small intestine. A subtle, stylized clock icon with a slow-moving hand is integrated near the stomach to symbolize delayed emptying. A person, drawn in a simple, clean style, is gently holding their upper abdomen, indicating discomfort. A thought bubble above the person shows a confused or sluggish stomach icon. The overall design uses a clean, modern aesthetic with a friendly color palette suitable for public health awareness. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./gastroparesis__delayed_gastric_emptying_.jpg" class="card-banner" alt="Gastroparesis (delayed gastric emptying) Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-digestive-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Digestive system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-digestive-system-gastroparesis" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Gastroparesis</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Gastroparesis (delayed gastric emptying)</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Digestive system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Gastroparesis</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition</strong>: Gastroparesis is a chronic disorder characterized by delayed gastric emptying, meaning the stomach takes too long to empty its contents into the small intestine.</li><li><strong>Primary Causes</strong>: Often idiopathic, but commonly associated with diabetes mellitus (diabetic gastroparesis), post-surgical vagal nerve damage, certain medications (e.g., opioids, anticholinergics), and neurological conditions.</li><li><strong>Clinical Impact</strong>: Leads to symptoms such as nausea, vomiting of undigested food, early satiety, bloating, abdominal pain, and can result in malnutrition and dehydration.</li><li><strong>Diagnosis</strong>: The gold standard for diagnosis is gastric emptying scintigraphy, which measures the rate at which food leaves the stomach.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Persistent Nausea and Vomiting</strong>: Especially of undigested food, often hours after eating.</li><li><strong>Early Satiety</strong>: Feeling full after consuming only a small amount of food.</li><li><strong>Abdominal Bloating and Discomfort</strong>: Often localized to the upper abdomen.</li><li><strong>Unexplained Weight Loss</strong>: Due to reduced food intake and malabsorption.</li><li><strong>Fluctuating Blood Glucose Levels</strong>: Particularly challenging for diabetic patients, leading to unpredictable hypo- or hyperglycemia.</li><li><strong>Heartburn and Gastroesophageal Reflux Disease (GERD)</strong>: Due to prolonged food retention in the stomach.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Strict Glycemic Control</strong>: For diabetic patients, meticulous blood glucose monitoring and management are vital to prevent exacerbation of gastroparesis and related complications.</li><li><strong>Medication Adherence</strong>: Consistently take prescribed prokinetic agents (e.g., metoclopramide) and antiemetics as directed to manage symptoms and improve gastric motility.</li><li><strong>Hydration Status Monitoring</strong>: Actively monitor for signs of dehydration, especially with frequent vomiting, and ensure adequate fluid intake.</li><li><strong>Nutritional Deficiency Screening</strong>: Regularly assess for signs of malnutrition, vitamin, and mineral deficiencies, considering supplementation under medical guidance.</li><li><strong>Avoid Gastric Motility Inhibitors</strong>: Exercise caution with medications known to slow gastric emptying, such as opioids, anticholinergics, and GLP-1 receptor agonists.</li><li><strong>Small, Frequent Meals</strong>: To reduce the volume burden on the stomach and facilitate easier digestion.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Small, Frequent Meals</strong>: Consume 5-6 small meals throughout the day rather than 3 large ones to minimize stomach distension.</li><li><strong>Low-Fat Foods</strong>: Prioritize low-fat options as fat significantly slows gastric emptying; opt for lean proteins and low-fat dairy.</li><li><strong>Low-Fiber Foods</strong>: Limit insoluble fiber, which can form bezoars; choose cooked, peeled fruits and well-cooked, non-fibrous vegetables.</li><li><strong>Liquid or Pureed Foods</strong>: Incorporate nutrient-dense liquids, smoothies, and pureed foods as they are easier to digest and pass through the stomach.</li><li><strong>Adequate Hydration</strong>: Drink plenty of fluids, preferably between meals, to aid digestion and prevent dehydration.</li><li><strong>Avoid Carbonated Beverages and Alcohol</strong>: These can exacerbate bloating and gastric irritation.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Recognize Dehydration</strong>: Educate patients and caregivers on signs of dehydration (e.g., dry mouth, decreased urination, dizziness) and when to seek immediate medical attention.</li><li><strong>Monitor for Bezoar Formation</strong>: Be vigilant for symptoms indicating undigested food masses (bezoars), such as severe abdominal pain, persistent vomiting, or early satiety.</li><li><strong>Emergency Hypoglycemia Protocol</strong>: For diabetic patients, ensure a clear protocol for managing hypoglycemic episodes, including readily available fast-acting glucose sources.</li><li><strong>Medication Interaction Awareness</strong>: Review all patient medications for potential interactions that could worsen gastroparesis or interfere with treatment efficacy.</li><li><strong>Post-Meal Positioning</strong>: Advise patients to remain upright for at least 1-2 hours after eating to assist gastric emptying and reduce reflux symptoms.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Holistic Management Approach</strong>: Gastroparesis requires a comprehensive strategy encompassing dietary modifications, pharmacotherapy, and often psychological support.</li><li><strong>Optimizing Glycemic Control</strong>: For diabetic gastroparesis, achieving and maintaining optimal blood glucose levels is paramount for symptom improvement and preventing disease progression.</li><li><strong>Regular Patient Follow-up</strong>: Consistent monitoring is essential to adjust treatment plans, assess nutritional status, and address evolving symptoms or complications.</li><li><strong>Consider Advanced Therapies</strong>: For refractory cases, explore options such as gastric electrical stimulation, pyloroplasty, or jejunostomy tube placement for nutritional support.</li><li><strong>Address Comorbidities</strong>: Evaluate and manage associated conditions like GERD, malnutrition, and psychological distress, which significantly impact patient quality of life.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Specialist</strong>: Educate patients on dietary modifications, medication administration, symptom recognition, and the importance of adherence to treatment plans.</li><li><strong>Nutritional Assessment and Support</strong>: Conduct thorough nutritional assessments, identify risks for malnutrition and dehydration, and collaborate with dietitians for individualized meal plans.</li><li><strong>Medication Management Expertise</strong>: Understand the indications, dosages, side effects, and administration techniques for prokinetic and antiemetic medications.</li><li><strong>Blood Glucose Monitoring and Insulin Adjustment</strong>: Instruct diabetic patients on proper blood glucose monitoring, insulin administration, and recognizing/managing hypo- and hyperglycemia.</li><li><strong>Post-Surgical Care and Tube Feeding</strong>: Provide meticulous care for patients with feeding tubes (e.g., jejunostomy) including site care, formula administration, and complication monitoring.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Gastric Emptying Scintigraphy (GES)</strong>: A nuclear medicine test using a radiolabeled meal to quantify the rate of gastric emptying, considered the gold standard.</li><li><strong>Wireless Motility Capsule (WMC)</strong>: An ingestible capsule that measures pH and temperature as it passes through the GI tract, providing gastric emptying time data.</li><li><strong>Prokinetic Agents</strong>: Medications like metoclopramide (dopamine antagonist) or domperidone (peripheral dopamine antagonist) that enhance gastric motility.</li><li><strong>Antiemetics</strong>: Drugs such as ondansetron (serotonin 5-HT3 receptor antagonist) or promethazine (phenothiazine) used to control nausea and vomiting.</li><li><strong>Botulinum Toxin Injection</strong>: Endoscopic injection into the pylorus to relax the muscle and potentially improve gastric emptying in select patients.</li><li><strong>Gastric Electrical Stimulation (GES)</strong>: A surgically implanted device that delivers electrical impulses to the stomach, primarily used for refractory nausea and vomiting.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

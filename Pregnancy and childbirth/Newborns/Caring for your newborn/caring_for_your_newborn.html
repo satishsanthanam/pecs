@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a diverse family caring for a newborn baby. The scene includes parents gently holding, feeding, and changing the baby. Elements like a safe crib, baby bottles, a breast pump, and a thermometer are subtly integrated. The color palette is soft and warm, conveying comfort and care. The style is clean and modern, suitable for public health awareness materials, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./caring_for_your_newborn.jpg" class="card-banner" alt="Caring for your newborn Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-pregnancy-and-childbirth" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Pregnancy and childbirth</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-pregnancy-and-childbirth-newborns" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Newborns</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Caring for your newborn</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Pregnancy and childbirth</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Newborns</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+    <h2>&#128161; What You Need to Know</h2>
+    <ul>
+        <li><strong>Skin-to-Skin Contact:</strong> Essential immediately after birth and frequently thereafter to regulate temperature, promote bonding, and support breastfeeding initiation.</li>
+        <li><strong>Frequent Feedings:</strong> Newborns typically feed 8-12 times in 24 hours, whether breastfed or formula-fed. Watch for hunger cues like rooting, sucking motions, and hand-to-mouth movements.</li>
+        <li><strong>Diaper Output:</strong> Expect 6-8 wet diapers and 3-4 bowel movements daily by day 5, indicating adequate hydration and feeding.</li>
+        <li><strong>Sleep Patterns:</strong> Newborns sleep 16-17 hours a day in short bursts, waking frequently for feeds. Establish a safe sleep environment from day one.</li>
+        <li><strong>Umbilical Cord Care:</strong> Keep the cord stump clean and dry. It typically falls off within 1-3 weeks. Report any signs of redness, pus, or foul odor to a healthcare provider.</li>
+    </ul>
+</div>
+<div class='symptoms-section'>
+    <h2>&#129298; Associated Symptoms</h2>
+    <ul>
+        <li><strong>Jaundice:</strong> Yellowing of the skin or eyes, common in newborns. Monitor for progression and discuss with a pediatrician, especially if it appears in the first 24 hours or spreads rapidly.</li>
+        <li><strong>Fever (Rectal Temperature &gt;100.4°F/38°C):</strong> A medical emergency in newborns under 3 months. Seek immediate medical attention.</li>
+        <li><strong>Poor Feeding:</strong> Refusal to feed, weak suck, or significantly decreased intake can indicate illness.</li>
+        <li><strong>Lethargy or Irritability:</strong> Excessive sleepiness, difficulty to rouse, or inconsolable crying beyond normal fussiness warrants medical evaluation.</li>
+        <li><strong>Respiratory Distress:</strong> Rapid breathing, grunting, nasal flaring, or chest retractions are signs requiring urgent medical assessment.</li>
+        <li><strong>Changes in Stool:</strong> Bloody stools, white/clay-colored stools, or persistent watery diarrhea should be reported to a physician.</li>
+    </ul>
+</div>
+<div class='precautions-section'>
+    <h2>&#128737; Crucial Precautions</h2>
+    <ul>
+        <li><strong>Safe Sleep Environment:</strong> Always place the baby on their back to sleep, in a bare crib or bassinet with a firm mattress and fitted sheet. Avoid bumpers, loose blankets, pillows, and soft toys.</li>
+        <li><strong>Car Seat Safety:</strong> Use an approved rear-facing car seat in the back seat for every ride. Ensure proper installation and harness fit according to manufacturer guidelines.</li>
+        <li><strong>Hand Hygiene:</strong> Wash hands thoroughly before handling the newborn, and ensure all visitors do the same, to prevent infection.</li>
+        <li><strong>Temperature Regulation:</strong> Dress the baby in one more layer than an adult would wear comfortably. Avoid overheating.</li>
+        <li><strong>Avoid Sick Contacts:</strong> Limit exposure to individuals with contagious illnesses, especially during the first few months when the newborn's immune system is developing.</li>
+        <li><strong>Never Shake a Baby:</strong> Shaking can cause severe brain injury or death. If frustrated, place the baby in a safe place and take a break.</li>
+    </ul>
+</div>
+<div class='dietary-section'>
+    <h2>&#127869; Dietary Directions & Restrictions</h2>
+    <ul>
+        <li><strong>Exclusive Breastfeeding:</strong> Recommended for the first six months of life, providing all necessary nutrients and antibodies.</li>
+        <li><strong>Formula Preparation:</strong> If formula feeding, strictly follow manufacturer instructions for mixing with sterile water to prevent contamination and ensure proper nutrient concentration.</li>
+        <li><strong>On-Demand Feeding:</strong> Feed the newborn whenever they show hunger cues, rather than strictly by a schedule.</li>
+        <li><strong>Burping:</strong> Burp the baby during and after feedings to release swallowed air and prevent discomfort.</li>
+        <li><strong>Vitamin D Supplementation:</strong> Breastfed infants require a daily vitamin D supplement (400 IU) from birth.</li>
+        <li><strong>No Solid Foods or Water:</strong> Do not introduce solid foods, water, or other liquids before 6 months of age, as breast milk or formula provides all necessary hydration and nutrition.</li>
+    </ul>
+</div>
+<div class='warning-box'>
+    <h2>&#9888;&#65039; Attendant Guidelines</h2>
+    <ul>
+        <li><strong>When to Call the Doctor:</strong> Contact your pediatrician immediately for fever, poor feeding, lethargy, difficulty breathing, persistent vomiting, severe jaundice, or any signs of infection.</li>
+        <li><strong>Medication Administration:</strong> Administer only medications prescribed by a pediatrician, following exact dosage and frequency instructions. Never give adult medications.</li>
+        <li><strong>Temperature Monitoring:</strong> Use a rectal thermometer for accurate temperature readings in newborns.</li>
+        <li><strong>Safe Bathing:</strong> Sponge bathe until the umbilical cord stump falls off and the circumcision (if applicable) has healed. Ensure water temperature is warm, not hot.</li>
+        <li><strong>Post-Circumcision Care:</strong> Keep the area clean and apply petroleum jelly with each diaper change as advised by the healthcare provider.</li>
+    </ul>
+</div>
+<div class='doctor-advice'>
+    <h2>&#129658; Physician's Perspective</h2>
+    <ul>
+        <li><strong>Well-Baby Visits:</strong> Adhere to the recommended schedule for well-baby check-ups to monitor growth, development, and administer vaccinations.</li>
+        <li><strong>Vaccination Schedule:</strong> Ensure your newborn receives all recommended immunizations on schedule to protect against serious childhood diseases.</li>
+        <li><strong>Postpartum Depression Screening:</strong> New parents, especially mothers, should be screened for postpartum depression. Seek support if experiencing persistent sadness, anxiety, or difficulty bonding.</li>
+        <li><strong>Trust Your Instincts:</strong> Parents often have a strong sense when something is not right with their baby. Do not hesitate to contact your pediatrician with any concerns, no matter how small.</li>
+        <li><strong>Parental Education:</strong> Engage in prenatal and postnatal classes to enhance knowledge and confidence in newborn care.</li>
+    </ul>
+</div>
+<div class='student-nurse-index'>
+    <h2>&#127891; Academic & Nursing Corner</h2>
+    <ul>
+        <li><strong>Newborn Assessment:</strong> Systematically assess vital signs, reflexes (Moro, rooting, sucking, grasp), skin integrity, fontanelles, and overall tone.</li>
+        <li><strong>Apgar Score:</strong> Understand the significance of Apgar scores at 1 and 5 minutes post-birth as an indicator of the newborn's transition to extrauterine life.</li>
+        <li><strong>Parent Education:</strong> Provide comprehensive education on feeding techniques, diapering, cord care, safe sleep practices, and recognizing signs of illness.</li>
+        <li><strong>Jaundice Monitoring:</strong> Implement protocols for assessing and monitoring neonatal jaundice, including transcutaneous bilirubinometry and phototherapy indications.</li>
+        <li><strong>Pain Management:</strong> Recognize and manage newborn pain, especially post-procedure (e.g., circumcision), using non-pharmacological and pharmacological methods as appropriate.</li>
+    </ul>
+</div>
+<div class='technical-index'>
+    <h2>&#128300; Clinical Reference Index</h2>
+    <ul>
+        <li><strong>Neonatal Jaundice:</strong> Hyperbilirubinemia in newborns, often physiological but requiring monitoring for pathological causes.</li>
+        <li><strong>Sudden Infant Death Syndrome (SIDS):</strong> The sudden, unexplained death of an infant younger than one year of age. Prevention strategies are crucial.</li>
+        <li><strong>Colic:</strong> Defined as crying for more than three hours a day, three days a week, for at least three weeks in an otherwise healthy infant.</li>
+        <li><strong>Gastroesophageal Reflux (GER):</strong> Common in newborns, involving the regurgitation of stomach contents. Differentiate from GERD (disease).</li>
+        <li><strong>Meconium:</strong> The first stool of a newborn, typically dark green and tar-like. Delayed passage can indicate issues.</li>
+        <li><strong>Fontanelles:</strong> Soft spots on a newborn's skull, allowing for brain growth. Assess for bulging or sunken appearance.</li>
+        <li><strong>Umbilical Granuloma:</strong> A common benign overgrowth of tissue at the base of the umbilical cord after it detaches.</li>
+    </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

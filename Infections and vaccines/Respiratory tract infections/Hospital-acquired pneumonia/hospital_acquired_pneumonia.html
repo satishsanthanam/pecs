@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration depicting a hospital room scene focused on respiratory health and infection prevention. A patient is in a hospital bed, possibly with an oxygen mask or ventilator, looking slightly unwell. A healthcare professional (nurse or doctor) is at the bedside, demonstrating hand hygiene or adjusting equipment. Transparent, stylized lungs are visible within the patient's chest, with subtle red or orange highlights indicating inflammation. Surrounding the lungs and patient are abstract representations of bacteria or viruses, some with a 'stop' or 'shield' symbol over them, emphasizing prevention. The background features clean, minimalist hospital equipment and a sterile environment. Use a palette of blues, greens, and whites for the hospital setting, with contrasting reds, oranges, or purples for the infection elements, ensuring a clean, public awareness design.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./hospital_acquired_pneumonia.jpg" class="card-banner" alt="Hospital-acquired pneumonia Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-infections-and-vaccines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Infections and vaccines</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-infections-and-vaccines-respiratory-tract-infections" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Respiratory tract infections</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Hospital-acquired pneumonia</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Infections and vaccines</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Respiratory tract infections</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Hospital-acquired pneumonia (HAP) is a lung infection that develops 48 hours or more after hospital admission and was not incubating at the time of admission.</li><li><strong>Significance:</strong> It is a serious healthcare-associated infection, often caused by multi-drug resistant organisms, leading to increased morbidity, mortality, and healthcare costs.</li><li><strong>Risk Factors:</strong> Key risk factors include mechanical ventilation (leading to VAP), prolonged hospitalization, altered consciousness, aspiration, immunosuppression, advanced age, and underlying chronic lung disease.</li><li><strong>Common Pathogens:</strong> Frequently involves bacteria such as <em>Pseudomonas aeruginosa</em>, <em>Staphylococcus aureus</em> (especially MRSA), <em>Klebsiella pneumoniae</em>, and other Gram-negative bacilli.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Respiratory Changes:</strong> New onset or worsening cough, increased sputum production (often purulent), shortness of breath (dyspnea), and pleuritic chest pain.</li><li><strong>Systemic Indicators:</strong> Fever, chills, malaise, and elevated white blood cell count (leukocytosis) or decreased count (leukopenia).</li><li><strong>Neurological Signs:</strong> Altered mental status or confusion, particularly in elderly or immunocompromised patients.</li><li><strong>Physical Examination Findings:</strong> Tachypnea (rapid breathing), crackles or rales on lung auscultation, dullness to percussion over affected lung areas, and increased work of breathing.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Hand Hygiene:</strong> Strict adherence to hand hygiene protocols by all healthcare personnel before and after patient contact, and after touching patient surroundings.</li><li><strong>Ventilator-Associated Pneumonia (VAP) Bundle:</strong> Implement and maintain VAP prevention strategies including head-of-bed elevation (30-45 degrees), daily sedation interruption, peptic ulcer disease prophylaxis, deep vein thrombosis prophylaxis, and regular oral care with chlorhexidine.</li><li><strong>Aspiration Prevention:</strong> Ensure proper patient positioning during feeding, assess swallowing function, and manage gastric residual volumes for tube-fed patients to minimize aspiration risk.</li><li><strong>Early Mobilization:</strong> Encourage early ambulation and mobility as clinically appropriate to improve lung expansion and secretion clearance.</li><li><strong>Infection Control:</strong> Adhere to contact precautions for patients colonized or infected with multi-drug resistant organisms.</li><li><strong>Vaccination Status:</strong> Ensure patients are up-to-date on influenza and pneumococcal vaccinations where indicated, as these can reduce the risk of community-acquired infections that may complicate hospital stays.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Aspiration Risk Management:</strong> For patients with dysphagia, utilize thickened liquids and pureed diets as prescribed, ensuring upright positioning during and for at least 30 minutes after meals.</li><li><strong>Hydration:</strong> Maintain adequate hydration through oral or intravenous fluids to help thin respiratory secretions, unless fluid restriction is medically indicated.</li><li><strong>Nutritional Support:</strong> Provide appropriate caloric and protein intake to support immune function and recovery, potentially via enteral or parenteral nutrition if oral intake is insufficient or unsafe.</li><li><strong>Feeding Tube Care:</strong> If a feeding tube is in place, ensure proper tube placement verification and monitor for gastric residual volumes to prevent aspiration.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Prompt Reporting:</strong> Immediately report any new or worsening respiratory symptoms, fever, or changes in mental status to the nursing staff.</li><li><strong>Positioning Assistance:</strong> Assist patients in maintaining prescribed head-of-bed elevation, especially those at risk for aspiration or on mechanical ventilation.</li><li><strong>Oral Care Support:</strong> Provide diligent oral hygiene, particularly for intubated or debilitated patients, using prescribed antiseptic solutions.</li><li><strong>Mobility Encouragement:</strong> Support and encourage patient mobility and deep breathing exercises as instructed by healthcare professionals.</li><li><strong>Hand Hygiene Compliance:</strong> Practice meticulous hand hygiene before and after any patient contact or interaction with the patient's environment.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Early Diagnosis:</strong> Maintain a high index of suspicion for HAP in hospitalized patients with new respiratory symptoms, fever, and new infiltrates on chest imaging.</li><li><strong>Empiric Antibiotics:</strong> Initiate broad-spectrum empiric antibiotic therapy promptly, tailored to local epidemiology, patient risk factors for multi-drug resistant organisms, and severity of illness.</li><li><strong>Culture-Guided Therapy:</strong> Obtain appropriate cultures (sputum, blood, bronchoalveolar lavage) prior to antibiotic initiation to guide de-escalation to narrower spectrum agents once sensitivities are available.</li><li><strong>Supportive Care:</strong> Provide comprehensive supportive care including oxygen therapy, bronchodilators, and fluid management to optimize patient outcomes.</li><li><strong>Prognosis & Complications:</strong> Recognize the significant morbidity and mortality associated with HAP, particularly with resistant pathogens, and monitor for complications such as sepsis, ARDS, and pleural effusions.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Assessment Acuity:</strong> Develop keen respiratory assessment skills to identify subtle changes in breath sounds, respiratory rate, and oxygen saturation that may indicate HAP.</li><li><strong>Intervention Implementation:</strong> Master the meticulous execution of VAP prevention bundles and other infection control measures to minimize HAP incidence.</li><li><strong>Patient Education:</strong> Educate patients and families on the importance of coughing, deep breathing exercises, early ambulation, and proper hand hygiene to prevent respiratory complications.</li><li><strong>Documentation Precision:</strong> Maintain accurate and timely documentation of patient assessments, interventions, and responses to therapy, which is crucial for continuity of care and outcome tracking.</li><li><strong>Collaboration:</strong> Understand the importance of interdisciplinary collaboration with physicians, respiratory therapists, and other team members in managing HAP.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Diagnostic Criteria:</strong> Typically involves new or progressive lung infiltrate on chest X-ray or CT scan, plus at least two clinical features (e.g., fever >38°C, leukocytosis/leukopenia, purulent sputum).</li><li><strong>Common Pathogens:</strong> Key pathogens include <em>Pseudomonas aeruginosa</em>, Methicillin-resistant <em>Staphylococcus aureus</em> (MRSA), <em>Klebsiella pneumoniae</em>, <em>Acinetobacter baumannii</em>, and other Enterobacteriaceae.</li><li><strong>Risk Stratification:</strong> Assessment of risk factors for multi-drug resistant (MDR) pathogens guides initial empiric antibiotic selection (e.g., prior antibiotic use, septic shock, ARDS, hospitalization >5 days).</li><li><strong>Treatment Guidelines:</strong> Refer to current Infectious Diseases Society of America (IDSA) and American Thoracic Society (ATS) guidelines for the management of HAP and VAP.</li><li><strong>Biomarkers:</strong> Procalcitonin levels may be used to guide antibiotic de-escalation or discontinuation in certain clinical scenarios.</li><li><strong>Complications:</strong> Potential complications include acute respiratory distress syndrome (ARDS), sepsis, pleural effusion, empyema, and multi-organ failure.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

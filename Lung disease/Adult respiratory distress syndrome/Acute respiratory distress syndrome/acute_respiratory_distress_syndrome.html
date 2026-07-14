@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a patient in an intensive care unit (ICU) bed, connected to a mechanical ventilator. The patient's chest area subtly highlights inflamed lungs with fluid accumulation. A diverse team of healthcare professionals, including a doctor and a nurse, are actively monitoring medical equipment and attending to the patient. The scene conveys critical care and advanced medical intervention, rendered with clean lines, a professional color palette, and no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./acute_respiratory_distress_syndrome.jpg" class="card-banner" alt="Acute respiratory distress syndrome Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-lung-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Lung disease</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-lung-disease-adult-respiratory-distress-syndrome" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Adult respiratory distress syndrome</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Acute respiratory distress syndrome</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Lung disease</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Adult respiratory distress syndrome</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Acute Respiratory Distress Syndrome (ARDS) is a severe, life-threatening lung injury characterized by widespread inflammation and fluid accumulation in the alveoli, leading to impaired gas exchange.</li><li><strong>Primary Causes:</strong> Often triggered by direct lung injury (e.g., severe pneumonia, aspiration) or indirect injury (e.g., sepsis, severe trauma, pancreatitis, massive transfusions).</li><li><strong>Pathophysiology:</strong> Involves damage to the alveolar-capillary membrane, leading to increased permeability, non-cardiogenic pulmonary edema, and surfactant dysfunction, severely compromising oxygenation.</li><li><strong>Severity:</strong> Classified into mild, moderate, and severe based on the degree of hypoxemia (PaO2/FiO2 ratio), with higher mortality rates in more severe forms.</li><li><strong>Long-term Impact:</strong> Survivors may experience persistent pulmonary fibrosis, muscle weakness, cognitive impairment, and psychological distress.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Rapid Onset Dyspnea:</strong> Sudden and severe shortness of breath, often worsening rapidly over hours to days.</li><li><strong>Tachypnea:</strong> Abnormally rapid breathing rate, indicating increased work of breathing.</li><li><strong>Refractory Hypoxemia:</strong> Low blood oxygen levels that do not significantly improve with increasing supplemental oxygen.</li><li><strong>Cyanosis:</strong> Bluish discoloration of the skin, lips, or nail beds due to insufficient oxygen in the blood.</li><li><strong>Accessory Muscle Use:</strong> Visible use of neck and intercostal muscles to aid breathing.</li><li><strong>Crackles on Auscultation:</strong> Fine or coarse crackling sounds heard in the lungs, indicative of fluid in the alveoli.</li><li><strong>Tachycardia:</strong> Elevated heart rate as the body attempts to compensate for hypoxemia.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Early Recognition & Intervention:</strong> Prompt identification of at-risk patients and initiation of supportive care to prevent progression.</li><li><strong>Lung-Protective Ventilation:</strong> Strict adherence to low tidal volume (4-8 mL/kg predicted body weight) and plateau pressure (<30 cm H2O) to minimize ventilator-induced lung injury (VILI).</li><li><strong>Conservative Fluid Management:</strong> Careful monitoring and restriction of intravenous fluids to prevent exacerbation of pulmonary edema, once hemodynamically stable.</li><li><strong>Infection Control:</strong> Rigorous implementation of infection prevention strategies, especially for ventilator-associated pneumonia (VAP) and catheter-related bloodstream infections.</li><li><strong>Prone Positioning:</strong> Consider for patients with severe ARDS to improve oxygenation and reduce VILI by redistributing ventilation and perfusion.</li><li><strong>Sedation & Neuromuscular Blockade:</strong> Judicious use of sedatives and, in severe cases, neuromuscular blocking agents to facilitate lung-protective ventilation and reduce oxygen consumption.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Early Enteral Nutrition:</strong> Prioritize early initiation of enteral feeding (via nasogastric or orogastric tube) to maintain gut integrity, support immune function, and meet metabolic demands.</li><li><strong>Caloric & Protein Requirements:</strong> Provide adequate caloric and high-protein intake, often requiring specialized formulas, to counteract the hypercatabolic state associated with critical illness.</li><li><strong>Fluid Balance Monitoring:</strong> Meticulous tracking of fluid intake and output to manage pulmonary edema while ensuring sufficient hydration and nutrient delivery.</li><li><strong>Electrolyte Management:</strong> Close monitoring and correction of electrolyte imbalances, which are common due to critical illness, diuretic use, or renal dysfunction.</li><li><strong>Gastric Motility Assessment:</strong> Regularly assess for delayed gastric emptying; consider prokinetic agents or post-pyloric feeding if gastric intolerance occurs.</li><li><strong>Avoid Overfeeding:</strong> Prevent excessive carbohydrate administration, which can increase CO2 production and complicate ventilator weaning.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Continuous Monitoring:</strong> Maintain vigilant observation of vital signs, oxygen saturation, ventilator parameters, and hemodynamic status.</li><li><strong>Airway Management:</strong> Ensure meticulous endotracheal tube care, including cuff pressure monitoring, regular suctioning as needed, and securing the tube to prevent dislodgement.</li><li><strong>Positioning & Skin Care:</strong> Implement frequent repositioning, including prone positioning protocols, and comprehensive skin care to prevent pressure injuries.</li><li><strong>Medication Administration:</strong> Administer prescribed medications (e.g., sedatives, paralytics, vasopressors, antibiotics) precisely, monitoring for effects and side effects.</li><li><strong>Communication:</strong> Facilitate clear and consistent communication with the healthcare team, patient, and family regarding the patient's condition and care plan.</li><li><strong>Psychological Support:</strong> Provide emotional support to the patient and family, addressing anxieties and facilitating understanding of the critical illness.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Diagnostic Criteria:</strong> Diagnosis is based on the Berlin Definition, requiring acute onset, bilateral opacities on chest imaging, respiratory failure not fully explained by cardiac failure or fluid overload, and specific PaO2/FiO2 ratio thresholds.</li><li><strong>Management Focus:</strong> Primary goals include treating the underlying cause, implementing lung-protective ventilation, optimizing hemodynamics, and providing comprehensive supportive care.</li><li><strong>Pharmacological Approach:</strong> Currently, no specific pharmacological agent consistently improves outcomes in ARDS; corticosteroids may be considered in specific contexts (e.g., late-phase ARDS, refractory shock).</li><li><strong>Advanced Therapies:</strong> Extracorporeal membrane oxygenation (ECMO) may be considered for severe, refractory hypoxemia in select patients at specialized centers.</li><li><strong>Prognosis Factors:</strong> Prognosis is highly variable, influenced by the underlying cause, severity of ARDS, age, and presence of comorbidities.</li><li><strong>Multidisciplinary Care:</strong> Emphasize the critical role of a multidisciplinary team, including intensivists, pulmonologists, respiratory therapists, and nurses, for optimal patient management.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Respiratory Assessment:</strong> Master skills in assessing respiratory rate, effort, breath sounds, oxygenation status, and signs of respiratory distress.</li><li><strong>Ventilator Management & Troubleshooting:</strong> Understand various ventilator modes, settings, alarms, and basic troubleshooting to ensure patient safety and effective ventilation.</li><li><strong>Hemodynamic Monitoring:</strong> Learn to interpret hemodynamic parameters (e.g., CVP, arterial line readings) and their implications for fluid management and organ perfusion.</li><li><strong>Medication Safety:</strong> Develop proficiency in safe administration of critical care medications, including titratable infusions, and monitoring for therapeutic and adverse effects.</li><li><strong>Patient & Family Education:</strong> Acquire skills in explaining complex medical conditions like ARDS to patients and families in an understandable and empathetic manner.</li><li><strong>Ethical Considerations:</strong> Understand and navigate ethical dilemmas related to end-of-life care, withdrawal of support, and patient autonomy in critical illness.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Berlin Definition (2012):</strong> Standardized criteria for diagnosing ARDS based on timing, chest imaging, origin of edema, and oxygenation impairment (PaO2/FiO2 ratio).</li><li><strong>ARDSNet Protocol:</strong> Landmark study establishing the benefits of lung-protective ventilation with low tidal volumes (6 mL/kg PBW) and limited plateau pressures.</li><li><strong>PEEP (Positive End-Expiratory Pressure):</strong> Applied to prevent alveolar collapse and improve oxygenation; optimal PEEP strategies are individualized.</li><li><strong>Recruitment Maneuvers:</strong> Brief increases in PEEP or inspiratory pressure to open collapsed alveoli, often followed by optimal PEEP.</li><li><strong>ECMO (Extracorporeal Membrane Oxygenation):</strong> A life support technique for severe respiratory or cardiac failure, providing oxygenation and CO2 removal outside the body.</li><li><strong>Ventilator-Associated Pneumonia (VAP):</strong> A common complication in mechanically ventilated patients, requiring strict prevention protocols.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

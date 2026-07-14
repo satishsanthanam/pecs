@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a patient with a subtle, glowing skeletal outline, highlighting areas of bone metastases in the spine and long bones. The patient is carefully positioned on a stretcher in an emergency room setting, surrounded by two medical professionals (a doctor and a nurse) who are gently supporting the patient's limbs. The scene emphasizes compassionate care and careful handling. Medical equipment like an IV pole and a monitor are in the background. The overall style is clean, modern, and suitable for public health awareness, with a focus on patient safety and medical intervention.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./bone_metastases.jpg" class="card-banner" alt="Bone metastases Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-emergency-medicine" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Emergency medicine</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-emergency-medicine-fractures" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Fractures</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Bone metastases</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Emergency medicine</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Fractures</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Bone metastases occur when cancer cells spread from their primary site to the bone, commonly from breast, prostate, lung, kidney, and thyroid cancers.</li><li><strong>Emergency Presentation:</strong> Often presents in the emergency department due to severe pain or a pathological fracture, which is a fracture occurring through bone weakened by disease rather than trauma.</li><li><strong>Clinical Significance:</strong> Can lead to significant morbidity, including severe pain, hypercalcemia, spinal cord compression, and impaired mobility.</li><li><strong>Prognosis Impact:</strong> While often indicating advanced disease, timely management can significantly improve quality of life and prevent severe complications.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Localized Bone Pain:</strong> Persistent, deep, aching pain, often worse at night or with weight-bearing, not relieved by rest.</li><li><strong>Sudden Onset Pain/Deformity:</strong> Indicative of a pathological fracture, even with minimal trauma.</li><li><strong>Neurological Deficits:</strong> Weakness, numbness, tingling, or bowel/bladder dysfunction, suggesting spinal cord compression.</li><li><strong>Hypercalcemia Symptoms:</strong> Nausea, vomiting, constipation, excessive thirst, frequent urination, fatigue, confusion, or altered mental status.</li><li><strong>Generalized Symptoms:</strong> Unexplained weight loss, fatigue, or fever, common in advanced cancer.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Pathological Fracture Prevention:</strong> Handle patients with known or suspected bone metastases with extreme care during transfers, examinations, and positioning to prevent iatrogenic fractures.</li><li><strong>Spinal Cord Compression Assessment:</strong> Immediately assess for new or worsening neurological symptoms; this is a medical emergency requiring urgent imaging and intervention.</li><li><strong>Hypercalcemia Management:</strong> Monitor serum calcium levels closely and initiate aggressive hydration and appropriate pharmacotherapy as indicated.</li><li><strong>Pain Control:</strong> Ensure adequate and timely pain management, often requiring opioid analgesics, and consider adjuvant therapies.</li><li><strong>Weight-Bearing Restrictions:</strong> Implement strict non-weight-bearing or protected weight-bearing protocols for limbs with high fracture risk or confirmed fractures.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration for Hypercalcemia:</strong> Encourage generous fluid intake (oral or intravenous) to promote renal calcium excretion and prevent dehydration.</li><li><strong>Nutritional Support:</strong> Provide high-calorie, high-protein nutritional support to combat cachexia and support healing, especially post-fracture or during active treatment.</li><li><strong>Fiber-Rich Foods:</strong> Recommend increased fiber intake to manage constipation, a common side effect of opioid pain medications.</li><li><strong>Calcium/Vitamin D Considerations:</strong> While generally important for bone health, in cases of hypercalcemia, dietary calcium restriction may be considered under medical guidance.</li><li><strong>Small, Frequent Meals:</strong> Advise smaller, more frequent meals to manage nausea and improve overall intake, particularly for patients undergoing chemotherapy or radiation.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Gentle Handling:</strong> Always use log-rolling techniques for spinal precautions and ensure adequate support for all limbs during movement to prevent fractures.</li><li><strong>Immobilization:</strong> Apply appropriate splints or braces to stabilize suspected or confirmed pathological fractures before and during transport.</li><li><strong>Pain Assessment:</strong> Regularly assess pain intensity and effectiveness of analgesia, advocating for adjustments as needed.</li><li><strong>Fall Prevention:</strong> Implement strict fall prevention strategies, including bed alarms, call bell within reach, and assistance with ambulation.</li><li><strong>Patient Education:</strong> Educate the patient and family on the fragility of bones, signs of worsening symptoms (especially neurological), and the importance of adherence to activity restrictions.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Prompt Diagnosis:</strong> Utilize appropriate imaging (X-ray, CT, MRI, bone scan, PET) to confirm bone metastases and assess fracture risk or spinal cord compression.</li><li><strong>Multidisciplinary Approach:</strong> Collaborate with oncology, orthopedic surgery, radiation oncology, and palliative care to formulate a comprehensive treatment plan.</li><li><strong>Treatment Goals:</strong> Focus on pain relief, prevention of skeletal-related events (SREs), stabilization of fractures, preservation of neurological function, and optimization of quality of life.</li><li><strong>Bone-Modifying Agents:</strong> Consider bisphosphonates or denosumab to reduce SREs and manage hypercalcemia.</li><li><strong>Radiation Therapy:</strong> Often highly effective for pain control and local tumor control in bone metastases.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Comprehensive Pain Assessment:</strong> Utilize validated pain scales (e.g., Numeric Rating Scale, Wong-Baker FACES) and assess pain characteristics (PQRST).</li><li><strong>Neurological Monitoring:</strong> Perform frequent neurological checks, including motor strength, sensation, and reflex assessment, especially for spinal involvement.</li><li><strong>Fluid Balance Management:</strong> Monitor intake and output, urine specific gravity, and signs of dehydration or fluid overload, particularly with hypercalcemia.</li><li><strong>Safe Patient Mobility:</strong> Educate patients on safe transfer techniques and the use of assistive devices to minimize stress on affected bones.</li><li><strong>Psychosocial Support:</strong> Address patient and family anxiety, fear, and grief related to advanced cancer and its complications.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Skeletal-Related Events (SREs):</strong> Pathological fracture, spinal cord compression, hypercalcemia requiring intervention, and radiation/surgery to bone.</li><li><strong>Imaging Modalities:</strong> Plain radiographs, Computed Tomography (CT), Magnetic Resonance Imaging (MRI), Bone Scintigraphy (Technetium-99m bone scan), Positron Emission Tomography (PET) scan.</li><li><strong>Pharmacological Interventions:</strong> Opioid analgesics, NSAIDs, corticosteroids, bisphosphonates (e.g., zoledronic acid), denosumab, targeted therapies, chemotherapy.</li><li><strong>Surgical Stabilization:</strong> Intramedullary nailing, plate fixation, vertebroplasty, kyphoplasty for impending or actual pathological fractures.</li><li><strong>Radiation Therapy:</strong> External beam radiation, stereotactic body radiation therapy (SBRT) for localized pain relief and tumor control.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

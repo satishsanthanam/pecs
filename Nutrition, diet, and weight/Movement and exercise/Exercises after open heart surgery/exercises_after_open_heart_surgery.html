@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a diverse group of people, including an older adult and a middle-aged person, performing gentle, supervised exercises like walking and light arm movements. They are in a bright, modern cardiac rehabilitation setting with a friendly medical professional (nurse or therapist) guiding them. Subtle heart icons or pulse lines emanate from the patients, symbolizing recovery and health. The overall design is clean, optimistic, and emphasizes safe, progressive movement after open heart surgery. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./exercises_after_open_heart_surgery.jpg" class="card-banner" alt="Exercises after open heart surgery Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-nutrition-diet-and-weight" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Nutrition, diet, and weight</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-nutrition-diet-and-weight-movement-and-exercise" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Movement and exercise</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Exercises after open heart surgery</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Nutrition, diet, and weight</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Movement and exercise</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'>
+  <h2>&#128161; What You Need to Know</h2>
+  <ul>
+    <li><strong>Gradual Progression:</strong> Exercise after open heart surgery is crucial for recovery but must be introduced gradually and systematically, often starting with short, frequent walks.</li>
+    <li><strong>Cardiac Rehabilitation:</strong> Participation in a structured cardiac rehabilitation program is highly recommended to ensure safe and effective exercise progression under medical supervision.</li>
+    <li><strong>Healing Period:</strong> The initial 6-8 weeks post-surgery focus on sternal healing, meaning activities that strain the chest must be strictly avoided to prevent complications.</li>
+    <li><strong>Improved Outcomes:</strong> Regular, appropriate exercise improves cardiovascular fitness, reduces the risk of future cardiac events, enhances overall quality of life, and aids in weight management.</li>
+  </ul>
+</div>
+<div class='symptoms-section'>
+  <h2>&#129298; Associated Symptoms</h2>
+  <ul>
+    <li><strong>Angina or Chest Discomfort:</strong> Persistent or new chest pain, pressure, or tightness during or after exercise warrants immediate cessation and medical evaluation.</li>
+    <li><strong>Shortness of Breath:</strong> Unusual or excessive breathlessness that does not resolve quickly with rest, beyond what is expected for the activity level.</li>
+    <li><strong>Dizziness or Lightheadedness:</strong> Feeling faint, dizzy, or lightheaded during exercise, which could indicate an issue with blood pressure or heart rhythm.</li>
+    <li><strong>Palpitations:</strong> New or worsening sensations of a racing, pounding, or irregular heartbeat during physical activity.</li>
+    <li><strong>Unusual Fatigue:</strong> Extreme tiredness or exhaustion disproportionate to the exercise performed, or fatigue that lingers for an extended period.</li>
+    <li><strong>Swelling in Extremities:</strong> New or increased swelling in the ankles, feet, or legs, which could indicate fluid retention or cardiac strain.</li>
+  </ul>
+</div>
+<div class='precautions-section'>
+  <h2>&#128737; Crucial Precautions</h2>
+  <ul>
+    <li><strong>Sternal Precautions:</strong> For the first 6-8 weeks (or as advised by your surgeon), strictly avoid lifting, pushing, or pulling anything heavier than 5-10 pounds, and refrain from reaching overhead or behind the back.</li>
+    <li><strong>Listen to Your Body:</strong> Never push through pain or severe discomfort. Stop exercising immediately if you experience any concerning symptoms and report them to your healthcare provider.</li>
+    <li><strong>Proper Warm-up and Cool-down:</strong> Always begin with 5-10 minutes of light activity (e.g., slow walking) and end with a similar cool-down period to gradually adjust heart rate and blood pressure.</li>
+    <li><strong>Avoid Valsalva Maneuver:</strong> Do not hold your breath during exertion; breathe continuously and deeply to prevent sudden increases in blood pressure and cardiac workload.</li>
+    <li><strong>Hydration:</strong> Stay well-hydrated before, during, and after exercise, especially in warmer environments, to support cardiovascular function.</li>
+    <li><strong>Environmental Factors:</strong> Avoid exercising in extreme hot, cold, or humid conditions, which can put extra strain on the heart and increase the risk of complications.</li>
+  </ul>
+</div>
+<div class='dietary-section'>
+  <h2>&#127869; Dietary Directions & Restrictions</h2>
+  <ul>
+    <li><strong>Adequate Hydration:</strong> Maintain optimal fluid intake, primarily water, to support cardiovascular function, aid muscle recovery, and prevent dehydration during physical activity.</li>
+    <li><strong>Nutrient-Rich Foods:</strong> Consume a balanced diet rich in lean proteins for tissue repair, complex carbohydrates for sustained energy, and healthy fats for overall cardiac health and inflammation reduction.</li>
+    <li><strong>Sodium Restriction:</strong> Limit high-sodium foods to help manage blood pressure and reduce fluid retention, which can impact exercise tolerance and cardiac workload.</li>
+    <li><strong>Avoid Processed Foods:</strong> Minimize intake of highly processed foods, sugary drinks, and unhealthy trans/saturated fats that can contribute to inflammation, weight gain, and hinder recovery.</li>
+    <li><strong>Small, Frequent Meals:</strong> Opt for smaller, more frequent meals to maintain stable blood sugar levels and provide consistent energy for daily activities and exercise without overloading the digestive system.</li>
+  </ul>
+</div>
+<div class='warning-box'>
+  <h2>&#9888;&#65039; Attendant Guidelines</h2>
+  <ul>
+    <li><strong>Immediate Cessation:</strong> Stop exercising immediately if you experience chest pain, severe shortness of breath, dizziness, lightheadedness, or irregular heartbeats. Seek medical attention promptly.</li>
+    <li><strong>Supervised Rehabilitation:</strong> Adhere strictly to the individualized exercise plan provided by your cardiac rehabilitation team. Do not attempt advanced exercises without professional guidance.</li>
+    <li><strong>Monitor Vital Signs:</strong> Learn to monitor your pulse and understand your target heart rate zones as advised by your healthcare provider. Report any abnormal readings or symptoms.</li>
+    <li><strong>Avoid Overexertion:</strong> Do not push yourself to the point of extreme fatigue or pain. Recovery is a gradual process, and overexertion can lead to setbacks or complications.</li>
+    <li><strong>Medication Adherence:</strong> Take all prescribed medications as directed, as they play a vital role in managing your heart condition, controlling symptoms, and supporting your exercise regimen.</li>
+  </ul>
+</div>
+<div class='doctor-advice'>
+  <h2>&#129658; Physician's Perspective</h2>
+  <ul>
+    <li><strong>Individualized Plan:</strong> Every patient's recovery journey is unique. Your exercise plan will be tailored to your specific surgery, overall health status, and progress.</li>
+    <li><strong>Cardiac Rehab is Key:</strong> Participation in a supervised cardiac rehabilitation program is paramount for safe and effective recovery, providing education, support, and monitored exercise progression.</li>
+    <li><strong>Long-Term Commitment:</strong> Regular physical activity, even after completing formal rehab, is a cornerstone of long-term cardiovascular health, weight management, and prevention of future cardiac events.</li>
+    <li><strong>Report Concerns:</strong> Do not hesitate to report any new or worsening symptoms, or any difficulties with your exercise program, to your healthcare team during follow-up appointments.</li>
+    <li><strong>Lifestyle Integration:</strong> Integrate physical activity into your daily routine as a sustainable lifestyle change, not just a temporary recovery measure, for optimal health benefits.</li>
+  </ul>
+</div>
+<div class='student-nurse-index'>
+  <h2>&#127891; Academic & Nursing Corner</h2>
+  <ul>
+    <li><strong>Patient Education:</strong> Nurses play a critical role in educating patients on sternal precautions, signs of overexertion, and the importance of adherence to exercise guidelines and medication regimens.</li>
+    <li><strong>Mobility Progression:</strong> Facilitate and monitor early progressive mobility, starting with bedside activities and gradually advancing to ambulation, while assessing patient tolerance and vital signs.</li>
+    <li><strong>Vital Sign Monitoring:</strong> Accurately assess and document vital signs before, during, and after exercise sessions, recognizing abnormal responses and intervening appropriately.</li>
+    <li><strong>Pain Management:</strong> Ensure effective pain management to allow patients to participate comfortably in prescribed exercises without undue discomfort, which can hinder rehabilitation.</li>
+    <li><strong>Psychosocial Support:</strong> Provide emotional support and encouragement, addressing patient anxieties about exercise, promoting self-efficacy in their recovery journey, and connecting them with resources.</li>
+  </ul>
+</div>
+<div class='technical-index'>
+  <h2>&#128300; Clinical Reference Index</h2>
+  <ul>
+    <li><strong>Phases of Cardiac Rehabilitation:</strong> Typically involves Phase I (inpatient), Phase II (outpatient, supervised), and Phase III/IV (maintenance, unsupervised) focusing on progressive exercise and education.</li>
+    <li><strong>Rate of Perceived Exertion (RPE) Scale:</strong> A subjective measure (Borg Scale 6-20 or Modified 0-10) used to gauge exercise intensity, often targeting 11-14 (fairly light to somewhat hard) post-surgery.</li>
+    <li><strong>Target Heart Rate (THR) Zone:</strong> Calculated based on age, resting heart rate, and stress test results, typically 50-85% of maximum heart rate, adjusted for beta-blocker use.</li>
+    <li><strong>Exercise Modalities:</strong> Primarily aerobic activities like walking, stationary cycling, and light swimming (once incisions are healed), with gradual introduction of light resistance training.</li>
+    <li><strong>Physiological Benefits:</strong> Improved myocardial contractility, increased collateral circulation, enhanced endothelial function, reduced systemic inflammation, better lipid profiles, and improved glucose metabolism.</li>
+  </ul>
+</div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

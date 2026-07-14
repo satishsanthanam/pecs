@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="A flat vector illustration depicting a diverse group of individuals, both male and female, experiencing various forms of hair loss. Show subtle signs of thinning hair, receding hairlines, and small, smooth bald patches. Include symbolic elements representing common causes such as a small cloud for stress, a DNA helix for genetics, and a balanced plate of food for nutritional factors. The overall aesthetic should be clean, empathetic, and informative, suitable for a public health awareness campaign on hair loss.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./hair_loss.jpg" class="card-banner" alt="Hair loss Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-skin-hair-and-nails" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Skin, hair, and nails</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-skin-hair-and-nails-hair-loss" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Hair loss</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Hair loss</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Skin, hair, and nails</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Hair loss</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Common Causes</strong>: Hair loss can stem from genetics (androgenetic alopecia), hormonal changes, medical conditions, medications, or significant stress.</li><li><strong>Types of Hair Loss</strong>: Includes pattern baldness, patchy hair loss (alopecia areata), and diffuse shedding (telogen effluvium).</li><li><strong>Impact on Well-being</strong>: Hair loss can significantly affect self-esteem and psychological health, necessitating empathetic care.</li><li><strong>Early Intervention</strong>: Identifying the underlying cause early can often lead to more effective management and treatment outcomes.</li><li><strong>Scalp Health</strong>: The condition of the scalp is crucial for healthy hair growth; inflammation or infection can contribute to hair loss.</li><li><strong>Nutritional Factors</strong>: Deficiencies in certain vitamins and minerals, such as iron, zinc, and vitamin D, can exacerbate or cause hair thinning.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Gradual Thinning on Top of Head</strong>: Most common in androgenetic alopecia, presenting as a receding hairline or widening part.</li><li><strong>Patchy or Circular Bald Spots</strong>: Characteristic of alopecia areata, where smooth, coin-sized patches appear on the scalp or body.</li><li><strong>Sudden Loosening of Hair</strong>: Often observed during telogen effluvium, where large amounts of hair may come out when washing or brushing.</li><li><strong>Full-Body Hair Loss</strong>: Can occur with certain medical treatments like chemotherapy or in advanced stages of alopecia universalis.</li><li><strong>Scaling, Itching, or Redness of the Scalp</strong>: May indicate underlying fungal infections (tinea capitis), psoriasis, or other inflammatory conditions.</li><li><strong>Hair Breakage</strong>: Fragile hair that easily breaks can be a sign of nutritional deficiencies or damage from harsh treatments.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Harsh Hair Treatments</strong>: Minimize excessive heat styling, tight hairstyles (e.g., braids, ponytails), and chemical processes like perms or relaxers.</li><li><strong>Gentle Hair Care Practices</strong>: Use mild shampoos and conditioners, and avoid vigorous brushing or towel-drying, especially when hair is wet.</li><li><strong>Protect Scalp from Sun</strong>: Use hats or scarves to prevent sun damage to the scalp, which can exacerbate certain conditions.</li><li><strong>Manage Stress Effectively</strong>: Implement stress-reduction techniques as chronic stress can trigger or worsen telogen effluvium.</li><li><strong>Review Medications with Physician</strong>: Discuss potential hair loss as a side effect when starting new prescriptions, especially for conditions like hypertension, depression, or cancer.</li><li><strong>Regular Health Check-ups</strong>: Ensure underlying medical conditions such as thyroid disorders, anemia, or autoimmune diseases are identified and managed.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Iron-Rich Foods</strong>: Incorporate lean meats, poultry, fish, beans, lentils, spinach, and fortified cereals to support healthy hair growth and prevent anemia.</li><li><strong>Zinc Sources</strong>: Consume oysters, beef, pumpkin seeds, nuts, and legumes, as zinc is vital for hair tissue growth and repair.</li><li><strong>Biotin-Rich Foods</strong>: Include eggs, nuts, seeds, sweet potatoes, and avocados to support keratin production, the primary protein of hair.</li><li><strong>Vitamin D Intake</strong>: Ensure adequate vitamin D through fortified foods, sun exposure, or supplementation, as deficiency is linked to hair loss.</li><li><strong>Adequate Protein Consumption</strong>: Hair is primarily protein; ensure sufficient intake from lean meats, dairy, eggs, and plant-based proteins.</li><li><strong>Avoid Restrictive Diets</strong>: Extreme calorie restriction or highly restrictive diets can lead to nutrient deficiencies and trigger hair shedding.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Seek Professional Diagnosis</strong>: Consult a dermatologist or physician for an accurate diagnosis, as self-treatment without understanding the cause can be ineffective or harmful.</li><li><strong>Monitor Hair Shedding Patterns</strong>: Keep a log of when hair loss started, its pattern, and any associated symptoms to aid in diagnosis.</li><li><strong>Avoid Unproven Remedies</strong>: Be cautious of unverified treatments or supplements that lack scientific evidence, as they may be ineffective or cause adverse reactions.</li><li><strong>Patience with Treatment</strong>: Hair regrowth is a slow process; consistent adherence to prescribed treatments is crucial, and results may take several months to become apparent.</li><li><strong>Psychological Support</strong>: Recognize the emotional impact of hair loss and seek support from healthcare professionals or support groups if needed.</li><li><strong>Follow Up Regularly</strong>: Maintain regular follow-up appointments with your healthcare provider to assess treatment efficacy and adjust the plan as necessary.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive Evaluation</strong>: A thorough history, physical examination, and scalp assessment are paramount to differentiate between various types of alopecia.</li><li><strong>Laboratory Investigations</strong>: Blood tests for thyroid function, complete blood count, iron studies (ferritin), vitamin D, and autoimmune markers are frequently indicated.</li><li><strong>Scalp Biopsy</strong>: May be necessary in atypical or scarring alopecia cases to confirm diagnosis and guide specific treatment.</li><li><strong>Tailored Treatment Plans</strong>: Management varies widely based on the etiology, ranging from topical minoxidil, oral finasteride, corticosteroids, to immunomodulators or hair transplantation.</li><li><strong>Patient Education on Prognosis</strong>: It is crucial to set realistic expectations regarding treatment outcomes and the chronic nature of some hair loss conditions.</li><li><strong>Multidisciplinary Approach</strong>: Collaboration with endocrinologists, nutritionists, or mental health professionals may be beneficial for complex cases.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Assessment Skills</strong>: Focus on eliciting a detailed history regarding onset, duration, pattern, associated symptoms, and psychosocial impact of hair loss.</li><li><strong>Medication Reconciliation</strong>: Identify and document all current medications, noting any known to cause alopecia as a side effect.</li><li><strong>Nutritional Counseling</strong>: Educate patients on the importance of a balanced diet rich in essential vitamins and minerals for hair health.</li><li><strong>Scalp Care Education</strong>: Instruct patients on gentle hair handling techniques, appropriate product selection, and signs of scalp irritation or infection.</li><li><strong>Emotional Support Provision</strong>: Acknowledge the psychological distress associated with hair loss and provide resources for coping and support.</li><li><strong>Treatment Adherence Monitoring</strong>: Emphasize the importance of consistent application or intake of prescribed treatments and monitor for side effects.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Androgenetic Alopecia (AGA)</strong>: Genetically predisposed progressive miniaturization of hair follicles, leading to pattern baldness.</li><li><strong>Telogen Effluvium (TE)</strong>: Diffuse, non-scarring hair shedding caused by premature entry of a large proportion of anagen hairs into the telogen phase.</li><li><strong>Alopecia Areata (AA)</strong>: Autoimmune disorder characterized by non-scarring, patchy hair loss, often affecting the scalp.</li><li><strong>Trichotillomania</strong>: An impulse control disorder involving recurrent, irresistible urges to pull out one's hair.</li><li><strong>Tinea Capitis</strong>: Fungal infection of the scalp and hair shafts, often presenting with scaly patches, inflammation, and hair breakage.</li><li><strong>Lupus Erythematosus</strong>: An autoimmune disease that can cause both non-scarring and scarring alopecia, particularly discoid lupus erythematosus.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

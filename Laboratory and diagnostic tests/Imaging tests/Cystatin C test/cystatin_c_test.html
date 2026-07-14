@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a medical laboratory setting with a focus on kidney health. A scientist in a lab coat is examining a blood sample in a test tube under a microscope, with a stylized kidney icon in the background. Data visualizations like charts and graphs are displayed on a monitor, indicating analysis of kidney function markers. Elements include a blood drop, a test tube with a label 'Cystatin C', and subtle representations of cellular activity. The overall aesthetic is clean, modern, and informative, suitable for public health awareness.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./cystatin_c_test.jpg" class="card-banner" alt="Cystatin C test Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-laboratory-and-diagnostic-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Laboratory and diagnostic tests</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-laboratory-and-diagnostic-tests-imaging-tests" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Imaging tests</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Cystatin C test</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Laboratory and diagnostic tests</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Imaging tests</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Advanced Kidney Marker:</strong> The Cystatin C test measures a protein produced by all nucleated cells, serving as a reliable marker for kidney function, particularly glomerular filtration rate (GFR).</li><li><strong>Independent of Muscle Mass:</strong> Unlike creatinine, Cystatin C levels are less influenced by muscle mass, age, sex, race, and diet, making it a more accurate indicator in certain populations.</li><li><strong>Early Detection:</strong> It is often used for earlier detection of kidney impairment, especially when creatinine levels may still appear normal or are unreliable.</li><li><strong>Monitoring Kidney Disease:</strong> Physicians utilize this test to monitor the progression of chronic kidney disease (CKD) and assess treatment effectiveness.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Fatigue and Weakness:</strong> Persistent tiredness and general weakness, often indicative of impaired kidney function leading to waste product buildup.</li><li><strong>Swelling (Edema):</strong> Swelling in the legs, ankles, feet, or face due to fluid retention caused by the kidneys' inability to remove excess fluid.</li><li><strong>Changes in Urination:</strong> Frequent urination, especially at night, or decreased urine output, foamy urine, or blood in the urine.</li><li><strong>High Blood Pressure:</strong> Uncontrolled hypertension, as kidneys play a crucial role in blood pressure regulation.</li><li><strong>Risk Factors for CKD:</strong> Presence of diabetes, hypertension, cardiovascular disease, or a family history of kidney disease, prompting proactive screening.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Medication Review:</strong> Inform your healthcare provider about all medications, including over-the-counter drugs and supplements, as some (e.g., corticosteroids) can influence Cystatin C levels.</li><li><strong>Thyroid Status:</strong> Thyroid dysfunction can affect Cystatin C concentrations; ensure your thyroid function is known and communicated to your physician.</li><li><strong>Contextual Interpretation:</strong> Cystatin C results must always be interpreted in conjunction with other clinical data, patient history, and other kidney function tests.</li><li><strong>Avoid Self-Diagnosis:</strong> Do not attempt to interpret results independently; always consult with a qualified healthcare professional for accurate diagnosis and management.</li><li><strong>Follow-up Testing:</strong> Be prepared for potential follow-up tests or repeat measurements to confirm findings or monitor changes over time.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>No Fasting Required:</strong> Generally, no specific fasting or dietary restrictions are necessary before a Cystatin C blood test.</li><li><strong>Normal Hydration:</strong> Maintain your usual hydration status unless otherwise instructed by your physician.</li><li><strong>Avoid Extreme Diet Changes:</strong> Refrain from making drastic dietary changes immediately prior to the test, as consistency helps in accurate interpretation.</li><li><strong>Inform About Supplements:</strong> Disclose any protein supplements or specific diets (e.g., high-protein) to your doctor, although their impact on Cystatin C is minimal compared to creatinine.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Standard Blood Draw:</strong> The test involves a routine blood sample collection, typically from a vein in your arm.</li><li><strong>Patient Identification:</strong> Ensure proper patient identification procedures are followed before sample collection.</li><li><strong>Comfort and Reassurance:</strong> Provide a calm environment and reassure the patient, especially if they have a fear of needles.</li><li><strong>Post-Procedure Care:</strong> Apply pressure to the venipuncture site and ensure proper bandaging to prevent hematoma.</li><li><strong>Specimen Handling:</strong> Follow laboratory protocols for proper labeling, storage, and transport of the blood sample to maintain specimen integrity.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Enhanced GFR Estimation:</strong> Consider Cystatin C for a more precise estimation of GFR, particularly in patients where creatinine-based equations may be less accurate.</li><li><strong>Specific Populations:</strong> Highly valuable in elderly patients, individuals with extremes of muscle mass (e.g., amputees, bodybuilders, malnourished), severe liver disease, or those with rapidly changing kidney function.</li><li><strong>Risk Stratification:</strong> Utilize Cystatin C to better stratify cardiovascular and renal risk, even in individuals with seemingly normal creatinine levels.</li><li><strong>Early Intervention:</strong> Early detection of subtle kidney dysfunction via Cystatin C can facilitate timely interventions to slow disease progression.</li><li><strong>Integrated Assessment:</strong> Always integrate Cystatin C results with clinical context, urinalysis, albuminuria, and other imaging or laboratory findings for a comprehensive renal assessment.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Educate patients on the purpose of the Cystatin C test, explaining why it's being performed and what to expect during the blood draw.</li><li><strong>Accurate Sample Collection:</strong> Master venipuncture techniques to ensure a quality blood sample, minimizing the need for repeat draws.</li><li><strong>Understanding Implications:</strong> Recognize that elevated Cystatin C indicates reduced kidney function and understand its implications for medication dosing and patient care planning.</li><li><strong>Monitoring for Complications:</strong> While rare, be vigilant for standard venipuncture complications such as hematoma or infection at the site.</li><li><strong>Documentation:</strong> Accurately document the procedure, patient's response, and any relevant observations in the patient's chart.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Biomarker Type:</strong> Low molecular weight protein (approximately 13 kDa), a cysteine protease inhibitor.</li><li><strong>Production & Metabolism:</strong> Produced at a constant rate by all nucleated cells, freely filtered by the glomeruli, and then completely reabsorbed and metabolized by the renal tubules.</li><li><strong>Methodology:</strong> Typically measured using automated immunoassay techniques (e.g., nephelometry or turbidimetry).</li><li><strong>GFR Estimation Formulas:</strong> Incorporated into GFR estimating equations such as the CKD-EPI Cystatin C equation or combined CKD-EPI creatinine-Cystatin C equation.</li><li><strong>Reference Ranges:</strong> Normal ranges vary by age, sex, and laboratory, but generally fall within 0.50-1.00 mg/L for adults.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

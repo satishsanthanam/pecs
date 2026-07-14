@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of an adult experiencing wheezing or asthma. The person is gently holding their chest, indicating respiratory discomfort. Visible elements include stylized lungs with narrowed airways, an inhaler being used, and subtle air currents around the person's mouth. A healthcare professional (doctor or nurse) is calmly observing or offering support in the background. The color palette is soft and reassuring, with blues, greens, and muted yellows. The overall design is clean, modern, and optimized for public health awareness, with no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./wheezing_in_adults.jpg" class="card-banner" alt="Wheezing in adults Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-lung-disease" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Lung disease</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-lung-disease-asthma" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Asthma</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Wheezing in adults</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Lung disease</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Asthma</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Wheezing is a high-pitched whistling sound produced during breathing, typically heard when exhaling, caused by narrowed airways.</li><li><strong>Common Causes:</strong> In adults, wheezing is frequently associated with asthma, chronic obstructive pulmonary disease (COPD), allergic reactions, bronchitis, and sometimes heart failure.</li><li><strong>Symptom, Not Diagnosis:</strong> Wheezing is a symptom indicating an underlying respiratory issue, requiring medical evaluation for accurate diagnosis and management.</li><li><strong>Severity:</strong> The intensity of wheezing does not always correlate with the severity of airway obstruction; sometimes, very severe obstruction may result in absent wheezing due to minimal airflow.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Shortness of Breath:</strong> Difficulty breathing or feeling like you can't get enough air, often worsening with activity or at night.</li><li><strong>Chest Tightness:</strong> A constricting sensation in the chest, often described as pressure or a band around the chest.</li><li><strong>Coughing:</strong> Persistent cough, which may be dry or produce mucus, often exacerbated by triggers or during wheezing episodes.</li><li><strong>Fatigue:</strong> General tiredness or lack of energy due to increased effort in breathing or disrupted sleep.</li><li><strong>Rapid Breathing:</strong> An increased respiratory rate, especially during acute episodes of wheezing.</li><li><strong>Difficulty Speaking:</strong> In severe cases, the effort to breathe may make it difficult to speak in full sentences.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Trigger Avoidance:</strong> Identify and minimize exposure to known triggers such as allergens (pollen, dust mites, pet dander), smoke (tobacco, wood), air pollution, cold air, and strong chemical fumes.</li><li><strong>Medication Adherence:</strong> Consistently use prescribed controller medications (e.g., inhaled corticosteroids) as directed, even when feeling well, to prevent exacerbations.</li><li><strong>Asthma Action Plan:</strong> Develop and strictly follow a personalized asthma action plan with your healthcare provider, outlining steps for daily management and what to do during worsening symptoms or an attack.</li><li><strong>Vaccinations:</strong> Ensure up-to-date influenza and pneumococcal vaccinations to prevent respiratory infections that can trigger or worsen wheezing.</li><li><strong>Emergency Preparedness:</strong> Always carry your rescue inhaler (e.g., albuterol) and know when and how to use it. Seek immediate medical attention for severe shortness of breath, blue lips or fingernails, confusion, or unresponsiveness to rescue medication.</li><li><strong>Smoking Cessation:</strong> If you smoke, quitting is paramount to improving lung function and reducing wheezing episodes.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration:</strong> Maintain adequate fluid intake to help thin mucus secretions in the airways, making them easier to clear.</li><li><strong>Allergen Identification:</strong> If food allergies are suspected as a trigger for wheezing or asthma, work with a healthcare professional to identify and eliminate specific food allergens from the diet.</li><li><strong>GERD Management:</strong> Avoid foods and beverages that can trigger gastroesophageal reflux disease (GERD), such as spicy foods, caffeine, alcohol, and fatty meals, as GERD can exacerbate asthma symptoms.</li><li><strong>Anti-inflammatory Diet:</strong> Focus on a diet rich in fruits, vegetables, and omega-3 fatty acids, which may have anti-inflammatory benefits, though direct impact on wheezing varies individually.</li><li><strong>Sodium Intake:</strong> Monitor sodium intake, as excessive salt can sometimes contribute to fluid retention, potentially impacting respiratory function in some individuals.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Recognize Worsening Symptoms:</strong> Be vigilant for signs of increasing wheezing, more frequent use of rescue inhalers, difficulty speaking, or changes in skin color (e.g., pallor or cyanosis).</li><li><strong>Emergency Contact:</strong> Ensure family members or caregivers know how to contact emergency services and are aware of your asthma action plan and rescue medication locations.</li><li><strong>Inhaler Technique:</strong> Regularly review and practice correct inhaler technique with a healthcare professional to ensure optimal medication delivery.</li><li><strong>Peak Flow Monitoring:</strong> If advised, regularly monitor peak expiratory flow (PEF) readings and understand what changes indicate worsening lung function.</li><li><strong>Avoid Self-Medication:</strong> Do not rely on over-the-counter remedies without consulting a doctor, as they may mask symptoms or interact with prescribed medications.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Accurate Diagnosis:</strong> A thorough medical history, physical examination, and lung function tests (e.g., spirometry) are crucial to differentiate wheezing causes and establish a precise diagnosis.</li><li><strong>Personalized Treatment:</strong> Treatment plans are individualized, often involving a combination of long-term controller medications (e.g., inhaled corticosteroids) and short-acting rescue inhalers.</li><li><strong>Regular Follow-ups:</strong> Consistent follow-up appointments are essential to monitor symptom control, adjust medications as needed, and review inhaler technique.</li><li><strong>Comorbidity Management:</strong> Address co-existing conditions such as GERD, allergies, and obesity, as they can significantly impact wheezing and asthma control.</li><li><strong>Patient Education:</strong> Empower patients with knowledge about their condition, triggers, medication use, and when to seek urgent care to improve self-management and outcomes.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pathophysiology:</strong> Wheezing results from turbulent airflow through narrowed airways due to bronchoconstriction, inflammation, and/or excessive mucus production.</li><li><strong>Assessment:</strong> Auscultate lung fields for characteristic high-pitched expiratory (and sometimes inspiratory) wheezes. Assess respiratory rate, effort, oxygen saturation, and use of accessory muscles.</li><li><strong>Patient Education:</strong> Educate patients on proper inhaler technique (e.g., metered-dose inhalers with spacers, dry powder inhalers), medication schedules, and the importance of trigger avoidance.</li><li><strong>Nursing Interventions:</strong> Administer prescribed bronchodilators and corticosteroids, provide oxygen therapy as needed, position the patient for optimal breathing (e.g., high Fowler's), and monitor vital signs closely during acute episodes.</li><li><strong>Asthma Action Plan Implementation:</strong> Assist patients in understanding and implementing their personalized asthma action plans, including recognizing red flag symptoms and when to seek emergency care.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Bronchospasm:</strong> Acute constriction of the smooth muscles surrounding the bronchi and bronchioles, leading to airway narrowing.</li><li><strong>Spirometry:</strong> A common pulmonary function test that measures how much air a person can inhale and exhale, and how quickly air can be exhaled.</li><li><strong>Peak Expiratory Flow (PEF):</strong> The maximum speed of expiration, measured with a peak flow meter, used to monitor asthma control.</li><li><strong>Beta-2 Agonists:</strong> Medications (e.g., albuterol, salmeterol) that relax bronchial smooth muscles, leading to bronchodilation. Short-acting forms are rescue medications; long-acting forms are controllers.</li><li><strong>Inhaled Corticosteroids (ICS):</strong> Anti-inflammatory medications (e.g., fluticasone, budesonide) delivered directly to the airways to reduce inflammation and prevent asthma symptoms.</li><li><strong>Leukotriene Modifiers:</strong> Oral medications (e.g., montelukast) that block inflammatory chemicals called leukotrienes, used for long-term asthma control.</li><li><strong>Differential Diagnoses:</strong> Conditions to consider when evaluating wheezing include asthma, COPD, heart failure, foreign body aspiration, vocal cord dysfunction, and acute bronchitis.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

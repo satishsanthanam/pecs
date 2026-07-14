@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a person, possibly female, holding their lower abdomen with a look of discomfort or urgency. A stylized, transparent bladder icon is superimposed over the pelvic area, with subtle, wavy lines or a 'pulsing' effect emanating from it to represent a spasm. The background is clean, light, and minimalist, suggesting a medical or public health awareness context. Modern, clean lines, no text anomalies, soft color palette.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./bladder_spasm.jpg" class="card-banner" alt="Bladder spasm Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-kidneys-and-urinary-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Kidneys and urinary system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-kidneys-and-urinary-system-urinary-incontinence" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Urinary incontinence</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Bladder spasm</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Kidneys and urinary system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Urinary incontinence</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Definition:</strong> Bladder spasms are sudden, involuntary contractions of the detrusor muscle in the bladder wall, leading to an urgent need to urinate and sometimes leakage.</li><li><strong>Common Triggers:</strong> Often associated with urinary tract infections (UTIs), bladder catheterization, recent bladder or pelvic surgery, neurological conditions (e.g., multiple sclerosis, spinal cord injury), or bladder irritants.</li><li><strong>Impact on Life:</strong> Can significantly disrupt daily activities, sleep, and overall quality of life due to unpredictable and intense urges.</li><li><strong>Underlying Causes:</strong> May indicate an overactive bladder (OAB), interstitial cystitis, or be a symptom of benign prostatic hyperplasia (BPH) in men.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Sudden Urgency:</strong> An abrupt, compelling need to urinate that is difficult to defer.</li><li><strong>Frequent Urination:</strong> Needing to void more often than usual throughout the day (pollakiuria).</li><li><strong>Urgency Incontinence:</strong> Involuntary leakage of urine immediately following a strong urge to void.</li><li><strong>Lower Abdominal Discomfort:</strong> A cramping or squeezing sensation in the suprapubic or pelvic region.</li><li><strong>Nocturia:</strong> Waking up two or more times during the night to urinate.</li><li><strong>Dysuria:</strong> Pain or burning during urination, especially if an underlying UTI is present.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Bladder Irritants:</strong> Limit intake of caffeine, alcohol, artificial sweeteners, acidic foods (citrus, tomatoes), and spicy foods which can exacerbate spasms.</li><li><strong>Manage Underlying Conditions:</strong> Promptly treat UTIs, manage diabetes, and address neurological disorders or BPH as directed by a physician.</li><li><strong>Proper Catheter Care:</strong> If catheterized, ensure meticulous aseptic technique during insertion and maintenance to prevent infection and irritation.</li><li><strong>Pelvic Floor Exercises:</strong> Engage in regular Kegel exercises to strengthen pelvic floor muscles, which can help control urgency.</li><li><strong>Bladder Training:</strong> Practice timed voiding and gradually increase the interval between urination to improve bladder capacity and control.</li><li><strong>Adequate Hydration:</strong> Maintain sufficient fluid intake to prevent concentrated urine, but avoid excessive intake at once.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration Strategy:</strong> Drink plenty of water throughout the day, but distribute intake evenly and reduce fluids a few hours before bedtime to minimize nocturia.</li><li><strong>Irritant Restriction:</strong> Strictly limit or eliminate known bladder irritants such as coffee, tea, carbonated beverages, alcoholic drinks, chocolate, and highly acidic fruits/juices.</li><li><strong>Artificial Sweeteners:</strong> Avoid products containing artificial sweeteners, as they can irritate the bladder in some individuals.</li><li><strong>Fiber Intake:</strong> Ensure a diet rich in fiber to prevent constipation, which can put pressure on the bladder and worsen spasms.</li><li><strong>Spicy Foods:</strong> Restrict consumption of very spicy foods that may irritate the urinary tract.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Symptom Monitoring:</strong> Keep a bladder diary to track voiding frequency, urgency episodes, and any associated pain or leakage.</li><li><strong>Medication Adherence:</strong> Take prescribed antispasmodic medications (e.g., anticholinergics, beta-3 agonists) exactly as directed, being aware of potential side effects.</li><li><strong>Infection Watch:</strong> Report any signs of a worsening UTI, such as fever, chills, cloudy or foul-smelling urine, or increased pain, to a healthcare provider immediately.</li><li><strong>Easy Restroom Access:</strong> Ensure clear and quick access to restrooms, especially when away from home, to reduce anxiety related to urgency.</li><li><strong>Avoid Holding Urine:</strong> Do not habitually hold urine for extended periods, as this can overstretch the bladder and worsen spasms.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Comprehensive Evaluation:</strong> A thorough history, physical examination, urinalysis, and potentially urodynamic studies are crucial for accurate diagnosis.</li><li><strong>Pharmacological Management:</strong> Medications such as antimuscarinics (e.g., oxybutynin, solifenacin) or beta-3 adrenergic agonists (e.g., mirabegron) are often prescribed to relax the detrusor muscle.</li><li><strong>Behavioral Therapies:</strong> Recommend bladder training, timed voiding, and pelvic floor muscle therapy as first-line treatments.</li><li><strong>Botox Injections:</strong> For refractory cases, intravesical botulinum toxin injections may be considered to temporarily paralyze the detrusor muscle.</li><li><strong>Referral Considerations:</strong> Patients with complex symptoms, suspected neurological causes, or treatment failure may require referral to a urologist or urogynecologist.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education:</strong> Educate patients on bladder training techniques, fluid management strategies, and identification/avoidance of bladder irritants.</li><li><strong>Catheter Management:</strong> Understand the principles of sterile catheter insertion and ongoing care to prevent catheter-associated UTIs and bladder irritation.</li><li><strong>Medication Teaching:</strong> Provide clear instructions on antispasmodic medications, including dosage, timing, potential side effects (e.g., dry mouth, constipation), and when to notify the provider.</li><li><strong>Bladder Diary Instruction:</strong> Guide patients on how to accurately complete a bladder diary to aid in diagnosis and treatment evaluation.</li><li><strong>Comfort Measures:</strong> Offer strategies for managing urgency, such as deep breathing, distraction techniques, and ensuring easy access to commodes or bedpans.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathophysiology:</strong> Involuntary contractions of the detrusor muscle, often due to abnormal nerve signals or direct irritation of the bladder wall.</li><li><strong>Etiology:</strong> Can be neurogenic (e.g., multiple sclerosis, spinal cord injury, stroke) or non-neurogenic (e.g., UTI, bladder stones, post-surgical inflammation, interstitial cystitis, BPH).</li><li><strong>Pharmacology:</strong> Key drug classes include anticholinergics/antimuscarinics (e.g., oxybutynin, tolterodine, solifenacin) and beta-3 adrenergic agonists (e.g., mirabegron, vibegron).</li><li><strong>Diagnostics:</strong> Urinalysis, urine culture, post-void residual (PVR) measurement, urodynamic studies (cystometrogram), and cystoscopy may be utilized.</li><li><strong>ICD-10 Codes:</strong> Relevant codes include N39.46 (Urgency incontinence), N32.89 (Other specified disorders of bladder), R39.81 (Nocturia), and N30.10 (Interstitial cystitis, without hematuria).</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a pregnant person gently touching their belly, with subtle, abstract representations of baby movement inside. The scene should convey awareness and connection, with a soft, reassuring color palette. Include a small, stylized clock or calendar icon to subtly suggest monitoring. No text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./your_baby_s_movement_before_birth.jpg" class="card-banner" alt="Your baby's movement before birth Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-pregnancy-and-childbirth" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Pregnancy and childbirth</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-pregnancy-and-childbirth-prenatal-care" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Prenatal care</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Your baby's movement before birth</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Pregnancy and childbirth</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Prenatal care</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>First Movements (Quickening):</strong> Typically felt between 16 and 25 weeks of pregnancy, often described as flutters, bubbles, or gentle nudges.</li><li><strong>Developing Patterns:</strong> As pregnancy progresses, especially into the third trimester, your baby's movements will become stronger and more regular, establishing a unique pattern of activity and rest.</li><li><strong>Indicator of Well-being:</strong> Consistent fetal movement is a vital sign of your baby's health and development. A change in this pattern can sometimes indicate a need for medical assessment.</li><li><strong>Monitoring Activity:</strong> Regular monitoring of fetal movements, often referred to as 'kick counts,' is recommended by healthcare providers, particularly from 28 weeks onward.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Decreased Fetal Movement:</strong> The primary clinical indication for concern, defined as a significant reduction or absence of the baby's usual movement pattern over a specific period.</li><li><strong>Absence of Movement:</strong> A critical symptom requiring immediate medical attention if no movements are felt for an extended period, especially after attempting to stimulate the baby.</li><li><strong>Sudden, Erratic, or Hyperactive Movement:</strong> While less common as a sole indicator of distress, any drastic, uncharacteristic change in movement pattern warrants discussion with a healthcare provider.</li><li><strong>Maternal Anxiety:</strong> Often accompanies perceived changes in fetal movement, highlighting the need for clear guidance and prompt medical evaluation to alleviate distress.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Do Not Delay Reporting:</strong> If you notice a significant decrease or absence of your baby's usual movements, contact your healthcare provider immediately. Do not wait until the next day.</li><li><strong>Avoid Self-Diagnosis:</strong> Do not attempt to reassure yourself with home remedies or by waiting to see if movements return. Professional medical evaluation is essential.</li><li><strong>Understand Your Baby's Pattern:</strong> Familiarize yourself with your baby's typical active times and resting periods to better identify any deviations.</li><li><strong>Positioning for Monitoring:</strong> When performing kick counts, lie on your side (preferably left) in a quiet environment to maximize your ability to feel movements.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Hydration for Stimulation:</strong> Drinking a cold glass of water or juice can sometimes stimulate fetal movement due to the change in temperature and sugar levels.</li><li><strong>Small Snack for Energy:</strong> Consuming a light snack can provide a temporary energy boost to the baby, potentially encouraging activity.</li><li><strong>Avoid Sedatives:</strong> Be mindful of any medications or substances that might temporarily reduce fetal activity; always discuss these with your healthcare provider.</li><li><strong>Caffeine Moderation:</strong> While not a direct restriction for movement monitoring, excessive caffeine intake is generally advised against during pregnancy and can sometimes alter fetal sleep-wake cycles.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Support Monitoring Efforts:</strong> Partners and family members should support the pregnant individual in monitoring fetal movements and understanding the importance of kick counts.</li><li><strong>Recognize Warning Signs:</strong> Be aware of the signs of decreased fetal movement and understand the urgency of contacting a healthcare provider if these occur.</li><li><strong>Provide Calm Reassurance:</strong> During periods of concern, offer emotional support and help facilitate immediate contact with medical professionals.</li><li><strong>Emergency Preparedness:</strong> Know the contact information for the healthcare provider and the nearest emergency services in case urgent medical attention is required.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Individualized Assessment:</strong> Every baby has a unique movement pattern; therefore, a baseline understanding of the individual fetal activity is crucial for accurate assessment.</li><li><strong>Third Trimester Significance:</strong> Fetal movement monitoring becomes increasingly important in the third trimester as a non-invasive screening tool for fetal well-being.</li><li><strong>Diagnostic Follow-up:</strong> In cases of decreased fetal movement, a Non-Stress Test (NST) or Biophysical Profile (BPP) will typically be performed to assess fetal heart rate, movement, tone, and amniotic fluid volume.</li><li><strong>Patient Education is Key:</strong> Empowering pregnant individuals with knowledge about fetal movement and when to seek help significantly contributes to positive outcomes.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education Protocol:</strong> Nurses are responsible for educating pregnant patients on how to perform kick counts, what to look for, and when to report concerns.</li><li><strong>Documentation of Fetal Activity:</strong> Accurately document reported fetal movement patterns and any interventions taken, including patient teaching and provider notification.</li><li><strong>Preparation for Diagnostic Tests:</strong> Be prepared to assist with and explain procedures like Non-Stress Tests (NSTs) and ultrasounds when decreased fetal movement is reported.</li><li><strong>Emotional Support:</strong> Provide empathetic and clear communication to patients experiencing anxiety related to changes in fetal movement, ensuring they feel heard and supported.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Quickening:</strong> The first perception of fetal movement by the pregnant individual, typically occurring between 16-25 weeks gestation.</li><li><strong>Fetal Kick Counts (FKC):</strong> A method of monitoring fetal well-being by counting the number of fetal movements within a specific timeframe (e.g., 10 movements in 2 hours).</li><li><strong>Non-Stress Test (NST):</strong> A common prenatal test that monitors the baby's heart rate in response to its movements, indicating fetal oxygenation and well-being.</li><li><strong>Biophysical Profile (BPP):</strong> A comprehensive assessment of fetal well-being using ultrasound to evaluate fetal breathing, movement, tone, amniotic fluid volume, and an NST.</li><li><strong>Fetal Hypoxia:</strong> A condition where the fetus experiences a reduced supply of oxygen, which can manifest as decreased fetal movement and necessitates urgent medical evaluation.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

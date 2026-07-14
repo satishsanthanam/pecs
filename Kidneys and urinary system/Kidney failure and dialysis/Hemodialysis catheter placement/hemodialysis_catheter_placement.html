@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a patient lying on a medical bed, with a healthcare professional (doctor or nurse) in scrubs performing a hemodialysis catheter placement procedure. The professional is using ultrasound guidance on the patient's neck, with a sterile field visible. A stylized kidney icon is subtly integrated into the background or foreground, symbolizing kidney health. The overall aesthetic is clean, modern, and medically accurate, with a focus on public awareness and patient safety. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./hemodialysis_catheter_placement.jpg" class="card-banner" alt="Hemodialysis catheter placement Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-kidneys-and-urinary-system" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Kidneys and urinary system</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-kidneys-and-urinary-system-kidney-failure-and-dialysis" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Kidney failure and dialysis</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Hemodialysis catheter placement</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Kidneys and urinary system</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Kidney failure and dialysis</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Purpose of Placement:</strong> Hemodialysis catheter placement provides immediate, temporary, or semi-permanent vascular access for hemodialysis when an arteriovenous fistula or graft is not yet mature or has failed.</li><li><strong>Common Sites:</strong> Catheters are typically inserted into large central veins, most commonly the internal jugular vein, less frequently the femoral vein, and rarely the subclavian vein due to higher complication risks.</li><li><strong>Procedure Overview:</strong> The procedure involves inserting a specialized catheter into a central vein under sterile conditions, often guided by ultrasound, to allow for efficient blood flow during dialysis.</li><li><strong>Types of Catheters:</strong> Non-tunneled catheters are for acute, short-term use, while tunneled catheters are designed for longer-term access, often with a cuff to promote tissue ingrowth and reduce infection risk.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Acute Kidney Injury (AKI):</strong> Symptoms such as severe fluid overload, hyperkalemia, metabolic acidosis, or uremic encephalopathy necessitating urgent dialysis.</li><li><strong>End-Stage Renal Disease (ESRD) Progression:</strong> Worsening symptoms of chronic kidney disease, including fatigue, nausea, swelling, and shortness of breath, indicating the need for renal replacement therapy.</li><li><strong>Failed or Immature AV Access:</strong> Clinical signs of a non-functional arteriovenous fistula or graft, such as absence of thrill/bruit, swelling, or inability to cannulate, requiring alternative access.</li><li><strong>Pericarditis or Encephalopathy:</strong> Uremic complications like pericarditis (inflammation of the heart lining) or encephalopathy (brain dysfunction) that demand immediate dialysis intervention.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Infection Prevention:</strong> Strict aseptic technique during insertion, dressing changes, and catheter manipulation is paramount to prevent catheter-related bloodstream infections (CRBSI).</li><li><strong>Bleeding Risk Assessment:</strong> Evaluate the patient's coagulation status (PT/INR, PTT, platelet count) prior to insertion; manage anticoagulation or antiplatelet therapy as per protocol.</li><li><strong>Pneumothorax/Hemothorax Monitoring:</strong> Especially with subclavian or internal jugular access, monitor for signs of respiratory distress and confirm catheter tip placement with a post-procedure chest X-ray.</li><li><strong>Air Embolism Prevention:</strong> Ensure all connections are secure, clamp lumens when not in use, and position the patient appropriately during insertion and removal to minimize air entry.</li><li><strong>Catheter Malfunction:</strong> Regularly assess catheter patency and flow rates; address any signs of occlusion or poor flow promptly to prevent inadequate dialysis.</li><li><strong>Avoidance of Subclavian Vein:</strong> Generally avoided for long-term access due to a higher risk of central venous stenosis, which can compromise future AV fistula/graft placement.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-Procedure Fasting:</strong> If moderate sedation or general anesthesia is planned, patients must be NPO (nothing by mouth) for a specified period (e.g., 6-8 hours) prior to the procedure to prevent aspiration.</li><li><strong>Hydration Status:</strong> Ensure appropriate hydration pre-procedure, especially if contrast dye is used, unless contraindicated by fluid overload.</li><li><strong>Post-Procedure Fluid Reintroduction:</strong> Following sedation, fluids and food should be gradually reintroduced once the patient is fully awake, alert, and gag reflex has returned.</li><li><strong>Ongoing Renal Diet:</strong> Patients with ESRD will continue to follow their prescribed renal diet, which typically involves restrictions on fluid, sodium, potassium, and phosphorus, independent of the catheter placement itself.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Site Care Education:</strong> Instruct patients and caregivers on proper catheter site care, including keeping the dressing clean and dry, and avoiding manipulation of the catheter.</li><li><strong>Activity Restrictions:</strong> Advise patients to avoid strenuous activities, heavy lifting, or sudden movements that could dislodge the catheter or cause discomfort, especially if the access is in the neck or groin.</li><li><strong>Monitoring for Complications:</strong> Educate on signs and symptoms of infection (redness, swelling, pain, pus, fever), bleeding, or catheter malfunction, and when to seek immediate medical attention.</li><li><strong>No Blood Pressure/Venipuncture:</strong> For upper extremity access, instruct against blood pressure measurements or venipuncture in the arm on the side of the catheter.</li><li><strong>Emergency Contact Information:</strong> Provide clear instructions on who to contact and what steps to take in case of an emergency related to the catheter.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Optimal Site Selection:</strong> The choice of catheter site (internal jugular, femoral) is critical, balancing immediate access needs with long-term vascular preservation and complication risks. Ultrasound guidance is highly recommended.</li><li><strong>Anticipating Long-Term Access:</strong> While a catheter provides immediate access, the focus remains on establishing a permanent AV fistula or graft as soon as feasible to reduce infection and thrombosis risks.</li><li><strong>Risk-Benefit Discussion:</strong> Thoroughly discuss the risks of infection, bleeding, pneumothorax, and catheter dysfunction with the patient, ensuring informed consent.</li><li><strong>Catheter Locking Solutions:</strong> Utilize appropriate anticoagulant locking solutions (e.g., heparin, citrate) between dialysis sessions to maintain patency and prevent thrombosis.</li><li><strong>Regular Assessment:</strong> Periodically assess the catheter site for signs of infection or mechanical issues and evaluate the patient's overall clinical status.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pre-Procedure Checklist:</strong> Verify informed consent, NPO status (if applicable), baseline vital signs, recent lab results (CBC, coagulation panel, electrolytes), and confirm patient allergies.</li><li><strong>Assisting with Insertion:</strong> Prepare the sterile field, assist the physician with equipment, monitor the patient's vital signs, and provide comfort and reassurance during the procedure.</li><li><strong>Post-Procedure Monitoring:</strong> Closely monitor vital signs, assess the insertion site for bleeding, hematoma, or swelling, and evaluate respiratory status for signs of pneumothorax.</li><li><strong>Catheter Dressing Care:</strong> Perform meticulous sterile dressing changes according to protocol, using appropriate antiseptic agents and transparent occlusive dressings.</li><li><strong>Flushing and Locking:</strong> Understand and correctly execute catheter flushing and locking procedures using prescribed solutions to maintain patency and prevent infection.</li><li><strong>Patient Education Reinforcement:</strong> Reinforce patient and family education regarding catheter care, activity restrictions, and signs of complications.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Catheter Types:</strong> Non-tunneled (e.g., Quinton, Mahurkar) for acute use; Tunneled (e.g., Permcath, Tesio) for chronic use.</li><li><strong>Insertion Techniques:</strong> Seldinger technique, ultrasound guidance for vein localization, fluoroscopy for tip confirmation.</li><li><strong>Complications:</strong> Catheter-related bloodstream infection (CRBSI), thrombosis, central venous stenosis, air embolism, cardiac perforation, arterial puncture, nerve injury.</li><li><strong>Locking Solutions:</strong> Heparin (e.g., 1000-5000 units/mL), Citrate (e.g., 4% sodium citrate), antimicrobial locks (e.g., taurolidine, ethanol).</li><li><strong>Imaging Confirmation:</strong> Chest X-ray is standard for confirming central venous catheter tip placement (ideally in the cavoatrial junction).</li><li><strong>Guidelines:</strong> Refer to KDOQI (Kidney Disease Outcomes Quality Initiative) guidelines for vascular access.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>

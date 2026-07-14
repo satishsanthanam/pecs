@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration for breast cancer awareness, depicting a woman gently touching her breast, with a subtle surgical scar indicating a lumpectomy. A medical professional (doctor or nurse) is shown in the background, offering supportive guidance. Elements like a pink ribbon, a microscope, and abstract cellular structures are subtly integrated. The overall mood is hopeful and informative, with soft, clean lines and a focus on patient care and recovery. Avoid text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./lumpectomy.jpg" class="card-banner" alt="Lumpectomy Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-sexual-and-reproductive-health" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Sexual and reproductive health</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-sexual-and-reproductive-health-breast-cancer" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Breast cancer</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Lumpectomy</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Sexual and reproductive health</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Breast cancer</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Procedure Overview:</strong> Lumpectomy is a breast-conserving surgery to remove a cancerous tumor and a small margin of healthy tissue around it, aiming to preserve most of the breast.</li><li><strong>Primary Goal:</strong> To remove the malignant lesion while maintaining the breast's appearance and function as much as possible, often followed by radiation therapy.</li><li><strong>Indications:</strong> Typically performed for early-stage breast cancer where the tumor is small and localized.</li><li><strong>Pathology Confirmation:</strong> The removed tissue is sent for pathological examination to confirm clear margins (no cancer cells at the edges of the removed tissue).</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Palpable Breast Lump:</strong> A new lump or mass felt in the breast or armpit that may be painless, firm, and irregular.</li><li><strong>Breast Skin Changes:</strong> Dimpling, puckering, redness, scaling, or thickening of the breast skin.</li><li><strong>Nipple Alterations:</strong> Nipple retraction (turning inward), discharge (clear, bloody, or milky, not associated with breastfeeding), or changes in nipple skin.</li><li><strong>Breast Pain or Tenderness:</strong> Persistent pain or discomfort in the breast that does not resolve with the menstrual cycle.</li><li><strong>Changes in Breast Size or Shape:</strong> Unexplained swelling, asymmetry, or distortion of the breast contour.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Pre-operative Medication Review:</strong> Discontinue blood-thinning medications (e.g., aspirin, warfarin, NSAIDs) as advised by the surgeon to minimize bleeding risk.</li><li><strong>Allergy Disclosure:</strong> Inform the medical team of all known allergies, especially to medications, latex, or anesthesia.</li><li><strong>Post-operative Incision Care:</strong> Keep the surgical site clean and dry; follow specific instructions for dressing changes to prevent infection.</li><li><strong>Activity Restrictions:</strong> Avoid heavy lifting, strenuous exercise, and sudden arm movements on the affected side for several weeks post-surgery to promote healing and prevent complications.</li><li><strong>Lymphedema Awareness:</strong> Monitor for swelling in the arm or hand on the side of the surgery, especially if lymph nodes were removed, and report any changes promptly.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Pre-operative Fasting:</strong> Adhere strictly to NPO (nil per os) guidelines, typically no food or drink for 6-8 hours before surgery, to prevent aspiration during anesthesia.</li><li><strong>Post-anesthesia Reintroduction:</strong> Start with clear liquids, then progress to light, easily digestible foods as tolerated to prevent nausea and vomiting.</li><li><strong>Hydration:</strong> Maintain adequate fluid intake post-surgery to aid recovery and prevent constipation, which can be a side effect of pain medication.</li><li><strong>Fiber-Rich Diet:</strong> Incorporate high-fiber foods (fruits, vegetables, whole grains) to manage potential constipation from pain medications and reduced activity.</li><li><strong>Avoid Irritants:</strong> Limit highly processed, fatty, or spicy foods initially, as they may exacerbate post-operative nausea or discomfort.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Pain Management:</strong> Administer prescribed pain medication as directed and monitor for effectiveness and side effects.</li><li><strong>Wound Observation:</strong> Regularly inspect the surgical site for signs of infection such as increased redness, swelling, warmth, pus, or foul odor.</li><li><strong>Drain Care (if applicable):</strong> If a surgical drain is present, monitor output, empty as instructed, and report any sudden changes in volume or character.</li><li><strong>Emotional Support:</strong> Provide emotional comfort and support, recognizing the psychological impact of a cancer diagnosis and surgery.</li><li><strong>Follow-up Appointments:</strong> Ensure the patient attends all scheduled post-operative and oncology follow-up appointments for ongoing care and treatment planning.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Multidisciplinary Approach:</strong> Lumpectomy is part of a comprehensive treatment plan, often involving medical oncology, radiation oncology, and reconstructive surgery.</li><li><strong>Importance of Margins:</strong> Achieving clear surgical margins is paramount to reduce the risk of local recurrence; re-excision may be necessary if margins are positive.</li><li><strong>Adjuvant Therapy:</strong> Radiation therapy is almost always recommended after lumpectomy to eradicate any remaining microscopic cancer cells in the breast. Chemotherapy or hormone therapy may also be indicated based on tumor characteristics.</li><li><strong>Long-term Surveillance:</strong> Regular follow-up mammograms, clinical breast exams, and imaging are crucial for monitoring recurrence and detecting new cancers.</li><li><strong>Shared Decision-Making:</strong> Patients should be fully informed about all treatment options, including mastectomy, to make a decision aligned with their values and preferences.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Pre-operative Education:</strong> Educate patients on the surgical procedure, expected post-operative course, pain management strategies, and potential complications.</li><li><strong>Post-operative Assessment:</strong> Conduct thorough assessments of vital signs, pain level, surgical site, drainage, and neurovascular status of the affected arm.</li><li><strong>Patient Mobility:</strong> Encourage early ambulation and gentle arm exercises as prescribed to prevent stiffness and promote circulation, while respecting activity restrictions.</li><li><strong>Psychosocial Support:</strong> Assess for anxiety, depression, or body image concerns, and provide appropriate resources or referrals for psychological support.</li><li><strong>Discharge Planning:</strong> Provide clear, written instructions for home care, medication schedules, warning signs to report, and contact information for follow-up.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Excisional Biopsy:</strong> A diagnostic procedure where an entire lump or abnormal area of tissue is removed for pathological examination.</li><li><strong>Sentinel Lymph Node Biopsy (SLNB):</strong> A procedure to identify and remove the first lymph nodes to which cancer cells are most likely to spread from the primary tumor.</li><li><strong>Radiation Therapy:</strong> The use of high-energy rays or particles to destroy cancer cells, often administered after lumpectomy.</li><li><strong>Oncoplastic Surgery:</strong> Techniques combining tumor removal with plastic surgery principles to optimize cosmetic outcomes after breast-conserving surgery.</li><li><strong>Pathology Report:</strong> A detailed document from a pathologist describing the characteristics of the removed tissue, including tumor type, grade, size, and margin status.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>
