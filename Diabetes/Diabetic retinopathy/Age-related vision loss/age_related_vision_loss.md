@@ -4,161 +4,81 @@
 ---
 
 ## 🎨 Image Generation Prompt
-> A flat vector illustration for public awareness about diabetic retinopathy. The image features a stylized human eye with visible retinal blood vessels, some appearing damaged or leaky. Overlaying the eye, there's a subtle representation of blurred vision or floaters. In the background, elements symbolizing diabetes management like a glucose meter or insulin pen are subtly integrated. The overall color palette is calm and medical, with a focus on clarity and accessibility. No text anomalies.
+> Flat vector illustration of an older person, possibly wearing glasses, looking concerned or experiencing slightly blurred vision. The background subtly incorporates elements related to diabetes management like a glucose meter or insulin pen, and eye health, such as a stylized retina with both healthy and slightly damaged blood vessels. The overall design should be clean, modern, and suitable for a public health awareness campaign, avoiding any text anomalies.
 
 ---
 
 # 🩺 Medical Content
 
-<div class='awareness-section'>
-    <h2>💡 What You Need to Know
-
-    
-        * **Diabetic Retinopathy (DR) Overview:** Diabetic retinopathy is a severe complication of diabetes, causing progressive damage to the blood vessels of the retina, the light-sensitive tissue at the back of the eye.
-
-        * **Leading Cause of Blindness:** It is a primary cause of preventable vision loss and blindness among working-age adults globally, directly linked to prolonged high blood sugar levels.
-
-        * **Progressive Nature:** The condition often advances without noticeable symptoms in its early stages, making regular screening crucial for timely intervention and preservation of vision.
-
-        * **Age-Related Exacerbation:** While diabetes is the root cause, the risk and severity of vision loss can be exacerbated with increasing age, particularly if diabetes has been long-standing and poorly controlled.
-
-    
-
-
-
-<div class='symptoms-section'>
-    <h2>🤒 Associated Symptoms
-
-    
-        * **Blurred or Fluctuating Vision:** Vision may become blurry, especially after periods of high blood sugar, or fluctuate in clarity.
-
-        * **Floaters and Dark Spots:** Patients may notice an increase in "floaters" (small specks or cobweb-like images) or dark, string-like spots in their field of vision, often due to vitreous hemorrhage.
-
-        * **Difficulty with Night Vision:** Impaired ability to see clearly in low light conditions or at night can be an early indicator.
-
-        * **Empty or Blind Spots:** Patches of vision may be missing, or there might be a complete loss of central or peripheral vision in advanced stages.
-
-        * **Sudden Vision Loss:** Acute, painless loss of vision can occur due to vitreous hemorrhage or retinal detachment, requiring immediate medical attention.
-
-    
-
-
-
-<div class='precautions-section'>
-    <h2>🛡️ Crucial Precautions
-
-    
-        * **Strict Glycemic Control:** Maintaining blood glucose levels within the target range is the single most effective measure to prevent the onset and progression of diabetic retinopathy.
-
-        * **Regular Dilated Eye Exams:** Annual comprehensive dilated eye examinations are essential for all individuals with diabetes, even if vision seems normal, to detect early signs of retinopathy.
-
-        * **Blood Pressure Management:** Controlling hypertension is vital, as high blood pressure significantly contributes to the progression of diabetic retinopathy.
-
-        * **Cholesterol and Lipid Control:** Managing dyslipidemia helps reduce the risk of hard exudates and macular edema, which can severely impair vision.
-
-        * **Smoking Cessation:** Smoking dramatically increases the risk and accelerates the progression of diabetic retinopathy and other diabetic complications.
-
-        * **Prompt Reporting of Symptoms:** Any new or worsening visual symptoms, such as floaters, flashes, or sudden vision changes, must be reported to an ophthalmologist immediately.
-
-    
-
-
-
-<div class='dietary-section'>
-    <h2>🍽️ Dietary Directions & Restrictions
-
-    
-        * **Consistent Carbohydrate Intake:** Adhere to a meal plan with consistent carbohydrate distribution to help stabilize blood glucose levels and prevent spikes.
-
-        * **Low Glycemic Index Foods:** Prioritize foods with a low glycemic index to ensure a slower, more controlled release of glucose into the bloodstream.
-
-        * **Balanced Macronutrients:** Incorporate a balance of lean proteins, healthy fats (e.g., monounsaturated and polyunsaturated fats), and fiber-rich complex carbohydrates.
-
-        * **Sodium Restriction:** Limit sodium intake to help manage blood pressure, which is a critical factor in diabetic retinopathy progression.
-
-        * **Avoid Sugary Beverages and Processed Foods:** Strictly limit intake of sugary drinks, refined grains, and highly processed foods that can rapidly elevate blood glucose.
-
-    
-
-
-
-<div class='warning-box'>
-    <h2>⚠️ Attendant Guidelines
-
-    
-        * **Adherence to Treatment Plan:** Patients must strictly follow prescribed medications for diabetes, hypertension, and hyperlipidemia, as well as any specific eye treatments.
-
-        * **Self-Monitoring of Blood Glucose (SMBG):** Regular SMBG is crucial for understanding and managing blood sugar fluctuations, which directly impact retinal health.
-
-        * **Emergency Symptom Recognition:** Educate patients and caregivers on recognizing signs of acute vision loss (e.g., sudden onset of many floaters, a curtain-like shadow, or complete vision loss) requiring immediate ophthalmological evaluation.
-
-        * **Home Safety Modifications:** For individuals with significant vision impairment, advise on home modifications such as improved lighting, removal of tripping hazards, and use of assistive devices to prevent falls.
-
-        * **Avoid Strenuous Activities (Post-Treatment):** Following certain eye procedures (e.g., vitrectomy, laser), patients may need to avoid heavy lifting or strenuous activities as advised by their ophthalmologist.
-
-    
-
-
-
-<div class='doctor-advice'>
-    <h2>🩺 Physician's Perspective
-
-    
-        * **Early Detection is Paramount:** Emphasize that early detection through regular dilated fundus examinations allows for timely intervention, significantly improving visual outcomes and preventing irreversible damage.
-
-        * **Holistic Diabetes Management:** Stress the importance of a comprehensive approach to diabetes care, including tight glycemic control, blood pressure, and lipid management, as fundamental to preventing and managing DR.
-
-        * **Range of Treatment Modalities:** Inform patients about available treatments such as anti-VEGF injections, laser photocoagulation (panretinal or focal), and vitrectomy, tailored to the stage and severity of retinopathy.
-
-        * **Multidisciplinary Care:** Highlight the benefit of collaboration between endocrinologists, primary care physicians, ophthalmologists, and dietitians for optimal patient management.
-
-        * **Patient Education and Empowerment:** Encourage patients to actively participate in their care by understanding their condition, adhering to treatment, and reporting changes promptly.
-
-    
-
-
-
-<div class='student-nurse-index'>
-    <h2>🎓 Academic & Nursing Corner
-
-    
-        * **Pathophysiology Understanding:** Grasp the mechanisms of microvascular damage, capillary occlusion, ischemia, neovascularization, and vitreous hemorrhage in diabetic retinopathy.
-
-        * **Patient Education Strategies:** Develop effective communication skills to educate patients on the importance of blood glucose control, medication adherence, and the necessity of regular eye screenings.
-
-        * **Assisting with Eye Examinations:** Understand the procedure for dilated fundus exams, including proper instillation of mydriatic drops and patient support during the examination.
-
-        * **Monitoring for Complications:** Be vigilant for signs of worsening vision, new floaters, or eye pain, and understand when to escalate concerns to the ophthalmologist.
-
-        * **Post-Procedure Care:** Provide clear instructions for post-laser or post-injection care, including activity restrictions, medication administration, and symptom monitoring.
-
-        * **Psychosocial Support:** Recognize the emotional impact of vision loss and provide appropriate psychosocial support and resources for patients and their families.
-
-    
-
-
-
-<div class='technical-index'>
-    <h2>🔬 Clinical Reference Index
-
-    
-        * **Microaneurysms:** Small, balloon-like dilations in retinal capillaries, often the earliest clinical sign of diabetic retinopathy.
-
-        * **Hard Exudates:** Lipid and protein deposits from leaky retinal vessels, appearing as yellow-white spots on the retina.
-
-        * **Macular Edema:** Swelling of the macula due to fluid leakage from damaged blood vessels, a common cause of vision loss in DR.
-
-        * **Neovascularization:** Abnormal growth of new, fragile blood vessels on the retina or optic disc, characteristic of Proliferative Diabetic Retinopathy (PDR).
-
-        * **Vitreous Hemorrhage:** Bleeding into the vitreous gel, often from fragile new blood vessels, causing sudden vision loss.
-
-        * **Panretinal Photocoagulation (PRP):** Laser treatment to destroy peripheral ischemic retina, reducing the stimulus for neovascularization in PDR.
-
-        * **Anti-VEGF Therapy:** Intravitreal injections of agents (e.g., ranibizumab, aflibercept, bevacizumab) that block Vascular Endothelial Growth Factor, reducing leakage and neovascularization.
-
-        * **Vitrectomy:** Surgical procedure to remove vitreous hemorrhage or scar tissue that is causing tractional retinal detachment.
-
-        * **ICD-10 Codes:** H36.0- (Diabetic retinopathy), specific codes for nonproliferative (e.g., H36.01) and proliferative (e.g., H36.02) forms, and with macular edema (e.g., H36.03).
+## 💡 What You Need to Know
+* **Diabetic Retinopathy (DR) Overview:** Diabetic retinopathy is a leading cause of vision loss and blindness among working-age adults, directly linked to prolonged high blood sugar levels in individuals with diabetes.
+* **Retinal Damage Mechanism:** High glucose levels damage the tiny blood vessels in the retina, the light-sensitive tissue at the back of the eye. This damage can lead to leakage, swelling, and abnormal new blood vessel growth.
+* **Progression of DR:** It typically progresses from mild non-proliferative diabetic retinopathy (NPDR) to severe proliferative diabetic retinopathy (PDR), where fragile new blood vessels grow on the retina and into the vitreous gel.
+* **Age-Related Exacerbation:** While DR can occur at any age, its prevalence and severity often increase with the duration of diabetes, making older adults with long-standing diabetes particularly vulnerable to significant vision impairment.
+* **Silent Progression:** In its early stages, DR often has no noticeable symptoms, underscoring the critical need for regular eye examinations.
+
+
+## 🤒 Associated Symptoms
+* **Blurred or Fluctuating Vision:** Vision may become blurry, hazy, or fluctuate in clarity, often worsening with poor blood sugar control.
+* **Floaters and Dark Spots:** Patients may notice an increase in 'floaters' (small specks or cobweb-like images) or dark, empty spots in their field of vision, especially if there is vitreous hemorrhage.
+* **Impaired Color Vision:** Difficulty distinguishing colors or perceiving them as faded can be an early sign of retinal damage.
+* **Night Vision Difficulty:** Reduced ability to see clearly in low light conditions.
+* **Sudden Vision Loss:** Acute, severe vision loss can occur due to vitreous hemorrhage, retinal detachment, or diabetic macular edema (DME).
+* **Pain or Redness:** While DR itself is usually painless, complications like neovascular glaucoma can cause eye pain and redness.
+
+
+## 🛡️ Crucial Precautions
+* **Strict Glycemic Control:** Maintain blood glucose levels within target ranges (HbA1c < 7% for most adults) as recommended by your physician to prevent or slow DR progression.
+* **Blood Pressure Management:** Control hypertension effectively, as high blood pressure can exacerbate retinal vessel damage.
+* **Cholesterol Control:** Manage dyslipidemia to reduce the risk of hard exudates and further retinal damage.
+* **Regular Dilated Eye Exams:** Undergo comprehensive dilated eye examinations at least annually, or more frequently if advised by an ophthalmologist, to detect DR early.
+* **Smoking Cessation:** Avoid smoking, as it significantly increases the risk and progression of diabetic retinopathy and other diabetic complications.
+* **Prompt Symptom Reporting:** Report any changes in vision, new floaters, or flashes of light to your ophthalmologist immediately.
+
+
+## 🍽️ Dietary Directions & Restrictions
+* **Balanced Diabetic Diet:** Adhere to a diet plan focused on managing blood glucose levels, typically rich in whole grains, lean proteins, and non-starchy vegetables.
+* **Limit Refined Carbohydrates & Sugars:** Minimize intake of processed foods, sugary drinks, and refined carbohydrates to prevent blood sugar spikes.
+* **Portion Control:** Practice appropriate portion sizes to maintain a healthy weight and support blood glucose regulation.
+* **Adequate Hydration:** Ensure sufficient fluid intake, primarily water, to support overall metabolic health.
+* **Nutrient-Rich Foods:** Incorporate foods high in antioxidants, omega-3 fatty acids, and vitamins (e.g., leafy greens, fatty fish, berries) that support general eye health, always within the context of your diabetes management plan.
+* **Consult a Dietitian:** Work with a registered dietitian to develop a personalized meal plan that supports both diabetes management and overall health.
+
+
+## ⚠️ Attendant Guidelines
+* **Medication Adherence:** Consistently take all prescribed medications for diabetes, hypertension, and hyperlipidemia as directed by your healthcare provider.
+* **Self-Monitoring Blood Glucose (SMBG):** Regularly monitor your blood glucose levels and keep a detailed log to share with your healthcare team.
+* **Recognize Worsening Signs:** Be vigilant for signs of worsening vision, such as increased blurriness, new floaters, or a sudden decrease in visual acuity, and seek immediate medical attention.
+* **Follow-Up Appointments:** Do not miss scheduled appointments with your endocrinologist, primary care physician, and ophthalmologist for ongoing management and monitoring.
+* **Physical Activity:** Engage in regular, moderate physical activity as approved by your doctor to help manage blood sugar and blood pressure.
+* **Protective Eyewear:** Wear appropriate protective eyewear during activities that could pose a risk to eye injury, especially if vision is already compromised.
+
+
+## 🩺 Physician's Perspective
+* **Early Detection is Paramount:** Diabetic retinopathy is a treatable condition, but early detection through regular dilated eye exams is crucial for preventing irreversible vision loss.
+* **Holistic Diabetes Management:** Effective management of diabetes, including blood sugar, blood pressure, and cholesterol, is the cornerstone of preventing and slowing DR progression.
+* **Treatment Options:** Modern treatments like anti-VEGF injections, laser photocoagulation, and vitrectomy can effectively manage and stabilize DR, especially when initiated promptly.
+* **Patient Education:** Empowering patients with knowledge about their condition and the importance of adherence to treatment and lifestyle modifications is vital for long-term visual outcomes.
+* **Multidisciplinary Approach:** A collaborative approach involving endocrinologists, ophthalmologists, and primary care providers ensures comprehensive care for patients with diabetes and DR.
+* **Individualized Care:** Treatment plans are tailored to the individual's specific stage of DR, overall health, and response to therapy.
+
+
+## 🎓 Academic & Nursing Corner
+* **Patient Education on Diabetes Management:** Nurses play a key role in educating patients about the importance of blood glucose control, medication adherence, and healthy lifestyle choices to prevent DR.
+* **Symptom Assessment and Referral:** Assess patients for visual changes, new floaters, or other eye symptoms and facilitate timely referrals to ophthalmology.
+* **Pre- and Post-Procedure Care:** Provide education and support for patients undergoing DR treatments such as anti-VEGF injections or laser therapy, including medication administration and post-procedure instructions.
+* **Visual Acuity Screening:** Conduct routine visual acuity screenings as part of comprehensive diabetic care to identify potential vision impairment.
+* **Support for Low Vision:** Assist patients with advanced DR in accessing low vision aids and resources to improve their quality of life and independence.
+* **Understanding DR Stages:** Be knowledgeable about the different stages of diabetic retinopathy (NPDR, PDR, DME) to better understand patient needs and treatment plans.
+
+
+## 🔬 Clinical Reference Index
+* **Pathophysiology:** Chronic hyperglycemia leads to pericyte loss, basement membrane thickening, endothelial cell dysfunction, and microaneurysm formation, progressing to ischemia and neovascularization.
+* **Classification:** Non-proliferative diabetic retinopathy (NPDR) characterized by microaneurysms, hemorrhages, hard exudates, and cotton wool spots; Proliferative diabetic retinopathy (PDR) characterized by neovascularization, vitreous hemorrhage, and tractional retinal detachment.
+* **Diabetic Macular Edema (DME):** Swelling of the macula due to leakage from damaged retinal blood vessels, a common cause of vision loss in DR.
+* **Diagnostic Modalities:** Fundus photography, optical coherence tomography (OCT) for macular edema, fluorescein angiography (FA) for detecting leakage and neovascularization.
+* **Treatment Modalities:** Intravitreal anti-VEGF injections (e.g., Ranibizumab, Aflibercept, Bevacizumab), panretinal photocoagulation (PRP) laser for PDR, focal/grid laser for DME, vitrectomy for vitreous hemorrhage or tractional retinal detachment.
+* **Risk Factors:** Duration of diabetes, poor glycemic control, hypertension, dyslipidemia, nephropathy, pregnancy, and genetic predisposition.
 
 ---
 

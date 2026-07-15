@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human heart with chaotic, disorganized electrical waves emanating from the ventricles, symbolizing ventricular fibrillation. A pair of hands are actively performing chest compressions on a patient's chest, while an automated external defibrillator (AED) is visible with pads applied. The scene conveys urgency and medical intervention, set against a clean, modern public health awareness background with no text.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./ventricular_fibrillation.jpg" class="card-banner" alt="Ventricular fibrillation Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-heart-and-blood-vessels" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Heart and blood vessels</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-heart-and-blood-vessels-cardiac-arrest" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Cardiac arrest</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Ventricular fibrillation</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Heart and blood vessels</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Cardiac arrest</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Life-Threatening Arrhythmia:</strong> Ventricular fibrillation (VFib) is a severe cardiac arrhythmia where the heart's lower chambers (ventricles) quiver uselessly instead of pumping blood effectively.</li><li><strong>Immediate Cardiac Arrest:</strong> This disorganized electrical activity leads to an immediate cessation of effective blood circulation, resulting in sudden cardiac arrest.</li><li><strong>Loss of Consciousness:</strong> Patients experiencing VFib will rapidly lose consciousness and collapse due to the lack of blood flow to the brain.</li><li><strong>Medical Emergency:</strong> VFib is a critical medical emergency requiring immediate intervention, primarily defibrillation, to restore a normal heart rhythm.</li><li><strong>Common Causes:</strong> Often triggered by acute myocardial infarction (heart attack), severe electrolyte imbalances, drug toxicity, or underlying structural heart disease.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Sudden Collapse:</strong> The most prominent sign is an abrupt loss of consciousness and collapse.</li><li><strong>Absence of Pulse:</strong> No palpable pulse can be detected in major arteries (e.g., carotid, femoral).</li><li><strong>Absence of Breathing:</strong> The patient will stop breathing or exhibit agonal gasps (infrequent, ineffective gasps).</li><li><strong>Unresponsiveness:</strong> The patient will not respond to verbal commands or painful stimuli.</li><li><strong>Prior Symptoms (if any):</strong> In some cases, preceding symptoms like chest pain, palpitations, dizziness, or shortness of breath may occur if VFib is preceded by other arrhythmias like ventricular tachycardia.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Early Recognition of Cardiac Arrest:</strong> Prompt identification of unresponsiveness, absence of normal breathing, and lack of pulse is paramount.</li><li><strong>Immediate Activation of EMS:</strong> Call emergency medical services (e.g., 911) without delay.</li><li><strong>Initiate High-Quality CPR:</strong> Begin chest compressions immediately and continue until a defibrillator is available or EMS arrives.</li><li><strong>Rapid Defibrillation:</strong> Access to and prompt use of an automated external defibrillator (AED) or manual defibrillator is the most critical intervention.</li><li><strong>Safety During Defibrillation:</strong> Ensure the patient and all bystanders are clear of contact with the patient before delivering a shock.</li><li><strong>Management of Underlying Causes:</strong> Address predisposing factors such as electrolyte imbalances, myocardial ischemia, or drug toxicities to prevent recurrence.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Electrolyte Management:</strong> For patients at risk or post-VFib, careful monitoring and dietary management of potassium and magnesium levels are crucial, especially with diuretic use.</li><li><strong>Heart-Healthy Diet for Prevention:</strong> Adherence to a diet low in saturated and trans fats, cholesterol, and sodium can help mitigate risk factors for coronary artery disease, a common precursor to VFib.</li><li><strong>Fluid Balance Post-Resuscitation:</strong> In the post-cardiac arrest phase, fluid intake may be carefully managed, particularly in patients with heart failure or cerebral edema.</li><li><strong>Avoidance of Stimulants:</strong> Limiting excessive caffeine or other stimulants may be advised for individuals prone to arrhythmias, though not a direct treatment for VFib itself.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Stay Calm and Act Quickly:</strong> Your immediate actions can significantly impact the patient's survival.</li><li><strong>Call for Help:</strong> Immediately dial emergency services and clearly state the situation and location.</li><li><strong>Start Chest Compressions:</strong> If the person is unresponsive and not breathing normally, begin chest compressions at a rate of 100-120 per minute, pressing at least 2 inches deep.</li><li><strong>Locate and Use an AED:</strong> If an AED is available, retrieve it and follow its voice prompts precisely. Apply pads to the bare chest and allow the device to analyze the rhythm.</li><li><strong>Clear Before Shock:</strong> Ensure no one is touching the patient when the AED advises a shock.</li><li><strong>Continue CPR:</strong> Resume CPR immediately after any shock or if no shock is advised, until EMS takes over or the patient shows signs of life.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Time-Sensitive Intervention:</strong> Every minute without defibrillation significantly reduces survival chances; rapid intervention is paramount.</li><li><strong>Adherence to ACLS Protocols:</strong> Management follows Advanced Cardiac Life Support (ACLS) guidelines, including high-quality CPR, early defibrillation, and appropriate pharmacotherapy (e.g., epinephrine, antiarrhythmics).</li><li><strong>Post-Resuscitation Care:</strong> Comprehensive post-cardiac arrest care focuses on optimizing hemodynamics, targeted temperature management, and neurological prognostication.</li><li><strong>Etiology Investigation:</strong> A thorough workup is essential to identify and treat the underlying cause of VFib to prevent recurrence (e.g., coronary angiography, electrolyte correction, toxicology screening).</li><li><strong>Secondary Prevention:</strong> For survivors, consideration of an implantable cardioverter-defibrillator (ICD) is often indicated, especially if no reversible cause is found.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>ECG Recognition:</strong> Learn to identify the characteristic chaotic, irregular waveform of VFib on an electrocardiogram, lacking discernible P waves, QRS complexes, or T waves.</li><li><strong>CPR Proficiency:</strong> Master the techniques for high-quality chest compressions and effective ventilations according to current guidelines.</li><li><strong>Defibrillator Operation:</strong> Understand the safe and effective operation of both manual and automated external defibrillators, including pad placement and energy selection.</li><li><strong>Medication Administration:</strong> Be familiar with ACLS medications such as epinephrine, amiodarone, and lidocaine, including their indications, dosages, and routes of administration during cardiac arrest.</li><li><strong>Post-Arrest Monitoring:</strong> Understand the critical importance of continuous cardiac monitoring, neurological assessment, and vital sign surveillance in the post-resuscitation phase.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Pathophysiology:</strong> Characterized by multiple re-entrant wavelets or focal discharges within the ventricular myocardium, leading to disorganized electrical activity and mechanical standstill.</li><li><strong>ECG Findings:</strong> Irregular, chaotic deflections of varying amplitude and morphology, with no identifiable P waves, QRS complexes, or T waves. The baseline is undulating and coarse.</li><li><strong>Treatment Modalities:</strong> Primary treatment is immediate unsynchronized direct current (DC) defibrillation. Adjunctive therapies include high-quality chest compressions, airway management, and intravenous medications (e.g., epinephrine, amiodarone, lidocaine).</li><li><strong>Prognosis Factors:</strong> Survival rates are directly correlated with the time to defibrillation, quality of CPR, and the underlying etiology of the VFib event.</li><li><strong>ICD Indications:</strong> Class I indication for secondary prevention in patients who have survived an episode of VFib not due to a transient or reversible cause.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>
