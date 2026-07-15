@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mpac-image-generation-prompt" content="Flat vector illustration of a human torso with various sized, subtly discolored skin patches (hypopigmented and hyperpigmented) on the back and chest. A magnifying glass hovers over one patch, revealing microscopic yeast cells and hyphae. The background is clean and medical, with subtle elements of humidity or warmth. Public awareness design, no text anomalies.">
+  <style>
+    /* Global Desktop Base Styles */
+    body { font-family: system-ui, sans-serif; padding: 30px; background: #ffffff; color: #1e293b; margin: 0; }
+    .infographic-card { max-width: 650px; border: 2px solid #e2e8f0; border-radius: 12px; background: #ffffff; position: relative; overflow: hidden; margin: 0 auto; }
+    
+    .card-banner-wrapper { width: 100%; overflow: hidden; background: #f8fafc; line-height: 0; }
+    .card-banner { width: 100%; height: auto; display: block; }
+    
+    .card-header { background: #f8fafc; padding: 30px 30px 20px 30px; border-bottom: 4px solid #3b82f6; }
+    .meta-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #cbd5e1; align-items: flex-start; }
+    
+    .meta-item.category-badge { background: #e0f2fe; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #0284c7; display: inline-flex; align-items: center; }
+    .meta-item.category-badge .meta-label { color: #0369a1; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.category-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+
+    .meta-item.subcategory-badge { background: #f0fdf4; padding: 8px 14px; border-radius: 6px; border-left: 4px solid #22c55e; display: inline-flex; align-items: center; }
+    .meta-item.subcategory-badge .meta-label { color: #166534; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; margin-right: 8px; }
+    .meta-item.subcategory-badge .meta-value { font-weight: 600; color: #0f172a; font-size: 15px; }
+    
+    .topic-container { margin-top: 10px; }
+    .topic-label { color: #3b82f6; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+    h1 { font-size: 34px; color: #0f172a; margin: 0; text-transform: capitalize; font-weight: 800; line-height: 1.2; }
+    
+    /* 🧭 Responsive Breadcrumb Layout Rules */
+    .clinical-breadcrumbs { padding: 20px 30px 0 30px; font-size: 0.85rem; color: #64748b; font-family: system-ui, sans-serif; }
+    .clinical-breadcrumbs a { color: #2563eb; text-decoration: none; font-weight: 500; }
+    .clinical-breadcrumbs a:hover { text-decoration: underline; }
+    .breadcrumb-splitter { margin: 0 0.4rem; color: #cbd5e1; }
+    .breadcrumb-cat { font-weight: 600; color: #334155; }
+    .breadcrumb-sub { color: #64748b; }
+
+    .card-body { padding: 20px 30px 30px 30px; }
+    h2 { font-size: 18px; margin-top: 20px; margin-bottom: 12px; }
+    
+    .awareness-section { background: #f0f9ff; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+    .symptoms-section { background: #f3e8ff; padding: 15px; border-radius: 6px; border-left: 4px solid #a855f7; margin-bottom: 15px; color: #3b0764; }
+    .symptoms-section strong { color: #581c87; }
+    .precautions-section { background: #ccfbf1; padding: 15px; border-radius: 6px; border-left: 4px solid #0d9488; margin-bottom: 15px; color: #115e59; }
+    .precautions-section strong { color: #134e4a; }
+    .dietary-section { background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #d97706; margin-bottom: 15px; color: #78350f; }
+    .dietary-section strong { color: #451a03; }
+    .warning-box { background: #fff7ed; padding: 15px; border-radius: 6px; border-left: 4px solid #f97316; margin-bottom: 15px; }
+    .doctor-advice { background: #fdf2f8; padding: 15px; border-radius: 6px; border-left: 4px solid #db2777; margin-bottom: 15px; color: #4c0519; }
+    .doctor-advice strong { color: #831843; }
+    .student-nurse-index { background: #f0fdf4; padding: 15px; border-radius: 6px; border-left: 4px solid #22c55e; margin-bottom: 15px; font-size: 14px; color: #14532d; }
+    .student-nurse-index strong { color: #166534; }
+    .technical-index { background: #f1f5f9; padding: 15px; border-radius: 6px; font-size: 14px; color: #334155; border-left: 4px solid #64748b; margin-bottom: 15px; }
+    .technical-index strong { color: #0f172a; }
+    
+    ul { padding-left: 20px; margin: 5px 0; }
+    li { margin-bottom: 8px; line-height: 1.4; }
+
+    /* 🛡️ Professional Medical Disclaimer Styling */
+    .card-disclaimer-footer { 
+      background: #f8fafc; 
+      padding: 20px 30px; 
+      border-top: 1px solid #e2e8f0; 
+      font-size: 11px; 
+      line-height: 1.5; 
+      color: #64748b; 
+      text-align: justify;
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 10px; }
+      .infographic-card { border-radius: 8px; border-width: 1px; }
+      .card-header { padding: 20px 15px 15px 15px; }
+      .clinical-breadcrumbs { padding: 15px 15px 0 15px; font-size: 0.8rem; }
+      .card-body { padding: 15px 15px 20px 15px; }
+      .card-disclaimer-footer { padding: 15px; font-size: 10px; }
+      h1 { font-size: 26px; }
+      .meta-row { gap: 8px; padding-bottom: 15px; }
+      .meta-item.category-badge, .meta-item.subcategory-badge { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: calc(100% - 32px); }
+      .meta-label { margin-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+<!-- GLOBAL HOME BUTTON START -->
+<style>
+    #global-home-button {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        background: #0284c7;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 6px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.2s, transform 0.2s;
+    }
+    #global-home-button:hover { background: #0369a1; }
+    
+    /* Mobile View Adaptations */
+    @media (max-width: 768px) {
+        #global-home-button {
+            top: auto;
+            left: auto;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
+        }
+    }
+</style>
+<a id="global-home-button" href="../../../index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Return to Library</span>
+</a>
+<!-- GLOBAL HOME BUTTON END -->
+<div class="infographic-card">
+    <div class="card-banner-wrapper">
+      <img src="./tinea_versicolor.jpg" class="card-banner" alt="Tinea versicolor Visual Overview" onerror="this.style.display='none';">
+    </div>
+    <div class="card-header">
+      <div class="meta-row">
+        <div class="meta-item category-badge"><span class="meta-label">Category</span><span class="meta-value"><a href="../../../index.html#cat-infections-and-vaccines" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Infections and vaccines</a></span></div>
+        <div class="meta-item subcategory-badge"><span class="meta-label">Subcategory</span><span class="meta-value"><a href="../../../index.html#sub-infections-and-vaccines-skin-infections" style="text-decoration: none; color: #0f172a; position: relative; z-index: 100; pointer-events: auto; display: inline-block;">Skin infections</a></span></div>
+      </div>
+      <div class="topic-container">
+        <span class="topic-label">Topic</span>
+        <h1>Tinea versicolor</h1>
+      </div>
+    </div>
+    
+    <!-- 🧭 Elegant Clinical Breadcrumb Navigation (Isolated from Search Crawlers) -->
+    <nav class="clinical-breadcrumbs" data-pagefind-ignore>
+      <a href="/index.html">🏠 Home</a>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-cat">Infections and vaccines</span>
+      <span class="breadcrumb-splitter">/</span>
+      <span class="breadcrumb-sub">Skin infections</span>
+    </nav>
+
+    <!-- Telling Pagefind to strictly index the actual medical text -->
+    <div class="card-body" data-pagefind-body>
+      <div class='awareness-section'><h2>&#128161; What You Need to Know</h2><ul><li><strong>Common Fungal Infection:</strong> Tinea versicolor is a superficial fungal infection caused by an overgrowth of *Malassezia* yeast, a normal inhabitant of the skin.</li><li><strong>Discolored Skin Patches:</strong> Characterized by patches of skin that are lighter (hypopigmented) or darker (hyperpigmented) than the surrounding skin, often with fine scaling.</li><li><strong>Non-Contagious Nature:</strong> This condition is generally not considered contagious as the causative yeast is part of the normal skin flora.</li><li><strong>Exacerbating Factors:</strong> Warm, humid climates, excessive sweating, oily skin, and immunosuppression can promote yeast overgrowth and symptom development.</li></ul></div><div class='symptoms-section'><h2>&#129298; Associated Symptoms</h2><ul><li><strong>Pigmentation Changes:</strong> Development of well-demarcated patches that are typically lighter (hypopigmented) or sometimes darker (hyperpigmented) than the surrounding skin.</li><li><strong>Fine Scaling:</strong> The affected skin patches often have a fine, powdery scale, which may be more noticeable when scraped.</li><li><strong>Mild Pruritus:</strong> Patients may experience mild itching, especially when the skin is warm or sweaty.</li><li><strong>Location:</strong> Commonly found on the trunk, neck, upper arms, and sometimes the face.</li><li><strong>Sun Exposure Effect:</strong> Hypopigmented areas become more prominent after sun exposure because the affected skin does not tan.</li></ul></div><div class='precautions-section'><h2>&#128737; Crucial Precautions</h2><ul><li><strong>Avoid Excessive Sun Exposure:</strong> Limit prolonged sun exposure, especially without protection, as it can make hypopigmented patches more noticeable and delay repigmentation.</li><li><strong>Maintain Skin Hygiene:</strong> Regular bathing with mild cleansers can help manage skin oiliness, which can contribute to yeast overgrowth.</li><li><strong>Wear Breathable Clothing:</strong> Opt for loose-fitting, cotton clothing to reduce heat and humidity on the skin, minimizing an environment conducive to yeast proliferation.</li><li><strong>Avoid Sharing Personal Items:</strong> While not highly contagious, it is prudent to avoid sharing towels, clothing, or other personal items to prevent potential spread of skin flora.</li><li><strong>Recurrence Awareness:</strong> Be aware that Tinea versicolor frequently recurs, especially in warm, humid environments, necessitating ongoing management or prophylactic treatment.</li></ul></div><div class='dietary-section'><h2>&#127869; Dietary Directions & Restrictions</h2><ul><li><strong>Adequate Hydration:</strong> Maintaining optimal fluid intake is crucial for overall skin health and barrier function, which can be a factor in managing skin conditions.</li><li><strong>Balanced Nutrient Intake:</strong> A diet rich in essential vitamins and minerals supports overall immune function and skin resilience, indirectly contributing to skin health.</li><li><strong>No Specific Dietary Restrictions:</strong> There are no specific food or fluid restrictions directly linked to the treatment or prevention of Tinea versicolor recurrence.</li></ul></div><div class='warning-box'><h2>&#9888;&#65039; Attendant Guidelines</h2><ul><li><strong>Adherence to Treatment:</strong> Emphasize the importance of completing the full course of prescribed antifungal medications, even if symptoms improve quickly, to prevent recurrence.</li><li><strong>Post-Treatment Repigmentation:</strong> Inform patients that repigmentation of hypopigmented areas may take several weeks to months after successful treatment and sun exposure is needed.</li><li><strong>Hygiene Practices:</strong> Advise on daily hygiene, including showering after sweating and using antifungal cleansers if recommended by a physician.</li><li><strong>Clothing Management:</strong> Suggest washing clothes, towels, and bedding in hot water to eliminate any residual yeast spores and prevent reinfection.</li><li><strong>Environmental Control:</strong> Counsel patients on minimizing factors that promote yeast growth, such as prolonged exposure to heat and humidity.</li></ul></div><div class='doctor-advice'><h2>&#129658; Physician's Perspective</h2><ul><li><strong>Clinical Diagnosis:</strong> Diagnosis is primarily clinical, often confirmed by a KOH (potassium hydroxide) microscopic examination of skin scrapings, revealing characteristic 'spaghetti and meatballs' appearance of hyphae and spores.</li><li><strong>Topical Antifungals:</strong> First-line treatment typically involves topical antifungal agents such as selenium sulfide, ketoconazole, or pyrithione zinc shampoos/creams applied to affected areas.</li><li><strong>Oral Antifungals:</strong> For extensive, severe, or recurrent cases, oral antifungals like itraconazole or fluconazole may be prescribed, often with specific dosing regimens (e.g., pulse dosing).</li><li><strong>Patient Education:</strong> Crucial to educate patients on the chronic and recurrent nature of the condition and the importance of adherence to treatment and preventive measures.</li><li><strong>Differential Diagnosis:</strong> Consider other conditions such as vitiligo, pityriasis alba, seborrheic dermatitis, or post-inflammatory hypopigmentation in the differential diagnosis.</li></ul></div><div class='student-nurse-index'><h2>&#127891; Academic & Nursing Corner</h2><ul><li><strong>Patient Education on Application:</strong> Instruct patients on the correct application technique for topical antifungals, including duration and frequency, and the importance of applying to all affected areas.</li><li><strong>Understanding Recurrence:</strong> Educate patients that recurrence is common and not a sign of treatment failure, but rather a characteristic of the condition, often requiring maintenance therapy.</li><li><strong>Hygiene Counseling:</strong> Provide guidance on daily skin care routines, including showering after physical activity and using antifungal soaps or shampoos as directed.</li><li><strong>Psychosocial Impact:</strong> Acknowledge the potential psychosocial impact of visible skin discoloration and offer reassurance regarding the benign nature of the condition.</li><li><strong>Monitoring for Side Effects:</strong> Advise patients to report any adverse reactions to medications, such as skin irritation from topical agents or systemic side effects from oral antifungals.</li></ul></div><div class='technical-index'><h2>&#128300; Clinical Reference Index</h2><ul><li><strong>Causative Agent:</strong> Primarily *Malassezia furfur* (formerly *Pityrosporum orbiculare*), but other *Malassezia* species such as *M. globosa* and *M. sympodialis* are also implicated.</li><li><strong>Pathophysiology:</strong> The yeast, normally a commensal organism, transforms from a budding yeast form to a mycelial (hyphal) form under specific conditions, leading to clinical manifestations.</li><li><strong>Risk Factors:</strong> Include warm and humid environments, excessive sweating (hyperhidrosis), oily skin (seborrhea), genetic predisposition, immunosuppression (e.g., corticosteroid use, HIV), and malnutrition.</li><li><strong>Mechanism of Hypopigmentation:</strong> *Malassezia* produces azelaic acid and other dicarboxylic acids that inhibit tyrosinase, an enzyme essential for melanin synthesis in melanocytes, leading to hypopigmentation.</li><li><strong>Histopathology:</strong> Skin biopsy typically shows short hyphae and spores in the stratum corneum, often associated with mild perivascular lymphocytic infiltrate.</li></ul></div>
+    </div>
+
+    <!-- 🛡️ Legal Anchor Block -->
+    <div class="card-disclaimer-footer">
+      <strong>Disclaimer:</strong> This clinical infographic is generated for informational, educational, and general awareness purposes only. It does not constitute formal medical advice, definitive diagnosis, or a recommended treatment protocol. The clinical guidelines presented herein should not be used as a substitute for professional medical consultations, clinical examinations, or the direct advice of a certified healthcare practitioner. Always seek the immediate advice of your primary care physician or other qualified medical specialists regarding any health conditions or emergent symptoms.
+    </div>
+  </div>
+</body>
+</html>
